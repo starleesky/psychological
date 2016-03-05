@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis">
+
+	<!-- Database: MySQL -->
+	<!-- Pagination start. -->
+	<sql id="pageStartSQL" databaseId="mysql"></sql>
+	<!-- Pagination end. -->
+	<sql id="pageEndSQL" databaseId="mysql">
+		<if test="page.pageSort != null and page.pageSort != ''">
+		<![CDATA[
+        ORDER BY ${page.pageSort} ${page.pageOrder} 
+		]]>
+		</if>
+		<if test="page != null">
+		<![CDATA[
+		limit #{page.offset}, #{page.limit}
+		]]>
+		</if>
+	</sql>
+
+	<!-- Database: Oracle -->
+	<!-- Pagination start. -->
+	<sql id="pageStartSQL" databaseId="oracle">
+		<if test="page != null">
+		<![CDATA[
+		SELECT tmp2.*
+		  FROM (SELECT tmp1.*, ROWNUM row_num
+		          FROM (
+		]]>
+		</if>
+	</sql>
+	<!-- Pagination end. -->
+	<sql id="pageEndSQL" databaseId="oracle">
+		<if test="page.pageSort != null and page.pageSort != ''">
+		<![CDATA[
+		          ORDER BY ${page.pageSort} ${page.pageOrder} 
+		]]>
+		</if>
+		<if test="page != null">
+		<![CDATA[
+		          ) tmp1
+		         WHERE ROWNUM <= #{page.offsetLimit}) tmp2
+		 WHERE tmp2.row_num > #{page.offset}
+		]]>
+		</if>
+	</sql>
+	
+	<!-- Database: SQL Server -->
+	<!-- Pagination start. -->
+	<sql id="pageStartSQL" databaseId="sqlserver">
+		<if test="page != null">
+		<![CDATA[
+		SELECT *
+		  FROM (SELECT TOP ${page.offsetLimit} row_number() over(
+		]]>
+			<choose>
+				<when test="page.pageSort != null">
+					ORDER BY ${page.pageSort} ${page.pageOrder}
+				</when>
+				<otherwise>
+					ORDER BY tmp1.id ASC
+				</otherwise>
+			</choose>
+		<![CDATA[
+			) rownum, tmp1.* FROM (
+		]]>
+		</if>
+	</sql>
+
+	<!-- Pagination end. -->
+	<sql id="pageEndSQL" databaseId="sqlserver">
+		<if test="page != null">
+		<![CDATA[
+	        ) tmp1
+		) tmp2
+		 WHERE tmp2.rownum > #{page.offset}
+		]]>
+		</if>
+	</sql>
+	
+	<!-- 根据传入的参数和ID排序. -->
+	<sql id="pageEndSQLorderById" databaseId="oracle">
+		<if test="page.pageSort != null and page.pageSort != ''">
+		<![CDATA[
+		          ORDER BY ${page.pageSort}  ${page.pageOrder},id  DESC
+		]]>
+		</if>
+		<if test="page != null">
+		<![CDATA[
+		          ) tmp1
+		         WHERE ROWNUM <= #{page.offsetLimit}) tmp2
+		 WHERE tmp2.row_num > #{page.offset}
+		]]>
+		</if>
+	</sql>
+
+</mapper>

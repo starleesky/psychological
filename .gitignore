@@ -1,0 +1,8 @@
+.settings
+.classpath
+.project
+bin
+target/
+*.iml
+.idea
+WebRoot/WEB-INF/classes

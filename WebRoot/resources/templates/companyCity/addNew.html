@@ -1,0 +1,181 @@
+<div class="modal-header">
+	<h3>新增车险公司</h3>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal" name="new_form">
+
+		<div class="form-group">
+		  <label class="col-sm-3 control-label">车险公司</label>
+		  <div class="col-sm-9">
+		    <select name="companyId" class="form-control" ng-model="data.companyId" ng-options="c.id as c.name for c in companys"></select>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label class="col-sm-3 control-label">城市</label>
+		  <div class="col-sm-9">
+		    <select name="cityId" class="form-control" ng-model="data.cityId" ng-options="c.cityId as c.cityName for c in citys"></select>
+		  </div>
+		</div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">联系人</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="contactName" placeholder="联系人" required ng-model="data.contactName">
+	      <span class="form-error" ng-show="submitted && new_form.contactName.$invalid">请填写联系人姓名</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">手机</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="phoneNum" placeholder="手机" required ng-model="data.contactPhone" ng-pattern="/^\d{11}$/">
+	      <span class="form-error" ng-show="submitted && new_form.phoneNum.$invalid">请填写正确的手机号</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">商业险可购买天数</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="insuranceValue" placeholder="商业险可购买天数" required ng-pattern="/^\d+$/" ng-model="data.commercialBuyInterval">
+	      <span class="form-error" ng-show="submitted && new_form.insuranceValue.$invalid">请填写正确的数字</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">交强险返点(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="mandatoryRebate" placeholder="交强险返点" required ng-model="data.mandatoryRebate" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.mandatoryRebate.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">商业险返点(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="commercialRebate" placeholder="商业险返点" required ng-model="data.commercialRebate" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.commercialRebate.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">礼包券返点(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="giftCouponRebate" placeholder="礼包券返点" required ng-model="data.giftCouponRebate" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.giftCouponRebate.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">礼品卡返点(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="giftCardRebate" placeholder="礼品卡返点" required ng-model="data.giftCardRebate" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.giftCardRebate.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">佣金(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="commissionRate" placeholder="佣金" required ng-model="data.commissionRate" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.commissionRate.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">销售折扣(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="saleDiscount" placeholder="销售折扣" required ng-model="data.saleDiscount" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.saleDiscount.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">试算销售折扣(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="trialSaleDiscount" placeholder="试算销售折扣" required ng-model="data.trialSaleDiscount" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.trialSaleDiscount.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">电子销售折扣率(%)</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="ecommerceRate" placeholder="电子销售折扣率" required ng-model="data.ecommerceRate" input-per>
+	      <span class="form-error" ng-show="submitted && new_form.ecommerceRate.$invalid">请填写100以内两位小数</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">地址</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" name="address" placeholder="地址" required ng-model="data.address">
+	      <span class="form-error" ng-show="submitted && new_form.address.$invalid">请填写正确的地址信息</span>
+	    </div>
+	  </div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">核保渠道</label>
+			<div class="col-sm-9">
+				<input type="radio" ng-model="data.channel" value="1" ng-checked="true"> 电网销
+				<input type="radio" style="margin-left: 20px" ng-model="data.channel" value="2"> 传统
+				<input type="radio" style="margin-left: 20px" ng-model="data.channel" value="3"> 费改
+			</div>
+		</div>
+
+		<div class="form-group">
+	    <label class="col-sm-3 control-label">是否特惠</label>
+	    <div class="col-sm-9">
+	      <input type="checkbox" ng-model="data.discountFlag" ng-true-value="1" ng-false-value="0">
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">是否可用</label>
+	    <div class="col-sm-9">
+	      <input type="checkbox" ng-model="data.isValid" ng-true-value="1" ng-false-value="0">
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">是否有赠礼</label>
+	    <div class="col-sm-9">
+	      <input type="checkbox" ng-model="data.giftFlag" ng-true-value="1" ng-false-value="0">
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">是否要上传身份证</label>
+	    <div class="col-sm-9">
+	      <input type="checkbox" ng-model="data.idcardImgFlag" ng-true-value="1" ng-false-value="0">
+	    </div>
+	  </div>
+	
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">排序</label>
+	    <div class="col-sm-9">
+	      <input type="number" class="form-control" ng-model="data.orderLevel">
+	      <p>默认0，值越大，查询时越排在前面</p>
+	    </div>
+	  </div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">促销活动名称</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="activityName" placeholder="促销活动名称" ng-model="data.activityName" maxlength="20">
+				<span class="form-error" ng-show="submitted && invalidActivityName">填写促销活动url后促销名称不能为空</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label">促销活动Url</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="activityUrl" placeholder="促销活动Url" ng-model="data.activityUrl" maxlength="100">
+				<span class="form-error" ng-show="submitted && new_form.activityUrl.$invalid">请填写促销活动Url</span>
+			</div>
+		</div>
+
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="add()" ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

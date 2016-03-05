@@ -1,0 +1,42 @@
+<div class="modal-header">
+	<h3 class="modal-title">关联代付公司</h3>
+</div>
+<div class="modal-body">
+
+	<div class="line">
+		<h3 class="clearfix">结算账户详情</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>车险公司</th>
+					<th>{{company.companyName}}</th>
+				</tr>
+				<tr>
+					<th>城市</th>
+					<th>{{company.cityName}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>代付公司：</td>
+					<td>
+						<div>
+							<label for="{{'agency' + $index}}" ng-repeat="a in agencys">
+								<input type="checkbox" id="{{'agency' + $index}}" ng-model="a.state" ng-true-value="1" ng-false-value="0">{{a.name}}
+							</label>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="line">
+		<pagination total-items="orderList.totalSize" ng-model="filter.page" ng-change="filterOrder()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="filter.pageSize"></pagination>
+	</div>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">关闭</button>
+</div>

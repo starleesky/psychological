@@ -1,0 +1,170 @@
+<div class="modal-header">
+	<h3 class="modal-title">明细</h3>
+</div>
+<div class="modal-body">
+
+	<tabset>
+		<tab select="switchTab('yjmx')" heading="佣金明细"></tab>
+		<tab select="switchTab('txmx')" heading="提现明细"></tab>
+		<tab select="switchTab('kymx')" heading="扣佣明细"></tab>
+	</tabset>
+
+	<div class="line">
+		<form class="form-inline search-form" ng-submit="store.fetch()">
+		  <div class="form-group">
+		      <input type="text" class="form-control" placeholder="{{tabs[tabName].searchHolder}}" ng-model="store.filter.filterKey">
+		  </div>
+		  <button type="submit" class="btn btn-primary">搜索</button>
+
+		  <div class="form-group">
+		    <div class="input-group">
+		      <input type="text" class="form-control" datepicker-popup is-open="timeFlag.start" ng-model="store.filter.startDate" ng-change="store.fetch()"/>
+	        <span class="input-group-btn">
+	          <button type="button" class="btn btn-default" ng-click="toggleCal($event, 'start')">
+	          	<i class="glyphicon glyphicon-calendar"></i>
+	         	</button>
+	        </span>
+		    </div>
+		  </div>
+
+		  <span>至</span>
+
+		  <div class="form-group">
+		    <div class="input-group">
+		      <input type="text" class="form-control" datepicker-popup is-open="timeFlag.end" ng-model="store.filter.endDate" ng-change="store.fetch()"/>
+	        <span class="input-group-btn">
+	          <button type="button" class="btn btn-default" ng-click="toggleCal($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
+	        </span>
+		    </div>
+		  </div>
+
+		  <div class="form-group pull-right" ng-if="tabName == 'txmx'">
+	    	<!-- <label>排序方式：</label> -->
+	      <select class="form-control" ng-model="store.filter.type" ng-change="store.fetch()">
+	      	<option value="">类型</option>	
+	      	<option value="0">提现中</option>
+	      	<option value="1">提现成功</option>
+	      	<option value="2">提现失败</option>
+	      </select>
+		  </div>
+
+  	  <div class="form-group pull-right" ng-if="tabName == 'yjmx'">
+      	<!-- <label>排序方式：</label> -->
+        <select class="form-control" ng-model="store.filter.type" ng-change="store.fetch()">
+        	<option value="">来源</option>	
+        	<option value="1">年卡</option>
+        	<option value="2">购车险</option>
+        </select>
+  	  </div>
+
+		</form>
+	</div>
+
+	<div class="line">
+		<!-- <table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>时间</th>
+					<th>车牌号</th>
+					<th>手机号</th>
+					<th>扣佣金额</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="o in store.data">
+					<td>{{o.createTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{o.plateNumber}}</td>
+					<td>{{o.phone}}</td>
+					<td>{{o.commission / 100 | number : 2}}</td>
+				</tr>
+			</tbody>
+		</table> -->
+		<p ng-show="tabName=='yjmx'">累计佣金总额：{{store.result.data.commission / 100 | number : 2}}元</p>
+		<p ng-show="tabName=='txmx'">可提现金额：{{store.result.data.availableCommission / 100 | number : 2}}元  质保金金额：{{store.result.data.baseComission / 100 | number : 2}}元  累计结算金额：{{store.result.data.withdraw / 100 | number : 2}}元</p>
+		<p ng-show="tabName=='kymx'">累计扣佣总额：{{store.result.data.commission / 100 | number : 2}}元</p>
+		<ng-include src="tabName + '-tmpl'"></ng-include>
+		<p class="alert alert-warning" ng-show="store.fetching">正在查询</p>
+		<p class="alert alert-warning" ng-show="store.result.data.data.totalSize == 0">暂时没有记录</p>
+	</div>
+
+	<script type="text/ng-template" id="yjmx-tmpl">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>时间</th>
+					<th>车牌号</th>
+					<th>手机号</th>
+					<th>类型</th>
+					<th>来源</th>
+					<th>佣金(元)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="o in store.data">
+					<td>{{o.createTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{o.plateNumber}}</td>
+					<td>{{o.phone}}</td>
+					<td>{{o.commissionType == 1 ? '返佣' : '返现'}}</td>
+					<td>{{o.orderSource == 1 ? '年卡' : '购车险'}}</td>
+					<td>{{o.commission / 100 | number : 2}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</script>
+
+	<script type="text/ng-template" id="txmx-tmpl">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>时间</th>
+					<th>提现流水号</th>
+					<th>类型</th>
+					<th>结算金额(元)</th>
+					<th style="width: 200px;">备注</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="o in store.data">
+					<td>{{o.id}}</td>
+					<td>{{o.createTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{o.batchNum}}</td>
+					<td>{{o.withdrawStatus == 0 ? '提现中' : o.withdrawStatus == 1 ? '提现成功' : '提现失败'}}</td>
+					<td>{{o.withdrawAmount / 100 | number : 2}}</td>
+					<td>{{o.remark}}</td>
+					<td><button class="btn btn-primary" ng-if="o.withdrawStatus == 2" ng-click="refund(o)">重新打款</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</script>
+
+	<script type="text/ng-template" id="kymx-tmpl">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>时间</th>
+					<th>车牌号</th>
+					<th>手机号</th>
+					<th>扣佣金额(元)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="o in store.data">
+					<td>{{o.createTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+					<td>{{o.plateNumber}}</td>
+					<td>{{o.phone}}</td>
+					<td>{{o.commission / 100 | number : 2}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</script>
+
+	<div class="line">
+		<pagination total-items="store.result.data.data.totalSize" ng-model="store.filter.page" ng-change="store.fetch()" class="pull-right" items-per-page="store.filter.pageSize"></pagination>
+	</div>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

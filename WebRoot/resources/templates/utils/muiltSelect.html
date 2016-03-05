@@ -1,0 +1,12 @@
+<div class="muilt-select">
+	<p class="muilt-select-panel" ng-click="focus()">
+		<span class="muilt-select-placeholder" ng-hide="selected.length > 0">{{placeholder}}</span>
+		<span class="muilt-selected-item" ng-repeat="s in selected">{{s.value}} <i class="glyphicon glyphicon-remove" ng-click="$parent.unselect(s)"></i></span>
+		<span class="nuilt-no-selected-item"></span>
+		<input type="text" class="muilt-select-input" ng-focus="focused = true" ng-blur="unfocus()">
+		<a class="muilt-select-toggle"><i class="glyphicon glyphicon-triangle-bottom"></i></a>
+	</p>
+	<div class="muilt-select-options" ng-show="focused">
+		<a class="muilt-select-option" ng-repeat="o in options" ng-click="$parent.select(o)" ng-class="{selected: o.selected}">{{o.value}} {{select}} </a>
+	</div>
+</div>

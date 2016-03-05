@@ -1,0 +1,31 @@
+<div class="modal-header">
+	<h3 class="modal-title">结算账户信息</h3>
+</div>
+<div class="modal-body">
+
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td>开户银行</td>
+				<td>{{company.bankName}}</td>
+				<td>开户城市</td>
+				<td>{{company.bankCityId | cityName : company.bankProvinceId}}</td>
+				<td>所属支行</td>
+				<td>{{company.bankBranch}}</td>
+			</tr>
+			<tr>
+				<td>银行卡号</td>
+				<td>{{company.bankNo}}</td>
+				<td>开户姓名</td>
+				<td>{{company.bankUser}}</td>
+				<td>账户类型</td>
+				<td>{{company.bankAccType == 1 ? '个人' : '企业'}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="edit()" ng-disabled="updating">修改</button>
+	<button class="btn btn-warning" ng-click="cancel()">关闭</button>
+</div>

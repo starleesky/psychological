@@ -1,0 +1,53 @@
+<div class="modal-header">
+	<h3 class="modal-title">新增车险城市配置</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_car_form">
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-4 control-label">城市名称</label>
+			<div class="col-sm-8">
+				<select name="cityId" class="form-control" ng-model="data.cityId" ng-options="c.cityId as c.cityName for c in carCitys"></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-4 control-label">第三方车险城市ID</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" ng-model="data.cityIdOther" placeholder="第三方车险城市ID 可选项">
+				<span class="form-error" ng-show="invalidCityIdOther">请正确填写第三方车险城市ID</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-4 control-label">交强险可购买日期(天)</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" ng-model="data.buyExpireDate" required placeholder="交强险可购买日期(天) 必填项">
+				<span class="form-error" ng-show="invalidBuyExpireDate">交强险可购买日期是必填项，数值为整数，大于1且小于365</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-4 control-label">是否生效</label>
+			<div class="col-sm-8">
+				<input type="checkbox" ng-model="data.valid" ng-true-value="1" ng-false-value="0"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-4 control-label">促销活动名称</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" ng-model="data.activityName" placeholder="请填写促销活动名称" maxlength="20"/>
+				<span class="form-error" ng-show="invalidActivityName">填写促销活动url后促销名称不能为空</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-4 control-label">促销活动url</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" ng-model="data.activityUrl" placeholder="请填写促销活动url" maxlength="100"/>
+			</div>
+		</div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="add()"
+		ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

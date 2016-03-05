@@ -1,0 +1,36 @@
+
+<div class="image-viewer" ng-style="{height: container.width + 'px'}">
+	<style>
+		.image-viewer{
+			text-align: center;
+			border: 1px solid #eee;
+			position: relative;
+			overflow: hidden;
+			padding-top: 30px;
+		}
+		.image-viewer-img{
+			position: absolute;
+			cursor: move;
+			-webkit-backface-visibility: hidden;
+			outline: 1px solid transparent;
+		}
+		.image-viewer-tools{
+			position: absolute;
+			top: 0;
+			width: 100%;
+			line-height: 30px;
+			background-color: #eee;
+		}
+		
+	</style>
+	<img ng-src="{{src}}" alt="" ng-show="loaded" width="{{img.clientWidth}}" class="image-viewer-img" height="{{img.clientHeight}}"
+		ng-style="{left: action.left + 'px', top: action.top + 'px', '-webkit-transform': 'rotate(' + action.deg + 'deg)', 'transform': 'rotate(' + action.deg + 'deg)'}"
+		>
+	<span ng-show="!loaded" style="display: block;">正在加载图片...</span>
+	<span ng-show="error" style="display: block;">图片加载失败</span>
+	<div class="image-viewer-tools">
+		<a ng-click="turn(-90)">向左旋转</a>
+		<a ng-click="init()">复原</a>
+		<a ng-click="turn(90)">向右旋转</a>
+	</div>
+</div>

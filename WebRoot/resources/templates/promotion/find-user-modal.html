@@ -1,0 +1,51 @@
+<div class="modal-header">
+	<h3 class="modal-title">查找用户</h3>
+</div>
+<div class="modal-body">
+
+	<!-- <form class="form-horizontal" name="add_form"> -->
+
+		<div class="line">
+			<div class="form-group">
+			  <!-- <label for="percent" class="col-sm-3 control-label">佣金比例（%）</label> -->
+			  <div class="col-sm-4">
+			    <input type="text" class="form-control" placeholder="请输入手机号" ng-model="phoneNo" ng-trim>
+			  </div>
+			  <div class="col-sm-4">
+			    <button class="btn btn-primary" ng-click="search()" ng-disabled="searching">搜索</button>
+			  </div>
+			</div>
+		</div>
+
+		<div class="line" ng-show="user">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>用户id</th>
+						<th>手机号</th>
+						<th>商家id</th>
+						<th>描述</th>
+						<th>领取时间</th>
+						<th>修改时间</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+				<tr ng-repeat="c in user">
+					<td data-ng-bind="c.userId"></td>
+					<td data-ng-bind="c.phone"></td>
+					<td data-ng-bind="c.businessId"></td>
+					<td style="max-width: 300px" data-ng-bind="c.couponDesc"></td>
+					<td data-ng-bind="c.createTime|date:'yyyy-MM-dd HH:mm:ss'"></td>
+					<td data-ng-bind="c.modifyTime|date:'yyyy-MM-dd HH:mm:ss'"></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+	<!-- </form> -->
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

@@ -1,0 +1,23 @@
+<div class="modal-header">
+	<h3 class="modal-title">录入保单号</h3>
+</div>
+<div class="modal-body">
+
+	<form name="policy_num_form">
+	  <div class="form-group" ng-if="insType != 2">
+      <label for="mandatoryPolicyNo">交强险保单号</label>
+      <input type="text" class="form-control" name="mandatoryPolicyNo" placeholder="交强险保单号" required ng-model="no.mandatoryPolicyNo">
+      <span class="form-error" ng-show="submitted && policy_num_form.mandatoryPolicyNo.$invalid">请输入正确的保单号</span>
+    </div>
+    <div class="form-group" ng-if="insType != 1">
+      <label for="commercialPolicyNo">商业险保单号</label>
+      <input type="text" class="form-control" name="commercialPolicyNo" placeholder="商业险保单号" required ng-model="no.commercialPolicyNo">
+      <span class="form-error" ng-show="submitted && policy_num_form.commercialPolicyNo.$invalid">请输入正确的保单号</span>
+    </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="savePolicyNum()" ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

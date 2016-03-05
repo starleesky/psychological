@@ -1,0 +1,39 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改商业险生效时间</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="comm_form">
+		<div class="form-group">
+		  <label for="date" class="col-sm-2 control-label">生效日期</label>
+		  <div class="col-sm-10">
+		    <input type="text" class="form-control" datepicker-popup="{{format}}" ng-focus="toggleCal(true)" is-open="opened" close-text="关闭" ng-model="date" ng-change="formatDate()" name="date" required/>
+		    <span class="form-error" ng-show="submitted && comm_form.date.$invalid">请输入正确的日期</span>
+		  </div>
+		</div>
+	</form>
+
+
+	<!-- <form class="form-horizontal" name="edit_form">
+	  <div class="form-group" ng-show="commercials[comm.insTypeId].options && commercials[comm.insTypeId].options.length > 0">
+	    <label for="thisYearNeed" class="col-sm-2 control-label">基准值</label>
+	    <div class="col-sm-10">
+	      <select id="insuranceStandard" ng-model="comm.selectValue" class="form-control" ng-options="c as c.selectName for c in commercials[comm.insTypeId].options">
+	      	<option value="{{c.selectValue}}" ng-repeat="c in commercials[comm.insTypeId].options">{{c.selectName}}</option>
+	      </select>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="insuranceValue" class="col-sm-2 control-label">核保金额</label>
+	    <div class="col-sm-10">
+	      <input type="number" class="form-control" id="insuranceValue" name="insuranceValue" placeholder="核保金额" ng-required ng-model="comm.verifyAmount">
+	      <span class="form-error" ng-show="submitted && edit_form.insuranceValue.$invalid">请填写正确的数字</span>
+	    </div>
+	  </div>
+	</form> -->
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="update()" ng-disabled="submitting">确定</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

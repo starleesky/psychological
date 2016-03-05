@@ -1,0 +1,37 @@
+<div class="modal-header">
+	<h3 class="modal-title">选择核保失败原因</h3>
+</div>
+<div class="modal-body">
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<td>被保人</td>
+				<td>{{order.userName}}</td>
+				<td>车险公司</td>
+				<td>{{order.companyName}}</td>
+			</tr>
+			<tr>
+				<td>手机</td>
+				<td colspan="3">{{order.phone}}</td>
+			</tr>
+			<tr>
+				<td>失败原因</td>
+				<td colspan="3">
+					<select ng-model="selectedReason" ng-change="setErrorMsg()" class="form-control" style="margin-bottom: 10px;">
+						<option value="">自定义</option>
+						<option value="{{r.fieldValue}}" ng-repeat="r in reasons">{{r.fieldValue}}</option>
+					</select>
+					<p ng-show="!select">
+						<textarea class="form-control" ng-model="errorMessage" cols="30" rows="10" maxlength="255"></textarea>
+					</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="notPass()" ng-disabled="submitting">提交</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

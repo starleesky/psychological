@@ -1,0 +1,42 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改交强险+车船税</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="jqcc_form">
+	  
+	  <div class="form-group">
+	    <label for="jqx" class="col-sm-2 control-label">交强险</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="jqx" name="jqx" placeholder="交强险" required ng-model="order.mandatoryAmountTotal" ng-pattern="/^[0-9]+([.]\d{1,2})?$/">
+	      <span class="form-error" ng-show="submitted && jqcc_form.jqx.$invalid">请输入正确的数字（保留两位小数）</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="thisYearNeed" class="col-sm-2 control-label">车船税当年应交</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="thisYearNeed" name="thisYearNeed" placeholder="车船税当年应交" required ng-model="order.vehicleTaxNeedPayment" ng-pattern="/^[0-9]+([.]\d{1,2})?$/">
+	      <span class="form-error" ng-show="submitted && jqcc_form.thisYearNeed.$invalid">请输入正确的数字（保留两位小数）</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="lastYearNeed" class="col-sm-2 control-label">车船税往年补缴</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="lastYearNeed" name="lastYearNeed" placeholder="车船税往年补缴" ng-model="order.vehicleTaxFillupPayment" ng-pattern="/^[0-9]+([.]\d{1,2})?$/">
+	      <span class="form-error" ng-show="submitted && jqcc_form.lastYearNeed.$invalid">请输入正确的数字（保留两位小数）</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="lateFees" class="col-sm-2 control-label">滞纳金</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="lateFees" name="lateFees" placeholder="滞纳金" ng-model="order.vehicleTaxLateFee" ng-pattern="/^[0-9]+([.]\d{1,2})?$/">
+	      <span class="form-error" ng-show="submitted && jqcc_form.lateFees.$invalid">请输入正确的数字（保留两位小数）</span>
+	    </div>
+	  </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="updatejqcc()" ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

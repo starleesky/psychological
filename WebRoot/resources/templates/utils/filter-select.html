@@ -1,0 +1,7 @@
+
+<div ng-class="{'filter-select-container': true, min: toggle}">
+	<a class="filter-toggle" ng-click="toggleSelect()">更多<i ng-class="{glyphicon: true, 'glyphicon-menu-down': toggle, 'glyphicon-menu-up': !toggle}"></i></a>
+	<input type="text" ng-model="searchText" class="filter-search-input" ng-change="search()" placeholder="搜索"/>
+	<span class="filter-selected-item" ng-show="selectedItem">{{selectedItem[valueName]}}<i class="glyphicon glyphicon-remove" ng-click="removeSelect()"></i></span>
+	<a class="filter-select-item" ng-repeat="s in selects" ng-hide="s._hide" ng-click="select(s)">{{s[valueName]}}</a>
+</div>

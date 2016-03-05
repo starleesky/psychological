@@ -1,0 +1,29 @@
+<div class="modal-header">
+	<h3 class="modal-title">退保</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="add_form">
+	 <div class="form-group">
+	    <label class="col-sm-2 control-label">追回金额</label>
+	    <div class="col-sm-10">
+	      <input type = "text" rows="10" class="form-control" ng-trim="true" ng-model="StringValueOfChasedAmount"/>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">备注</label>
+	    <div class="col-sm-10">
+	      <textarea rows="10" class="form-control" ng-trim="true" ng-model="remark"></textarea>
+	    </div>
+	  </div>
+	    <div class="form-group">
+	    <label class="col-sm-2 control-label" style="color: red;">备注：</label>
+	    <label class="control-label" style="color: red;">请在备注中填写用户补差价部分的金额以及其他相关退款信息,以方便后期核对。</label>
+	  </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">添加</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

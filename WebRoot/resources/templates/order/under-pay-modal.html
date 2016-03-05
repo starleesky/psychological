@@ -1,0 +1,103 @@
+<div class="modal-header">
+	<h3 class="modal-title">线下支付</h3>
+</div>
+<div class="modal-body">
+
+	<form name="pay_form" class="form-horizontal">
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">订单ID</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" ng-model="data.orderId" readonly="true">
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">交易号</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="tradeNo" ng-model="data.tradeNo" required>
+	      <span class="form-error" ng-show="submitted && pay_form.tradeNo.$invalid">必须填写</span>
+		  </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">支付金额</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" name="payAmount" ng-model="data.payAmount" required ng-pattern="/^(\d+)(\.\d+)?$/">
+	      <span class="form-error" ng-show="submitted && pay_form.payAmount.$invalid">请填写正确的金额</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">交易描述</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" ng-model="data.orderDesc">
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">用户支付时间</label>
+	    <div class="col-sm-4">
+	      <input type="text" class="form-control" name="orderPaidDate" ng-model="date" datepicker-popup is-open="payDate" readonly="true" ng-required="true" ng-focus="payDate = true" style="margin-top: 33px;" close-on-date-selection="false">
+	    </div>
+	    <div class="col-sm-4">
+	      <timepicker ng-model="time" name="orderPaidTime" hour-step="hstep" minute-step="mstep" show-meridian="false" ng-required="true"></timepicker>
+	    </div>
+	    <p><span class="form-error" ng-show="submitted && (pay_form.orderPaidDate.$invalid || pay_form.orderPaidTime.$invalid)">必须填写</span></p>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">是否填写账户</label>
+	    <div class="col-sm-10">
+	      <input type="checkbox" ng-model="ifBank" ng-true-value="1" ng-false-value="0">
+	    </div>
+	  </div>
+
+		<div ng-if="ifBank">
+			<div class="form-group">
+			  <label class="col-sm-2 control-label">开户银行名称</label>
+			  <div class="col-sm-10">
+			    <input type="text" class="form-control" name="bankName" ng-model="data.payBankCard.bankName" required>
+			    <span class="form-error" ng-show="submitted && pay_form.bankName.$invalid">必须填写</span>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <label class="col-sm-2 control-label">开户姓名</label>
+			  <div class="col-sm-10">
+				  <input type="text" class="form-control" name="bankUser" ng-model="data.payBankCard.bankUser" required>
+				  <span class="form-error" ng-show="submitted && pay_form.bankUser.$invalid">必须填写</span>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <label class="col-sm-2 control-label">银行卡号</label>
+			  <div class="col-sm-10">
+				  <input type="text" class="form-control" name="bankNo" ng-model="data.payBankCard.bankNo" required ng-pattern="/^\d+$/">
+				  <span class="form-error" ng-show="submitted && pay_form.bankNo.$invalid">请填写正确的银行卡号</span>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <label class="col-sm-2 control-label">所属支行</label>
+			  <div class="col-sm-10">
+				  <input type="text" class="form-control" name="bankBranch" ng-model="data.payBankCard.bankBranch" required>
+				  <span class="form-error" ng-show="submitted && pay_form.bankBranch.$invalid">必须填写</span>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <label class="col-sm-2 control-label">账户类型</label>
+			  <div class="col-sm-10">
+			  	<input type="radio" ng-model="data.payBankCard.bankAccType" value="1"> 个人
+			  	<input type="radio" ng-model="data.payBankCard.bankAccType" value="2"> 企业
+			  </div>
+			</div>
+		</div>
+
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="pay()" ng-disabled="submitting">确定</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

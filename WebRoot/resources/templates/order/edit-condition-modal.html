@@ -1,0 +1,66 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改承保条件</h3>
+</div>
+<div class="modal-body">
+
+	<style>
+		.driver{
+			border: 1px solid #aaa;
+			padding: 15px 0;
+			margin-bottom: 10px;
+		}
+		.driver .delete-btn{
+			margin-bottom: 10px;
+			text-align: right;
+			padding-right: 20px;
+		}
+	</style>
+
+	<form class="form-horizontal" name="edit_condition">
+		<div class="form-group">
+		  <label for="specifyCity" class="col-sm-3 control-label">是否指定城市</label>
+		  <div class="col-sm-9">
+		    <input type="checkbox" ng-model="order.specifyCity" ng-true-value="1" ng-false-value="0">
+		  </div>
+		</div>
+	  <div ng-repeat="d in order.specifyDrivers" class="driver">
+	  	<div class="delete-btn">
+	  		<button class="btn btn-danger" ng-click="removeDriver($index)" ng-disabled="removing">删除</button>
+	  	</div>
+	  	<div class="form-group">
+	  	  <label class="col-sm-3 control-label">驾驶员名字</label>
+	  	  <div class="col-sm-9">
+	  	    <input type="text" class="form-control" name="name{{$index}}" placeholder="指定驾驶员姓名" ng-model="d.name" ng-trim="true" ng-required="true" maxlength="16">
+	  	    <span class="form-error" ng-show="edit_condition['name' + {{$index}}].$invalid && submitted">必须填写</span>
+	  	  </div>
+	  	</div>
+	  	<div class="form-group">
+	  	  <label class="col-sm-3 control-label">身份证号码</label>
+	  	  <div class="col-sm-9">
+	  	    <input type="text" class="form-control" name="idcardNo{{$index}}" placeholder="身份证号码" ng-model="d.idcardNo" ng-trim="true" ng-required="true" ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/">
+	  	    <span class="form-error" ng-show="edit_condition['idcardNo' + {{$index}}].$invalid && submitted">请填写正确的身份证号码</span>
+	  	  </div>
+	  	</div>
+	  	<div class="form-group">
+	  	  <label class="col-sm-3 control-label">准驾车型</label>
+	  	  <div class="col-sm-9">
+	  	    <input type="text" class="form-control" name="drivingClass{{$index}}" placeholder="准驾车型" ng-model="d.drivingClass" ng-trim="true" ng-required="true" maxlength="3">
+	  	    <span class="form-error" ng-show="edit_condition['drivingClass' + {{$index}}].$invalid && submitted">必须填写</span>
+	  	  </div>
+	  	</div>
+	  	<div class="form-group">
+	  	  <label class="col-sm-3 control-label">初次领证日期</label>
+	  	  <div class="col-sm-9">
+	  	    <input type="text" class="form-control" name="firstissuedate{{$index}}" placeholder="初次领证日期" ng-model="d.firstissuedate" ng-required="true" datepicker-popup="yyyy-MM-dd" ng-focus="focus = true" is-open="focus">
+	  	    <span class="form-error" ng-show="edit_condition['firstissuedate' + {{$index}}].$invalid && submitted">必须填写</span>
+	  	  </div>
+	  	</div>
+	  </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-success" ng-click="addDriver()" ng-disabled="order.specifyDrivers.length === 3">{{order.specifyDrivers.length < 3 ? '新增驾驶员' : '最多三个'}}</button>
+	<button class="btn btn-primary" ng-click="submit()">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

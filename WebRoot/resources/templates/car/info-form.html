@@ -1,0 +1,89 @@
+<div class="form-group">
+  <label for="" class="col-sm-3 control-label">联系电话</label>
+  <div class="col-sm-9">
+    <span ng-bind="licenseInfo.userPhone" class="form-control" style="border: 0;"></span>
+  </div>
+</div>
+<div class="form-group">
+ <label for="inputPassword3" class="col-sm-3 control-label">车辆识别代号</label>
+ <div class="col-sm-9">
+   <input type="text" special-char class="form-control" name="vin" id="car_vin" ng-model="licenseInfo.license.vin" ng-required="true" ng-blur="getThisVin($event)" value="" ng-maxlength="32" ng-trim="true">
+   <span class="form-error" ng-show="edit_form.vin.$invalid && submitted">必须填写 最长32个字符</span>
+  </div>
+</div>
+<div class="form-group">
+  <label for="" class="col-sm-3 control-label">车牌号</label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control" name="plateNumber" ng-model="licenseInfo.license.plateNumber" ng-required="true" value="" ng-maxlength="10">
+    <span class="form-error" ng-show="edit_form.plateNumber.$invalid && submitted">必须填写 最长10个字符</span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">车辆类型</label>
+  <div class="col-sm-9">
+    	<select class="form-control" name="vehicleTypeKey" ng-model="licenseInfo.license.vehicleTypeKey" ng-required="true" ng-options="x.fieldKey*1 as x.fieldValue for x in carTypes" ng-required="true">
+    		<option value="">请选择</option>
+    	</select>
+      <span class="form-error" ng-show="edit_form.vehicleTypeKey.$invalid && submitted">请选择</span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">使用性质</label>
+  <div class="col-sm-9">
+   	<select class="form-control" name="useCharacterKey" ng-model="licenseInfo.license.useCharacterKey" ng-options="x.fieldKey*1 as x.fieldValue for x in vehicleUse" ng-required="true">
+  		<option value="">请选择</option>
+  	</select>
+    <span class="form-error" ng-show="edit_form.useCharacterKey.$invalid && submitted">请选择</span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">所有人</label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control" name="owner" ng-model="licenseInfo.license.owner" ng-required="true" value="{{carManager.license.owner}}" ng-maxlength="16">
+    <span class="form-error" ng-show="edit_form.owner.$invalid && submitted">必须填写 最长16个字符</span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">品牌型号</label>
+  <div class="col-sm-9">
+    <input type="text" special-char class="form-control" name="model" ng-model="licenseInfo.license.model" placeholder="中文不用填写"  ng-required="true" value="" ng-maxlength="64">
+    <span class="form-error" ng-show="edit_form.model.$invalid && submitted">必须填写 最长64个字符</span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">发动机号码</label>
+  <div class="col-sm-9">
+    <input type="text" special-char class="form-control" name="engineNo" ng-model="licenseInfo.license.engineNo" ng-required="true" value="" ng-maxlength="32">
+    <span class="form-error" ng-show="edit_form.engineNo.$invalid && submitted">必须填写 最长32个字符</span>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label">注册日期</label>
+  <div class="col-sm-9">
+  	<div class="input-group">
+  		<input type="text" class="form-control" readonly="true" name="registerDate" is-open="registerfocused" datepicker-popup ng-required="true" ng-model="dateObj.registerDateObj" ng-focus="registerfocused = true" max-date="today"/>
+      <span class="form-error" ng-show="edit_form.registerDate.$invalid && submitted">必须填写</span>
+  	</div>
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-sm-3 control-label"><strong class="red">*发证日期</strong></label>
+  <div class="col-sm-9">
+  	<div class="input-group">
+  		<input type="text" class="form-control" readonly="true" name="issueDate" datepicker-popup is-open="issuefocused" ng-model="dateObj.issueDateObj" ng-change="issueDateChange()" ng-required="true" ng-focus="issuefocused = true" max-date="today"/>
+      <span class="form-error" ng-show="edit_form.issueDate.$invalid && submitted">必须填写</span>
+  	</div>
+  </div>
+</div>
+<input type="hidden" class="form-control" name="address" ng-model="licenseInfo.license.address">
+<!-- <div class="form-group" style="display: none;">
+  <label class="col-sm-3 control-label">住址</label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control" name="address" ng-model="licenseInfo.license.address"><span class="form-error" ng-show="edit_form.address.$invalid && submitted">必须填写</span>
+  </div>
+</div> -->
+<div class="form-group">
+  <div class="col-sm-9 col-sm-offset-3">
+    <button class="btn btn-primary" ng-disabled="submitting">保存</button>
+  </div>
+</div>

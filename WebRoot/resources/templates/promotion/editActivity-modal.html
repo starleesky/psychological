@@ -1,0 +1,97 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改活动</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_form">
+
+		<div class="form-group">
+		  <label for="name" class="col-sm-2 control-label">活动名称</label>
+		  <div class="col-sm-10">
+		    <input type="text" class="form-control" placeholder="活动名称" required ng-model="data.promotionActivity.name" name="name">
+		    <span class="form-error" ng-show="submitted && edit_form.name.$invalid">请填写正确的天数</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="description" class="col-sm-2 control-label">活动描述</label>
+		  <div class="col-sm-10">
+		  	<textarea class="form-control" placeholder="活动描述" name="description" required ng-model="data.promotionActivity.description"></textarea>
+		    <span class="form-error" ng-show="submitted && edit_form.description.$invalid">请填写正确的天数</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="type" class="col-sm-2 control-label">活动场景</label>
+		  <div class="col-sm-10">
+		  	<select name="type" id="type" class="form-control" ng-model="data.promotionActivity.type">
+		  		<option value="0">购买</option>
+		  		<!-- <option value="1">注册</option> -->
+		  	</select>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="subType" class="col-sm-2 control-label">活动类型</label>
+		  <div class="col-sm-10">
+		  	<select name="subType" id="subType" class="form-control" ng-model="data.promotionActivity.subType" ng-change="loadTmpl()">
+		  		<option value="0">洗车券</option>
+		  		<option value="1">保养券</option>
+		  		<option value="2">加油卡</option>
+		  		<!-- <option value="3">现金券</option> -->
+		  	</select>
+		  </div>
+		</div>
+
+		<ng-include src="templates[data.promotionActivity.subType]" onload="loaded()"></ng-include>
+
+		<div class="form-group">
+		  <label for="beginTime" class="col-sm-2 control-label">开始时间</label>
+		  <div class="col-sm-10">
+		  	<input type="text" class="form-control" datepicker-popup="{{format}}" ng-focus="toggleCal('begin', true)" is-open="beginOpened" close-text="关闭" ng-model="beginTime" name="beginTime" ng-change="clearEndTime()" required/>
+		  	<span class="form-error" ng-show="submitted && edit_form.beginTime.$invalid">请输入正确的日期</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="endTime" class="col-sm-2 control-label">结束时间</label>
+		  <div class="col-sm-10">
+		  	<input type="text" class="form-control" datepicker-popup="{{format}}" ng-focus="toggleCal('end', true)" is-open="endOpened" close-text="关闭" ng-model="endTime" name="endTime" min-date="beginTime" required/>
+		  	<span class="form-error" ng-show="submitted && edit_form.endTime.$invalid">请输入正确的日期</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="source" class="col-sm-2 control-label">来源</label>
+		  <div class="col-sm-10">
+		  	<select name="source" id="source" class="form-control" ng-model="data.promotionActivity.source">
+		  		<option value="0">养车点点</option>
+		  		<option value="1">典典车险</option>
+		  		<option value="2">保险公司</option>
+		  	</select>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="priority" class="col-sm-2 control-label">优先级</label>
+		  <div class="col-sm-10">
+			  <select name="priority" id="priority" class="form-control" ng-model="data.promotionActivity.priority" ng-options="i as i for i in prioritys">
+			  </select>
+			  <span>值越小优先级越高</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+	    <label class="col-sm-2 control-label">是否可用</label>
+	    <div class="col-sm-10">
+	      <input type="checkbox" ng-model="data.promotionActivity.isValid" ng-true-value="1" ng-false-value="0">
+	    </div>
+	  </div>
+
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="edit()" ng-disabled="submitting">修改</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

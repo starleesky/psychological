@@ -1,0 +1,59 @@
+<div class="modal-header">
+	<h3 class="modal-title">新增城市险种配置</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_car_form">
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">城市名称</label>
+			<div class="col-sm-8">
+				<select type="text" class="form-control" ng-model="data.cityId" ng-options="c.cityId as c.cityName for c in canBeAddCityTypeList" ng-change="cityChange()"></select>
+				<span class="form-error" ng-show="vaildCityId">请选择车险城市</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">车险类型名称</label>
+			<div class="col-sm-9">
+				<select type="text" class="form-control" ng-model="data.insTypeId" ng-options="c.insTypeId as c.insTypeName for c in canBeAddTypeList"></select>
+				<span class="form-error" ng-show="vaildInsTypeId">请选择车险类型</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">选择条件</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="data.selectNames" placeholder="1万,2万,3万,4万(选填项) 中间分隔使用英文逗号!!!">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">选择值</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="data.selectValues" placeholder="1,2,3,4">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">默认选中值</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="data.defaultValue">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">是否被选中</label>
+			<div class="col-sm-9">
+				<input type="checkbox" ng-model="data.isDefaultSelect" ng-true-value="1" ng-false-value="0">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">分数值</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="data.score">
+				<span class="form-error" ng-show="vaildScore">请正确填写分数值 1-100 的整数</span>
+			</div>
+		</div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="add()"
+		ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

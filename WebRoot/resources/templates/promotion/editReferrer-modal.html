@@ -1,0 +1,70 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改推荐人信息</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="add_form">
+
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td>推荐店</td>
+					<td>{{detail.userName}}</td>
+					<td>联系人</td>
+					<td>{{detail.contactName}}</td>
+					<td>手机</td>
+					<td>{{detail.phone}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="form-group">
+		  <label for="percent" class="col-sm-3 control-label">佣金比例</label>
+		  <div class="col-sm-8">
+		    <input type="number" class="form-control" placeholder="佣金比例" id="percent" name="percent" ng-model="detail.commissionRate" required inputPercent>
+		    <span class="form-error" ng-show="submitted && add_form.percent.$invalid">请输入正确的比例</span>
+		  </div>
+		</div>
+
+		<!-- <div class="form-group">
+		  <label class="col-sm-3 control-label">推荐码设置</label>
+		  <div class="col-sm-8">
+		    <input type="radio">成语
+		    <input type="radio">自定义
+		  </div>
+		</div> -->
+
+		<style>
+			.filtered-idiom{
+				display: inline-block;
+				line-height: 25px;
+				padding: 0 15px;
+			}
+		</style>
+
+		<div class="form-group">
+		  <label for="search" class="col-sm-3 control-label">成语推荐码</label>
+		  <div class="col-sm-8">
+		  	<input type="text" class="form-control" ng-model="idiomFilter.idiomName" ng-change="dealySearch()" placeholder="搜索成语" style="margin-bottom: 10px;">
+		  	<input type="hidden" ng-model="detail.idiom" name="idiom" ng-required="true">
+		  	<p class="form-error" ng-show="add_form.idiom.$invalid && submitted" style="margin: 0;">请选择成语</p>
+		    <div class="form-control" style="height: 300px; overflow: auto;">
+		    	<p>
+		    		<span class="btn btn-primary" tooltip="点击取消选择" ng-click="disSelect()" ng-if="selectedIdiom.idiomName">{{selectedIdiom.idiomName}} <i class="glyphicon glyphicon-remove"></i></span>
+		    	</p>
+		    	<p ng-show="searching">正在搜索...</p>
+		    	<p ng-show="!searching && idioms.length < 1">该关键词没有搜索到成语</p>
+		    	<a class="filtered-idiom" ng-repeat="i in idioms" ng-click="chooseIdiom(i)" ng-bind="i.idiomName"></a>
+		    </div>
+		    <pagination total-items="pager.totalSize" ng-model="idiomFilter.page" items-per-page="idiomFilter.pageSize" class="pagination-sm" ng-change="getIdioms()"></pagination>
+		  </div>
+		</div>
+
+
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="edit()" ng-disabled="submitting">修改</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

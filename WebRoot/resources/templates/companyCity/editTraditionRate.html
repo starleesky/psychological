@@ -1,0 +1,64 @@
+<div class="modal-header">
+	<h3>修改车险公司传统费率配置</h3>
+</div>
+<div class="modal-body">
+	<form class="form-horizontal" name="new_form">
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">交强险返点(%)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="mandatoryRebate"
+					placeholder="交强险返点" required ng-model="data.mandatoryRebate"
+					input-per> <span class="form-error"
+					ng-show="submitted && new_form.mandatoryRebate.$invalid">请填写100以内两位小数</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">商业险返点(%)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="commercialRebate"
+					placeholder="商业险返点" required ng-model="data.commercialRebate"
+					input-per> <span class="form-error"
+					ng-show="submitted && new_form.commercialRebate.$invalid">请填写100以内两位小数</span>
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">销售折扣(%)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="saleDiscount"
+					placeholder="销售折扣" required ng-model="data.saleDiscount" input-per>
+				<span class="form-error"
+					ng-show="submitted && new_form.saleDiscount.$invalid">请填写100以内两位小数</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">试算销售折扣(%)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="trialSaleDiscount"
+					placeholder="试算销售折扣" required ng-model="data.trialSaleDiscount"
+					input-per> <span class="form-error"
+					ng-show="submitted && new_form.trialSaleDiscount.$invalid">请填写100以内两位小数</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">电子销售折扣率(%)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" name="ecommerceRate"
+					placeholder="电子销售折扣率" required ng-model="data.ecommerceRate"
+					input-per> <span class="form-error"
+					ng-show="submitted && new_form.ecommerceRate.$invalid">请填写100以内两位小数</span>
+			</div>
+		</div>
+
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="add()"
+		ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

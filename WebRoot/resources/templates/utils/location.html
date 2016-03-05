@@ -1,0 +1,30 @@
+<style>
+	.location-selector .choice:focus{
+		color: red;
+	}
+</style>
+<div class="location-selector">
+	<p>
+		<a href="#" ng-class="{active: index == 0 && inputing, choice: true}" ng-model="province" ng-click="input(0)" ng-blur="blur()" ng-hide="">{{province ? ctrl.provinces[province] : '请选择省'}}</a> / 
+
+		<a href="#" ng-class="{active: index == 1 && inputing, choice: true}" ng-model="city" ng-click="input(1)" ng-blur="blur()" ng-if="authority > 1">{{city ? ctrl.citys[city] : '请选择市'}}</a> / 
+
+		<a href="#" ng-class="{active: index == 2 && inputing, choice: true}" ng-model="district" ng-click="input(2)" ng-blur="blur()" ng-if="authority > 2">{{district ? ctrl.districts[district] : '请选择区'}}</a> / 
+
+		<a href="#" ng-class="{active: index == 3 && inputing, choice: true}" ng-model="detail" ng-click="input(3)" ng-blur="blur()" ng-if="authority > 3">{{detail ? detail : '请输入具体地址'}}</a>
+	</p>
+	<div class="location-panel">
+		<p class="location-item" ng-show="index==0 && inputing">
+			<a ng-repeat="(k, v) in ctrl.provinces" ng-click="chooseP(k)">{{v}}</a>
+		</p>
+		<p class="location-item" ng-show="index==1 && inputing">
+			<a ng-repeat="(k, v) in ctrl.citys" ng-click="chooseC(k)">{{v}}</a>
+		</p>
+		<p class="location-item" ng-show="index==2 && inputing">
+			<a ng-repeat="(k, v) in ctrl.districts" ng-click="chooseD(k)">{{v}}</a>
+		</p>
+		<p class="location-item" ng-show="index==3 && inputing">
+			<input type="text" ng-model="detail">
+		</p>
+	</div>
+</div>

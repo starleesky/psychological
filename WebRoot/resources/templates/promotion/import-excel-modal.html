@@ -1,0 +1,64 @@
+<div class="modal-header">
+	<h3 class="modal-title">导入推荐人</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="add_form" ng-submit="upload($event)">
+
+		<div class="form-group">
+		  <label for="percent" class="col-sm-3 control-label">佣金比例（%）</label>
+		  <div class="col-sm-8">
+		    <input type="text" class="form-control" placeholder="佣金比例" id="percent" name="percent" ng-model="commissionRate" required input-percent ng-pattern="/^100(\.0{1,2})?$|^\d{1,2}(\.\d{1,2})?$/">
+		    <span class="form-error" ng-show="submitted && add_form.percent.$invalid">请输入正确的比例(100以内两位小数)</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="percent" class="col-sm-3 control-label">选择文件</label>
+		  <div class="col-sm-8">
+		    <a ng-file-select ng-file-change="setFile($files)" class="btn btn-default">
+		    	<span ng-bind-template="选择文件"><span>
+		    </a>
+		    <span>{{file.name}}</span>
+		  </div>
+		</div>
+
+		<div class="form-group" ng-if="uploading">
+		  <label for="percent" class="col-sm-3 control-label"></label>
+		  <div class="col-sm-8">
+		    <div class="col-sm-10"><progressbar class="progress-striped active" max="progress.totalSize" value="progress.loaded" type="primary"><i>上传中...</i></progressbar></div>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="percent" class="col-sm-3 control-label"></label>
+		  <div class="col-sm-8">
+		    <button type="submit" class="btn btn-warning" ng-disabled="uploading">提交</button>
+		  </div>
+		</div>
+
+	</form>
+
+	<div class="line" ng-if="failList && failList.length > 0">
+		<table class="table table-bordered">
+			<caption>导入失败记录</caption>
+			<tbody>
+				<tr ng-repeat="item in failList">
+					<td>{{item.id}}</td>
+					<td>{{item.failReason}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- <form>
+		<input type="text" class="form-control" ng-model="commissionRate" placeholder="佣金比例" ng-pattern="/^100(\.0{1,2})?$|^\d{1,2}(\.\d{1,2})?$/">
+	</form> -->
+
+	
+
+</div>
+<div class="modal-footer">
+	<!-- <button class="btn btn-primary" ng-click="upload()" ng-disabled="uploading">导入</button> -->
+	<button class="btn btn-warning" ng-click="cancel()" ng-disabled="uploading">关闭</button>
+</div>

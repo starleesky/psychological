@@ -1,0 +1,30 @@
+<div class="modal-header">
+	<h3 class="modal-title">新增推荐码</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="add_form">
+
+		<div class="form-group">
+		  <label for="effectiveDate" class="col-sm-3 control-label">有效期（天）</label>
+		  <div class="col-sm-9">
+		    <input type="number" class="form-control" placeholder="有效期" required ng-model="addData.expireValue" name="expireValue">
+		    <span class="form-error" ng-show="submitted && add_form.expireValue.$invalid">请填写正确的天数</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="count" class="col-sm-3 control-label">金额（元）</label>
+		  <div class="col-sm-9">
+		   	<input type="number" class="form-control" placeholder="有效期" required ng-model="addData.cashValue" name="cashValue">
+		   	<span class="form-error" ng-show="submitted && add_form.cashValue.$invalid">请填写正确的金额</span>
+		  </div>
+		</div>
+
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="add()" ng-disabled="submitting">添加</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

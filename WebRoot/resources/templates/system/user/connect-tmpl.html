@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h3 class="modal-title">选择保险公司</h3>
+</div>
+<div class="modal-body">
+
+    <div class="line">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                    <citys-list filter-value="cityId" filter-name="cityName" selects="cityList" filter-model="list.cityId" change="choseCity()"></citys-list>
+                <!--<th ng-repeat="t in list">{{t.cityName}}</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <!--<div class="panel panel-default">-->
+                        <div class="panel-body" class="col-md-4 col-md-push-8">
+                            <span ng-repeat="o in companyList" ng-init="index=$index" ng-if="o.cityId==list.cityId||list.cityId==''">
+                                <span for="{{'agency' + index + $index}}" ng-repeat="t in o.companys">
+                                    <label>
+                                        <input type="checkbox" id="{{'agency' + index + $index}}" ng-model="t.choose" ng-true-value="1" ng-false-value="0" ng-click="isSelectAll()">{{t.companyName || textAlert}}{{ ' - ' + o.cityName }}
+                                    </label>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <label for="all">
+                                <input type="checkbox" id="all" ng-model="list.selectedAll" ng-click="selectAll($event)">全选
+                            </label>
+                        </div>
+                    <!--</div>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<div class="line">-->
+        <!--<pagination total-items="orderList.totalSize" ng-model="filter.page" ng-change="filterOrder()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="filter.pageSize"></pagination>-->
+    <!--</div>-->
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">修改</button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

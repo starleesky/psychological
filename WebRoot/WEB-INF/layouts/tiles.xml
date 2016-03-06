@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+<tiles-definitions>
+	
+	<definition name="errors/*" template="/WEB-INF/layouts/simple.jsp">
+		<put-attribute name="body" value="/WEB-INF/jsp/errors/{1}.jsp" />
+	</definition>
+	
+	<definition name="baseLayout" template="/WEB-INF/layouts/standard.jsp" >
+		<put-attribute name="ngAppName" value="" />
+	</definition>
+	
+	<definition name="*/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+
+	<definition name="*/*/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<definition name="*/*/*/*" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}/{4}.jsp" />
+	</definition>
+</tiles-definitions>
+
+

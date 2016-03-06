@@ -53,7 +53,7 @@ public abstract class BusiLogger {
 
 	public static final BusiLogger getLogger(String type) {
 		if (configuration.getSendType() == SendType.JMS) {
-			return JMSBusiLogger.getInstance(type, configuration);
+//			return JMSBusiLogger.getInstance(type, configuration);
 		}
 		return DefaultBusiLogger.getInstance(configuration);
 	}

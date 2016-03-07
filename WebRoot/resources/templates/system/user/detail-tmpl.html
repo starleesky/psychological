@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h3 class="modal-title">查看详情</h3>
+</div>
+<div class="modal-body">
+
+    <div class="line">
+        <table class="table table-bordered">
+            <tr>
+                <th class="col-md-2 text-right">用户名 ：</th>
+                <td class="col-md-3">{{user.name || '-'}}</td>
+                <th class="col-md-2 text-right">花名 ：</th>
+                <td class="col-md-4">{{user.nickName || '-'}}</td>
+            </tr>
+
+            <tr>
+                <th class="text-right">姓名 ：</th>
+                <td>{{user.realName}}</td>
+                <th class="text-right">邮箱 ：</th>
+                <td>{{user.email || '-'}}</td>
+            </tr>
+            <tr>
+                <th class="text-right">手机号 ： </th>
+                <td>{{user.telephone || '-'}}</td>
+                <th class="text-right">所属城市 ：</th>
+                <td>{{user.cityName || '-'}}</td>
+            </tr>
+            <tr>
+                <th class="col-md-2 text-right">管辖城市 ：</th>
+                <td colspan="3" class="col-md-4">{{user.chargeCityNames || '-'}}</td>
+            </tr>
+            <!-- <tr>
+                <th class="text-right">关联保险公司如下：</th>
+                <td colspan="3">
+                    <div class="panel panel-default">
+                        <div class="panel-body" class="col-md-4 col-md-push-8">
+                            <label >
+                            </label>
+                        </div>
+                    </div>
+                </td>
+            </tr> -->
+        </table>
+    </div>
+
+    <!-- <div class="line">
+        <pagination total-items="orderList.totalSize" ng-model="filter.page" ng-change="filterOrder()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="filter.pageSize"></pagination>
+    </div> -->
+
+</div>
+<div class="modal-footer">
+    <!--<button class="btn btn-primary" ng-click="edit()" ng-disabled="updating">{{created ? '修改银行卡信息' : '新增银行卡信息'}}</button>-->
+    <button class="btn btn-warning" ng-click="cancel()">关闭</button>
+</div>

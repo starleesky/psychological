@@ -1,0 +1,82 @@
+<div class="modal-header">
+	<h3 class="modal-title">结算详情</h3>
+</div>
+<div class="modal-body">
+
+	<div class="line">
+		<h3 class="clearfix">结算账户</h3>
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td>开户银行</td>
+					<td>{{order.bankCard.bankName}}</td>
+					<td>开户城市</td>
+					<td>{{order.bankCard.bankCity}}</td>
+					<td>所属支行</td>
+					<td>{{order.bankCard.bankBranch}}</td>
+				</tr>
+				<tr>
+					<td>银行卡号</td>
+					<td>{{order.bankCard.bankNo}}</td>
+					<td>开户姓名</td>
+					<td>{{order.bankCard.bankUser}}</td>
+					<td>账户类型</td>
+					<td>{{order.bankCard.bankAccType == 1 ? '个人' : '企业'}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="line">
+		<h3 class="clearfix">结算记录</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>订单号</th>
+					<th>交易号</th>
+					<th>车险公司</th>
+					<th>城市</th>
+					<th>财务打款(元)</th>
+					<th>开户账号</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- <tr ng-repeat="o in orderList.data"> -->
+				<tr>
+					<td ng-bind="order.orderNo"></td>
+					<td ng-bind="order.serialNumber"></td>
+					<td ng-bind="order.companyName"></td>
+					<td ng-bind="order.cityName"></td>
+					<td ng-bind="order.amount/100 | number : 2"></td>
+					<td ng-bind="order.bankNo"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>状态</th>
+					<th>备注</th>
+					<th>时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- <tr ng-repeat="o in orderList.data"> -->
+				<tr>
+					<td ng-bind="order.agencyStatus == 0 ? '申请中' : order.agencyStatus == 1 ? '成功' : order.agencyStatus == 2 ? '失败' : '终结'"></td>
+					<td ng-bind="order.remark"></td>
+					<td ng-bind="order.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="line">
+		<pagination total-items="orderList.totalSize" ng-model="filter.page" ng-change="filterOrder()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="filter.pageSize"></pagination>
+	</div>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="edit()" ng-disabled="updating" ng-if="order.agencyStatus == 2">更换支付方式</button>
+	<button class="btn btn-warning" ng-click="cancel()">关闭</button>
+</div>

@@ -1,0 +1,46 @@
+<div class="modal-header">
+	<h3 class="modal-title">添加商业险选项</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="add_form">
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label">选择险种</label>
+	    <div class="col-sm-10">
+	      <select id="insuranceType" ng-model="addData.insTypeId" class="form-control" ng-change="changeIns()">
+	      	<option value="{{c.typeId}}" ng-repeat="c in commercials">{{c.typeName}}</option>
+	      </select>
+	    </div>
+	  </div>
+	  <div class="form-group" ng-show="commercials[addData.insTypeId].options && commercials[addData.insTypeId].options.length > 0">
+	    <label for="thisYearNeed" class="col-sm-2 control-label">基准值</label>
+	    <div class="col-sm-10">
+	      <select
+	      	id="insuranceStandard"
+	      	ng-model="selectedComm"
+	      	class="form-control"
+	      	ng-change="confirmSelect()"
+	      	ng-options="c as c.selectName for c in commercials[addData.insTypeId].options">
+	      </select>
+	    </div>
+	  </div>
+	  <div class="form-group" ng-show="addData.trialAmount">
+	    <label class="col-sm-2 control-label">试算金额</label>
+	    <div class="col-sm-10">
+	    	<span class="form-control">{{addData.trialAmount}}</span>
+	    </div>
+	  </div>
+	  <!-- <div class="form-group">
+	    <label for="insuranceValue" class="col-sm-2 control-label">核保金额</label>
+	    <div class="col-sm-10">
+	      <input type="number" class="form-control" id="insuranceValue" name="insuranceValue" placeholder="核保金额" ng-required ng-model="addData.verifyAmount">
+	      <span class="form-error" ng-show="submitted && add_form.insuranceValue.$invalid">请填写正确的数字</span>
+	    </div>
+	  </div> -->
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="addCommercial()" ng-disabled="submitting">添加</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

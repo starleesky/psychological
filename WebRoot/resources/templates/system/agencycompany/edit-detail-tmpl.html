@@ -1,0 +1,72 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改代付{{company.name}} </h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_form">
+		<div class="form-group">
+		  <label for="bankName" class="col-sm-2 control-label">开户银行</label>
+		  <!-- <div class="col-sm-10">
+		    <input type="text" class="form-control" id="bankName" name="bankName" placeholder="开户银行" required ng-model="company.bankName">
+		    <span class="form-error" ng-show="submitted && edit_form.bankName.$invalid">必须填写</span>
+		  </div> -->
+		  <div class="col-sm-10">
+		    <select class="form-control" ng-options="id as bank.name for (id, bank) in bankList" ng-model="company.bankCode"></select>
+		  </div>
+		</div>
+	
+		<div class="form-group">
+		  <label for="city" class="col-sm-2 control-label">开户城市</label>
+		  <div class="col-sm-3">
+		    <select name="city" required ng-model="company.bankProvinceId" class="form-control" ng-options="id*1 as name for (id, name) in proviceList">
+		    	<!-- <option value="{{c.cityId}}" ng-repeat="id as name in proviceList">{{p.cityName}}</option> -->
+		    </select>
+		    <span class="form-error" ng-show="submitted && edit_form.city.$invalid">必须填写</span>
+		  </div>
+		  <div class="col-sm-3">
+		  	<city-list name="city" required ng-model="company.bankCityId" provice="company.bankProvinceId" class="form-control"></city-list>
+		    <!-- <select name="city" required ng-model="company.bankCity" class="form-control" city-list="company.bankAreaCode">
+		    </select> -->
+		    <span class="form-error" ng-show="submitted && edit_form.city.$invalid">必须填写</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="bankBranch" class="col-sm-2 control-label">所属支行</label>
+		  <div class="col-sm-10">
+		    <input type="text" class="form-control" id="bankBranch" name="bankBranch" placeholder="所属支行" required ng-model="company.bankBranch">
+		    <span class="form-error" ng-show="submitted && edit_form.bankBranch.$invalid">必须填写</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="bankNo" class="col-sm-2 control-label">银行卡号</label>
+		  <div class="col-sm-10">
+		    <input type="text" class="form-control" id="bankNo" name="bankNo" placeholder="银行卡号" required ng-pattern="/^\d+$/" ng-model="company.bankNo">
+		    <span class="form-error" ng-show="submitted && edit_form.bankNo.$invalid">请填写正确的银行卡号</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="bankUser" class="col-sm-2 control-label">开户姓名</label>
+		  <div class="col-sm-10">
+		    <input type="text" class="form-control" id="bankUser" name="bankUser" placeholder="开户姓名" required ng-model="company.bankUser">
+		    <span class="form-error" ng-show="submitted && edit_form.bankUser.$invalid">必须填写</span>
+		  </div>
+		</div>
+
+		<div class="form-group">
+		  <label for="bankName" class="col-sm-2 control-label">账户类型</label>
+		  <div class="col-sm-10">
+		    <input type="radio" ng-model="company.bankAccType" value="1"> 个人
+		    <input type="radio" ng-model="company.bankAccType" value="2"> 企业
+		  </div>
+		</div>
+
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">提交</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

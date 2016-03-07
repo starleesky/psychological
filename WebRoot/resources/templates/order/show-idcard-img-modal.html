@@ -1,0 +1,14 @@
+<div class="modal-header">
+	<h3 class="modal-title">照片</h3>
+</div>
+<div class="modal-body">
+
+	<div ng-repeat="i in imgInfo.url track by $index">
+		<img ng-src="{{i}}" style="width: 100%;" alt="{{i}}">
+	<h3 class="line"></h3>
+	</div>
+</div>
+<div class="modal-footer">
+	<!--<a class="btn btn-primary" href="{{imgInfo.downloadUrl}}">下载</a>-->
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

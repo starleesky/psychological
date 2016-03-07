@@ -1,0 +1,36 @@
+<div class="modal-header">
+	<h3 class="modal-title">更换支付方式</h3>
+</div>
+<div class="modal-body">
+		
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td>开户银行：</td>
+				<td>{{order.bankCard.bankName}}</td>
+			</tr>
+			<tr>
+				<td>银行卡号：</td>
+				<td>{{order.bankCard.bankNo}}</td>
+			</tr>
+			<tr>
+				<td>代付金额(元)：</td>
+				<td>{{order.amount/100 | number : 2}}</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<select class="form-control" ng-options="a.id as a.name for a in order.agencys" ng-change="showOption()" ng-model="order.agencyCompanyId">
+						<option value="">不使用代付公司</option>
+						<!-- <option value="{{c.id}}" ng-repeat="c in order.agency">{{c.name}}</option> -->
+					</select>
+					<!-- <select ng-options="c.id as c.name for c in order.agency" ng-model="agencyCompanyId" class="form-control"></select> -->
+				</td>
+			</tr>
+		</tbody>		
+	</table>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

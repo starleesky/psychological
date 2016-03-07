@@ -1,0 +1,37 @@
+<div ng-controller="maintenanceCtrl">
+  <div class="form-group">
+    <label for="subType" class="col-sm-2 control-label">边界值</label>
+    <div class="col-sm-10">
+      <input type="radio" name="type" ng-model="data.functionActivityRule.criticalValueFlag" value="1">大于等于
+      <input type="radio" name="type" ng-model="data.functionActivityRule.criticalValueFlag" value="2">小于等于
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="subType" class="col-sm-2 control-label">奖励分级</label>
+    <div class="levels col-sm-10">
+      <p class="alert alert-warning">结束值不填代表无穷大</p>
+      <div ng-repeat="c in data.functionActivityRule.parameters" class="clearfix" style="padding-bottom: 5px; margin-bottom: 5px; border-bottom: 1px solid #dedede;">
+        <div class="col-sm-4">
+          <input type="number" class="form-control" ng-model="c.start" ng-blur="editStart(c)" ng-readonly="$index > 0">
+        </div>
+        <div class="col-sm-2">
+          <p style="padding-top: 10px; text-align: center;">
+            {{ data.functionActivityRule.criticalValueFlag == 1 ? '≤' : '<'}} 商业险 {{ data.functionActivityRule.criticalValueFlag == 2 ? '≤' : '<'}}
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <input type="number" class="form-control" ng-model="c.end" ng-blur="editEnd(c)" palceholder="不能小于起始值" ng-keydown="keydown($event)">
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-danger btn-block" ng-click="remove($event, c)">删除  <i class="glyphicon glyphicon-remove"></i></button>
+        </div>
+        <div class="col-sm-12">
+          <muilt-select options="giftList" muilt="true" ng-required="true" ng-model="c.values" name="select{{$index}}" placeholder="请选择赠礼"></muilt-select>
+          <span ng-messages="add_form['select' + $index].$error" ng-show="submitted && add_form['select' + $index].$invalid">
+            <span ng-message="need" class="form-error">至少选择一个</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

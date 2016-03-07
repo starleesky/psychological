@@ -1,13 +1,13 @@
 package cn.com.tsjx.common.config.file.contenttype;
 
+import com.dangdang.config.service.exception.InvalidPathException;
+import com.google.common.collect.Maps;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
-
-import com.dangdang.config.service.exception.InvalidPathException;
-import com.google.common.collect.Maps;
 
 /**
  * <p>

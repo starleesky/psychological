@@ -1,0 +1,56 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改车险城市配置</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_car_form">
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">车险城市ID</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.cityId" disabled="disabled" >
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">城市名称</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.cityName" disabled="disabled" >
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">车辆类型</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.vehicleTypeKey == 0 ? '普通轿车' : '中型客车'" disabled="disabled" >
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">起始范围(L)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.typeMin == 0 ? 0 : param.typeMin / 1000" disabled="disabled">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">结束范围(L)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.typeMax == 16777215 ? '上不封顶' : param.typeMax / 1000" disabled="disabled">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">价格(元)</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.amount" >
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="caruserName" class="col-sm-3 control-label">版本</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="param.version" disabled="disabled">
+			</div>
+		</div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="updateParam()"
+		ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

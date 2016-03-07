@@ -1,0 +1,10 @@
+<div class="modal-header">
+	<h3 class="modal-title">照片</h3>
+</div>
+<div class="modal-body">
+	<img ng-src="{{imgInfo.url}}" style="width: 100%;" alt="">
+</div>
+<div class="modal-footer">
+	<a class="btn btn-primary" href="{{imgInfo.downloadUrl}}" ng-if="imgInfo.downloadUrl">下载</a>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

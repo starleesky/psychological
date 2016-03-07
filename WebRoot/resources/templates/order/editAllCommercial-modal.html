@@ -1,0 +1,18 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改{{comm.insTypeName}}</h3>
+</div>
+<div class="modal-body">
+
+	<form name="edit_form">
+	  <div class="form-group" ng-repeat="p in order.policyItems">
+	    <label>{{p.insTypeName + '(试算价：'+ p.trialAmount +')'}}</label>
+      <input type="text" class="form-control" name="verifyAmount{{$index}}" placeholder="请输入核保价" ng-model="p.verifyAmount" required ng-pattern="/^[0-9]+([.]\d{1,2})?$/">
+      <span class="form-error" ng-show="submitted && edit_form['verifyAmount' + $index].$invalid">请输入正确的核保金额（两位小数）</span>
+	  </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="update()" ng-disabled="submitting">确定</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

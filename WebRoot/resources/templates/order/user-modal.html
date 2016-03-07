@@ -1,0 +1,74 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改被保人信息</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_user">
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">选择被保人</label>
+		  <div class="col-sm-9">
+		  	<label style="display: block;" ng-repeat="i in o.insuredList">
+		  		<input type="radio" name="insured" ng-model="order.insuredInfoId" value="{{i.id}}" ng-change="choseInsured(i)"> {{i.insured + ' | ' + i.phone + ' | ' + i.idcardNo}}
+		  	</label>
+		  </div>
+		</div>
+
+	  <div class="form-group">
+	    <label for="userName" class="col-sm-3 control-label">被保人姓名</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="userName" placeholder="被保人姓名" name="userName" required ng-model="order.userName">
+	      <span class="form-error" ng-show="edit_user.userName.$invalid">请填写被保人姓名</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="phone" class="col-sm-3 control-label">被保人手机号</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="phone" name="phone" placeholder="手机号" required ng-model="order.phone" ng-pattern="/^\d{11}$/">
+	      <span class="form-error" ng-show="edit_user.phone.$invalid">请填写正确的手机号</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="idCardNo" class="col-sm-3 control-label">身份证号</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="idCardNo" name="idCardNo" placeholder="身份证号" required ng-model="order.idCardNo" ng-pattern="/(^\d{15}$)|(^\d{17}([0-9]|X)$)/">
+	      <span class="form-error" ng-show="edit_user.idCardNo.$invalid">请填写正确的身份证号</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="addressee" class="col-sm-3 control-label">收件人姓名</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="addressee" placeholder="收件人姓名" name="addressee" required ng-model="order.receiverName">
+	      <span class="form-error" ng-show="edit_user.addressee.$invalid">请填写收件人姓名</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="receiverPhone" class="col-sm-3 control-label">收件人手机号</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="receiverPhone" name="receiverPhone" placeholder="收件人手机号" required ng-model="order.receiverPhone" ng-pattern="/^\d{11}$/">
+	      <span class="form-error" ng-show="edit_user.receiverPhone.$invalid">请填写正确的手机号</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label class="col-sm-3 control-label">收件地址</label>
+	    <div class="col-sm-9">
+	      <select name="province" ng-change="selectP()" ng-model="order.provinceId" class="form-control" required ng-options="k as v for (k, v) in addressCtrl.provices">
+	      </select>
+	      <select name="city" required ng-change="selectC()" ng-model="order.cityId" class="form-control" ng-options="k as v for (k, v) in addressCtrl.citys">
+	      </select>
+	      <select name="district" required ng-change="selectD()" ng-model="order.districtId" class="form-control" ng-options="k as v for (k, v) in addressCtrl.districts">
+	      </select>
+	      <input type="text" name="detailAddress" placeholder="详细地址" ng-model="order.detail" class="form-control">
+	      <span
+	      	class="form-error"
+	      	ng-show="edit_user.detailAddress.$invalid || edit_user.province.$invalid || edit_user.city.$invalid || edit_user.district.$invalid"
+	      	>请填写正确的收件地址</span>
+	    </div>
+	  </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="saveUser()" ng-disabled="edit_user.$invalid">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

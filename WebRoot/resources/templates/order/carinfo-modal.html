@@ -1,0 +1,137 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改投保车辆信息</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_car_form">
+
+	  <!-- <div class="form-group">
+	    <label for="userName" class="col-sm-2 control-label">被保人</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="userName" placeholder="被保人姓名" name="userName" required>
+	    </div>
+	  </div> -->
+	  <!-- <div class="form-group">
+	    <label for="carCity" class="col-sm-2 control-label">行使城市</label>
+	    <div class="col-sm-10">
+	    	<select class="form-control" ng-change="selectCity()" ng-model="order.userCarDto.cityId" ng-options="c.cityId as c.cityName for c in citys">
+	      </select>
+	    </div>
+	  </div> -->
+	  <div class="form-group">
+	    <label for="caruserName" class="col-sm-2 control-label"><span class="form-error">*</span>车主</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" ng-model="order.userCarDto.vehicleLicense.owner" id="caruserName" name="caruserName" placeholder="车主" required>
+			<span class="form-error" ng-show="submitted && edit_car_form.caruserName.$invalid">请输入姓名</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="caruserName" class="col-sm-2 control-label">身份证号</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" ng-model="order.userCarDto.vehicleLicense.idcardNo" id="idcardNo" name="idcardNo" maxlength="18" placeholder="身份证号">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label class="col-sm-2 control-label"><span class="form-error">*</span>车辆信息</label>
+	    <div class="col-sm-10">
+	      <!-- <select name="carBrandName" class="form-control pull-left" style="margin-right: 10px;width:120px;" ng-model="order.userCarDto.carBrand" disabled="disabled" ng-change="selectBrand()" ng-options="v.brandId as v.brandName for (k, v) in carCtrl.brands">
+	      </select> -->
+	      <div class="clearfix">
+		      <select name="carSeriesName" class="form-control pull-left"  style="margin-right: 10px;width:120px;" ng-model="order.userCarDto.carSeries" ng-change="selectSerie()" required ng-options="v.seriesId as v.seriesName for (k, v) in carCtrl.series">
+		      </select>
+		      <select name="carModelName" class="form-control pull-left" style="width:170px;" ng-model="order.userCarDto.carModel" ng-change="selectModel()" ng-options="v.modelId as v.modelName for (k, v) in carCtrl.models" required>
+		      </select>
+	      </div>
+	      <span class="form-error" ng-show="submitted && edit_car_form.carSeriesName.$invalid">请选择车系</span>
+	      <span class="form-error" ng-show="submitted && edit_car_form.carModelName.$invalid">请选择车型</span>
+	    </div>
+	  </div>
+
+	   <div class="form-group">
+		  <label for="carNum" class="col-sm-2 control-label"><span class="form-error">*</span>品牌型号</label>
+		  <div class="col-sm-10">
+		    <input type="text" class="form-control" id="model" name="model" placeholder="品牌型号" required ng-model="order.userCarDto.vehicleLicense.model">
+		    <span class="form-error" ng-show="submitted && edit_car_form.model.$invalid">请输入正确的品牌型号</span>
+		  </div>
+		</div>
+
+	  <div class="form-group">
+	    <label for="vehicleLicenseVin" class="col-sm-2 control-label"><span class="form-error">*</span>车架号</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" ng-model="order.userCarDto.vehicleLicense.vin" id="vehicleLicenseVin" name="vehicleLicenseVin" placeholder="车架号" required>
+			<span class="form-error" ng-show="submitted && edit_car_form.vehicleLicenseVin.$invalid">请输入车架号</span>
+	    </div>
+	  </div>
+	 <div class="form-group">
+	   <label for="engineNo" class="col-sm-2 control-label"><span class="form-error">*</span>发动机号</label>
+	   <div class="col-sm-10">
+	     <input type="text" class="form-control" id="engineNo" name="engineNo" ng-model="order.userCarDto.vehicleLicense.engineNo" placeholder="发动机号" required>
+	     <span class="form-error" ng-show="submitted && edit_car_form.engineNo.$invalid">请输入发动机号</span>
+	   </div>
+	 </div>
+	 <div class="form-group">
+	    <label class="col-sm-2 control-label">使用性质</label>
+	    <div class="col-sm-10">
+	      <select
+	      	class="form-control"
+	      	name="useCharacterKey"
+	      	id="useCharacterKey"
+	      	ng-model="order.userCarDto.vehicleLicense.useCharacterKey"
+	      	ng-options="convertToInt(n.fieldKey) as n.fieldValue for n in usenatureList"></select>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="vehicleSeats" class="col-sm-2 control-label"><span class="form-error">*</span>荷载人数</label>
+	    <div class="col-sm-10">
+	      <input type="number" class="form-control" id="vehicleSeats" name="vehicleSeats" placeholder="荷载人数" required ng-model="order.userCarDto.vehicleLicense.vehicleSeats">
+	      <span class="form-error" ng-show="submitted && edit_car_form.vehicleSeats.$invalid">请输入正确的数字</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="quotaWeight" class="col-sm-2 control-label"><span class="form-error">*</span>整车制备</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="quotaWeight" name="quotaWeight" placeholder="车辆制备" required ng-model="order.userCarDto.vehicleLicense.quotaWeight">
+	      <span class="form-error" ng-show="submitted && edit_car_form.quotaWeight.$invalid">必须输入</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="emission" class="col-sm-2 control-label"><span class="form-error">*</span>排量</label>
+	    <div class="col-sm-10">
+	      <input type="number" class="form-control" id="emission" name="emission" placeholder="排量" required ng-model="order.userCarDto.vehicleLicense.emission">
+	      <span class="form-error" ng-show="submitted && edit_car_form.emission.$invalid">请输入正确的排量（数字）</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="power" class="col-sm-2 control-label"><span class="form-error">*</span>整车功率</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="power" ng-model="order.userCarDto.vehicleLicense.power" name="power" placeholder="整车功率" required>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="registerDate" class="col-sm-2 control-label"><span class="form-error">*</span>注册登记日期</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="registerDate" name="registerDate" placeholder="注册登记日期" ng-model="order.userCarDto.vehicleLicense.registerDate" required>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="buyPrice" class="col-sm-2 control-label"><span class="form-error">*</span>新车购置价<span style="color: red;">(元)</span></label>
+	    <div class="col-sm-10">
+	      <input type="number" class="form-control" id="buyPrice" name="buyPrice" placeholder="新车购置价（元，保留两位小数）" required ng-model="order.userCarDto.vehicleLicense.buyPrice">
+	      <span class="form-error" ng-show="submitted && edit_car_form.buyPrice.$invalid">请输入正确的数字</span>
+	    </div>
+	  </div>
+	  <input type="hidden" class="form-control" id="address" name="address" placeholder="住址" ng-model="order.userCarDto.vehicleLicense.address">
+	  <!-- <div class="form-group">
+	    <label for="address" class="col-sm-2 control-label"><span class="form-error">*</span>住址</label>
+	    <div class="col-sm-10">
+	      <input type="text" class="form-control" id="address" name="address" placeholder="住址" required ng-model="order.userCarDto.vehicleLicense.address">
+	      <span class="form-error" ng-show="submitted && edit_car_form.address.$invalid">请输入正确的地址</span>
+	    </div>
+	  </div> -->
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="updateCarInfo()" ng-disabled="submitting">保存</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

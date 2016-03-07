@@ -1,0 +1,43 @@
+<div class="modal-header">
+	<h3 class="modal-title">车险公司详情</h3>
+</div>
+<div class="modal-body">
+
+	<div class="line">
+		<h3 class="clearfix">结算账户详情</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>开户银行</th>
+					<th>开户城市</th>
+					<th>所属支行</th>
+					<th>银行卡号</th>
+					<th>开户姓名</th>
+					<th>账户类型</th>
+					<th>默认代付公司</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-if="company.bankCard">
+					<td>{{company.bankCard.bankName}}</td>
+					<td>{{company.bankCard.bankCityId | cityName : company.bankCard.bankProvinceId}}</td>
+					<td>{{company.bankCard.bankBranch}}</td>
+					<td>{{company.bankCard.bankNo}}</td>
+					<td>{{company.bankCard.bankUser}}</td>
+					<td>{{company.bankCard.bankAccType == 1 ? '个人' : '企业'}}</td>
+					<td>{{company.agencyCompanyId | agencyName : company.agencyCompanys}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<span ng-if="!created">还没有银行卡信息，请点击新增</span>
+	</div>
+
+	<div class="line">
+		<pagination total-items="orderList.totalSize" ng-model="filter.page" ng-change="filterOrder()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="filter.pageSize"></pagination>
+	</div>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="edit()" ng-disabled="updating">{{created ? '修改银行卡信息' : '新增银行卡信息'}}</button>
+	<button class="btn btn-warning" ng-click="cancel()">关闭</button>
+</div>

@@ -1,0 +1,195 @@
+<div class="modal-header">
+    <h3 class="modal-title"> 费率详情</h3><span> 车险公司：{{companyName}} &nbsp 所在城市： {{companyCityName}}</span>
+</div>
+<div class="modal-body">
+
+    <ul class="nav nav-tabs" ng-init="list.filter.useCharacterKey">
+        <li ng-class="{active: list.filter.useCharacterKey == 0}"><a  ng-click="tabChange(0)">家庭自用车</a></li>
+        <li ng-class="{active: list.filter.useCharacterKey == 1}"><a  ng-click="tabChange(1)">企业非营业客车</a></li>
+        <li ng-class="{active: list.filter.useCharacterKey == 3}"><a  ng-click="tabChange(3)">党政机关、事业团体客车</a></li>
+    </ul>
+
+    <div class="tab-content tab-bordered">
+        <div class="tab-panel" ng-show="list.filter.useCharacterKey == 0">
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>车险类别</th>
+                <th>种类最小值</th>
+                <th>种类最大值</th>
+                <th>条件选择名称</th>
+                <th>选择条件值</th>
+                <th>年份最小值</th>
+                <th>年份最大值</th>
+                <th>价格最小值</th>
+                <th>价格最大值</th>
+                <th>基本保费</th>
+                <th>费率基数</th>
+                <th>费率</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="t in list.data.page.data" >
+                <td ng-bind="t.insTypeIdName"></td>
+                <td ng-bind="t.typeMin"></td>
+                <td ng-bind="t.typeMax"></td>
+                <td ng-if ="t.condNameArray == null || t.condNameArray == undefined"> --- </td>
+                <td ng-bind="t.condNameArray" ng-if ="t.condNameArray.length<=1"></td>
+                <td ng-if ="t.condNameArray.length>1">
+                    <select>
+                        <option value="{{tp}}" ng-repeat="tp in t.condNameArray">{{t.condNameArray[$index]}}</option>
+                    </select>
+                </td>
+
+                <td ng-if ="t.condValueArray == null || t.condValueArray == undefined"> --- </td>
+                <td ng-bind="t.condValueArray" ng-if ="t.condValueArray.length<=1"></td>
+                <td ng-if ="t.condValueArray.length>1">
+                    <select>
+                        <option value="{{tp}}" ng-repeat="tp in t.condValueArray">{{t.condValueArray[$index]}}</option>
+                    </select>
+                </td>
+
+                <!--<td ng-bind="t.condSelectValue"></td>-->
+                <td ng-bind="t.condYearMin"></td>
+                <td ng-bind="t.condYearMax"></td>
+                <td ng-bind="t.condPriceMin"></td>
+                <td ng-bind="t.condPriceMax"></td>
+                <td ng-bind="t.basePremium"></td>
+                <td ng-bind="t.rateRadixName"></td>
+                <td ng-bind="t.rate"></td>
+            </tr>
+            </tbody>
+        </table>
+
+            <div class="line">
+                <pagination total-items="list.data.page.totalSize" ng-model="list.filter.page" ng-change="list.fetch()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="list.filter.pageSize"></pagination>
+            </div>
+        </div>
+        <div class="tab-panel" ng-show="list.filter.useCharacterKey == 1">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>车险类别</th>
+                    <th>种类最小值</th>
+                    <th>种类最大值</th>
+                    <th>条件选择名称</th>
+                    <th>选择条件值</th>
+                    <th>年份最小值</th>
+                    <th>年份最大值</th>
+                    <th>价格最小值</th>
+                    <th>价格最大值</th>
+                    <th>基本保费</th>
+                    <th>费率基数</th>
+                    <th>费率</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="t in list.data.page.data" >
+                    <td ng-bind="t.insTypeIdName"></td>
+                    <td ng-bind="t.typeMin"></td>
+                    <td ng-bind="t.typeMax"></td>
+                    <td ng-if ="t.condNameArray == null || t.condNameArray == undefined"> --- </td>
+                    <td ng-bind="t.condNameArray" ng-if ="t.condNameArray.length<=1"></td>
+                    <td ng-if ="t.condNameArray.length>1">
+                        <select>
+                            <option value="{{tp}}" ng-repeat="tp in t.condNameArray">{{t.condNameArray[$index]}}</option>
+                        </select>
+                    </td>
+
+                    <td ng-if ="t.condValueArray == null || t.condValueArray == undefined"> --- </td>
+                    <td ng-bind="t.condValueArray" ng-if ="t.condValueArray.length<=1"></td>
+                    <td ng-if ="t.condValueArray.length>1">
+                        <select>
+                            <option value="{{tp}}" ng-repeat="tp in t.condValueArray">{{t.condValueArray[$index]}}</option>
+                        </select>
+                    </td>
+
+                    <!--<td ng-bind="t.condSelectValue"></td>-->
+                    <td ng-bind="t.condYearMin"></td>
+                    <td ng-bind="t.condYearMax"></td>
+                    <td ng-bind="t.condPriceMin"></td>
+                    <td ng-bind="t.condPriceMax"></td>
+                    <td ng-bind="t.basePremium"></td>
+                    <td ng-bind="t.rateRadixName"></td>
+                    <td ng-bind="t.rate"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="line">
+                <pagination total-items="list.data.page.totalSize" ng-model="list.filter.page" ng-change="list.fetch()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="list.filter.pageSize"></pagination>
+            </div>
+        </div>
+        <div class="tab-panel" ng-show="list.filter.useCharacterKey ==3">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>车险类别</th>
+                    <th>种类最小值</th>
+                    <th>种类最大值</th>
+                    <th>条件选择名称</th>
+                    <th>选择条件值</th>
+                    <th>年份最小值</th>
+                    <th>年份最大值</th>
+                    <th>价格最小值</th>
+                    <th>价格最大值</th>
+                    <th>基本保费</th>
+                    <th>费率基数</th>
+                    <th>费率</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="t in list.data.page.data" >
+                    <td ng-bind="t.insTypeIdName"></td>
+                    <td ng-bind="t.typeMin"></td>
+                    <td ng-bind="t.typeMax"></td>
+                    <td ng-if ="t.condNameArray == null || t.condNameArray == undefined"> --- </td>
+                    <td ng-bind="t.condNameArray" ng-if ="t.condNameArray.length<=1"></td>
+                    <td ng-if ="t.condNameArray.length>1">
+                        <select>
+                            <option value="{{tp}}" ng-repeat="tp in t.condNameArray">{{t.condNameArray[$index]}}</option>
+                        </select>
+                    </td>
+
+                    <td ng-if ="t.condValueArray == null || t.condValueArray == undefined"> --- </td>
+                    <td ng-bind="t.condValueArray" ng-if ="t.condValueArray.length<=1"></td>
+                    <td ng-if ="t.condValueArray.length>1">
+                        <select>
+                            <option value="{{tp}}" ng-repeat="tp in t.condValueArray">{{t.condValueArray[$index]}}</option>
+                        </select>
+                    </td>
+
+                    <!--<td ng-bind="t.condSelectValue"></td>-->
+                    <td ng-bind="t.condYearMin"></td>
+                    <td ng-bind="t.condYearMax"></td>
+                    <td ng-bind="t.condPriceMin"></td>
+                    <td ng-bind="t.condPriceMax"></td>
+                    <td ng-bind="t.basePremium"></td>
+                    <td ng-bind="t.rateRadixName"></td>
+                    <td ng-bind="t.rate"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="line">
+                <pagination total-items="list.data.page.totalSize" ng-model="list.filter.page" ng-change="list.fetch()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="list.filter.pageSize"></pagination>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary btn-sm" ng-click="upLoadFunc(t)">上传费率表</button>
+    <button class="btn btn-primary btn-sm" ng-click="downLoadFunc()" ng-if="list.data.downUrl">下载费率模版</button>
+    <button class="btn btn-primary btn-sm" ng-click="showHistory()">操作记录</button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>
+
+<script>
+    // angular.companyId = "${id}";
+    // angular.path = "${ctx}";
+    // seajs.use('ins/admin/js/controller/companyCityRate/details', function () {
+    //     angular.bootstrap(document, ['App']);
+    // });
+</script>

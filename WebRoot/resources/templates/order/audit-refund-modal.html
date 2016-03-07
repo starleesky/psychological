@@ -1,0 +1,46 @@
+<div class="modal-header">
+	<h3 class="modal-title">退款申请审核</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="audit_form">
+	  <div class="form-group">
+	    <label for="count" class="col-sm-3 control-label">订单金额</label>
+	    <div class="col-sm-9">
+	      <span>{{formData.oriAmount}}</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="deductAmount" class="col-sm-3 control-label">扣款金额</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="deductAmount" name="deductAmount" placeholder="扣款金额" required ng-model="formData.deductAmount" ng-pattern="/^\d+(\.\d{1,2})?$/" ng-change="calcRefundAmount()">
+	      <span class="form-error" ng-show="submitted && audit_form.deductAmount.$invalid">请填写正确的数字（两位小数）</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="refundAmount" class="col-sm-3 control-label">退款金额</label>
+	    <div class="col-sm-9">
+	      <!-- <input type="text" class="form-control" id="refundAmount" placeholder="退款金额" name="refundAmount" required ng-model="formData.refundAmount" ng-pattern="/^\d+(\.\d{1,2})?$/"> -->
+	      <span>{{formData.refundAmount}}</span>
+	      <span class="form-error" ng-show="submitted && audit_form.refundAmount.$invalid">请填写正确的数字（两位小数）</span>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="verifyResult" class="col-sm-3 control-label">是否通过</label>
+	    <div class="col-sm-9">
+	      <input type="checkbox" id="verifyResult" name="verifyResult" ng-model="formData.verifyResult" ng-true-value="1" ng-false-value="2">
+	    </div>
+	  </div>
+	  <div class="form-group" ng-show="formData.verifyResult == 2">
+	    <label for="failReason" class="col-sm-3 control-label">失败原因</label>
+	    <div class="col-sm-9">
+	      <input type="text" class="form-control" id="failReason" name="failReason" placeholder="失败原因" ng-model="formData.failReason">
+	    </div>
+	  </div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">提交</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

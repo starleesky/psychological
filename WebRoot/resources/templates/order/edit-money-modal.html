@@ -1,0 +1,37 @@
+<div class="modal-header">
+	<h3 class="modal-title">修改订单金额</h3>
+</div>
+<div class="modal-body">
+
+	<form class="form-horizontal" name="edit_form">
+
+		<div class="form-group">
+		  <label for="orderAmount" class="col-sm-3 control-label">订单原金额</label>
+		  <div class="col-sm-9">
+		    <span class="form-control">{{order.orderAmount}}</span>
+		  </div>
+		</div>
+
+	  <div class="form-group">
+	    <label for="orderAmount" class="col-sm-3 control-label">修改金额</label>
+	    <div class="col-sm-9">
+	      <input type="number" class="form-control" id="orderAmount" placeholder="请输入金额" name="orderAmount" required ng-model="formData.orderAmount">
+	      <span class="form-error" ng-show="edit_form.orderAmount.$invalid && submitted">请输入正确的金额</span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <label for="orderAmount" class="col-sm-3 control-label">加油卡是否折现</label>
+	    <div class="col-sm-9">
+	      <input type="radio" ng-model="formData.isDiscount" value="0"> 否
+	      <input type="radio" ng-model="formData.isDiscount" value="1"> 是
+	    </div>
+	  </div>
+
+	 </form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">提交</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

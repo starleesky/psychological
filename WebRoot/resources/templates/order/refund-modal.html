@@ -1,0 +1,33 @@
+<div class="modal-header">
+	<h3 class="modal-title">退款</h3>
+</div>
+<div class="modal-body">
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<td>被保人</td>
+				<td>{{order.userName}}</td>
+				<td>实付金额</td>
+				<td>{{money.oriAmount}}</td>
+			</tr>
+			<tr>
+				<td>联系电话</td>
+				<td>{{order.phone}}</td>
+				<td>退款金额</td>
+				<td>{{money.refundAmount}}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>扣款</td>
+				<td>{{money.deductAmount}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()" ng-disabled="submitting">退款</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

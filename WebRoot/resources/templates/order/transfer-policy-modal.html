@@ -1,0 +1,71 @@
+<div class="modal-header">
+	<h3 class="modal-title">转单</h3>
+</div>
+
+<div class="modal-body" >
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td>投保人</td>
+				<td ng-bind="order.data.userName"></td>
+				<td>车牌号</td>
+				<td ng-bind="order.data.userCarDto.carNum"></td>
+			</tr>
+			<tr>
+				<td>当前保险公司</td>
+				<td ng-bind="order.data.companyName"></td>
+				<td>投保城市</td>
+				<td ng-bind="order.data.orderCity"></td>
+			</tr>
+			<tr>
+				<td>被保人电话</td>
+				<td ng-bind="order.data.phone"></td>
+				<td>收件人电话</td>
+				<td ng-bind="order.data.user.phone"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<form class="form-horizontal" name="add_form" styel="position=poScreenCenter">
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<label class="col-sm-2 control-label">选择保险渠道：</label>
+			<div class="col-sm-4">
+				<label class="control-label">传统渠道</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<label class="col-sm-2 control-label">选择投保城市：</label>
+			<div class="col-sm-4">
+				<select class="form-control" style="width: 100px;" ng-model="cityId" ng-change="changeCity(cityId)">
+					<option value="{{city.cityId}}" ng-repeat="city in canbeTransferPolicyCityList">{{city.cityName}}</option>
+				</select>
+			</div>
+			<span class="form-error" ng-show="validCity">请选择投保城市</span>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<label class="col-sm-2 control-label">选择车险公司：</label>
+			<div class="col-sm-4">
+				<select class="form-control" style="width: 250px;" ng-model="companyCityId">
+					<option value="{{city.companyCityId}}" ng-repeat="city in canbeTransferPolicyCompanyList">{{city.companyCityName}}</option>
+				</select>
+			</div>
+			<span class="form-error" ng-show="validCompany" style="height: 10px">请选择车险公司</span>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" >说明：</label>
+			<label class="control-label">1、你确定电话联系过车主，并且车主同意转成传统渠道出单！</label>
+			<div></div>
+			<label class="col-sm-2 control-label" ></label>
+			<label class="control-label">2、确定转单后，原有订单优惠都作废，新订单重新使用优惠，转单后不能撤销，请承保员谨慎！</label>
+		</div>
+	</form>
+
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="submit()"
+		ng-disabled="submitting">转单</button>
+	<button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

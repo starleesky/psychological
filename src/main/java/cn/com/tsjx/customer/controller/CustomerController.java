@@ -7,12 +7,11 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody; 
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
@@ -31,7 +30,7 @@ public class CustomerController {
 	public String list(Pager<Customer> pager, Customer customer, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", customer);
-		pager = customerService.page(params, pager);
+		pager =null;// customerService.page(params, pager);
 		model.addAttribute("pager", pager);
 		model.addAttribute("bean", customer);
 		return "customer/showCustomer";

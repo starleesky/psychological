@@ -14,9 +14,7 @@
     <bean id="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
 		<property name="properties">
 			<props>
-				<prop key="Oracle">oracle</prop>
 				<prop key="MySQL">mysql</prop>
-				<prop key="SQL Server">sqlserver</prop>
 			</props>
 		</property>
 	</bean>
@@ -66,9 +64,9 @@
 	</bean>
   
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->  
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
-       <property name="basePackage" value="cn.com.tsjx.user.dao" />  
-    </bean>  
+<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">   -->
+<!--        <property name="basePackage" value="cn.com.tsjx.user.dao" />   -->
+<!--     </bean>   -->
   
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
     <bean id="transactionManager"  

@@ -337,13 +337,13 @@
 
 	<!-- 分页查询（数据） -->
 	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.customer.entity.Customer">
-		<include refid="mybatis.pageStartSQL" />
+<!-- 		<include refid="mybatis.pageStartSQL" /> -->
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM CUSTOMER
 		]]>
 		<include refid="page_condition" />
-		<include refid="mybatis.pageEndSQL" />
+<!-- 		<include refid="mybatis.pageEndSQL" /> -->
 	</select>
 
 </mapper>   

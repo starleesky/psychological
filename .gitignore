@@ -7,3 +7,4 @@ target/
 .idea
 WebRoot/WEB-INF/classes
 /logs/
+*.DS_Store

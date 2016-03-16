@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.goodsCatagory.dao.impl.GoodsCatagoryDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		<![CDATA[
+		INSERT INTO TSJX_GOODS_CATAGORY (
+		   	ID,
+		   	CODE,
+		   	NAME,
+		   	PARENT_CODE,
+		   	LAYER
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{code,jdbcType=VARCHAR},
+		   	#{name,jdbcType=VARCHAR},
+		   	#{parentCode,jdbcType=VARCHAR},
+		   	#{layer,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_GOODS_CATAGORY.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		UPDATE TSJX_GOODS_CATAGORY
+		<set>
+			<if test="code != null">
+				CODE = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="parentCode != null">
+				PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+			</if>
+			<if test="layer != null">
+				LAYER = #{layer,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		<![CDATA[
+		DELETE FROM TSJX_GOODS_CATAGORY WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       CODE code,
+		       NAME name,
+		       PARENT_CODE parentCode,
+		       LAYER layer
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_GOODS_CATAGORY
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory" resultType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_GOODS_CATAGORY
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="code != null and code != ''">
+				AND CODE = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="name != null and name != ''">
+				AND NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				AND PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+			</if>
+			<if test="layer != null and layer != ''">
+				AND LAYER = #{layer,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_GOODS_CATAGORY
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.code != null and entity.code != ''">
+					AND CODE = #{entity.code,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.name != null and entity.name != ''">
+					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.parentCode != null and entity.parentCode != ''">
+					AND PARENT_CODE = #{entity.parentCode,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.layer != null and entity.layer != ''">
+					AND LAYER = #{entity.layer,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_GOODS_CATAGORY
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.goodsCatagory.entity.GoodsCatagory">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_GOODS_CATAGORY
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

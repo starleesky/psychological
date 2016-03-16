@@ -13,13 +13,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>汤森机械管理后台系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${ctx}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="${ctx}/resources/admin/css/sb-admin.css" rel="stylesheet">
+    <link href="${ctx}/resources/admin/css/style.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="${ctx}/resources/admin/css/plugins/morris.css" rel="stylesheet">
@@ -38,57 +38,65 @@
     <script src="${ctx}/resources/sea.js"></script>
     <script src="${ctx}/resources/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="${ctx}/resources/bower_components/angular/angular.min.js"></script>
-
+    <script>
+        angular.path = '${ctx}';
+    </script>
 </head>
 
 <body>
 
 
-<div id="pace-done" class="col-sm-6 col-sm-offset-3 form-box" >
-
-    <div data-ng-controller="userLoginCtrl" class="middle-box text-center loginscreen  animated fadeInDown ng-scope">
-        <div >
+<div id="pace-done">
+    <div data-ng-controller="userLoginCtrl" class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
             <div>
-                <h1 class="logo-name">test<%--<img src="http://res.xiaokakeji.com/ups/img/ic_launcher.png">--%></h1>
+                <h2 class="logo-name"></h2>
             </div>
-            <form class="m-t ng-invalid ng-invalid-required ng-dirty ng-valid-parse"
-                  data-ng-submit="ctrl.loginSubmit()">
-                <div class="form-group fa-align-center" >
-                    <input class="form-control ng-touched ng-dirty ng-valid-parse ng-invalid ng-invalid-required"
-                           type="text" data-ng-model="ctrl.formData.name" autofocus="autofocus" placeholder="用户名"
-                           required="">
+            <form class="m-t" data-ng-submit="ctrl.loginSubmit()">
+                <div class="form-group">
+                    <input class="form-control" type="text" data-ng-model="ctrl.formData.username"
+                           autofocus="autofocus" placeholder="用户名" required>
                 </div>
                 <div class="form-group">
                     <input type="password" data-ng-model="ctrl.formData.password" focus-me="ctrl.cookieName.length > 0"
-                           class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" placeholder="密码"
-                           required="">
+                           class="form-control" placeholder="密码" required>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登录
                 </button>
                 <code id="loginError"></code>
             </form>
             <p class="m-t">
-                <small>汤森机械 © 2016</small>
+                <small>HangZhou 来聚吧 © 2016</small>
             </p>
         </div>
     </div>
-
 </div>
-<!-- /#page-wrapper -->
-
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="${ctx}/resources/admin/js/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="${ctx}/resources/admin/js/bootstrap.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="${ctx}/resources/admin/js/plugins/morris/raphael.min.js"></script>
-<script src="${ctx}/resources/admin/js/plugins/morris/morris.min.js"></script>
-<script src="${ctx}/resources/admin/js/plugins/morris/morris-data.js"></script>
-
+<script>
+    var myApp = angular.module("myApp", []);
+    myApp.directive('focusMe', function ($timeout, $parse) {
+        return {
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.focusMe);
+                scope.$watch(model, function (value) {
+                    if (value === true) {
+                        $timeout(function () {
+                            element[0].focus();
+                        });
+                    }
+                });
+                element.bind('blur', function () {
+//				scope.$apply(model.assign(scope, false));
+                });
+            }
+        };
+    });
+    seajs.use('admin/js/login', function (UserLogin) {
+        myApp.controller("userLoginCtrl", function ($scope, $http) {
+            $scope.ctrl = new UserLogin($scope, $http, '${target}');
+        });
+        angular.bootstrap(document, ['myApp']);
+    });
+</script>
 </body>
 
 </html>

@@ -1,0 +1,53 @@
+/* line 1, ../../sass/common/login-or-register.scss */
+html, body {
+  background: #302222;
+}
+
+/* line 4, ../../sass/common/login-or-register.scss */
+.footer {
+  background: #160606;
+}
+
+/* line 7, ../../sass/common/login-or-register.scss */
+.logo {
+  padding: rem(40) 0;
+  width: 100%;
+}
+/* line 10, ../../sass/common/login-or-register.scss */
+.logo img, .logo span {
+  display: block;
+  margin: rem(40) auto 0;
+}
+/* line 14, ../../sass/common/login-or-register.scss */
+.logo span {
+  height: rem(30);
+  color: #fff;
+  font-size: rem(40);
+  width: rem(100);
+}
+/* line 22, ../../sass/common/login-or-register.scss */
+.logo .field-submit input {
+  background-color: #548b89;
+  border-color: #548b89;
+}
+
+/* line 29, ../../sass/common/login-or-register.scss */
+.ui-form .field-submit, .ui-form .field-forgetpassword {
+  margin-left: rem(50);
+  margin-right: rem(50);
+}
+/* line 32, ../../sass/common/login-or-register.scss */
+.ui-form .field-submit.field-forgetpassword, .ui-form .field-forgetpassword.field-forgetpassword {
+  text-align: center;
+}
+/* line 34, ../../sass/common/login-or-register.scss */
+.ui-form .field-submit.field-forgetpassword p, .ui-form .field-submit.field-forgetpassword a, .ui-form .field-forgetpassword.field-forgetpassword p, .ui-form .field-forgetpassword.field-forgetpassword a {
+  margin-bottom: rem(10);
+  display: block;
+  color: #fff;
+}
+
+/* line 43, ../../sass/common/login-or-register.scss */
+section {
+  margin-bottom: rem(40);
+}

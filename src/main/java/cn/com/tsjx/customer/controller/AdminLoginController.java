@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/user")
-public class LoginController {
+public class AdminLoginController {
 
 	@RequestMapping(value = "/login")
 	@ResponseBody

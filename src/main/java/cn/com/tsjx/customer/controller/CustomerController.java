@@ -29,10 +29,10 @@ public class CustomerController {
 	@RequestMapping(value = "/list")
 	public String list(Pager<Customer> pager, Customer customer, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("entity", customer);
-		pager =null;// customerService.page(params, pager);
-		model.addAttribute("pager", pager);
-		model.addAttribute("bean", customer);
+//		params.put("entity", customer);
+//		pager = customerService.page(params, pager);
+//		model.addAttribute("pager", pager);
+//		model.addAttribute("bean", customer);
 		return "customer/showCustomer";
 	}
 

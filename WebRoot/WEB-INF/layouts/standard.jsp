@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>汤森机械管理后台系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${ctx}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="index.html">汤森机械管理后台系统</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -163,31 +163,31 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
                     </li>
                     <li>
-                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息审核</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> 公司认证审核</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 用户管理</a>
                     </li>
                     <li>
-                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> 系统公告管理</a>
                     </li>
+                    <%--<li>--%>
+                        <%--<a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>--%>
+                    <%--</li>--%>
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" aria-expanded="true" ><i class="fa fa-fw fa-arrows-v"></i> 基础数据管理 <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#">产品大类</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#">产品组</a>
                             </li>
                         </ul>
                     </li>

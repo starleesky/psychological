@@ -1,7 +1,7 @@
 drop table if exists tsjx_user;
 
 /*==============================================================*/
-/* Table: tsjx_user                                             */
+/* Table: tsjx_user                                              */
 /*==============================================================*/
 create table tsjx_user
 (

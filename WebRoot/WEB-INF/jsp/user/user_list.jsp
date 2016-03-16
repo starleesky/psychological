@@ -6,6 +6,6 @@
   </head>
   
   <body>
-  aaa  ${pager.totalCount}
+  aaa  ${pager}
   </body>
 </html>

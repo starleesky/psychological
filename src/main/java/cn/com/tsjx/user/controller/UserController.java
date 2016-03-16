@@ -31,7 +31,13 @@ public class UserController {
     public String list(Pager<User> pager,User user,Model model) {
         Map<String,Object> params=new HashMap<String,Object>();
         params.put("entity", user);
-        pager=userService.page(params, pager);
+//        user.setId(2L);
+        user.setUserName("liaoxianghua");
+        user.setPassword("111");
+        user.setTelephone("121");
+        user.setEmail("333");
+        userService.insert(user);
+        pager=null;//userService.page(params, pager);
         model.addAttribute("pager", pager);
         model.addAttribute("bean", user);
         return "/user/user_list";

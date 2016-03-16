@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.company.dao.impl.CompanyDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.company.entity.Company">
+		<![CDATA[
+		INSERT INTO TSJX_COMPANY (
+		   	ID,
+		   	NAME,
+		   	TELEPHONE,
+		   	FAX,
+		   	PROVINCE,
+		   	CITY,
+		   	ADDRESS,
+		   	INTRODUCTION,
+		   	BUSINESS_LICENSE_IMAGE_URL,
+		   	ORGANIZATION_CODE_IMAGE_URL,
+		   	STATUS
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{name,jdbcType=VARCHAR},
+		   	#{telephone,jdbcType=VARCHAR},
+		   	#{fax,jdbcType=VARCHAR},
+		   	#{province,jdbcType=VARCHAR},
+		   	#{city,jdbcType=VARCHAR},
+		   	#{address,jdbcType=VARCHAR},
+		   	#{introduction,jdbcType=VARCHAR},
+		   	#{businessLicenseImageUrl,jdbcType=VARCHAR},
+		   	#{organizationCodeImageUrl,jdbcType=VARCHAR},
+		   	#{status,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_COMPANY.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.company.entity.Company">
+		UPDATE TSJX_COMPANY
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				TELEPHONE = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="fax != null">
+				FAX = #{fax,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				PROVINCE = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ADDRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="introduction != null">
+				INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+			</if>
+			<if test="businessLicenseImageUrl != null">
+				BUSINESS_LICENSE_IMAGE_URL = #{businessLicenseImageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="organizationCodeImageUrl != null">
+				ORGANIZATION_CODE_IMAGE_URL = #{organizationCodeImageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.company.entity.Company">
+		<![CDATA[
+		DELETE FROM TSJX_COMPANY WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       NAME name,
+		       TELEPHONE telephone,
+		       FAX fax,
+		       PROVINCE province,
+		       CITY city,
+		       ADDRESS address,
+		       INTRODUCTION introduction,
+		       BUSINESS_LICENSE_IMAGE_URL businessLicenseImageUrl,
+		       ORGANIZATION_CODE_IMAGE_URL organizationCodeImageUrl,
+		       STATUS status
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.company.entity.Company">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMPANY
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.company.entity.Company" resultType="cn.com.tsjx.company.entity.Company">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMPANY
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="name != null and name != ''">
+				AND NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="telephone != null and telephone != ''">
+				AND TELEPHONE = #{telephone,jdbcType=VARCHAR}
+			</if>
+			<if test="fax != null and fax != ''">
+				AND FAX = #{fax,jdbcType=VARCHAR}
+			</if>
+			<if test="province != null and province != ''">
+				AND PROVINCE = #{province,jdbcType=VARCHAR}
+			</if>
+			<if test="city != null and city != ''">
+				AND CITY = #{city,jdbcType=VARCHAR}
+			</if>
+			<if test="address != null and address != ''">
+				AND ADDRESS = #{address,jdbcType=VARCHAR}
+			</if>
+			<if test="introduction != null and introduction != ''">
+				AND INTRODUCTION = #{introduction,jdbcType=VARCHAR}
+			</if>
+			<if test="businessLicenseImageUrl != null and businessLicenseImageUrl != ''">
+				AND BUSINESS_LICENSE_IMAGE_URL = #{businessLicenseImageUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="organizationCodeImageUrl != null and organizationCodeImageUrl != ''">
+				AND ORGANIZATION_CODE_IMAGE_URL = #{organizationCodeImageUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="status != null and status != ''">
+				AND STATUS = #{status,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.company.entity.Company">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMPANY
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.name != null and entity.name != ''">
+					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.telephone != null and entity.telephone != ''">
+					AND TELEPHONE = #{entity.telephone,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.fax != null and entity.fax != ''">
+					AND FAX = #{entity.fax,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.province != null and entity.province != ''">
+					AND PROVINCE = #{entity.province,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.city != null and entity.city != ''">
+					AND CITY = #{entity.city,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.address != null and entity.address != ''">
+					AND ADDRESS = #{entity.address,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.introduction != null and entity.introduction != ''">
+					AND INTRODUCTION = #{entity.introduction,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.businessLicenseImageUrl != null and entity.businessLicenseImageUrl != ''">
+					AND BUSINESS_LICENSE_IMAGE_URL = #{entity.businessLicenseImageUrl,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.organizationCodeImageUrl != null and entity.organizationCodeImageUrl != ''">
+					AND ORGANIZATION_CODE_IMAGE_URL = #{entity.organizationCodeImageUrl,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.status != null and entity.status != ''">
+					AND STATUS = #{entity.status,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_COMPANY
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.company.entity.Company">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMPANY
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

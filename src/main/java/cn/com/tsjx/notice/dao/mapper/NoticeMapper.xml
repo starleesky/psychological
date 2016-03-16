@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.notice.dao.impl.NoticeDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.notice.entity.Notice">
+		<![CDATA[
+		INSERT INTO TSJX_NOTICE (
+		   	ID,
+		   	USER_ID,
+		   	CREATE_TIME,
+		   	TITLE,
+		   	CONTENT
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{userId,jdbcType=INTEGER},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{title,jdbcType=VARCHAR},
+		   	#{content,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_NOTICE.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.notice.entity.Notice">
+		UPDATE TSJX_NOTICE
+		<set>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="title != null">
+				TITLE = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.notice.entity.Notice">
+		<![CDATA[
+		DELETE FROM TSJX_NOTICE WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       USER_ID userId,
+		       CREATE_TIME createTime,
+		       TITLE title,
+		       CONTENT content
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.notice.entity.Notice">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_NOTICE
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.notice.entity.Notice" resultType="cn.com.tsjx.notice.entity.Notice">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_NOTICE
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="userId != null">
+				AND USER_ID = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="title != null and title != ''">
+				AND TITLE = #{title,jdbcType=VARCHAR}
+			</if>
+			<if test="content != null and content != ''">
+				AND CONTENT = #{content,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.notice.entity.Notice">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_NOTICE
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.userId != null">
+					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.title != null and entity.title != ''">
+					AND TITLE = #{entity.title,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.content != null and entity.content != ''">
+					AND CONTENT = #{entity.content,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_NOTICE
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.notice.entity.Notice">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_NOTICE
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.attch.dao.impl.AttchDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.attch.entity.Attch">
+		<![CDATA[
+		INSERT INTO TSJX_ATTCH (
+		   	ID,
+		   	CONNECTION_TABLE_NAME,
+		   	CONNECTION_TABLE_ID,
+		   	NAME,
+		   	SIZE,
+		   	TYPE,
+		   	SHOW_NAME,
+		   	URL,
+		   	CREATE_TIME,
+		   	UPLOAD_USER_ID,
+		   	UPLOAD_USER_NAME
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{connectionTableName,jdbcType=VARCHAR},
+		   	#{connectionTableId,jdbcType=INTEGER},
+		   	#{name,jdbcType=VARCHAR},
+		   	#{size,jdbcType=INTEGER},
+		   	#{type,jdbcType=VARCHAR},
+		   	#{showName,jdbcType=VARCHAR},
+		   	#{url,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{uploadUserId,jdbcType=INTEGER},
+		   	#{uploadUserName,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_ATTCH.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.attch.entity.Attch">
+		UPDATE TSJX_ATTCH
+		<set>
+			<if test="connectionTableName != null">
+				CONNECTION_TABLE_NAME = #{connectionTableName,jdbcType=VARCHAR},
+			</if>
+			<if test="connectionTableId != null">
+				CONNECTION_TABLE_ID = #{connectionTableId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				SIZE = #{size,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="showName != null">
+				SHOW_NAME = #{showName,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="uploadUserId != null">
+				UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER},
+			</if>
+			<if test="uploadUserName != null">
+				UPLOAD_USER_NAME = #{uploadUserName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.attch.entity.Attch">
+		<![CDATA[
+		DELETE FROM TSJX_ATTCH WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       CONNECTION_TABLE_NAME connectionTableName,
+		       CONNECTION_TABLE_ID connectionTableId,
+		       NAME name,
+		       SIZE size,
+		       TYPE type,
+		       SHOW_NAME showName,
+		       URL url,
+		       CREATE_TIME createTime,
+		       UPLOAD_USER_ID uploadUserId,
+		       UPLOAD_USER_NAME uploadUserName
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.attch.entity.Attch">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_ATTCH
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.attch.entity.Attch" resultType="cn.com.tsjx.attch.entity.Attch">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_ATTCH
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="connectionTableName != null and connectionTableName != ''">
+				AND CONNECTION_TABLE_NAME = #{connectionTableName,jdbcType=VARCHAR}
+			</if>
+			<if test="connectionTableId != null">
+				AND CONNECTION_TABLE_ID = #{connectionTableId,jdbcType=INTEGER}
+			</if>
+			<if test="name != null and name != ''">
+				AND NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="size != null">
+				AND SIZE = #{size,jdbcType=INTEGER}
+			</if>
+			<if test="type != null and type != ''">
+				AND TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+			<if test="showName != null and showName != ''">
+				AND SHOW_NAME = #{showName,jdbcType=VARCHAR}
+			</if>
+			<if test="url != null and url != ''">
+				AND URL = #{url,jdbcType=VARCHAR}
+			</if>
+			<if test="uploadUserId != null">
+				AND UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER}
+			</if>
+			<if test="uploadUserName != null and uploadUserName != ''">
+				AND UPLOAD_USER_NAME = #{uploadUserName,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.attch.entity.Attch">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_ATTCH
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.connectionTableName != null and entity.connectionTableName != ''">
+					AND CONNECTION_TABLE_NAME = #{entity.connectionTableName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.connectionTableId != null">
+					AND CONNECTION_TABLE_ID = #{entity.connectionTableId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.name != null and entity.name != ''">
+					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.size != null">
+					AND SIZE = #{entity.size,jdbcType=INTEGER}
+				</if>
+				<if test="entity.type != null and entity.type != ''">
+					AND TYPE = #{entity.type,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.showName != null and entity.showName != ''">
+					AND SHOW_NAME = #{entity.showName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.url != null and entity.url != ''">
+					AND URL = #{entity.url,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.uploadUserId != null">
+					AND UPLOAD_USER_ID = #{entity.uploadUserId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.uploadUserName != null and entity.uploadUserName != ''">
+					AND UPLOAD_USER_NAME = #{entity.uploadUserName,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_ATTCH
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.attch.entity.Attch">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_ATTCH
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

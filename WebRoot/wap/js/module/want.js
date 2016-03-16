@@ -1,0 +1,11 @@
+define(['jquery'],function($){
+    $('body').on('click','.jAddProType',function(){
+        if($(this).hasClass('open')){
+            $('.desc-child').addClass('isHide');
+            $(this).removeClass('open');
+        }else{
+            $('.desc-child').removeClass('isHide');
+            $(this).addClass('open');
+        }
+    });
+});

@@ -23,6 +23,6 @@ public class MainController {
 
 	@RequestMapping(value = "/main")
 	public String initMain() {
-		return "customer/showCustomer";
+		return "admin/customer/showCustomer";
 	}
 }

@@ -11,19 +11,23 @@
     <definition name="login*" template="/login.jsp">
     </definition>
 
+    <!--<definition name="/wap/*" template="/WEB-INF/layouts/baseWap.jsp">-->
+        <!--<put-attribute name="body" value="/WEB-INF/jsp/wap/{1}.jsp"/>-->
+    <!--</definition>-->
+
     <definition name="baseLayout" template="/WEB-INF/layouts/standard.jsp">
         <put-attribute name="ngAppName" value=""/>
     </definition>
 
-    <definition name="*/*" extends="baseLayout">
+    <definition name="admin/*/*" extends="baseLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp"/>
     </definition>
 
-    <definition name="*/*/*" extends="baseLayout">
+    <definition name="admin/*/*/*" extends="baseLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp"/>
     </definition>
 
-    <definition name="*/*/*/*" extends="baseLayout">
+    <definition name="admin/*/*/*/*" extends="baseLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}/{3}/{4}.jsp"/>
     </definition>
 </tiles-definitions>

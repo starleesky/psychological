@@ -13,9 +13,9 @@ import cn.com.tsjx.user.entity.User;
 public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
     @Override
-    public List<User> getUsersByCity(String city) {
+    public List<User> getUsersByEmail(String email) {
         Params params = Params.create();
-        params.add("city",city);
+        params.add("email",email);
         return this.selectList(this.getMethodName(), params);
     }
 

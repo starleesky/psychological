@@ -24,7 +24,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 
     @Override
-    public List<User> getUsersByCity(String city) {
-        return userDao.getUsersByCity(city);
+    public List<User> getUsersByEmail(String city) {
+        return userDao.getUsersByEmail(city);
     }
 }

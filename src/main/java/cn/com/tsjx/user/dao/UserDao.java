@@ -7,5 +7,5 @@ import cn.com.tsjx.user.entity.User;
 
 public interface UserDao extends BaseDao<User, Long> {
 
-    public List<User> getUsersByCity(String city);
+    public List<User> getUsersByEmail(String email);
 }

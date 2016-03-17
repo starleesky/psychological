@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.tsjx.user.dao.impl.UserDaoImpl">
 
-	<select id="getUsersByCity" parameterType="map" resultType="cn.com.tsjx.user.entity.User">
+	<select id="getUsersByEmail" parameterType="map" resultType="cn.com.tsjx.user.entity.User">
 		SELECT 
 		       ID id,
 		       USER_NAME userName,
@@ -21,6 +21,6 @@
 		       DELETED deleted,
 		       COMPANY_ID companyId
 		       FROM TSJX_USER 
-		       WHERE CITY = #{city,jdbcType=VARCHAR}
+		       WHERE email = #{email,jdbcType=VARCHAR}
 	</select>
 </mapper>   

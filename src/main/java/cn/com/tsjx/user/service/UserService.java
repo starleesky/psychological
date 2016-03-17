@@ -11,9 +11,9 @@ import cn.com.tsjx.user.entity.User;
 public interface UserService extends BaseService<User, Long> {
 
     /**
-     * 通过城市来查询用户
+     * 通过邮箱来查询用户
      * @param city
      * @return
      */
-    public List<User> getUsersByCity(String city);
+    public List<User> getUsersByEmail(String email);
 }

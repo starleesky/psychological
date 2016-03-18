@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.comment.dao.impl.CommentDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.comment.entity.Comment">
+		<![CDATA[
+		INSERT INTO TSJX_COMMENT (
+		   	ID,
+		   	CONTENT,
+		   	CREATE_TIME,
+		   	INFOMATION_ID
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{content,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{infomationId,jdbcType=INTEGER}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_COMMENT.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.comment.entity.Comment">
+		UPDATE TSJX_COMMENT
+		<set>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="infomationId != null">
+				INFOMATION_ID = #{infomationId,jdbcType=INTEGER},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.comment.entity.Comment">
+		<![CDATA[
+		DELETE FROM TSJX_COMMENT WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       CONTENT content,
+		       CREATE_TIME createTime,
+		       INFOMATION_ID infomationId
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.comment.entity.Comment">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMMENT
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.comment.entity.Comment" resultType="cn.com.tsjx.comment.entity.Comment">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMMENT
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="content != null and content != ''">
+				AND CONTENT = #{content,jdbcType=VARCHAR}
+			</if>
+			<if test="infomationId != null">
+				AND INFOMATION_ID = #{infomationId,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.comment.entity.Comment">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMMENT
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.content != null and entity.content != ''">
+					AND CONTENT = #{entity.content,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.infomationId != null">
+					AND INFOMATION_ID = #{entity.infomationId,jdbcType=INTEGER}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_COMMENT
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.comment.entity.Comment">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_COMMENT
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

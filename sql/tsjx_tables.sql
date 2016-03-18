@@ -249,6 +249,10 @@ create table tsjx_attch
 );
 
 alter table tsjx_attch comment '附件表';
+---------------------3月18号---------------------------------------
+--修改表名
+ALTER TABLE `tsjx`.`tsjx_model` 
+RENAME TO  `tsjx`.`tsjx_models` ;
 
 
 

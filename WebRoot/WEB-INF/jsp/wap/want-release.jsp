@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +17,17 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <!-- <meta name="format-detection" content="telephone=no,email=no,address=no" /> -->
 
-    <link rel="stylesheet" href="css/module/want.css?v=1" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href=${ctx}/wap/css/module/want.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
 <header class="ui-header">
     <a href="#" class="ui-left">
-        <img src="images/logo.gif" class="ui-logo" />
+        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
     </a>
 
     <a  href="login.html" class="ui-right ui-login">
-        <img src="images/user_icon.png" />登录
+        <img src="${ctx}/wap/images/user_icon.png" />登录
     </a>
 </header>
 <!--head end-->
@@ -72,8 +75,8 @@
                 <div class="ui-form-title">选择产品类别</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
-                        <select><option>请选择产品大类</option></select>
-                        <select><option>请选择产品子类</option></select>
+                        <select class="bigGoodsCatagory"><option>请选择产品大类</option></select>
+                        <select class="middleGoodsCatagory"><option>请选择产品子类</option></select>
                         <select><option>请选择产品</option></select>
                     </div>
                 </div>
@@ -234,9 +237,10 @@
         Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
     </div> 
 </div>
-<script type="text/javascript" src="js/require.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
-    require(['module/want']);
+    var ctx = "${ctx}";
+    require(['module/want-release']);
 </script>
 </body></html>

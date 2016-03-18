@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.infomation.dao.impl.InfomationDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.infomation.entity.Infomation">
+		<![CDATA[
+		INSERT INTO TSJX_INFOMATION (
+		   	ID,
+		   	CATAGORY_BIG_ID,
+		   	CATAGORY_BIG_NAME,
+		   	CATAGORY_MID_ID,
+		   	CATAGORY_MID_NAME,
+		   	CATAGORY_ID,
+		   	CATAGORY_NAME,
+		   	BRAND_ID,
+		   	BRAND_NAME,
+		   	MODEL_ID,
+		   	MODEL_NAME,
+		   	IS_NEW,
+		   	SELL_TYPE,
+		   	EQUIPMENT_CONDITION,
+		   	PROCEDURES,
+		   	SRC,
+		   	YEAR,
+		   	TIME,
+		   	PRICE,
+		   	SERIAL_NUM,
+		   	IN_STOCK_CODE,
+		   	REMARK,
+		   	EQUIPMENT_LOCATION,
+		   	CREATE_TIME,
+		   	VALID_TIME,
+		   	STOCK_COUNT,
+		   	SELL_COUNT,
+		   	USER_ID,
+		   	STATUS,
+		   	WEIGHT
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{catagoryBigId,jdbcType=INTEGER},
+		   	#{catagoryBigName,jdbcType=VARCHAR},
+		   	#{catagoryMidId,jdbcType=INTEGER},
+		   	#{catagoryMidName,jdbcType=VARCHAR},
+		   	#{catagoryId,jdbcType=INTEGER},
+		   	#{catagoryName,jdbcType=VARCHAR},
+		   	#{brandId,jdbcType=INTEGER},
+		   	#{brandName,jdbcType=VARCHAR},
+		   	#{modelId,jdbcType=INTEGER},
+		   	#{modelName,jdbcType=VARCHAR},
+		   	#{isNew,jdbcType=VARCHAR},
+		   	#{sellType,jdbcType=VARCHAR},
+		   	#{equipmentCondition,jdbcType=VARCHAR},
+		   	#{procedures,jdbcType=VARCHAR},
+		   	#{src,jdbcType=VARCHAR},
+		   	#{year,jdbcType=VARCHAR},
+		   	#{time,jdbcType=VARCHAR},
+		   	#{price,jdbcType=unkown},
+		   	#{serialNum,jdbcType=VARCHAR},
+		   	#{inStockCode,jdbcType=VARCHAR},
+		   	#{remark,jdbcType=VARCHAR},
+		   	#{equipmentLocation,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{validTime,jdbcType=VARCHAR},
+		   	#{stockCount,jdbcType=VARCHAR},
+		   	#{sellCount,jdbcType=VARCHAR},
+		   	#{userId,jdbcType=INTEGER},
+		   	#{status,jdbcType=VARCHAR},
+		   	#{weight,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_INFOMATION.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.infomation.entity.Infomation">
+		UPDATE TSJX_INFOMATION
+		<set>
+			<if test="catagoryBigId != null">
+				CATAGORY_BIG_ID = #{catagoryBigId,jdbcType=INTEGER},
+			</if>
+			<if test="catagoryBigName != null">
+				CATAGORY_BIG_NAME = #{catagoryBigName,jdbcType=VARCHAR},
+			</if>
+			<if test="catagoryMidId != null">
+				CATAGORY_MID_ID = #{catagoryMidId,jdbcType=INTEGER},
+			</if>
+			<if test="catagoryMidName != null">
+				CATAGORY_MID_NAME = #{catagoryMidName,jdbcType=VARCHAR},
+			</if>
+			<if test="catagoryId != null">
+				CATAGORY_ID = #{catagoryId,jdbcType=INTEGER},
+			</if>
+			<if test="catagoryName != null">
+				CATAGORY_NAME = #{catagoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="brandId != null">
+				BRAND_ID = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="brandName != null">
+				BRAND_NAME = #{brandName,jdbcType=VARCHAR},
+			</if>
+			<if test="modelId != null">
+				MODEL_ID = #{modelId,jdbcType=INTEGER},
+			</if>
+			<if test="modelName != null">
+				MODEL_NAME = #{modelName,jdbcType=VARCHAR},
+			</if>
+			<if test="isNew != null">
+				IS_NEW = #{isNew,jdbcType=VARCHAR},
+			</if>
+			<if test="sellType != null">
+				SELL_TYPE = #{sellType,jdbcType=VARCHAR},
+			</if>
+			<if test="equipmentCondition != null">
+				EQUIPMENT_CONDITION = #{equipmentCondition,jdbcType=VARCHAR},
+			</if>
+			<if test="procedures != null">
+				PROCEDURES = #{procedures,jdbcType=VARCHAR},
+			</if>
+			<if test="src != null">
+				SRC = #{src,jdbcType=VARCHAR},
+			</if>
+			<if test="year != null">
+				YEAR = #{year,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				TIME = #{time,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				PRICE = #{price,jdbcType=unkown},
+			</if>
+			<if test="serialNum != null">
+				SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
+			</if>
+			<if test="inStockCode != null">
+				IN_STOCK_CODE = #{inStockCode,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="equipmentLocation != null">
+				EQUIPMENT_LOCATION = #{equipmentLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="validTime != null">
+				VALID_TIME = #{validTime,jdbcType=VARCHAR},
+			</if>
+			<if test="stockCount != null">
+				STOCK_COUNT = #{stockCount,jdbcType=VARCHAR},
+			</if>
+			<if test="sellCount != null">
+				SELL_COUNT = #{sellCount,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="weight != null">
+				WEIGHT = #{weight,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.infomation.entity.Infomation">
+		<![CDATA[
+		DELETE FROM TSJX_INFOMATION WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       CATAGORY_BIG_ID catagoryBigId,
+		       CATAGORY_BIG_NAME catagoryBigName,
+		       CATAGORY_MID_ID catagoryMidId,
+		       CATAGORY_MID_NAME catagoryMidName,
+		       CATAGORY_ID catagoryId,
+		       CATAGORY_NAME catagoryName,
+		       BRAND_ID brandId,
+		       BRAND_NAME brandName,
+		       MODEL_ID modelId,
+		       MODEL_NAME modelName,
+		       IS_NEW isNew,
+		       SELL_TYPE sellType,
+		       EQUIPMENT_CONDITION equipmentCondition,
+		       PROCEDURES procedures,
+		       SRC src,
+		       YEAR year,
+		       TIME time,
+		       PRICE price,
+		       SERIAL_NUM serialNum,
+		       IN_STOCK_CODE inStockCode,
+		       REMARK remark,
+		       EQUIPMENT_LOCATION equipmentLocation,
+		       CREATE_TIME createTime,
+		       VALID_TIME validTime,
+		       STOCK_COUNT stockCount,
+		       SELL_COUNT sellCount,
+		       USER_ID userId,
+		       STATUS status,
+		       WEIGHT weight
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.infomation.entity.Infomation">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_INFOMATION
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.infomation.entity.Infomation" resultType="cn.com.tsjx.infomation.entity.Infomation">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_INFOMATION
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="catagoryBigId != null">
+				AND CATAGORY_BIG_ID = #{catagoryBigId,jdbcType=INTEGER}
+			</if>
+			<if test="catagoryBigName != null and catagoryBigName != ''">
+				AND CATAGORY_BIG_NAME = #{catagoryBigName,jdbcType=VARCHAR}
+			</if>
+			<if test="catagoryMidId != null">
+				AND CATAGORY_MID_ID = #{catagoryMidId,jdbcType=INTEGER}
+			</if>
+			<if test="catagoryMidName != null and catagoryMidName != ''">
+				AND CATAGORY_MID_NAME = #{catagoryMidName,jdbcType=VARCHAR}
+			</if>
+			<if test="catagoryId != null">
+				AND CATAGORY_ID = #{catagoryId,jdbcType=INTEGER}
+			</if>
+			<if test="catagoryName != null and catagoryName != ''">
+				AND CATAGORY_NAME = #{catagoryName,jdbcType=VARCHAR}
+			</if>
+			<if test="brandId != null">
+				AND BRAND_ID = #{brandId,jdbcType=INTEGER}
+			</if>
+			<if test="brandName != null and brandName != ''">
+				AND BRAND_NAME = #{brandName,jdbcType=VARCHAR}
+			</if>
+			<if test="modelId != null">
+				AND MODEL_ID = #{modelId,jdbcType=INTEGER}
+			</if>
+			<if test="modelName != null and modelName != ''">
+				AND MODEL_NAME = #{modelName,jdbcType=VARCHAR}
+			</if>
+			<if test="isNew != null and isNew != ''">
+				AND IS_NEW = #{isNew,jdbcType=VARCHAR}
+			</if>
+			<if test="sellType != null and sellType != ''">
+				AND SELL_TYPE = #{sellType,jdbcType=VARCHAR}
+			</if>
+			<if test="equipmentCondition != null and equipmentCondition != ''">
+				AND EQUIPMENT_CONDITION = #{equipmentCondition,jdbcType=VARCHAR}
+			</if>
+			<if test="procedures != null and procedures != ''">
+				AND PROCEDURES = #{procedures,jdbcType=VARCHAR}
+			</if>
+			<if test="src != null and src != ''">
+				AND SRC = #{src,jdbcType=VARCHAR}
+			</if>
+			<if test="year != null and year != ''">
+				AND YEAR = #{year,jdbcType=VARCHAR}
+			</if>
+			<if test="time != null and time != ''">
+				AND TIME = #{time,jdbcType=VARCHAR}
+			</if>
+			<if test="price != null">
+				AND PRICE = #{price,jdbcType=unkown}
+			</if>
+			<if test="serialNum != null and serialNum != ''">
+				AND SERIAL_NUM = #{serialNum,jdbcType=VARCHAR}
+			</if>
+			<if test="inStockCode != null and inStockCode != ''">
+				AND IN_STOCK_CODE = #{inStockCode,jdbcType=VARCHAR}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND REMARK = #{remark,jdbcType=VARCHAR}
+			</if>
+			<if test="equipmentLocation != null and equipmentLocation != ''">
+				AND EQUIPMENT_LOCATION = #{equipmentLocation,jdbcType=VARCHAR}
+			</if>
+			<if test="validTime != null and validTime != ''">
+				AND VALID_TIME = #{validTime,jdbcType=VARCHAR}
+			</if>
+			<if test="stockCount != null and stockCount != ''">
+				AND STOCK_COUNT = #{stockCount,jdbcType=VARCHAR}
+			</if>
+			<if test="sellCount != null and sellCount != ''">
+				AND SELL_COUNT = #{sellCount,jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null">
+				AND USER_ID = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="status != null and status != ''">
+				AND STATUS = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="weight != null and weight != ''">
+				AND WEIGHT = #{weight,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.infomation.entity.Infomation">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_INFOMATION
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.catagoryBigId != null">
+					AND CATAGORY_BIG_ID = #{entity.catagoryBigId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.catagoryBigName != null and entity.catagoryBigName != ''">
+					AND CATAGORY_BIG_NAME = #{entity.catagoryBigName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.catagoryMidId != null">
+					AND CATAGORY_MID_ID = #{entity.catagoryMidId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.catagoryMidName != null and entity.catagoryMidName != ''">
+					AND CATAGORY_MID_NAME = #{entity.catagoryMidName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.catagoryId != null">
+					AND CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.catagoryName != null and entity.catagoryName != ''">
+					AND CATAGORY_NAME = #{entity.catagoryName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.brandId != null">
+					AND BRAND_ID = #{entity.brandId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.brandName != null and entity.brandName != ''">
+					AND BRAND_NAME = #{entity.brandName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.modelId != null">
+					AND MODEL_ID = #{entity.modelId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.modelName != null and entity.modelName != ''">
+					AND MODEL_NAME = #{entity.modelName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.isNew != null and entity.isNew != ''">
+					AND IS_NEW = #{entity.isNew,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.sellType != null and entity.sellType != ''">
+					AND SELL_TYPE = #{entity.sellType,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.equipmentCondition != null and entity.equipmentCondition != ''">
+					AND EQUIPMENT_CONDITION = #{entity.equipmentCondition,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.procedures != null and entity.procedures != ''">
+					AND PROCEDURES = #{entity.procedures,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.src != null and entity.src != ''">
+					AND SRC = #{entity.src,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.year != null and entity.year != ''">
+					AND YEAR = #{entity.year,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.time != null and entity.time != ''">
+					AND TIME = #{entity.time,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.price != null">
+					AND PRICE = #{entity.price,jdbcType=unkown}
+				</if>
+				<if test="entity.serialNum != null and entity.serialNum != ''">
+					AND SERIAL_NUM = #{entity.serialNum,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.inStockCode != null and entity.inStockCode != ''">
+					AND IN_STOCK_CODE = #{entity.inStockCode,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.remark != null and entity.remark != ''">
+					AND REMARK = #{entity.remark,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.equipmentLocation != null and entity.equipmentLocation != ''">
+					AND EQUIPMENT_LOCATION = #{entity.equipmentLocation,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.validTime != null and entity.validTime != ''">
+					AND VALID_TIME = #{entity.validTime,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.stockCount != null and entity.stockCount != ''">
+					AND STOCK_COUNT = #{entity.stockCount,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.sellCount != null and entity.sellCount != ''">
+					AND SELL_COUNT = #{entity.sellCount,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.userId != null">
+					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.status != null and entity.status != ''">
+					AND STATUS = #{entity.status,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.weight != null and entity.weight != ''">
+					AND WEIGHT = #{entity.weight,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_INFOMATION
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.infomation.entity.Infomation">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_INFOMATION
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

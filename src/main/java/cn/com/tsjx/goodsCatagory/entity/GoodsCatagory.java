@@ -8,15 +8,15 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class GoodsCatagory extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 6081604821993864600L;
+	private static final long serialVersionUID = 3508976253680274150L;
 
 	// ~~~~实体属性
 	// 类别代码|
 	private String code;
 	// 类别名称|
 	private String name;
-	// 上级类别代码|
-	private String parentCode;
+	// 
+	private Long parentId;
 	// 类别层级|
 	private String layer;
 
@@ -41,11 +41,11 @@ public class GoodsCatagory extends BaseEntity<Long> {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getParentCode() {
-		return this.parentCode;
+	public Long getParentId() {
+		return this.parentId;
 	}
-	public void setParentCode(String parentCode) {
-		this.parentCode = parentCode;
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 	public String getLayer() {
 		return this.layer;

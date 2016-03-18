@@ -9,13 +9,13 @@
 		   	ID,
 		   	CODE,
 		   	NAME,
-		   	PARENT_CODE,
+		   	PARENT_ID,
 		   	LAYER
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{code,jdbcType=VARCHAR},
 		   	#{name,jdbcType=VARCHAR},
-		   	#{parentCode,jdbcType=VARCHAR},
+		   	#{parentId,jdbcType=INTEGER},
 		   	#{layer,jdbcType=VARCHAR}
 		)
 		]]>
@@ -39,8 +39,8 @@
 			<if test="name != null">
 				NAME = #{name,jdbcType=VARCHAR},
 			</if>
-			<if test="parentCode != null">
-				PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+			<if test="parentId != null">
+				PARENT_ID = #{parentId,jdbcType=INTEGER},
 			</if>
 			<if test="layer != null">
 				LAYER = #{layer,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
 		       ID id,
 		       CODE code,
 		       NAME name,
-		       PARENT_CODE parentCode,
+		       PARENT_ID parentId,
 		       LAYER layer
 		]]>
 	</sql>
@@ -93,8 +93,8 @@
 			<if test="name != null and name != ''">
 				AND NAME = #{name,jdbcType=VARCHAR}
 			</if>
-			<if test="parentCode != null and parentCode != ''">
-				AND PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+			<if test="parentId != null">
+				AND PARENT_ID = #{parentId,jdbcType=INTEGER}
 			</if>
 			<if test="layer != null and layer != ''">
 				AND LAYER = #{layer,jdbcType=VARCHAR}
@@ -119,8 +119,8 @@
 				<if test="entity.name != null and entity.name != ''">
 					AND NAME = #{entity.name,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.parentCode != null and entity.parentCode != ''">
-					AND PARENT_CODE = #{entity.parentCode,jdbcType=VARCHAR}
+				<if test="entity.parentId != null">
+					AND PARENT_ID = #{entity.parentId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.layer != null and entity.layer != ''">
 					AND LAYER = #{entity.layer,jdbcType=VARCHAR}

@@ -90,7 +90,7 @@ create table tsjx_goods_catagory
    id                   bigint not null  AUTO_INCREMENT comment 'ID|',
    code                 varchar(16) comment '类别代码|',
    name                 varchar(64) comment '类别名称|',
-   parent_code          varchar(16) comment '上级类别代码|',
+   parent_id            bigint comment '上级类别ID|',
    layer                varchar(2) comment '类别层级|',
    primary key (id)
 );
@@ -253,6 +253,12 @@ alter table tsjx_attch comment '附件表';
 --修改表名
 ALTER TABLE `tsjx`.`tsjx_model` 
 RENAME TO  `tsjx`.`tsjx_models` ;
+
+--修改产品类别表
+--将parent_code修改为parent_id,并且字段类型调整为bigint
+alter table tsjx_goods_catagory change parent_code parent_id bigint; 
+
+
 
 
 

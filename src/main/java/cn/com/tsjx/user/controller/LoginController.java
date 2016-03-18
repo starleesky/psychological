@@ -12,7 +12,10 @@ public class LoginController {
 
     @RequestMapping(value = "/userLogin")
     public String userLogin(User user,Model model) {
-        model.addAttribute("pager", "eeee");
         return "/login";
+    }
+    public String loginIn(String userName,String password) {
+        
+        return "";
     }
 }

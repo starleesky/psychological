@@ -83,12 +83,4 @@ public class UserController {
         return result;
     }
 
-    @RequestMapping(value = "/register")
-    public String register(User user) {
-        System.out.println("333");
-        userService.getUsersByEmail("333");
-        //userService.insert(user);
-        return "/wap/register-success";
-    }
-
 }

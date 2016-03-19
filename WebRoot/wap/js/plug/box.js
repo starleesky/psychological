@@ -94,7 +94,7 @@ define(function(require, exports, module) {
             callback = callback || noop;
             var d = createLayer({
                 title: '提示',
-                width: '300',
+                width: '600',
                 content: '<p class="pop-tips">' + content + '</p>',
                 okValue: '确定',
                 ok: function() { callback(); }
@@ -145,6 +145,7 @@ define(function(require, exports, module) {
          * @param {int} time 自动关闭时间，单位毫秒, 默认: 2000
          */
         error: function(content, sender, time) {
+        	alert(content)
             return createLayer({
                 'id': '_dialogError',
                 'type': 'error',
@@ -177,6 +178,7 @@ define(function(require, exports, module) {
          * @param {int} time 自动关闭时间，单位毫秒,默认:2000
          */
         ok: function(content, sender, time) {
+        	alert(content)
             return createLayer({
                 'id': '_dialogOk',
                 'type': 'ok',

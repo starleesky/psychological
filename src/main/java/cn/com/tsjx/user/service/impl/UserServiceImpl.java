@@ -1,7 +1,5 @@
 package cn.com.tsjx.user.service.impl;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -24,7 +22,8 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	}
 
     @Override
-    public List<User> getUsersByEmail(String city) {
-        return userDao.getUsersByEmail(city);
+    public User getUsersByParam(String userName, String password) {
+
+        return userDao.getUsersByParam(userName, password);
     }
 }

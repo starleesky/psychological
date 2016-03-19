@@ -57,17 +57,17 @@
             </div>
         </section>
         <section class="mod-want-buy">
-            <form class="ui-form">
-                <div class="ui-form-title"><img src="images/photo_icon.png"/> 上传图片</div>
+            <form class="ui-form" id="informationFrom">
+                <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
                 <div class="ui-form-mod upload-img">
                     <div class="img-sp">
                         <input type="file" name="file[]" value="aaa" />
-                        <img src="images/camera_load_icon.png" />
+                        <img src="${ctx}/wap/images/camera_load_icon.png" />
                         <span>照片</span>
                     </div>
                     <div class="img-sp">
                         <input type="file" name="file[]" value="aaa" />
-                        <img src="images/image_load_icon.png" />
+                        <img src="${ctx}/wap/images/image_load_icon.png" />
                         <span>上传图片</span>
                     </div>
 
@@ -75,21 +75,21 @@
                 <div class="ui-form-title">选择产品类别</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
-                        <select class="bigGoodsCatagory"><option>请选择产品大类</option></select>
-                        <select class="middleGoodsCatagory"><option>请选择产品子类</option></select>
-                        <select><option>请选择产品</option></select>
+                        <select class="bigGoodsCatagory"  name="catagoryBig" id="catagoryBig" validate="required:true" ><option>请选择产品大类</option></select>
+                        <select class="middleGoodsCatagory" name="catagoryMid" id="catagoryMid" validate="required:true"><option>请选择产品子类</option></select>
+                        <select class="smallGoodsCatagory" name="catagorySmall" id="catagorySmall" validate="required:true"><option>请选择产品</option></select>
                     </div>
                 </div>
                 <div class="ui-form-title">选择品牌和 & 型号</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">品牌和 & 型号</label>
                     <div class="ui-form-bd">
-                        <select><option>请选择品牌</option></select>
-                        <select><option>请选择型号</option></select>
+                        <select class="brand" name="brand" id="brand" validate="required:true"><option>请选择品牌</option></select>
+                        <select class="models"  name="models" id="models" validate="required:true"><option>请选择型号</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod desc">
-                    <p class="ui-form-hd ">注:如找不到品牌和型号请点击<img class="jAddProType" src="images/increa_icon.png" /><em>*</em></p>
+                    <p class="ui-form-hd ">注:如找不到品牌和型号请点击<img class="jAddProType" src="${ctx}/wap/images/increa_icon.png" /><em>*</em></p>
 
                 </div>
                 <div class="ui-form-mod isHide desc-child">
@@ -183,14 +183,14 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">工时/小时以内</label>
                     <div class="ui-form-bd">
-                        <input type="text" placeholder="请输入...">
+                        <input type="text"   name="price" id="price"   placeholder="请输入...">
                     </div>
                 </div>
                 <div class="ui-form-title">买家附言</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>
                     <div class="ui-form-bd">
-                        <textarea placeholder="请输入..."></textarea>
+                        <textarea placeholder="请输入..."   name="remark" id="remark" ></textarea>
                     </div>
                 </div>
                 <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>
@@ -219,8 +219,8 @@
                     <div class="ui-form-ft">此信息有效期截止至:2015年5月30日</div>
                 </div>
                 <div class="field-submit">
-                    <input type="submit" class="ui-button ui-button-blue" id="jSave" value="保存">
-                    <input type="submit" class="ui-button ui-button-submit" id="jSubmit" value="提交">
+                    <input type="button" class="ui-button ui-button-blue" id="jSave" value="保存">
+                    <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="提交">
                 </div>
             </form>
         </section>
@@ -235,7 +235,7 @@
     </div>
     <div class="copyright">
         Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
-    </div> 
+    </div>
 </div>
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>

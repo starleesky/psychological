@@ -55,7 +55,7 @@
 		   	#{src,jdbcType=VARCHAR},
 		   	#{year,jdbcType=VARCHAR},
 		   	#{time,jdbcType=VARCHAR},
-		   	#{price,jdbcType=unkown},
+		   	#{price,jdbcType=DOUBLE},
 		   	#{serialNum,jdbcType=VARCHAR},
 		   	#{inStockCode,jdbcType=VARCHAR},
 		   	#{remark,jdbcType=VARCHAR},
@@ -135,7 +135,7 @@
 				TIME = #{time,jdbcType=VARCHAR},
 			</if>
 			<if test="price != null">
-				PRICE = #{price,jdbcType=unkown},
+				PRICE = #{price,jdbcType=DOUBLE},
 			</if>
 			<if test="serialNum != null">
 				SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
@@ -289,7 +289,7 @@
 				AND TIME = #{time,jdbcType=VARCHAR}
 			</if>
 			<if test="price != null">
-				AND PRICE = #{price,jdbcType=unkown}
+				AND PRICE = #{price,jdbcType=DOUBLE}
 			</if>
 			<if test="serialNum != null and serialNum != ''">
 				AND SERIAL_NUM = #{serialNum,jdbcType=VARCHAR}
@@ -387,7 +387,7 @@
 					AND TIME = #{entity.time,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.price != null">
-					AND PRICE = #{entity.price,jdbcType=unkown}
+					AND PRICE = #{entity.price,jdbcType=DOUBLE}
 				</if>
 				<if test="entity.serialNum != null and entity.serialNum != ''">
 					AND SERIAL_NUM = #{entity.serialNum,jdbcType=VARCHAR}

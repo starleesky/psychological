@@ -7,12 +7,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import cn.com.tsjx.goodsCatagory.dao.GoodsCatagoryDao;
 import cn.com.tsjx.user.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.tsjx.common.model.Result;
@@ -26,6 +28,8 @@ public class GoodsCatagoryController {
 
 	@Resource
 	GoodsCatagoryService goodsCatagoryService;
+	@Resource
+	GoodsCatagoryDao goodsCatagoryDao;
 
 	@RequestMapping(value = "/list")
 	public String list(Pager<GoodsCatagory> pager, GoodsCatagory goodsCatagory, Model model) {
@@ -81,18 +85,10 @@ public class GoodsCatagoryController {
 
 	@ResponseBody
 	@RequestMapping(value = "/getGoodsCatagory", method = RequestMethod.GET)
-	public Result<List<GoodsCatagory>> getGoodsCatagory(@Param(value = "id") Integer id) {
+	public Result<List<GoodsCatagory>> getGoodsCatagory(@RequestParam(value = "id", required = false) String id) {
 		Result<List<GoodsCatagory>> result = new Result<List<GoodsCatagory>>();
-		List<GoodsCatagory> list = new ArrayList<GoodsCatagory>();
-		GoodsCatagory goodsCatagory = new GoodsCatagory();
-		goodsCatagory.setCode("123");
-		goodsCatagory.setName("类型一");
-		list.add(goodsCatagory);
-		goodsCatagory = new GoodsCatagory();
-		goodsCatagory.setCode("234");
-		goodsCatagory.setName("类型二");
-		list.add(goodsCatagory);
-		result.setMessage("删除成功");
+		List<GoodsCatagory> list = goodsCatagoryDao.getGoodsCatagoryByParentId(id);
+		result.setMessage("查询成功");
 		result.setObject(list);
 		result.setResult(true);
 		return result;

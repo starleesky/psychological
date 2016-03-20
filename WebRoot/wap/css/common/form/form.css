@@ -1,12 +1,12 @@
 /*
 Error: Undefined variable: "$url-img".
-        on line 203 of E:/git/test/ts/app/sass/common/form/form.scss
+        on line 203 of E:/svn/1/app/sass/common/form/form.scss
 
 198:     display: block;
 199:     width: 100%;
 200:     border: none;
-201:     border-radius: 3px;
-202:     margin-bottom: rem(10);
+201:     border-radius: 6px;
+202:     margin-bottom: 10px;
 203:     background: #fff url(#{$url-img}/dropdown_arrow.png) top right no-repeat;
 204:   }
 205:   .ui-form-bd{
@@ -15,7 +15,7 @@ Error: Undefined variable: "$url-img".
 208:       -moz-appearance: none;
 
 Backtrace:
-E:/git/test/ts/app/sass/common/form/form.scss:203
+E:/svn/1/app/sass/common/form/form.scss:203
 D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/script/tree/variable.rb:49:in `_perform'
 D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/script/tree/node.rb:50:in `perform'
 D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/script/tree/string_interpolation.rb:83:in `_perform'
@@ -83,4 +83,4 @@ D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/vendor/listen/lib/listen/adapter.
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$url-img\".\A         on line 203 of E:/git/test/ts/app/sass/common/form/form.scss\A \A 198:     display: block;\A 199:     width: 100%;\A 200:     border: none;\A 201:     border-radius: 3px;\A 202:     margin-bottom: rem(10);\A 203:     background: #fff url(#{$url-img}/dropdown_arrow.png) top right no-repeat;\A 204:   }\A 205:   .ui-form-bd{\A 206:     input, select, textarea, label {\A 207:       -webkit-appearance: none;\A 208:       -moz-appearance: none;"; }
+  content: "Error: Undefined variable: \"$url-img\".\A         on line 203 of E:/svn/1/app/sass/common/form/form.scss\A \A 198:     display: block;\A 199:     width: 100%;\A 200:     border: none;\A 201:     border-radius: 6px;\A 202:     margin-bottom: 10px;\A 203:     background: #fff url(#{$url-img}/dropdown_arrow.png) top right no-repeat;\A 204:   }\A 205:   .ui-form-bd{\A 206:     input, select, textarea, label {\A 207:       -webkit-appearance: none;\A 208:       -moz-appearance: none;"; }

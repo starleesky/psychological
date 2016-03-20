@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$url-img".
-        on line 38 of E:/git/test/ts/app/sass/common/pro-list.scss
+        on line 38 of E:/svn/1/app/sass/common/pro-list.scss
 
 33:       float: left;
-34:       width: rem(120);
-35:       height: rem(120);
-36:       line-height: rem(120);
+34:       width: 120px;
+35:       height: 120px;
+36:       line-height: 120px;
 37:       text-align: center;
 38:       background: #EAEAEA url(#{$url-img}/pro-bg.jpg) no-repeat center center;
 39:       img{
-40:         max-width: rem(120);
-41:         max-height: rem(120);
+40:         max-width: 120px;
+41:         max-height: 120px;
 42:         vertical-align: middle;
 43: 
 
 Backtrace:
-E:/git/test/ts/app/sass/common/pro-list.scss:38
+E:/svn/1/app/sass/common/pro-list.scss:38
 D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/script/tree/variable.rb:49:in `_perform'
 D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/script/tree/node.rb:50:in `perform'
 D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/lib/sass/script/tree/string_interpolation.rb:83:in `_perform'
@@ -94,4 +94,4 @@ D:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.18/vendor/listen/lib/listen/adapter.
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$url-img\".\A         on line 38 of E:/git/test/ts/app/sass/common/pro-list.scss\A \A 33:       float: left;\A 34:       width: rem(120);\A 35:       height: rem(120);\A 36:       line-height: rem(120);\A 37:       text-align: center;\A 38:       background: #EAEAEA url(#{$url-img}/pro-bg.jpg) no-repeat center center;\A 39:       img{\A 40:         max-width: rem(120);\A 41:         max-height: rem(120);\A 42:         vertical-align: middle;\A 43: "; }
+  content: "Error: Undefined variable: \"$url-img\".\A         on line 38 of E:/svn/1/app/sass/common/pro-list.scss\A \A 33:       float: left;\A 34:       width: 120px;\A 35:       height: 120px;\A 36:       line-height: 120px;\A 37:       text-align: center;\A 38:       background: #EAEAEA url(#{$url-img}/pro-bg.jpg) no-repeat center center;\A 39:       img{\A 40:         max-width: 120px;\A 41:         max-height: 120px;\A 42:         vertical-align: middle;\A 43: "; }

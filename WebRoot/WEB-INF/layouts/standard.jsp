@@ -18,6 +18,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="${ctx}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/resources/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="${ctx}/resources/styles/admin.css" rel="stylesheet"/>
+    <link href="${ctx}/resources/styles/style.css" rel="stylesheet"/>
 
     <!-- Custom CSS -->
     <link href="${ctx}/resources/admin/css/sb-admin.css" rel="stylesheet">
@@ -28,17 +31,27 @@
     <!-- Custom Fonts -->
     <link href="${ctx}/resources/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
-        <!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
-    <!--[endif]-->
-
     <!-- Mainly scripts -->
     <script src="${ctx}/resources/sea.js"></script>
     <script src="${ctx}/resources/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="${ctx}/resources/bower_components/angular/angular.min.js"></script>
+    <script>
+        angular.path = '${ctx}';
+    </script>
+    <script src="${ctx}/resources/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="${ctx}/resources/bower_components/AngularJS-Toaster/toaster.js"></script>
+    <script src="${ctx}/resources/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="${ctx}/resources/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="${ctx}/resources/bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+    <script src="${ctx}/resources/bower_components/angular-zeroclipboard/dist/angular-zeroclipboard.min.js"></script>
+
+    <script src="${ctx}/resources/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+    <script src="${ctx}/resources/bower_components/moment/min/moment.min.js"></script>
+    <script src="${ctx}/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="${ctx}/resources/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="${ctx}/resources/config.js"></script>
 
 </head>
 
@@ -202,7 +215,7 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="panel panel-default" ng-controller="mainCtrl">
 
             <div class="container-fluid">
 
@@ -232,16 +245,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="${ctx}/resources/admin/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="${ctx}/resources/admin/js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="${ctx}/resources/admin/js/plugins/morris/raphael.min.js"></script>
-    <script src="${ctx}/resources/admin/js/plugins/morris/morris.min.js"></script>
-    <script src="${ctx}/resources/admin/js/plugins/morris/morris-data.js"></script>
 
 </body>
 

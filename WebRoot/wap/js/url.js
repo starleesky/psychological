@@ -1,5 +1,5 @@
 define(function (require, exports, module) {
-    var baseUrl = 'http://192.168.10.71:8080/tsjx';
+    var baseUrl = 'http://localhost:8080/tsjx';
     if (!ctx == null && ctx == '') {
         baseUrl = ctx;
     }

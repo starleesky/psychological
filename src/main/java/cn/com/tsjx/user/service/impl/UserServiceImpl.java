@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import cn.com.tsjx.common.dao.BaseDao;
 import cn.com.tsjx.common.service.BaseServiceImpl;
+import cn.com.tsjx.common.util.alg.Base64;
 import cn.com.tsjx.user.dao.UserDao;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
@@ -23,7 +24,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 
     @Override
     public User getUsersByParam(String userName, String password) {
-
+        password = Base64.encode(password.toString().getBytes());
         return userDao.getUsersByParam(userName, password);
     }
 }

@@ -45,7 +45,7 @@ public class LoginController {
                 return result;
             }
         
-        User user = userService.getUsersByParam(userName, Base64.encode(password.toString().getBytes()));
+        User user = userService.getUsersByParam(userName, password);
         if (user == null) {
             result.setMessage("用户名或密码错误");
             return result;

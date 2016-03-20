@@ -1,6 +1,5 @@
 define(function (require, exports, module) {
-    var baseUrl = 'http://localhost:8082/tsjx';
-    var ctx = 'http://localhost:8082/tsjx';
+    var baseUrl = 'http://192.168.10.71:8080/tsjx';
     if (!ctx == null && ctx == '') {
         baseUrl = ctx;
     }
@@ -12,7 +11,7 @@ define(function (require, exports, module) {
         loginSuccessUrl: baseUrl + '/wap/index',
         registerUrl: baseUrl + '/wap/toRegister',
 
-        listGoodsCatagory: baseUrl + '/goodsCatagory/getGoodsCatagory', // 查询设备产品列表URL
+        listGoodsCatagory: baseUrl + '/catagory/listCatagory', // 查询设备产品列表URL
         listBrand: baseUrl + '/brand/listBrand',//查询设备品牌URL
         listModels: baseUrl + '/models/listModels',//查询设备型号URL
         saveInfo: baseUrl + '/infomation/save',//信息发布

@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.tsjx.catagory.dao.impl.CatagoryDaoImpl">
 
+    <select id="getCatagoryByParentId" parameterType="map"
+            resultType="cn.com.tsjx.catagory.entity.Catagory">
+        <include refid="selectFieldSQL"/>
+        <![CDATA[
+		  FROM TSJX_CATAGORY
+		]]>
+        <where>
+            <if test="name != null and name != ''">
+                AND NAME = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="parentId != null">
+                AND PARENT_ID = #{parentId,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 </mapper>   

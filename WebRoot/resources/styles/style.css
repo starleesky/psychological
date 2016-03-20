@@ -156,18 +156,18 @@ a{
 }
 
 /***********  btn  ************/
-.btn-primary{
-	background-color: #ff6600;
-	border-color: #ff6600;
-}
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
-	background-color: #ff8800;
-	border-color: #ff8800;
-}
-.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active{
-	background-color: #ff8800;
-	border-color: #ff8800;
-}
+/*.btn-primary{*/
+	/*background-color: #ff6600;*/
+	/*border-color: #ff6600;*/
+/*}*/
+/*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{*/
+	/*background-color: #ff8800;*/
+	/*border-color: #ff8800;*/
+/*}*/
+/*.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active{*/
+	/*background-color: #ff8800;*/
+	/*border-color: #ff8800;*/
+/*}*/
 
 /********** muilt select **********/
 .muilt-select{
@@ -368,3 +368,4 @@ a{
 	background: #337AB7;
 	border-radius: 4px;
 }
+

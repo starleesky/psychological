@@ -7,10 +7,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import cn.com.tsjx.models.dao.ModelsDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.tsjx.common.model.Result;
@@ -26,6 +28,8 @@ public class ModelsController {
 	@Resource
 	ModelsService modelsService;
 
+	@Resource
+	ModelsDao modelsDao;
 
     @RequestMapping(value = "/list")
     public String list(Pager<Models> pager,Models models,Model model) {
@@ -81,6 +85,18 @@ public class ModelsController {
         result.setResult(true);
         return result;
     }
+
+	@ResponseBody
+	@RequestMapping(value = "/listModels", method = RequestMethod.GET)
+	public Result<List<Models>> getGoodsCatagory(
+			@RequestParam(value = "brandId", required = false) Integer brandId) {
+		Result<List<Models>> result = new Result<List<Models>>();
+		List<Models> list = modelsDao.listModelsByBrandId(brandId);
+		result.setMessage("查询成功");
+		result.setObject(list);
+		result.setResult(true);
+		return result;
+	}
     
    
 }

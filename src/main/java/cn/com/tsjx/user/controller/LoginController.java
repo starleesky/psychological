@@ -34,7 +34,6 @@ public class LoginController {
     @RequestMapping(value = "/loginIn",method = RequestMethod.POST)
     public Result<String> loginIn(String userName,String password) {
         Result<String> result = new Result<String>();
-        System.out.println(userName+password);
         result.setResult(false);
             if (StringUtil.isTrimBlank(userName)) {
                 result.setMessage("用户名不能为空");
@@ -46,6 +45,8 @@ public class LoginController {
             }
         
         User user = userService.getUsersByParam(userName, password);
+        user.setBusinessNature("1234");;
+        userService.update(user);
         if (user == null) {
             result.setMessage("用户名或密码错误");
             return result;

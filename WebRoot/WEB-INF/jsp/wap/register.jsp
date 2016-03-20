@@ -89,6 +89,7 @@
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
+	var ctx = "${ctx}";
     require(['module/register']);
 </script>
 </body></html>

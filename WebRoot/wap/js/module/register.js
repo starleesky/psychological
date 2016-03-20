@@ -47,18 +47,20 @@ define(function(require,exports,module) {
 			}
         },
         submitHandler: function (form) {
-            ajax.jsonp({
-                url: url.registerUrl,
-                data: {
-                    email: $(form).find('input[name=email]').val(),
-                    mobile: $(form).find('input[name=mobile]').val(),
-                    password: $(form).find('input[name=password]').val()
-                }
-            }, function (data) {
-                console.log(data);
-            }, function (data) {
-                console.log(data);
-            });
+            $.post( url.registerUrl,
+              {
+            	email: $(form).find('input[name=email]').val(),
+                mobile: $(form).find('input[name=mobile]').val(),
+                password: $(form).find('input[name=password]').val()
+              }
+        	, function (data) {
+        		if(data.result){
+        			window.location.href =url.loginSuccessUrl;
+        		}else{
+        			console.log(data);
+        		}
+            },'json');
+        
         }
     });
     $('#jSubmit').on('click',function(){

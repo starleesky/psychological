@@ -40,7 +40,7 @@ public class MailServiceImplTest {
     
     @Test
     public void testSendMail() {
-        mailService.sendMail("821866756@qq.com", "测试", "123", "赣游通");
+        mailService.sendMail("821866756@qq.com", "测试", "123", "tsjx");
     }
 
 }

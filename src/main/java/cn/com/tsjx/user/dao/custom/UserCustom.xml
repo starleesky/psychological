@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.tsjx.user.dao.impl.UserDaoImpl">
 
-	<select id="getUsersByEmail" parameterType="map" resultType="cn.com.tsjx.user.entity.User">
+	<select id="getUsersByParam" parameterType="map" resultType="cn.com.tsjx.user.entity.User">
 		SELECT 
 		       ID id,
 		       USER_NAME userName,
@@ -20,7 +20,12 @@
 		       UPDATE_TIME updateTime,
 		       DELETED deleted,
 		       COMPANY_ID companyId
-		       FROM TSJX_USER 
-		       WHERE email = #{email,jdbcType=VARCHAR}
+		       FROM TSJX_USER t
+		       WHERE
+		       (t.email = #{userName,jdbcType=VARCHAR}
+		       or t.user_name = #{userName,jdbcType=VARCHAR}
+			   or t.mobile = #{userName,jdbcType=VARCHAR}) 
+		       and password = #{password,jdbcType=VARCHAR}
+		       and deleted = #{deleted,jdbcType=VARCHAR}
 	</select>
 </mapper>   

@@ -8,9 +8,18 @@
                         http://www.springframework.org/schema/context    
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                         http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">  
     <!-- 自动扫描 -->  
     <context:component-scan base-package="cn.com.tsjx" />  
+    <bean id="commonConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
     <bean id="databaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider">
 		<property name="properties">
 			<props>
@@ -18,12 +27,38 @@
 			</props>
 		</property>
 	</bean>
-    <!-- 引入配置文件 -->  
-    <bean id="propertyConfigurer"  
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
-        <property name="location" value="classpath:jdbc.properties" />  
-    </bean>  
-  
+  <!-- 邮件配置信息 -->
+	<bean id="mailConfig" class="cn.com.tsjx.common.config.MailConfig">
+	    <property name="smtpFromMail" value="${mail.smtpFromMail}" />
+	    <property name="smtpHost" value="${mail.smtpHost}" />
+	    <property name="smtpPort" value="${mail.smtpPort}" />
+	    <property name="smtpUsername" value="${mail.smtpUsername}" />
+	    <property name="smtpPassword" value="${mail.smtpPassword}" />
+	</bean>
+	
+		<!-- SMTP邮件服务配置 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+				<!-- SSL连接配置 -->
+				<!-- <prop key="mail.smtp.starttls.enable">true</prop> <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop> -->
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 短信异步发送 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数 -->
+		<property name="corePoolSize" value="10" />
+		<!-- 最大线程数 -->
+		<property name="maxPoolSize" value="50" />
+		<!-- 最大队列数 -->
+		<property name="queueCapacity" value="10000" />
+		<!-- 线程池维护线程所允许的空闲时间 -->
+		<property name="keepAliveSeconds" value="60" />
+	</bean>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
         <property name="driverClassName" value="${jdbc.driver}" />  

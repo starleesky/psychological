@@ -25,19 +25,19 @@ define(function(require,exports,module) {
                 minlength: '密码不少于6位'
             }
         },
-        submitHandler: function (form) {
-            ajax.jsonp({
-                url: url.loginUrl,
-                data: {
-                    op: 'UserLogin',
-                    UserName: $(form).find('input[name=UserName]').val(),
-                    Pwd: $(form).find('input[name=Pwd]').val()
-                }
-            }, function (data) {
-                box.ok(data);
-            }, function (data) {
-                box.error(data);
-            });
+        submitHandler: function (form) {          
+            $.post( url.loginUrl,
+              {
+                    userName: $(form).find('input[name=UserName]').val(),
+                    password: $(form).find('input[name=Pwd]').val()
+            }
+        	, function (data) {
+        		if(data.result){
+        			window.location.href =url.loginSuccessUrl;
+        		}else{
+        			box.ok(data.message);
+        		}
+            },'json');
         },
         showError:function(elem,msg){
             box.error(msg,elem);

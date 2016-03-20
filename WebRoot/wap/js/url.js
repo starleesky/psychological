@@ -11,7 +11,7 @@ define(function (require, exports, module) {
         loginSuccessUrl: baseUrl + '/wap/index',
         registerUrl: baseUrl + '/wap/toRegister',
 
-        listGoodsCatagory: baseUrl + '/goodsCatagory/getGoodsCatagory', // 查询设备产品列表URL
+        listGoodsCatagory: baseUrl + '/catagory/listCatagory', // 查询设备产品列表URL
         listBrand: baseUrl + '/brand/listBrand',//查询设备品牌URL
         listModels: baseUrl + '/models/listModels',//查询设备型号URL
         saveInfo: baseUrl + '/infomation/save',//信息发布

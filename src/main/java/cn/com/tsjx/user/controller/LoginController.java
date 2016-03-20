@@ -3,6 +3,7 @@ package cn.com.tsjx.user.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +28,12 @@ public class LoginController {
     @RequestMapping(value = "/login")
     public String userLogin(User user,Model model) {
         
-        return "/login";
+        return "/wap/login";
     }
     
     @ResponseBody
     @RequestMapping(value = "/loginIn",method = RequestMethod.POST)
-    public Result<String> loginIn(String userName,String password) {
+    public Result<String> loginIn(Model model,String userName,String password,HttpSession httpSession) {
         Result<String> result = new Result<String>();
         result.setResult(false);
             if (StringUtil.isTrimBlank(userName)) {
@@ -45,15 +46,13 @@ public class LoginController {
             }
         
         User user = userService.getUsersByParam(userName, password);
-        user.setBusinessNature("1234");;
-        userService.update(user);
         if (user == null) {
             result.setMessage("用户名或密码错误");
             return result;
         }
+        httpSession.setAttribute("user", user);
         result.setResult(true);
         result.setMessage("登录成功");
-        //result.setObject("/wap/index");
         return result;
     }
     
@@ -118,5 +117,14 @@ public class LoginController {
         return "/wap/index";
     }
     
-    
+    @RequestMapping(value = "/forgotpwd")
+    public String forgotpwd(){
+        
+        return "/wap/forgotpwd";
+    }
+    @RequestMapping(value = "/loginOut")
+    public String loginOut(HttpSession httpSession){
+        httpSession.removeAttribute("user");
+        return "/wap/index";
+    }
 }

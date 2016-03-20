@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +24,7 @@
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="#" class="ui-left">
-        <img src="images/logo.gif" class="ui-logo" />
-    </a>
-
-    <a  href="login.html" class="ui-right ui-login">
-        <img src="images/user_icon.png" />登录
-    </a>
-</header>
+<%@ include file="header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <div class="page-view-body">
@@ -238,23 +236,11 @@
         </ul>
     </div>
 </script>
-<div class="footer">
-
-    <div class="ft-nav">
-        <a  href="about-us.html">关于我们</a>
-        <a  href="term-conditions.html">一般条款</a>
-        <a  href="contact-us.html">联系我们</a>
-    </div>
-    <div class="copyright">
-        Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
-    </div> 
-</div>
+<%@ include file="footer.jsp" %>
 <script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript">
-    window.TS = {
-
-    }
+var ctx = "${ctx}";
     require(['module/index']);
 </script>
 </body></html>

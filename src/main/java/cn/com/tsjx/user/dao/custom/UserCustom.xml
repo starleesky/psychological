@@ -11,15 +11,24 @@
 		       EMAIL email,
 		       PASSWORD password,
 		       QQ qq,
-		       PROVINCE province,
-		       CITY city,
+		       PROVINCE_NAME provinceName,
+		       PROVINCE_ID provinceId,
+		       CITY_NAME cityName,
+		       CITY_ID cityId,
 		       BUSINESS_SCOPE businessScope,
 		       BUSINESS_NATURE businessNature,
 		       USER_TYPE userType,
+		       COMPANY_ID companyId,
+		       SRC src,
+		       IS_ACTIVATE isActivate,
+		       IS_NEW_MESSAGE isNewMessage,
+		       HEAD_ICON headIcon,
+		       LAST_LOGIN_TIME lastLoginTime,
 		       CREATE_TIME createTime,
-		       UPDATE_TIME updateTime,
-		       DELETED deleted,
-		       COMPANY_ID companyId
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		       FROM TSJX_USER t
 		       WHERE
 		       (t.email = #{userName,jdbcType=VARCHAR}

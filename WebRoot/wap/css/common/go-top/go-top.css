@@ -1,12 +1,12 @@
 /* line 2, ../../../sass/common/go-top/go-top.scss */
 .go-top {
   position: fixed;
-  bottom: rem(120);
-  right: rem(10);
-  width: rem(60);
-  height: rem(60);
+  bottom: 120px;
+  right: 10px;
+  width: 60px;
+  height: 60px;
   text-align: center;
-  line-height: rem(60);
+  line-height: 60px;
   border-radius: 50%;
   overflow: hidden;
   display: none;
@@ -23,7 +23,7 @@
 /* line 21, ../../../sass/common/go-top/go-top.scss */
 .go-top .icon {
   color: #fff;
-  font-size: rem(40);
+  font-size: 40px;
   position: absolute;
   top: 0;
   left: 0;

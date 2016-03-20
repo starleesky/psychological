@@ -1,8 +1,7 @@
 package cn.com.tsjx.catagory.dao;
 
-import cn.com.tsjx.common.dao.BaseDao;
 import cn.com.tsjx.catagory.entity.Catagory;
-import cn.com.tsjx.goodsCatagory.entity.GoodsCatagory;
+import cn.com.tsjx.common.dao.BaseDao;
 
 import java.util.List;
 

@@ -7,28 +7,32 @@
 		<![CDATA[
 		INSERT INTO TSJX_ATTCH (
 		   	ID,
-		   	CONNECTION_TABLE_NAME,
-		   	CONNECTION_TABLE_ID,
-		   	NAME,
-		   	SIZE,
-		   	TYPE,
+		   	INFORMATION_ID,
+		   	ATTCH_NAME,
+		   	ATTCH_SIZE,
+		   	ATTCH_TYPE,
 		   	SHOW_NAME,
-		   	URL,
+		   	ATTCH_URL,
+		   	USER_ID,
 		   	CREATE_TIME,
-		   	UPLOAD_USER_ID,
-		   	UPLOAD_USER_NAME
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
-		   	#{connectionTableName,jdbcType=VARCHAR},
-		   	#{connectionTableId,jdbcType=INTEGER},
-		   	#{name,jdbcType=VARCHAR},
-		   	#{size,jdbcType=INTEGER},
-		   	#{type,jdbcType=VARCHAR},
+		   	#{informationId,jdbcType=INTEGER},
+		   	#{attchName,jdbcType=VARCHAR},
+		   	#{attchSize,jdbcType=INTEGER},
+		   	#{attchType,jdbcType=VARCHAR},
 		   	#{showName,jdbcType=VARCHAR},
-		   	#{url,jdbcType=VARCHAR},
+		   	#{attchUrl,jdbcType=VARCHAR},
+		   	#{userId,jdbcType=INTEGER},
 		   	#{createTime,jdbcType=TIMESTAMP},
-		   	#{uploadUserId,jdbcType=INTEGER},
-		   	#{uploadUserName,jdbcType=VARCHAR}
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -45,35 +49,41 @@
 	<update id="update" parameterType="cn.com.tsjx.attch.entity.Attch">
 		UPDATE TSJX_ATTCH
 		<set>
-			<if test="connectionTableName != null">
-				CONNECTION_TABLE_NAME = #{connectionTableName,jdbcType=VARCHAR},
+			<if test="informationId != null">
+				INFORMATION_ID = #{informationId,jdbcType=INTEGER},
 			</if>
-			<if test="connectionTableId != null">
-				CONNECTION_TABLE_ID = #{connectionTableId,jdbcType=INTEGER},
+			<if test="attchName != null">
+				ATTCH_NAME = #{attchName,jdbcType=VARCHAR},
 			</if>
-			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+			<if test="attchSize != null">
+				ATTCH_SIZE = #{attchSize,jdbcType=INTEGER},
 			</if>
-			<if test="size != null">
-				SIZE = #{size,jdbcType=INTEGER},
-			</if>
-			<if test="type != null">
-				TYPE = #{type,jdbcType=VARCHAR},
+			<if test="attchType != null">
+				ATTCH_TYPE = #{attchType,jdbcType=VARCHAR},
 			</if>
 			<if test="showName != null">
 				SHOW_NAME = #{showName,jdbcType=VARCHAR},
 			</if>
-			<if test="url != null">
-				URL = #{url,jdbcType=VARCHAR},
+			<if test="attchUrl != null">
+				ATTCH_URL = #{attchUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=INTEGER},
 			</if>
 			<if test="createTime != null">
 				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="uploadUserId != null">
-				UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER},
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
 			</if>
-			<if test="uploadUserName != null">
-				UPLOAD_USER_NAME = #{uploadUserName,jdbcType=VARCHAR},
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -82,7 +92,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.attch.entity.Attch">
 		<![CDATA[
-		DELETE FROM TSJX_ATTCH WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_ATTCH
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -91,16 +105,18 @@
 		<![CDATA[
 		SELECT 
 		       ID id,
-		       CONNECTION_TABLE_NAME connectionTableName,
-		       CONNECTION_TABLE_ID connectionTableId,
-		       NAME name,
-		       SIZE size,
-		       TYPE type,
+		       INFORMATION_ID informationId,
+		       ATTCH_NAME attchName,
+		       ATTCH_SIZE attchSize,
+		       ATTCH_TYPE attchType,
 		       SHOW_NAME showName,
-		       URL url,
+		       ATTCH_URL attchUrl,
+		       USER_ID userId,
 		       CREATE_TIME createTime,
-		       UPLOAD_USER_ID uploadUserId,
-		       UPLOAD_USER_NAME uploadUserName
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -110,6 +126,7 @@
 		<![CDATA[
 		  FROM TSJX_ATTCH
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -123,32 +140,29 @@
 			<if test="id != null">
 				AND ID = #{id,jdbcType=INTEGER}
 			</if>
-			<if test="connectionTableName != null and connectionTableName != ''">
-				AND CONNECTION_TABLE_NAME = #{connectionTableName,jdbcType=VARCHAR}
+			<if test="informationId != null">
+				AND INFORMATION_ID = #{informationId,jdbcType=INTEGER}
 			</if>
-			<if test="connectionTableId != null">
-				AND CONNECTION_TABLE_ID = #{connectionTableId,jdbcType=INTEGER}
+			<if test="attchName != null and attchName != ''">
+				AND ATTCH_NAME = #{attchName,jdbcType=VARCHAR}
 			</if>
-			<if test="name != null and name != ''">
-				AND NAME = #{name,jdbcType=VARCHAR}
+			<if test="attchSize != null">
+				AND ATTCH_SIZE = #{attchSize,jdbcType=INTEGER}
 			</if>
-			<if test="size != null">
-				AND SIZE = #{size,jdbcType=INTEGER}
-			</if>
-			<if test="type != null and type != ''">
-				AND TYPE = #{type,jdbcType=VARCHAR}
+			<if test="attchType != null and attchType != ''">
+				AND ATTCH_TYPE = #{attchType,jdbcType=VARCHAR}
 			</if>
 			<if test="showName != null and showName != ''">
 				AND SHOW_NAME = #{showName,jdbcType=VARCHAR}
 			</if>
-			<if test="url != null and url != ''">
-				AND URL = #{url,jdbcType=VARCHAR}
+			<if test="attchUrl != null and attchUrl != ''">
+				AND ATTCH_URL = #{attchUrl,jdbcType=VARCHAR}
 			</if>
-			<if test="uploadUserId != null">
-				AND UPLOAD_USER_ID = #{uploadUserId,jdbcType=INTEGER}
+			<if test="userId != null">
+				AND USER_ID = #{userId,jdbcType=INTEGER}
 			</if>
-			<if test="uploadUserName != null and uploadUserName != ''">
-				AND UPLOAD_USER_NAME = #{uploadUserName,jdbcType=VARCHAR}
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
@@ -158,38 +172,36 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_ATTCH
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
-				<if test="entity.connectionTableName != null and entity.connectionTableName != ''">
-					AND CONNECTION_TABLE_NAME = #{entity.connectionTableName,jdbcType=VARCHAR}
+				<if test="entity.informationId != null">
+					AND INFORMATION_ID = #{entity.informationId,jdbcType=INTEGER}
 				</if>
-				<if test="entity.connectionTableId != null">
-					AND CONNECTION_TABLE_ID = #{entity.connectionTableId,jdbcType=INTEGER}
+				<if test="entity.attchName != null and entity.attchName != ''">
+					AND ATTCH_NAME = #{entity.attchName,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.name != null and entity.name != ''">
-					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				<if test="entity.attchSize != null">
+					AND ATTCH_SIZE = #{entity.attchSize,jdbcType=INTEGER}
 				</if>
-				<if test="entity.size != null">
-					AND SIZE = #{entity.size,jdbcType=INTEGER}
-				</if>
-				<if test="entity.type != null and entity.type != ''">
-					AND TYPE = #{entity.type,jdbcType=VARCHAR}
+				<if test="entity.attchType != null and entity.attchType != ''">
+					AND ATTCH_TYPE = #{entity.attchType,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.showName != null and entity.showName != ''">
 					AND SHOW_NAME = #{entity.showName,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.url != null and entity.url != ''">
-					AND URL = #{entity.url,jdbcType=VARCHAR}
+				<if test="entity.attchUrl != null and entity.attchUrl != ''">
+					AND ATTCH_URL = #{entity.attchUrl,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.uploadUserId != null">
-					AND UPLOAD_USER_ID = #{entity.uploadUserId,jdbcType=INTEGER}
+				<if test="entity.userId != null">
+					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
 				</if>
-				<if test="entity.uploadUserName != null and entity.uploadUserName != ''">
-					AND UPLOAD_USER_NAME = #{entity.uploadUserName,jdbcType=VARCHAR}
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

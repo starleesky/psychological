@@ -1,7 +1,5 @@
 package cn.com.tsjx.user.service;
 
-import java.util.List;
-
 import cn.com.tsjx.common.service.BaseService;
 import cn.com.tsjx.user.entity.User;
 
@@ -10,10 +8,4 @@ import cn.com.tsjx.user.entity.User;
  */
 public interface UserService extends BaseService<User, Long> {
 
-    /**
-     * 通过邮箱来查询用户
-     * @param city
-     * @return
-     */
-    public List<User> getUsersByEmail(String email);
 }

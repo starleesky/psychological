@@ -13,15 +13,24 @@
 		   	EMAIL,
 		   	PASSWORD,
 		   	QQ,
-		   	PROVINCE,
-		   	CITY,
+		   	PROVINCE_NAME,
+		   	PROVINCE_ID,
+		   	CITY_NAME,
+		   	CITY_ID,
 		   	BUSINESS_SCOPE,
 		   	BUSINESS_NATURE,
 		   	USER_TYPE,
+		   	COMPANY_ID,
+		   	SRC,
+		   	IS_ACTIVATE,
+		   	IS_NEW_MESSAGE,
+		   	HEAD_ICON,
+		   	LAST_LOGIN_TIME,
 		   	CREATE_TIME,
-		   	UPDATE_TIME,
-		   	DELETED,
-		   	COMPANY_ID
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{userName,jdbcType=VARCHAR},
@@ -30,15 +39,24 @@
 		   	#{email,jdbcType=VARCHAR},
 		   	#{password,jdbcType=VARCHAR},
 		   	#{qq,jdbcType=VARCHAR},
-		   	#{province,jdbcType=VARCHAR},
-		   	#{city,jdbcType=VARCHAR},
+		   	#{provinceName,jdbcType=VARCHAR},
+		   	#{provinceId,jdbcType=INTEGER},
+		   	#{cityName,jdbcType=VARCHAR},
+		   	#{cityId,jdbcType=INTEGER},
 		   	#{businessScope,jdbcType=VARCHAR},
 		   	#{businessNature,jdbcType=VARCHAR},
 		   	#{userType,jdbcType=VARCHAR},
+		   	#{companyId,jdbcType=VARCHAR},
+		   	#{src,jdbcType=VARCHAR},
+		   	#{isActivate,jdbcType=VARCHAR},
+		   	#{isNewMessage,jdbcType=VARCHAR},
+		   	#{headIcon,jdbcType=VARCHAR},
+		   	#{lastLoginTime,jdbcType=TIMESTAMP},
 		   	#{createTime,jdbcType=TIMESTAMP},
-		   	#{updateTime,jdbcType=TIMESTAMP},
-		   	#{deleted,jdbcType=VARCHAR},
-		   	#{companyId,jdbcType=VARCHAR}
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -73,11 +91,17 @@
 			<if test="qq != null">
 				QQ = #{qq,jdbcType=VARCHAR},
 			</if>
-			<if test="province != null">
-				PROVINCE = #{province,jdbcType=VARCHAR},
+			<if test="provinceName != null">
+				PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
 			</if>
-			<if test="city != null">
-				CITY = #{city,jdbcType=VARCHAR},
+			<if test="provinceId != null">
+				PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+			</if>
+			<if test="cityName != null">
+				CITY_NAME = #{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				CITY_ID = #{cityId,jdbcType=INTEGER},
 			</if>
 			<if test="businessScope != null">
 				BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
@@ -88,17 +112,38 @@
 			<if test="userType != null">
 				USER_TYPE = #{userType,jdbcType=VARCHAR},
 			</if>
+			<if test="companyId != null">
+				COMPANY_ID = #{companyId,jdbcType=VARCHAR},
+			</if>
+			<if test="src != null">
+				SRC = #{src,jdbcType=VARCHAR},
+			</if>
+			<if test="isActivate != null">
+				IS_ACTIVATE = #{isActivate,jdbcType=VARCHAR},
+			</if>
+			<if test="isNewMessage != null">
+				IS_NEW_MESSAGE = #{isNewMessage,jdbcType=VARCHAR},
+			</if>
+			<if test="headIcon != null">
+				HEAD_ICON = #{headIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
 			<if test="createTime != null">
 				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="updateTime != null">
-				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
 			</if>
 			<if test="deleted != null">
 				DELETED = #{deleted,jdbcType=VARCHAR},
-			</if>
-			<if test="companyId != null">
-				COMPANY_ID = #{companyId,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -126,15 +171,24 @@
 		       EMAIL email,
 		       PASSWORD password,
 		       QQ qq,
-		       PROVINCE province,
-		       CITY city,
+		       PROVINCE_NAME provinceName,
+		       PROVINCE_ID provinceId,
+		       CITY_NAME cityName,
+		       CITY_ID cityId,
 		       BUSINESS_SCOPE businessScope,
 		       BUSINESS_NATURE businessNature,
 		       USER_TYPE userType,
+		       COMPANY_ID companyId,
+		       SRC src,
+		       IS_ACTIVATE isActivate,
+		       IS_NEW_MESSAGE isNewMessage,
+		       HEAD_ICON headIcon,
+		       LAST_LOGIN_TIME lastLoginTime,
 		       CREATE_TIME createTime,
-		       UPDATE_TIME updateTime,
-		       DELETED deleted,
-		       COMPANY_ID companyId
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -176,11 +230,17 @@
 			<if test="qq != null and qq != ''">
 				AND QQ = #{qq,jdbcType=VARCHAR}
 			</if>
-			<if test="province != null and province != ''">
-				AND PROVINCE = #{province,jdbcType=VARCHAR}
+			<if test="provinceName != null and provinceName != ''">
+				AND PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR}
 			</if>
-			<if test="city != null and city != ''">
-				AND CITY = #{city,jdbcType=VARCHAR}
+			<if test="provinceId != null">
+				AND PROVINCE_ID = #{provinceId,jdbcType=INTEGER}
+			</if>
+			<if test="cityName != null and cityName != ''">
+				AND CITY_NAME = #{cityName,jdbcType=VARCHAR}
+			</if>
+			<if test="cityId != null">
+				AND CITY_ID = #{cityId,jdbcType=INTEGER}
 			</if>
 			<if test="businessScope != null and businessScope != ''">
 				AND BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR}
@@ -191,14 +251,26 @@
 			<if test="userType != null and userType != ''">
 				AND USER_TYPE = #{userType,jdbcType=VARCHAR}
 			</if>
-			<if test="updateTime != null">
-				AND UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+			<if test="companyId != null and companyId != ''">
+				AND COMPANY_ID = #{companyId,jdbcType=VARCHAR}
+			</if>
+			<if test="src != null and src != ''">
+				AND SRC = #{src,jdbcType=VARCHAR}
+			</if>
+			<if test="isActivate != null and isActivate != ''">
+				AND IS_ACTIVATE = #{isActivate,jdbcType=VARCHAR}
+			</if>
+			<if test="isNewMessage != null and isNewMessage != ''">
+				AND IS_NEW_MESSAGE = #{isNewMessage,jdbcType=VARCHAR}
+			</if>
+			<if test="headIcon != null and headIcon != ''">
+				AND HEAD_ICON = #{headIcon,jdbcType=VARCHAR}
+			</if>
+			<if test="lastLoginTime != null">
+				AND LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP}
 			</if>
 			<if test="deleted != null and deleted != ''">
 				AND DELETED = #{deleted,jdbcType=VARCHAR}
-			</if>
-			<if test="companyId != null and companyId != ''">
-				AND COMPANY_ID = #{companyId,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
@@ -233,11 +305,17 @@
 				<if test="entity.qq != null and entity.qq != ''">
 					AND QQ = #{entity.qq,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.province != null and entity.province != ''">
-					AND PROVINCE = #{entity.province,jdbcType=VARCHAR}
+				<if test="entity.provinceName != null and entity.provinceName != ''">
+					AND PROVINCE_NAME = #{entity.provinceName,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.city != null and entity.city != ''">
-					AND CITY = #{entity.city,jdbcType=VARCHAR}
+				<if test="entity.provinceId != null">
+					AND PROVINCE_ID = #{entity.provinceId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.cityName != null and entity.cityName != ''">
+					AND CITY_NAME = #{entity.cityName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.cityId != null">
+					AND CITY_ID = #{entity.cityId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.businessScope != null and entity.businessScope != ''">
 					AND BUSINESS_SCOPE = #{entity.businessScope,jdbcType=VARCHAR}
@@ -248,14 +326,26 @@
 				<if test="entity.userType != null and entity.userType != ''">
 					AND USER_TYPE = #{entity.userType,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.updateTime != null">
-					AND UPDATE_TIME = #{entity.updateTime,jdbcType=TIMESTAMP}
+				<if test="entity.companyId != null and entity.companyId != ''">
+					AND COMPANY_ID = #{entity.companyId,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.src != null and entity.src != ''">
+					AND SRC = #{entity.src,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.isActivate != null and entity.isActivate != ''">
+					AND IS_ACTIVATE = #{entity.isActivate,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.isNewMessage != null and entity.isNewMessage != ''">
+					AND IS_NEW_MESSAGE = #{entity.isNewMessage,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.headIcon != null and entity.headIcon != ''">
+					AND HEAD_ICON = #{entity.headIcon,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.lastLoginTime != null">
+					AND LAST_LOGIN_TIME = #{entity.lastLoginTime,jdbcType=TIMESTAMP}
 				</if>
 				<if test="entity.deleted != null and entity.deleted != ''">
 					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
-				</if>
-				<if test="entity.companyId != null and entity.companyId != ''">
-					AND COMPANY_ID = #{entity.companyId,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

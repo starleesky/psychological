@@ -8,13 +8,23 @@
 		INSERT INTO TSJX_COMMENT (
 		   	ID,
 		   	CONTENT,
+		   	INFOMATION_ID,
+		   	USER_ID,
 		   	CREATE_TIME,
-		   	INFOMATION_ID
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{content,jdbcType=VARCHAR},
+		   	#{infomationId,jdbcType=INTEGER},
+		   	#{userId,jdbcType=INTEGER},
 		   	#{createTime,jdbcType=TIMESTAMP},
-		   	#{infomationId,jdbcType=INTEGER}
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -34,11 +44,26 @@
 			<if test="content != null">
 				CONTENT = #{content,jdbcType=VARCHAR},
 			</if>
+			<if test="infomationId != null">
+				INFOMATION_ID = #{infomationId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=INTEGER},
+			</if>
 			<if test="createTime != null">
 				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="infomationId != null">
-				INFOMATION_ID = #{infomationId,jdbcType=INTEGER},
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -47,7 +72,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.comment.entity.Comment">
 		<![CDATA[
-		DELETE FROM TSJX_COMMENT WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_COMMENT
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -57,8 +86,13 @@
 		SELECT 
 		       ID id,
 		       CONTENT content,
+		       INFOMATION_ID infomationId,
+		       USER_ID userId,
 		       CREATE_TIME createTime,
-		       INFOMATION_ID infomationId
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -68,6 +102,7 @@
 		<![CDATA[
 		  FROM TSJX_COMMENT
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -87,6 +122,12 @@
 			<if test="infomationId != null">
 				AND INFOMATION_ID = #{infomationId,jdbcType=INTEGER}
 			</if>
+			<if test="userId != null">
+				AND USER_ID = #{userId,jdbcType=INTEGER}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
 
@@ -95,6 +136,7 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_COMMENT
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -106,6 +148,12 @@
 				</if>
 				<if test="entity.infomationId != null">
 					AND INFOMATION_ID = #{entity.infomationId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.userId != null">
+					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

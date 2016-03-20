@@ -22,20 +22,26 @@
 		   	EQUIPMENT_CONDITION,
 		   	PROCEDURES,
 		   	SRC,
-		   	YEAR,
-		   	TIME,
+		   	EQUIP_YEAR,
+		   	WORK_TIME,
 		   	PRICE,
 		   	SERIAL_NUM,
 		   	IN_STOCK_CODE,
 		   	REMARK,
 		   	EQUIPMENT_LOCATION,
-		   	CREATE_TIME,
+		   	PUB_TIME,
 		   	VALID_TIME,
 		   	STOCK_COUNT,
 		   	SELL_COUNT,
 		   	USER_ID,
+		   	IS_TOP,
 		   	STATUS,
-		   	WEIGHT
+		   	WEIGHT,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{catagoryBigId,jdbcType=INTEGER},
@@ -53,20 +59,26 @@
 		   	#{equipmentCondition,jdbcType=VARCHAR},
 		   	#{procedures,jdbcType=VARCHAR},
 		   	#{src,jdbcType=VARCHAR},
-		   	#{year,jdbcType=VARCHAR},
-		   	#{time,jdbcType=VARCHAR},
-		   	#{price,jdbcType=DOUBLE},
+		   	#{equipYear,jdbcType=VARCHAR},
+		   	#{workTime,jdbcType=VARCHAR},
+		   	#{price,jdbcType=DECIMAL},
 		   	#{serialNum,jdbcType=VARCHAR},
 		   	#{inStockCode,jdbcType=VARCHAR},
 		   	#{remark,jdbcType=VARCHAR},
 		   	#{equipmentLocation,jdbcType=VARCHAR},
-		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{pubTime,jdbcType=TIMESTAMP},
 		   	#{validTime,jdbcType=VARCHAR},
 		   	#{stockCount,jdbcType=VARCHAR},
 		   	#{sellCount,jdbcType=VARCHAR},
 		   	#{userId,jdbcType=INTEGER},
+		   	#{isTop,jdbcType=VARCHAR},
 		   	#{status,jdbcType=VARCHAR},
-		   	#{weight,jdbcType=VARCHAR}
+		   	#{weight,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -128,14 +140,14 @@
 			<if test="src != null">
 				SRC = #{src,jdbcType=VARCHAR},
 			</if>
-			<if test="year != null">
-				YEAR = #{year,jdbcType=VARCHAR},
+			<if test="equipYear != null">
+				EQUIP_YEAR = #{equipYear,jdbcType=VARCHAR},
 			</if>
-			<if test="time != null">
-				TIME = #{time,jdbcType=VARCHAR},
+			<if test="workTime != null">
+				WORK_TIME = #{workTime,jdbcType=VARCHAR},
 			</if>
 			<if test="price != null">
-				PRICE = #{price,jdbcType=DOUBLE},
+				PRICE = #{price,jdbcType=DECIMAL},
 			</if>
 			<if test="serialNum != null">
 				SERIAL_NUM = #{serialNum,jdbcType=VARCHAR},
@@ -149,8 +161,8 @@
 			<if test="equipmentLocation != null">
 				EQUIPMENT_LOCATION = #{equipmentLocation,jdbcType=VARCHAR},
 			</if>
-			<if test="createTime != null">
-				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			<if test="pubTime != null">
+				PUB_TIME = #{pubTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="validTime != null">
 				VALID_TIME = #{validTime,jdbcType=VARCHAR},
@@ -164,11 +176,29 @@
 			<if test="userId != null">
 				USER_ID = #{userId,jdbcType=INTEGER},
 			</if>
+			<if test="isTop != null">
+				IS_TOP = #{isTop,jdbcType=VARCHAR},
+			</if>
 			<if test="status != null">
 				STATUS = #{status,jdbcType=VARCHAR},
 			</if>
 			<if test="weight != null">
 				WEIGHT = #{weight,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -177,7 +207,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.infomation.entity.Infomation">
 		<![CDATA[
-		DELETE FROM TSJX_INFOMATION WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_INFOMATION
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -201,20 +235,26 @@
 		       EQUIPMENT_CONDITION equipmentCondition,
 		       PROCEDURES procedures,
 		       SRC src,
-		       YEAR year,
-		       TIME time,
+		       EQUIP_YEAR equipYear,
+		       WORK_TIME workTime,
 		       PRICE price,
 		       SERIAL_NUM serialNum,
 		       IN_STOCK_CODE inStockCode,
 		       REMARK remark,
 		       EQUIPMENT_LOCATION equipmentLocation,
-		       CREATE_TIME createTime,
+		       PUB_TIME pubTime,
 		       VALID_TIME validTime,
 		       STOCK_COUNT stockCount,
 		       SELL_COUNT sellCount,
 		       USER_ID userId,
+		       IS_TOP isTop,
 		       STATUS status,
-		       WEIGHT weight
+		       WEIGHT weight,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -224,6 +264,7 @@
 		<![CDATA[
 		  FROM TSJX_INFOMATION
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -282,14 +323,14 @@
 			<if test="src != null and src != ''">
 				AND SRC = #{src,jdbcType=VARCHAR}
 			</if>
-			<if test="year != null and year != ''">
-				AND YEAR = #{year,jdbcType=VARCHAR}
+			<if test="equipYear != null and equipYear != ''">
+				AND EQUIP_YEAR = #{equipYear,jdbcType=VARCHAR}
 			</if>
-			<if test="time != null and time != ''">
-				AND TIME = #{time,jdbcType=VARCHAR}
+			<if test="workTime != null and workTime != ''">
+				AND WORK_TIME = #{workTime,jdbcType=VARCHAR}
 			</if>
 			<if test="price != null">
-				AND PRICE = #{price,jdbcType=DOUBLE}
+				AND PRICE = #{price,jdbcType=DECIMAL}
 			</if>
 			<if test="serialNum != null and serialNum != ''">
 				AND SERIAL_NUM = #{serialNum,jdbcType=VARCHAR}
@@ -303,6 +344,9 @@
 			<if test="equipmentLocation != null and equipmentLocation != ''">
 				AND EQUIPMENT_LOCATION = #{equipmentLocation,jdbcType=VARCHAR}
 			</if>
+			<if test="pubTime != null">
+				AND PUB_TIME = #{pubTime,jdbcType=TIMESTAMP}
+			</if>
 			<if test="validTime != null and validTime != ''">
 				AND VALID_TIME = #{validTime,jdbcType=VARCHAR}
 			</if>
@@ -315,11 +359,17 @@
 			<if test="userId != null">
 				AND USER_ID = #{userId,jdbcType=INTEGER}
 			</if>
+			<if test="isTop != null and isTop != ''">
+				AND IS_TOP = #{isTop,jdbcType=VARCHAR}
+			</if>
 			<if test="status != null and status != ''">
 				AND STATUS = #{status,jdbcType=VARCHAR}
 			</if>
 			<if test="weight != null and weight != ''">
 				AND WEIGHT = #{weight,jdbcType=VARCHAR}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
@@ -329,6 +379,7 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_INFOMATION
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -380,14 +431,14 @@
 				<if test="entity.src != null and entity.src != ''">
 					AND SRC = #{entity.src,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.year != null and entity.year != ''">
-					AND YEAR = #{entity.year,jdbcType=VARCHAR}
+				<if test="entity.equipYear != null and entity.equipYear != ''">
+					AND EQUIP_YEAR = #{entity.equipYear,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.time != null and entity.time != ''">
-					AND TIME = #{entity.time,jdbcType=VARCHAR}
+				<if test="entity.workTime != null and entity.workTime != ''">
+					AND WORK_TIME = #{entity.workTime,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.price != null">
-					AND PRICE = #{entity.price,jdbcType=DOUBLE}
+					AND PRICE = #{entity.price,jdbcType=DECIMAL}
 				</if>
 				<if test="entity.serialNum != null and entity.serialNum != ''">
 					AND SERIAL_NUM = #{entity.serialNum,jdbcType=VARCHAR}
@@ -401,6 +452,9 @@
 				<if test="entity.equipmentLocation != null and entity.equipmentLocation != ''">
 					AND EQUIPMENT_LOCATION = #{entity.equipmentLocation,jdbcType=VARCHAR}
 				</if>
+				<if test="entity.pubTime != null">
+					AND PUB_TIME = #{entity.pubTime,jdbcType=TIMESTAMP}
+				</if>
 				<if test="entity.validTime != null and entity.validTime != ''">
 					AND VALID_TIME = #{entity.validTime,jdbcType=VARCHAR}
 				</if>
@@ -413,11 +467,17 @@
 				<if test="entity.userId != null">
 					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
 				</if>
+				<if test="entity.isTop != null and entity.isTop != ''">
+					AND IS_TOP = #{entity.isTop,jdbcType=VARCHAR}
+				</if>
 				<if test="entity.status != null and entity.status != ''">
 					AND STATUS = #{entity.status,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.weight != null and entity.weight != ''">
 					AND WEIGHT = #{entity.weight,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

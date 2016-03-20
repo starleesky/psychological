@@ -7,14 +7,24 @@
 		<![CDATA[
 		INSERT INTO TSJX_BRAND (
 		   	ID,
-		   	NAME,
+		   	BRAND_NAME,
 		   	FIRST_LETTER,
-		   	CATAGORY_ID
+		   	CATAGORY_ID,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
-		   	#{name,jdbcType=VARCHAR},
-		   	#{firstLetter,jdbcType=unkown},
-		   	#{catagoryId,jdbcType=INTEGER}
+		   	#{brandName,jdbcType=VARCHAR},
+		   	#{firstLetter,jdbcType=VARCHAR},
+		   	#{catagoryId,jdbcType=INTEGER},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -31,14 +41,29 @@
 	<update id="update" parameterType="cn.com.tsjx.brand.entity.Brand">
 		UPDATE TSJX_BRAND
 		<set>
-			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+			<if test="brandName != null">
+				BRAND_NAME = #{brandName,jdbcType=VARCHAR},
 			</if>
 			<if test="firstLetter != null">
-				FIRST_LETTER = #{firstLetter,jdbcType=unkown},
+				FIRST_LETTER = #{firstLetter,jdbcType=VARCHAR},
 			</if>
 			<if test="catagoryId != null">
 				CATAGORY_ID = #{catagoryId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -47,7 +72,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.brand.entity.Brand">
 		<![CDATA[
-		DELETE FROM TSJX_BRAND WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_BRAND
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -56,9 +85,14 @@
 		<![CDATA[
 		SELECT 
 		       ID id,
-		       NAME name,
+		       BRAND_NAME brandName,
 		       FIRST_LETTER firstLetter,
-		       CATAGORY_ID catagoryId
+		       CATAGORY_ID catagoryId,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -68,6 +102,7 @@
 		<![CDATA[
 		  FROM TSJX_BRAND
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -81,14 +116,17 @@
 			<if test="id != null">
 				AND ID = #{id,jdbcType=INTEGER}
 			</if>
-			<if test="name != null and name != ''">
-				AND NAME = #{name,jdbcType=VARCHAR}
+			<if test="brandName != null and brandName != ''">
+				AND BRAND_NAME = #{brandName,jdbcType=VARCHAR}
 			</if>
-			<if test="firstLetter != null">
-				AND FIRST_LETTER = #{firstLetter,jdbcType=unkown}
+			<if test="firstLetter != null and firstLetter != ''">
+				AND FIRST_LETTER = #{firstLetter,jdbcType=VARCHAR}
 			</if>
 			<if test="catagoryId != null">
 				AND CATAGORY_ID = #{catagoryId,jdbcType=INTEGER}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
@@ -98,20 +136,24 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_BRAND
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
-				<if test="entity.name != null and entity.name != ''">
-					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				<if test="entity.brandName != null and entity.brandName != ''">
+					AND BRAND_NAME = #{entity.brandName,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.firstLetter != null">
-					AND FIRST_LETTER = #{entity.firstLetter,jdbcType=unkown}
+				<if test="entity.firstLetter != null and entity.firstLetter != ''">
+					AND FIRST_LETTER = #{entity.firstLetter,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.catagoryId != null">
 					AND CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

@@ -7,16 +7,26 @@
 		<![CDATA[
 		INSERT INTO TSJX_REGION (
 		   	ID,
-		   	NAME,
-		   	CODE,
-		   	PARENT_CODE,
-		   	LAYER
+		   	REGION_NAME,
+		   	REGION_CODE,
+		   	PARENT_ID,
+		   	LAYER,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
-		   	#{name,jdbcType=VARCHAR},
-		   	#{code,jdbcType=VARCHAR},
-		   	#{parentCode,jdbcType=VARCHAR},
-		   	#{layer,jdbcType=VARCHAR}
+		   	#{regionName,jdbcType=VARCHAR},
+		   	#{regionCode,jdbcType=VARCHAR},
+		   	#{parentId,jdbcType=VARCHAR},
+		   	#{layer,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -33,17 +43,32 @@
 	<update id="update" parameterType="cn.com.tsjx.region.entity.Region">
 		UPDATE TSJX_REGION
 		<set>
-			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+			<if test="regionName != null">
+				REGION_NAME = #{regionName,jdbcType=VARCHAR},
 			</if>
-			<if test="code != null">
-				CODE = #{code,jdbcType=VARCHAR},
+			<if test="regionCode != null">
+				REGION_CODE = #{regionCode,jdbcType=VARCHAR},
 			</if>
-			<if test="parentCode != null">
-				PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+			<if test="parentId != null">
+				PARENT_ID = #{parentId,jdbcType=VARCHAR},
 			</if>
 			<if test="layer != null">
 				LAYER = #{layer,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -52,7 +77,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.region.entity.Region">
 		<![CDATA[
-		DELETE FROM TSJX_REGION WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_REGION
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -61,10 +90,15 @@
 		<![CDATA[
 		SELECT 
 		       ID id,
-		       NAME name,
-		       CODE code,
-		       PARENT_CODE parentCode,
-		       LAYER layer
+		       REGION_NAME regionName,
+		       REGION_CODE regionCode,
+		       PARENT_ID parentId,
+		       LAYER layer,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -74,6 +108,7 @@
 		<![CDATA[
 		  FROM TSJX_REGION
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -87,17 +122,20 @@
 			<if test="id != null">
 				AND ID = #{id,jdbcType=INTEGER}
 			</if>
-			<if test="name != null and name != ''">
-				AND NAME = #{name,jdbcType=VARCHAR}
+			<if test="regionName != null and regionName != ''">
+				AND REGION_NAME = #{regionName,jdbcType=VARCHAR}
 			</if>
-			<if test="code != null and code != ''">
-				AND CODE = #{code,jdbcType=VARCHAR}
+			<if test="regionCode != null and regionCode != ''">
+				AND REGION_CODE = #{regionCode,jdbcType=VARCHAR}
 			</if>
-			<if test="parentCode != null and parentCode != ''">
-				AND PARENT_CODE = #{parentCode,jdbcType=VARCHAR}
+			<if test="parentId != null and parentId != ''">
+				AND PARENT_ID = #{parentId,jdbcType=VARCHAR}
 			</if>
 			<if test="layer != null and layer != ''">
 				AND LAYER = #{layer,jdbcType=VARCHAR}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
@@ -107,23 +145,27 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_REGION
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
-				<if test="entity.name != null and entity.name != ''">
-					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				<if test="entity.regionName != null and entity.regionName != ''">
+					AND REGION_NAME = #{entity.regionName,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.code != null and entity.code != ''">
-					AND CODE = #{entity.code,jdbcType=VARCHAR}
+				<if test="entity.regionCode != null and entity.regionCode != ''">
+					AND REGION_CODE = #{entity.regionCode,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.parentCode != null and entity.parentCode != ''">
-					AND PARENT_CODE = #{entity.parentCode,jdbcType=VARCHAR}
+				<if test="entity.parentId != null and entity.parentId != ''">
+					AND PARENT_ID = #{entity.parentId,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.layer != null and entity.layer != ''">
 					AND LAYER = #{entity.layer,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

@@ -74,7 +74,7 @@ create table tsjx_brand
 (
    id                   bigint AUTO_INCREMENT comment '品牌ID|',
    brand_name           varchar(64) comment '品牌名称|',
-   first_letter         varbinary(2) comment '品牌首字母|',
+   first_letter         varchar(2) comment '品牌首字母|',
    catagory_id          bigint comment '产品类别（第三级）ID|',
    create_time          datetime comment '创建时间|',
    create_by            varchar(40) comment '创建者|',
@@ -163,6 +163,7 @@ create table tsjx_infomation
    stock_count          varchar(8) comment '库存数量|',
    sell_count           varchar(8) comment '已售数量|',
    user_id              bigint comment '用户ID|',
+   is_top               varchar(2) comment '是否推荐|',
    status               varchar(2) comment '信息状态（新建、审核中/待审核、发布、下架、已售）|',
    weight               varchar(4) comment '排序权重|',
    create_time          datetime comment '创建时间|',

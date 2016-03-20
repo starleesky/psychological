@@ -7,12 +7,22 @@
 		<![CDATA[
 		INSERT INTO TSJX_MODELS (
 		   	ID,
-		   	NAME,
-		   	BRAND_ID
+		   	MODELS_NAME,
+		   	BRAND_ID,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
-		   	#{name,jdbcType=VARCHAR},
-		   	#{brandId,jdbcType=INTEGER}
+		   	#{modelsName,jdbcType=VARCHAR},
+		   	#{brandId,jdbcType=INTEGER},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -29,11 +39,26 @@
 	<update id="update" parameterType="cn.com.tsjx.models.entity.Models">
 		UPDATE TSJX_MODELS
 		<set>
-			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+			<if test="modelsName != null">
+				MODELS_NAME = #{modelsName,jdbcType=VARCHAR},
 			</if>
 			<if test="brandId != null">
 				BRAND_ID = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -42,7 +67,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.models.entity.Models">
 		<![CDATA[
-		DELETE FROM TSJX_MODELS WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_MODELS
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -51,8 +80,13 @@
 		<![CDATA[
 		SELECT 
 		       ID id,
-		       NAME name,
-		       BRAND_ID brandId
+		       MODELS_NAME modelsName,
+		       BRAND_ID brandId,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -62,6 +96,7 @@
 		<![CDATA[
 		  FROM TSJX_MODELS
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -75,11 +110,14 @@
 			<if test="id != null">
 				AND ID = #{id,jdbcType=INTEGER}
 			</if>
-			<if test="name != null and name != ''">
-				AND NAME = #{name,jdbcType=VARCHAR}
+			<if test="modelsName != null and modelsName != ''">
+				AND MODELS_NAME = #{modelsName,jdbcType=VARCHAR}
 			</if>
 			<if test="brandId != null">
 				AND BRAND_ID = #{brandId,jdbcType=INTEGER}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</select>
@@ -89,17 +127,21 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_MODELS
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
-				<if test="entity.name != null and entity.name != ''">
-					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				<if test="entity.modelsName != null and entity.modelsName != ''">
+					AND MODELS_NAME = #{entity.modelsName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.brandId != null">
 					AND BRAND_ID = #{entity.brandId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

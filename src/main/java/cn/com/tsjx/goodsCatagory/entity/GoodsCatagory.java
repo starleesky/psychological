@@ -8,7 +8,7 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class GoodsCatagory extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 3508976253680274150L;
+	private static final long serialVersionUID = 7978900343505805418L;
 
 	// ~~~~实体属性
 	// 类别代码|

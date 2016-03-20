@@ -7,28 +7,42 @@
 		<![CDATA[
 		INSERT INTO TSJX_COMPANY (
 		   	ID,
-		   	NAME,
+		   	COMPANY_NAME,
 		   	TELEPHONE,
 		   	FAX,
-		   	PROVINCE,
-		   	CITY,
+		   	PROVINCE_NAME,
+		   	PROVINCE_ID,
+		   	CITY_NAME,
+		   	CITY_ID,
 		   	ADDRESS,
 		   	INTRODUCTION,
 		   	BUSINESS_LICENSE_IMAGE_URL,
 		   	ORGANIZATION_CODE_IMAGE_URL,
-		   	STATUS
+		   	STATUS,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
-		   	#{name,jdbcType=VARCHAR},
+		   	#{companyName,jdbcType=VARCHAR},
 		   	#{telephone,jdbcType=VARCHAR},
 		   	#{fax,jdbcType=VARCHAR},
-		   	#{province,jdbcType=VARCHAR},
-		   	#{city,jdbcType=VARCHAR},
+		   	#{provinceName,jdbcType=VARCHAR},
+		   	#{provinceId,jdbcType=INTEGER},
+		   	#{cityName,jdbcType=VARCHAR},
+		   	#{cityId,jdbcType=INTEGER},
 		   	#{address,jdbcType=VARCHAR},
 		   	#{introduction,jdbcType=VARCHAR},
 		   	#{businessLicenseImageUrl,jdbcType=VARCHAR},
 		   	#{organizationCodeImageUrl,jdbcType=VARCHAR},
-		   	#{status,jdbcType=VARCHAR}
+		   	#{status,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -45,8 +59,8 @@
 	<update id="update" parameterType="cn.com.tsjx.company.entity.Company">
 		UPDATE TSJX_COMPANY
 		<set>
-			<if test="name != null">
-				NAME = #{name,jdbcType=VARCHAR},
+			<if test="companyName != null">
+				COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
 			</if>
 			<if test="telephone != null">
 				TELEPHONE = #{telephone,jdbcType=VARCHAR},
@@ -54,11 +68,17 @@
 			<if test="fax != null">
 				FAX = #{fax,jdbcType=VARCHAR},
 			</if>
-			<if test="province != null">
-				PROVINCE = #{province,jdbcType=VARCHAR},
+			<if test="provinceName != null">
+				PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
 			</if>
-			<if test="city != null">
-				CITY = #{city,jdbcType=VARCHAR},
+			<if test="provinceId != null">
+				PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+			</if>
+			<if test="cityName != null">
+				CITY_NAME = #{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				CITY_ID = #{cityId,jdbcType=INTEGER},
 			</if>
 			<if test="address != null">
 				ADDRESS = #{address,jdbcType=VARCHAR},
@@ -75,6 +95,21 @@
 			<if test="status != null">
 				STATUS = #{status,jdbcType=VARCHAR},
 			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
+			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
 	</update>
@@ -82,7 +117,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.company.entity.Company">
 		<![CDATA[
-		DELETE FROM TSJX_COMPANY WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_COMPANY
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -91,16 +130,23 @@
 		<![CDATA[
 		SELECT 
 		       ID id,
-		       NAME name,
+		       COMPANY_NAME companyName,
 		       TELEPHONE telephone,
 		       FAX fax,
-		       PROVINCE province,
-		       CITY city,
+		       PROVINCE_NAME provinceName,
+		       PROVINCE_ID provinceId,
+		       CITY_NAME cityName,
+		       CITY_ID cityId,
 		       ADDRESS address,
 		       INTRODUCTION introduction,
 		       BUSINESS_LICENSE_IMAGE_URL businessLicenseImageUrl,
 		       ORGANIZATION_CODE_IMAGE_URL organizationCodeImageUrl,
-		       STATUS status
+		       STATUS status,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -110,6 +156,7 @@
 		<![CDATA[
 		  FROM TSJX_COMPANY
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -123,8 +170,8 @@
 			<if test="id != null">
 				AND ID = #{id,jdbcType=INTEGER}
 			</if>
-			<if test="name != null and name != ''">
-				AND NAME = #{name,jdbcType=VARCHAR}
+			<if test="companyName != null and companyName != ''">
+				AND COMPANY_NAME = #{companyName,jdbcType=VARCHAR}
 			</if>
 			<if test="telephone != null and telephone != ''">
 				AND TELEPHONE = #{telephone,jdbcType=VARCHAR}
@@ -132,11 +179,17 @@
 			<if test="fax != null and fax != ''">
 				AND FAX = #{fax,jdbcType=VARCHAR}
 			</if>
-			<if test="province != null and province != ''">
-				AND PROVINCE = #{province,jdbcType=VARCHAR}
+			<if test="provinceName != null and provinceName != ''">
+				AND PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR}
 			</if>
-			<if test="city != null and city != ''">
-				AND CITY = #{city,jdbcType=VARCHAR}
+			<if test="provinceId != null">
+				AND PROVINCE_ID = #{provinceId,jdbcType=INTEGER}
+			</if>
+			<if test="cityName != null and cityName != ''">
+				AND CITY_NAME = #{cityName,jdbcType=VARCHAR}
+			</if>
+			<if test="cityId != null">
+				AND CITY_ID = #{cityId,jdbcType=INTEGER}
 			</if>
 			<if test="address != null and address != ''">
 				AND ADDRESS = #{address,jdbcType=VARCHAR}
@@ -153,6 +206,9 @@
 			<if test="status != null and status != ''">
 				AND STATUS = #{status,jdbcType=VARCHAR}
 			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
 
@@ -161,14 +217,15 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_COMPANY
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
-				<if test="entity.name != null and entity.name != ''">
-					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				<if test="entity.companyName != null and entity.companyName != ''">
+					AND COMPANY_NAME = #{entity.companyName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.telephone != null and entity.telephone != ''">
 					AND TELEPHONE = #{entity.telephone,jdbcType=VARCHAR}
@@ -176,11 +233,17 @@
 				<if test="entity.fax != null and entity.fax != ''">
 					AND FAX = #{entity.fax,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.province != null and entity.province != ''">
-					AND PROVINCE = #{entity.province,jdbcType=VARCHAR}
+				<if test="entity.provinceName != null and entity.provinceName != ''">
+					AND PROVINCE_NAME = #{entity.provinceName,jdbcType=VARCHAR}
 				</if>
-				<if test="entity.city != null and entity.city != ''">
-					AND CITY = #{entity.city,jdbcType=VARCHAR}
+				<if test="entity.provinceId != null">
+					AND PROVINCE_ID = #{entity.provinceId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.cityName != null and entity.cityName != ''">
+					AND CITY_NAME = #{entity.cityName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.cityId != null">
+					AND CITY_ID = #{entity.cityId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.address != null and entity.address != ''">
 					AND ADDRESS = #{entity.address,jdbcType=VARCHAR}
@@ -196,6 +259,9 @@
 				</if>
 				<if test="entity.status != null and entity.status != ''">
 					AND STATUS = #{entity.status,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

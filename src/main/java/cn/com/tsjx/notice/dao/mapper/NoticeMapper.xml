@@ -8,15 +8,25 @@
 		INSERT INTO TSJX_NOTICE (
 		   	ID,
 		   	USER_ID,
-		   	CREATE_TIME,
 		   	TITLE,
-		   	CONTENT
+		   	CONTENT,
+		   	NOTICE_TYPE,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{userId,jdbcType=INTEGER},
-		   	#{createTime,jdbcType=TIMESTAMP},
 		   	#{title,jdbcType=VARCHAR},
-		   	#{content,jdbcType=VARCHAR}
+		   	#{content,jdbcType=VARCHAR},
+		   	#{noticeType,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -36,14 +46,29 @@
 			<if test="userId != null">
 				USER_ID = #{userId,jdbcType=INTEGER},
 			</if>
-			<if test="createTime != null">
-				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-			</if>
 			<if test="title != null">
 				TITLE = #{title,jdbcType=VARCHAR},
 			</if>
 			<if test="content != null">
 				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="noticeType != null">
+				NOTICE_TYPE = #{noticeType,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
@@ -52,7 +77,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.notice.entity.Notice">
 		<![CDATA[
-		DELETE FROM TSJX_NOTICE WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_NOTICE
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -62,9 +91,14 @@
 		SELECT 
 		       ID id,
 		       USER_ID userId,
-		       CREATE_TIME createTime,
 		       TITLE title,
-		       CONTENT content
+		       CONTENT content,
+		       NOTICE_TYPE noticeType,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -74,6 +108,7 @@
 		<![CDATA[
 		  FROM TSJX_NOTICE
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -96,6 +131,12 @@
 			<if test="content != null and content != ''">
 				AND CONTENT = #{content,jdbcType=VARCHAR}
 			</if>
+			<if test="noticeType != null and noticeType != ''">
+				AND NOTICE_TYPE = #{noticeType,jdbcType=VARCHAR}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
 
@@ -104,6 +145,7 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_NOTICE
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -118,6 +160,12 @@
 				</if>
 				<if test="entity.content != null and entity.content != ''">
 					AND CONTENT = #{entity.content,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.noticeType != null and entity.noticeType != ''">
+					AND NOTICE_TYPE = #{entity.noticeType,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

@@ -73,8 +73,8 @@ public class FileConfigGroup extends com.dangdang.config.service.GeneralConfigGr
 			for (int i = 0; i < protocolBeans.length; i++) {
 				if (protocolBeans[i] != null) {
 					protocolBeans[i].close();
-				}
 			}
 		}
 	}
+}
 }

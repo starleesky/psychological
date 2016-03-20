@@ -8,27 +8,23 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Attch extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 7203652735799847107L;
+	private static final long serialVersionUID = 7410484996800534743L;
 
 	// ~~~~实体属性
-	// 关联表名|
-	private String connectionTableName;
-	// 关联表主键|
-	private Long connectionTableId;
+	// 信息ID|
+	private Long informationId;
 	// 附件名称|
-	private String name;
+	private String attchName;
 	// 附件大小|
-	private Long size;
+	private Long attchSize;
 	// 附件类型|
-	private String type;
+	private String attchType;
 	// 附件显示名称|
 	private String showName;
 	// 附件路径|
-	private String url;
+	private String attchUrl;
 	// 上传用户ID|
-	private Long uploadUserId;
-	// 上传用户名称|
-	private String uploadUserName;
+	private Long userId;
 
 	@Override
 	public Long getId() {
@@ -39,35 +35,29 @@ public class Attch extends BaseEntity<Long> {
 	public void setId(Long id) {
 		super.setId(id);
 	}
-	public String getConnectionTableName() {
-		return this.connectionTableName;
+	public Long getInformationId() {
+		return this.informationId;
 	}
-	public void setConnectionTableName(String connectionTableName) {
-		this.connectionTableName = connectionTableName;
+	public void setInformationId(Long informationId) {
+		this.informationId = informationId;
 	}
-	public Long getConnectionTableId() {
-		return this.connectionTableId;
+	public String getAttchName() {
+		return this.attchName;
 	}
-	public void setConnectionTableId(Long connectionTableId) {
-		this.connectionTableId = connectionTableId;
+	public void setAttchName(String attchName) {
+		this.attchName = attchName;
 	}
-	public String getName() {
-		return this.name;
+	public Long getAttchSize() {
+		return this.attchSize;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAttchSize(Long attchSize) {
+		this.attchSize = attchSize;
 	}
-	public Long getSize() {
-		return this.size;
+	public String getAttchType() {
+		return this.attchType;
 	}
-	public void setSize(Long size) {
-		this.size = size;
-	}
-	public String getType() {
-		return this.type;
-	}
-	public void setType(String type) {
-		this.type = type;
+	public void setAttchType(String attchType) {
+		this.attchType = attchType;
 	}
 	public String getShowName() {
 		return this.showName;
@@ -75,22 +65,16 @@ public class Attch extends BaseEntity<Long> {
 	public void setShowName(String showName) {
 		this.showName = showName;
 	}
-	public String getUrl() {
-		return this.url;
+	public String getAttchUrl() {
+		return this.attchUrl;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setAttchUrl(String attchUrl) {
+		this.attchUrl = attchUrl;
 	}
-	public Long getUploadUserId() {
-		return this.uploadUserId;
+	public Long getUserId() {
+		return this.userId;
 	}
-	public void setUploadUserId(Long uploadUserId) {
-		this.uploadUserId = uploadUserId;
-	}
-	public String getUploadUserName() {
-		return this.uploadUserName;
-	}
-	public void setUploadUserName(String uploadUserName) {
-		this.uploadUserName = uploadUserName;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

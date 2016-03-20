@@ -8,10 +8,10 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class User extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 2513820299797156869L;
+	private static final long serialVersionUID = 2886663967224167348L;
 
 	// ~~~~实体属性
-	// 姓名|
+	// 用户名|
 	private String userName;
 	// 手机号|
 	private String mobile;
@@ -24,19 +24,31 @@ public class User extends BaseEntity<Long> {
 	// QQ|
 	private String qq;
 	// 省份|
-	private String province;
+	private String provinceName;
+	// 省份ID|
+	private Long provinceId;
 	// 城市|
-	private String city;
+	private String cityName;
+	// 城市ID
+	private Long cityId;
 	// 经营范围|
 	private String businessScope;
 	// 经营性质|
 	private String businessNature;
-	// 用户类型|
+	// 用户类型 0系统管理员 1普通管理员，2普通用户 3企业管理员 |
 	private String userType;
-	// 更新时间|
-	private java.util.Date updateTime;
 	// 企业ID|
 	private String companyId;
+	// 用户来源 0 默认, 1 微信|
+	private String src;
+	// 是否激活(T激活，F未激活)
+	private String isActivate;
+	// 0没有消息，1有消息|
+	private String isNewMessage;
+	// 图片地址|
+	private String headIcon;
+	// 最近登录时间|
+	private java.util.Date lastLoginTime;
 
 	@Override
 	public Long getId() {
@@ -83,17 +95,29 @@ public class User extends BaseEntity<Long> {
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
-	public String getProvince() {
-		return this.province;
+	public String getProvinceName() {
+		return this.provinceName;
 	}
-	public void setProvince(String province) {
-		this.province = province;
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
 	}
-	public String getCity() {
-		return this.city;
+	public Long getProvinceId() {
+		return this.provinceId;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setProvinceId(Long provinceId) {
+		this.provinceId = provinceId;
+	}
+	public String getCityName() {
+		return this.cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	public Long getCityId() {
+		return this.cityId;
+	}
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
 	}
 	public String getBusinessScope() {
 		return this.businessScope;
@@ -113,16 +137,40 @@ public class User extends BaseEntity<Long> {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	public java.util.Date getUpdateTime() {
-		return this.updateTime;
-	}
-	public void setUpdateTime(java.util.Date updateTime) {
-		this.updateTime = updateTime;
-	}
 	public String getCompanyId() {
 		return this.companyId;
 	}
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
+	}
+	public String getSrc() {
+		return this.src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
+	}
+	public String getIsActivate() {
+		return this.isActivate;
+	}
+	public void setIsActivate(String isActivate) {
+		this.isActivate = isActivate;
+	}
+	public String getIsNewMessage() {
+		return this.isNewMessage;
+	}
+	public void setIsNewMessage(String isNewMessage) {
+		this.isNewMessage = isNewMessage;
+	}
+	public String getHeadIcon() {
+		return this.headIcon;
+	}
+	public void setHeadIcon(String headIcon) {
+		this.headIcon = headIcon;
+	}
+	public java.util.Date getLastLoginTime() {
+		return this.lastLoginTime;
+	}
+	public void setLastLoginTime(java.util.Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
 	}
 }

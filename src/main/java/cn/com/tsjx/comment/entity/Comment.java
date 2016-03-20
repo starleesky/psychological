@@ -8,13 +8,15 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Comment extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 1439802324468238046L;
+	private static final long serialVersionUID = 3250504458744738851L;
 
 	// ~~~~实体属性
 	// 
 	private String content;
 	// 
 	private Long infomationId;
+	// 用户id|
+	private Long userId;
 
 	@Override
 	public Long getId() {
@@ -36,5 +38,11 @@ public class Comment extends BaseEntity<Long> {
 	}
 	public void setInfomationId(Long infomationId) {
 		this.infomationId = infomationId;
+	}
+	public Long getUserId() {
+		return this.userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 }

@@ -8,11 +8,21 @@
 		INSERT INTO TSJX_COLLECTION (
 		   	ID,
 		   	USER_ID,
-		   	INFORMATION_ID
+		   	INFORMATION_ID,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{userId,jdbcType=INTEGER},
-		   	#{informationId,jdbcType=INTEGER}
+		   	#{informationId,jdbcType=INTEGER},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -35,6 +45,21 @@
 			<if test="informationId != null">
 				INFORMATION_ID = #{informationId,jdbcType=INTEGER},
 			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
+			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
 	</update>
@@ -42,7 +67,11 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.tsjx.collection.entity.Collection">
 		<![CDATA[
-		DELETE FROM TSJX_COLLECTION WHERE ID = #{id,jdbcType=INTEGER}
+		UPDATE TSJX_COLLECTION
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 
@@ -52,7 +81,12 @@
 		SELECT 
 		       ID id,
 		       USER_ID userId,
-		       INFORMATION_ID informationId
+		       INFORMATION_ID informationId,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
 		]]>
 	</sql>
 
@@ -62,6 +96,7 @@
 		<![CDATA[
 		  FROM TSJX_COLLECTION
 		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -81,6 +116,9 @@
 			<if test="informationId != null">
 				AND INFORMATION_ID = #{informationId,jdbcType=INTEGER}
 			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
 
@@ -89,6 +127,7 @@
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM TSJX_COLLECTION
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
 
@@ -100,6 +139,9 @@
 				</if>
 				<if test="entity.informationId != null">
 					AND INFORMATION_ID = #{entity.informationId,jdbcType=INTEGER}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

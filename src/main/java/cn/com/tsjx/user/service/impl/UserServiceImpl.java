@@ -20,10 +20,4 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 	protected BaseDao<User, Long> getBaseDao() {
 		return this.userDao;
 	}
-
-    @Override
-    public User getUsersByParam(String userName, String password) {
-
-        return userDao.getUsersByParam(userName, password);
-    }
 }

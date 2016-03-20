@@ -8,11 +8,11 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Brand extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 3094855073547956615L;
+	private static final long serialVersionUID = 2040644962064194933L;
 
 	// ~~~~实体属性
 	// 品牌名称|
-	private String name;
+	private String brandName;
 	// 品牌首字母|
 	private String firstLetter;
 	// 产品类别（第三级）ID|
@@ -27,11 +27,11 @@ public class Brand extends BaseEntity<Long> {
 	public void setId(Long id) {
 		super.setId(id);
 	}
-	public String getName() {
-		return this.name;
+	public String getBrandName() {
+		return this.brandName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 	public String getFirstLetter() {
 		return this.firstLetter;

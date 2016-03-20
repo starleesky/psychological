@@ -8,7 +8,7 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Notice extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 6328436783115759945L;
+	private static final long serialVersionUID = 4803615672077941679L;
 
 	// ~~~~实体属性
 	// 用户id|
@@ -17,6 +17,8 @@ public class Notice extends BaseEntity<Long> {
 	private String title;
 	// 公告内容|
 	private String content;
+	// 公告类型 0系统公告，1代表用户消息| 
+	private String noticeType;
 
 	@Override
 	public Long getId() {
@@ -44,5 +46,11 @@ public class Notice extends BaseEntity<Long> {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getNoticeType() {
+		return this.noticeType;
+	}
+	public void setNoticeType(String noticeType) {
+		this.noticeType = noticeType;
 	}
 }

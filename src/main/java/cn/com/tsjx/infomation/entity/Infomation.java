@@ -8,7 +8,7 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Infomation extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 1542067329311170912L;
+	private static final long serialVersionUID = 3449655209995253864L;
 
 	// ~~~~实体属性
 	// 产品大类ID|
@@ -31,7 +31,7 @@ public class Infomation extends BaseEntity<Long> {
 	private Long modelId;
 	// 型号名称|
 	private String modelName;
-	// 品牌型号自定义标示 （是否新增的品牌型号）|
+	// 品牌型号自定义标示（是否新增的品牌型号）|
 	private String isNew;
 	// 销售方式（类型）|
 	private String sellType;
@@ -42,11 +42,11 @@ public class Infomation extends BaseEntity<Long> {
 	// 设备来源（类型）|
 	private String src;
 	// 年份|
-	private String year;
+	private String equipYear;
 	// 工时|
-	private String time;
+	private String workTime;
 	// 价格|
-	private Double price;
+	private java.math.BigDecimal price;
 	// 设备序列号|
 	private String serialNum;
 	// 内部库存编码|
@@ -55,6 +55,8 @@ public class Infomation extends BaseEntity<Long> {
 	private String remark;
 	// 设备位置|
 	private String equipmentLocation;
+	// 发布日期|
+	private java.util.Date pubTime;
 	// 有效期|
 	private String validTime;
 	// 库存数量|
@@ -63,7 +65,9 @@ public class Infomation extends BaseEntity<Long> {
 	private String sellCount;
 	// 用户ID|
 	private Long userId;
-	// 信息状态 新建、审核中/待审核、 发布、下架、已售）|
+	// 是否推荐|
+	private String isTop;
+	// 信息状态（新建、审核中/待审核、发布、下架、已售）|
 	private String status;
 	// 排序权重|
 	private String weight;
@@ -122,16 +126,7 @@ public class Infomation extends BaseEntity<Long> {
 	public String getBrandName() {
 		return this.brandName;
 	}
-	
-	public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public void setBrandName(String brandName) {
+	public void setBrandName(String brandName) {
 		this.brandName = brandName;
 	}
 	public Long getModelId() {
@@ -176,20 +171,24 @@ public class Infomation extends BaseEntity<Long> {
 	public void setSrc(String src) {
 		this.src = src;
 	}
-	public String getYear() {
-		return this.year;
+	public String getEquipYear() {
+		return this.equipYear;
 	}
-	public void setYear(String year) {
-		this.year = year;
+	public void setEquipYear(String equipYear) {
+		this.equipYear = equipYear;
 	}
-	public String getTime() {
-		return this.time;
+	public String getWorkTime() {
+		return this.workTime;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setWorkTime(String workTime) {
+		this.workTime = workTime;
 	}
-	 
-	
+	public java.math.BigDecimal getPrice() {
+		return this.price;
+	}
+	public void setPrice(java.math.BigDecimal price) {
+		this.price = price;
+	}
 	public String getSerialNum() {
 		return this.serialNum;
 	}
@@ -214,6 +213,12 @@ public class Infomation extends BaseEntity<Long> {
 	public void setEquipmentLocation(String equipmentLocation) {
 		this.equipmentLocation = equipmentLocation;
 	}
+	public java.util.Date getPubTime() {
+		return this.pubTime;
+	}
+	public void setPubTime(java.util.Date pubTime) {
+		this.pubTime = pubTime;
+	}
 	public String getValidTime() {
 		return this.validTime;
 	}
@@ -237,6 +242,12 @@ public class Infomation extends BaseEntity<Long> {
 	}
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+	public String getIsTop() {
+		return this.isTop;
+	}
+	public void setIsTop(String isTop) {
+		this.isTop = isTop;
 	}
 	public String getStatus() {
 		return this.status;

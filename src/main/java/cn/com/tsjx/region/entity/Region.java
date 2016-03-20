@@ -8,15 +8,15 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Region extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 4709552819537173885L;
+	private static final long serialVersionUID = 4862567638630587691L;
 
 	// ~~~~实体属性
 	// 区划名|
-	private String name;
+	private String regionName;
 	// 区划代码|
-	private String code;
+	private String regionCode;
 	// 上级区划代码|
-	private String parentCode;
+	private String parentId;
 	// 层级|
 	private String layer;
 
@@ -29,23 +29,23 @@ public class Region extends BaseEntity<Long> {
 	public void setId(Long id) {
 		super.setId(id);
 	}
-	public String getName() {
-		return this.name;
+	public String getRegionName() {
+		return this.regionName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
 	}
-	public String getCode() {
-		return this.code;
+	public String getRegionCode() {
+		return this.regionCode;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setRegionCode(String regionCode) {
+		this.regionCode = regionCode;
 	}
-	public String getParentCode() {
-		return this.parentCode;
+	public String getParentId() {
+		return this.parentId;
 	}
-	public void setParentCode(String parentCode) {
-		this.parentCode = parentCode;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 	public String getLayer() {
 		return this.layer;

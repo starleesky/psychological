@@ -8,19 +8,23 @@ import cn.com.tsjx.common.bean.entity.BaseEntity;
  */
 public class Company extends BaseEntity<Long> {
 
-	private static final long serialVersionUID = 2271057064895554866L;
+	private static final long serialVersionUID = 6311621592063784002L;
 
 	// ~~~~实体属性
 	// 企业名称|
-	private String name;
+	private String companyName;
 	// 联系电话|
 	private String telephone;
 	// 传真|
 	private String fax;
 	// 省份|
-	private String province;
+	private String provinceName;
+	// 省份ID|
+	private Long provinceId;
 	// 城市|
-	private String city;
+	private String cityName;
+	// 城市ID
+	private Long cityId;
 	// 详细地址|
 	private String address;
 	// 公司介绍|
@@ -29,7 +33,7 @@ public class Company extends BaseEntity<Long> {
 	private String businessLicenseImageUrl;
 	// 组织机构代码证图片路径|
 	private String organizationCodeImageUrl;
-	// 企业状态|
+	// 企业状态 0未认证 1认证成功 2认证失败|
 	private String status;
 
 	@Override
@@ -41,11 +45,11 @@ public class Company extends BaseEntity<Long> {
 	public void setId(Long id) {
 		super.setId(id);
 	}
-	public String getName() {
-		return this.name;
+	public String getCompanyName() {
+		return this.companyName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	public String getTelephone() {
 		return this.telephone;
@@ -59,17 +63,29 @@ public class Company extends BaseEntity<Long> {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	public String getProvince() {
-		return this.province;
+	public String getProvinceName() {
+		return this.provinceName;
 	}
-	public void setProvince(String province) {
-		this.province = province;
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
 	}
-	public String getCity() {
-		return this.city;
+	public Long getProvinceId() {
+		return this.provinceId;
 	}
-	public void setCity(String city) {
-		this.city = city;
+	public void setProvinceId(Long provinceId) {
+		this.provinceId = provinceId;
+	}
+	public String getCityName() {
+		return this.cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+	public Long getCityId() {
+		return this.cityId;
+	}
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
 	}
 	public String getAddress() {
 		return this.address;

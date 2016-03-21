@@ -8,4 +8,5 @@ import cn.com.tsjx.company.entity.Company;
  */
 public interface CompanyService extends BaseService<Company, Long> {
 
+
 }

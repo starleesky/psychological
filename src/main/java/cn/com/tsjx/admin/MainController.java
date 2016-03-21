@@ -7,6 +7,8 @@
  */
 package cn.com.tsjx.admin;
 
+import cn.com.tsjx.attch.entity.Attch;
+import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.common.constants.enums.UserEnum;
 import cn.com.tsjx.common.model.Result;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,6 +50,9 @@ public class MainController {
 
 	@Resource
 	CompanyService companyService;
+
+	@Resource
+	AttchService attchService;
 
 	@RequestMapping(value = "/main")
 	public String initMain(Model model) {

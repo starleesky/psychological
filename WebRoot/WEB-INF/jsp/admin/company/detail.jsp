@@ -1,189 +1,134 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="ctx" value="${pageContext['request'].contextPath}" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <style type="text/css">
-	h3{
-		border-bottom: 1px solid #ddd;
-		padding: 8px 0;
-	}
-	.tab-head{
-		width:15%;
-	}
-	.tab-content-head{
-		width:35%;
-	}
+    h3 {
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0;
+    }
+
+    .tab-head {
+        width: 15%;
+    }
+
+    .tab-content-head {
+        width: 35%;
+    }
 </style>
 
-<div class="line ng-hide" ng-show="carManager.carDetail.failReason">
-	<p class="alert alert-warning"><strong>失败原因：</strong><span ng-bind="carManager.carDetail.failReason"></span></p>
-</div>
-
 <div class="line">
-	<h3 class="clearfix">车辆信息<span class="pull-right">状态：{{carManager.carDetail.auditStatusText}}</span></h3>
-	<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<td class="tab-head">用户名</td>
-				<td class="tab-content-head" ng-bind="carManager.carDetail.userName"></td>
-				<td class="tab-head">用户电话</td>
-				<td ng-bind="carManager.carDetail.userPhone"></td>
-			</tr>
-			<tr>
-				<td class="tab-head">车牌号</td>
-				<td class="tab-content-head" ng-bind="carManager.carDetail.carNum"></td>
-				<td class="tab-head">行驶城市</td>
-				<td ng-bind="carManager.carDetail.cityName"></td>
-			</tr>
-			<tr>
-				<td>品牌</td>
-				<td ng-bind="carManager.carDetail.carBrandName"></td>
-				<td>车系</td>
-				<td ng-bind="carManager.carDetail.carSeriesName"></td>
-			</tr>
-			<tr>
-				<td>车型</td>
-				<td ng-bind="carManager.carDetail.carModelName"></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>交强险到期时间</td>
-				<td><span ng-bind="carManager.carDetail.mandatoryExpireDate|date:'yyyy-MM-dd'"></span></td>
-				<td>商业险到期时间</td>
-				<td><span ng-bind="carManager.carDetail.commercialExpireDate|date:'yyyy-MM-dd'"></span></td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="clearfix" ng-if="carManager.carDetail.auditStatus==1">
-		<a ng-if="preAudit==0" href="${ctx}/license/auth/list/detail/preAudit?carId={{carManager.carDetail.carId}}" class="btn btn-primary pull-right">认证</a>
-		<a ng-if="preAudit==1" href="${ctx}/license/auth/list/detail?carId={{carManager.carDetail.carId}}" class="btn btn-primary pull-right">认证</a>
-	</div>
-</div>
+<h3 class="clearfix">公司详细信息
+<span class="pull-right">
+<c:if test="${bean.status=='0'}"><span>待审核</span>
+    </c:if>
+    <c:if test="${bean.status=='1'}"><span>审核成功</span></c:if>
+    <c:if test="${bean.status=='2'}"><span>审核失败</span></c:if>
+    </div>
+    </span>
+<c:if test="${bean.status=='0'}"><br/>
+    <div class="btn-group btn-large">
+        <button class="btn btn-primary  " ng-click="openModel(1)">通过</button>
+        <button class="btn btn-primary " ng-click="edit()">不通过</button>
+    </div>
+</c:if>
+    </h3>
+    <table class="table table-bordered">
+    <tbody>
+    <tr>
+    <td class="tab-head">公司名称</td>
+    <td class="tab-content-head" ng-model="company">${bean.companyName}</td>
+    <td class="tab-head">公司电话</td>
+    <td>${bean.telephone}</td>
+    </tr>
+    <tr>
+    <td class="tab-head">公司传真</td>
+    <td class="tab-content-head" colspan="3">${bean.fax}</td>
+    </tr>
+    <tr>
+    <td class="tab-head">省份</td>
+    <td class="tab-content-head">${bean.provinceName}</td>
+    <td class="tab-head">城市</td>
+    <td>${bean.cityName}</td>
+    </tr>
+    <tr>
+    <td class="tab-head">详细地址</td>
+    <td class="tab-content-head" colspan="3">${bean.address}</td>
+    </tr>
+    </tbody>
+    </table>
+    <div class="line">
+    <h3 class="clearfix">公司介绍</h3>
+    <br/>
+    <span class="pull-left">
+    ${bean.introduction}
+    </span>
+    </div>
 
-<div class="line" ng-show="carManager.carDetail.license">
-	<h3 class="clearfix">行驶证信息
-		<a href="javascript:;" ng-click="openModal(carManager.carDetail.carId)"
-		   class="btn btn-primary pull-right">认证失败</a>
-		<a href="${ctx}/license/auth/list/do/license/update?carId={{carManager.carDetail.carId}}"
-		   class="btn btn-primary pull-right">修改</a></h3>
-	<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<td class="tab-head">车主</td>
-				<td class="tab-content-head">
-					{{carManager.carDetail.license.owner}}
-					<a ng-click="showImg(carManager.carDetail.license.idcardImg)" ng-if="carManager.carDetail.license.idcardImg">查看身份证照片</a>
-				</td>
-				<td class="tab-head">品牌型号</td>
-				<td ng-bind="carManager.carDetail.license.model"></td>
-			</tr>
-			<tr>
-				<td>车辆类型</td>
-				<td ng-bind="carManager.carDetail.license.vehicleTypeName"></td>
-				<td>使用性质</td>
-				<td ng-bind="carManager.carDetail.license.useCharacterName"></td>
-			</tr>
-			<tr>
-				<td>注册登记日期</td>
-				<td ng-bind="carManager.carDetail.license.registerDate | date:'yyyy-MM-dd'"></td>
-				<td>发动机号</td>
-				<td ng-bind="carManager.carDetail.license.engineNo"></td>
-			</tr>
-			<tr>
-				<td>发证日期</td>
-				<td ng-bind="carManager.carDetail.license.issueDate|date:'yyyy-MM-dd'"></td>
-				<td>车架号</td>
-				<td ng-bind="carManager.carDetail.license.vin"></td>
-			</tr>
-			<tr>
-				<td>年检日期</td>
-				<td colspan="3" ng-bind="carManager.carDetail.license.inspectionDate|date:'yyyy-MM-dd'"></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<td class="tab-head">核定载客</td>
-				<td class="tab-content-head" ng-bind="carManager.carDetail.license.vehicleSeats + '人'"></td>
-				<td class="tab-head">核定载质量</td>
-				<td ng-bind="carManager.carDetail.license.quotaWeight + 'Kg'"></td>
-			</tr>
-			<tr>
-				<td>排量</td>
-				<td ng-bind="carManager.carDetail.license.emission + '毫升'"></td>
-				<td>功率</td>
-				<td ng-bind="carManager.carDetail.license.power + 'kw'"></td>
-			</tr>
-			<tr>
-				<td>新车购置价</td>
-				<td ng-bind="carManager.carDetail.license.buyPriceWan + '万'"></td>
-				<!-- <td>行驶证照片</td>
-				<td>
-					<a ng-click="showImg(carManager.carDetail.carLiscenseImg)" ng-if="carManager.carDetail.carLiscenseImg">点击查看</a>
-				</td> -->
-			</tr>
-		</tbody>
-	</table>
+    <c:if test="${bean.status!=null&&bean.status!=0}">
+        <div>
+            <h3 class="clearfix">审核记录</h3>
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="tab-head">修改时间</th>
+                        <th class="tab-head">修改人员</th>
+                        <th class="tab-head">审核备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td ng-bind="log.dateValue | date : 'yyyy-MM-dd HH:mm:ss'"></td>
+                        <td ng-bind="log.operator"></td>
+                        <td ng-bind="switchReason(log.rejectCode)"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </c:if>
 
+    <div>
+    <h4 class="clearfix">营业执照图片</h4><br/>
+    <c:if test="${bean.businessLicenseImageUrl!=null}">
+        <img src="${bean.businessLicenseImageUrl}" style="max-width: 100%;"
+             alt="营业执照图片">
+    </c:if>
+    <h4 class="clearfix">组织机构代码图片</h4><br/>
+    <c:if test="${bean.organizationCodeImageUrl!=null}">
+        <img src="${bean.organizationCodeImageUrl}" style="max-width: 100%;"
+             alt="组织机构代码图片">
+    </c:if>
+    </div>
 
-	<!-- <p><img src="{{carManager.carDetail.carLiscenseImg}}" alt="" style="max-width: 100%;"></p> -->
+    <%--<div>--%>
+    <%--<a class="btn btn-primary pull-left" ng-click="openModel(1)">通过</a>--%>
+    <%--<a class="btn btn-primary pull-left" ng-click="openModel(2)">不通过</a>--%>
+    <%--</div>--%>
+    <script>
+    angular.companyId = "${bean.id}";
+    angular.companyName = "${bean.companyName}";
+    seajs.use(['js/controller/common/app', 'js/controller/company/detail'], function () {
+    angular.bootstrap(document, ['App']);
+    });
+    </script>
 
-</div>
+    <script type="text/ng-template" id="selectModalTemplate.html">
+    <div style="padding-left: 10px; padding-top: 3px">
+    <h3>选择理由</h3>
+    </div>
+    <div>
+    <form style="margin-bottom: 10px; padding-left: 10px;" ng-controller="selectCtrl">
+    <div ng-repeat="unLockReason in unLockReasons">
+    <label class="radio-inline">
+    <input type="radio" name="radio" ng-click="setReason(unLockReason)" ng-modal="unLockReason.value">{{unLockReason.reason}}
+    </label>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="unLock()">确定</button>
+    <button type="button" class="btn btn-primary" ng-click="closeModal()">关闭</button>
+    </div>
+    </form>
+    </div>
 
-<div>
-	<h3 class="clearfix">修改记录</h3>
-	<div class="col-md-5">
-		<table class="table table-bordered">
-			<thead>
-			<tr>
-				<th class="tab-head">修改时间</th>
-				<th class="tab-head">修改人员</th>
-				<th class="tab-head">解绑原因</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr ng-repeat="log in carManager.carDetailModifyLogs" class="ng-scope">
-				<td ng-bind="log.dateValue | date : 'yyyy-MM-dd HH:mm:ss'"></td>
-				<td ng-bind="log.operator"></td>
-				<td ng-bind="switchReason(log.rejectCode)"></td>
-			</tr>
-			</tbody>
-		</table>
-	</div>
-
-
-</div>
-<p>
-	<span ng-if="!carManager.carDetail.carLiscenseImg">没有行驶证图片</span>
-	<img ng-src="{{carManager.carDetail.carLiscenseImg}}" style="max-width: 100%;" ng-if="carManager.carDetail.carLiscenseImg" alt="">
-	<img ng-src="{{carManager.carDetail.carLiscenseImgCopy}}" style="max-width: 100%;" ng-if="carManager.carDetail.carLiscenseImgCopy" alt="">
-</p>
-
-<script>
-	angular.companyId = "${id}";
-	seajs.use(['js/controller/common/app','js/controller/vehicle/vehicleDetail'], function () {
-		angular.bootstrap(document, ['App']);
-	});
-</script>
-
-<script type="text/ng-template" id="selectModalTemplate.html">
-	<div style="padding-left: 10px; padding-top: 3px">
-		<h3>选择理由</h3>
-	</div>
-	<div>
-		<form style="margin-bottom: 10px; padding-left: 10px;" ng-controller="selectCtrl">
-			<div ng-repeat="unLockReason in unLockReasons">
-				<label class="radio-inline">
-					<input type="radio" name="radio" ng-click="setReason(unLockReason)" ng-modal="unLockReason.value">{{unLockReason.reason}}
-				</label>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" ng-click="unLock()">确定</button>
-				<button type="button" class="btn btn-primary" ng-click="closeModal()">关闭</button>
-			</div>
-		</form>
-	</div>
-
-</script>
+    </script>

@@ -1,5 +1,6 @@
 define(['jquery'],function($){
     $('body').on('click','.jAddProType',function(){
+        alert(1);
         if($(this).hasClass('open')){
             $('.desc-child').addClass('isHide');
             $(this).removeClass('open');

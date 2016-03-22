@@ -17,6 +17,7 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
         params.add("userName",userName);
         params.add("password",password);
         params.add("deleted", Deleted.NO.value);
+        params.add("isActivate",Deleted.YES.value);
         return this.selectOne(this.getMethodName(), params);
     }
 

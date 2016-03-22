@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -21,12 +22,15 @@ import cn.com.tsjx.sys.MailService;
  * @Version V1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:spring-mybatis.xml")
+@ContextConfiguration(locations = {"classpath:spring-mvc.xml","classpath:spring-mybatis.xml"})
 public class MailServiceImplTest {
     
     @Resource(name = "mailService")
     private MailService mailService;
 
+    @Value("${validateUrl}")
+    private String url;
+    
     @Test
     public void testIsMailConfigComplete() {
         //fail("Not yet implemented");
@@ -40,7 +44,8 @@ public class MailServiceImplTest {
     
     @Test
     public void testSendMail() {
-        mailService.sendMail("821866756@qq.com", "测试", "123", "tsjx");
+        System.out.println(url);
+       // mailService.sendMail("821866756@qq.com", "测试", "123", "tsjx");
     }
 
 }

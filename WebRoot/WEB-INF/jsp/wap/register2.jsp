@@ -32,7 +32,7 @@
     </div>
     <section class="ui-login">
         <form action="" class="ui-form" id="register2" method="post">
-        <input type="hidden" id = "id" name = "id" value= "16" />
+        <input type="hidden" id = "id" name = "id" value= "${sessionScope.user.id}" />
             <div class="ui-border">
                 <fieldset>
                     <div class="ui-form-mod">

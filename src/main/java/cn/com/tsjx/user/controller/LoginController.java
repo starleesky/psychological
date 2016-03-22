@@ -30,31 +30,31 @@ public class LoginController {
     @Resource
     public UserService userService;
     @Resource
-    public MailService mailService ;
-    
+    public MailService mailService;
+
     @Value("${validateUrl}")
     private String validateUrl;
-    
+
     @RequestMapping(value = "/login")
-    public String userLogin(User user,Model model) {
-        
+    public String userLogin(User user, Model model) {
+
         return "/wap/login";
     }
-    
+
     @ResponseBody
-    @RequestMapping(value = "/loginIn",method = RequestMethod.POST)
-    public Result<String> loginIn(Model model,String userName,String password,HttpSession httpSession) {
+    @RequestMapping(value = "/loginIn", method = RequestMethod.POST)
+    public Result<String> loginIn(Model model, String userName, String password, HttpSession httpSession) {
         Result<String> result = new Result<String>();
         result.setResult(false);
-            if (StringUtil.isTrimBlank(userName)) {
-                result.setMessage("用户名不能为空");
-                return result;
-            }
-            if (StringUtil.isTrimBlank(password)) {
-                result.setMessage("密码不能为空");
-                return result;
-            }
-        
+        if (StringUtil.isTrimBlank(userName)) {
+            result.setMessage("用户名不能为空");
+            return result;
+        }
+        if (StringUtil.isTrimBlank(password)) {
+            result.setMessage("密码不能为空");
+            return result;
+        }
+
         User user = userService.getUsersByParam(userName, password);
         if (user == null) {
             result.setMessage("用户名或密码错误");
@@ -65,20 +65,20 @@ public class LoginController {
         result.setMessage("登录成功");
         return result;
     }
-    
+
     @RequestMapping(value = "/toRegister")
-    public String toRegister(User user,Model model) {
+    public String toRegister(User user, Model model) {
         return "/wap/register";
     }
-    
+
     @RequestMapping(value = "/index")
-    public String index(User user,Model model) {
+    public String index(User user, Model model) {
         return "/wap/index";
     }
-    
+
     @ResponseBody
     @RequestMapping(value = "/register")
-    public Result<String> register(User user,Model model) {
+    public Result<String> register(User user, Model model,HttpSession httpSession) {
         Result<String> result = new Result<String>();
         result.setResult(false);
         if (user != null) {
@@ -95,7 +95,7 @@ public class LoginController {
                 return result;
             }
         }
-        //判断邮箱是否已注册
+        // 判断邮箱是否已注册
         User entity = new User();
         entity.setEmail(user.getEmail());
         entity.setDeleted(Deleted.NO.value);
@@ -109,7 +109,8 @@ public class LoginController {
         user.setIsActivate(Deleted.NO.value);
         user.setPassword(Base64.encode(user.getPassword().getBytes()));
         user = userService.insert(user);
-        model.addAttribute("user",user);
+//        model.addAttribute("user", user);
+        httpSession.setAttribute("user", user);
         if (user.getId() != null && user.getId() != 0) {
             model.addAttribute("userId", user.getId());
             result.setObject("/wap/register2");
@@ -118,56 +119,67 @@ public class LoginController {
         }
         return result;
     }
-    
+
     @RequestMapping(value = "/toRegister2")
     public String toRegister2() {
         return "/wap/register2";
     }
-    
+
     @RequestMapping(value = "/register-success")
     public String registerSuccess() {
-        
+
         return "/wap/register-success";
     }
-    
-    //下一步
+
+    // 下一步
     @ResponseBody
     @RequestMapping(value = "/saveRegister2")
-    public Result<Object> registe2(User user,Model model) {
+    public Result<Object> registe2(User user, Model model) {
         Result<Object> result = new Result<Object>();
         int count = userService.update(user);
         result.setResult(false);
         result.setMessage("注册失败");
-        if (count>0) {
+        if (count > 0) {
             result.setMessage("注册成功");
             result.setResult(true);
             user = userService.get(user.getId());
-           
-          //发送邮箱验证
-            String url  =  this.validateUrl+Base64.encode(user.getId().toString().getBytes());
+
+            // 发送邮箱验证
+            String url = "http://localhost:8082/tsjx/wap/emailSuccess.htm?r="
+                    + Base64.encode(user.getId().toString().getBytes());
+            System.out.println(validateUrl);
             System.out.println(url);
-          try {
-              mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='"+url+"'>点击我完成注册</a>", "汤森机械");
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            try {
+                mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='" + url + "'>点击我完成注册</a>", "汤森机械");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return result;
     }
-    
+
     @RequestMapping(value = "/emailSuccess")
-    public String emailSuccess() {
-        
-        return "/wap/login";
+    public String emailSuccess(String r) {
+        String string2 = new String(org.apache.commons.codec.binary.Base64.decodeBase64(r.getBytes()));
+        User user = userService.get(Long.valueOf(string2));
+        if (user == null) {
+            return "/wap/404";
+        } else {
+            user.setIsActivate(Deleted.YES.value);
+            userService.update(user);
+            return "/wap/login";
+        }
     }
+
     @RequestMapping(value = "/forgotpwd")
-    public String forgotpwd(){
-        
+    public String forgotpwd() {
+
         return "/wap/forgotpwd";
     }
+
     @RequestMapping(value = "/loginOut")
-    public String loginOut(HttpSession httpSession){
+    public String loginOut(HttpSession httpSession) {
         httpSession.removeAttribute("user");
         return "/wap/index";
     }

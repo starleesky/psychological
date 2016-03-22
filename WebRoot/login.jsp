@@ -54,7 +54,7 @@
             </div>
             <form class="m-t" data-ng-submit="ctrl.loginSubmit()">
                 <div class="form-group">
-                    <input class="form-control" type="text" data-ng-model="ctrl.formData.username"
+                    <input class="form-control" type="text" data-ng-model="ctrl.formData.userName"
                            autofocus="autofocus" placeholder="用户名" required>
                 </div>
                 <div class="form-group">

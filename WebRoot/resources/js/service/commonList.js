@@ -28,13 +28,13 @@ define(function (require) {
 		this.fetching = false;
 
 		this.data = {
-			totalSize: 1,
-			totalPage: 1
+			pageCount: 1,
+			totalCount: 1
 		};
 
 		this.filter = {
-			page: 1,
-			pageSize: 20,
+			pageNo: 1,
+			pageSize: 10,
 			startDate: '',
 			endDate: '',
 			startCompareDate: '',
@@ -71,7 +71,7 @@ define(function (require) {
 		};
 
 		this.search = function () {
-			this.filter.page = 1;
+			this.filter.pageNo = 1;
 			this.fetch();
 		};
 

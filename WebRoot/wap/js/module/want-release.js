@@ -12,7 +12,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listGoodsCatagory, {id: '0'}, function (data) {
             var oBig_html;
             $.each(data.object, function (i, data) {
-                oBig_html += "<option value='" + data.id + "'>" + data.name + "</option>";
+                oBig_html += "<option value='" + data.id + "'>" + data.catagoryName + "</option>";
             });
             oBigGoodsCatagory.html(oBig_html);
             getMiddle();
@@ -29,7 +29,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listGoodsCatagory, {id: n}, function (data) {
             var oMiddle_html;
             $.each(data.object, function (i, data) {
-                oMiddle_html += "<option value='" + data.id + "'>" + data.name + "</option>";
+                oMiddle_html += "<option value='" + data.id + "'>" + data.catagoryName + "</option>";
             });
             oMiddleGoodsCatagory.html(oMiddle_html);
             getSmall();
@@ -46,7 +46,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listGoodsCatagory, {id: n}, function (data) {
             var oSamll_html;
             $.each(data.object, function (i, data) {
-                oSamll_html += "<option value='" + data.id + "'>" + data.name + "</option>";
+                oSamll_html += "<option value='" + data.id + "'>" + data.catagoryName + "</option>";
             });
             oSmallGoodsCatagory.html(oSamll_html);
             getBrand();
@@ -63,7 +63,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listBrand, {catagoryId: n}, function (data) {
             var oBrand_html;
             $.each(data.object, function (i, data) {
-                oBrand_html += "<option value='" + data.id + "'>" + data.name + "</option>";
+                oBrand_html += "<option value='" + data.id + "'>" + data.brandName + "</option>";
             });
             oBrand.html(oBrand_html);
             getModels();
@@ -80,7 +80,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listModels, {brandId: n}, function (data) {
             var oModels_html;
             $.each(data.object, function (i, data) {
-                oModels_html += "<option value='" + data.id + "'>" + data.name + "</option>";
+                oModels_html += "<option value='" + data.id + "'>" + data.modelsName + "</option>";
             });
             oModels.html(oModels_html);
         });
@@ -138,5 +138,14 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         alert('提交之前请先保存');
     });
 
+    $('body').on('click','.jAddProType',function(){
+        if($(this).hasClass('open')){
+            $('.desc-child').addClass('isHide');
+            $(this).removeClass('open');
+        }else{
+            $('.desc-child').removeClass('isHide');
+            $(this).addClass('open');
+        }
+    });
 })
 ;

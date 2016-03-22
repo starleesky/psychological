@@ -9,7 +9,7 @@ define(function (require) {
 
                 var list = $scope.list = commonList;
                 list.filter.key = '';
-                list.url = "/admin/company/list/getData";
+                list.url = "/admin/infomation/list/getData";
 
                 setTimeout(function () {
                     console.log(list.data);

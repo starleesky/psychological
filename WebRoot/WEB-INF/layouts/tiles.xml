@@ -15,7 +15,7 @@
         <put-attribute name="ngAppName" value=""/>
     </definition>
 
-    <definition name="admin/*" template="/WEB-INF/layouts/baseWap.jsp">
+    <definition name="admin/*" extends="baseLayout">
     <put-attribute name="body" value="/WEB-INF/jsp/admin/{1}.jsp"/>
     </definition>
 

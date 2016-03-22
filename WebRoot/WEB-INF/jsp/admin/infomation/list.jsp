@@ -14,7 +14,7 @@
 			<form class="form-inline" ng-submit="list.fetch()">
 			  <div class="form-group">
 			    <div class="input-group">
-			      <input type="text" class="form-control" placeholder="企业名称" ng-model="list.filter.companyName">
+			      <input type="text" class="form-control" placeholder="产品大类" ng-model="list.filter.catagoryBigName">
 			    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">搜索</button>
@@ -57,35 +57,44 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>企业名称</th>
-				<th>联系电话</th>
-				<th>传真</th>
-				<th>省份</th>
-				<th>城市</th>
-				<th>详细地址</th>
+				<th>产品大类</th>
+				<th>产品组</th>
+				<th>产品类</th>
+				<th>品牌</th>
+				<th>型号</th>
+				<th>销售方式</th>
 				<th>时间</th>
-				<th>状态</th>
+				<th>信息状态</th>
 				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="c in list.data.items">
-				<td ng-bind="c.companyName"></td>
-				<td ng-bind="c.telephone"></td>
-				<td ng-bind="c.fax"></td>
-				<td ng-bind="c.provinceName"></td>
-				<td ng-bind="c.cityName"></td>
-				<td ng-bind="c.address"></td>
+				<td ng-bind="c.catagoryBigName"></td>
+				<td ng-bind="c.catagoryMidName"></td>
+				<td ng-bind="c.catagoryName"></td>
+				<td ng-bind="c.brandName"></td>
+				<td ng-bind="c.modelName"></td>
+				<td>
+					<div ng-switch on="c.sellType">
+						<span ng-switch-when="0">出售</span>
+						<span ng-switch-when="1">租赁</span>
+						<span ng-switch-when="2">求购</span>
+						<span ng-switch-when="3">求租</span>
+					</div>
+				</td>
 				<td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
 				<td>
 					<div ng-switch on="c.status">
-						<span ng-switch-when="0">待审核</span>
-						<span ng-switch-when="1">审核成功</span>
-						<span ng-switch-when="2">审核失败</span>
+						<%--<span ng-switch-when="0">草稿</span>--%>
+						<span ng-switch-when="1">待审核</span>
+						<span ng-switch-when="2">发布</span>
+						<span ng-switch-when="3">下架</span>
+						<span ng-switch-when="4">已售</span>
 					</div>
 				</td>
 				<td>
-					<a href="${ctx}/admin/company/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>
+					<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>
 				</td>
 			</tr>
 		</tbody>
@@ -105,7 +114,7 @@
 
 	angular.just = true;
 	angular.listType = 1;
-	seajs.use(['js/controller/common/app','js/controller/company/list'], function () {
+	seajs.use(['js/controller/common/app','js/controller/infomation/list'], function () {
 		angular.bootstrap(document, ['App']);
 	});
 

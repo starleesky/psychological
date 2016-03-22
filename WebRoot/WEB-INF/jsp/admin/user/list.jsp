@@ -14,7 +14,7 @@
 			<form class="form-inline" ng-submit="list.fetch()">
 			  <div class="form-group">
 			    <div class="input-group">
-			      <input type="text" class="form-control" placeholder="企业名称" ng-model="list.filter.companyName">
+			      <input type="text" class="form-control" placeholder="车牌号" ng-model="list.filter.carNum">
 			    </div>
 			  </div>
 			  <button type="submit" class="btn btn-primary">搜索</button>
@@ -57,35 +57,37 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>企业名称</th>
-				<th>联系电话</th>
-				<th>传真</th>
-				<th>省份</th>
-				<th>城市</th>
-				<th>详细地址</th>
+				<th>车辆ID</th>
+				<th>车牌号</th>
+				<th>品牌</th>
+				<th>车系</th>
+				<th>车型</th>
+				<th>行驶城市</th>
 				<th>时间</th>
 				<th>状态</th>
 				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="c in list.data.items">
-				<td ng-bind="c.companyName"></td>
-				<td ng-bind="c.telephone"></td>
-				<td ng-bind="c.fax"></td>
-				<td ng-bind="c.provinceName"></td>
+			<tr ng-repeat="c in list.data.data">
+				<td ng-bind="c.carId"></td>
+				<td ng-bind="c.carNum"></td>
+				<td ng-bind="c.carBrandName"></td>
+				<td ng-bind="c.carSeriesName"></td>
+				<td ng-bind="c.carModelName"></td>
 				<td ng-bind="c.cityName"></td>
-				<td ng-bind="c.address"></td>
 				<td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
 				<td>
-					<div ng-switch on="c.status">
-						<span ng-switch-when="0">待审核</span>
-						<span ng-switch-when="1">审核成功</span>
-						<span ng-switch-when="2">审核失败</span>
+					<div ng-switch on="c.auditStatus">
+						<span ng-switch-when="0">未认证</span>
+						<span ng-switch-when="1">待认证</span>
+						<span ng-switch-when="2">认证成功</span>
+						<span ng-switch-when="3">认证失败</span>
+						<span ng-switch-when="4">行驶证已失效</span>
 					</div>
 				</td>
 				<td>
-					<a href="${ctx}/admin/company/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>
+					<a href="${ctx}/vehicle/list/get/detail?carId={{c.carId}}" class="btn btn-primary">详情</a>
 				</td>
 			</tr>
 		</tbody>
@@ -93,8 +95,8 @@
 </div>
 
 <div class="line" style="text-align: right;">
-	<pagination total-items="list.data.totalCount" ng-model="list.filter.pageNo" ng-change="list.fetch()" items-per-page="list.filter.pageSize"></pagination>
-	<p>共{{list.data.totalCount}}条 | {{list.data.pageCount}}页 | 每页{{list.filter.pageSize}}条</p>
+	<pagination total-items="list.data.totalSize" ng-model="list.filter.page" ng-change="list.fetch()" items-per-page="list.filter.pageSize"></pagination>
+	<p>共{{list.data.totalSize}}条 | {{list.data.totalPage}}页 | 每页{{list.filter.pageSize}}条</p>
 </div>
 
 <!-- <div class="line">

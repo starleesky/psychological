@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,29 +24,22 @@
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="#" class="ui-left">
-        <img src="images/logo.gif" class="ui-logo" />
-    </a>
-
-    <a  href="login.html" class="ui-right ui-login">
-        <img src="images/user_icon.png" />登录
-    </a>
-</header>
+<%@ include file="header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <div class="logo">
         <span>个人信息</span>
     </div>
     <section class="ui-login">
-        <form action="" class="ui-form" id="login" method="post">
+        <form action="" class="ui-form" id="register2" method="post">
+        <input type="hidden" id = "id" name = "id" value= "16" />
             <div class="ui-border">
                 <fieldset>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">省份</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="1">出售</option>
+                            <select name = "provinceId">
+                                <option value="500">重庆</option>
                                 <option value="0">租赁</option>
                                 <option value="0">求购</option>
                                 <option value="979">求租</option>
@@ -50,8 +49,8 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">城市</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="1">出售</option>
+                            <select name = "cityId"> 
+                                <option value="500226">重庆</option>
                                 <option value="0">租赁</option>
                                 <option value="0">求购</option>
                                 <option value="979">求租</option>
@@ -61,22 +60,23 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">经营范围</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="1">出售</option>
-                                <option value="0">租赁</option>
-                                <option value="0">求购</option>
-                                <option value="979">求租</option>
+                            <select name = "businessScope">
+                                <option value="1">工程机械</option>
+                                <option value="2">农业机械</option>
+                                <option value="3">矿山机械</option>
+                                <option value="4">林业机械</option>
+                                <option value="5">工程车辆</option>
                             </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">经营性质</label>
                         <div class="ui-form-bd">
-                            <select>
+                            <select name = "businessNature">
                                 <option value="1">出售</option>
-                                <option value="0">租赁</option>
-                                <option value="0">求购</option>
-                                <option value="979">求租</option>
+                                <option value="2">租赁</option>
+                                <option value="3">求购</option>
+                                <option value="4">求租</option>
                             </select>
                         </div>
                     </div>
@@ -93,9 +93,10 @@
     </section>
 </div>
 <%@ include file="footer.jsp" %>
-<script type="text/javascript" src="js/require.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
-    require(['module/register']);
+var ctx = "${ctx}";
+    require(['module/register2']);
 </script>
 </body></html>

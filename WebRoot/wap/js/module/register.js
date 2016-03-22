@@ -3,6 +3,7 @@ define(function(require,exports,module) {
     var $ = require('plug/jquery2');
     var ajax = require('plug/ajax');
     var Validator = require('plug/validate/validateMethod');
+    var box = require('plug/box');
     var url = require('url');
 
     Validator.validate('#register', {
@@ -55,13 +56,17 @@ define(function(require,exports,module) {
               }
         	, function (data) {
         		if(data.result){
-        			window.location.href =url.loginSuccessUrl;
+        			window.location.href =url.register2Url;
         		}else{
-        			console.log(data);
+        			box.ok(data.message);
         		}
             },'json');
         
-        }
+        },
+        showError:function(elem,msg){
+            box.error(msg,elem);
+        },
+        success:null
     });
     $('#jSubmit').on('click',function(){
     	$('#register').submit();

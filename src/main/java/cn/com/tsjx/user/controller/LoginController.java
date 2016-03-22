@@ -1,20 +1,25 @@
 package cn.com.tsjx.user.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.common.collect.Maps;
+
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.common.util.alg.Base64;
+import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 
@@ -24,6 +29,11 @@ public class LoginController {
 
     @Resource
     public UserService userService;
+    @Resource
+    public MailService mailService ;
+    
+    @Value("${validateUrl}")
+    private String validateUrl;
     
     @RequestMapping(value = "/login")
     public String userLogin(User user,Model model) {
@@ -96,6 +106,7 @@ public class LoginController {
         }
         user.setUserName(user.getEmail());
         user.setDeleted(Deleted.YES.value);
+        user.setIsActivate(Deleted.NO.value);
         user.setPassword(Base64.encode(user.getPassword().getBytes()));
         user = userService.insert(user);
         model.addAttribute("user",user);
@@ -107,16 +118,49 @@ public class LoginController {
         }
         return result;
     }
-    //下一步
-    @RequestMapping(value = "/register2")
-    public String registe2(User user,Model model) {
-        int result = userService.update(user);
-        if (result > 0) {
-            return "/wap/register-success";
-        }
-        return "/wap/index";
+    
+    @RequestMapping(value = "/toRegister2")
+    public String toRegister2() {
+        return "/wap/register2";
     }
     
+    @RequestMapping(value = "/register-success")
+    public String registerSuccess() {
+        
+        return "/wap/register-success";
+    }
+    
+    //下一步
+    @ResponseBody
+    @RequestMapping(value = "/saveRegister2")
+    public Result<Object> registe2(User user,Model model) {
+        Result<Object> result = new Result<Object>();
+        int count = userService.update(user);
+        result.setResult(false);
+        result.setMessage("注册失败");
+        if (count>0) {
+            result.setMessage("注册成功");
+            result.setResult(true);
+            user = userService.get(user.getId());
+           
+          //发送邮箱验证
+            String url  =  this.validateUrl+Base64.encode(user.getId().toString().getBytes());
+            System.out.println(url);
+          try {
+              mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='"+url+"'>点击我完成注册</a>", "汤森机械");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        }
+        return result;
+    }
+    
+    @RequestMapping(value = "/emailSuccess")
+    public String emailSuccess() {
+        
+        return "/wap/login";
+    }
     @RequestMapping(value = "/forgotpwd")
     public String forgotpwd(){
         

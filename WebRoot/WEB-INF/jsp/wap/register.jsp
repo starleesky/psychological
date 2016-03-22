@@ -24,15 +24,7 @@
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="#" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
-    </a>
-
-    <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
-        <img src="${ctx}/wap/images/user_icon.png" />登录
-    </a>
-</header>
+<%@ include file="header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <div class="logo">

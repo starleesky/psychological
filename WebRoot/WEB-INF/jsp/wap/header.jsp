@@ -9,7 +9,6 @@
         <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
     </a> 
     <c:if test="${not empty sessionScope.user.id}">
-    			欢迎您:${sessionScope.user.userName}
     	<a  href="${ctx}/wap/loginOut.htm" class="ui-right ui-login">
         <img src="${ctx}/wap/images/user_icon.png" />退出
     </a>

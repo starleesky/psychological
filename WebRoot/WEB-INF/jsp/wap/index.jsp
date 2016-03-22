@@ -131,43 +131,8 @@
                 <span class="icon"><img src="images/bookmark_icon.png" /> </span>我的收藏
             </div>
             <div class="collect-bd">
-                <div class="no-login">登录后查看我的收藏</div>
-                <ul class="clearfix" style="display: none;">
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
+            <c:if test="${not empty sessionScope.user.id}">
+				<ul class="clearfix" style="display: ;">
                     <li>
                         <a href="#">
                             <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
@@ -176,6 +141,11 @@
                         </a>
                     </li>
                 </ul>
+		    </c:if>
+		    <c:if test="${ empty sessionScope.user.id}">
+	            <div class="no-login">登录后查看我的收藏</div>
+		    </c:if> 
+                
             </div>
         </section>
     </div>
@@ -184,61 +154,9 @@
 <script type="text/html" id="recommendTpl">
 
 </script>
-<script type="text/html" id="collectTpl">
-    <div class="collect-hd">
-        <span class="icon iconfont">&#xe603;</span>我的收藏
-    </div>
-    <div class="collect-bd">
-        <div class="no-login">登录后查看我的收藏</div>
-        <ul class="clearfix" style="display: none;">
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</script>
 <%@ include file="footer.jsp" %>
-<script type="text/javascript" src="js/require.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
 var ctx = "${ctx}";
     require(['module/index']);

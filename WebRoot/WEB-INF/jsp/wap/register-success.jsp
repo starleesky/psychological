@@ -21,15 +21,7 @@
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="#" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
-    </a>
-
-    <a  href="login.html" class="ui-right ui-login">
-        <img src="${ctx}/wap/images/user_icon.png" />登录22
-    </a>
-</header>
+<%@ include file="header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <section class="register-success">
@@ -37,17 +29,7 @@
         <p>请前往您的邮箱激活账号</p>
     </section>
 </div>
-<div class="footer">
-
-    <div class="ft-nav">
-        <a  href="about-us.html">关于我们</a>
-        <a  href="term-conditions.html">一般条款</a>
-        <a  href="contact-us.html">联系我们</a>
-    </div>
-    <div class="copyright">
-        Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
-    </div> 
-</div>
+<%@ include file="footer.jsp" %>
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">

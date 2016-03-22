@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,22 +132,24 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">营业执照副本<em>*</em></label>
                     <div class="ui-form-bd upload-img">
-                        <div class="img-sp">
-                            <input type="file" name="file[]" value="aaa" />
-                            <img src="images/camera_load_icon.png" />
-                            <span>照片</span>
-                        </div>
+                        <a href="javascript:;"   node-type="uploadButton">
+                            <span class="upload-txt">选择图片</span>
+                        </a>
+
                     </div>
                 </div>
                 <div class="ui-form-mod">
 
                     <label class="ui-form-hd">组织机构代码证<em>*</em></label>
-                    <div class="ui-form-bd upload-img">
-                        <div class="img-sp">
-                            <input type="file" name="file[]" value="aaa" />
-                            <img src="images/camera_load_icon.png" />
-                            <span>照片</span>
+                    <div class="ui-form-bd upload-img edit">
+                        <a href="javascript:;"  node-type="uploadButton">
+                            <span class="upload-txt">选择图片</span>
+                        </a>
+                        <div class="upload-div">
+                            <img src="http://img4.bbgstatic.com/14fa1ec9e18_bc_2999191fce3a29942c38d72f42b40f53_464x785.jpeg">
+                            <b class="icon-delete" node-type="deleteImgBtn"></b>
                         </div>
+
                     </div>
                 </div>
                 <div class="field-submit">
@@ -168,6 +173,7 @@
 <script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript">
+    var ctx = "${ctx}";
     require(['module/company-info']);
 </script>
 </body></html>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +47,8 @@
         <section class="search-mod">
             <div class="search-hd"></div>
             <div class="pro-list search-bd">
-                <ul>
+                <ul class="jPage">
+                    <div data-page="1">
                     <li class="pro-box">
                         <a href="#" class="pro-img">
                             <img src="images/blank.gif" class="jImg" data-url="images/img2.jpg" />
@@ -759,7 +763,7 @@
                             </p>
                         </div>
                     </li>
-                </ul>
+                </div></ul>
             </div>
         </section>
         <section class="search-form">
@@ -935,6 +939,7 @@
 <script type="text/javascript" src="js/require.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript">
+    var ctx = "${ctx}";
     require(['module/search']);
 </script>
 </body></html>

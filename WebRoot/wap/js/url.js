@@ -7,6 +7,9 @@ define(function (require, exports, module) {
     //baseUrl = 'http://service.tangsons.cn/';
     var URL = window.URL = this.URL = {
         domain: baseUrl,
+        demoPageUrl: baseUrl + '/wap/demo/page',
+        demoUploadUrl: baseUrl + '/wap/demo/upload',
+
         loginUrl: baseUrl + '/wap/loginIn',
         loginSuccessUrl: baseUrl + '/wap/index',
         toRegisterUrl: baseUrl + '/wap/toRegister',//去注册页面

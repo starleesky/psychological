@@ -88,41 +88,20 @@
             </div>
             <div class="recommended-bd">
                 <ul class="clearfix">
+            	<c:forEach var="item" items = "${Tops}" varStatus="status">
                     <li>
+<%--                       <c:choose> --%>
+<%-- 				        <c:when test="${status.index%5==0}" > --%>
+<!-- 				             <br> -->
+<%-- 				         </c:when> --%>
+<%--      				  </c:choose> --%>
                         <a href="#">
                             <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
+                            <span class="name">${item.brandName}${item.modelName}</span>
+                            <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
+                </c:forEach>
                 </ul>
             </div>
         </section>
@@ -133,13 +112,15 @@
             <div class="collect-bd">
             <c:if test="${not empty sessionScope.user.id}">
 				<ul class="clearfix" style="display: ;">
+					<c:forEach var ="item" items = "${collections}" varStatus="status">
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/infomation/input.htm?id=${item.id}">
                             <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
+                            <span class="name">${item.brandName}${item.modelName}</span>
+                            <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
                     </li>
+					</c:forEach>
                 </ul>
 		    </c:if>
 		    <c:if test="${ empty sessionScope.user.id}">

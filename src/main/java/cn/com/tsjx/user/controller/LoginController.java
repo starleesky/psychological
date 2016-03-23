@@ -1,5 +1,6 @@
 package cn.com.tsjx.user.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.common.collect.Maps;
-
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.common.util.alg.Base64;
+import cn.com.tsjx.common.web.model.JsonResult;
+import cn.com.tsjx.common.web.model.Page;
+import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
@@ -35,6 +39,9 @@ public class LoginController {
     @Value("${validateUrl}")
     private String validateUrl;
 
+    @Resource
+    private InfomationService infomationService ;
+    
     @RequestMapping(value = "/login")
     public String userLogin(User user, Model model) {
 
@@ -72,13 +79,26 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/index")
-    public String index(User user, Model model) {
+    public String index(Model model,HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("user");
+        Pager<Infomation> pager = new Pager<Infomation>();
+        Infomation infomation = new Infomation();
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("entity", infomation);
+        pager = infomationService.page(params, pager);
+        //今日推荐 前10
+        model.addAttribute("Tops", pager.getItems());
+        if (user != null && user.getId() != null) {
+           List<Infomation>  list = infomationService.getInfomationsByParam(user, infomation);
+           model.addAttribute("collections", list);
+        }
+        
         return "/wap/index";
     }
 
     @ResponseBody
     @RequestMapping(value = "/register")
-    public Result<String> register(User user, Model model,HttpSession httpSession) {
+    public Result<String> register(User user, Model model, HttpSession httpSession) {
         Result<String> result = new Result<String>();
         result.setResult(false);
         if (user != null) {
@@ -109,7 +129,7 @@ public class LoginController {
         user.setIsActivate(Deleted.NO.value);
         user.setPassword(Base64.encode(user.getPassword().getBytes()));
         user = userService.insert(user);
-//        model.addAttribute("user", user);
+        // model.addAttribute("user", user);
         httpSession.setAttribute("user", user);
         if (user.getId() != null && user.getId() != 0) {
             model.addAttribute("userId", user.getId());

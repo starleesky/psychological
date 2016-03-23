@@ -19,6 +19,9 @@ define(function(require,exports,module) {
             },
             businessNature:{
 				required : true
+			},
+			isAgree : {
+				required : true
 			}
         },
         messages: {
@@ -33,6 +36,9 @@ define(function(require,exports,module) {
             },
             businessNature:{
 				required :  '此项不能为空'
+			},
+			isAgree : {
+				required : "您还未接受同意条款"
 			}
         },
         submitHandler: function (form) {

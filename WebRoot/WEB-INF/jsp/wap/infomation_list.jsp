@@ -31,21 +31,25 @@
                 <input type="hidden" id="curStatus" value="${status }">
             </div>
             <div class="bd">
-                <a href="${ctx }/infomation/infoList?status=2" >
+                <a href="${ctx }/infomation/infoList?status=2" status="2">
                     <span class="num">${cnt_sj }</span>
                     <span class="num-desc">上架</span>
                 </a>
-                <a href="${ctx }/infomation/infoList?status=3">
+                <a href="${ctx }/infomation/infoList?status=3" status="3">
                     <span class="num">${cnt_ys }</span>
                     <span class="num-desc">已售</span>
                 </a>
-                <a href="${ctx }/infomation/infoList?status=4" >
+                <a href="${ctx }/infomation/infoList?status=4" status="4">
                     <span class="num">${cnt_xj }</span>
                     <span class="num-desc">下架</span>
                 </a>
-                <a href="${ctx }/infomation/infoList?status=0" >
+                <a href="${ctx }/infomation/infoList?status=0" status="0">
                     <span class="num">${cnt_cg }</span>
                     <span class="num-desc">草稿</span>
+                </a>
+                <a href="" >
+                    <span class="num"></span>
+                    <span class="num-desc">收藏</span>
                 </a>
             </div>
         </section>
@@ -66,12 +70,20 @@
             <div class="no-data">
                 以下设备已过期，请重新上传。
             </div>
-            <div class="pro-buy-num">已售台数:<span>1</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
+            <div class="pro-buy-num">已售台数:<span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
             <div class="pro-list">
                 <form action="" method="post">
-                <ul>
+                 <ul class="jPage">
+                  <div data-page="1">
                   <c:forEach items="${pager}" var="info">
-                    <li class="pro-box">
+                  <c:choose>
+                  	<c:when test="${status == 3 || status == 4 }">
+                  		<li class="pro-box no-buy">
+                  	</c:when>
+                  	<c:otherwise>
+                  		<li class="pro-box">
+                  	</c:otherwise>
+                  </c:choose>
                         <div class="pro-select">
                             <input type="hidden" name="proSelect" value="0" />
                             <img src="" class="jProSelect" />
@@ -101,8 +113,12 @@
                             <p class="col-6"> 设备序列号:<span>${info.serialNum }</span> </p>
                             <p class="col-6"> 截止日期:<span>2015/12/16</span> </p>
                         </div>
+                        <c:if test="${status == 4 }">
+                        	<a href="javascript:;" data-url="#" class="pro-new-up jNewUp">重新上架</a>
+                        </c:if>
                     </li>
                     </c:forEach>
+                    </div>
                 </ul>
                 </form>
             </div>
@@ -120,6 +136,6 @@
 <script type="text/javascript" src="${ctx }/wap/js/app.js"></script>
 <script type="text/javascript">
 var ctx = "${ctx}";
-    require(['module/infos']);
+    require(['module/infor']);
 </script>
 </body></html>

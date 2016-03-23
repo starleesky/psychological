@@ -95,6 +95,7 @@ public class InfomationController {
 		infomation.setDeleted(InfomationEnum.delete_f.code());
 		
 		params.put("entity", infomation);
+		pager.setPageSize(10);
 		pager = infomationService.page(params, pager);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("bean", infomation);

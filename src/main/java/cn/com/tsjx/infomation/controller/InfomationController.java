@@ -27,6 +27,11 @@ public class InfomationController {
 	@Resource
 	InfomationService infomationService;
 
+	@RequestMapping(value = "/pub")
+	public String relaese() {
+		return "/wap/want-release";
+	}
+
 	@RequestMapping(value = "/list")
 	public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();

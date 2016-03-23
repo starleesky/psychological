@@ -15,22 +15,22 @@ package cn.com.tsjx.demo;
  */
 public class pageOutDto {
 
-	private String data="                    <li class=\"pro-box\">\n"
-			+ "                        <a href=\"view.php\" class=\"pro-img\">\n"
-			+ "                            <img src=\"../images/img2.jpg\" />\n"
-			+ "                        </a>\n"
-			+ "                        <div class=\"pro-info\">\n"
-			+ "                            <a href=\"view.php\" class=\"pro-title\">品牌加型号</a>\n"
-			+ "                            <strong class=\"pro-price\">5,000.00 元</strong>\n"
-			+ "                            <p class=\"pro-date\">\n"
-			+ "                                <span class=\"year f-l\">2012年</span>\n"
-			+ "                                <span class=\"hourth f-r\">2000小时</span>\n"
-			+ "                            </p>\n"
-			+ "                            <p>\n"
-			+ "                                <span class=\"ready-num f-l\">浏览<em class=\"jRNum\">500次</em></span>\n"
-			+ "                                <span class=\"pro-addr f-r\">湖南</span>\n"
-			+ "                            </p>\n"
-			+ "                        </div>\n"
+	private String data="                    <li class=\"pro-box\">"
+			+ "                        <a href=\"view.php\" class=\"pro-img\">"
+			+ "                            <img src=\"../images/img2.jpg\" />"
+			+ "                        </a>"
+			+ "                        <div class=\"pro-info\">"
+			+ "                            <a href=\"view.php\" class=\"pro-title\">品牌加型号</a>"
+			+ "                            <strong class=\"pro-price\">5,000.00 元</strong>"
+			+ "                            <p class=\"pro-date\">"
+			+ "                                <span class=\"year f-l\">2012年</span>"
+			+ "                                <span class=\"hourth f-r\">2000小时</span>"
+			+ "                            </p>"
+			+ "                            <p>"
+			+ "                                <span class=\"ready-num f-l\">浏览<em class=\"jRNum\">500次</em></span>"
+			+ "                                <span class=\"pro-addr f-r\">湖南</span>"
+			+ "                            </p>"
+			+ "                        </div>"
 			+ "                    </li>";
 
 	private int error = 0;

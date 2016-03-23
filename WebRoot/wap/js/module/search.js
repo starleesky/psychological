@@ -25,7 +25,7 @@ define(function(require,exports,module){
             data.groupsType = $('input[name=group-type]').val();
             return data;
         },
-        page:2,
+        page:1,
         errorText: '<div class="loading">网络错误，点击重试</div>',
         loadingClass: 'loading',
         loadingText: '<div class="loading"><img src="../images/loading2.gif" class="load-gif" />正在加载，请稍后...</div>',

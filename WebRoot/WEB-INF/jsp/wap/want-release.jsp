@@ -95,57 +95,57 @@
                 <div class="ui-form-mod isHide desc-child">
                     <label class="ui-form-hd">添加品牌</label>
                     <div class="ui-form-bd">
-                        <input type="text" placeholder="请输入...">
+                        <input type="text" name="newBrand" placeholder="请输入...">
                     </div>
                 </div>
                 <div class="ui-form-mod isHide desc-child">
                     <label class="ui-form-hd">添加型号</label>
                     <div class="ui-form-bd">
-                        <input type="text" placeholder="请输入...">
+                        <input type="text" name="newModels" placeholder="请输入...">
                     </div>
                 </div>
                 <div class="ui-form-title">设备详情</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">求购方式</label>
                     <div class="ui-form-bd">
-                        <select><option>求购</option><option>求租</option></select>
+                        <select name="sellType"><option value="2">求购</option><option value="3">求租</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备情况</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="37">新设备</option>
-                            <option value="38">二手设备</option>
-                            <option value="39">再制造</option>
+                        <select name="equipmentCondition">
+                            <option value="0">新设备</option>
+                            <option value="1">二手设备</option>
+                            <option value="2">再制造</option>
                         </select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">手续资料</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="37">手续齐全</option>
-                            <option value="38">无手续</option>
-                            <option value="38">有无手续均可</option>
+                        <select name="procedures">
+                            <option value="0">手续齐全</option>
+                            <option value="1">无手续</option>
+                            <option value="2">有无手续均可</option>
                         </select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备来源</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="37">个人</option>
-                            <option value="38">单位</option>
-                            <option value="38">抵押</option>
-                            <option value="38">法务</option>
+                        <select name="src">
+                            <option value="0">个人</option>
+                            <option value="1">单位</option>
+                            <option value="2">抵押</option>
+                            <option value="3">法务</option>
                         </select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">年份/以后</label>
                     <div class="ui-form-bd">
-                        <select>
+                        <select name="equipYear">
                             <option value="2015">2015</option>
                             <option value="2014">2014</option>
                             <option value="2013">2013</option>
@@ -197,26 +197,25 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">省份</label>
                     <div class="ui-form-bd">
-                        <input type="text" placeholder="请输入..." />
-                    </div>
+                        <select class="regionProvice"  name="regionProvice" id="regionProvice" validate="required:true" ><option>请选择省份</option></select>
                 </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">城市</label>
-                    <div class="ui-form-bd">
-                        <input type="text" placeholder="请输入..." />
+    <div class="ui-form-mod">
+                <label class="ui-form-hd">城市</label>
+                <div class="ui-form-bd">
+                    <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" ><option>请选择城市</option></select>                    </div>
                     </div>
                 </div>
                 <div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
-                        <select>
+                        <select >
                             <option value="1">30天</option>
                             <option value="2">60天</option>
                             <option value="3">90天</option>
                         </select>
-                        <input type="text" placeholder="请输入..." />
+                        <input type="text" name="validTime" placeholder="请输入..." />
                     </div>
-                    <div class="ui-form-ft">此信息有效期截止至:2015年5月30日</div>
+                    <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
                 </div>
                 <div class="field-submit">
                     <input type="button" class="ui-button ui-button-blue" id="jSave" value="保存">

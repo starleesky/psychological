@@ -40,6 +40,16 @@ public class InfomationController {
         return "/wap/want-release";
     }
 
+	@RequestMapping(value = "/pub")
+	public String relaese() {
+		return "/wap/want-release";
+	}
+
+	@RequestMapping(value = "/pub")
+	public String relaese() {
+		return "/wap/want-release";
+	}
+
     @RequestMapping(value = "/list")
     public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
         Map<String, Object> params = new HashMap<String, Object>();
@@ -142,5 +152,87 @@ public class InfomationController {
         
         return "/wap/infomation_list";
     }
+	
+	@RequestMapping(value = "/infoList")
+	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		String status = StringUtil.isBlank(infomation.getStatus()) ? InfomationEnum.status_sj.code() : infomation.getStatus();
+		infomation.setStatus(status);	//信息状态为空时，默认查询“上架状态”
+		infomation.setDeleted(InfomationEnum.delete_f.code());
+		
+		params.put("entity", infomation);
+		pager.setPageSize(10);
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager.items);
+		model.addAttribute("bean", infomation);
+		
+		model.addAttribute("status", status);
+		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
+		
+		/*查询不同信息状态数字*/
+		//1、上架
+		infomation.setStatus(InfomationEnum.status_sj.code());
+		List<Infomation> li_sj = infomationService.find(infomation);
+		model.addAttribute("cnt_sj", li_sj.size());
+		
+		//2、已售
+		infomation.setStatus(InfomationEnum.status_ys.code());
+		List<Infomation> li_ys = infomationService.find(infomation);
+		model.addAttribute("cnt_ys", li_ys.size());
+		
+		//3、下架
+		infomation.setStatus(InfomationEnum.status_xj.code());
+		List<Infomation> li_xj = infomationService.find(infomation);
+		model.addAttribute("cnt_xj", li_xj.size());
+		
+		//4、草稿
+		infomation.setStatus(InfomationEnum.status_cg.code());
+		List<Infomation> li_cg = infomationService.find(infomation);
+		model.addAttribute("cnt_cg", li_cg.size());
+		
+		return "/wap/infomation_list";
+	}
+	
+	@RequestMapping(value = "/infoList")
+	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		String status = StringUtil.isBlank(infomation.getStatus()) ? InfomationEnum.status_sj.code() : infomation.getStatus();
+		infomation.setStatus(status);	//信息状态为空时，默认查询“上架状态”
+		infomation.setDeleted(InfomationEnum.delete_f.code());
+		
+		params.put("entity", infomation);
+		pager.setPageSize(10);
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager.items);
+		model.addAttribute("bean", infomation);
+		
+		model.addAttribute("status", status);
+		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
+		
+		/*查询不同信息状态数字*/
+		//1、上架
+		infomation.setStatus(InfomationEnum.status_sj.code());
+		List<Infomation> li_sj = infomationService.find(infomation);
+		model.addAttribute("cnt_sj", li_sj.size());
+		
+		//2、已售
+		infomation.setStatus(InfomationEnum.status_ys.code());
+		List<Infomation> li_ys = infomationService.find(infomation);
+		model.addAttribute("cnt_ys", li_ys.size());
+		
+		//3、下架
+		infomation.setStatus(InfomationEnum.status_xj.code());
+		List<Infomation> li_xj = infomationService.find(infomation);
+		model.addAttribute("cnt_xj", li_xj.size());
+		
+		//4、草稿
+		infomation.setStatus(InfomationEnum.status_cg.code());
+		List<Infomation> li_cg = infomationService.find(infomation);
+		model.addAttribute("cnt_cg", li_cg.size());
+		
+		return "/wap/infomation_list";
+	}
 
 }

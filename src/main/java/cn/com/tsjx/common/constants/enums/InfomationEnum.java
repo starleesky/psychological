@@ -25,10 +25,15 @@ public enum InfomationEnum {
 	src_fw("3","法务","src"),
 	
 	/*信息状态*/
-	status_cg("0","草稿","status"),		
-	status_sj("1","上架","status"),		
-	status_ys("2","已售","status"),		
-	status_xj("3","下架","status");		
+	status_cg("0","草稿","status"),	
+	status_sh("1","审核中/待审核","status"),
+	status_sj("2","上架","status"),		
+	status_ys("3","已售","status"),		
+	status_xj("4","下架","status"),
+	
+	deleted_t("T","删除","deleted"),
+	delete_f("F","未删除","deleted")
+	;		
 	
 	private final String code;
 	private final String description;

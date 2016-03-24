@@ -89,6 +89,42 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     //初始化产品大类
     getBig();
 
+
+    var oRegionProvice = $(".regionProvice");
+    var oRegionCity = $(".regionCity");
+
+    //产品大类
+    var getProvice = function () {
+        $.getJSON(url.listRegion, {id: '0'}, function (data) {
+            var oProvice_html;
+            $.each(data.object, function (i, data) {
+                oProvice_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            });
+            oRegionProvice.html(oProvice_html);
+            getCity();
+        });
+    }
+
+    oRegionProvice.change(function () {
+        getCity();
+    });
+
+    //产品组
+    var getCity = function () {
+        var n = oRegionProvice.val();
+        $.getJSON(url.listRegion, {id: n}, function (data) {
+            var oCity_html;
+            $.each(data.object, function (i, data) {
+                oCity_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            });
+            oRegionCity.html(oCity_html);
+        });
+    };
+
+
+    //初始省市
+    getProvice();
+
     //信息提交
     Validator.validate('#informationFrom', {
         rules: {
@@ -107,6 +143,26 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 {
                     catagoryBigId: $(form).find('select[name=catagoryBig]').val(),
                     catagoryBigName: $(form).find('select[name=catagoryBig]').find("option:selected").text(),
+                    catagoryMidId: $(form).find('select[name=catagoryMid]').val(),
+                    catagoryMidName: $(form).find('select[name=catagoryMid]').find("option:selected").text(),
+                    catagoryId: $(form).find('select[name=catagorySmall]').val(),
+                    catagoryName: $(form).find('select[name=catagorySmall]').find("option:selected").text(),
+                    brandId: $(form).find('select[name=brand]').val(),
+                    brandName: $(form).find('select[name=brand]').find("option:selected").text(),
+                    modelId: $(form).find('select[name=models]').val(),
+                    modelName: $(form).find('select[name=models]').find("option:selected").text(),
+                    newBrand: $(form).find('input[name=newBrand]').val(),
+                    newModel: $(form).find('input[name=newModels]').val(),
+                    sellType: $(form).find('select[name=sellType]').val(),
+                    equipmentCondition: $(form).find('select[name=equipmentCondition]').val(),
+                    procedures: $(form).find('select[name=procedures]').val(),
+                    src: $(form).find('select[name=src]').val(),
+                    equipYear: $(form).find('select[name=equipYear]').val(),
+                    remark: $(form).find('input[name=remark]').val(),
+                    src: $(form).find('select[name=regionProvice]').val(),
+                    src: $(form).find('select[name=regionProvice]').find("option:selected").text(),
+                    src: $(form).find('select[name=regionCity]').val(),
+                    src: $(form).find('select[name=regionCity]').find("option:selected").text(),
                     price: $(form).find('input[name=price]').val()
                 },
                 function (data) {

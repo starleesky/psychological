@@ -13,7 +13,12 @@ define(function (require) {
                 $scope.infomation.companyName = angular.companyName;
                 $scope.infomation.id = angular.companyId;
                 $scope.openModel = function (data) {
-                    $scope.infomation.status = data;
+                    $scope.infomation.auditStatus = data;
+                    //if(data==1){
+                    //    $scope.title = '认证成功';
+                    //}else{
+                    //    $scope.title = '认证失败';
+                    //}
                     modal = $modal.open({
                         templateUrl: angular.path + '/resources/templates/infomation/infomation_audit.html',
                         backdrop: 'static',

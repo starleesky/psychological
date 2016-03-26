@@ -14,32 +14,21 @@
         <form class="form-inline" ng-submit="list.fetch()">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="手机号码" ng-model="list.filter.mobile">
+                    <input type="text" class="form-control" placeholder="公告标题" ng-model="list.filter.title">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="用户名称" ng-model="list.filter.userName">
+                    <input type="text" class="form-control" placeholder="用户ID" ng-model="list.filter.userId">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">搜索</button>
 
             <div class="form-group pull-left">
-                <select class="form-control" name="auditStatus" ng-change="list.fetch()"
-                        ng-model="list.filter.isActivate">
-                    <option value="">是否激活</option>
+                <select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.noticeType">
+                    <option value="">全部</option>
                     <option value="0">系统公告</option>
                     <option value="1">用户消息</option>
-                </select>
-            </div>
-            <div class="form-group pull-left">
-                <select class="form-control" name="auditStatus" ng-change="list.fetch()"
-                        ng-model="list.filter.userType">
-                    <option value="">用户类型</option>
-                    <option value="0">系统管理员</option>
-                    <option value="1">普通管理员</option>
-                    <option value="1">普通用户</option>
-                    <option value="1">企业管理员</option>
                 </select>
             </div>
             <div class="form-group pull-right">
@@ -55,44 +44,25 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>用户名称</th>
-            <th>手机号码</th>
-            <th>邮箱</th>
-            <th>省份</th>
-            <th>城市</th>
-            <th>经营范围</th>
-            <th>经营性质</th>
-            <th>是否激活</th>
-            <th>用户类型</th>
-            <th>最后登录时间</th>
+            <th>公告类型</th>
+            <th>公告标题</th>
+            <th>公告内容</th>
+            <th>创建时间</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="c in list.data.items">
-            <td ng-bind="c.userName"></td>
-            <td ng-bind="c.mobile"></td>
-            <td ng-bind="c.email"></td>
-            <td ng-bind="c.provinceName"></td>
-            <td ng-bind="c.cityName"></td>
-            <td ng-bind="c.businessScope"></td>
-            <td ng-bind="c.businessNature"></td>
             <td>
-                <div ng-switch on="c.isActivate">
-                    <span ng-switch-when="T">激活</span>
-                    <span ng-switch-when="F">未激活</span>
+                <div ng-switch on="c.noticeType">
+                    <span ng-switch-when="0">系统公告</span>
+                    <span ng-switch-when="1">用户消息</span>
                 </div>
             </td>
+            <td ng-bind="c.title"></td>
+            <td ng-bind="c.content"></td>
+            <td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td>
-                <div ng-switch on="c.userType">
-                    <span ng-switch-when="0">系统管理员</span>
-                    <span ng-switch-when="1">普通管理员</span>
-                    <span ng-switch-when="2">普通用户</span>
-                    <span ng-switch-when="3">企业管理员</span>
-                </div>
-            </td>
-            <td ng-bind="c.lastLoginTime | date : 'yyyy-MM-dd'"></td>
-            <td>
-                <button class="btn btn-primary" ng-click="showDetail(c,$index)">查询详情</button>
                 <button class="btn btn-primary" ng-click="edit(c,$index)">修改</button>
                 <button class="btn btn-primary" ng-click="deleteOne(c,$index)">删除</button>
             </td>
@@ -115,7 +85,7 @@
 
     angular.just = true;
     angular.listType = 1;
-    seajs.use(['js/controller/common/app', 'js/controller/user/list'], function () {
+    seajs.use(['js/controller/common/app', 'js/controller/notice/list'], function () {
         angular.bootstrap(document, ['App']);
     });
 

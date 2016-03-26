@@ -1,19 +1,9 @@
-/*
- * Copyright (C), 2014-2015, 杭州小卡科技有限公司
- * FileName: InfomationDto.java
- * Author:   muxing
- * Date:    2016/3/22 23:52
- * Description:
- */
-package cn.com.tsjx.infomation.entity;
+package cn.com.tsjx.company.entity;
 
 /**
- * InfomationDto
- *
- * @author muxing
- * @date 2016/3/22
+ * 实体对象：企业表
  */
-public class InfomationDto extends Infomation {
+public class CompanyDto extends Company {
 
 	private String remark;
 
@@ -34,4 +24,5 @@ public class InfomationDto extends Infomation {
 	public void setAuditStatus(String auditStatus) {
 		this.auditStatus = auditStatus;
 	}
+
 }

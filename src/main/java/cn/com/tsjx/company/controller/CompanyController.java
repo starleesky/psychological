@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import cn.com.tsjx.common.constants.enums.CompanyEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,12 +51,15 @@ public class CompanyController {
     
  
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Company company,Model model) {
-    	
+    @ResponseBody
+    public Result<Boolean> save(Company company,Model model) {
+	    company.setStatus(CompanyEnum.status_audit.code());
+	    Result<Boolean> result = new Result<Boolean>();
     	companyService.insert(company);
-    	model.addAttribute("msg", "添加成功！");
-    	model.addAttribute("redirectionUrl", "/company/list.htm");
-        return "/success";
+	    result.setMessage("新增信息成功");
+	    result.setObject(true);
+	    result.setResult(true);
+	    return result;
     }
     
     

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.geom.AffineTransform;
@@ -23,6 +24,8 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +63,7 @@ public class DemoController {
 		return stringBuffer.toString();
 	}
 
-	@RequestMapping(value = "/demo/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/file/upload", method = RequestMethod.POST)
 	public void handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 //		response.setContentType("text/html;charset=utf-8");
@@ -73,17 +76,26 @@ public class DemoController {
 		// 获得输入流：
 		InputStream input = file.getInputStream();
 		// 写入文件
+		String path="E:\\木星\\资料大全\\tsjx\\WebRoot\\images";
 
-		// 或者：
-		File source = new File("E://test.png");
+		//当前月份
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+
+		File mkFile = new File(path+"/"+sdf.format(d));
+		if(!mkFile.exists()){
+			mkFile.mkdir();
+		}
+		String fileEnd = filename.substring(filename.lastIndexOf(".")+1).toLowerCase();
+		String src = "/" + sdf.format(d) + "/" + d.getTime()+"." + fileEnd;
+		File source = new File(path+src);
 		file.transferTo(source);
 		//		createPreviewImage("E://test.png", "E://test2.png");
 		UploadDto uploadDto = new UploadDto();
-		uploadDto.setUrl(
-				"http://img.blog.csdn.net/20140912102539792?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2Fyb2x6aGFuZzg0MDY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center");
+		uploadDto.setUrl(src);
 
 		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().write("{\"code\":1,\"msg\":\""+uploadDto.getUrl()+"\"}");
+		response.getWriter().write("{\"code\":1,\"url\":\""+uploadDto.getUrl()+"\"}");
 	}
 
 	public static void createPreviewImage(String srcFile, String destFile) {

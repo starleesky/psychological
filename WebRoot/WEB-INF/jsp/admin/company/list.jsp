@@ -41,10 +41,12 @@
 			    </div>
 			  </div>
 
-			  <div class="form-group pull-right">
-			  	<select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.auditStatus">
+			  <div class="form-group pull-left">
+			  	<select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.status">
 			  		<option value="">认证状态</option>
-			  		<option value="{{$index}}" ng-repeat="x in statusList">{{x}}</option>
+			  		<option value="0" >待审核</option>
+			  		<option value="1" >认证成功</option>
+			  		<option value="2" >认证失败</option>
 			  	</select>
 			  </div>
 
@@ -85,7 +87,15 @@
 					</div>
 				</td>
 				<td>
-					<a href="${ctx}/admin/company/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>
+					<div ng-switch on="c.status">
+					<a href="${ctx}/admin/company/getDetail?id={{c.id}}" class="btn btn-primary">
+						<div ng-switch on="c.status">
+							<span ng-switch-when="0">审核</span>
+							<span ng-switch-when="1">查看详情</span>
+							<span ng-switch-when="2">查看详情</span>
+						</div>
+					</a>
+						<div ng-switch on="c.status">
 				</td>
 			</tr>
 		</tbody>

@@ -7,16 +7,17 @@
  */
 package cn.com.tsjx.admin;
 
-import cn.com.tsjx.attch.entity.Attch;
-import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.auditRecord.service.AuditRecordService;
-import cn.com.tsjx.common.constants.enums.*;
+import cn.com.tsjx.common.constants.enums.AuditRecordEnum;
+import cn.com.tsjx.common.constants.enums.CompanyEnum;
+import cn.com.tsjx.common.constants.enums.NoticeEnum;
+import cn.com.tsjx.common.constants.enums.TsjxConstant;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
-import cn.com.tsjx.infomation.entity.Infomation;
-import cn.com.tsjx.infomation.entity.InfomationDto;
-import cn.com.tsjx.infomation.service.InfomationService;
+import cn.com.tsjx.company.entity.Company;
+import cn.com.tsjx.company.entity.CompanyDto;
+import cn.com.tsjx.company.service.CompanyService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
 import cn.com.tsjx.user.entity.User;
@@ -31,7 +32,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,74 +42,67 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminInfomationController {
-
-	@Resource
-	InfomationService infomationService;
-
-	@Resource
-	AttchService attchService;
-
-	@Resource
-	AuditRecordService auditRecordService;
+public class AdminCompanyController {
 
 	@Resource
 	UserService userService;
 
 	@Resource
+	CompanyService companyService;
+
+	@Resource
+	AuditRecordService auditRecordService;
+
+	@Resource
 	NoticeService noticeService;
 
-	@RequestMapping(value = "/infomation/list/getData")
+	@RequestMapping(value = "/company/list/getData")
 	@ResponseBody
-	public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
+	public Pager<Company> list(Pager<Company> pager, Company company, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("entity", infomation);
-		pager = infomationService.page(params, pager);
+		params.put("entity", company);
+		pager = companyService.page(params, pager);
 		return pager;
 	}
 
-	@RequestMapping(value = "/infomation/getDetail", method = RequestMethod.GET)
+	@RequestMapping(value = "/company/getDetail", method = RequestMethod.GET)
 	public String input(Long id, Model model) {
-		Infomation infomation = new Infomation();
+		Company company = new Company();
 		if (id != null) {
-			infomation = infomationService.get(id);
+			company = companyService.get(id);
 		}
-		model.addAttribute("bean", infomation);
-		Attch attach = new Attch();
-		attach.setInformationId(id);
-		List<Attch> attches = attchService.find(attach);
-		model.addAttribute("beanImg", attches);
-		return "admin/infomation/detail";
+		model.addAttribute("bean", company);
+		//		model.addAttribute("bean", JsonMapper.getMapper().toJson(company));
+		return "admin/company/detail";
 	}
 
-	@RequestMapping(value = "/infomation/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/company/update", method = RequestMethod.POST)
 	@ResponseBody
-	public Result<String> update(@RequestBody InfomationDto infomation, HttpSession httpSession) {
-
-		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
-			infomation.setStatus(InfomationEnum.status_sj.code());
+	public Result<String> update(@RequestBody CompanyDto company, HttpSession httpSession) {
+		if (AuditRecordEnum.audit_status_success.code().equals(company.getStatus())) {
+			company.setStatus(CompanyEnum.status_success.code());
 		} else {
-			infomation.setStatus(InfomationEnum.status_cg.code());
+			company.setStatus(CompanyEnum.status_failure.code());
 		}
-		infomationService.update(infomation);
 
+		companyService.update(company);
 		//新增审核人记录表
 		User adminUser = (User) httpSession.getAttribute("adminUser");
 		AuditRecord auditRecord = new AuditRecord();
-		auditRecord.setAuditType(AuditRecordEnum.audit_type_information.code());
-		auditRecord.setRemark(infomation.getRemark());
+		auditRecord.setAuditType(AuditRecordEnum.audit_type_company.code());
+		auditRecord.setRemark(company.getRemark());
 		auditRecord.setUserId(adminUser.getId());
-		auditRecord.setAuditStatus(infomation.getAuditStatus());
+		auditRecord.setAuditStatus(company.getAuditStatus());
 		auditRecordService.insert(auditRecord);
 		//发送个人消息
 		Notice notice = new Notice();
 		notice.setUserId(adminUser.getId());
 		notice.setNoticeType(NoticeEnum.notice_type_user.code());
 		notice.setTitle(TsjxConstant.company_audit_title);
-		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
-			notice.setContent(TsjxConstant.company_audit_success.replace("%s", infomation.getRemark()));
+		if (AuditRecordEnum.audit_status_success.code().equals(company.getStatus())) {
+			notice.setContent(TsjxConstant.company_audit_success.replace("%s", company.getRemark()));
 		} else {
-			notice.setContent(TsjxConstant.company_audit_failure.replace("%s", infomation.getRemark()));
+			notice.setContent(TsjxConstant.company_audit_failure.replace("%s", company.getRemark()));
 		}
 		noticeService.insert(notice);
 		//修改用户用户的消息未读属性
@@ -119,7 +112,7 @@ public class AdminInfomationController {
 		userService.update(user);
 
 		Result<String> result = new Result<String>();
-		result.setMessage("修改成功！");
+		result.setMessage("操作成功！");
 		result.setResult(true);
 		return result;
 	}

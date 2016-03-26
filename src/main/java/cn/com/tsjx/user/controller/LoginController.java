@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
-import cn.com.tsjx.common.util.alg.Base64;
 import cn.com.tsjx.common.web.model.JsonResult;
-import cn.com.tsjx.common.web.model.Page;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
+import cn.com.tsjx.util.SimpleCaptcha;
 
 @Controller
 @RequestMapping(value = "/wap")
@@ -40,8 +42,8 @@ public class LoginController {
     private String validateUrl;
 
     @Resource
-    private InfomationService infomationService ;
-    
+    private InfomationService infomationService;
+
     @RequestMapping(value = "/login")
     public String userLogin(User user, Model model) {
 
@@ -79,20 +81,20 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/index")
-    public String index(Model model,HttpSession httpSession) {
+    public String index(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
         Pager<Infomation> pager = new Pager<Infomation>();
         Infomation infomation = new Infomation();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("entity", infomation);
         pager = infomationService.page(params, pager);
-        //今日推荐 前10
+        // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
         if (user != null && user.getId() != null) {
-           List<Infomation>  list = infomationService.getInfomationsByParam(user, infomation);
-           model.addAttribute("collections", list);
+            List<Infomation> list = infomationService.getInfomationsByParam(user, infomation);
+            model.addAttribute("collections", list);
         }
-        
+
         return "/wap/index";
     }
 
@@ -127,7 +129,7 @@ public class LoginController {
         user.setUserName(user.getEmail());
         user.setDeleted(Deleted.YES.value);
         user.setIsActivate(Deleted.NO.value);
-        user.setPassword(Base64.encode(user.getPassword().getBytes()));
+        user.setPassword(Base64.encodeBase64String(user.getPassword().getBytes()));
         user = userService.insert(user);
         // model.addAttribute("user", user);
         httpSession.setAttribute("user", user);
@@ -166,7 +168,7 @@ public class LoginController {
 
             // 发送邮箱验证
             String url = "http://localhost:8082/tsjx/wap/emailSuccess.htm?r="
-                    + Base64.encode(user.getId().toString().getBytes());
+                    + Base64.encodeBase64String(user.getId().toString().getBytes());
             System.out.println(validateUrl);
             System.out.println(url);
             try {
@@ -181,7 +183,7 @@ public class LoginController {
 
     @RequestMapping(value = "/emailSuccess")
     public String emailSuccess(String r) {
-        String string2 = new String(org.apache.commons.codec.binary.Base64.decodeBase64(r.getBytes()));
+        String string2 = new String(Base64.decodeBase64(r.getBytes()));
         User user = userService.get(Long.valueOf(string2));
         if (user == null) {
             return "/wap/404";
@@ -192,15 +194,62 @@ public class LoginController {
         }
     }
 
-    @RequestMapping(value = "/forgotpwd")
+    @RequestMapping(value = "/forgotpwd", method = RequestMethod.GET)
     public String forgotpwd() {
 
         return "/wap/forgotpwd";
     }
 
-    @RequestMapping(value = "/loginOut")
+    @ResponseBody
+    @RequestMapping(value = "/toForgotpwd", method = RequestMethod.POST)
+    public JsonResult toForgotpwd(String email, String captchaCode, HttpSession httpSession) {
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setSuccess(false);
+        String verifyCode = (String) httpSession.getAttribute("verifyCode");
+        if (verifyCode != null && verifyCode.equals(captchaCode)) {
+            if (email != null) {
+                User entity = new User();
+                entity.setEmail(email);
+                List<User> list = userService.find(entity);
+                if (list == null || list.isEmpty() || list.size() > 1) {
+                    jsonResult.setMessage("邮箱未注册");
+                    return jsonResult;
+                }
+                String password = list.get(0).getPassword();
+                String returnString  = new String(Base64.decodeBase64(password));
+                mailService.sendMail(email, "找回密码", "你的密码是  " + returnString + "   请登录后修改密码", "汤森机械");
+                jsonResult.setSuccess(true);
+            }else {
+                jsonResult.setMessage("邮箱不能为空");
+            }
+        }else {
+            jsonResult.setMessage("验证码错误");
+        }
+        return jsonResult;
+    }
+
+    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
     public String loginOut(HttpSession httpSession) {
         httpSession.removeAttribute("user");
         return "/wap/index";
     }
+    
+    @RequestMapping(value = "/toForgotpwdSuccess", method = RequestMethod.GET)
+    public String toForgotpwdSuccess(HttpSession httpSession) {
+        httpSession.removeAttribute("user");
+        return "/wap/toForgotpwdSuccess";
+    }
+
+    /**
+     * 获取验证码
+     * 
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/getVerifyCode", method = RequestMethod.GET)
+    public void getVerifyMCode(HttpServletRequest request, HttpServletResponse response) {
+        SimpleCaptcha.showCaptcha(request, response, "verifyCode");
+    }
+    
+    
 }

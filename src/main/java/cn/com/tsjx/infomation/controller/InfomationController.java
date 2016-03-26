@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,12 +105,20 @@ public class InfomationController {
     }
 	
 	@RequestMapping(value = "/infoList")
-	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model) {
+	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model,HttpSession httpSession) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		String status = StringUtil.isBlank(infomation.getStatus()) ? InfomationEnum.status_sj.code() : infomation.getStatus();
 		infomation.setStatus(status);	//信息状态为空时，默认查询“上架状态”
 		infomation.setDeleted(InfomationEnum.delete_f.code());
+		
+		//关联用户ID
+		User user = (User)httpSession.getAttribute("user");
+		infomation.setUserId(user == null ? -1 : user.getId());
+		//Long userId = user.getId();
+		//infomation.setUserId(userId);
+		
+		pager.setPageSize(4);
 		
 		params.put("entity", infomation);
 		pager = infomationService.page(params, pager);

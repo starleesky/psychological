@@ -28,8 +28,8 @@
                 <select class="form-control" name="auditStatus" ng-change="list.fetch()"
                         ng-model="list.filter.isActivate">
                     <option value="">是否激活</option>
-                    <option value="0">系统公告</option>
-                    <option value="1">用户消息</option>
+                    <option value="0">是</option>
+                    <option value="1">否</option>
                 </select>
             </div>
             <div class="form-group pull-left">
@@ -65,6 +65,7 @@
             <th>是否激活</th>
             <th>用户类型</th>
             <th>最后登录时间</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>

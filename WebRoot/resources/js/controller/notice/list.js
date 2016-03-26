@@ -23,7 +23,7 @@ define(function (require) {
                         templateUrl: angular.path + '/resources/templates/notice/notice_edit.html?data='+new Date(),
                         backdrop: 'static',
                         scope:$scope,
-                        size: 'lg'
+                        size: 'md'
                     });
                 };
 
@@ -33,6 +33,7 @@ define(function (require) {
                         templateUrl: angular.path + '/resources/templates/notice/notice_add.html?data='+new Date(),
                         controller: 'addNewCtrl',
                         backdrop: 'static',
+                        size:'md',
                         resolve: {
                             scope: function () {
                                 return $scope;
@@ -44,11 +45,12 @@ define(function (require) {
                 //删除
                 $scope.deleteOne = function(data,$index){
                     if(confirm("确认删除？")){
-                        $http.post(angular.path+"/admin/notice/del?id="+data.id)
+                        $http.get(angular.path+"/admin/notice/del?id="+data.id)
                             .success(function(resp){
                                 if(resp.result){
                                     alert("删除成功！");
-                                    $scope.list.data.data.splice($index,1);
+                                    //$scope.list.data.splice($index,1);
+                                    $scope.list.fetch();
                                 }else{
                                     alert("删除失败，请重试！");
                                 }
@@ -64,9 +66,9 @@ define(function (require) {
                     $http.post(angular.path+"/admin/notice/update",$scope.data)
                         .success(function(resp){
                             if(resp.result){
-                                if(index>=0&&list.data.data.length>0){
-                                    list.data.data[index] = angular.copy($scope.data);
-                                }
+                                list.data[index] = angular.copy($scope.data);
+                                //alert(list.data.data.length);
+                                $scope.list.fetch();
                                 modal.close();
                             }else{
                                 alert(resp.message);

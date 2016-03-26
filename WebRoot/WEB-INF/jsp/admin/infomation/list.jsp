@@ -57,7 +57,7 @@
 						<option value="2" >发布</option>
 						<option value="3" >下架</option>
 						<option value="4" >已售</option>
-						<option value="0">认证状态</option>
+						<option value="0">草稿箱</option>
 					</select>
 				</div>
 

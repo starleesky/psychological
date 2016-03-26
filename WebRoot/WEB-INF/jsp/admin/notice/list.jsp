@@ -47,6 +47,7 @@
             <th>公告类型</th>
             <th>公告标题</th>
             <th>公告内容</th>
+            <th>用户ID</th>
             <th>创建时间</th>
             <th>操作</th>
         </tr>
@@ -61,6 +62,7 @@
             </td>
             <td ng-bind="c.title"></td>
             <td ng-bind="c.content"></td>
+            <td ng-bind="c.userId"></td>
             <td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td>
                 <button class="btn btn-primary" ng-click="edit(c,$index)">修改</button>

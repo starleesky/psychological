@@ -68,7 +68,10 @@ public class AdminNoticeController {
 	@ResponseBody
 	public Result<String> add(@RequestBody Notice notice, Model model) {
 
+		notice.setNoticeType(NoticeEnum.notice_type_admin.code());
 		noticeService.insert(notice);
+		//强制更新所有用户的消息状态
+		userService.updateMsgAll();
 		Result<String> result = new Result<String>();
 		result.setMessage("操作成功！");
 		result.setResult(true);
@@ -87,13 +90,9 @@ public class AdminNoticeController {
 
 	@ResponseBody
 	@RequestMapping(value = "/notice/del", method = RequestMethod.GET)
-	public Result<Boolean> del(Long[] ids) {
+	public Result<Boolean> del(Long id) {
 		Result<Boolean> result = new Result<Boolean>();
-		List<Long> list = new ArrayList<Long>();
-		for (Long id : ids) {
-			list.add(id);
-		}
-		noticeService.delete(list);
+		noticeService.delete(id);
 		result.setMessage("删除成功");
 		result.setObject(true);
 		result.setResult(true);

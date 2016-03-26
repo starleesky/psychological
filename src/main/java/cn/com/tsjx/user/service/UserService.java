@@ -8,11 +8,17 @@ import cn.com.tsjx.user.entity.User;
  */
 public interface UserService extends BaseService<User, Long> {
 
-    /**
-     * 通过用户名来查询用户
-     * 用户可以通过用户名或手机或邮箱 加密码的方式登录
-     * @param 
-     * @return
-     */
-    public User getUsersByParam(String userName,String password);
+	/**
+	 * 通过用户名来查询用户
+	 * 用户可以通过用户名或手机或邮箱 加密码的方式登录
+	 *
+	 * @param
+	 * @return
+	 */
+	public User getUsersByParam(String userName, String password);
+
+	/**
+	 * 更新所有用户消息状体
+	 */
+	public void updateMsgAll();
 }

@@ -98,12 +98,12 @@ public class AdminInfomationController {
 		AuditRecord auditRecord = new AuditRecord();
 		auditRecord.setAuditType(AuditRecordEnum.audit_type_information.code());
 		auditRecord.setRemark(infomation.getRemark());
-		auditRecord.setUserId(adminUser.getId());
+		auditRecord.setUserId(infomation.getUserId());
 		auditRecord.setAuditStatus(infomation.getAuditStatus());
 		auditRecordService.insert(auditRecord);
 		//发送个人消息
 		Notice notice = new Notice();
-		notice.setUserId(adminUser.getId());
+		notice.setUserId(infomation.getUserId());
 		notice.setNoticeType(NoticeEnum.notice_type_user.code());
 		notice.setTitle(TsjxConstant.company_audit_title);
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
@@ -114,7 +114,7 @@ public class AdminInfomationController {
 		noticeService.insert(notice);
 		//修改用户用户的消息未读属性
 		User user = new User();
-		user.setId(adminUser.getId());
+		user.setId(infomation.getUserId());
 		user.setIsNewMessage("1");//默认一条
 		userService.update(user);
 

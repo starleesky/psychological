@@ -104,7 +104,7 @@ public class MainController {
 	public String adminNoticeInit(Model model) {
 
 		model.addAttribute("notice", true);
-		return "admin/user/list";
+		return "admin/notice/list";
 	}
 
 	@RequestMapping(value = "/user/list")

@@ -22,9 +22,14 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 		return this.userDao;
 	}
 
-    @Override
-    public User getUsersByParam(String userName, String password) {
-        password = Base64.encode(password.toString().getBytes());
-        return userDao.getUsersByParam(userName, password);
-    }
+	@Override
+	public User getUsersByParam(String userName, String password) {
+		password = Base64.encode(password.toString().getBytes());
+		return userDao.getUsersByParam(userName, password);
+	}
+
+	@Override public void updateMsgAll() {
+		userDao.updateMsgAll();
+
+	}
 }

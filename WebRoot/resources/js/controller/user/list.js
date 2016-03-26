@@ -1,6 +1,8 @@
 define(function (require) {
 
     require('js/service/commonList');
+    require('js/service/common/citys');
+    require('js/service/common/address');
     angular.module('App')
 
         .controller('mainCtrl', ['$scope', '$http', 'commonList', '$modal',
@@ -17,10 +19,10 @@ define(function (require) {
                 $scope.vaildScore = false;
                 var modal = null,index = null;
                 $scope.edit = function (rw,$index) {
-                    $scope.data = angular.copy(rw);
+                    $scope.user = angular.copy(rw);
                     index = $index;
                     modal = $modal.open({
-                        templateUrl: angular.path + '/resources/templates/notice/user_edit.html?data='+new Date(),
+                        templateUrl: angular.path + '/resources/templates/user/user_edit.html?data='+new Date(),
                         backdrop: 'static',
                         scope:$scope,
                         size: 'lg'
@@ -30,7 +32,7 @@ define(function (require) {
                 //打开新增窗口
                 $scope.addNew = function(){
                     var modal = $modal.open({
-                        templateUrl: angular.path + '/resources/templates/notice/user_add.html?data='+new Date(),
+                        templateUrl: angular.path + '/resources/templates/user/user_add.html?data='+new Date(),
                         controller: 'addNewCtrl',
                         backdrop: 'static',
                         resolve: {
@@ -44,11 +46,12 @@ define(function (require) {
                 //删除
                 $scope.deleteOne = function(data,$index){
                     if(confirm("确认删除？")){
-                        $http.post(angular.path+"/admin/user/del?id="+data.id)
+                        $http.get(angular.path+"/admin/user/del?id="+data.id)
                             .success(function(resp){
                                 if(resp.result){
                                     alert("删除成功！");
-                                    $scope.list.data.data.splice($index,1);
+                                    //$scope.list.data.data.splice($index,1);
+                                    list.fetch();
                                 }else{
                                     alert("删除失败，请重试！");
                                 }
@@ -61,12 +64,13 @@ define(function (require) {
 
                 //更新
                 $scope.updateParam = function(){
-                    $http.post(angular.path+"/admin/user/update",$scope.data)
+                    $http.post(angular.path+"/admin/user/update",$scope.user)
                         .success(function(resp){
                             if(resp.result){
-                                if(index>=0&&list.data.data.length>0){
-                                    list.data.data[index] = angular.copy($scope.data);
-                                }
+                                //if(index>=0&&list.data.data.length>0){
+                                //    list.data.data[index] = angular.copy($scope.data);
+                                //}
+                                list.fetch();
                                 modal.close();
                             }else{
                                 alert(resp.message);
@@ -86,21 +90,25 @@ define(function (require) {
         ]).controller('addNewCtrl', ['$scope', '$http','$modalInstance','scope',
         function ($scope, $http ,$modalInstance, scope) {
 
-            var data = $scope.data = {
-                insTypeId:0
+            var data = $scope.user = {
+                isActivate:'T'
             };
 
-            $scope.add = function () {
+            $scope.submitting = $scope.submitted = false;
 
-                $http.post(angular.path + '/admin/user/add', $scope.data)
+            $scope.add = function () {
+                $scope.submitting = true;
+                $http.post(angular.path + '/admin/user/add', $scope.user)
                     .success(function (resp) {
                         if(resp.result){
                             scope.initList();
                         }else{
+                            $scope.submitting = false;
                             alert("创建失败，请重试");
                         }
                     })
                     .error(function () {
+                        $scope.submitting = false;
                             alert("创建失败，请重试");
                         }
                     );

@@ -12,6 +12,7 @@ define(function (require) {
                 var modal = null;
                 $scope.infomation.companyName = angular.companyName;
                 $scope.infomation.id = angular.companyId;
+                $scope.infomation.userId = angular.userId;
                 $scope.openModel = function (data) {
                     $scope.infomation.auditStatus = data;
                     //if(data==1){

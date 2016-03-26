@@ -15,8 +15,8 @@ package cn.com.tsjx.common.constants.enums;
  */
 public enum NoticeEnum {
 
-	notice_type_user("0", "信息发布", "notice_type"),
-	notice_type_admin("1", "企业审核", "notice_type"),
+	notice_type_admin("0", "系统公告", "notice_type"),
+	notice_type_user("1", "用户消息", "notice_type"),
 
 
 	deleted_t("T", "删除", "deleted"),

@@ -192,7 +192,7 @@
                     <a href="${ctx}/admin/user/list"><i class="fa fa-fw fa-edit"></i> 用户管理</a>
                 </li>
                 <li ng-class="{true: 'active', false: 'noac'}['${notice}']">
-                    <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> 系统公告管理</a>
+                    <a href="${ctx}/admin/notice/list"><i class="fa fa-fw fa-desktop"></i> 系统公告管理</a>
                 </li>
                 <%--<li>--%>
                 <%--<a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>--%>

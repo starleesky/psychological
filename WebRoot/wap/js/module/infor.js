@@ -1,4 +1,4 @@
-define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload'], function ($, url, ajax,box,Lazyload) {
+define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/lazystream'], function ($, url, ajax,box,Lazyload,LazyStream) {
 
 	//根据当前选中的信息状态，设定class=current
 	var curClass = function() {
@@ -16,7 +16,7 @@ define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload'], function 
     });
 
     //var Lazyload = require(['plug/load/lazyload']);
-    var LazyStream = require(['plug/load/lazystream']);
+    //var LazyStream = require(['plug/load/lazystream']);
 
     var $view = $('.page-view-body')
 

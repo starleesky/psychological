@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
+import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.common.web.model.Pager;
@@ -110,15 +111,11 @@ public class InfomationController {
 		
 		String status = StringUtil.isBlank(infomation.getStatus()) ? InfomationEnum.status_sj.code() : infomation.getStatus();
 		infomation.setStatus(status);	//信息状态为空时，默认查询“上架状态”
-		infomation.setDeleted(InfomationEnum.delete_f.code());
+		infomation.setDeleted(Deleted.NO.value);
 		
 		//关联用户ID
 		User user = (User)httpSession.getAttribute("user");
 		infomation.setUserId(user == null ? -1 : user.getId());
-		//Long userId = user.getId();
-		//infomation.setUserId(userId);
-		
-		pager.setPageSize(4);
 		
 		params.put("entity", infomation);
 		pager = infomationService.page(params, pager);
@@ -128,6 +125,37 @@ public class InfomationController {
 		model.addAttribute("status", status);
 		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
 		
+		infoCounts(infomation,model,user);
+		
+		return "/wap/infomation_list";
+	}
+	
+	/**
+	 * 查询“我的收藏”列表
+	 * @param pager
+	 * @param infomation
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 */
+	@RequestMapping(value = "/colleInfoList")
+	public String colleInfoList(Pager<Infomation> pager, Infomation infomation, Model model,HttpSession httpSession) {
+		
+		//关联用户ID
+		User user = (User)httpSession.getAttribute("user");
+		
+		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+		model.addAttribute("pager", collectInfo);
+		
+		model.addAttribute("status", "9");
+		model.addAttribute("statusMc", "收藏");
+		
+		infoCounts(infomation,model,user);
+		
+		return "/wap/infomation_list";
+	}
+	
+	public void infoCounts(Infomation infomation, Model model, User user) {
 		/*查询不同信息状态数字*/
 		//1、上架
 		infomation.setStatus(InfomationEnum.status_sj.code());
@@ -149,7 +177,11 @@ public class InfomationController {
 		List<Infomation> li_cg = infomationService.find(infomation);
 		model.addAttribute("cnt_cg", li_cg.size());
 		
-		return "/wap/infomation_list";
+		//9、收藏
+		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+		model.addAttribute("cnt_sc", collectInfo.size());
+		
+		
 	}
 
 }

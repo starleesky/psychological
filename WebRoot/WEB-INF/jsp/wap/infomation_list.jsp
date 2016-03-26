@@ -47,8 +47,8 @@
                     <span class="num">${cnt_cg }</span>
                     <span class="num-desc">草稿</span>
                 </a>
-                <a href="" >
-                    <span class="num"></span>
+                <a href="${ctx }/infomation/colleInfoList?status=9" status="9">
+                    <span class="num">${cnt_sc }</span>
                     <span class="num-desc">收藏</span>
                 </a>
             </div>

@@ -41,7 +41,8 @@ public class LoginController {
     @Resource
     public MailService mailService;
 
-    
+    @Value("${validateUrl}")
+    private String validateUrl;
 
     @Resource
     private InfomationService infomationService;
@@ -170,7 +171,7 @@ public class LoginController {
             user = userService.get(user.getId());
 
             // 发送邮箱验证
-            String url =  Base64.encodeBase64String(user.getId().toString().getBytes());
+            String url =  validateUrl + Base64.encodeBase64String(user.getId().toString().getBytes());
             System.out.println(url);
             try {
                 mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='" + url + "'>点击我完成注册</a>", "汤森机械");

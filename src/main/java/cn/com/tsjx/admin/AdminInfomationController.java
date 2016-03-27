@@ -1,10 +1,3 @@
-/*
- * Copyright (C), 2014-2015, 杭州小卡科技有限公司
- * FileName: MainController.java
- * Author:   muxing
- * Date:    2016/3/13 23:55
- * Description:
- */
 package cn.com.tsjx.admin;
 
 import cn.com.tsjx.attch.entity.Attch;
@@ -13,7 +6,10 @@ import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.auditRecord.service.AuditRecordService;
 import cn.com.tsjx.brand.entity.Brand;
 import cn.com.tsjx.brand.service.BrandService;
-import cn.com.tsjx.common.constants.enums.*;
+import cn.com.tsjx.common.constants.enums.AuditRecordEnum;
+import cn.com.tsjx.common.constants.enums.InfomationEnum;
+import cn.com.tsjx.common.constants.enums.NoticeEnum;
+import cn.com.tsjx.common.constants.enums.TsjxConstant;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.infomation.entity.Infomation;

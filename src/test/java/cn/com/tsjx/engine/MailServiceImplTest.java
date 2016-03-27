@@ -22,7 +22,7 @@ import cn.com.tsjx.sys.MailService;
  * @Version V1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-mvc.xml","classpath:spring-mybatis.xml"})
+@ContextConfiguration(locations = {"classpath:spring-mybatis.xml"})
 public class MailServiceImplTest {
     
     @Resource(name = "mailService")

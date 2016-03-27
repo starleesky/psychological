@@ -3,11 +3,17 @@ define(function (require) {
     require('js/service/commonList');
     require('js/service/common/citys');
     require('js/service/common/address');
+    require('js/directives/address');
+    require('js/filters/address');
+
+    var http = require('bower_components/angularext/angularExt').http;
+
     angular.module('App')
 
-        .controller('mainCtrl', ['$scope', '$http', 'commonList', '$modal',
-            function ($scope, $http, commonList, $modal) {
+        .controller('mainCtrl', ['$scope', '$http', 'commonList', '$modal', 'address',
+            function ($scope, $http, commonList, $modal, address) {
 
+                $scope.provinceList = address.getProvinceList();
                 var list = $scope.list = commonList;
                 list.filter.key = '';
                 list.url = "/admin/user/list/getData";
@@ -17,22 +23,27 @@ define(function (require) {
                 var param = $scope.param = {};
 
                 $scope.vaildScore = false;
-                var modal = null,index = null;
-                $scope.edit = function (rw,$index) {
+                var modal = null, index = null;
+                $scope.edit = function (rw, $index) {
                     $scope.user = angular.copy(rw);
                     index = $index;
                     modal = $modal.open({
-                        templateUrl: angular.path + '/resources/templates/user/user_edit.html?data='+new Date(),
+                        templateUrl: angular.path + '/resources/templates/user/user_edit.html?data=' + new Date(),
                         backdrop: 'static',
-                        scope:$scope,
-                        size: 'lg'
+                        scope: $scope,
+                        size: 'lg',
+                        resolve: {
+                            user: function () {
+                                return $scope.user;
+                            }
+                        }
                     });
                 };
 
                 //打开新增窗口
-                $scope.addNew = function(){
+                $scope.addNew = function () {
                     var modal = $modal.open({
-                        templateUrl: angular.path + '/resources/templates/user/user_add.html?data='+new Date(),
+                        templateUrl: angular.path + '/resources/templates/user/user_add.html?data=' + new Date(),
                         controller: 'addNewCtrl',
                         backdrop: 'static',
                         resolve: {
@@ -44,35 +55,43 @@ define(function (require) {
                 }
 
                 //删除
-                $scope.deleteOne = function(data,$index){
-                    if(confirm("确认删除？")){
-                        $http.get(angular.path+"/admin/user/del?id="+data.id)
-                            .success(function(resp){
-                                if(resp.result){
+                $scope.deleteOne = function (data, $index) {
+                    if (confirm("确认删除？")) {
+                        $http.get(angular.path + "/admin/user/del?id=" + data.id)
+                            .success(function (resp) {
+                                if (resp.result) {
                                     alert("删除成功！");
                                     //$scope.list.data.data.splice($index,1);
                                     list.fetch();
-                                }else{
+                                } else {
                                     alert("删除失败，请重试！");
                                 }
                             })
-                            .error(function(){
+                            .error(function () {
                                 alert("删除失败，请重试！");
                             });
                     }
                 }
 
                 //更新
-                $scope.updateParam = function(){
-                    $http.post(angular.path+"/admin/user/update",$scope.user)
-                        .success(function(resp){
-                            if(resp.result){
+                $scope.updateParam = function () {
+                    //$scope.submitted = true;
+                    //if ($scope.edit_form.$invalid) {
+                    //    return;
+                    //}
+                    alert($scope.user.userName);
+                    alert($scope.user.mobile);
+                    alert($scope.user.qq);
+                    return;
+                    $http.post(angular.path + "/admin/user/update", $scope.user)
+                        .success(function (resp) {
+                            if (resp.result) {
                                 //if(index>=0&&list.data.data.length>0){
                                 //    list.data.data[index] = angular.copy($scope.data);
                                 //}
                                 list.fetch();
                                 modal.close();
-                            }else{
+                            } else {
                                 alert(resp.message);
                             }
                         });
@@ -83,32 +102,45 @@ define(function (require) {
                     modal.close();
                 }
 
-                $scope.initList = function(){
+                $scope.initList = function () {
                     list.fetch();
                 }
             }
-        ]).controller('addNewCtrl', ['$scope', '$http','$modalInstance','scope',
-        function ($scope, $http ,$modalInstance, scope) {
+        ]).controller('addNewCtrl', ['$scope', '$http', '$modalInstance', 'address', 'scope',
+        function ($scope, $http, $modalInstance, address, scope) {
 
+
+            $scope.provinceList = address.getProvinceList();
+
+            //$scope.cityList = address.getCitysByPid();
+            $scope.$watch('user.provinceId', function () {
+                $scope.user.provinceName = $scope.provinceList[$scope.user.provinceId];
+            }, true);
+            $scope.$watch('user.cityId', function () {
+                $scope.user.cityName = $scope.user.cityId;
+            }, true);
             var data = $scope.user = {
-                isActivate:'T'
+                isActivate: 'T'
             };
 
             $scope.submitting = $scope.submitted = false;
 
             $scope.add = function () {
-                $scope.submitting = true;
+                $scope.submitted = true;
+                if ($scope.edit_form.$invalid) {
+                    return;
+                }
                 $http.post(angular.path + '/admin/user/add', $scope.user)
                     .success(function (resp) {
-                        if(resp.result){
+                        if (resp.result) {
                             scope.initList();
-                        }else{
+                        } else {
                             $scope.submitting = false;
                             alert("创建失败，请重试");
                         }
                     })
                     .error(function () {
-                        $scope.submitting = false;
+                            $scope.submitting = false;
                             alert("创建失败，请重试");
                         }
                     );

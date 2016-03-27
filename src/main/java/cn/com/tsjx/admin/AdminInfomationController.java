@@ -64,6 +64,8 @@ public class AdminInfomationController {
 	public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", infomation);
+		pager.setPageSort("create_time");
+		pager.setPageOrder("desc");
 		pager = infomationService.page(params, pager);
 		return pager;
 	}

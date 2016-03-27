@@ -8,13 +8,13 @@ define(function (require) {
 			template: '<select ng-options="id*1 as name for (id, name) in citys"></select>',
 			replace: true,
 			scope: {
-				proviceId: '=provice'
+				provinceId: '=provice'
 			},
 			link: function postLink(scope, element, attrs) {
 
-				scope.citys = address.getCitysByPid(scope.proviceId);
+				scope.citys = address.getCitysByPid(scope.provinceId);
 
-				scope.$watch('proviceId', function (newVal, oldVal) {
+				scope.$watch('provinceId', function (newVal, oldVal) {
 					if (newVal !== oldVal) {
 						scope.citys = address.getCitysByPid(newVal);					
 					}

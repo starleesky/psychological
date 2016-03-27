@@ -59,6 +59,8 @@ public class AdminCompanyController {
 	public Pager<Company> list(Pager<Company> pager, Company company, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", company);
+		pager.setPageSort("create_time");
+		pager.setPageOrder("desc");
 		pager = companyService.page(params, pager);
 		return pager;
 	}

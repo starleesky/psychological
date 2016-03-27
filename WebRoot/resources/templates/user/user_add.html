@@ -17,7 +17,7 @@
 			<label for="phone" class="col-sm-2 control-label">手机号</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号" required ng-model="user.mobile" ng-pattern="/^\d{11}$/">
-				<span class="form-error" ng-show="submitted && add_form.phone.$invalid">请填写正确的手机号</span>
+				<span class="form-error" ng-show="submitted && add_form.mobile.$invalid">请填写正确的手机号</span>
 			</div>
 		</div>
 
@@ -33,7 +33,7 @@
 			<label for="phone" class="col-sm-2 control-label">邮箱</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="email" name="email" placeholder="邮箱" required ng-model="user.email">
-				<span class="form-error" ng-show="submitted && add_form.telephone.$invalid">请填写邮箱地址</span>
+				<span class="form-error" ng-show="submitted && add_form.email.$invalid">请填写邮箱地址</span>
 			</div>
 		</div>
 
@@ -49,20 +49,20 @@
 			<label for="phone" class="col-sm-2 control-label">qq</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="qq" name="qq" placeholder="qq" required ng-model="user.qq" >
-				<span class="form-error" ng-show="submitted && add_form.password.$invalid">请填写qq号码</span>
+				<span class="form-error" ng-show="submitted && add_form.qq.$invalid">请填写qq号码</span>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label for="city" class="col-sm-2 control-label">所在城市</label>
 			<div class="col-sm-3">
-				<select name="provnice" required ng-model="company.provinceId" class="form-control" ng-options="id as name for (id, name) in proviceList">
+				<select name="provnice" required ng-model="user.provinceId" class="form-control" ng-options="id as name for (id, name) in provinceList">
 					<!-- <option value="{{c.cityId}}" ng-repeat="c in cityList">{{c.cityName}}</option> -->
 				</select>
 				<span class="form-error" ng-show="submitted && add_form.provnice.$invalid">必须填写</span>
 			</div>
 			<div class="col-sm-3">
-				<city-list name="city" required ng-model="company.cityId" provice="company.provinceId" class="form-control"></city-list>
+				<city-list name="city" required ng-model="user.cityId" provice="user.provinceId" class="form-control"></city-list>
 				<!-- <select name="city" required ng-model="company.bankCity" class="form-control" city-list="">
                     <option value="{{c.cityId}}" ng-repeat="c in cityList">{{c.cityName}}</option>
                 </select> -->

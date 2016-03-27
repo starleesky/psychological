@@ -75,8 +75,23 @@
             <td ng-bind="c.email"></td>
             <td ng-bind="c.provinceName"></td>
             <td ng-bind="c.cityName"></td>
-            <td ng-bind="c.businessScope"></td>
-            <td ng-bind="c.businessNature"></td>
+            <td>
+                <div ng-switch on="c.businessScope">
+                    <span ng-switch-when="1">工程机械</span>
+                    <span ng-switch-when="2">矿山机械</span>
+                    <span ng-switch-when="3">林业机械</span>
+                    <span ng-switch-when="4">农历机械</span>
+                    <span ng-switch-when="5">运输机械</span>
+                </div>
+            </td>
+            <td>
+                <div ng-switch on="c.businessNature">
+                    <span ng-switch-when="0">出售</span>
+                    <span ng-switch-when="1">租赁</span>
+                    <span ng-switch-when="2">求购</span>
+                    <span ng-switch-when="3">求租</span>
+                </div>
+            </td>
             <td>
                 <div ng-switch on="c.isActivate">
                     <span ng-switch-when="T">激活</span>
@@ -93,7 +108,7 @@
             </td>
             <td ng-bind="c.lastLoginTime | date : 'yyyy-MM-dd'"></td>
             <td>
-                <button class="btn btn-primary" ng-click="showDetail(c,$index)">查询详情</button>
+                <%--<button class="btn btn-primary" ng-click="showDetail(c,$index)">查询详情</button>--%>
                 <button class="btn btn-primary" ng-click="edit(c,$index)">修改</button>
                 <button class="btn btn-primary" ng-click="deleteOne(c,$index)">删除</button>
             </td>

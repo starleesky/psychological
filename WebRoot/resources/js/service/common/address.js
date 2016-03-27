@@ -13,11 +13,11 @@ define(function (require) {
 			this.getProvinceList = function () {
 				if (!provinces) {
 					provinces = {};
-					$http.get(angular.path + '/common/get/address/getprovinces')
+					$http.get(angular.path + '/region/listRegion?id=0')
 						.success(function (resp) {
-							if (resp instanceof Array) {
-								angular.forEach(resp, function (p) {
-									provinces[p.id] = p.name;
+							if (resp.object instanceof Array) {
+								angular.forEach(resp.object, function (p) {
+									provinces[p.id] = p.regionName;
 								});
 							} 
 						})
@@ -36,11 +36,11 @@ define(function (require) {
 				}
 				if (!citys[pid]) {
 					citys[pid] = {};
-					$http.get(angular.path + '/common/get/address/getcities?provinceId=' + pid)
+					$http.get(angular.path + '/region/listRegion?id=' + pid)
 						.success(function (resp) {
-							if (resp instanceof Array) {
-								angular.forEach(resp, function (c) {
-									citys[pid][c.id] = c.name;
+							if (resp.object instanceof Array) {
+								angular.forEach(resp.object, function (c) {
+									citys[pid][c.id] = c.regionName;
 								});
 							}
 						})

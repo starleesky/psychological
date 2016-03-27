@@ -8,6 +8,7 @@
 package cn.com.tsjx.demo;
 
 import cn.com.tsjx.common.util.json.JsonMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +39,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/wap")
 public class DemoController {
+
+	// 写入文件
+	@Value("${file.uplaoddir}")
+	String path;
 
 	@RequestMapping(value = "/search")
 	public String search() {

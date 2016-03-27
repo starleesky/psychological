@@ -67,7 +67,7 @@ public class MainController {
 		Result<String> result = new Result<String>();
 		//		System.out.println(user.getUserName() + user.getPassword());
 		result.setResult(false);
-		user = userService.getUsersByParam(user.getUserName(), Base64.encode(user.getPassword().toString().getBytes()));
+		user = userService.getUsersByParam(user.getUserName(), user.getPassword());
 		if (user == null) {
 			result.setObject("1");
 			result.setMessage("用户名或密码错误");

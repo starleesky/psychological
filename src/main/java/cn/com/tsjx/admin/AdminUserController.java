@@ -7,11 +7,9 @@
  */
 package cn.com.tsjx.admin;
 
-import cn.com.tsjx.auditRecord.service.AuditRecordService;
 import cn.com.tsjx.common.model.Result;
+import cn.com.tsjx.common.util.alg.Base64;
 import cn.com.tsjx.common.web.model.Pager;
-import cn.com.tsjx.notice.entity.Notice;
-import cn.com.tsjx.notice.service.NoticeService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -22,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,13 +42,18 @@ public class AdminUserController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", user);
 		pager = userService.page(params, pager);
+		for (User user1 : pager.getItems()) {
+			if (Base64.decode(user1.getPassword()) != null) {
+				user1.setPassword(new String(Base64.decode(user1.getPassword())));
+			}
+		}
 		return pager;
 	}
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> add(@RequestBody User user, Model model) {
-
+		user.setPassword(Base64.encode(user.getPassword().getBytes()));
 		userService.insert(user);
 		Result<String> result = new Result<String>();
 		result.setMessage("操作成功！");
@@ -63,6 +64,8 @@ public class AdminUserController {
 	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
 	@ResponseBody
 	public Result<String> update(@RequestBody User user) {
+
+		user.setPassword(Base64.encode(user.getPassword().getBytes()));
 		userService.update(user);
 		Result<String> result = new Result<String>();
 		result.setMessage("操作成功！");

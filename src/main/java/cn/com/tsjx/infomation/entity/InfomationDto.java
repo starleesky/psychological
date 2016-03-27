@@ -7,6 +7,8 @@
  */
 package cn.com.tsjx.infomation.entity;
 
+import java.util.List;
+
 /**
  * InfomationDto
  *
@@ -18,6 +20,21 @@ public class InfomationDto extends Infomation {
 	private String remark;
 
 	private String auditStatus;
+
+	private List<String> imgUrl;
+
+	// 省份|
+	private String provinceName;
+	// 省份ID|
+	private Long provinceId;
+	// 城市|
+	private String cityName;
+	// 城市ID
+	private Long cityId;
+
+	private String newBrand;
+
+	private String newModel;
 
 	public String getRemark() {
 		return remark;
@@ -33,5 +50,61 @@ public class InfomationDto extends Infomation {
 
 	public void setAuditStatus(String auditStatus) {
 		this.auditStatus = auditStatus;
+	}
+
+	public List<String> getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(List<String> imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getProvinceName() {
+		return provinceName;
+	}
+
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public Long getProvinceId() {
+		return provinceId;
+	}
+
+	public void setProvinceId(Long provinceId) {
+		this.provinceId = provinceId;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public Long getCityId() {
+		return cityId;
+	}
+
+	public void setCityId(Long cityId) {
+		this.cityId = cityId;
+	}
+
+	public String getNewBrand() {
+		return newBrand;
+	}
+
+	public void setNewBrand(String newBrand) {
+		this.newBrand = newBrand;
+	}
+
+	public String getNewModel() {
+		return newModel;
+	}
+
+	public void setNewModel(String newModel) {
+		this.newModel = newModel;
 	}
 }

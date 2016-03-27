@@ -10,6 +10,8 @@ import cn.com.tsjx.notice.dao.NoticeDao;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
 
+import java.util.List;
+
 @Service("noticeService")
 public class NoticeServiceImpl extends BaseServiceImpl<Notice, Long> implements NoticeService {
 
@@ -20,4 +22,9 @@ public class NoticeServiceImpl extends BaseServiceImpl<Notice, Long> implements 
 	protected BaseDao<Notice, Long> getBaseDao() {
 		return this.noticeDao;
 	}
+
+	@Override public List<Notice> getUserAndAdminNotice(Notice notice) {
+		return noticeDao.getUserAndAdminNotice(notice);
+	}
+
 }

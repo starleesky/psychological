@@ -13,6 +13,10 @@ define(function (require) {
                 $scope.infomation.companyName = angular.companyName;
                 $scope.infomation.id = angular.companyId;
                 $scope.infomation.userId = angular.userId;
+                $scope.infomation.isNew = angular.isNew;
+                $scope.infomation.brandName = angular.brandName;
+                $scope.infomation.modelName = angular.modelName;
+                $scope.infomation.catagoryId = angular.catagoryId;
                 $scope.openModel = function (data) {
                     $scope.infomation.auditStatus = data;
                     //if(data==1){

@@ -11,12 +11,16 @@ import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.auditRecord.service.AuditRecordService;
+import cn.com.tsjx.brand.entity.Brand;
+import cn.com.tsjx.brand.service.BrandService;
 import cn.com.tsjx.common.constants.enums.*;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
+import cn.com.tsjx.models.entity.Models;
+import cn.com.tsjx.models.service.ModelsService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
 import cn.com.tsjx.user.entity.User;
@@ -59,6 +63,12 @@ public class AdminInfomationController {
 	@Resource
 	NoticeService noticeService;
 
+	@Resource
+	BrandService brandService;
+
+	@Resource
+	ModelsService modelsService;
+
 	@RequestMapping(value = "/infomation/list/getData")
 	@ResponseBody
 	public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
@@ -88,18 +98,34 @@ public class AdminInfomationController {
 	@ResponseBody
 	public Result<String> update(@RequestBody InfomationDto infomation, HttpSession httpSession) {
 
+		String remark = infomation.getRemark();
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
 			infomation.setStatus(InfomationEnum.status_sj.code());
+			//如果是新增品牌型号，添加到基础库
+			if ("1".equals(infomation.getIsNew()) ) {
+				Brand brand = new Brand();
+				brand.setBrandName(infomation.getBrandName());
+				brand.setCatagoryId(infomation.getCatagoryId());
+				brand = brandService.insert(brand);
+				Models models = new Models();
+				models.setBrandId(brand.getId());
+				models.setModelsName(infomation.getModelName());
+				models = modelsService.insert(models);
+
+				infomation.setBrandId(brand.getId());
+				infomation.setModelId(models.getId());
+			}
 		} else {
 			infomation.setStatus(InfomationEnum.status_cg.code());
 		}
+		infomation.setRemark(null);
 		infomationService.update(infomation);
 
 		//新增审核人记录表
 		User adminUser = (User) httpSession.getAttribute("adminUser");
 		AuditRecord auditRecord = new AuditRecord();
 		auditRecord.setAuditType(AuditRecordEnum.audit_type_information.code());
-		auditRecord.setRemark(infomation.getRemark());
+		auditRecord.setRemark(remark);
 		auditRecord.setUserId(infomation.getUserId());
 		auditRecord.setAuditStatus(infomation.getAuditStatus());
 		auditRecordService.insert(auditRecord);
@@ -109,9 +135,9 @@ public class AdminInfomationController {
 		notice.setNoticeType(NoticeEnum.notice_type_user.code());
 		notice.setTitle(TsjxConstant.company_audit_title);
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
-			notice.setContent(TsjxConstant.company_audit_success.replace("%s", infomation.getRemark()));
+			notice.setContent(TsjxConstant.company_audit_success.replace("%s", remark));
 		} else {
-			notice.setContent(TsjxConstant.company_audit_failure.replace("%s", infomation.getRemark()));
+			notice.setContent(TsjxConstant.company_audit_failure.replace("%s", remark));
 		}
 		noticeService.insert(notice);
 		//修改用户用户的消息未读属性

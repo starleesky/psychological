@@ -157,26 +157,28 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>${sessionScope.adminUser.userName} <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <%--<li>--%>
+                        <%--<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>--%>
+                    <%--</li>--%>
+                    <%--<li>--%>
+                        <%--<a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>--%>
+                    <%--</li>--%>
+                    <%--<li class="divider"></li>--%>
+                    <%--<li>--%>
+                        <a href="${ctx}/admin/logout"><i class="fa fa-fw fa-power-off"></i>退出</a>
                     </li>
                 </ul>
             </li>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <c:if test="${sessionScope.adminUser.userType==0}">
+
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li ng-class="{'true': 'active', false: 'noac'}['${main}']">
@@ -217,6 +219,22 @@
                 </li>
             </ul>
         </div>
+        </c:if>
+        <c:if test="${sessionScope.adminUser.userType==1}">
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li ng-class="{'true': 'active', false: 'noac'}['${main}']">
+                        <a href="${ctx}/admin/main"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
+                    </li>
+                    <li ng-class="{true: 'active', false: 'noac'}['${infomation}']">
+                        <a href="${ctx}/admin/infomation/list"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息审核</a>
+                    </li>
+                    <li ng-class="{true: 'active', false: 'noac'}['${company}']">
+                        <a href="${ctx}/admin/company/list"><i class="fa fa-fw fa-table"></i> 公司认证审核</a>
+                    </li>
+                </ul>
+            </div>
+        </c:if>
         <!-- /.navbar-collapse -->
     </nav>
 

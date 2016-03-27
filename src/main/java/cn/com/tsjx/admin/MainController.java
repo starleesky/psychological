@@ -60,6 +60,11 @@ public class MainController {
 		return "admin/main";
 	}
 
+	@RequestMapping(value = "/logout")
+	public String logout(Model model) {
+		return "login";
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/login")
 	public Result<String> login(@RequestBody User user, Model model, HttpSession httpSession) {

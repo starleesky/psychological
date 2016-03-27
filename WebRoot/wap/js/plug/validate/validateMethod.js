@@ -13,6 +13,8 @@ define(function(require, exports, module) {
     var Validator = require('./validator');
 
     var box = require('../box');
+    
+    var $ = require('jquery');
 
     var methods =[
         //验证移动电话和固定电话

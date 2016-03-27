@@ -17,7 +17,7 @@ public class pageOutDto {
 
 	private String data="                    <li class=\"pro-box\">"
 			+ "                        <a href=\"view.php\" class=\"pro-img\">"
-			+ "                            <img src=\"../images/img2.jpg\" />"
+			//+ "                            <img src=\"../images/img2.jpg\" />"
 			+ "                        </a>"
 			+ "                        <div class=\"pro-info\">"
 			+ "                            <a href=\"view.php\" class=\"pro-title\">品牌加型号</a>"

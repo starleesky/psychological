@@ -1,8 +1,9 @@
 define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/lazystream'], function ($, url, ajax,box,Lazyload,LazyStream) {
 
 	//根据当前选中的信息状态，设定class=current
+	var curStatus = $("#curStatus").val();
 	var curClass = function() {
-		var curStatus = $("#curStatus").val();
+		
 		$("a[status='" + curStatus + "']").attr("class","current");
 	}
 	
@@ -29,18 +30,22 @@ define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/
     });
 
     var lazyMore = new LazyStream('.jPage', {
-        plUrl: url.demoPageUrl,
+        plUrl: url.moreInfo ,
         paramFormater: function(n) {
             var data = {};
             data.pageNo = n;
             data.isAjax = '1';
-            data.groupsType = $('input[name=group-type]').val();
+            data.groupsType = $("input[name='group-type']").val();
+            data.status = curStatus;
             return data;
         },
+        
         page:1,
+        
         errorText: '<div class="loading">网络错误，点击重试</div>',
         loadingClass: 'loading',
-        loadingText: '<div class="loading"><img src="../images/loading2.gif" class="load-gif" />正在加载，请稍后...</div>',
+        loadingText: '<div class="loading"><img src="' +ctx + '/wap/images/loading2.gif" class="load-gif" />正在加载，请稍后...</div>',
+        //
         load: function(el) {
             Lazyload.load($(el).find('.jImg'));
         },

@@ -103,12 +103,12 @@
                                 <span class="ready-num f-l">浏览<em class="jRNum">次</em></span>
                                 <span class="pro-addr f-r">${info.equipmentLocation }</span>
                             </p>
-                            <p>
+                            <!-- <p>
                                 <span>信息完整度:</span>
                             </p>
                             <p class="pro-msg">
                                 <span></span>
-                            </p>
+                            </p> -->
                             <p class="col-6"> 信息来源：汤森 </p>
                             <p class="col-6"> 设备序列号:<span>${info.serialNum }</span> </p>
                             <p class="col-6"> 截止日期:<span>2015/12/16</span> </p>

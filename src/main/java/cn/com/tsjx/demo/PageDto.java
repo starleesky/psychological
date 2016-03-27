@@ -16,6 +16,8 @@ package cn.com.tsjx.demo;
 public class PageDto {
 
 	private int pageNo;
+	
+	private String status;
 
 	public int getPageNo() {
 		return pageNo;
@@ -24,4 +26,14 @@ public class PageDto {
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 }

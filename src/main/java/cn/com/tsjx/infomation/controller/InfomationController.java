@@ -18,9 +18,12 @@ import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.util.json.JsonMapper;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.company.entity.Company;
 import cn.com.tsjx.company.service.CompanyService;
+import cn.com.tsjx.demo.PageDto;
+import cn.com.tsjx.demo.pageOutDto;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.user.entity.User;
@@ -117,6 +120,8 @@ public class InfomationController {
 		User user = (User)httpSession.getAttribute("user");
 		infomation.setUserId(user == null ? -1 : user.getId());
 		
+		//pager.setPageSize(1);
+		
 		params.put("entity", infomation);
 		pager = infomationService.page(params, pager);
 		model.addAttribute("pager", pager.items);
@@ -181,7 +186,66 @@ public class InfomationController {
 		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
 		model.addAttribute("cnt_sc", collectInfo.size());
 		
+	}
+	
+	@RequestMapping(value = "/moreInfo")
+	@ResponseBody
+	public String moreInfo(PageDto pageDto,Infomation infomation,HttpSession session,Pager<Infomation> pager) {
 		
+		User user = (User)session.getAttribute("user");
+		
+		infomation.setUserId(user.getId());
+		infomation.setStatus(pageDto.getStatus());
+		infomation.setDeleted(Deleted.NO.value);
+		
+		pager.setPageNo(pageDto.getPageNo() + 1);
+		//pager.setPageSize(1);
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("entity", infomation);
+		pager = infomationService.page(params, pager);
+		
+		StringBuilder data = new StringBuilder();
+		for(Infomation info : pager.getItems()) {
+			data.append("<li class=\"pro-box\">")
+					.append("<div class=\"pro-select\">")
+						.append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
+						.append("<img src=\"\" class=\"jProSelect\" />")
+					.append("</div>")
+					.append("<a href=\"#\" class=\"pro-img\">")
+						.append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
+					.append("</a>")
+					.append("<div class=\"pro-info\">")
+						.append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/").append(info.getModelName()).append("</a>")
+						.append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+						.append("<p class=\"pro-date\">")
+							.append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
+							.append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
+						.append("</p>")
+						.append("<p>")
+							.append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
+							.append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
+						.append("</p>")	
+						.append("<p class=\"col-6\"> 信息来源：汤森 </p>")
+						.append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>")
+						.append("<p class=\"col-6\"> 截止日期:<span>2015/12/16</span> </p>")
+					.append("</div>");
+				if(InfomationEnum.status_xj.code().equals(pageDto.getStatus())) {
+					data.append("<a href=\"javascript:;\" data-url=\"#\" class=\"pro-new-up jNewUp\">重新上架</a>");
+				}	
+			data.append("</li>");
+		}
+		
+		StringBuilder sb = new StringBuilder("jsonp");
+		
+		sb.append(pageDto.getPageNo());
+		sb.append("(");
+		pageOutDto pageOutDto = new pageOutDto();
+		pageOutDto.setData(data.toString());
+		
+		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
+		sb.append(")");
+		return sb.toString();
 	}
 
 }

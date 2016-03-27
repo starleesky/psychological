@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hp.hpl.sparta.xpath.ThisNodeTest;
+
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.common.web.model.JsonResult;
 import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.sys.MailService;
@@ -38,15 +41,13 @@ public class LoginController {
     @Resource
     public MailService mailService;
 
-    @Value("${validateUrl}")
-    private String validateUrl;
+    
 
     @Resource
     private InfomationService infomationService;
 
     @RequestMapping(value = "/login")
     public String userLogin(User user, Model model) {
-
         return "/wap/login";
     }
 
@@ -91,8 +92,10 @@ public class LoginController {
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
         if (user != null && user.getId() != null) {
-            List<Infomation> list = infomationService.getInfomationsByParam(user, infomation);
-            model.addAttribute("collections", list);
+            Params params2 = Params.create();
+            params2.add("userId",user.getId());
+            Pager<Infomation> list = infomationService.getPagerCollections(params2, pager);
+            model.addAttribute("collections", list.getItems());
         }
 
         return "/wap/index";
@@ -167,9 +170,7 @@ public class LoginController {
             user = userService.get(user.getId());
 
             // 发送邮箱验证
-            String url = "http://localhost:8082/tsjx/wap/emailSuccess.htm?r="
-                    + Base64.encodeBase64String(user.getId().toString().getBytes());
-            System.out.println(validateUrl);
+            String url =  Base64.encodeBase64String(user.getId().toString().getBytes());
             System.out.println(url);
             try {
                 mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='" + url + "'>点击我完成注册</a>", "汤森机械");
@@ -250,6 +251,5 @@ public class LoginController {
     public void getVerifyMCode(HttpServletRequest request, HttpServletResponse response) {
         SimpleCaptcha.showCaptcha(request, response, "verifyCode");
     }
-    
-    
+
 }

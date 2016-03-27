@@ -4,10 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.hp.hpl.sparta.xpath.ThisNodeTest;
-
 import cn.com.tsjx.common.dao.BaseDaoImpl;
 import cn.com.tsjx.common.enums.Deleted;
+import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.dao.InfomationDao;
 import cn.com.tsjx.infomation.entity.Infomation;
@@ -24,4 +23,10 @@ public class InfomationDaoImpl extends BaseDaoImpl<Infomation, Long> implements 
         return this.selectList(this.getMethodName(), params);
     }
 
+    @Override
+    public Pager<Infomation> getPagerCollections(Params map, Pager<Infomation> pager) {
+        
+        return this.selectPage(this.getMethodName(),map,pager);
+        
+    }
 }

@@ -120,8 +120,6 @@ public class InfomationController {
 		User user = (User)httpSession.getAttribute("user");
 		infomation.setUserId(user == null ? -1 : user.getId());
 		
-		//pager.setPageSize(1);
-		
 		params.put("entity", infomation);
 		pager = infomationService.page(params, pager);
 		model.addAttribute("pager", pager.items);
@@ -199,7 +197,6 @@ public class InfomationController {
 		infomation.setDeleted(Deleted.NO.value);
 		
 		pager.setPageNo(pageDto.getPageNo() + 1);
-		//pager.setPageSize(1);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", infomation);

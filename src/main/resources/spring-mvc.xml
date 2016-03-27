@@ -37,12 +37,25 @@
     </bean>
   &lt;!&ndash; 启动SpringMVC的注解功能，完成请求和注解POJO的映射 &ndash;&gt;-->
     <!--<bean-->
-            <!--class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
-        <!--<property name="messageConverters">-->
+    <!--class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
+    <!--<property name="messageConverters">-->
+    <!--<list>-->
+    <!--<ref bean="mappingJacksonHttpMessageConverter"/>    &lt;!&ndash; JSON转换器 &ndash;&gt;-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <context:property-placeholder location="classpath*:config.properties"/>
+    <!--<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
+        <!--<property name="locations">-->
             <!--<list>-->
-                <!--<ref bean="mappingJacksonHttpMessageConverter"/>    &lt;!&ndash; JSON转换器 &ndash;&gt;-->
+                <!--<value>classpath:config.properties</value>-->
             <!--</list>-->
         <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">-->
+        <!--<property name="properties" ref="configProperties"/>-->
     <!--</bean>-->
 
     <!-- InternalResourceViewResolver 和 TilesViewResolver 共存，且以TilesViewResolver

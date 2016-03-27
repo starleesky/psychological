@@ -28,7 +28,7 @@
 <c:if test="${bean.status=='0'}"><br/>
     <div class="btn-group btn-large">
         <button class="btn btn-primary  " ng-click="openModel(1)">通过</button>
-        <button class="btn btn-primary " ng-click="edit()">不通过</button>
+        <button class="btn btn-primary " ng-click="openModel(2)">不通过</button>
     </div>
 </c:if>
     </h3>
@@ -91,12 +91,12 @@
     <div>
     <h4 class="clearfix">营业执照图片</h4><br/>
     <c:if test="${bean.businessLicenseImageUrl!=null}">
-        <img src="${bean.businessLicenseImageUrl}" style="max-width: 100%;"
+        <img src="${ctx}/images${bean.businessLicenseImageUrl}" style="max-width: 100%;"
              alt="营业执照图片">
     </c:if>
     <h4 class="clearfix">组织机构代码图片</h4><br/>
     <c:if test="${bean.organizationCodeImageUrl!=null}">
-        <img src="${bean.organizationCodeImageUrl}" style="max-width: 100%;"
+        <img src="${ctx}/images${bean.organizationCodeImageUrl}" style="max-width: 100%;"
              alt="组织机构代码图片">
     </c:if>
     </div>

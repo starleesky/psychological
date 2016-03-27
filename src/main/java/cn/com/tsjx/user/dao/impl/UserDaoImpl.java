@@ -11,14 +11,19 @@ import cn.com.tsjx.user.entity.User;
 @Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
-    @Override
-    public User getUsersByParam(String userName, String password) {
-        Params params = Params.create();
-        params.add("userName",userName);
-        params.add("password",password);
-        params.add("deleted", Deleted.NO.value);
-        params.add("isActivate",Deleted.YES.value);
-        return this.selectOne(this.getMethodName(), params);
-    }
+	@Override
+	public User getUsersByParam(String userName, String password) {
+		Params params = Params.create();
+		params.add("userName", userName);
+		params.add("password", password);
+		params.add("deleted", Deleted.NO.value);
+		params.add("isActivate", Deleted.YES.value);
+		return this.selectOne(this.getMethodName(), params);
+	}
+
+	@Override public void updateMsgAll() {
+		Params params = Params.create();
+		this.selectOne(this.getMethodName(), params);
+	}
 
 }

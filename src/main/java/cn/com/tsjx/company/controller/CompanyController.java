@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
+import cn.com.tsjx.common.constants.enums.CompanyEnum;
+import cn.com.tsjx.user.entity.User;
+import cn.com.tsjx.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +29,9 @@ public class CompanyController {
 
 	@Resource
 	CompanyService companyService;
+
+	@Resource
+	UserService userService;
 
 
     @RequestMapping(value = "/list")
@@ -47,19 +54,26 @@ public class CompanyController {
     	model.addAttribute("bean", company);
         return "/company/company_input";
     }
-    
- 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Company company,Model model) {
-    	
-    	companyService.insert(company);
-    	model.addAttribute("msg", "添加成功！");
-    	model.addAttribute("redirectionUrl", "/company/list.htm");
-        return "/success";
-    }
-    
-    
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public Result<Boolean> save(Company company, HttpSession httpSession) {
+		User user = (User) httpSession.getAttribute("user");
+
+		company.setStatus(CompanyEnum.status_audit.code());
+		Company companyN = companyService.insert(company);
+		User updUser = new User();
+		updUser.setId(user.getId());
+		updUser.setCompanyId(String.valueOf(companyN.getId()));
+		userService.update(updUser);
+		Result<Boolean> result = new Result<Boolean>();
+		result.setMessage("新增信息成功");
+		result.setObject(true);
+		result.setResult(true);
+		return result;
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Company company,Model model) {
     	companyService.update(company);
     	model.addAttribute("msg", "编辑成功！");

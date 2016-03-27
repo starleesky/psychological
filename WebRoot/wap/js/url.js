@@ -1,5 +1,5 @@
 define(function (require, exports, module) {
-    var baseUrl = 'http://localhost:8082/tsjx';
+    var baseUrl = 'http://localhost:8080/tsjx';
     //var baseUrl = 'http://192.168.8.121:8080/tsjx';
     if (!ctx == null && ctx == '') {
         baseUrl = ctx;
@@ -9,7 +9,7 @@ define(function (require, exports, module) {
     var URL = window.URL = this.URL = {
         domain: baseUrl,
         demoPageUrl: baseUrl + '/wap/demo/page',
-        demoUploadUrl: baseUrl + '/wap/demo/upload',
+        demoUploadUrl: baseUrl + '/wap/file/upload',
 
         loginUrl: baseUrl + '/wap/loginIn',
         loginSuccessUrl: baseUrl + '/wap/index',
@@ -20,6 +20,7 @@ define(function (require, exports, module) {
         listModels: baseUrl + '/models/listModels',//查询设备型号URL
         listRegion: baseUrl + '/region/listRegion',//查询省市级
         saveInfo: baseUrl + '/infomation/save',//信息发布
+        saveCompany: baseUrl + '/company/save',//信息发布
         registerUrl:baseUrl + '/wap/register',//保存注册第一步
         register2Url:baseUrl + '/wap/toRegister2',//注册下一步
         saveRegister2:baseUrl + '/wap/saveRegister2', //保存注册下一步

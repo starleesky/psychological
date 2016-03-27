@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>   
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.tsjx.user.dao.impl.UserDaoImpl">
 
-	<select id="getUsersByParam" parameterType="map" resultType="cn.com.tsjx.user.entity.User">
+    <select id="getUsersByParam" parameterType="map" resultType="cn.com.tsjx.user.entity.User">
 		SELECT 
 		       ID id,
 		       USER_NAME userName,
@@ -38,4 +38,14 @@
 		       and password = #{password,jdbcType=VARCHAR}
 		       and deleted = #{deleted,jdbcType=VARCHAR}
 	</select>
+
+    <!-- 删除实体 -->
+    <update id="updateMsgAll" parameterType="cn.com.tsjx.user.entity.User">
+		<![CDATA[
+
+
+		UPDATE TSJX_USER   SET is_new_message     =1
+
+        ]]>
+	</update>
 </mapper>   

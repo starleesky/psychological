@@ -49,12 +49,15 @@
         <td class="tab-content-head" ng-model="company">${bean.catagoryBigName}</td>
         <td class="tab-head">产品组</td>
         <td>${bean.catagoryMidName}</td>
-        <td class="tab-head">产品类</td>
-        <td>${bean.catagoryName}</td>
+
     </tr>
     <tr>
+        <td class="tab-head">产品类</td>
+        <td>${bean.catagoryName}</td>
         <td class="tab-head">品牌</td>
-        <td class="tab-content-head" >${bean.brandName}</td>
+        <td class="tab-content-head">${bean.brandName}</td>
+    </tr>
+    <tr>
         <td class="tab-head">型号</td>
         <td class="tab-content-head">${bean.modelName}</td>
         <td class="tab-head">用户自定义新增</td>
@@ -74,12 +77,15 @@
         <td class="tab-content-head" ng-model="company">${bean.equipmentCondition}</td>
         <td class="tab-head">手续资料</td>
         <td>${bean.procedures}</td>
-        <td class="tab-head">设备来源</td>
-        <td>${bean.src}</td>
+
     </tr>
     <tr>
+        <td class="tab-head">设备来源</td>
+        <td>${bean.src}</td>
         <td class="tab-head">设备年费</td>
-        <td class="tab-content-head" >${bean.equipYear}</td>
+        <td class="tab-content-head">${bean.equipYear}</td>
+    </tr>
+    <tr>
         <td class="tab-head">工时</td>
         <td class="tab-content-head">${bean.workTime}</td>
         <td class="tab-head">价格</td>
@@ -87,14 +93,16 @@
     </tr>
     <tr>
         <td class="tab-head">设备序列号</td>
-        <td class="tab-content-head" >${bean.serialNum}</td>
+        <td class="tab-content-head">${bean.serialNum}</td>
         <td class="tab-head">内部库存编码</td>
         <td class="tab-content-head">${bean.inStockCode}</td>
-        <td class="tab-head">设备位置</td>
-        <td class="tab-content-head">${bean.equipmentLocation}</td>
     </tr>
+    <td class="tab-head">设备位置</td>
+    <td class="tab-content-head">${bean.equipmentLocation}</td>
     <td class="tab-head">发布日期</td>
-    <td class="tab-content-head" >${bean.pubTime}</td>
+    <td class="tab-content-head">${bean.pubTime}</td>
+    </tr>
+    <tr>
     <td class="tab-head">到期日期</td>
     <td class="tab-content-head">${bean.validTime}</td>
     <td class="tab-head">库存数量</td>
@@ -102,7 +110,7 @@
     </tr>
     <tr>
         <td class="tab-head">设备序列号</td>
-        <td class="tab-content-head" colspan="3">${bean.sellCount}</td>
+        <td class="tab-content-head" >${bean.sellCount}</td>
         <td class="tab-head">是否推荐</td>
         <td class="tab-content-head">${bean.isTop}</td>
     </tr>
@@ -155,7 +163,8 @@
 <%--</div>--%>
 <script>
     angular.companyId = "${bean.id}";
-    angular.companyName = "${bean.id}";
+    angular.userId = "${bean.userId}";
+    angular.companyName = "${bean.companyName}";
     seajs.use(['js/controller/common/app', 'js/controller/infomation/detail'], function () {
         angular.bootstrap(document, ['App']);
     });

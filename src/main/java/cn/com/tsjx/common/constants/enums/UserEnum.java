@@ -2,6 +2,9 @@ package cn.com.tsjx.common.constants.enums;
 
 public enum UserEnum {
 
+	user_message_0("1", "管理员", "user_type"),
+	user_message_1("2", "普通会员", "user_type"),
+
 	/*销售方式(类型)*/
 	user_type_admin("0", "超级管理员", "user_type"),
 	user_type_master("1", "管理员", "user_type"),

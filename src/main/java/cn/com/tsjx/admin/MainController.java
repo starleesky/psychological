@@ -79,7 +79,7 @@ public class MainController {
 			result.setMessage("普通会员无法登陆系统");
 			return result;
 		}
-		httpSession.setAttribute("user", user);
+		httpSession.setAttribute("adminUser", user);
 		result.setResult(true);
 		result.setMessage("登录成功");
 		model.addAttribute("main", true);
@@ -93,42 +93,18 @@ public class MainController {
 		return "admin/company/list";
 	}
 
-	@RequestMapping(value = "/company/list/getData")
-	@ResponseBody
-	public Pager<Company> list(Pager<Company> pager, Company company, Model model) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("entity", company);
-		pager = companyService.page(params, pager);
-		return pager;
-	}
-
-	@RequestMapping(value = "/company/getDetail", method = RequestMethod.GET)
-	public String input(Long id, Model model) {
-		Company company = new Company();
-		if (id != null) {
-			company = companyService.get(id);
-		}
-		model.addAttribute("bean", company);
-		//		model.addAttribute("bean", JsonMapper.getMapper().toJson(company));
-		return "admin/company/detail";
-	}
-
-	@RequestMapping(value = "/company/update", method = RequestMethod.POST)
-	@ResponseBody
-	public Result<String> update(@RequestBody Company company, Model model) {
-		companyService.update(company);
-		//// TODO: 2016/3/21 新增审核人记录表
-		Result<String> result = new Result<String>();
-		result.setMessage("修改成功！");
-		result.setResult(true);
-		return result;
-	}
-
 	@RequestMapping(value = "/infomation/list")
 	public String infomationInit(Model model) {
 
 		model.addAttribute("infomation", true);
 		return "admin/infomation/list";
+	}
+
+	@RequestMapping(value = "/notice/list")
+	public String adminNoticeInit(Model model) {
+
+		model.addAttribute("notice", true);
+		return "admin/notice/list";
 	}
 
 	@RequestMapping(value = "/user/list")

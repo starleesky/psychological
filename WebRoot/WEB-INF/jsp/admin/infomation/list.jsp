@@ -41,12 +41,25 @@
 			    </div>
 			  </div>
 
-			  <div class="form-group pull-right">
-			  	<select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.auditStatus">
-			  		<option value="">认证状态</option>
-			  		<option value="{{$index}}" ng-repeat="x in statusList">{{x}}</option>
+			  <div class="form-group pull-left">
+			  	<select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.sellType">
+			  		<option value="">销售方式</option>
+					<option value="0" >出售</option>
+					<option value="1" >租赁</option>
+					<option value="2" >求购</option>
+					<option value="3" >求租</option>
 			  	</select>
 			  </div>
+				<div class="form-group pull-left">
+					<select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.status">
+						<option value="">认证状态</option>
+						<option value="1" >待审核</option>
+						<option value="2" >发布</option>
+						<option value="3" >下架</option>
+						<option value="4" >已售</option>
+						<option value="0">草稿箱</option>
+					</select>
+				</div>
 
 			</form>
 	   <!-- </div> -->

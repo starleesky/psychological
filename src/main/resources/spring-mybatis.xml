@@ -113,7 +113,7 @@
         <property name="dataSource" ref="dataSource" />  
     </bean>  
   <!-- MyBatis数据操作模板拦截 -->
-	<bean id="sqlSessionInterceptor" class="cn.com.tsjx.common.dao.SqlSessionInterceptor" />
+	<bean id="sqlSessionInterceptor" class="cn.com.tsjx.interceptor.SqlSessionInterceptor" />
 
 	<!-- AOP配置 -->
 	<aop:config>

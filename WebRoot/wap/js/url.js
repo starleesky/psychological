@@ -13,6 +13,7 @@ define(function (require, exports, module) {
 
         loginUrl: baseUrl + '/wap/loginIn',
         loginSuccessUrl: baseUrl + '/wap/index',
+        loginIndexUrl:baseUrl + '/wap/infor',//登录成功
         toRegisterUrl: baseUrl + '/wap/toRegister',//去注册页面
 
         listGoodsCatagory: baseUrl + '/catagory/listCatagory', // 查询设备产品列表URL
@@ -27,7 +28,8 @@ define(function (require, exports, module) {
         registerSuccess:baseUrl + '/wap/register-success',//注册成功
         moreInfo : baseUrl + '/infomation/moreInfo',	//信息列表下拉方法
         toForgotpwd:baseUrl + '/wap/toForgotpwd',//找回密码
-        toForgotpwdSuccess:baseUrl + '/wap/toForgotpwdSuccess'//找回密码成功
+        toForgotpwdSuccess:baseUrl + '/wap/toForgotpwdSuccess',//找回密码成功
+        userInfoUpdate:baseUrl + '/user/update'//修改个人信息
     }
     module.exports = URL;
 });

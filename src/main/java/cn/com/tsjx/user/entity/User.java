@@ -13,6 +13,8 @@ public class User extends BaseEntity<Long> {
 	// ~~~~实体属性
 	// 用户名|
 	private String userName;
+	//真实姓名
+	private String realName;
 	// 手机号|
 	private String mobile;
 	// 座机号|
@@ -173,4 +175,13 @@ public class User extends BaseEntity<Long> {
 	public void setLastLoginTime(java.util.Date lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
 	}
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+	
 }

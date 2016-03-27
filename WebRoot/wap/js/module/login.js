@@ -33,7 +33,7 @@ define(function(require,exports,module) {
             }
         	, function (data) {
         		if(data.result){
-        			window.location.href =url.loginSuccessUrl;
+        			window.location.href =url.loginIndexUrl;
         		}else{
         			box.ok(data.message);
         		}

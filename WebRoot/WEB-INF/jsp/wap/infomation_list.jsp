@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -88,7 +89,14 @@
                             <input type="hidden" name="proSelect" value="0" />
                             <img src="" class="jProSelect" />
                         </div>
-                        <a href="#" class="pro-img">
+                     <c:choose>
+                    	<c:when test="${status == 0}">
+                    	<a href="${ctx}/infomation/edit?id=${info.id}" class="pro-img">
+                    	</c:when>
+                    	<c:otherwise>
+                    	<a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
+                    	</c:otherwise>
+                     </c:choose>
                             <img src="" class="jImg" data-url="" />
                         </a>
                       
@@ -111,7 +119,7 @@
                             </p> -->
                             <p class="col-6"> 信息来源：汤森 </p>
                             <p class="col-6"> 设备序列号:<span>${info.serialNum }</span> </p>
-                            <p class="col-6"> 截止日期:<span>2015/12/16</span> </p>
+                            <p class="col-6"> 截止日期:<span><fmt:formatDate value="${info.endTime}" pattern="yyyy/MM/dd" /></span> </p>
                         </div>
                         <c:if test="${status == 4 }">
                         	<a href="javascript:;" data-url="#" class="pro-new-up jNewUp">重新上架</a>

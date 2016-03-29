@@ -1,5 +1,6 @@
 package cn.com.tsjx.infomation.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.common.util.json.JsonMapper;
 import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.company.entity.Company;
 import cn.com.tsjx.company.service.CompanyService;
 import cn.com.tsjx.demo.PageDto;
@@ -147,8 +149,12 @@ public class InfomationController {
 		//关联用户ID
 		User user = (User)httpSession.getAttribute("user");
 		
-		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
-		model.addAttribute("pager", collectInfo);
+		Params param = Params.create();
+		param.add("deleted", Deleted.NO.value);
+		param.add("userId", user.getId());
+		
+		pager = infomationService.getPagerCollections(param, pager);
+		model.addAttribute("pager", pager.items);
 		
 		model.addAttribute("status", "9");
 		model.addAttribute("statusMc", "收藏");
@@ -158,8 +164,14 @@ public class InfomationController {
 		return "/wap/infomation_list";
 	}
 	
+	/**
+	 * 查询不同信息状态数字
+	 * @param infomation
+	 * @param model
+	 * @param user
+	 */
 	public void infoCounts(Infomation infomation, Model model, User user) {
-		/*查询不同信息状态数字*/
+		
 		//1、上架
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		List<Infomation> li_sj = infomationService.find(infomation);
@@ -186,6 +198,14 @@ public class InfomationController {
 		
 	}
 	
+	/**
+	 * 信息列表 下拉刷新内容
+	 * @param pageDto
+	 * @param infomation
+	 * @param session
+	 * @param pager
+	 * @return
+	 */
 	@RequestMapping(value = "/moreInfo")
 	@ResponseBody
 	public String moreInfo(PageDto pageDto,Infomation infomation,HttpSession session,Pager<Infomation> pager) {
@@ -200,8 +220,16 @@ public class InfomationController {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", infomation);
-		pager = infomationService.page(params, pager);
+		if("9".equals(pageDto.getStatus())) {
+			Params param = Params.create();
+			param.add("deleted", Deleted.NO.value);
+			param.add("userId", user.getId());
+			pager = infomationService.getPagerCollections(param, pager);
+		}else {
+			pager = infomationService.page(params, pager);
+		}
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		StringBuilder data = new StringBuilder();
 		for(Infomation info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
@@ -224,8 +252,9 @@ public class InfomationController {
 							.append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
 						.append("</p>")	
 						.append("<p class=\"col-6\"> 信息来源：汤森 </p>")
-						.append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>")
-						.append("<p class=\"col-6\"> 截止日期:<span>2015/12/16</span> </p>")
+						.append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>");
+			
+					data.append("<p class=\"col-6\"> 截止日期:<span>").append(sdf.format(info.getEndTime())).append("</span> </p>")
 					.append("</div>");
 				if(InfomationEnum.status_xj.code().equals(pageDto.getStatus())) {
 					data.append("<a href=\"javascript:;\" data-url=\"#\" class=\"pro-new-up jNewUp\">重新上架</a>");
@@ -245,4 +274,38 @@ public class InfomationController {
 		return sb.toString();
 	}
 
+	/**
+	 * 信息编辑页面
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String edit(Long id, Model model) {
+        Infomation infomation = new Infomation();
+        if (id != null) {
+            infomation = infomationService.get(id);
+        }
+        User user = null;
+        if (infomation.getUserId() != null) {
+            user = userService.get(infomation.getUserId());
+            model.addAttribute("user", user);
+        }
+        if (user != null && user.getCompanyId() != null) {
+            Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+            model.addAttribute("company", company);
+        }
+        model.addAttribute("bean", infomation);
+        
+        Infomation tempInfo = new Infomation();
+        tempInfo.setDeleted(Deleted.NO.value);
+        tempInfo.setUserId(user.getId());
+        
+        infoCounts(tempInfo,model,user);
+        
+        model.addAttribute("statusMc", InfomationEnum.status_cg.description());
+        model.addAttribute("status", InfomationEnum.status_cg.code());
+        
+        return "/wap/editInfo";
+    }
 }

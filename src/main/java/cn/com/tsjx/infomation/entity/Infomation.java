@@ -1,5 +1,8 @@
 package cn.com.tsjx.infomation.entity;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import cn.com.tsjx.common.bean.entity.BaseEntity;
 
 
@@ -71,6 +74,9 @@ public class Infomation extends BaseEntity<Long> {
 	private String status;
 	// 排序权重|
 	private String weight;
+	
+	//截止日期
+	private Date endTime;
 
 	@Override
 	public Long getId() {
@@ -261,4 +267,19 @@ public class Infomation extends BaseEntity<Long> {
 	public void setWeight(String weight) {
 		this.weight = weight;
 	}
+	public Date getEndTime() {
+		
+		if(pubTime != null) {
+			Calendar c = Calendar.getInstance();
+			c.setTime(pubTime);
+			c.add(Calendar.DATE, Integer.valueOf(validTime));
+			endTime = c.getTime();
+		}
+		
+		return endTime;
+	}
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+	
 }

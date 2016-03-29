@@ -9,7 +9,16 @@ public enum UserEnum {
 	user_type_admin("0", "超级管理员", "user_type"),
 	user_type_master("1", "管理员", "user_type"),
 	user_type_member("2", "普通会员", "user_type"),
-	user_type_company("3", "企业管理员", "user_type");
+	user_type_company("3", "企业管理员", "user_type"),
+    
+	/**
+	 * 营业范围
+	 */
+    user_scope_gc("1","工程机械","user_scope"),
+    user_scope_ny("2","农业机械","user_scope"),
+    user_scope_ks("3","矿山机械","user_scope"),
+    user_scope_ly("4","林业机械","user_scope"),
+    user_scope_gccl("5","工程车辆","user_scope");
 
 	private final String code;
 	private final String description;

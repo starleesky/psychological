@@ -125,6 +125,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     //初始省市
     getProvice();
 
+    var status = 0;
     //信息提交
     Validator.validate('#informationFrom', {
         rules: {
@@ -158,12 +159,14 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     procedures: $(form).find('select[name=procedures]').val(),
                     src: $(form).find('select[name=src]').val(),
                     equipYear: $(form).find('select[name=equipYear]').val(),
-                    remark: $(form).find('input[name=remark]').val(),
-                    src: $(form).find('select[name=regionProvice]').val(),
-                    src: $(form).find('select[name=regionProvice]').find("option:selected").text(),
-                    src: $(form).find('select[name=regionCity]').val(),
-                    src: $(form).find('select[name=regionCity]').find("option:selected").text(),
-                    price: $(form).find('input[name=price]').val()
+                    remark: $(form).find('textarea[name=remark]').val(),
+                    provinceId: $(form).find('select[name=regionProvice]').val(),
+                    provinceName: $(form).find('select[name=regionProvice]').find("option:selected").text(),
+                    cityId: $(form).find('select[name=regionCity]').val(),
+                    cityName: $(form).find('select[name=regionCity]').find("option:selected").text(),
+                    validTime: $(form).find('select[name=validTime]').find("option:selected").val(),
+                    price: $(form).find('input[name=price]').val(),
+                    status:status
                 },
                 function (data) {
                     if (data.result) {
@@ -181,6 +184,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     });
 
     $("#jSave").click(function () {
+        status = 0;
         var modelsId = oModels.val();
         if (modelsId == null || modelsId == "") {
             alert('型号未选择');
@@ -191,7 +195,9 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     });
 
     $("#jSubmit").click(function () {
-        alert('提交之前请先保存');
+        //alert('提交之前请先保存');
+        status = 1;
+        $('#informationFrom').submit();
     });
 
     $('body').on('click','.jAddProType',function(){

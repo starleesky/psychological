@@ -41,7 +41,8 @@ public class LoginController {
     @Resource
     public MailService mailService;
 
-    
+    @Value("${validateUrl}")
+    private String validateUrl;
 
     @Resource
     private InfomationService infomationService;
@@ -81,6 +82,25 @@ public class LoginController {
         return "/wap/register";
     }
 
+    @RequestMapping(value = "/infor")
+    public String loginIndex(Model model,HttpSession httpSession){
+        User user = (User) httpSession.getAttribute("user");
+        if (user == null) {
+            return "/wap/login";
+        }
+        user = userService.get(user.getId());
+        model.addAttribute("userInfo",user);
+        
+        Pager<Infomation> pager = new Pager<Infomation>();
+        Infomation infomation = new Infomation();
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("entity", infomation);
+        pager = infomationService.page(params, pager);
+        // 今日推荐 前10
+        model.addAttribute("Tops", pager.getItems());
+        
+        return "/wap/infor";
+    }
     @RequestMapping(value = "/index")
     public String index(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
@@ -170,7 +190,7 @@ public class LoginController {
             user = userService.get(user.getId());
 
             // 发送邮箱验证
-            String url =  Base64.encodeBase64String(user.getId().toString().getBytes());
+            String url =  validateUrl + Base64.encodeBase64String(user.getId().toString().getBytes());
             System.out.println(url);
             try {
                 mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='" + url + "'>点击我完成注册</a>", "汤森机械");

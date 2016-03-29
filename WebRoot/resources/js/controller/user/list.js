@@ -79,10 +79,10 @@ define(function (require) {
                     //if ($scope.edit_form.$invalid) {
                     //    return;
                     //}
-                    alert($scope.user.userName);
-                    alert($scope.user.mobile);
-                    alert($scope.user.qq);
-                    return;
+                    //alert($scope.user.userName);
+                    //alert($scope.user.mobile);
+                    //alert($scope.user.qq);
+                    //return;
                     $http.post(angular.path + "/admin/user/update", $scope.user)
                         .success(function (resp) {
                             if (resp.result) {
@@ -127,7 +127,7 @@ define(function (require) {
 
             $scope.add = function () {
                 $scope.submitted = true;
-                if ($scope.edit_form.$invalid) {
+                if ($scope.add_form.$invalid) {
                     return;
                 }
                 $http.post(angular.path + '/admin/user/add', $scope.user)

@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,20 +17,11 @@
 <meta content="fullscreen=yes,preventMove=no" name="ML-Config">
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <!-- <meta name="format-detection" content="telephone=no,email=no,address=no" /> -->
-
     <link rel="stylesheet" href="css/module/infor.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="./message.html" class="ui-left">
-        <img src="images/icon_2.png"  />
-    </a>
-    <a href="#" class="ui-title"><img src="images/logo.png" /> </a>
-    <a  href="login.html" class="ui-right">
-        <img src="images/upload_cloud.png" />
-    </a>
-</header>
+<%@ include file = "header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <div class="page-view-body">
@@ -41,10 +36,13 @@
                 <div class="info clearfix">
                     <img src="images/icon_2.png" class="f-l"  />
                     <div class="info-desc f-l">
-                        <h2>Tangsons Trading</h2>
-                        <p>注册时间:<span class="date">2015/8/1</span></p>
+                        <h2>${userInfo.userName}</h2>
+                        <p>注册时间:<span class="date"> 
+                         <fmt:formatDate value="${userInfo.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
+                         </span>
+                         </p>
                     </div>
-                    <a href="${ctx}/tsjx/wap/user/input.htm?id=${userInfo.id}" class="up-info f-l">修改</a>
+                    <a href="${ctx}/user/input.htm?id=${userInfo.id}" class="up-info f-l">修改</a>
                 </div>
                 <div class="pro-nav">
                     <a href="up-pro.html">
@@ -88,10 +86,10 @@
                         <label class="ui-form-hd">搜索类型</label>
                         <div class="ui-form-bd">
                             <select>
-                                <option value="1">出售</option>
-                                <option value="0">租赁</option>
-                                <option value="0">求购</option>
-                                <option value="979">求租</option>
+                                <option value="0">出售</option>
+                                <option value="1">租赁</option>
+                                <option value="2">求购</option>
+                                <option value="3">求租</option>
                             </select>
                         </div>
                     </div>
@@ -135,7 +133,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="field-submit">
                         <a href="search.html" class="ui-button ui-button-submit ui-button-blue">搜索</a>
                     </div>
@@ -148,41 +145,15 @@
             </div>
             <div class="recommended-bd">
                 <ul class="clearfix">
+                   <c:forEach var="item" items="${Tops}">
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/infomation/input.htm?id=${item.id}">
                             <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
+                            <span class="name">${item.brandName}${item.modelName}</span>
+                            <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
+                   </c:forEach>
                 </ul>
             </div>
         </section>
@@ -191,50 +162,16 @@
                 <span class="icon iconfont">&#xe603;</span>我的收藏
             </div>
             <div class="collect-bd">
-                <div class="no-login">登录后查看我的收藏</div>
                 <ul class="clearfix" style="display: none;">
+                    <c:forEach var ="item" items = "${collections}" varStatus="status">
                     <li>
-                        <a href="#">
+                        <a href="${ctx}/infomation/input.htm?id=${item.id}">
                             <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
+                            <span class="name">${item.brandName}${item.modelName}</span>
+                            <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">品牌加型号</span>
-                            <span class="price"><b>价格：</b>50000元</span>
-                        </a>
-                    </li>
+					</c:forEach>
                 </ul>
             </div>
         </section>
@@ -242,89 +179,16 @@
 </div>
 
 <script type="text/html" id="recommendTpl">
-    <div class="recommended-hd">
-        <span class="icon iconfont">&#xe619;</span>今日推荐
-    </div>
-    <div class="recommended-bd">
-        <ul class="clearfix">
-            <%for(var i=0;i<recommendList.length;i++){%>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name"><%=recommendList[i].ProductName%></span>
-                    <span class="price"><%=recommendList[i].Price%>元</span>
-                </a>
-            </li>
-            <%}%>
-        </ul>
-    </div>
+     
 </script>
 <script type="text/html" id="collectTpl">
-    <div class="collect-hd">
-        <span class="icon iconfont">&#xe603;</span>我的收藏
-    </div>
-    <div class="collect-bd">
-        <div class="no-login">登录后查看我的收藏</div>
-        <ul class="clearfix" style="display: none;">
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                    <span class="name">品牌加型号</span>
-                    <span class="price"><b>价格：</b>50000元</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+     
 </script>
-<div class="footer">
-
-    <div class="ft-nav">
-        <a  href="about-us.html">关于我们</a>
-        <a  href="term-conditions.html">一般条款</a>
-        <a  href="contact-us.html">联系我们</a>
-    </div>
-    <div class="copyright">
-        Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
-    </div> 
-</div>
-<script type="text/javascript" src="js/require.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<%@ include file = "footer.jsp" %>
+<script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
+var ctx = "${ctx}";
     window.TS = {
 
     }

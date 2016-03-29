@@ -73,10 +73,10 @@
                         <label class="ui-form-hd">经营性质</label>
                         <div class="ui-form-bd">
                             <select name = "businessNature">
-                                <option value="1">出售</option>
-                                <option value="2">租赁</option>
-                                <option value="3">求购</option>
-                                <option value="4">求租</option>
+                                <option value="0">出售</option>
+                                <option value="1">租赁</option>
+                                <option value="2">求购</option>
+                                <option value="3">求租</option>
                             </select>
                         </div>
                     </div>

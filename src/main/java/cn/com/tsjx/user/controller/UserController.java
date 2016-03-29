@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.tsjx.common.model.Result;
+import cn.com.tsjx.common.web.model.JsonResult;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
@@ -45,7 +46,7 @@ public class UserController {
     	    user=userService.get(id);
     	}
     	model.addAttribute("bean", user);
-        return "/user/user_input";
+        return "/wap/user-info";
     }
     
  
@@ -58,13 +59,14 @@ public class UserController {
         return "/success";
     }
     
-    
+    @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(User user,Model model) {
+    public JsonResult update(User user,Model model) {
+        JsonResult jsonResult = new JsonResult();
     	userService.update(user);
-    	model.addAttribute("msg", "编辑成功！");
-    	model.addAttribute("redirectionUrl", "/user/list.htm");
-        return "/success";
+    	jsonResult.setMessage("保存成功！");
+    	jsonResult.setSuccess(true);
+        return jsonResult;
     }
     
    @ResponseBody

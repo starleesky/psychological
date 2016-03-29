@@ -21,15 +21,7 @@
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="#" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
-    </a>
-
-    <a  href="login.html" class="ui-right ui-login">
-        <img src="${ctx}/wap/images/user_icon.png" />登录
-    </a>
-</header>
+<%@ include file="header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <div class="page-view-body">
@@ -208,12 +200,12 @@
                 <div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
-                        <select >
-                            <option value="1">30天</option>
-                            <option value="2">60天</option>
-                            <option value="3">90天</option>
+                        <select id="validTime" name="validTime">
+                            <option value="30">30天</option>
+                            <option value="60">60天</option>
+                            <option value="90">90天</option>
                         </select>
-                        <input type="text" name="validTime" placeholder="请输入..." />
+                        <input type="text" name="validTime1" placeholder="请输入..." />
                     </div>
                     <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
                 </div>
@@ -225,17 +217,7 @@
         </section>
     </div>
 </div>
-<div class="footer">
-
-    <div class="ft-nav">
-        <a  href="about-us.html">关于我们</a>
-        <a  href="term-conditions.html">一般条款</a>
-        <a  href="contact-us.html">联系我们</a>
-    </div>
-    <div class="copyright">
-        Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
-    </div>
-</div>
+<%@ include file="footer.jsp" %>
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">

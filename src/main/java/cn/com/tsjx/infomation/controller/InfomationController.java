@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,108 +36,129 @@ import cn.com.tsjx.user.service.UserService;
 @RequestMapping("/infomation")
 public class InfomationController {
 
-    @Resource
-    InfomationService infomationService;
-    @Resource
-    UserService userService;
-    @Resource
-    CompanyService companyService;
+	@Resource
+	InfomationService infomationService;
+	@Resource
+	UserService userService;
+	@Resource
+	CompanyService companyService;
 
 	@RequestMapping(value = "/pub")
 	public String relaese() {
 		return "/wap/want-release";
 	}
 
-    @RequestMapping(value = "/list")
-    public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("entity", infomation);
-        pager = infomationService.page(params, pager);
-        model.addAttribute("pager", pager);
-        model.addAttribute("bean", infomation);
-        return "/infomation/infomation_list";
-    }
-
-    @RequestMapping(value = "/input", method = RequestMethod.GET)
-    public String input(Long id, Model model) {
-        Infomation infomation = new Infomation();
-        if (id != null) {
-            infomation = infomationService.get(id);
-        }
-        User user = null;
-        if (infomation.getUserId() != null) {
-            user = userService.get(infomation.getUserId());
-            model.addAttribute("user", user);
-        }
-        if (user != null && user.getCompanyId() != null) {
-            Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-            model.addAttribute("company", company);
-        }
-        model.addAttribute("bean", infomation);
-        return "/wap/view";
-    }
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseBody
-    public Result<Boolean> save(Infomation infomation, Model model) {
-        Result<Boolean> result = new Result<Boolean>();
-        infomationService.insert(infomation);
-        result.setMessage("新增信息成功");
-        result.setObject(true);
-        result.setResult(true);
-        return result;
-    }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Infomation infomation, Model model) {
-        infomationService.update(infomation);
-        model.addAttribute("msg", "编辑成功！");
-        model.addAttribute("redirectionUrl", "/infomation/list.htm");
-        return "/success";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/del", method = RequestMethod.GET)
-    public Result<Boolean> del(Long[] ids) {
-        Result<Boolean> result = new Result<Boolean>();
-        List<Long> list = new ArrayList<Long>();
-        for (Long id : ids) {
-            list.add(id);
-        }
-        infomationService.delete(list);
-        result.setMessage("删除成功");
-        result.setObject(true);
-        result.setResult(true);
-        return result;
-    }
-	
-	@RequestMapping(value = "/infoList")
-	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model,HttpSession httpSession) {
+	@RequestMapping(value = "/list")
+	public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		
-		String status = StringUtil.isBlank(infomation.getStatus()) ? InfomationEnum.status_sj.code() : infomation.getStatus();
-		infomation.setStatus(status);	//信息状态为空时，默认查询“上架状态”
+		params.put("entity", infomation);
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("bean", infomation);
+		return "/infomation/infomation_list";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.GET)
+	public String input(Long id, Model model) {
+		Infomation infomation = new Infomation();
+		if (id != null) {
+			infomation = infomationService.get(id);
+		}
+		User user = null;
+		if (infomation.getUserId() != null) {
+			user = userService.get(infomation.getUserId());
+			model.addAttribute("user", user);
+		}
+		if (user != null && user.getCompanyId() != null) {
+			Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+			model.addAttribute("company", company);
+		}
+		model.addAttribute("bean", infomation);
+		return "/wap/view";
+	}
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@ResponseBody
+	public Result<Boolean> save(InfomationDto infomation, Model model, HttpSession httpSession) {
+		//// TODO: 2016/3/27 保存附件图片
+
+		//新增审核人记录表
+		User user = (User) httpSession.getAttribute("user");
+		Result<Boolean> result = new Result<Boolean>();
+		if (infomation.getNewBrand() != null && infomation.getNewModel() != null && !infomation.getNewModel()
+		                                                                                       .equals("")) {
+			infomation.setIsNew("1");
+			infomation.setBrandName(infomation.getNewBrand());
+			infomation.setModelName(infomation.getNewModel());
+		} else {
+			infomation.setIsNew("0");
+		}
+		infomation.setUserId(user.getId());
+		infomation.setEquipmentLocation(infomation.getProvinceName() + "|" + infomation.getCityName());
+		if (infomation.getId() == null) {
+			infomationService.insert(infomation);
+		} else {
+			infomationService.update(infomation);
+		}
+		result.setMessage("新增信息成功");
+		result.setObject(true);
+		result.setResult(true);
+		return result;
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Infomation infomation, Model model) {
+		infomationService.update(infomation);
+		model.addAttribute("msg", "编辑成功！");
+		model.addAttribute("redirectionUrl", "/infomation/list.htm");
+		return "/success";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/del", method = RequestMethod.GET)
+	public Result<Boolean> del(Long[] ids) {
+		Result<Boolean> result = new Result<Boolean>();
+		List<Long> list = new ArrayList<Long>();
+		for (Long id : ids) {
+			list.add(id);
+		}
+		infomationService.delete(list);
+		result.setMessage("删除成功");
+		result.setObject(true);
+		result.setResult(true);
+		return result;
+	}
+
+	@RequestMapping(value = "/infoList")
+	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		String status = StringUtil.isBlank(infomation.getStatus()) ?
+				InfomationEnum.status_sj.code() :
+				infomation.getStatus();
+		infomation.setStatus(status);    //信息状态为空时，默认查询“上架状态”
 		infomation.setDeleted(Deleted.NO.value);
-		
+
 		//关联用户ID
-		User user = (User)httpSession.getAttribute("user");
+		User user = (User) httpSession.getAttribute("user");
 		infomation.setUserId(user == null ? -1 : user.getId());
-		
+
 		params.put("entity", infomation);
 		pager = infomationService.page(params, pager);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("bean", infomation);
-		
+
 		model.addAttribute("status", status);
 		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
-		
-		infoCounts(infomation,model,user);
-		
+
+		infoCounts(infomation, model, user);
+
 		return "/wap/infomation_list";
 	}
-	
+
 	/**
 	 * 查询“我的收藏”列表
+	 *
 	 * @param pager
 	 * @param infomation
 	 * @param model
@@ -144,8 +166,8 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/colleInfoList")
-	public String colleInfoList(Pager<Infomation> pager, Infomation infomation, Model model,HttpSession httpSession) {
-		
+	public String colleInfoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+
 		//关联用户ID
 		User user = (User)httpSession.getAttribute("user");
 		
@@ -155,12 +177,12 @@ public class InfomationController {
 		
 		pager = infomationService.getPagerCollections(param, pager);
 		model.addAttribute("pager", pager.items);
-		
+
 		model.addAttribute("status", "9");
 		model.addAttribute("statusMc", "收藏");
-		
-		infoCounts(infomation,model,user);
-		
+
+		infoCounts(infomation, model, user);
+
 		return "/wap/infomation_list";
 	}
 	
@@ -170,33 +192,35 @@ public class InfomationController {
 	 * @param model
 	 * @param user
 	 */
+
 	public void infoCounts(Infomation infomation, Model model, User user) {
 		
 		//1、上架
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		List<Infomation> li_sj = infomationService.find(infomation);
 		model.addAttribute("cnt_sj", li_sj.size());
-		
+
 		//2、已售
 		infomation.setStatus(InfomationEnum.status_ys.code());
 		List<Infomation> li_ys = infomationService.find(infomation);
 		model.addAttribute("cnt_ys", li_ys.size());
-		
+
 		//3、下架
 		infomation.setStatus(InfomationEnum.status_xj.code());
 		List<Infomation> li_xj = infomationService.find(infomation);
 		model.addAttribute("cnt_xj", li_xj.size());
-		
+
 		//4、草稿
 		infomation.setStatus(InfomationEnum.status_cg.code());
 		List<Infomation> li_cg = infomationService.find(infomation);
 		model.addAttribute("cnt_cg", li_cg.size());
-		
+
 		//9、收藏
 		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
 		model.addAttribute("cnt_sc", collectInfo.size());
-		
+
 	}
+
 	
 	/**
 	 * 信息列表 下拉刷新内容
@@ -208,18 +232,19 @@ public class InfomationController {
 	 */
 	@RequestMapping(value = "/moreInfo")
 	@ResponseBody
-	public String moreInfo(PageDto pageDto,Infomation infomation,HttpSession session,Pager<Infomation> pager) {
-		
-		User user = (User)session.getAttribute("user");
-		
+	public String moreInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
+
+		User user = (User) session.getAttribute("user");
+
 		infomation.setUserId(user.getId());
 		infomation.setStatus(pageDto.getStatus());
 		infomation.setDeleted(Deleted.NO.value);
-		
+
 		pager.setPageNo(pageDto.getPageNo() + 1);
-		
+
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", infomation);
+
 		if("9".equals(pageDto.getStatus())) {
 			Params param = Params.create();
 			param.add("deleted", Deleted.NO.value);
@@ -230,8 +255,10 @@ public class InfomationController {
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		pager = infomationService.page(params, pager);
+
 		StringBuilder data = new StringBuilder();
-		for(Infomation info : pager.getItems()) {
+		for (Infomation info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
 					.append("<div class=\"pro-select\">")
 						.append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
@@ -261,14 +288,13 @@ public class InfomationController {
 				}	
 			data.append("</li>");
 		}
-		
 		StringBuilder sb = new StringBuilder("jsonp");
-		
+
 		sb.append(pageDto.getPageNo());
 		sb.append("(");
 		pageOutDto pageOutDto = new pageOutDto();
 		pageOutDto.setData(data.toString());
-		
+
 		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
 		sb.append(")");
 		return sb.toString();

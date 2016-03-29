@@ -26,6 +26,11 @@ public class NoticeController {
 	@Resource
 	NoticeService noticeService;
 
+	@RequestMapping(value = "/notice")
+	public String companyInfo() {
+		return "/wap/company-info";
+	}
+
 
     @RequestMapping(value = "/list")
     public String list(Pager<Notice> pager,Notice notice,Model model) {

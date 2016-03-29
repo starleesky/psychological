@@ -1,39 +1,20 @@
-/*
- * Copyright (C), 2014-2015, 杭州小卡科技有限公司
- * FileName: MainController.java
- * Author:   muxing
- * Date:    2016/3/13 23:55
- * Description:
- */
+
 package cn.com.tsjx.admin;
 
-import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
-import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.common.constants.enums.UserEnum;
 import cn.com.tsjx.common.model.Result;
-import cn.com.tsjx.common.util.StringUtil;
-import cn.com.tsjx.common.util.alg.Base64;
-import cn.com.tsjx.common.util.json.JSONToStringStyle;
-import cn.com.tsjx.common.util.json.JsonMapper;
-import cn.com.tsjx.common.web.model.Pager;
-import cn.com.tsjx.company.entity.Company;
 import cn.com.tsjx.company.service.CompanyService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * MainController
@@ -58,6 +39,11 @@ public class MainController {
 	public String initMain(Model model) {
 		model.addAttribute("main", true);
 		return "admin/main";
+	}
+
+	@RequestMapping(value = "/logout")
+	public String logout(Model model) {
+		return "login";
 	}
 
 	@ResponseBody

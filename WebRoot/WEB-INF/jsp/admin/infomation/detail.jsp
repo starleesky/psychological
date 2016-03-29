@@ -164,7 +164,10 @@
 <script>
     angular.companyId = "${bean.id}";
     angular.userId = "${bean.userId}";
-    angular.companyName = "${bean.companyName}";
+    angular.isNew = "${bean.isNew}";
+    angular.brandName = "${bean.brandName}";
+    angular.modelName = "${bean.modelName}";
+    angular.catagoryId = "${bean.catagoryId}";
     seajs.use(['js/controller/common/app', 'js/controller/infomation/detail'], function () {
         angular.bootstrap(document, ['App']);
     });

@@ -1,26 +1,12 @@
-/*
- * Copyright (C), 2014-2015, 杭州小卡科技有限公司
- * FileName: MainController.java
- * Author:   muxing
- * Date:    2016/3/13 23:55
- * Description:
- */
+
 package cn.com.tsjx.admin;
 
-import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.auditRecord.service.AuditRecordService;
-import cn.com.tsjx.common.constants.enums.AuditRecordEnum;
-import cn.com.tsjx.common.constants.enums.CompanyEnum;
 import cn.com.tsjx.common.constants.enums.NoticeEnum;
-import cn.com.tsjx.common.constants.enums.TsjxConstant;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
-import cn.com.tsjx.company.entity.Company;
-import cn.com.tsjx.company.entity.CompanyDto;
-import cn.com.tsjx.company.service.CompanyService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
-import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

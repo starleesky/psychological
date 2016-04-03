@@ -105,6 +105,11 @@
 		and a.deleted = #{deleted,jdbcType=VARCHAR}
 	</sql>
 	
+	<sql id="page_condition_infoWithoutUser">
+		and a.deleted = #{deleted,jdbcType=VARCHAR}
+		
+		
+	</sql>
 	
 	<!-- 分页查询（计数） -->
 	<select id="getPagerCollections_count" parameterType="map"
@@ -156,7 +161,7 @@
     		1=1	
     		
 		]]>
-		<include refid="page_condition_img" />
+		<include refid="page_condition_collections" />
 	</select>
 
 	<select id="getInfoPagerWithImg_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
@@ -171,13 +176,36 @@
 		WHERE
     		1=1
     		]]>
-		<include refid="page_condition_img" />
+		<include refid="page_condition_collections" />
 		<include refid="mybatis.pageEndSQL" />
 	</select>
 	
-	<sql id="page_condition_img">
-		and a.user_id = #{userId,jdbcType=INTEGER}
-		and a.deleted = #{deleted,jdbcType=VARCHAR}
-		and a.status = #{status,jdbcType=VARCHAR}
-	</sql>
+	<select id="getInfoPagerWithImgNoUser_count" parameterType="map"
+		resultType="int">
+		<![CDATA[
+		 select count(*) from 
+		  tsjx_infomation a 
+		  left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+		]]>
+		<include refid="page_condition_infoWithoutUser" />
+	</select>
+	
+	<select id="getInfoPagerWithImgNoUser_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
+		parameterType="map">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL_infos_img" />
+		<![CDATA[
+		    tsjx_infomation a
+		   	left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+		WHERE
+    		1=1
+    		]]>
+		<include refid="page_condition_infoWithoutUser" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+	
 </mapper>   

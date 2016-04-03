@@ -35,7 +35,8 @@ public interface InfomationService extends BaseService<Infomation, Long> {
      * 分页查询信息列表（带图片）
      * @param map
      * @param pager
+     * @param relUser 是否关联用户ID查询
      * @return
      */
-    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager);
+    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager, Boolean relUser);
 }

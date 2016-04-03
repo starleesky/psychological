@@ -206,7 +206,7 @@ public class InfomationController {
 		params.add("userId", user.getId());
 		params.add("status", status);
 		
-		pager = infomationService.getInfoPagerWithImg(params, pager);
+		pager = infomationService.getInfoPagerWithImg(params, pager, true);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("bean", infomation);
 
@@ -318,7 +318,7 @@ public class InfomationController {
 			pager = infomationService.getPagerCollections(param, pager);
 		} else {
 			param.add("status", pageDto.getStatus());
-			pager = infomationService.getInfoPagerWithImg(param, pager);
+			pager = infomationService.getInfoPagerWithImg(param, pager, true);
 		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -413,15 +413,34 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/search")
-	public String search(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+	public String search(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession) {
 
-		Map<String, Object> params = new HashMap<String, Object>();
-System.out.println(infomation);
+		//Map<String, Object> params = new HashMap<String, Object>();
 		infomation.setStatus(InfomationEnum.status_sj.code());    // 查询上架的信息
 		infomation.setDeleted(Deleted.NO.value);
-		params.put("entity", infomation);
+		//params.put("entity", infomation);
 
-		pager = infomationService.page(params, pager);
+		Params params = Params.create();
+		params.add("deleted", Deleted.NO.value);
+		params.add("status", InfomationEnum.status_sj.code());
+		
+		params.add("catagoryBigId",infomation.getCatagoryBigId());
+		params.add("catagoryBigName",infomation.getCatagoryBigName());
+		params.add("catagoryMidId",infomation.getCatagoryMidId());
+		params.add("catagoryMidName",infomation.getCatagoryMidName());
+		params.add("catagoryId",infomation.getCatagoryId());
+		params.add("catagoryName",infomation.getCatagoryName());
+		params.add("brandId",infomation.getBrandId());
+		params.add("brandName",infomation.getBrandName());
+		params.add("modelId",infomation.getModelId());
+		params.add("modelName",infomation.getModelName());
+		params.add("sellType",infomation.getSellType());
+		params.add("equipmentCondition",infomation.getEquipmentCondition());
+		params.add("procedures",infomation.getProcedures());
+		//pager.setEntity(infomation);
+		pager = infomationService.getInfoPagerWithImg(params, pager, false);
+		
+		//pager = infomationService.page(params, pager);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("info", infomation);
 
@@ -437,29 +456,49 @@ System.out.println(infomation);
 	 */
 	@RequestMapping(value = "/moreSearchInfo")
 	@ResponseBody
-	public String moreSearchInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
+	public String moreSearchInfo(PageDto pageDto, InfomationDto infomation, HttpSession session, Pager<InfomationDto> pager) {
 
 		infomation.setStatus(pageDto.getStatus());
 		infomation.setDeleted(Deleted.NO.value);
 
-		BeanUtils.copyProperties(pageDto, infomation);
+		//BeanUtils.copyProperties(pageDto, infomation);
 
 		pager.setPageNo(pageDto.getPageNo() + 1);
 
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("entity", infomation);
+		//Map<String, Object> params = new HashMap<String, Object>();
+		//params.put("entity", infomation);
 
-		pager = infomationService.page(params, pager);
+		Params params = Params.create();
+		/*params.add("deleted", Deleted.NO.value);
+		params.add("status", InfomationEnum.status_sj.code());
+		
+		params.add("catagoryBigId",infomation.getCatagoryBigId());
+		params.add("catagoryBigName",infomation.getCatagoryBigName());
+		params.add("catagoryMidId",infomation.getCatagoryMidId());
+		params.add("catagoryMidName",infomation.getCatagoryMidName());
+		params.add("catagoryId",infomation.getCatagoryId());
+		params.add("catagoryName",infomation.getCatagoryName());
+		params.add("brandId",infomation.getBrandId());
+		params.add("brandName",infomation.getBrandName());
+		params.add("modelId",infomation.getModelId());
+		params.add("modelName",infomation.getModelName());
+		params.add("sellType",infomation.getSellType());
+		params.add("equipmentCondition",infomation.getEquipmentCondition());
+		params.add("procedures",infomation.getProcedures());*/
+		
+		pager.setEntity(infomation);
+		pager = infomationService.getInfoPagerWithImg(params, pager, false);
 
 		StringBuilder data = new StringBuilder();
-		for (Infomation info : pager.getItems()) {
+		String ctx = session.getServletContext().getContextPath();
+		for (InfomationDto info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
 			    .append("<div class=\"pro-select\">")
 			    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
 			    .append("<img src=\"\" class=\"jProSelect\" />")
 			    .append("</div>")
-			    .append("<a href=\"#\" class=\"pro-img\">")
-			    .append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
+			    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId()).append("\" class=\"pro-img\">")
+			    .append("<img src=\"").append(ctx).append(info.getImgUrl()).append("\" class=\"jImg\" data-url=\"\" />")
 			    .append("</a>")
 			    .append("<div class=\"pro-info\">")
 			    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")

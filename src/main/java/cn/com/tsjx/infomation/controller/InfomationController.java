@@ -294,6 +294,7 @@ public class InfomationController {
 		pager = infomationService.page(params, pager);
 
 		StringBuilder data = new StringBuilder();
+		String ctx = session.getServletContext().getContextPath();
 		for (Infomation info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
 			    .append("<div class=\"pro-select\">")

@@ -60,7 +60,7 @@
         <property name="maxInMemorySize" value="40960"/>
     </bean>
     
-    <mvc:interceptors>
+   <!--  <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/*" />
 			<mvc:exclude-mapping path="/wap/login/**"/> 
@@ -71,7 +71,7 @@
 			<mvc:exclude-mapping path="/admin/login/**"/> 
 			<bean class="cn.com.tsjx.interceptor.AdminInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 	
 	
 </beans>

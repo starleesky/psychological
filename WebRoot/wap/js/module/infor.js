@@ -1,16 +1,16 @@
 define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/lazystream','plug/selectPro'], function ($, url, ajax,box,Lazyload,LazyStream) {
 	//$, url, ajax, box, Validator,Uploader
 	//'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod','plug/uploader/uploader-list','plug/imgLoading','plug/selectPro'
-	 var oBigGoodsCatagory = $(".bigGoodsCatagory");
-	    var oMiddleGoodsCatagory = $(".middleGoodsCatagory");
-	    var oSmallGoodsCatagory = $(".smallGoodsCatagory");
+	 var oBigGoodsCatagory = $("#catagoryBigId");
+	    var oMiddleGoodsCatagory = $("#catagoryMidId");
+	    var oSmallGoodsCatagory = $("#catagoryId");
 
-	    var oBrand = $(".brand");
-	    var oModels = $(".models");
+	    var oBrand = $("#brandId");
+	    var oModels = $("#modelId");
 	    //产品大类
 	    var getBig = function () {
 	        $.getJSON(url.listGoodsCatagory, {id: '0'}, function (data) {
-	            var oBig_html;
+	            var oBig_html = "<option  value=''>请选择大类</option>";
 	            $.each(data.object, function (i, data) {
 	                oBig_html += "<option value='" + data.id + "'>" + data.catagoryName + "</option>";
 	            });
@@ -27,7 +27,7 @@ define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/
 	    var getMiddle = function () {
 	        var n = oBigGoodsCatagory.val();
 	        $.getJSON(url.listGoodsCatagory, {id: n}, function (data) {
-	            var oMiddle_html;
+	            var oMiddle_html = "<option value=''>请选择产品组</option>" ;
 	            $.each(data.object, function (i, data) {
 	                oMiddle_html += "<option value='" + data.id + "'>" + data.catagoryName + "</option>";
 	            });
@@ -44,7 +44,7 @@ define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/
 	    var getSmall = function () {
 	        var n = oMiddleGoodsCatagory.val();
 	        $.getJSON(url.listGoodsCatagory, {id: n}, function (data) {
-	            var oSamll_html;
+	            var oSamll_html = "<option  value=''>请选择类型</option>";
 	            $.each(data.object, function (i, data) {
 	                oSamll_html += "<option value='" + data.id + "'>" + data.catagoryName + "</option>";
 	            });
@@ -61,7 +61,7 @@ define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/
 	    var getBrand = function () {
 	        var n = oSmallGoodsCatagory.val();
 	        $.getJSON(url.listBrand, {catagoryId: n}, function (data) {
-	            var oBrand_html;
+	            var oBrand_html  = "<option  value=''>请选择品牌</option>";
 	            $.each(data.object, function (i, data) {
 	                oBrand_html += "<option value='" + data.id + "'>" + data.brandName + "</option>";
 	            });
@@ -78,7 +78,7 @@ define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/
 	    var getModels = function () {
 	        var n = oBrand.val();
 	        $.getJSON(url.listModels, {brandId: n}, function (data) {
-	            var oModels_html;
+	            var oModels_html  = "<option  value=''>请选择型号</option>";
 	            $.each(data.object, function (i, data) {
 	                oModels_html += "<option value='" + data.id + "'>" + data.modelsName + "</option>";
 	            });

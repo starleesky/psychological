@@ -97,36 +97,36 @@
                         <label class="ui-form-hd">产品大类</label>
                         <div class="ui-form-bd">
                             <select class="bigGoodsCatagory"  name="catagoryBigId" id="catagoryBigId">
-<option>请选择产品大类</option>		                            </select>
+                </select>
                         </div>
                     </div>
                         
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">产品子类</label>
                         <div class="ui-form-bd">
-                            <select class="middleGoodsCatagory"  name="catagoryMid" id="catagoryMid" >
-<option>请选择产品子类</option>                            </select>
+                            <select class="middleGoodsCatagory"  name="catagoryMidId" id="catagoryMidId" >
+                       </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">产品</label>
                         <div class="ui-form-bd">
-                            <select class="smallGoodsCatagory" name="smallGoodsCatagory" id="smallGoodsCatagory" >
-<option>请选择产品</option>                            </select>
+                            <select class="catagorySmall" name="catagoryId" id="catagoryId" >
+                           </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">品牌</label>
                         <div class="ui-form-bd">
-                            <select class="brand" name="brand" id="brand"  >
-<option>请选择品牌</option>                            </select>
+                            <select class="brand" name="brandId" id="brandId"  >
+    </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">型号</label>
                         <div class="ui-form-bd">
-                            <select class="models" name="models" id="models" >
-<option>请选择型号</option>                            </select>
+                            <select class="models" name="modelId" id="modelId" >
+     </select>
                         </div>
                     </div>
                     <div class="field-submit">

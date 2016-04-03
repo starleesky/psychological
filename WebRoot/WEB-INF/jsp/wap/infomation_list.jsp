@@ -89,15 +89,8 @@
                             <input type="hidden" name="proSelect" value="0" />
                             <img src="" class="jProSelect" />
                         </div>
-                     <c:choose>
-                    	<c:when test="${status == 0}">
-                    	<a href="${ctx}/infomation/edit?id=${info.id}" class="pro-img">
-                    	</c:when>
-                    	<c:otherwise>
-                    	<a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
-                    	</c:otherwise>
-                     </c:choose>
-                            <img src="" class="jImg" data-url="" />
+                        <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
+                        <img src="" class="jImg" data-url="" />
                         </a>
                       
                         <div class="pro-info">
@@ -124,6 +117,10 @@
                         <c:if test="${status == 4 }">
                         	<a href="javascript:;" data-url="#" class="pro-new-up jNewUp">重新上架</a>
                         </c:if>
+                        <c:if test="${status == 0 }">
+                        	<a href="${ctx}/infomation/edit?id=${info.id}" data-url="#" class="pro-new-up jUpPro">修改商品</a>
+                        </c:if>
+                        
                     </li>
                     </c:forEach>
                     </div>

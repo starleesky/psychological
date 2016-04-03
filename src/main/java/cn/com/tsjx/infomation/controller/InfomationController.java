@@ -345,7 +345,7 @@ public class InfomationController {
 			Company company = companyService.get(Long.valueOf(user.getCompanyId()));
 			model.addAttribute("company", company);
 		}
-		model.addAttribute("bean", infomation);
+		model.addAttribute("info", infomation);
 
 		Infomation tempInfo = new Infomation();
 		tempInfo.setDeleted(Deleted.NO.value);

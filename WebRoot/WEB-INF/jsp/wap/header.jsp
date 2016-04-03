@@ -5,7 +5,7 @@
 <html>
 <body>
 <header class="ui-header">
-    <a href="#" class="ui-left">
+    <a href="${ctx}/wap/infor.htm" class="ui-left">
         <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
     </a> 
     <c:if test="${not empty sessionScope.user.id}">

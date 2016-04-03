@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -32,35 +33,42 @@
         <input type="hidden" name = "id" value = "${bean.id}" >
             <div class="ui-form-mod info clearfix">
                 <p>您好${bean.userName}&nbsp;&nbsp;欢迎使用汤森机械网. </p>
-                <img src="${ctx}/wap/images/icon_2.png" class="f-l"  />
+                <img src="${ctx}${bean.headIcon}" class="f-l"  />
                 <div class="info-desc f-l">
                     <a href="javascript:;" class="current jAddImg">上传LOGO</a>
                     <a href="javascript:;" class="jDelImg">删除LOGO</a>
                 </div>
+ 					<div class="ui-form-mod">
+                    <div class="ui-form-bd upload-img">
+                        <a href="javascript:;" node-type="uploadButton">
+                            <span class="upload-txt">选择图片</span>
+                        </a>
 
+                    </div>
+                </div>
             </div>
             <div class="ui-form-mod">
                 <label class="ui-form-hd">姓名<em>*</em></label>
                 <div class="ui-form-bd">
-                    <input type="text"  class="ui-input" name = "readName" value="${bean.realName}" />
+                    <input type="text"  class="ui-input" id = "realName" name = "realName" value="${bean.realName}" />
                 </div>
             </div>
             <div class="ui-form-mod">
                 <label class="ui-form-hd">手机</label>
                 <div class="ui-form-bd">
-                    <input type="text" name = "mobile"  value="${bean.mobile}" />
+                    <input type="text" name = "mobile"  id = "mobile" value="${bean.mobile}" />
                 </div>
             </div>
             <div class="ui-form-mod">
                 <label class="ui-form-hd">QQ</label>
                 <div class="ui-form-bd">
-                    <input type="text" name = "qq" value="${bean.qq}" />
+                    <input type="text" name = "qq" id = "qq" value="${bean.qq}" />
                 </div>
             </div>
             <div class="ui-form-mod">
                 <label class="ui-form-hd">微信</label>
                 <div class="ui-form-bd">
-                    <input type="text" name = "weixin" value="" />
+                    <input type="text" name = "weixinAccount"  id = "weixinAccount" value="${bean.weixinAccount}" />
                 </div>
             </div>
             <div class="ui-form-mod">
@@ -81,24 +89,24 @@
                 </div>
             </div>
             <div class="ui-form-mod">
-                <label class="ui-form-hd"><input type="checkbox" name="upPwd"  />更改密码<em>*</em></label>
+                <label class="ui-form-hd"><input type="checkbox" id = "checkbox" name="upPwd"  />更改密码<em>*</em></label>
             </div>
             <div class="ui-form-mod pwd">
                 <label class="ui-form-hd">当前密码<em>*</em></label>
                 <div class="ui-form-bd">
-                    <input type="text"  />
+                    <input type="password" name = "oldPassword" id = "oldPassword" />
                 </div>
             </div>
             <div class="ui-form-mod pwd">
                 <label class="ui-form-hd">新密码<em>*</em></label>
                 <div class="ui-form-bd">
-                    <input type="password"  />
+                    <input type="password" name = "password" id = "password"/>
                 </div>
             </div>
             <div class="ui-form-mod pwd">
                 <label class="ui-form-hd">确认密码<em>*</em></label>
                 <div class="ui-form-bd">
-                    <input type="password"  />
+                    <input type="password" name = "rePassword" id = "rePassword" />
                 </div>
             </div>
             <div class="ui-form-mod">

@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import cn.com.tsjx.infomation.entity.InfomationDto;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -345,6 +347,7 @@ public class InfomationController {
 		
 		pager = infomationService.page(params, pager);
 		model.addAttribute("pager", pager.items);
+		model.addAttribute("info", infomation);
 
 		return "/wap/search";
 	}
@@ -356,6 +359,8 @@ public class InfomationController {
 		infomation.setStatus(pageDto.getStatus());
 		infomation.setDeleted(Deleted.NO.value);
 
+		BeanUtils.copyProperties(pageDto, infomation);
+		
 		pager.setPageNo(pageDto.getPageNo() + 1);
 
 		Map<String, Object> params = new HashMap<String, Object>();

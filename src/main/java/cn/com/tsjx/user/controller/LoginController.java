@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -126,7 +127,7 @@ public class LoginController {
     @RequestMapping(value = "/index")
     public String index(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        Pager<Infomation> pager = new Pager<Infomation>();
+        Pager<InfomationDto> pager = new Pager<InfomationDto>();
         Infomation infomation = new Infomation();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("entity", infomation);
@@ -136,7 +137,7 @@ public class LoginController {
         if (user != null && user.getId() != null) {
             Params params2 = Params.create();
             params2.add("userId",user.getId());
-            Pager<Infomation> list = infomationService.getPagerCollections(params2, pager);
+            Pager<InfomationDto> list = infomationService.getPagerCollections(params2, pager);
             model.addAttribute("collections", list.getItems());
         }
 

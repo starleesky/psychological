@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,8 +66,19 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public JsonResult update(UserDto user,Model model) {
         JsonResult jsonResult = new JsonResult();
-        System.out.println(user);
-        System.out.println(user.getPassword().length());
+        if(user!=null && user.getOldPassword() != null){
+            User user2 = userService.get(user.getId());
+            String StringBase = Base64.encodeBase64String(user.getOldPassword().getBytes()) ;
+            System.out.println(StringBase);
+            System.out.println(user2.getPassword());
+            if(!StringBase.equals(user2.getPassword())){
+                jsonResult.setSuccess(false);
+                jsonResult.setMessage("旧密码错误");
+                return jsonResult;
+            }
+        }
+        String newPwdString = Base64.encodeBase64String(user.getPassword().getBytes());
+        user.setPassword(newPwdString);
     	userService.update(user);
     	jsonResult.setMessage("保存成功！");
     	jsonResult.setSuccess(true);

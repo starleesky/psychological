@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="field-submit">
-                        <a href="search.html" class="ui-button ui-button-submit ui-button-blue">搜索</a>
+                        <a href="${ctx}/infomation/search.htm" class="ui-button ui-button-submit ui-button-blue">搜索</a>
                     </div>
                 </form>
             </div>

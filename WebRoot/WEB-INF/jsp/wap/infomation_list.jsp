@@ -90,7 +90,7 @@
                             <img src="" class="jProSelect" />
                         </div>
                         <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
-                        <img src="" class="jImg" data-url="" />
+                        <img src="${ctx}"  class="jImg" data-url="" />
                         </a>
                       
                         <div class="pro-info">

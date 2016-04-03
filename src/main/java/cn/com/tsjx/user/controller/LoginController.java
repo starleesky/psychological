@@ -92,11 +92,17 @@ public class LoginController {
         user = userService.get(user.getId());
         model.addAttribute("userInfo",user);
         
-        Pager<Infomation> pager = new Pager<Infomation>();
-        Infomation infomation = new Infomation();
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("entity", infomation);
-        pager = infomationService.page(params, pager);
+        Pager<InfomationDto> pager = new Pager<InfomationDto>();
+        InfomationDto infomation = new InfomationDto();
+        Params params = Params.create();
+		infomation.setDeleted(Deleted.NO.value);
+		infomation.setStatus(InfomationEnum.status_sj.code());
+		pager.setEntity(infomation);
+		pager = infomationService.getInfoPagerWithImg(params, pager, false);
+        //Map<String, Object> params = new HashMap<String, Object>();
+        //params.put("entity", infomation);
+        //pager = infomationService.page(params, pager);
+        
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
         //1、上架

@@ -148,7 +148,7 @@
                    <c:forEach var="item" items="${Tops}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
+                            <span class="pro-img"><img src="${ctx }${item.imgUrl}" class="jImg" data-url="images/img1.jpg" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
                             <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>

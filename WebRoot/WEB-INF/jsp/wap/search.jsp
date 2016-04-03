@@ -17,19 +17,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <!-- <meta name="format-detection" content="telephone=no,email=no,address=no" /> -->
 
-    <link rel="stylesheet" href="css/module/search.css?v=1" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="${ctx }/wap/css/module/search.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
-<header class="ui-header">
-    <a href="#" class="ui-left">
-        <img src="images/logo.gif" class="ui-logo" />
-    </a>
-
-    <a  href="login.html" class="ui-right ui-login">
-        <img src="images/user_icon.png" />登录
-    </a>
-</header>
+<%@ include file="header.jsp" %>
 <!--head end-->
 <div class="page-view">
     <div class="page-view-body">
@@ -49,92 +41,26 @@
             <div class="pro-list search-bd">
                 <ul class="jPage">
                     <div data-page="1">
-                    <li class="pro-box">
-                        <a href="#" class="pro-img">
-                            <img src="images/blank.gif" class="jImg" data-url="images/img2.jpg" />
-                        </a>
-                        <div class="pro-info">
-                            <a href="#" class="pro-title">品牌加型号</a>
-                            <strong class="pro-price">5,000.00 元</strong>
-                            <p class="pro-date">
-                                <span class="year f-l">2012年</span>
-                                <span class="hourth f-r">2000小时</span>
-                            </p>
-                            <p>
-                                <span class="ready-num f-l">浏览<em class="jRNum">500次</em></span>
-                                <span class="pro-addr f-r">湖南</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="pro-box">
-                        <a href="#" class="pro-img">
-                            <img src="images/blank.gif" class="jImg" data-url="images/img2.jpg" />
-                        </a>
-                        <div class="pro-info">
-                            <a href="#" class="pro-title">品牌加型号</a>
-                            <strong class="pro-price">5,000.00 元</strong>
-                            <p class="pro-date">
-                                <span class="year f-l">2012年</span>
-                                <span class="hourth f-r">2000小时</span>
-                            </p>
-                            <p>
-                                <span class="ready-num f-l">浏览<em class="jRNum">500次</em></span>
-                                <span class="pro-addr f-r">湖南</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="pro-box">
-                        <a href="#" class="pro-img">
-                            <img src="images/blank.gif" class="jImg" data-url="images/img2.jpg" />
-                        </a>
-                        <div class="pro-info">
-                            <a href="#" class="pro-title">品牌加型号</a>
-                            <strong class="pro-price">5,000.00 元</strong>
-                            <p class="pro-date">
-                                <span class="year f-l">2012年</span>
-                                <span class="hourth f-r">2000小时</span>
-                            </p>
-                            <p>
-                                <span class="ready-num f-l">浏览<em class="jRNum">500次</em></span>
-                                <span class="pro-addr f-r">湖南</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="pro-box">
-                        <a href="#" class="pro-img">
-                            <img src="images/blank.gif" class="jImg" data-url="images/img2.jpg" />
-                        </a>
-                        <div class="pro-info">
-                            <a href="#" class="pro-title">品牌加型号</a>
-                            <strong class="pro-price">5,000.00 元</strong>
-                            <p class="pro-date">
-                                <span class="year f-l">2012年</span>
-                                <span class="hourth f-r">2000小时</span>
-                            </p>
-                            <p>
-                                <span class="ready-num f-l">浏览<em class="jRNum">500次</em></span>
-                                <span class="pro-addr f-r">湖南</span>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="pro-box">
-                        <a href="#" class="pro-img">
-                            <img src="images/blank.gif" class="jImg" data-url="images/img2.jpg" />
-                        </a>
-                        <div class="pro-info">
-                            <a href="#" class="pro-title">品牌加型号</a>
-                            <strong class="pro-price">5,000.00 元</strong>
-                            <p class="pro-date">
-                                <span class="year f-l">2012年</span>
-                                <span class="hourth f-r">2000小时</span>
-                            </p>
-                            <p>
-                                <span class="ready-num f-l">浏览<em class="jRNum">500次</em></span>
-                                <span class="pro-addr f-r">湖南</span>
-                            </p>
-                        </div>
-                    </li>
-                </div>
+	                    <c:forEach items="${pager}" var="info">
+		                    <li class="pro-box">
+		                        <a href="#" class="pro-img">
+		                            <img src="" class="jImg" data-url="" />
+		                        </a>
+		                        <div class="pro-info">
+		                            <a href="#" class="pro-title">${info.brandName }/${info.modelName }</a>
+		                            <strong class="pro-price">${info.price } 元</strong>
+		                            <p class="pro-date">
+		                                <span class="year f-l">${info.equipYear }年</span>
+		                                <span class="hourth f-r">${info.workTime }小时</span>
+		                            </p>
+		                            <p>
+		                                <span class="ready-num f-l">浏览<em class="jRNum"></em></span>
+		                                <span class="pro-addr f-r">${info.equipmentLocation }</span>
+		                            </p>
+		                        </div>
+		                    </li>
+	                   	</c:forEach>
+                	</div>
                 </ul>
             </div>
         </section>
@@ -143,103 +69,85 @@
                 <h2>高级搜索</h2>
                 <a href="javascript:;" class="f-r op-button-return">返回</a>
             </div>
-            <form class="ui-form">
+            <form class="ui-form" id="infoSearchForm">
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备地点</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                       
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">产品大类</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                    	<input type="hidden" name="catagoryBigId" id="catagoryBigId"/>
+                    	<input type="hidden" name="catagoryBigName" id="catagoryBigName"/>
+                        <select class="bigGoodsCatagory"  name="catagoryBig" id="catagoryBig" validate="required:true" ><option value="" selected>请选择产品大类</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">产品子类</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                    	<input type="hidden" name="catagoryMidId" id="catagoryMidId"/>
+                    	<input type="hidden" name="catagoryMidName" id="catagoryMidName"/>
+                        <select class="middleGoodsCatagory" name="catagoryMid" id="catagoryMid" validate="required:true"><option>请选择产品子类</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">全部产品</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                    	<input type="hidden" name="catagoryId" id="catagoryId"/>
+                    	<input type="hidden" name="catagoryName" id="catagoryName"/>
+                       <select class="smallGoodsCatagory" name="catagorySmall" id="catagorySmall" validate="required:true"><option>请选择产品</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">品牌</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                    	<input type="hidden" name="brandId" id="brandId"/>
+                    	<input type="hidden" name="brandName" id="brandName"/>
+                        <select class="brand" name="brand" id="brand" validate="required:true"><option>请选择品牌</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">型号</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                    	<input type="hidden" name="modelId" id="modelId"/>
+                    	<input type="hidden" name="modelName" id="modelName"/>
+                       	<select class="models"  name="models" id="models" validate="required:true"><option>请选择型号</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">销售方式</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
-                        </select>
+                    	<input type="hidden" name="sellType" id="sellType"/>
+                        <select name="sellType">
+                        	<option value="" selected></option>
+                        	<option value="2">求购</option>
+                       		<option value="3">求租</option>
+                       	</select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备情况</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                   	 	<input type="hidden" name="equipmentCondition" id="equipmentCondition"/>
+                        <select name="equipmentCondition">
+                        	<option value="" selected></option>
+                            <option value="0">新设备</option>
+                            <option value="1">二手设备</option>
+                            <option value="2">再制造</option>
                         </select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">手续资料</label>
                     <div class="ui-form-bd">
-                        <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                    	<input type="hidden" name="procedures" id="procedures"/>
+                        <select name="procedures">
+                        	<option value="" selected></option>
+                            <option value="0">手续齐全</option>
+                            <option value="1">无手续</option>
+                            <option value="2">有无手续均可</option>
                         </select>
                     </div>
                 </div>
@@ -247,10 +155,7 @@
                     <label class="ui-form-hd">年份</label>
                     <div class="ui-form-bd">
                         <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -258,17 +163,11 @@
                     <label class="ui-form-hd">工时</label>
                     <div class="ui-form-bd ui-small-select">
                         <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                           
                         </select>
                         <span>TO</span>
                         <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -276,42 +175,26 @@
                     <label class="ui-form-hd">价格</label>
                     <div class="ui-form-bd ui-small-select">
                         <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                          
                         </select>
                         <span>TO</span>
                         <select>
-                            <option value="1">出售</option>
-                            <option value="0">租赁</option>
-                            <option value="0">求购</option>
-                            <option value="979">求租</option>
+                           
                         </select>
                     </div>
                 </div>
                 <div class="field-submit">
-                    <a href="search.html" class="ui-button ui-button-submit ui-button-blue">搜索</a>
+                    <a href="#" class="ui-button ui-button-submit ui-button-blue" id="searchResult">搜索</a>
                 </div>
             </form>
         </section>
     </div>
 </div>
-<div class="footer">
-
-    <div class="ft-nav">
-        <a  href="about-us.html">关于我们</a>
-        <a  href="term-conditions.html">一般条款</a>
-        <a  href="contact-us.html">联系我们</a>
-    </div>
-    <div class="copyright">
-        Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd
-    </div> 
-</div>
-<script type="text/javascript" src="js/require.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<%@ include file="footer.jsp" %>
+<script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
     var ctx = "${ctx}";
-    require(['module/search']);
+    require(['module/search','module/want-release']);
 </script>
 </body></html>

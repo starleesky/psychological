@@ -220,7 +220,6 @@ public class InfomationController {
 		model.addAttribute("cnt_sc", collectInfo.size());
 
 	}
-
 	
 	/**
 	 * 信息列表 下拉刷新内容
@@ -334,4 +333,70 @@ public class InfomationController {
         
         return "/wap/editInfo";
     }
+	
+	@RequestMapping(value = "/search")
+	public String search(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		infomation.setStatus(InfomationEnum.status_sj.code());	// 查询上架的信息
+		infomation.setDeleted(Deleted.NO.value);
+		params.put("entity", infomation);
+		
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager.items);
+
+		return "/wap/search";
+	}
+	
+	@RequestMapping(value = "/moreSearchInfo")
+	@ResponseBody
+	public String moreSearchInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
+
+		infomation.setStatus(pageDto.getStatus());
+		infomation.setDeleted(Deleted.NO.value);
+
+		pager.setPageNo(pageDto.getPageNo() + 1);
+
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("entity", infomation);
+
+		pager = infomationService.page(params, pager);
+		
+		StringBuilder data = new StringBuilder();
+		for (Infomation info : pager.getItems()) {
+			data.append("<li class=\"pro-box\">")
+					.append("<div class=\"pro-select\">")
+						.append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
+						.append("<img src=\"\" class=\"jProSelect\" />")
+					.append("</div>")
+					.append("<a href=\"#\" class=\"pro-img\">")
+						.append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
+					.append("</a>")
+					.append("<div class=\"pro-info\">")
+						.append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/").append(info.getModelName()).append("</a>")
+						.append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+						.append("<p class=\"pro-date\">")
+							.append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
+							.append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
+						.append("</p>")
+						.append("<p>")
+							.append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
+							.append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
+						.append("</p>")	
+					.append("</div>");
+				
+			data.append("</li>");
+		}
+		StringBuilder sb = new StringBuilder("jsonp");
+
+		sb.append(pageDto.getPageNo());
+		sb.append("(");
+		pageOutDto pageOutDto = new pageOutDto();
+		pageOutDto.setData(data.toString());
+
+		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
+		sb.append(")");
+		return sb.toString();
+	}
 }

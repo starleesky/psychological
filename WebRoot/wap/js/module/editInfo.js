@@ -119,13 +119,18 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
 
     var oRegionProvice = $(".regionProvice");
     var oRegionCity = $(".regionCity");
-
-    //产品大类
+    var oEquipmentLocation = $("#equipmentLocation");
+    //省市
     var getProvice = function () {
         $.getJSON(url.listRegion, {id: '0'}, function (data) {
             var oProvice_html;
+            var oldProvince = (oEquipmentLocation.val()).split("|")[0]
             $.each(data.object, function (i, data) {
-                oProvice_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	if(oldProvince == data.regionName) {
+            		oProvice_html += "<option value='" + data.id + "' selected>" + data.regionName + "</option>";
+            	}else {
+            		oProvice_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	}
             });
             oRegionProvice.html(oProvice_html);
             getCity();
@@ -141,16 +146,46 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         var n = oRegionProvice.val();
         $.getJSON(url.listRegion, {id: n}, function (data) {
             var oCity_html;
+            var oldCity = (oEquipmentLocation.val()).split("|")[1];
             $.each(data.object, function (i, data) {
-                oCity_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	if(oldCity == data.regionName) {
+            		oCity_html += "<option value='" + data.id + "' selected>" + data.regionName + "</option>";
+            	}else {
+            		oCity_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	}
             });
             oRegionCity.html(oCity_html);
         });
     };
 
+    var initOtherSel = function() {
+    	$("select[name='sellTypeSel']").val($("#sellType").val());
+    	$("select[name='equipmentConditionSel']").val($("#equipmentCondition").val());
+    	$("select[name='proceduresSel']").val($("#procedures").val());
+    	$("select[name='srcSel']").val($("#src").val());
+    	$("select[name='equipYearSel']").val($("#equipYear").val());
+    	
+    }
 
+    var initNewBrand = function() {
+    	if(_brandId == null ||  _brandId == "" || _modelId == null || _modelId == "") {
+	    	var _brandName = "<%=_brandName%>";
+	    	var _modelName = "<%=_modelName%>";
+	    	
+	    	$('.desc-child').addClass('isHide');
+	    	$(this).removeClass('open');
+    	}
+    }
+    
     //初始省市
     getProvice();
+    
+    //初始化其他下拉框
+    initOtherSel();
+    
+    //初始化手动添加品牌型号内容（如果有）
+    initNewBrand();
+    
 
     //信息提交
     Validator.validate('#informationFrom', {
@@ -168,6 +203,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
             $.post(
                 url.saveInfo,
                 {
+                	id : $(form).find('input[name=id]').val(),
                     catagoryBigId: $(form).find('select[name=catagoryBig]').val(),
                     catagoryBigName: $(form).find('select[name=catagoryBig]').find("option:selected").text(),
                     catagoryMidId: $(form).find('select[name=catagoryMid]').val(),
@@ -186,15 +222,16 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     src: $(form).find('select[name=src]').val(),
                     equipYear: $(form).find('select[name=equipYear]').val(),
                     remark: $(form).find('input[name=remark]').val(),
-                    src: $(form).find('select[name=regionProvice]').val(),
-                    src: $(form).find('select[name=regionProvice]').find("option:selected").text(),
-                    src: $(form).find('select[name=regionCity]').val(),
-                    src: $(form).find('select[name=regionCity]').find("option:selected").text(),
-                    price: $(form).find('input[name=price]').val()
+                    provinceName: $(form).find('select[name=regionProvice]').find("option:selected").text(),
+                    cityName: $(form).find('select[name=regionCity]').find("option:selected").text(),
+                    price: $(form).find('input[name=price]').val(),
+                   // imgUrl:array,
+                    status:status
                 },
                 function (data) {
                     if (data.result) {
                         box.ok(data.message);
+                    	window.location.href = ctx + "/infomation/infoList?status=0";
                     } else {
                         box.error(data.message);
                     }
@@ -210,8 +247,11 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     $("#jSave").click(function () {
         var modelsId = oModels.val();
         if (modelsId == null || modelsId == "") {
-            alert('型号未选择');
-            return;
+        	var newModels = $("input[name='newModels']").val();
+        	if(newModels == null || newModels == "") {
+        		alert('型号未选择');
+        		return;
+        	}
         }
         $('#informationFrom').submit();
 

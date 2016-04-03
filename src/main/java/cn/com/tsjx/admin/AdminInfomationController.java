@@ -12,6 +12,7 @@ import cn.com.tsjx.common.constants.enums.NoticeEnum;
 import cn.com.tsjx.common.constants.enums.TsjxConstant;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.company.entity.Company;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
@@ -98,7 +99,7 @@ public class AdminInfomationController {
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
 			infomation.setStatus(InfomationEnum.status_sj.code());
 			//如果是新增品牌型号，添加到基础库
-			if ("1".equals(infomation.getIsNew()) ) {
+			if ("1".equals(infomation.getIsNew())) {
 				Brand brand = new Brand();
 				brand.setBrandName(infomation.getBrandName());
 				brand.setCatagoryId(infomation.getCatagoryId());
@@ -148,4 +149,24 @@ public class AdminInfomationController {
 		return result;
 	}
 
+	@RequestMapping(value = "/infomation/input", method = RequestMethod.GET)
+	public String inputStatus(Long id, String status, String top, Model model) {
+
+		Infomation infomation = new Infomation();
+
+		infomation.setId(id);
+		infomation.setStatus(status);
+		infomation.setIsTop(top);
+		infomationService.update(infomation);
+
+		if (id != null) {
+			infomation = infomationService.get(id);
+		}
+		model.addAttribute("bean", infomation);
+		Attch attach = new Attch();
+		attach.setInformationId(id);
+		List<Attch> attches = attchService.find(attach);
+		model.addAttribute("beanImg", attches);
+		return "admin/infomation/detail";
+	}
 }

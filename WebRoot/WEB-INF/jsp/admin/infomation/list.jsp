@@ -64,6 +64,13 @@
                     <option value="0">草稿箱</option>
                 </select>
             </div>
+            <div class="form-group pull-left">
+                <select class="form-control" name="isTop" ng-change="list.fetch()" ng-model="list.filter.isTop">
+                    <option value="">是否推荐</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select>
+            </div>
 
         </form>
         <!-- </div> -->
@@ -80,6 +87,7 @@
             <th>品牌</th>
             <th>型号</th>
             <th>销售方式</th>
+            <th>是否推荐</th>
             <th>时间</th>
             <th>信息状态</th>
             <th>操作</th>
@@ -100,6 +108,13 @@
                     <span ng-switch-when="3">求租</span>
                 </div>
             </td>
+            <td>
+                <div ng-switch on="c.isTop">
+                    <span ng-switch-when="null">否</span>
+                    <span ng-switch-when="0">否</span>
+                    <span ng-switch-when="1">是</span>
+                </div>
+            </td>
             <td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td>
                 <div ng-switch on="c.status">
@@ -112,16 +127,16 @@
             </td>
             <td>
 
-                <div  ng-show="c.status==0">
-                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}"  class="btn btn-primary">查看</a>
+                <div ng-show="c.status==0">
+                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>
                 </div>
 
-                <div  ng-show="c.status==1">
-                <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}"  class="btn btn-primary">审核</a>
+                <div ng-show="c.status==1">
+                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>
                 </div>
 
-                <div  ng-show="c.status==2">
-                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}"  class="btn btn-primary">下架</a>
+                <div ng-show="c.status==2">
+                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">下架</a>
                 </div>
             </td>
         </tr>

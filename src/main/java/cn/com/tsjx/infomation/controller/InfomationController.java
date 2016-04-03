@@ -1,5 +1,6 @@
 package cn.com.tsjx.infomation.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
@@ -40,379 +42,424 @@ import cn.com.tsjx.user.service.UserService;
 @RequestMapping("/infomation")
 public class InfomationController {
 
-    @Resource
-    InfomationService infomationService;
-    @Resource
-    UserService userService;
-    @Resource
-    CompanyService companyService;
+	@Resource
+	InfomationService infomationService;
+	@Resource
+	UserService userService;
+	@Resource
+	CompanyService companyService;
 
-    @Resource
-    AttchService attchService;
+	@Resource
+	AttchService attchService;
 
-    @RequestMapping(value = "/pub")
-    public String relaese() {
-        return "/wap/want-release";
-    }
+	@RequestMapping(value = "/pub")
+	public String pub(Model model, HttpSession httpSession) {
+		model.addAttribute("type", 1);
+		User user = (User) httpSession.getAttribute("user");
+		infoCounts(model, user);
+		return "/wap/want-release";
+	}
 
-    @RequestMapping(value = "/list")
-    public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("entity", infomation);
-        pager = infomationService.page(params, pager);
-        model.addAttribute("pager", pager);
-        model.addAttribute("bean", infomation);
-        return "/infomation/infomation_list";
-    }
+	@RequestMapping(value = "/sale")
+	public String sale(Model model, HttpSession httpSession) {
+		model.addAttribute("type", 2);
+		User user = (User) httpSession.getAttribute("user");
+		infoCounts(model, user);
+		return "/wap/want-release";
+	}
 
-    @RequestMapping(value = "/input", method = RequestMethod.GET)
-    public String input(Long id, Model model) {
-        Infomation infomation = new Infomation();
-        if (id != null) {
-            infomation = infomationService.get(id);
-        }
-        User user = null;
-        if (infomation.getUserId() != null) {
-            user = userService.get(infomation.getUserId());
-            model.addAttribute("user", user);
-        }
-        if (user != null && user.getCompanyId() != null) {
-            Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-            model.addAttribute("company", company);
-        }
-        if (user != null) {
+	@RequestMapping(value = "/list")
+	public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("entity", infomation);
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("bean", infomation);
+		return "/infomation/infomation_list";
+	}
+
+	@RequestMapping(value = "/input", method = RequestMethod.GET)
+	public String input(Long id, Model model) {
+		Infomation infomation = new Infomation();
+		if (id != null) {
+			infomation = infomationService.get(id);
+		}
+		User user = null;
+		if (infomation.getUserId() != null) {
+			user = userService.get(infomation.getUserId());
+			model.addAttribute("user", user);
+		}
+		if (user != null && user.getCompanyId() != null) {
+			Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+			model.addAttribute("company", company);
+		}
+		if (user != null) {
             Attch entity = new Attch();
             entity.setUserId(user.getId());
             List<Attch> list = attchService.find(entity);
             model.addAttribute("listAttch", list);
         }
-        model.addAttribute("bean", infomation);
-        return "/wap/view";
-    }
+		model.addAttribute("bean", infomation);
+		return "/wap/view";
+	}
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseBody
-    public Result<Boolean> save(InfomationDto infomation, Model model, HttpSession httpSession,
-            HttpServletRequest request) {
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public void save(InfomationDto infomation, HttpServletResponse response, HttpSession httpSession) {
 
-        // 新增发布信息人记录表
-        User user = (User) httpSession.getAttribute("user");
-        Result<Boolean> result = new Result<Boolean>();
-        if (infomation.getNewBrand() != null && infomation.getNewModel() != null
-                && !infomation.getNewModel().equals("")) {
-            infomation.setIsNew("1");
-            infomation.setBrandName(infomation.getNewBrand());
-            infomation.setModelName(infomation.getNewModel());
-        } else {
-            infomation.setIsNew("0");
-        }
-        infomation.setUserId(user.getId());
-        infomation.setEquipmentLocation(infomation.getProvinceName() + "|" + infomation.getCityName());
-        if (infomation.getId() == null) {
-            infomation = (InfomationDto) infomationService.insert(infomation);
-        } else {
-            infomationService.update(infomation);
-        }
+		//新增发布信息人记录表
+		User user = (User) httpSession.getAttribute("user");
+		if (infomation.getNewBrand() != null && infomation.getNewModel() != null && !infomation.getNewModel()
+		                                                                                       .equals("")) {
+			infomation.setIsNew("1");
+			infomation.setBrandName(infomation.getNewBrand());
+			infomation.setModelName(infomation.getNewModel());
+		} else {
+			infomation.setIsNew("0");
+		}
+		infomation.setUserId(user.getId());
+		infomation.setEquipmentLocation(infomation.getProvinceName() + "|" + infomation.getCityName());
+		infomation.setIsTop("0");
+		if (infomation.getId() == null) {
+			infomation = (InfomationDto) infomationService.insert(infomation);
+		} else {
+			infomationService.update(infomation);
+		}
 
-        //
-        if (StringUtil.isNotBlank(infomation.getImgUrl())) {
-            String[] imgs = infomation.getImgUrl().split(",");
-            for (String img : imgs) {
-                Attch attch = new Attch();
-                attch.setInformationId(infomation.getId());
-                attch.setUserId(user.getId());
-                attch.setAttchUrl(img);
-                attchService.insert(attch);
-            }
-        }
-        result.setMessage("新增信息成功");
-        result.setObject(true);
-        result.setResult(true);
-        return result;
-    }
+		//
+		if (StringUtil.isNotBlank(infomation.getImgUrl())) {
+			String[] imgs = infomation.getImgUrl().split(",");
+			for (String img : imgs) {
+				Attch attch = new Attch();
+				attch.setInformationId(infomation.getId());
+				attch.setUserId(user.getId());
+				attch.setAttchUrl(img);
+				attchService.insert(attch);
+			}
+		}
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Infomation infomation, Model model) {
-        infomationService.update(infomation);
-        model.addAttribute("msg", "编辑成功！");
-        model.addAttribute("redirectionUrl", "/infomation/list.htm");
-        return "/success";
-    }
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			response.getWriter().write("{\"result\":true,\"message\":\"操作成功\"}");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    @ResponseBody
-    @RequestMapping(value = "/del", method = RequestMethod.GET)
-    public Result<Boolean> del(Long[] ids) {
-        Result<Boolean> result = new Result<Boolean>();
-        List<Long> list = new ArrayList<Long>();
-        for (Long id : ids) {
-            list.add(id);
-        }
-        infomationService.delete(list);
-        result.setMessage("删除成功");
-        result.setObject(true);
-        result.setResult(true);
-        return result;
-    }
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(Infomation infomation, Model model) {
+		infomationService.update(infomation);
+		model.addAttribute("msg", "编辑成功！");
+		model.addAttribute("redirectionUrl", "/infomation/list.htm");
+		return "/success";
+	}
 
-    @RequestMapping(value = "/infoList")
-    public String infoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
-        Map<String, Object> params = new HashMap<String, Object>();
+	@ResponseBody
+	@RequestMapping(value = "/del", method = RequestMethod.GET)
+	public Result<Boolean> del(Long[] ids) {
+		Result<Boolean> result = new Result<Boolean>();
+		List<Long> list = new ArrayList<Long>();
+		for (Long id : ids) {
+			list.add(id);
+		}
+		infomationService.delete(list);
+		result.setMessage("删除成功");
+		result.setObject(true);
+		result.setResult(true);
+		return result;
+	}
 
-        String status = StringUtil.isBlank(infomation.getStatus()) ? InfomationEnum.status_sj.code()
-                : infomation.getStatus();
-        infomation.setStatus(status); // 信息状态为空时，默认查询“上架状态”
-        infomation.setDeleted(Deleted.NO.value);
+	@RequestMapping(value = "/infoList")
+	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+		Map<String, Object> params = new HashMap<String, Object>();
 
-        // 关联用户ID
-        User user = (User) httpSession.getAttribute("user");
-        infomation.setUserId(user == null ? -1 : user.getId());
+		String status = StringUtil.isBlank(infomation.getStatus()) ?
+				InfomationEnum.status_sj.code() :
+				infomation.getStatus();
+		infomation.setStatus(status);    //信息状态为空时，默认查询“上架状态”
+		infomation.setDeleted(Deleted.NO.value);
 
-        params.put("entity", infomation);
-        pager = infomationService.page(params, pager);
-        model.addAttribute("pager", pager.items);
-        model.addAttribute("bean", infomation);
+		//关联用户ID
+		User user = (User) httpSession.getAttribute("user");
+		infomation.setUserId(user == null ? -1 : user.getId());
 
-        model.addAttribute("status", status);
-        model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
+		params.put("entity", infomation);
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager.items);
+		model.addAttribute("bean", infomation);
 
-        infoCounts(infomation, model, user);
+		model.addAttribute("status", status);
+		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
 
-        return "/wap/infomation_list";
-    }
+		infoCounts(model, user);
 
-    /**
-     * 查询“我的收藏”列表
-     *
-     * @param pager
-     * @param infomation
-     * @param model
-     * @param httpSession
-     * @return
-     */
-    @RequestMapping(value = "/colleInfoList")
-    public String colleInfoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+		return "/wap/infomation_list";
+	}
 
-        // 关联用户ID
-        User user = (User) httpSession.getAttribute("user");
+	/**
+	 * 查询“我的收藏”列表
+	 *
+	 * @param pager
+	 * @param infomation
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 */
+	@RequestMapping(value = "/colleInfoList")
+	public String colleInfoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
 
-        Params param = Params.create();
-        param.add("deleted", Deleted.NO.value);
-        param.add("userId", user.getId());
+		//关联用户ID
+		User user = (User) httpSession.getAttribute("user");
 
-        pager = infomationService.getPagerCollections(param, pager);
-        model.addAttribute("pager", pager.items);
+		Params param = Params.create();
+		param.add("deleted", Deleted.NO.value);
+		param.add("userId", user.getId());
 
-        model.addAttribute("status", "9");
-        model.addAttribute("statusMc", "收藏");
+		pager = infomationService.getPagerCollections(param, pager);
+		model.addAttribute("pager", pager.items);
 
-        infoCounts(infomation, model, user);
+		model.addAttribute("status", "9");
+		model.addAttribute("statusMc", "收藏");
 
-        return "/wap/infomation_list";
-    }
+		infoCounts(model, user);
 
-    /**
-     * 查询不同信息状态数字
-     *
-     * @param infomation
-     * @param model
-     * @param user
-     */
+		return "/wap/infomation_list";
+	}
 
-    public void infoCounts(Infomation infomation, Model model, User user) {
+	/**
+	 * 查询不同信息状态数字
+	 *
+	 * @param infomation
+	 * @param model
+	 * @param user
+	 */
+	public void infoCounts(Model model, User user) {
+		Infomation infomation = new Infomation();
+		infomation.setDeleted(Deleted.NO.value);
+		infomation.setUserId(user.getId());
 
-        // 1、上架
-        infomation.setStatus(InfomationEnum.status_sj.code());
-        List<Infomation> li_sj = infomationService.find(infomation);
-        model.addAttribute("cnt_sj", li_sj.size());
+		//1、上架
+		infomation.setStatus(InfomationEnum.status_sj.code());
+		List<Infomation> li_sj = infomationService.find(infomation);
+		model.addAttribute("cnt_sj", li_sj.size());
 
-        // 2、已售
-        infomation.setStatus(InfomationEnum.status_ys.code());
-        List<Infomation> li_ys = infomationService.find(infomation);
-        model.addAttribute("cnt_ys", li_ys.size());
+		//2、已售
+		infomation.setStatus(InfomationEnum.status_ys.code());
+		List<Infomation> li_ys = infomationService.find(infomation);
+		model.addAttribute("cnt_ys", li_ys.size());
 
-        // 3、下架
-        infomation.setStatus(InfomationEnum.status_xj.code());
-        List<Infomation> li_xj = infomationService.find(infomation);
-        model.addAttribute("cnt_xj", li_xj.size());
+		//3、下架
+		infomation.setStatus(InfomationEnum.status_xj.code());
+		List<Infomation> li_xj = infomationService.find(infomation);
+		model.addAttribute("cnt_xj", li_xj.size());
 
-        // 4、草稿
-        infomation.setStatus(InfomationEnum.status_cg.code());
-        List<Infomation> li_cg = infomationService.find(infomation);
-        model.addAttribute("cnt_cg", li_cg.size());
+		//4、草稿
+		infomation.setStatus(InfomationEnum.status_cg.code());
+		List<Infomation> li_cg = infomationService.find(infomation);
+		model.addAttribute("cnt_cg", li_cg.size());
 
-        // 9、收藏
-        List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
-        model.addAttribute("cnt_sc", collectInfo.size());
+		//9、收藏
+		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+		model.addAttribute("cnt_sc", collectInfo.size());
 
-    }
+	}
 
-    /**
-     * 信息列表 下拉刷新内容
-     *
-     * @param pageDto
-     * @param infomation
-     * @param session
-     * @param pager
-     * @return
-     */
-    @RequestMapping(value = "/moreInfo")
-    @ResponseBody
-    public String moreInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
+	/**
+	 * 信息列表 下拉刷新内容
+	 *
+	 * @param pageDto
+	 * @param infomation
+	 * @param session
+	 * @param pager
+	 * @return
+	 */
+	@RequestMapping(value = "/moreInfo")
+	@ResponseBody
+	public String moreInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
 
-        User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
 
-        infomation.setUserId(user.getId());
-        infomation.setStatus(pageDto.getStatus());
-        infomation.setDeleted(Deleted.NO.value);
+		infomation.setUserId(user.getId());
+		infomation.setStatus(pageDto.getStatus());
+		infomation.setDeleted(Deleted.NO.value);
 
-        pager.setPageNo(pageDto.getPageNo() + 1);
+		pager.setPageNo(pageDto.getPageNo() + 1);
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("entity", infomation);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("entity", infomation);
 
-        if ("9".equals(pageDto.getStatus())) {
-            Params param = Params.create();
-            param.add("deleted", Deleted.NO.value);
-            param.add("userId", user.getId());
-            pager = infomationService.getPagerCollections(param, pager);
-        } else {
-            pager = infomationService.page(params, pager);
-        }
+		if ("9".equals(pageDto.getStatus())) {
+			Params param = Params.create();
+			param.add("deleted", Deleted.NO.value);
+			param.add("userId", user.getId());
+			pager = infomationService.getPagerCollections(param, pager);
+		} else {
+			pager = infomationService.page(params, pager);
+		}
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        pager = infomationService.page(params, pager);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		pager = infomationService.page(params, pager);
 
-        StringBuilder data = new StringBuilder();
-        for (Infomation info : pager.getItems()) {
-            data.append("<li class=\"pro-box\">").append("<div class=\"pro-select\">")
-                    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
-                    .append("<img src=\"\" class=\"jProSelect\" />").append("</div>")
-                    .append("<a href=\"#\" class=\"pro-img\">").append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
-                    .append("</a>").append("<div class=\"pro-info\">")
-                    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")
-                    .append(info.getModelName()).append("</a>").append("<strong class=\"pro-price\">")
-                    .append(info.getPrice()).append("元</strong>").append("<p class=\"pro-date\">")
-                    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
-                    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>").append("</p>")
-                    .append("<p>").append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
-                    .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
-                    .append("</p>").append("<p class=\"col-6\"> 信息来源：汤森 </p>")
-                    .append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>");
+		StringBuilder data = new StringBuilder();
+		for (Infomation info : pager.getItems()) {
+			data.append("<li class=\"pro-box\">")
+			    .append("<div class=\"pro-select\">")
+			    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
+			    .append("<img src=\"\" class=\"jProSelect\" />")
+			    .append("</div>")
+			    .append("<a href=\"#\" class=\"pro-img\">")
+			    .append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
+			    .append("</a>")
+			    .append("<div class=\"pro-info\">")
+			    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")
+			    .append(info.getModelName()).append("</a>")
+			    .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+			    .append("<p class=\"pro-date\">")
+			    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
+			    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
+			    .append("</p>")
+			    .append("<p>")
+			    .append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
+			    .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
+			    .append("</p>")
+			    .append("<p class=\"col-6\"> 信息来源：汤森 </p>")
+			    .append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>");
 
-            data.append("<p class=\"col-6\"> 截止日期:<span>").append(sdf.format(info.getEndTime())).append("</span> </p>")
-                    .append("</div>");
-            if (InfomationEnum.status_xj.code().equals(pageDto.getStatus())) {
-                data.append("<a href=\"javascript:;\" data-url=\"#\" class=\"pro-new-up jNewUp\">重新上架</a>");
-            }
-            data.append("</li>");
-        }
-        StringBuilder sb = new StringBuilder("jsonp");
+			data.append("<p class=\"col-6\"> 截止日期:<span>").append(sdf.format(info.getEndTime())).append("</span> </p>")
+			    .append("</div>");
+			if (InfomationEnum.status_xj.code().equals(pageDto.getStatus())) {
+				data.append("<a href=\"javascript:;\" data-url=\"#\" class=\"pro-new-up jNewUp\">重新上架</a>");
+			}
+			data.append("</li>");
+		}
+		StringBuilder sb = new StringBuilder("jsonp");
 
-        sb.append(pageDto.getPageNo());
-        sb.append("(");
-        pageOutDto pageOutDto = new pageOutDto();
-        pageOutDto.setData(data.toString());
+		sb.append(pageDto.getPageNo());
+		sb.append("(");
+		pageOutDto pageOutDto = new pageOutDto();
+		pageOutDto.setData(data.toString());
 
-        sb.append(JsonMapper.getMapper().toJson(pageOutDto));
-        sb.append(")");
-        return sb.toString();
-    }
+		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
+		sb.append(")");
+		return sb.toString();
+	}
 
-    /**
-     * 信息编辑页面
-     *
-     * @param id
-     * @param model
-     * @return
-     */
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String edit(Long id, Model model) {
-        Infomation infomation = new Infomation();
-        if (id != null) {
-            infomation = infomationService.get(id);
-        }
-        User user = null;
-        if (infomation.getUserId() != null) {
-            user = userService.get(infomation.getUserId());
-            model.addAttribute("user", user);
-        }
-        if (user != null && user.getCompanyId() != null) {
-            Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-            model.addAttribute("company", company);
-        }
-        model.addAttribute("bean", infomation);
+	/**
+	 * 信息编辑页面
+	 *
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String edit(Long id, Model model) {
+		Infomation infomation = new Infomation();
+		if (id != null) {
+			infomation = infomationService.get(id);
+		}
+		User user = null;
+		if (infomation.getUserId() != null) {
+			user = userService.get(infomation.getUserId());
+			model.addAttribute("user", user);
+		}
+		if (user != null && user.getCompanyId() != null) {
+			Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+			model.addAttribute("company", company);
+		}
+		model.addAttribute("info", infomation);
 
-        Infomation tempInfo = new Infomation();
-        tempInfo.setDeleted(Deleted.NO.value);
-        tempInfo.setUserId(user.getId());
+		Infomation tempInfo = new Infomation();
+		tempInfo.setDeleted(Deleted.NO.value);
+		tempInfo.setUserId(user.getId());
 
-        infoCounts(tempInfo, model, user);
+		infoCounts(model, user);
 
-        model.addAttribute("statusMc", InfomationEnum.status_cg.description());
-        model.addAttribute("status", InfomationEnum.status_cg.code());
+		model.addAttribute("statusMc", InfomationEnum.status_cg.description());
+		model.addAttribute("status", InfomationEnum.status_cg.code());
 
-        return "/wap/editInfo";
-    }
+		return "/wap/editInfo";
+	}
 
-    @RequestMapping(value = "/search")
-    public String search(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+	/**
+	 * 高级搜索_信息列表
+	 *
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/search")
+	public String search(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
 
-        Map<String, Object> params = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<String, Object>();
 
-        infomation.setStatus(InfomationEnum.status_sj.code()); // 查询上架的信息
-        infomation.setDeleted(Deleted.NO.value);
-        params.put("entity", infomation);
+		infomation.setStatus(InfomationEnum.status_sj.code());    // 查询上架的信息
+		infomation.setDeleted(Deleted.NO.value);
+		params.put("entity", infomation);
 
-        pager = infomationService.page(params, pager);
-        model.addAttribute("pager", pager.items);
-        model.addAttribute("info", infomation);
+		pager = infomationService.page(params, pager);
+		model.addAttribute("pager", pager.items);
+		model.addAttribute("info", infomation);
 
-        return "/wap/search";
-    }
+		return "/wap/search";
+	}
 
-    @RequestMapping(value = "/moreSearchInfo")
-    @ResponseBody
-    public String moreSearchInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
+	/**
+	 * 高级搜索_信息列表_下拉查询更多
+	 *
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/moreSearchInfo")
+	@ResponseBody
+	public String moreSearchInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
 
-        infomation.setStatus(pageDto.getStatus());
-        infomation.setDeleted(Deleted.NO.value);
+		infomation.setStatus(pageDto.getStatus());
+		infomation.setDeleted(Deleted.NO.value);
 
-        BeanUtils.copyProperties(pageDto, infomation);
+		BeanUtils.copyProperties(pageDto, infomation);
 
-        pager.setPageNo(pageDto.getPageNo() + 1);
+		pager.setPageNo(pageDto.getPageNo() + 1);
 
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("entity", infomation);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("entity", infomation);
 
-        pager = infomationService.page(params, pager);
+		pager = infomationService.page(params, pager);
 
-        StringBuilder data = new StringBuilder();
-        for (Infomation info : pager.getItems()) {
-            data.append("<li class=\"pro-box\">").append("<div class=\"pro-select\">")
-                    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
-                    .append("<img src=\"\" class=\"jProSelect\" />").append("</div>")
-                    .append("<a href=\"#\" class=\"pro-img\">").append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
-                    .append("</a>").append("<div class=\"pro-info\">")
-                    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")
-                    .append(info.getModelName()).append("</a>").append("<strong class=\"pro-price\">")
-                    .append(info.getPrice()).append("元</strong>").append("<p class=\"pro-date\">")
-                    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
-                    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>").append("</p>")
-                    .append("<p>").append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
-                    .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
-                    .append("</p>").append("</div>");
+		StringBuilder data = new StringBuilder();
+		for (Infomation info : pager.getItems()) {
+			data.append("<li class=\"pro-box\">")
+			    .append("<div class=\"pro-select\">")
+			    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
+			    .append("<img src=\"\" class=\"jProSelect\" />")
+			    .append("</div>")
+			    .append("<a href=\"#\" class=\"pro-img\">")
+			    .append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
+			    .append("</a>")
+			    .append("<div class=\"pro-info\">")
+			    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")
+			    .append(info.getModelName()).append("</a>")
+			    .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+			    .append("<p class=\"pro-date\">")
+			    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
+			    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
+			    .append("</p>")
+			    .append("<p>")
+			    .append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
+			    .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
+			    .append("</p>")
+			    .append("</div>");
 
-            data.append("</li>");
-        }
-        StringBuilder sb = new StringBuilder("jsonp");
+			data.append("</li>");
+		}
+		StringBuilder sb = new StringBuilder("jsonp");
 
-        sb.append(pageDto.getPageNo());
-        sb.append("(");
-        pageOutDto pageOutDto = new pageOutDto();
-        pageOutDto.setData(data.toString());
+		sb.append(pageDto.getPageNo());
+		sb.append("(");
+		pageOutDto pageOutDto = new pageOutDto();
+		pageOutDto.setData(data.toString());
 
-        sb.append(JsonMapper.getMapper().toJson(pageOutDto));
-        sb.append(")");
-        return sb.toString();
-    }
+		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
+		sb.append(")");
+		return sb.toString();
+	}
 }

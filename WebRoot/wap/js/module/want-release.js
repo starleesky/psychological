@@ -170,12 +170,13 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     status:status
                 },
                 function (data) {
-                    if (data.result) {
+                   var str= JSON.parse(data);
+                    if (str.result) {
                         box.ok(data.message);
                         window.location.href = ctx+"/infomation/infoList?status=0"
 
                     } else {
-                        box.error(data.message);
+                        box.error(str.message);
                     }
 
                 });

@@ -40,6 +40,22 @@
                 <button class="btn btn-primary " ng-click="openModel(2)">不通过</button>
             </div>
         </c:if>
+        <c:if test="${bean.status=='2'}">
+            <div class="btn-group btn-large">
+                <a class="btn btn-primary pull-left " href="${ctx}/admin/infomation/input?id=${bean.id}&status=4">下架</a>
+                <c:if test="${bean.isTop=='0'||bean.isTop==null}">
+                    <a class="btn btn-primary pull-left " href="${ctx}/admin/infomation/input?id=${bean.id}&top=1">推荐</a>
+                </c:if>
+                <c:if test="${bean.isTop!='0'&&bean.isTop!=null}">
+                    <a class="btn btn-primary pull-left " href="${ctx}/admin/infomation/input?id=${bean.id}&top=0">取消推荐</a>
+                </c:if>
+            </div>
+        </c:if>
+        <c:if test="${bean.status=='4'}">
+            <div class="btn-group btn-large">
+                <a class="btn btn-primary pull-left "  href="${ctx}/admin/infomation/input?id=${bean.id}&status=2">上架</a>
+            </div>
+        </c:if>
     </h3>
 </div>
 <table class="table table-bordered">
@@ -74,14 +90,27 @@
     <tbody>
     <tr>
         <td class="tab-head">设备情况</td>
-        <td class="tab-content-head" ng-model="company">${bean.equipmentCondition}</td>
+        <td class="tab-content-head" ng-model="company">
+            <c:if test="${bean.equipmentCondition==0}">新设备</c:if>
+            <c:if test="${bean.equipmentCondition==1}">二手设备</c:if>
+            <c:if test="${bean.equipmentCondition==2}">再制造</c:if>
+        </td>
         <td class="tab-head">手续资料</td>
-        <td>${bean.procedures}</td>
+        <td>
+            <c:if test="${bean.procedures==0}">手续齐全</c:if>
+            <c:if test="${bean.procedures==1}">无手续</c:if>
+            <c:if test="${bean.procedures==2}">有无手续均可</c:if>
+        </td>
 
     </tr>
     <tr>
         <td class="tab-head">设备来源</td>
-        <td>${bean.src}</td>
+        <td>
+            <c:if test="${bean.src==0}">个人</c:if>
+            <c:if test="${bean.src==1}">单位</c:if>
+            <c:if test="${bean.src==2}">抵押</c:if>
+            <c:if test="${bean.src==3}">法务</c:if>
+        </td>
         <td class="tab-head">设备年费</td>
         <td class="tab-content-head">${bean.equipYear}</td>
     </tr>
@@ -103,14 +132,14 @@
     <td class="tab-content-head">${bean.pubTime}</td>
     </tr>
     <tr>
-    <td class="tab-head">到期日期</td>
-    <td class="tab-content-head">${bean.validTime}</td>
-    <td class="tab-head">库存数量</td>
-    <td class="tab-content-head">${bean.stockCount}</td>
+        <td class="tab-head">到期日期</td>
+        <td class="tab-content-head">${bean.validTime}</td>
+        <td class="tab-head">库存数量</td>
+        <td class="tab-content-head">${bean.stockCount}</td>
     </tr>
     <tr>
         <td class="tab-head">设备序列号</td>
-        <td class="tab-content-head" >${bean.sellCount}</td>
+        <td class="tab-content-head">${bean.sellCount}</td>
         <td class="tab-head">是否推荐</td>
         <td class="tab-content-head">${bean.isTop}</td>
     </tr>

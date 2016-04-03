@@ -390,7 +390,7 @@ public class InfomationController {
 	public String search(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
 
 		Map<String, Object> params = new HashMap<String, Object>();
-
+System.out.println(infomation);
 		infomation.setStatus(InfomationEnum.status_sj.code());    // 查询上架的信息
 		infomation.setDeleted(Deleted.NO.value);
 		params.put("entity", infomation);

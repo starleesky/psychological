@@ -43,7 +43,7 @@
                     <div data-page="1">
 	                    <c:forEach items="${pager}" var="info">
 		                    <li class="pro-box">
-		                        <a href="#" class="pro-img">
+		                        <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
 		                            <img src="${ctx}" class="jImg" data-url="" />
 		                        </a>
 		                        <div class="pro-info">

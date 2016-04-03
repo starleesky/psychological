@@ -79,19 +79,14 @@
 		STATUS
 		status,
 		WEIGHT weight,
-		h.attch_url imgUrl
+		(select h.attch_url  from tsjx_attch h where a.id = h.information_id order by h.create_time limit 0,1) imgUrl
 		FROM
 	</sql>
 	
 	<select id="getInfomationsByParam" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
 		parameterType="map">
 		<include refid="selectFieldSQL_infos_img" />
-		tsjx_infomation a
-		left join  tsjx_attch h
-		on
-    		a.id = h.information_id
-		,
-		tsjx_collection b
+		tsjx_infomation a,tsjx_collection b
 		WHERE
 		a.id = b.information_id
 		and
@@ -108,6 +103,7 @@
 	<sql id="page_condition_infos">
 		and a.deleted = #{deleted,jdbcType=VARCHAR}
 		and a.user_id = #{userId,jdbcType=INTEGER}
+		and a.status = #{status,jdbcType=VARCHAR}
 	</sql>
 	
 	<sql id="page_condition_infoWithoutUser">
@@ -154,6 +150,9 @@
 			<if test="entity.deleted != null and entity.deleted != ''">
 				AND a.DELETED = #{entity.deleted,jdbcType=VARCHAR}
 			</if>
+			<if test="entity.status != null and entity.status != ''">
+				AND a.STATUS = #{entity.status,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</sql>
 	
@@ -162,12 +161,7 @@
 		resultType="int">
 		<![CDATA[
 		 select count(*) from 
-		  tsjx_infomation a
-		  left join  tsjx_attch h
-		on
-    		a.id = h.information_id
-		  ,
-		    tsjx_collection b
+		  tsjx_infomation a,tsjx_collection b
 		WHERE
     		a.id = b.information_id
     		
@@ -180,12 +174,7 @@
 		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectFieldSQL_infos_img" />
 		<![CDATA[
-		    tsjx_infomation a
-		    left join  tsjx_attch h
-		on
-    		a.id = h.information_id
-		,
-		    tsjx_collection b 
+		    tsjx_infomation a,tsjx_collection b 
 		WHERE
     		a.id = b.information_id
     		]]>
@@ -198,14 +187,7 @@
 	<select id="getInfoPagerWithImg_count" parameterType="map"
 		resultType="int">
 		<![CDATA[
-		 select count(*) from 
-		  tsjx_infomation a 
-		  left join  tsjx_attch h
-		on
-    		a.id = h.information_id
-    	where 
-    		1=1	
-    		
+		 select count(*) from  tsjx_infomation a where  1=1	
 		]]>
 		<include refid="page_condition_infos" />
 	</select>
@@ -215,12 +197,7 @@
 		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectFieldSQL_infos_img" />
 		<![CDATA[
-		    tsjx_infomation a
-		   	left join  tsjx_attch h
-		on
-    		a.id = h.information_id
-		WHERE
-    		1=1
+		    tsjx_infomation a WHERE 1=1
     		]]>
 		<include refid="page_condition_infos" />
 		<include refid="mybatis.pageEndSQL" />
@@ -229,11 +206,7 @@
 	<select id="getInfoPagerWithImgNoUser_count" parameterType="map"
 		resultType="int">
 		<![CDATA[
-		 select count(*) from 
-		  tsjx_infomation a 
-		  left join  tsjx_attch h
-		on
-    		a.id = h.information_id
+		 select count(*) from  tsjx_infomation a 
 		]]>
 		<include refid="page_condition_infoWithoutUser" />
 	</select>
@@ -244,9 +217,6 @@
 		<include refid="selectFieldSQL_infos_img" />
 		<![CDATA[
 		    tsjx_infomation a
-		   	left join  tsjx_attch h
-		on
-    		a.id = h.information_id
     		]]>
 		<include refid="page_condition_infoWithoutUser" />
 		<include refid="mybatis.pageEndSQL" />

@@ -26,6 +26,7 @@ import cn.com.tsjx.common.web.model.JsonResult;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;

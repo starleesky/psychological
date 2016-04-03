@@ -421,10 +421,10 @@ public class InfomationController {
 		//params.put("entity", infomation);
 
 		Params params = Params.create();
-		params.add("deleted", Deleted.NO.value);
-		params.add("status", InfomationEnum.status_sj.code());
+		//params.add("deleted", Deleted.NO.value);
+		//params.add("status", InfomationEnum.status_sj.code());
 		
-		params.add("catagoryBigId",infomation.getCatagoryBigId());
+		/*params.add("catagoryBigId",infomation.getCatagoryBigId());
 		params.add("catagoryBigName",infomation.getCatagoryBigName());
 		params.add("catagoryMidId",infomation.getCatagoryMidId());
 		params.add("catagoryMidName",infomation.getCatagoryMidName());
@@ -436,8 +436,8 @@ public class InfomationController {
 		params.add("modelName",infomation.getModelName());
 		params.add("sellType",infomation.getSellType());
 		params.add("equipmentCondition",infomation.getEquipmentCondition());
-		params.add("procedures",infomation.getProcedures());
-		//pager.setEntity(infomation);
+		params.add("procedures",infomation.getProcedures());*/
+		pager.setEntity(infomation);
 		pager = infomationService.getInfoPagerWithImg(params, pager, false);
 		
 		//pager = infomationService.page(params, pager);

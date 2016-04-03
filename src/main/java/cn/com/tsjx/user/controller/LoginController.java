@@ -25,6 +25,7 @@ import cn.com.tsjx.common.web.model.JsonResult;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;
@@ -126,7 +127,7 @@ public class LoginController {
     @RequestMapping(value = "/index")
     public String index(Model model, HttpSession httpSession) {
         User user = (User) httpSession.getAttribute("user");
-        Pager<Infomation> pager = new Pager<Infomation>();
+        Pager<InfomationDto> pager = new Pager<InfomationDto>();
         Infomation infomation = new Infomation();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("entity", infomation);
@@ -136,7 +137,7 @@ public class LoginController {
         if (user != null && user.getId() != null) {
             Params params2 = Params.create();
             params2.add("userId",user.getId());
-            Pager<Infomation> list = infomationService.getPagerCollections(params2, pager);
+            Pager<InfomationDto> list = infomationService.getPagerCollections(params2, pager);
             model.addAttribute("collections", list.getItems());
         }
 

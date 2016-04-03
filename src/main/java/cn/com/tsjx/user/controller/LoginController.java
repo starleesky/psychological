@@ -275,7 +275,7 @@ public class LoginController {
     @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
     public String loginOut(HttpSession httpSession) {
         httpSession.removeAttribute("user");
-        return "/wap/index";
+        return "/wap/infor";
     }
     
     @RequestMapping(value = "/toForgotpwdSuccess", method = RequestMethod.GET)

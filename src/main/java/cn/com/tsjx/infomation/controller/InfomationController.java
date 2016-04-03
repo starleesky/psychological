@@ -171,7 +171,7 @@ public class InfomationController {
 		model.addAttribute("status", status);
 		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
 
-		infoCounts(infomation, model, user);
+		infoCounts(model, user);
 
 		return "/wap/infomation_list";
 	}
@@ -201,7 +201,7 @@ public class InfomationController {
 		model.addAttribute("status", "9");
 		model.addAttribute("statusMc", "收藏");
 
-		infoCounts(infomation, model, user);
+		infoCounts(model, user);
 
 		return "/wap/infomation_list";
 	}
@@ -213,9 +213,11 @@ public class InfomationController {
 	 * @param model
 	 * @param user
 	 */
-
-	public void infoCounts(Infomation infomation, Model model, User user) {
-
+	public void infoCounts(Model model, User user) {
+		Infomation infomation = new Infomation();
+		infomation.setDeleted(Deleted.NO.value);
+		infomation.setUserId(user.getId());
+		
 		//1、上架
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		List<Infomation> li_sj = infomationService.find(infomation);
@@ -350,7 +352,7 @@ public class InfomationController {
 		tempInfo.setDeleted(Deleted.NO.value);
 		tempInfo.setUserId(user.getId());
 
-		infoCounts(tempInfo, model, user);
+		infoCounts(model, user);
 
 		model.addAttribute("statusMc", InfomationEnum.status_cg.description());
 		model.addAttribute("status", InfomationEnum.status_cg.code());
@@ -358,6 +360,13 @@ public class InfomationController {
 		return "/wap/editInfo";
 	}
 
+	/**
+	 * 高级搜索_信息列表
+	 *
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/search")
 	public String search(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
 
@@ -374,6 +383,13 @@ public class InfomationController {
 		return "/wap/search";
 	}
 
+	/**
+	 * 高级搜索_信息列表_下拉查询更多
+	 *
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/moreSearchInfo")
 	@ResponseBody
 	public String moreSearchInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {

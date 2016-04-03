@@ -27,24 +27,31 @@
     <div class="page-view-body">
         <section class="mod-info">
             <div class="hd">
-                <h3 class="title">我要销售</h3>
+                <h3 class="title">
+                    <c:if test="${type==1}"> 我要求购</c:if>
+                    <c:if test="${type==2}"> 我要销售</c:if>
+                </h3>
             </div>
             <div class="bd">
-                <a class="bd-l" href="orders.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=2" status="2">
+                    <span class="num">${cnt_sj }</span>
                     <span class="num-desc">上架</span>
                 </a>
-                <a class="bd-m" href="logistics.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=3" status="3">
+                    <span class="num">${cnt_ys }</span>
                     <span class="num-desc">已售</span>
                 </a>
-                <a class="bd-m" href="logistics.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=4" status="4">
+                    <span class="num">${cnt_xj }</span>
                     <span class="num-desc">下架</span>
                 </a>
-                <a class="bd-r" href="coupon.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=0" status="0">
+                    <span class="num">${cnt_cg }</span>
                     <span class="num-desc">草稿</span>
+                </a>
+                <a href="${ctx }/infomation/colleInfoList?status=9" status="9">
+                    <span class="num">${cnt_sc }</span>
+                    <span class="num-desc">收藏</span>
                 </a>
             </div>
         </section>
@@ -64,7 +71,7 @@
                     <%--</div>--%>
 
                 <%--</div>--%>
-
+                <c:if test="${type==2}">
                 <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
                 <div class="ui-form-mod upload-img">
                     <a href="javascript:;" node-type="uploadButton">
@@ -78,6 +85,7 @@
                         </div>
                     </a>
                 </div>
+                </c:if>
                 <div class="ui-form-title">选择产品类别</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
@@ -114,7 +122,16 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">求购方式</label>
                     <div class="ui-form-bd">
-                        <select name="sellType"><option value="2">求购</option><option value="3">求租</option></select>
+                        <select name="sellType">
+                            <c:if test="${type==1}">
+                                <option value="2">求购</option>
+                                <option value="3">求租</option>
+                            </c:if>
+                            <c:if test="${type==2}">
+                                <option value="0">出售</option>
+                                <option value="1">租赁</option>
+                            </c:if>
+                        </select>
                     </div>
                 </div>
                 <div class="ui-form-mod">

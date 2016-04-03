@@ -1,5 +1,6 @@
 package cn.com.tsjx.infomation.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
@@ -51,7 +53,18 @@ public class InfomationController {
 	AttchService attchService;
 
 	@RequestMapping(value = "/pub")
-	public String relaese() {
+	public String pub(Model model, HttpSession httpSession) {
+		model.addAttribute("type", 1);
+		User user = (User) httpSession.getAttribute("user");
+		infoCounts(model, user);
+		return "/wap/want-release";
+	}
+
+	@RequestMapping(value = "/sale")
+	public String sale(Model model, HttpSession httpSession) {
+		model.addAttribute("type", 2);
+		User user = (User) httpSession.getAttribute("user");
+		infoCounts(model, user);
 		return "/wap/want-release";
 	}
 
@@ -85,13 +98,10 @@ public class InfomationController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	@ResponseBody
-	public Result<Boolean> save(InfomationDto infomation, Model model, HttpSession httpSession,
-			HttpServletRequest request) {
+	public void save(InfomationDto infomation, HttpServletResponse response, HttpSession httpSession) {
 
 		//新增发布信息人记录表
 		User user = (User) httpSession.getAttribute("user");
-		Result<Boolean> result = new Result<Boolean>();
 		if (infomation.getNewBrand() != null && infomation.getNewModel() != null && !infomation.getNewModel()
 		                                                                                       .equals("")) {
 			infomation.setIsNew("1");
@@ -102,6 +112,7 @@ public class InfomationController {
 		}
 		infomation.setUserId(user.getId());
 		infomation.setEquipmentLocation(infomation.getProvinceName() + "|" + infomation.getCityName());
+		infomation.setIsTop("0");
 		if (infomation.getId() == null) {
 			infomation = (InfomationDto) infomationService.insert(infomation);
 		} else {
@@ -119,10 +130,13 @@ public class InfomationController {
 				attchService.insert(attch);
 			}
 		}
-		result.setMessage("新增信息成功");
-		result.setObject(true);
-		result.setResult(true);
-		return result;
+
+		response.setContentType("text/html;charset=utf-8");
+		try {
+			response.getWriter().write("{\"result\":true,\"message\":\"操作成功\"}");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -216,7 +230,7 @@ public class InfomationController {
 		Infomation infomation = new Infomation();
 		infomation.setDeleted(Deleted.NO.value);
 		infomation.setUserId(user.getId());
-		
+
 		//1、上架
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		List<Infomation> li_sj = infomationService.find(infomation);
@@ -397,7 +411,7 @@ public class InfomationController {
 		infomation.setDeleted(Deleted.NO.value);
 
 		BeanUtils.copyProperties(pageDto, infomation);
-		
+
 		pager.setPageNo(pageDto.getPageNo() + 1);
 
 		Map<String, Object> params = new HashMap<String, Object>();

@@ -50,19 +50,33 @@
         </section>
         <section class="mod-want-buy">
             <form class="ui-form" id="informationFrom">
+                <%--<div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>--%>
+                <%--<div class="ui-form-mod upload-img">--%>
+                    <%--<div class="img-sp">--%>
+                        <%--<input type="file" name="file[]" value="aaa" />--%>
+                        <%--<img src="${ctx}/wap/images/camera_load_icon.png" />--%>
+                        <%--<span>照片</span>--%>
+                    <%--</div>--%>
+                    <%--<div class="img-sp">--%>
+                        <%--<input type="file" name="file[]" value="aaa" />--%>
+                        <%--<img src="${ctx}/wap/images/image_load_icon.png" />--%>
+                        <%--<span>上传图片</span>--%>
+                    <%--</div>--%>
+
+                <%--</div>--%>
+
                 <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
                 <div class="ui-form-mod upload-img">
-                    <div class="img-sp">
-                        <input type="file" name="file[]" value="aaa" />
-                        <img src="${ctx}/wap/images/camera_load_icon.png" />
-                        <span>照片</span>
-                    </div>
-                    <div class="img-sp">
-                        <input type="file" name="file[]" value="aaa" />
-                        <img src="${ctx}/wap/images/image_load_icon.png" />
-                        <span>上传图片</span>
-                    </div>
-
+                    <a href="javascript:;" node-type="uploadButton">
+                        <div class="img-sp" >
+                            <img src="${ctx}/wap/images/camera_load_icon.png" />
+                            <span>照片</span>
+                        </div>
+                        <div class="img-sp">
+                            <img src="${ctx}/wap/images/image_load_icon.png" />
+                            <span>上传图片</span>
+                        </div>
+                    </a>
                 </div>
                 <div class="ui-form-title">选择产品类别</div>
                 <div class="ui-form-mod">

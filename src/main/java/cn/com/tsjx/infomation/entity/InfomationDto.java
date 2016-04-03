@@ -21,7 +21,7 @@ public class InfomationDto extends Infomation {
 
 	private String auditStatus;
 
-	private List<String> imgUrl;
+	private String imgUrl;
 
 	// 省份|
 	private String provinceName;
@@ -52,11 +52,11 @@ public class InfomationDto extends Infomation {
 		this.auditStatus = auditStatus;
 	}
 
-	public List<String> getImgUrl() {
+	public String getImgUrl() {
 		return imgUrl;
 	}
 
-	public void setImgUrl(List<String> imgUrl) {
+	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
 

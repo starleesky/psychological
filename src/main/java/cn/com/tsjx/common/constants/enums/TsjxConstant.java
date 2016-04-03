@@ -18,4 +18,8 @@ public class TsjxConstant {
 	public static final String company_audit_title = "公司认证";
 	public static final String company_audit_success = "你的公司认证通过了";
 	public static final String company_audit_failure = "你的公司认证不通过，失败原因：%s";
+
+	public static final String information_audit_title = "信息认证";
+	public static final String information_audit_success = "你的信息认证通过了";
+	public static final String information_audit_failure = "你的信息认证不通过，失败原因：%s";
 }

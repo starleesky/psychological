@@ -125,6 +125,13 @@ public class InfomationController {
 			infomationService.update(infomation);
 		}
 
+		if ("2".equals(infomation.getSellType())||"3".equals(infomation.getSellType())) {
+			Attch attch = new Attch();
+			attch.setInformationId(infomation.getId());
+			attch.setUserId(user.getId());
+			attch.setAttchUrl("/images/catagory/"+infomation.getCatagoryBigId()+"/"+infomation.getCatagoryMidId()+".jpg");
+			attchService.insert(attch);
+		}
 		//
 		if (StringUtil.isNotBlank(infomation.getImgUrl())) {
 			String[] imgs = infomation.getImgUrl().split(",");
@@ -136,6 +143,7 @@ public class InfomationController {
 				attchService.insert(attch);
 			}
 		}
+
 
 		response.setContentType("text/html;charset=utf-8");
 		try {

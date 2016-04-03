@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hp.hpl.sparta.xpath.ThisNodeTest;
-
+import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
@@ -33,7 +32,7 @@ import cn.com.tsjx.user.service.UserService;
 import cn.com.tsjx.util.SimpleCaptcha;
 
 @Controller
-@RequestMapping(value = "/wap")
+@RequestMapping("/wap")
 public class LoginController {
 
     @Resource
@@ -72,6 +71,7 @@ public class LoginController {
             return result;
         }
         httpSession.setAttribute("user", user);
+        model.addAttribute("userId",user.getId());
         result.setResult(true);
         result.setMessage("登录成功");
         return result;
@@ -98,7 +98,29 @@ public class LoginController {
         pager = infomationService.page(params, pager);
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
-        
+        //1、上架
+        infomation.setStatus(InfomationEnum.status_sj.code());
+        List<Infomation> li_sj = infomationService.find(infomation);
+        model.addAttribute("cnt_sj", li_sj.size());
+
+        //2、已售
+        infomation.setStatus(InfomationEnum.status_ys.code());
+        List<Infomation> li_ys = infomationService.find(infomation);
+        model.addAttribute("cnt_ys", li_ys.size());
+
+        //3、下架
+        infomation.setStatus(InfomationEnum.status_xj.code());
+        List<Infomation> li_xj = infomationService.find(infomation);
+        model.addAttribute("cnt_xj", li_xj.size());
+
+        //4、草稿
+        infomation.setStatus(InfomationEnum.status_cg.code());
+        List<Infomation> li_cg = infomationService.find(infomation);
+        model.addAttribute("cnt_cg", li_cg.size());
+
+        //9、收藏
+        List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+        model.addAttribute("cnt_sc", collectInfo.size());
         return "/wap/infor";
     }
     @RequestMapping(value = "/index")

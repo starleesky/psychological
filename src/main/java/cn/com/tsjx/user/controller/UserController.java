@@ -45,6 +45,7 @@ public class UserController {
         User user=new User();
     	if(id!=null){
     	    user=userService.get(id);
+    	    System.out.println(user);
     	}
     	model.addAttribute("bean", user);
         return "/wap/user-info";

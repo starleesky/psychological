@@ -14,7 +14,7 @@ define(function (require, exports, module) {
         loginUrl: baseUrl + '/wap/loginIn',
         loginSuccessUrl: baseUrl + '/wap/index',
         loginIndexUrl:baseUrl + '/wap/infor',//登录成功
-        toRegisterUrl: baseUrl + '/wap/toRegister',//去注册页面
+        toRegisterUrl: baseUrl + '/toRegister',//去注册页面
 
         listGoodsCatagory: baseUrl + '/catagory/listCatagory', // 查询设备产品列表URL
         listBrand: baseUrl + '/brand/listBrand',//查询设备品牌URL

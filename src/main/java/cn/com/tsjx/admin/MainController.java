@@ -42,7 +42,8 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/logout")
-	public String logout(Model model) {
+	public String logout(Model model,HttpSession httpSession) {
+        httpSession.removeAttribute("adminUser");
 		return "login";
 	}
 

@@ -27,29 +27,9 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
-    <!--  <bean id="mappingJacksonHttpMessageConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-        <property name="supportedMediaTypes">
-            <list>
-                <value>text/html;charset=UTF-8</value>
-            </list>
-        </property>
-    </bean>
-  &lt;!&ndash; 启动SpringMVC的注解功能，完成请求和注解POJO的映射 &ndash;&gt;-->
-    <!--<bean-->
-    <!--class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
-    <!--<property name="messageConverters">-->
-    <!--<list>-->
-    <!--<ref bean="mappingJacksonHttpMessageConverter"/>    &lt;!&ndash; JSON转换器 &ndash;&gt;-->
-    <!--</list>-->
-    <!--</property>-->
-    <!--</bean>-->
 
     <context:property-placeholder location="classpath*:config.properties"/>
 
-    <!--<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">-->
-    <!-- InternalResourceViewResolver 和 TilesViewResolver 共存，且以TilesViewResolver
-    为首要匹配，通过 p:order 来控制级别。数字越大，级别越低 -->
     <!-- ViewResolver配置：TilesViewResolver -->
     <bean id="tilesViewResolver"
           class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
@@ -79,4 +59,19 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960"/>
     </bean>
+    
+    <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/*" />
+			<mvc:exclude-mapping path="/wap/login/**"/> 
+			<bean class="cn.com.tsjx.interceptor.UserInterceptor" />
+		</mvc:interceptor>
+		 <mvc:interceptor>
+			<mvc:mapping path="/admin/*" />
+			<mvc:exclude-mapping path="/admin/login/**"/> 
+			<bean class="cn.com.tsjx.interceptor.AdminInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	
 </beans>

@@ -93,6 +93,12 @@ public class InfomationController {
 			Company company = companyService.get(Long.valueOf(user.getCompanyId()));
 			model.addAttribute("company", company);
 		}
+		if (user != null) {
+            Attch entity = new Attch();
+            entity.setUserId(user.getId());
+            List<Attch> list = attchService.find(entity);
+            model.addAttribute("listAttch", list);
+        }
 		model.addAttribute("bean", infomation);
 		return "/wap/view";
 	}

@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -116,6 +117,9 @@ public class AdminInfomationController {
 			infomation.setStatus(InfomationEnum.status_cg.code());
 		}
 		infomation.setRemark(null);
+		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
+			infomation.setPubTime(new Date());
+		}
 		infomationService.update(infomation);
 
 		//新增审核人记录表
@@ -131,6 +135,9 @@ public class AdminInfomationController {
 		notice.setUserId(infomation.getUserId());
 		notice.setNoticeType(NoticeEnum.notice_type_user.code());
 		notice.setTitle(TsjxConstant.information_audit_title);
+		if(remark==null){
+			remark = "";
+		}
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
 			notice.setContent(TsjxConstant.information_audit_success.replace("%s", remark));
 		} else {

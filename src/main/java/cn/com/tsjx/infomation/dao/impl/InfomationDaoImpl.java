@@ -36,5 +36,10 @@ public class InfomationDaoImpl extends BaseDaoImpl<Infomation, Long> implements 
     	return this.selectPage(this.getMethodName(),map,pager);
     }
     
+public Pager<InfomationDto> getInfoPagerWithImgNoUser(Params map, Pager<InfomationDto> pager) {
+    	
+    	return this.selectPage(this.getMethodName(),map,pager);
+    }
+    
     
 }

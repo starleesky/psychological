@@ -16,4 +16,6 @@ public interface InfomationDao extends BaseDao<Infomation, Long> {
     public Pager<InfomationDto> getPagerCollections(Params map, Pager<InfomationDto> pager);
     
     public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager);
+    
+    public Pager<InfomationDto> getInfoPagerWithImgNoUser(Params map, Pager<InfomationDto> pager);
 }

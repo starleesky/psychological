@@ -40,8 +40,12 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
     }
     
     @Override
-    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager) {
+    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager, Boolean relUser) {
 
-        return infomationDao.getInfoPagerWithImg(map, pager);
+    	if(relUser) {
+    		return infomationDao.getInfoPagerWithImg(map, pager);
+    	}else {
+    		return infomationDao.getInfoPagerWithImgNoUser(map, pager);
+    	}
     }
 }

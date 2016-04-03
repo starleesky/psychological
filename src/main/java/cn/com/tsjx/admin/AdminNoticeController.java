@@ -43,6 +43,8 @@ public class AdminNoticeController {
 	public Pager<Notice> list(Pager<Notice> pager, Notice notice, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", notice);
+		pager.setPageSort("create_time");
+		pager.setPageOrder("desc");
 		pager = noticeService.page(params, pager);
 		return pager;
 	}

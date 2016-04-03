@@ -129,11 +129,11 @@ public class AdminInfomationController {
 		Notice notice = new Notice();
 		notice.setUserId(infomation.getUserId());
 		notice.setNoticeType(NoticeEnum.notice_type_user.code());
-		notice.setTitle(TsjxConstant.company_audit_title);
+		notice.setTitle(TsjxConstant.information_audit_title);
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
-			notice.setContent(TsjxConstant.company_audit_success.replace("%s", remark));
+			notice.setContent(TsjxConstant.information_audit_success.replace("%s", remark));
 		} else {
-			notice.setContent(TsjxConstant.company_audit_failure.replace("%s", remark));
+			notice.setContent(TsjxConstant.information_audit_failure.replace("%s", remark));
 		}
 		noticeService.insert(notice);
 		//修改用户用户的消息未读属性

@@ -70,7 +70,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">汤森机械管理后台系统</a>
+            <a class="navbar-brand" href="${ctx}/admin/main">汤森机械管理后台系统</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">

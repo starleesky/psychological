@@ -101,7 +101,7 @@ public class DemoController {
 		// 获得输入流：
 		InputStream input = file.getInputStream();
 		// 写入文件
-		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot\\images";
+		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
 
 		//当前月份
 		Date d = new Date();
@@ -112,7 +112,7 @@ public class DemoController {
 			mkFile.mkdir();
 		}
 		String fileEnd = filename.substring(filename.lastIndexOf(".") + 1).toLowerCase();
-		String src = "/" + sdf.format(d) + "/" + d.getTime() + "." + fileEnd;
+		String src = "/images/" + sdf.format(d) + "/" + d.getTime() + "." + fileEnd;
 		File source = new File(path + src);
 		file.transferTo(source);
 		//		createPreviewImage("E://test.png", "E://test2.png");

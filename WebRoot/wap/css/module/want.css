@@ -1476,12 +1476,24 @@ fieldset {
 .ui-form .upload-img {
   margin: 0 0 10px 0;
   width: 100%;
-  height: 140px;
   color: #fff;
   font-weight: 700;
+}
+/* line 111, ../../sass/module/want.scss */
+.ui-form .upload-img .ui-button-upload {
+  line-height: 20px;
   background: #E45540;
 }
-/* line 112, ../../sass/module/want.scss */
+/* line 115, ../../sass/module/want.scss */
+.ui-form .upload-img a {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 140px;
+  color: #fff;
+  overflow: hidden;
+}
+/* line 123, ../../sass/module/want.scss */
 .ui-form .upload-img .img-sp {
   position: relative;
   float: left;
@@ -1490,35 +1502,55 @@ fieldset {
   text-align: center;
   overflow: hidden;
 }
-/* line 119, ../../sass/module/want.scss */
+/* line 130, ../../sass/module/want.scss */
 .ui-form .upload-img .img-sp img {
   max-width: 100px;
   max-height: 100px;
   margin: 10px 20px 0;
 }
-/* line 124, ../../sass/module/want.scss */
+/* line 135, ../../sass/module/want.scss */
 .ui-form .upload-img .img-sp span {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-/* line 130, ../../sass/module/want.scss */
-.ui-form .upload-img .img-sp input[type=file] {
-  position: absolute;
+/* line 143, ../../sass/module/want.scss */
+.ui-form .upload-img .up-img-list {
+  margin-top: 10px;
+  float: left;
+}
+/* line 146, ../../sass/module/want.scss */
+.ui-form .upload-img .up-img-list .up-img-box {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 100px;
+  text-align: center;
+  overflow: hidden;
+}
+/* line 153, ../../sass/module/want.scss */
+.ui-form .upload-img .up-img-list .up-img-box img {
   display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+  max-width: 100px;
+  max-height: 100px;
+  vertical-align: middle;
+}
+/* line 159, ../../sass/module/want.scss */
+.ui-form .upload-img .up-img-list .up-img-box .icon-delete {
+  background: url("../../images/uploadify-cancel.png") no-repeat scroll center center transparent;
+  background-size: cover;
+  display: inline-block;
+  height: 15px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  width: 15px;
 }
 
 @media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
-  /* line 141, ../../sass/module/want.scss */
+  /* line 175, ../../sass/module/want.scss */
   .pro-select-info a.button {
     width: 86%;
   }
-}
-/* line 146, ../../sass/module/want.scss */
-.collect-info .mod-info .bd a {
-  width: 20%;
 }

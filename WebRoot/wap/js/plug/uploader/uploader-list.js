@@ -1,0 +1,149 @@
+define(function(require, exports, module) {
+    'use strict';
+
+    var $ = require('jquery');
+    var Uploader = require('./uploader_img');
+    var box = require('../box');
+    var uploading = false;
+    var uploadingFileSize = 1;
+    /**
+     * Render upload file preview image view and staffs.
+     */
+    var renderFilePreview = function(oFile, container, uploader) {
+        var $el = $(container),$imgBox= $('<div class="up-img-box"></div>'),$imgList = $('<div class="up-img-list"></div>'),
+            clipSize = {
+                width: $el.width(),
+                height: $el.height()
+            };
+
+        // generate preview image src
+        Uploader.genImageFileThumbnail(oFile, clipSize, function(src) {
+            var img = new Image();
+
+            img.src = src;
+            img.onload = function() {
+                // central image visiable
+                /*$(img).css({
+                    top: (clipSize.height - img.height) / 2,
+                    left: (clipSize.width - img.width) / 2,
+                    position: 'absolute'
+                });*/
+                img = img.onload = null;
+            };
+            $imgBox.append(img);
+
+            // add close button
+            var closeButton = $('<b class="icon-delete" node-type="deleteImgBtn"></b>');
+            closeButton.one('click', function(e) {
+                var index = $(this).parent().index();
+                $el.find('input[type=hidden]:eq('+index+')').remove();
+                $(this).parent().remove();
+                /*$imgBox.removeClass('file-uploaded').find('img').remove();
+                var $mask = $imgBox.find('.progressbar');
+                closeButton.remove();
+                $mask && $mask.remove();
+                closeButton = container = $el = null;*/
+                uploader.emit('imageremoved');
+            });
+
+            $imgBox.append(closeButton).addClass('file-uploaded');
+
+            if(!$el.next('.up-img-list').length){
+                $imgList.append($imgBox).appendTo($el.parent());
+            }else{
+                $el.next('.up-img-list').append($imgBox);
+            }
+        });
+    };
+
+    var fileFilter = function(file) {
+        var type = file.get('type');
+        var size = file.get('size');
+        if (size >= 2 * 1024 * 1024) {
+            box.tips('上传的图片不能大于2M!');
+            return false;
+        }
+        return /^image\//.test(type);
+    };
+
+    var createProcessBar = function() {
+        var el = $('<div class="process-bar-container"><div class="process-bar"></div></div>');
+        return el;
+    };
+
+    module.exports = function(el, options) {
+        // file uploader button installations
+        var $el = $(el),
+            fieldName = $el.data('name'),
+            processBar = null;
+
+        // initialize file upload component
+        var uploader = new Uploader(el, {
+            uploadURL: options.endpoint,
+            uploadOnSelect: false,
+            accept: 'image/*',
+            fileFilter: fileFilter,
+            multiple: null
+        });
+
+
+        function checkForUpload(e) {
+            if(!uploading) {
+                doUpload(e);
+            } else {
+                setTimeout(function() {
+                    checkForUpload(e);
+                }, 1);
+            }
+        }
+        function doUpload(e) {
+            uploading = true;
+
+            var fileList = e.fileList;
+            uploader.uploadThese(fileList);
+            var file = fileList && fileList[0], oFile;
+            uploadingFileSize = file.get('size');
+
+            processBar = createProcessBar(el).appendTo($el).find('.process-bar');
+            setTimeout(function() {
+                if (file && (oFile = file.get('file'))) {
+                    // generate preview image and staffs
+                    renderFilePreview(oFile, el, uploader);
+                }
+            }, 1);
+        }
+
+
+        uploader.on('fileselect', function(e) {
+            checkForUpload(e);
+        });
+
+        uploader.on('uploadprogress', function(e) {
+            var percentLoaded = Math.min(100, Math.round(10000*e.bytesLoaded/uploadingFileSize)/100);
+            e.bytesTotal = uploadingFileSize;
+            e.percentLoaded = percentLoaded;
+
+            var percent = percentLoaded + '%';
+            processBar.width(percent);
+            //console.log(percentLoaded + ',' + e.bytesLoaded + ',size=' + e.file.get('size') + ',uploadingFileSize=' + uploadingFileSize);
+        });
+
+        uploader.on('uploadcomplete', function(e) {
+            processBar.parent().remove();
+            processBar = null;
+            uploading = false;
+            uploadingFileSize = 1;
+        });
+
+        uploader.on('uploaderror', function(e) {
+            processBar.parent().remove();
+            processBar = null;
+            uploading = false;
+            uploadingFileSize = 1;
+            console.log('upload fails');
+        });
+
+        return uploader;
+    };
+
+});

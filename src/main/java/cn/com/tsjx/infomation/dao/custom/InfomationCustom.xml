@@ -105,6 +105,11 @@
 		and b.user_id = #{userId,jdbcType=INTEGER}
 	</sql>
 	
+	<sql id="page_condition_infos">
+		and a.deleted = #{deleted,jdbcType=VARCHAR}
+		and a.user_id = #{userId,jdbcType=INTEGER}
+	</sql>
+	
 	<sql id="page_condition_infoWithoutUser">
 		<where>
 			<if test="entity.catagoryBigId != null">
@@ -202,7 +207,7 @@
     		1=1	
     		
 		]]>
-		<include refid="page_condition_collections" />
+		<include refid="page_condition_infos" />
 	</select>
 
 	<select id="getInfoPagerWithImg_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
@@ -217,7 +222,7 @@
 		WHERE
     		1=1
     		]]>
-		<include refid="page_condition_collections" />
+		<include refid="page_condition_infos" />
 		<include refid="mybatis.pageEndSQL" />
 	</select>
 	

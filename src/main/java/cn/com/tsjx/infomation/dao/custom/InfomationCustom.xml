@@ -101,14 +101,55 @@
 	</select>
 
 	<sql id="page_condition_collections">
-		and b.user_id = #{userId,jdbcType=INTEGER}
 		and a.deleted = #{deleted,jdbcType=VARCHAR}
+		and b.user_id = #{userId,jdbcType=INTEGER}
 	</sql>
 	
 	<sql id="page_condition_infoWithoutUser">
-		and a.deleted = #{deleted,jdbcType=VARCHAR}
-		
-		
+		<where>
+			<if test="entity.catagoryBigId != null">
+				AND CATAGORY_BIG_ID = #{entity.catagoryBigId,jdbcType=INTEGER}
+			</if>
+			<if test="entity.catagoryBigName != null and entity.catagoryBigName != ''">
+				AND CATAGORY_BIG_NAME = #{entity.catagoryBigName,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.catagoryMidId != null">
+				AND CATAGORY_MID_ID = #{entity.catagoryMidId,jdbcType=INTEGER}
+			</if>
+			<if test="entity.catagoryMidName != null and entity.catagoryMidName != ''">
+				AND CATAGORY_MID_NAME = #{entity.catagoryMidName,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.catagoryId != null">
+				AND CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
+			</if>
+			<if test="entity.catagoryName != null and entity.catagoryName != ''">
+				AND CATAGORY_NAME = #{entity.catagoryName,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.brandId != null">
+				AND BRAND_ID = #{entity.brandId,jdbcType=INTEGER}
+			</if>
+			<if test="entity.brandName != null and entity.brandName != ''">
+				AND BRAND_NAME = #{entity.brandName,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.modelId != null">
+				AND MODEL_ID = #{entity.modelId,jdbcType=INTEGER}
+			</if>
+			<if test="entity.modelName != null and entity.modelName != ''">
+				AND MODEL_NAME = #{entity.modelName,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.sellType != null and entity.sellType != ''">
+				AND SELL_TYPE = #{entity.sellType,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.equipmentCondition != null and entity.equipmentCondition != ''">
+				AND EQUIPMENT_CONDITION = #{entity.equipmentCondition,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.procedures != null and entity.procedures != ''">
+				AND PROCEDURES = #{entity.procedures,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.deleted != null and entity.deleted != ''">
+				AND a.DELETED = #{entity.deleted,jdbcType=VARCHAR}
+			</if>
+		</where>
 	</sql>
 	
 	<!-- 分页查询（计数） -->
@@ -201,8 +242,6 @@
 		   	left join  tsjx_attch h
 		on
     		a.id = h.information_id
-		WHERE
-    		1=1
     		]]>
 		<include refid="page_condition_infoWithoutUser" />
 		<include refid="mybatis.pageEndSQL" />

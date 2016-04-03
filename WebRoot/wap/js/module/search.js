@@ -186,6 +186,18 @@ define(function(require,exports,module){
     	$("#modelId").val($('#infoSearchForm').find('select[name=models]').val());
     	$("#modelName").val($('#infoSearchForm').find('select[name=models]').find("option:selected").text());
     });
+    
+    var initOtherSel = function() {
+    	$("select[name='sellTypeSel']").val($("#sellType").val());
+    	$("select[name='equipmentConditionSel']").val($("#equipmentCondition").val());
+    	$("select[name='proceduresSel']").val($("#procedures").val());
+    	//$("select[name='srcSel']").val($("#src").val());
+    	//$("select[name='equipYearSel']").val($("#equipYear").val());
+    	
+    }
+    
+  //初始化其他下拉框
+    initOtherSel();
 
     //初始化产品大类
     getBig();

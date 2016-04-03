@@ -37,15 +37,20 @@
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
-                    <img src="images/img_1.jpg" />
+                    <img src="${ctx}${firstImg}" />
                 </div>
                 <div class="img-list">
-                    <a href="javascript:;" data-url="images/img_1.jpg">
+                	<c:forEach items="${listAttch }" var="attach">
+	                	<a href="javascript:;" data-url="${ctx }${attach.attchUrl}">
+	                        <img src="${ctx }${attach.attchUrl}" />
+	                    </a>
+                	</c:forEach>
+                   <!--  <a href="javascript:;" data-url="images/img_1.jpg">
                         <img src="images/img_1.jpg" />
                     </a>
                     <a href="javascript:;" data-url="images/img_2.jpg">
                         <img src="images/img_2.jpg" />
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </section>

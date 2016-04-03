@@ -98,6 +98,12 @@ public class InfomationController {
             entity.setUserId(user.getId());
             List<Attch> list = attchService.find(entity);
             model.addAttribute("listAttch", list);
+            
+            String firstImg = "";
+            if(list.size() >0) {
+            	firstImg = list.get(0).getAttchUrl();
+            }
+            model.addAttribute("firstImg", firstImg);
         }
 		model.addAttribute("bean", infomation);
 		return "/wap/view";

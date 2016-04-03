@@ -25,7 +25,8 @@
 <!--head end-->
 <div class="page-view">
     <div class="page-view-body">
-        <section class="login-info">
+    <c:if test="${not empty sessionScope.user.id}">
+    <section class="login-info">
             <div class="hd">
                 <div class="f-l">
                    <img src="images/dashboard_icon.png" />我的账号
@@ -76,6 +77,9 @@
                 </div>
             </div>
         </section>
+    </c:if>
+   
+        
         <section class="search-type-mod" id="jSearch">
             <div class="search-type-hd">
                 <span>42000</span>台出售
@@ -153,6 +157,7 @@
                 </ul>
             </div>
         </section>
+         <c:if test="${not empty sessionScope.user.id}">
         <section class="collect-mod" id="jCollect">
             <div class="collect-hd">
                 <span class="icon iconfont">&#xe603;</span>我的收藏
@@ -171,6 +176,7 @@
                 </ul>
             </div>
         </section>
+    </c:if>
     </div>
 </div>
 

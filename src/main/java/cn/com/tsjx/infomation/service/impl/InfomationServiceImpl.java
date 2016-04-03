@@ -12,6 +12,7 @@ import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.dao.InfomationDao;
 import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.user.entity.User;
 
@@ -33,8 +34,14 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
     }
 
     @Override
-    public Pager<Infomation> getPagerCollections(Params map, Pager<Infomation> pager) {
+    public Pager<InfomationDto> getPagerCollections(Params map, Pager<InfomationDto> pager) {
 
         return infomationDao.getPagerCollections(map, pager);
+    }
+    
+    @Override
+    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager) {
+
+        return infomationDao.getInfoPagerWithImg(map, pager);
     }
 }

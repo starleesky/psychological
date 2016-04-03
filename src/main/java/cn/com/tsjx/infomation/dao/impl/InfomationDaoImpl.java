@@ -10,6 +10,7 @@ import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.dao.InfomationDao;
 import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.user.entity.User;
 
 @Repository("infomationDao")
@@ -24,9 +25,16 @@ public class InfomationDaoImpl extends BaseDaoImpl<Infomation, Long> implements 
     }
 
     @Override
-    public Pager<Infomation> getPagerCollections(Params map, Pager<Infomation> pager) {
+    public Pager<InfomationDto> getPagerCollections(Params map, Pager<InfomationDto> pager) {
         
         return this.selectPage(this.getMethodName(),map,pager);
         
     }
+    
+    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager) {
+    	
+    	return this.selectPage(this.getMethodName(),map,pager);
+    }
+    
+    
 }

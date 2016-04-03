@@ -7,6 +7,7 @@ import cn.com.tsjx.common.service.BaseService;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.user.entity.User;
 
 /**
@@ -28,5 +29,13 @@ public interface InfomationService extends BaseService<Infomation, Long> {
      * @param pager
      * @return
      */
-    public Pager<Infomation> getPagerCollections(Params map,Pager<Infomation> pager);
+    public Pager<InfomationDto> getPagerCollections(Params map,Pager<InfomationDto> pager);
+    
+    /**
+     * 分页查询信息列表（带图片）
+     * @param map
+     * @param pager
+     * @return
+     */
+    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager);
 }

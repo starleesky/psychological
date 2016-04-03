@@ -41,10 +41,56 @@
 		WEIGHT weight
 		FROM
 	</sql>
-	<select id="getInfomationsByParam" resultType="cn.com.tsjx.infomation.entity.Infomation"
+	
+	<sql id="selectFieldSQL_infos_img">
+		SELECT
+		a.ID id,
+		CATAGORY_BIG_ID catagoryBigId,
+		CATAGORY_BIG_NAME catagoryBigName,
+		CATAGORY_MID_ID catagoryMidId,
+		CATAGORY_MID_NAME catagoryMidName,
+		CATAGORY_ID catagoryId,
+		CATAGORY_NAME catagoryName,
+		BRAND_ID brandId,
+		BRAND_NAME brandName,
+		MODEL_ID modelId,
+		MODEL_NAME modelName,
+		IS_NEW isNew,
+		SELL_TYPE sellType,
+		EQUIPMENT_CONDITION equipmentCondition,
+		PROCEDURES procedures,
+		SRC src,
+		EQUIP_YEAR equipYear,
+		WORK_TIME workTime,
+		PRICE price,
+		SERIAL_NUM
+		serialNum,
+		IN_STOCK_CODE inStockCode,
+		REMARK remark,
+		EQUIPMENT_LOCATION
+		equipmentLocation,
+		PUB_TIME pubTime,
+		VALID_TIME validTime,
+		STOCK_COUNT
+		stockCount,
+		SELL_COUNT sellCount,
+		a.USER_ID userId,
+		IS_TOP isTop,
+		STATUS
+		status,
+		WEIGHT weight,
+		h.attch_url imgUrl
+		FROM
+	</sql>
+	
+	<select id="getInfomationsByParam" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
 		parameterType="map">
-		<include refid="selectFieldSQL_Collections" />
-		tsjx_infomation a,
+		<include refid="selectFieldSQL_infos_img" />
+		tsjx_infomation a
+		left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+		,
 		tsjx_collection b
 		WHERE
 		a.id = b.information_id
@@ -58,12 +104,18 @@
 		and b.user_id = #{userId,jdbcType=INTEGER}
 		and a.deleted = #{deleted,jdbcType=VARCHAR}
 	</sql>
+	
+	
 	<!-- 分页查询（计数） -->
 	<select id="getPagerCollections_count" parameterType="map"
 		resultType="int">
 		<![CDATA[
 		 select count(*) from 
-		  tsjx_infomation a,
+		  tsjx_infomation a
+		  left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+		  ,
 		    tsjx_collection b
 		WHERE
     		a.id = b.information_id
@@ -72,13 +124,17 @@
 		<include refid="page_condition_collections" />
 	</select>
 
-	<select id="getPagerCollections_datas" resultType="cn.com.tsjx.infomation.entity.Infomation"
+	<select id="getPagerCollections_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
 		parameterType="map">
 		<include refid="mybatis.pageStartSQL" />
-		<include refid="selectFieldSQL_Collections" />
+		<include refid="selectFieldSQL_infos_img" />
 		<![CDATA[
-		    tsjx_infomation a,
-		    tsjx_collection b
+		    tsjx_infomation a
+		    left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+		,
+		    tsjx_collection b 
 		WHERE
     		a.id = b.information_id
     		]]>
@@ -86,4 +142,42 @@
 		<include refid="mybatis.pageEndSQL" />
 
 	</select>
+	
+	<!-- 分页查询（计数） -->
+	<select id="getInfoPagerWithImg_count" parameterType="map"
+		resultType="int">
+		<![CDATA[
+		 select count(*) from 
+		  tsjx_infomation a 
+		  left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+    	where 
+    		1=1	
+    		
+		]]>
+		<include refid="page_condition_img" />
+	</select>
+
+	<select id="getInfoPagerWithImg_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
+		parameterType="map">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL_infos_img" />
+		<![CDATA[
+		    tsjx_infomation a
+		   	left join  tsjx_attch h
+		on
+    		a.id = h.information_id
+		WHERE
+    		1=1
+    		]]>
+		<include refid="page_condition_img" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+	
+	<sql id="page_condition_img">
+		and a.user_id = #{userId,jdbcType=INTEGER}
+		and a.deleted = #{deleted,jdbcType=VARCHAR}
+		and a.status = #{status,jdbcType=VARCHAR}
+	</sql>
 </mapper>   

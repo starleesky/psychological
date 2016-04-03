@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.JsonResult;
 import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.user.dto.UserDto;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 
@@ -61,8 +62,10 @@ public class UserController {
     
     @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public JsonResult update(User user,Model model) {
+    public JsonResult update(UserDto user,Model model) {
         JsonResult jsonResult = new JsonResult();
+        System.out.println(user);
+        System.out.println(user.getPassword().length());
     	userService.update(user);
     	jsonResult.setMessage("保存成功！");
     	jsonResult.setSuccess(true);

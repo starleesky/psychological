@@ -30,7 +30,9 @@
 		   	CREATE_BY,
 		   	MODIFY_TIME,
 		   	MODIFY_BY,
-		   	DELETED
+		   	DELETED,
+		   	REAL_NAME,
+		   	WEIXIN_ACCOUNT
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{userName,jdbcType=VARCHAR},
@@ -56,7 +58,9 @@
 		   	#{createBy,jdbcType=VARCHAR},
 		   	#{modifyTime,jdbcType=TIMESTAMP},
 		   	#{modifyBy,jdbcType=VARCHAR},
-		   	#{deleted,jdbcType=VARCHAR}
+		   	#{deleted,jdbcType=VARCHAR},
+		   	#{realName,jdbcType=VARCHAR},
+		   	#{weixinAccount,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -70,25 +74,25 @@
 	</insert>
 
 	<!-- 更新实体 -->
-	<update id="update" parameterType="cn.com.tsjx.user.entity.User">
+	<update id="update" parameterType="cn.com.tsjx.user.dto.UserDto">
 		UPDATE TSJX_USER
 		<set>
-			<if test="userName != null">
+			<if test="userName != null and userName !=''">
 				USER_NAME = #{userName,jdbcType=VARCHAR},
 			</if>
-			<if test="mobile != null">
+			<if test="mobile != null and mobile !=''">
 				MOBILE = #{mobile,jdbcType=VARCHAR},
 			</if>
-			<if test="telephone != null">
+			<if test="telephone != null and telephone !=''">
 				TELEPHONE = #{telephone,jdbcType=VARCHAR},
 			</if>
-			<if test="email != null">
+			<if test="email != null and email !=''">
 				EMAIL = #{email,jdbcType=VARCHAR},
 			</if>
-			<if test="password != null">
+			<if test="password != null and password !=''">
 				PASSWORD = #{password,jdbcType=VARCHAR},
 			</if>
-			<if test="qq != null">
+			<if test="qq != null and qq !=''">
 				QQ = #{qq,jdbcType=VARCHAR},
 			</if>
 			<if test="provinceName != null">
@@ -145,6 +149,12 @@
 			<if test="deleted != null">
 				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
+			<if test="realName != null and realName !=''">
+				REAL_NAME = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="weixinAccount != null and weixinAccount !=''">
+				WEIXIN_ACCOUNT = #{weixinAccount,jdbcType=VARCHAR},
+			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
 	</update>
@@ -188,7 +198,9 @@
 		       CREATE_BY createBy,
 		       MODIFY_TIME modifyTime,
 		       MODIFY_BY modifyBy,
-		       DELETED deleted
+		       DELETED deleted,
+		       REAL_NAME realName,
+		       WEIXIN_ACCOUNT weixinAccount
 		]]>
 	</sql>
 
@@ -272,6 +284,12 @@
 			<if test="deleted != null and deleted != ''">
 				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
+			<if test="realName != null and realName != ''">
+				AND REAL_NAME = #{realName,jdbcType=VARCHAR}
+			</if>
+			<if test="weixinAccount != null and weixinAccount != ''">
+				AND WEIXIN_ACCOUNT = #{weixinAccount,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</select>
 
@@ -346,6 +364,12 @@
 				</if>
 				<if test="entity.deleted != null and entity.deleted != ''">
 					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.realName != null and entity.realName != ''">
+					AND REAL_NAME = #{entity.realName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.weixinAccount != null and entity.weixinAccount != ''">
+					AND WEIXIN_ACCOUNT = #{entity.weixinAccount,jdbcType=VARCHAR}
 				</if>
 		</where>
 	</sql>

@@ -10,10 +10,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import cn.com.tsjx.attch.entity.Attch;
-import cn.com.tsjx.attch.service.AttchService;
-import cn.com.tsjx.infomation.entity.InfomationDto;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.com.tsjx.attch.entity.Attch;
+import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
@@ -33,6 +31,7 @@ import cn.com.tsjx.company.service.CompanyService;
 import cn.com.tsjx.demo.PageDto;
 import cn.com.tsjx.demo.pageOutDto;
 import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;

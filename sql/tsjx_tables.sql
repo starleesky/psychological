@@ -307,7 +307,11 @@ create table tsjx_attch
 );
 
 alter table tsjx_attch comment '附件表';
-
-
+/*
+ *2016-04-03 用户表添加微信号和真实姓名
+ */
+ALTER TABLE `tsjx`.`tsjx_user` 
+ADD COLUMN `real_name` VARCHAR(45) NULL AFTER `deleted`,
+ADD COLUMN `weixin_account` VARCHAR(45) NULL AFTER `real_name`;
 
 

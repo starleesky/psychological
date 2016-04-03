@@ -111,6 +111,11 @@
                 </div>
             </td>
             <td>
+
+                <div  ng-show="c.status==0">
+                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}"  class="btn btn-primary">查看</a>
+                </div>
+
                 <div  ng-show="c.status==1">
                 <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}"  class="btn btn-primary">审核</a>
                 </div>

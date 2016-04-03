@@ -168,9 +168,18 @@ public class InfomationController {
 		return result;
 	}
 
+	/**
+	 * 查询我的信息列表
+	 *
+	 * @param pager
+	 * @param infomation
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 */
 	@RequestMapping(value = "/infoList")
-	public String infoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
-		Map<String, Object> params = new HashMap<String, Object>();
+	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession) {
+		//Map<String, Object> params = new HashMap<String, Object>();
 
 		String status = StringUtil.isBlank(infomation.getStatus()) ?
 				InfomationEnum.status_sj.code() :
@@ -182,8 +191,14 @@ public class InfomationController {
 		User user = (User) httpSession.getAttribute("user");
 		infomation.setUserId(user == null ? -1 : user.getId());
 
-		params.put("entity", infomation);
-		pager = infomationService.page(params, pager);
+		//params.put("entity", infomation);
+		//pager = infomationService.page(params, pager);
+		Params params = Params.create();
+		params.add("deleted", Deleted.NO.value);
+		params.add("userId", user.getId());
+		params.add("status", status);
+		
+		pager = infomationService.getInfoPagerWithImg(params, pager);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("bean", infomation);
 
@@ -205,7 +220,7 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/colleInfoList")
-	public String colleInfoList(Pager<Infomation> pager, Infomation infomation, Model model, HttpSession httpSession) {
+	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model, HttpSession httpSession) {
 
 		//关联用户ID
 		User user = (User) httpSession.getAttribute("user");
@@ -274,7 +289,7 @@ public class InfomationController {
 	 */
 	@RequestMapping(value = "/moreInfo")
 	@ResponseBody
-	public String moreInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<Infomation> pager) {
+	public String moreInfo(PageDto pageDto, Infomation infomation, HttpSession session, Pager<InfomationDto> pager) {
 
 		User user = (User) session.getAttribute("user");
 
@@ -287,28 +302,30 @@ public class InfomationController {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", infomation);
 
+		Params param = Params.create();
+		param.add("deleted", Deleted.NO.value);
+		param.add("userId", user.getId());
+		
 		if ("9".equals(pageDto.getStatus())) {
-			Params param = Params.create();
-			param.add("deleted", Deleted.NO.value);
-			param.add("userId", user.getId());
 			pager = infomationService.getPagerCollections(param, pager);
 		} else {
-			pager = infomationService.page(params, pager);
+			param.add("status", pageDto.getStatus());
+			pager = infomationService.getInfoPagerWithImg(param, pager);
 		}
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		pager = infomationService.page(params, pager);
+		//pager = infomationService.page(params, pager);
 
 		StringBuilder data = new StringBuilder();
 		String ctx = session.getServletContext().getContextPath();
-		for (Infomation info : pager.getItems()) {
+		for (InfomationDto info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
 			    .append("<div class=\"pro-select\">")
 			    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
 			    .append("<img src=\"\" class=\"jProSelect\" />")
 			    .append("</div>")
-			    .append("<a href=\"#\" class=\"pro-img\">")
-			    .append("<img src=\"\" class=\"jImg\" data-url=\"\" />")
+			    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId()).append("\" class=\"pro-img\">")
+			    .append("<img src=\"").append(ctx).append(info.getImgUrl()).append("\" class=\"jImg\" data-url=\"\" />")
 			    .append("</a>")
 			    .append("<div class=\"pro-info\">")
 			    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")

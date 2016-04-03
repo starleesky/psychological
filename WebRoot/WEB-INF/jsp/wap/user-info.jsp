@@ -35,7 +35,7 @@
                 <p>您好${bean.userName}&nbsp;&nbsp;欢迎使用汤森机械网. </p>
                 <img src="${ctx}${bean.headIcon}" class="f-l"  />
                 <div class="info-desc f-l">
-                    <a href="javascript:;" class="current jAddImg">上传LOGO</a>
+                    <a href="javascript:;" node-type="uploadButton">上传LOGO</a>
                     <a href="javascript:;" class="jDelImg">删除LOGO</a>
                 </div>
  					<div class="ui-form-mod">

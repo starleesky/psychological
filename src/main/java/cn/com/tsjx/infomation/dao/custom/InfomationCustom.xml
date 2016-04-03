@@ -41,13 +41,55 @@
 		WEIGHT weight
 		FROM
 	</sql>
+	
+	<sql id="selectFieldSQL_infos_img">
+		SELECT
+		a.ID id,
+		CATAGORY_BIG_ID catagoryBigId,
+		CATAGORY_BIG_NAME catagoryBigName,
+		CATAGORY_MID_ID catagoryMidId,
+		CATAGORY_MID_NAME catagoryMidName,
+		CATAGORY_ID catagoryId,
+		CATAGORY_NAME catagoryName,
+		BRAND_ID brandId,
+		BRAND_NAME brandName,
+		MODEL_ID modelId,
+		MODEL_NAME modelName,
+		IS_NEW isNew,
+		SELL_TYPE sellType,
+		EQUIPMENT_CONDITION equipmentCondition,
+		PROCEDURES procedures,
+		SRC src,
+		EQUIP_YEAR equipYear,
+		WORK_TIME workTime,
+		PRICE price,
+		SERIAL_NUM
+		serialNum,
+		IN_STOCK_CODE inStockCode,
+		REMARK remark,
+		EQUIPMENT_LOCATION
+		equipmentLocation,
+		PUB_TIME pubTime,
+		VALID_TIME validTime,
+		STOCK_COUNT
+		stockCount,
+		SELL_COUNT sellCount,
+		a.USER_ID userId,
+		IS_TOP isTop,
+		STATUS
+		status,
+		WEIGHT weight,
+		h.attch_url imgUrl
+		FROM
+	</sql>
+	
 	<select id="getInfomationsByParam" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
 		parameterType="map">
-		<include refid="selectFieldSQL_Collections" />
+		<include refid="selectFieldSQL_infos_img" />
 		tsjx_infomation a
-		left join  tsjx_attch c
+		left join  tsjx_attch h
 		on
-    		a.id = c.information_id
+    		a.id = h.information_id
 		,
 		tsjx_collection b
 		WHERE
@@ -70,9 +112,9 @@
 		<![CDATA[
 		 select count(*) from 
 		  tsjx_infomation a
-		  left join  tsjx_attch c
+		  left join  tsjx_attch h
 		on
-    		a.id = c.information_id
+    		a.id = h.information_id
 		  ,
 		    tsjx_collection b
 		WHERE
@@ -85,12 +127,12 @@
 	<select id="getPagerCollections_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
 		parameterType="map">
 		<include refid="mybatis.pageStartSQL" />
-		<include refid="selectFieldSQL_Collections" />
+		<include refid="selectFieldSQL_infos_img" />
 		<![CDATA[
 		    tsjx_infomation a
-		    left join  tsjx_attch c
+		    left join  tsjx_attch h
 		on
-    		a.id = c.information_id
+    		a.id = h.information_id
 		,
 		    tsjx_collection b 
 		WHERE
@@ -107,9 +149,9 @@
 		<![CDATA[
 		 select count(*) from 
 		  tsjx_infomation a 
-		  left join  tsjx_attch b
+		  left join  tsjx_attch h
 		on
-    		a.id = b.information_id
+    		a.id = h.information_id
     	where 
     		1=1	
     		
@@ -120,12 +162,12 @@
 	<select id="getInfoPagerWithImg_datas" resultType="cn.com.tsjx.infomation.entity.InfomationDto"
 		parameterType="map">
 		<include refid="mybatis.pageStartSQL" />
-		<include refid="selectFieldSQL_Collections" />
+		<include refid="selectFieldSQL_infos_img" />
 		<![CDATA[
 		    tsjx_infomation a
-		   	left join  tsjx_attch b
+		   	left join  tsjx_attch h
 		on
-    		a.id = b.information_id
+    		a.id = h.information_id
 		WHERE
     		1=1
     		]]>

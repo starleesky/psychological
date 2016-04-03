@@ -4,13 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.record.common.UnicodeString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.user.entity.User;
 
 public class AdminInterceptor extends HandlerInterceptorAdapter {
@@ -22,8 +20,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		
-		log.info("request:"+request.getRequestURI());
 		
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("adminUser");
@@ -38,7 +34,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		log.info(request.getRequestURI());
 	}
 
 	@Override

@@ -96,45 +96,41 @@
 					<div class="ui-form-mod">
                         <label class="ui-form-hd">产品大类</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="2622">Aerial Platform</option>
-                                <option value="903">Aggregate</option>
-                                <option value="1500">Air Compressor</option>
-                            </select>
+                            <select class="bigGoodsCatagory"  name="catagoryBigId" id="catagoryBigId">
+<option>请选择产品大类</option>		                            </select>
                         </div>
                     </div>
+                        
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">产品子类</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="2622">Aerial Platform</option>
-                                <option value="903">Aggregate</option>
-                                <option value="1500">Air Compressor</option>
-                            </select>
+                            <select class="middleGoodsCatagory"  name="catagoryMid" id="catagoryMid" >
+<option>请选择产品子类</option>                            </select>
+                        </div>
+                    </div>
+                    <div class="ui-form-mod">
+                        <label class="ui-form-hd">产品</label>
+                        <div class="ui-form-bd">
+                            <select class="smallGoodsCatagory" name="smallGoodsCatagory" id="smallGoodsCatagory" >
+<option>请选择产品</option>                            </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">品牌</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="2622">Aerial Platform</option>
-                                <option value="903">Aggregate</option>
-                                <option value="1500">Air Compressor</option>
-                            </select>
+                            <select class="brand" name="brand" id="brand"  >
+<option>请选择品牌</option>                            </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">型号</label>
                         <div class="ui-form-bd">
-                            <select>
-                                <option value="2622">Aerial Platform</option>
-                                <option value="903">Aggregate</option>
-                                <option value="1500">Air Compressor</option>
-                            </select>
+                            <select class="models" name="models" id="models" >
+<option>请选择型号</option>                            </select>
                         </div>
                     </div>
                     <div class="field-submit">
-                        <a href="search.html" class="ui-button ui-button-submit ui-button-blue">搜索</a>
+                        <input type="submit" class="ui-button ui-button-submit ui-button-blue" id="jSave" value="搜索">
                     </div>
                 </form>
             </div>

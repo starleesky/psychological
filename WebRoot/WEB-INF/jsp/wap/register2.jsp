@@ -24,8 +24,14 @@
 </head>
 <body>
 <!--head begin-->
-<%@ include file="header.jsp" %>
-<!--head end-->
+<header class="ui-header">
+    <a href="${ctx}/wap/infor.htm" class="ui-left">
+        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
+    </a> 
+    <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
+        <img src="${ctx}/wap/images/user_icon.png" />登录
+    </a>
+</header><!--head end-->
 <div class="page-view">
     <div class="logo">
         <span>个人信息</span>
@@ -38,23 +44,13 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">省份</label>
                         <div class="ui-form-bd">
-                            <select name = "provinceId">
-                                <option value="500">重庆</option>
-                                <option value="0">租赁</option>
-                                <option value="0">求购</option>
-                                <option value="979">求租</option>
-                            </select>
+                       <select class="regionProvice"  name="provinceId" id="provinceId" validate="required:true" ><option>请选择省份</option></select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">城市</label>
                         <div class="ui-form-bd">
-                            <select name = "cityId"> 
-                                <option value="500226">重庆</option>
-                                <option value="0">租赁</option>
-                                <option value="0">求购</option>
-                                <option value="979">求租</option>
-                            </select>
+                            <select class="regionCity"  name="cityId" id="cityId" validate="required:true" ><option>请选择城市</option></select>                    </div>
                         </div>
                     </div>
                     <div class="ui-form-mod">

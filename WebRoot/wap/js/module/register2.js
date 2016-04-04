@@ -67,4 +67,35 @@ define(function(require,exports,module) {
     $('#jSubmit').on('click',function(){
     	$('#register2').submit();
     });
+
+    var oRegionProvice = $(".regionProvice");
+    var oRegionCity = $(".regionCity");
+    var getProvice = function () {
+        $.getJSON(url.listRegion, {id: '0'}, function (data) {
+            var oProvice_html;
+            $.each(data.object, function (i, data) {
+                oProvice_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            });
+            oRegionProvice.html(oProvice_html);
+            getCity();
+        });
+    }
+    
+    oRegionProvice.change(function () {
+        getCity();
+    });
+    
+    var getCity = function () {
+        var n = oRegionProvice.val();
+        $.getJSON(url.listRegion, {id: n}, function (data) {
+            var oCity_html;
+            $.each(data.object, function (i, data) {
+                oCity_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            });
+            oRegionCity.html(oCity_html);
+        });
+    };
+
+    //初始省市
+    getProvice();
 });

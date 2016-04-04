@@ -1,5 +1,7 @@
 package cn.com.tsjx.catagory.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import cn.com.tsjx.catagory.dao.CatagoryDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +23,13 @@ import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.catagory.entity.Catagory;
 import cn.com.tsjx.catagory.service.CatagoryService;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/catagory")
 public class CatagoryController {
+
+	private static Logger LOG = LoggerFactory.getLogger(CatagoryController.class);
 
 	@Resource
 	CatagoryService catagoryService;
@@ -99,4 +106,47 @@ public class CatagoryController {
 		return result;
 	}
 
+	/**
+	 * @param file
+	 * @return
+	 * @see [相关类/方法](可选)
+	 * @since [产品/模块版本](可选)
+	 */
+	@RequestMapping(value = "/uploadExcle")
+	@ResponseBody
+	public Result<?> saveInsCityRate(@RequestParam("file") MultipartFile file, Integer companyCityId) throws Exception {
+		Result<Boolean> result = new Result<Boolean>();
+		// 文件合法性验证
+		if (file.isEmpty()) {
+			LOG.error("文件不能为空");
+			result.setMessage("文件不能为空");
+			result.setResult(false);
+			return result;
+		}
+		// 对文件大小 以及文件扩展名进行过滤 防止漏洞
+		String fileName = file.getOriginalFilename();
+		String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+		long fileSize = file.getSize();
+		if (!ext.equals("xls") || fileSize > 1 * 1024 * 1024) {
+			LOG.error("文件为null或者文件过大");
+			result.setMessage("文件为null或者文件过大");
+			result.setResult(false);
+			return result;
+		}
+		// 解析并保存费率信息
+		try {
+			InputStream pomInputStream = file.getInputStream();
+//			InputStream upyunInputStream = file.getInputStream();
+			catagoryService.uploadFileBuild(pomInputStream);
+		} catch (IOException e) {
+			LOG.error("上传费率模板发生异常", e);
+			result.setMessage("上传费率模板发生异常");
+			result.setResult(false);
+			throw new Exception("上传费率模板发生异常");
+
+		}
+		result.setMessage("上传成功");
+		return result;
+
+	}
 }

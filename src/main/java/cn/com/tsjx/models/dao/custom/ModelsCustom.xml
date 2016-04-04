@@ -5,7 +5,7 @@
         <include refid="selectFieldSQL"/>
         <![CDATA[
 		  FROM TSJX_MODELS
-		 WHERE brand_id = #{brandId,jdbcType=INTEGER}
+		 WHERE brand_id = #{brandId,jdbcType=INTEGER} and 1=1 and deleted='F'
 		]]>
     </select>
 

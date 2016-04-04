@@ -6,7 +6,7 @@
         <include refid="selectFieldSQL"/>
         <![CDATA[
 		  FROM TSJX_BRAND
-		 WHERE catagory_id = #{catagoryId,jdbcType=INTEGER}
+		 WHERE catagory_id = #{catagoryId,jdbcType=INTEGER} and 1=1 and deleted='F'
 		]]>
     </select>
 

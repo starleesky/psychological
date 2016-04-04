@@ -71,6 +71,7 @@ insert into tsjx_catagory(id,catagory_name,parent_id , layer )values
 (512,'提绞设备',5,'1'),
 (513,'地下装载运输设备',5,'1');
 
+UPDATE tsjx_catagory set deleted="F";
 
 
 

@@ -100,4 +100,25 @@ public class MainController {
 		model.addAttribute("adminUser", true);
 		return "admin/user/list";
 	}
+
+	@RequestMapping(value = "/catagory/list")
+	public String adminCatagoryInit(Model model) {
+
+		model.addAttribute("catagory", true);
+		return "admin/catagory/list";
+	}
+
+	@RequestMapping(value = "/brand/list")
+	public String adminBrandInit(Model model) {
+
+		model.addAttribute("brand", true);
+		return "admin/brand/list";
+	}
+
+	@RequestMapping(value = "/models/list")
+	public String adminModelsInit(Model model) {
+
+		model.addAttribute("models", true);
+		return "admin/models/list";
+	}
 }

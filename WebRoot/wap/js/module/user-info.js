@@ -35,8 +35,8 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
         });
 
         uploader.on('uploadprogress', function(e) {
-            var percent = Math.min(e.percentLoaded, 99) + '%';
-            $el.find('.progressbar div').css('width', percent).text(percent);
+           // var percent = Math.min(e.percentLoaded, 99) + '%';
+           //$el.find('.progressbar div').css('width', percent).text(percent);
             $el.find('.upload-txt').text('选择图片');
         });
 
@@ -72,16 +72,23 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
         rules: {
             mobile: {
                 required: true
-            }
+            },
+    		realName:{
+    			required:true,
+    			maxlength:2
+    		}
         },
         messages: {
         	mobile: {
                 required: '此项不能为空'
+            },
+            realName:{
+            	required:'此项不能为空',
+            	maxlength:'最少不能少于2位'
             }
         },
         submitHandler: function (form) { 
         	var hasChk = $('#checkbox').is(':checked');
-        	console.log($("#password").val().length)
         	if(!$("#realName").val()){
     	    	alert("真实姓名不能为空")
     	    	return false;
@@ -91,7 +98,6 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
     	    	return false;
     	    }
         	if(hasChk){
-        		
         	    if(!$("#oldPassword").val()){
         	    	alert("旧密码不能为空")
         	    	return false;

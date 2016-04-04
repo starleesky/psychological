@@ -82,7 +82,7 @@
         
         <section class="search-type-mod" id="jSearch">
             <div class="search-type-hd">
-                <span>42000</span>台出售
+                <!-- <span>42000</span>台出售 -->
             </div>
             <div class="search-type-bd">
                 <form class="ui-form" id="" action="${ctx}/infomation/search">
@@ -148,7 +148,7 @@
                    <c:forEach var="item" items="${Tops}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
-                            <span class="pro-img"><img src="${ctx }${item.imgUrl}" class="jImg" data-url="images/img1.jpg" /></span>
+                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
                             <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
@@ -157,6 +157,17 @@
                 </ul>
             </div>
         </section>
+        
+         <c:if test="${empty sessionScope.user.id}">
+         <section class="collect-mod" id="jCollect">
+            <div class="collect-hd">
+                <span class="icon iconfont">&#xe603;</span>我的收藏
+            </div>
+            <div class="collect-bd">
+                <div class="no-login">登录后查看我的收藏</div>
+            </div>
+        </section>
+         </c:if>
          <c:if test="${not empty sessionScope.user.id}">
         <section class="collect-mod" id="jCollect">
             <div class="collect-hd">

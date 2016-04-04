@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import cn.com.tsjx.infomation.entity.InfomationDto;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -87,12 +86,10 @@ public class LoginController {
     @RequestMapping(value = "/infor")
     public String loginIndex(Model model,HttpSession httpSession){
         User user = (User) httpSession.getAttribute("user");
-        if (user == null) {
-            return "/wap/login";
-        }
-        user = userService.get(user.getId());
-        model.addAttribute("userInfo",user);
-        
+//        if (user == null) {
+//            return "/wap/login";
+//        }
+         
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
         InfomationDto infomation = new InfomationDto();
         Params params = Params.create();
@@ -126,9 +123,14 @@ public class LoginController {
         List<Infomation> li_cg = infomationService.find(infomation);
         model.addAttribute("cnt_cg", li_cg.size());
 
-        //9、收藏
-        List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
-        model.addAttribute("cnt_sc", collectInfo.size());
+        if (user != null ) {
+            user = userService.get(user.getId());
+            model.addAttribute("userInfo",user);
+            //9、收藏
+            List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+            model.addAttribute("cnt_sc", collectInfo.size());
+        }
+        
         return "/wap/infor";
     }
     @RequestMapping(value = "/index")
@@ -148,7 +150,7 @@ public class LoginController {
             model.addAttribute("collections", list.getItems());
         }
 
-        return "/wap/index";
+        return "/wap/infor";
     }
 
     @ResponseBody

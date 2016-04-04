@@ -33,9 +33,11 @@
         <input type="hidden" name = "id" value = "${bean.id}" >
             <div class="ui-form-mod info clearfix">
                 <p>您好${bean.userName}&nbsp;&nbsp;欢迎使用汤森机械网. </p>
+                <c:if test="${not empty bean.headIcon}">
                 <img src="${ctx}${bean.headIcon}" class="f-l"  />
+                </c:if>
                 <div class="info-desc f-l">
-                    <a href="javascript:;" node-type="uploadButton">上传LOGO</a>
+                    <a href="javascript:;" class="current jAddImg">上传LOGO</a>
                     <a href="javascript:;" class="jDelImg">删除LOGO</a>
                 </div>
  					<div class="ui-form-mod">

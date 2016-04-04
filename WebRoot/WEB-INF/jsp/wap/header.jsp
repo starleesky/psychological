@@ -5,15 +5,20 @@
 <html>
 <body>
 <header class="ui-header">
-    <a href="${ctx}/wap/infor.htm" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
-    </a> 
+     
     <c:if test="${not empty sessionScope.user.id}">
-    	<a  href="${ctx}/wap/loginOut.htm" class="ui-right ui-login">
-        <img src="${ctx}/wap/images/user_icon.png" />退出
+    	<a href="${ctx }/wap/message.htm" class="ui-left">
+        <img src="${ctx}/wap/images/icon_2.png"  />
+    </a>
+    <a href="${ctx}/wap/infor.htm" class="ui-title"><img src="${ctx}/wap/images/logo.png" /> </a>
+    <a  href="${ctx}/wap/loginOut.htm" class="ui-right">
+        <img src="${ctx}/wap/images/upload_cloud.png" />
     </a>
     </c:if>
     <c:if test="${ empty sessionScope.user.id}">
+    <a href="${ctx}/wap/index.htm" class="ui-left">
+        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
+    </a>
     <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
         <img src="${ctx}/wap/images/user_icon.png" />登录
     </a>

@@ -25,9 +25,9 @@
 <body>
 <!--head begin-->
 <header class="ui-header">
-    <a href="${ctx}/wap/infor.htm" class="ui-left">
+    <a href="${ctx}/wap/index.htm" class="ui-left">
         <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
-    </a> 
+    </a>
     <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
         <img src="${ctx}/wap/images/user_icon.png" />登录
     </a>

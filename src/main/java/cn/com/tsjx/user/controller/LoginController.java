@@ -1,8 +1,6 @@
 package cn.com.tsjx.user.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -135,7 +133,7 @@ public class LoginController {
     }
     @RequestMapping(value = "/index")
     public String index(Model model, HttpSession httpSession) {
-        User user = (User) httpSession.getAttribute("user");
+        httpSession.removeAttribute("user");
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
         Infomation infomation = new Infomation();
         Params params = Params.create();
@@ -143,13 +141,6 @@ public class LoginController {
         pager = infomationService.getInfoPagerWithImg(params, pager,false);
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
-        if (user != null && user.getId() != null) {
-            Params params2 = Params.create();
-            params2.add("userId",user.getId());
-            Pager<InfomationDto> list = infomationService.getPagerCollections(params2, pager);
-            model.addAttribute("collections", list.getItems());
-        }
-
         return "/wap/infor";
     }
 

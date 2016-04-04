@@ -7,8 +7,6 @@
  */
 package cn.com.tsjx.infomation.entity;
 
-import java.util.List;
-
 /**
  * InfomationDto
  *
@@ -17,12 +15,24 @@ import java.util.List;
  */
 public class InfomationDto extends Infomation {
 
-	private String remark;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 9174071212414283628L;
+
+    private String remark;
 
 	private String auditStatus;
 
 	private String imgUrl;
-
+	//来源名称
+	private String srcName;
+	//手续资料名称
+	private String proceduresName;
+	//设备类型名称
+	private String equipmentTypeName;
+	//求购名称
+	private String	sellTypeName;
 	// 省份|
 	private String provinceName;
 	// 省份ID|
@@ -107,4 +117,37 @@ public class InfomationDto extends Infomation {
 	public void setNewModel(String newModel) {
 		this.newModel = newModel;
 	}
+
+    public String getSrcName() {
+        return srcName;
+    }
+
+    public void setSrcName(String srcName) {
+        this.srcName = srcName;
+    }
+
+    public String getProceduresName() {
+        return proceduresName;
+    }
+
+    public void setProceduresName(String proceduresName) {
+        this.proceduresName = proceduresName;
+    }
+
+    public String getEquipmentTypeName() {
+        return equipmentTypeName;
+    }
+
+    public void setEquipmentTypeName(String equipmentTypeName) {
+        this.equipmentTypeName = equipmentTypeName;
+    }
+
+    public String getSellTypeName() {
+        return sellTypeName;
+    }
+
+    public void setSellTypeName(String sellTypeName) {
+        this.sellTypeName = sellTypeName;
+    }
+	
 }

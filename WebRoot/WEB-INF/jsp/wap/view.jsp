@@ -66,10 +66,53 @@
                     <ul>
                         <li>类别: ${bean.catagoryName}</li>
                         <li>品牌: ${bean.brandName}</li>
-                        <li>求购类型: ${bean.sellType}</li>
-                        <li>设备类型: 二手</li>
-                        <li>手续资料要求: ${bean.procedures}</li>
-                        <li>设备来源要求: ${bean.src}</li>
+                        <li>求购类型:
+                        <c:if test="${bean.sellType == '0'}">
+                        	出售
+                        </c:if>
+                        <c:if test="${bean.sellType == '1'}">
+                        	租赁
+                        </c:if>
+                        <c:if test="${bean.sellType == '2'}">
+                        	求购
+                        </c:if>
+                        <c:if test="${bean.sellType == '3'}">
+                        	求租
+                        </c:if>
+                        </li>
+	
+                        <li>设备类型: 
+                        <c:if test="${bean.equipmentCondition == '0'}">
+                        新设备
+                        </c:if>
+                        <c:if test="${bean.equipmentCondition == '1'}">
+                        二手设备
+                        </c:if>
+                        <c:if test="${bean.equipmentCondition == '2'}">
+                        再制造
+                        </c:if>
+                        </li>
+                        <li>手续资料要求: 
+                        <c:if test="${bean.procedures == '0'}">
+                        手续齐全
+                        </c:if>
+                        <c:if test="${bean.procedures == '1'}">
+                        无手续
+                        </c:if>
+                        <c:if test="${bean.procedures == '2'}">
+                        有无手续均可
+                        </c:if>
+                        </li>
+                        <li>设备来源要求: 
+                        <c:if test="${bean.src == '0'}">个人
+                        </c:if>
+                        <c:if test="${bean.src == '1'}">单位
+                        </c:if>
+                        <c:if test="${bean.src == '2'}">抵押
+                        </c:if>
+                        <c:if test="${bean.src == '3'}">法务
+                        </c:if>
+                        </li>
                         <li>发布日期: ${bean.pubTime}</li>
                         <li>有效期至: ${bean.validTime}</li>
                         <li>生产年份要求: ${bean.equipYear}年以后</li>

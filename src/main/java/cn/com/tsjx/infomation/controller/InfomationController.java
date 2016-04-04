@@ -25,6 +25,7 @@ import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.util.bean.BeanCopyUtil;
 import cn.com.tsjx.common.util.json.JsonMapper;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
@@ -80,33 +81,32 @@ public class InfomationController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String input(Long id, Model model) {
-		Infomation infomation = new Infomation();
 		if (id != null) {
-			infomation = infomationService.get(id);
+		    Infomation infomation = infomationService.get(id);
+			User user = null;
+			if (infomation.getUserId() != null) {
+			    user = userService.get(infomation.getUserId());
+			    model.addAttribute("user", user);
+			}
+			if (user != null && user.getCompanyId() != null) {
+			    Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+			    model.addAttribute("company", company);
+			}
+			if (user != null) {
+			    Attch entity = new Attch();
+			    entity.setUserId(user.getId());
+			    entity.setInformationId(id);
+			    List<Attch> list = attchService.find(entity);
+			    model.addAttribute("listAttch", list);
+			    
+			    String firstImg = "";
+			    if(list.size() >0) {
+			        firstImg = list.get(0).getAttchUrl();
+			    }
+			    model.addAttribute("firstImg", firstImg);
+			}
+			model.addAttribute("bean", infomation);
 		}
-		User user = null;
-		if (infomation.getUserId() != null) {
-			user = userService.get(infomation.getUserId());
-			model.addAttribute("user", user);
-		}
-		if (user != null && user.getCompanyId() != null) {
-			Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-			model.addAttribute("company", company);
-		}
-		if (user != null) {
-            Attch entity = new Attch();
-            entity.setUserId(user.getId());
-            entity.setInformationId(id);
-            List<Attch> list = attchService.find(entity);
-            model.addAttribute("listAttch", list);
-            
-            String firstImg = "";
-            if(list.size() >0) {
-            	firstImg = list.get(0).getAttchUrl();
-            }
-            model.addAttribute("firstImg", firstImg);
-        }
-		model.addAttribute("bean", infomation);
 		return "/wap/view";
 	}
 

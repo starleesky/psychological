@@ -53,10 +53,10 @@ public enum InfomationEnum {
 		return this.description;
 	}
 	
-	public static String getDiscribeByCode(String code) {
+	public static String getDiscribeByCode(String code, String type) {
 		String description = null;
 		for(InfomationEnum ie : InfomationEnum.values()) {
-			if(ie.code.equals(code)) {
+			if(ie.code.equals(code) && ie.type.equals(type)) {
 				description = ie.description;
 			}
 		}

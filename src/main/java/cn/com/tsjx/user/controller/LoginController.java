@@ -138,9 +138,9 @@ public class LoginController {
         User user = (User) httpSession.getAttribute("user");
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
         Infomation infomation = new Infomation();
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("entity", infomation);
-        pager = infomationService.page(params, pager);
+        Params params = Params.create();
+        params.add("entity", infomation);
+        pager = infomationService.getInfoPagerWithImg(params, pager,false);
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
         if (user != null && user.getId() != null) {

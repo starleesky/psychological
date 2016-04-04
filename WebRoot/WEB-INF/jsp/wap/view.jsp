@@ -140,14 +140,19 @@
                         <li class="w100">Q  Q：${user.qq}</li>
                         <li>经营范围: ${user.businessScope}</li>
                         <li>经营性质：${user.businessNature}</li>
+                        <c:if test="${not empty company}">
                         <li class="w100">所属公司：${company.companyName}</li>
                         <li class="w100">公司地址：${company.address}</li>
+                        </c:if>
                     </ul>
                 </div>
-                <div class="pro-view-box">
+                <c:if test="${not empty company}">
+                 <div class="pro-view-box">
                     <h3>公司简介</h3>
                    <p>${company.introduction}
                 </div>
+                        </c:if>
+               
             </div>
         </section>
 

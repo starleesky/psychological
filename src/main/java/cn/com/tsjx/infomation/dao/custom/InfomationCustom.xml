@@ -97,7 +97,7 @@
 
 	<sql id="page_condition_collections">
 		and a.deleted = #{deleted,jdbcType=VARCHAR}
-		and b.user_id = #{userId,jdbcType=INTEGER}
+		and a.user_id = #{userId,jdbcType=INTEGER}
 	</sql>
 	
 	<sql id="page_condition_infos">

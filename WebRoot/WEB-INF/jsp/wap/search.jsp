@@ -44,7 +44,7 @@
 	                    <c:forEach items="${pager}" var="info">
 		                    <li class="pro-box">
 		                        <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
-		                            <img src="${ctx}" class="jImg" data-url="" />
+		                            <img src="${ctx}${info.imgUrl}" class="jImg" data-url="${ctx}${info.imgUrl}" />
 		                        </a>
 		                        <div class="pro-info">
 		                            <a href="#" class="pro-title">${info.brandName }/${info.modelName }</a>

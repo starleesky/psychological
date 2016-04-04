@@ -218,7 +218,7 @@ public class InfomationController {
 		model.addAttribute("bean", infomation);
 
 		model.addAttribute("status", status);
-		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status));
+		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status,"status"));
 
 		infoCounts(model, user);
 

@@ -71,8 +71,9 @@ String _modelName = infomation.getModelName();
 
                 </div> --%>
                 <input type="hidden" id="id" name="id" value="${info.id}">
-                <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
-                <div class="ui-form-mod upload-img">
+                <c:if test="${info.sellType == '0' || info.sellType == '1'}">
+	                <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
+                	<div class="ui-form-mod upload-img">
                     <a href="javascript:;" node-type="uploadButton">
                         <div class="img-sp" >
                             <img src="${ctx}/wap/images/camera_load_icon.png" />
@@ -84,6 +85,7 @@ String _modelName = infomation.getModelName();
                         </div>
                     </a>
                 </div>
+                </c:if>
                 <div class="ui-form-title">选择产品类别</div>
                 <input type="hidden" id="_bigCataId" value="${info.catagoryBigId }">
                 <input type="hidden" id="_midCataId" value="${info.catagoryMidId }">
@@ -127,8 +129,16 @@ String _modelName = infomation.getModelName();
                     <div class="ui-form-bd">
                     	<input type="hidden" name="sellType" id="sellType" value="${info.sellType}"/>
                         <select name="sellTypeSel" onchange="sellType.value=this.value">
-                        	<option value="2">求购</option>
-                        	<option value="3">求租</option>
+                        	<c:choose>
+                        		<c:when test="${info.sellType == '0' || info.sellType == '1'}">
+                        			<option value="0">出售</option>
+	                        		<option value="1">租赁</option>
+                        		</c:when>
+                        		<c:otherwise>
+	                        		<option value="2">求购</option>
+	                        		<option value="3">求租</option>
+                        		</c:otherwise>
+                        	</c:choose>
                         </select>
                     </div>
                 </div>

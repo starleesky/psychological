@@ -93,6 +93,7 @@ public class LoginController {
         Params params = Params.create();
 		infomation.setDeleted(Deleted.NO.value);
 		infomation.setStatus(InfomationEnum.status_sj.code());
+		infomation.setUserId(user.getId());
 		pager.setEntity(infomation);
 		pager = infomationService.getInfoPagerWithImg(params, pager, false);
         //Map<String, Object> params = new HashMap<String, Object>();

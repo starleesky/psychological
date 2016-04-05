@@ -138,8 +138,19 @@
                         <liclass="w100">电话：<a href="tel:${user.mobile}">${user.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${user.telephone}">${user.telephone}</a></li>
                         <li class="w100">Q  Q：${user.qq}</li>
-                        <li>经营范围: ${user.businessScope}</li>
-                        <li>经营性质：${user.businessNature}</li>
+                        <li>经营范围:
+                        <c:if test="${user.businessScope == '1'}">工程机械</c:if>
+                        <c:if test="${user.businessScope == '2'}">农业机械</c:if>
+                        <c:if test="${user.businessScope == '3'}">矿山机械</c:if>
+                        <c:if test="${user.businessScope == '4'}">林业机械</c:if>
+                        <c:if test="${user.businessScope == '5'}">运输机械</c:if>
+                        </li>
+                        <li>经营性质：
+                             <c:if test="${user.businessNature == '0'}">出售</c:if>
+                             <c:if test="${user.businessNature == '1'}">租赁</c:if>
+                             <c:if test="${user.businessNature == '2'}">求购</c:if>
+                             <c:if test="${user.businessNature == '3'}">求租</c:if>
+                        </li>
                         <c:if test="${not empty company}">
                         <li class="w100">所属公司：${company.companyName}</li>
                         <li class="w100">公司地址：${company.address}</li>

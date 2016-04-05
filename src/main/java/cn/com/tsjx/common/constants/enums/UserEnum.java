@@ -18,7 +18,7 @@ public enum UserEnum {
     user_scope_ny("2","农业机械","user_scope"),
     user_scope_ks("3","矿山机械","user_scope"),
     user_scope_ly("4","林业机械","user_scope"),
-    user_scope_gccl("5","工程车辆","user_scope");
+    user_scope_gccl("5","运输车辆","user_scope");
 
 	private final String code;
 	private final String description;

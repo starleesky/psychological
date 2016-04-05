@@ -128,7 +128,7 @@ public class LoginController {
             model.addAttribute("userInfo",user);
             //9、收藏
             List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
-            System.out.println(collectInfo.get(0));
+//            System.out.println(collectInfo.get(0));
             model.addAttribute("cnt_sc", collectInfo.size());
             model.addAttribute("collections", collectInfo);
         }

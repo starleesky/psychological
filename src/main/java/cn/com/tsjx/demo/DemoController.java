@@ -7,13 +7,21 @@
  */
 package cn.com.tsjx.demo;
 
+import cn.com.tsjx.common.constants.enums.CompanyEnum;
+import cn.com.tsjx.common.constants.enums.InfomationEnum;
+import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.util.json.JsonMapper;
+import cn.com.tsjx.company.entity.Company;
+import cn.com.tsjx.company.service.CompanyService;
+import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
 import cn.com.tsjx.user.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,15 +62,66 @@ public class DemoController {
 	@Resource
 	NoticeService noticeService;
 
+	@Resource
+	CompanyService companyService;
+
+	@Resource
+	InfomationService infomationService;
+
 	@RequestMapping(value = "/search")
 	public String search() {
 		return "/wap/search";
 	}
 
 	@RequestMapping(value = "/companyInfo")
-	public String companyInfo() {
-
+	public String companyInfo(Model model, HttpSession httpSession) {
+		User user = (User) httpSession.getAttribute("user");
+		if (user != null && !StringUtils.isEmpty(user.getCompanyId())) {
+			Company company = companyService.get(Long.parseLong(user.getCompanyId()));
+			model.addAttribute("company", company);
+		} else {
+			model.addAttribute("company", new Company());
+		}
+		infoCounts(model,user);
 		return "/wap/company-info";
+	}
+
+	/**
+	 * 查询不同信息状态数字
+	 *
+	 * @param infomation
+	 * @param model
+	 * @param user
+	 */
+	public void infoCounts(Model model, User user) {
+		Infomation infomation = new Infomation();
+		infomation.setDeleted(Deleted.NO.value);
+		infomation.setUserId(user.getId());
+
+		//1、上架
+		infomation.setStatus(InfomationEnum.status_sj.code());
+		List<Infomation> li_sj = infomationService.find(infomation);
+		model.addAttribute("cnt_sj", li_sj.size());
+
+		//2、已售
+		infomation.setStatus(InfomationEnum.status_ys.code());
+		List<Infomation> li_ys = infomationService.find(infomation);
+		model.addAttribute("cnt_ys", li_ys.size());
+
+		//3、下架
+		infomation.setStatus(InfomationEnum.status_xj.code());
+		List<Infomation> li_xj = infomationService.find(infomation);
+		model.addAttribute("cnt_xj", li_xj.size());
+
+		//4、草稿
+		infomation.setStatus(InfomationEnum.status_cg.code());
+		List<Infomation> li_cg = infomationService.find(infomation);
+		model.addAttribute("cnt_cg", li_cg.size());
+
+		//9、收藏
+		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+		model.addAttribute("cnt_sc", collectInfo.size());
+
 	}
 
 	@RequestMapping(value = "/message")
@@ -102,7 +161,7 @@ public class DemoController {
 		// 获得输入流：
 		InputStream input = file.getInputStream();
 		// 写入文件
-//		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
+		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
 		//当前月份
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");

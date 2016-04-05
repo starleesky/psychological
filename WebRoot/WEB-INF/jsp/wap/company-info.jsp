@@ -5,55 +5,8 @@
 <html>
 <head>
     <title>汤森机械网-公司信息</title>
-    <meta charset="utf-8"/>
-    <script>
-        // flexible.js
-        !function (e) {
-            function h() {
-                var a = f.getBoundingClientRect().width;
-                640 < a / b && (a = 640 * b);
-                a /= 16;
-                f.style.fontSize = a + "px";
-                e.rem = a
-            }
-
-            function k(a, b, c, e) {
-                var d;
-                return function () {
-                    var f = e || this, g = arguments, h = c && !d;
-                    clearTimeout(d);
-                    d = setTimeout(function () {
-                        d = null;
-                        c || a.apply(f, g)
-                    }, b);
-                    h && a.apply(f, g)
-                }
-            }
-
-            var b, a, d, c = e.document, g = e.navigator, f = c.documentElement, i = c.querySelector('meta[name="viewport"]');
-            d = c.querySelector('meta[name="flexible"]');
-            i ? (d = i.getAttribute("content").match(/initial\-scale=(["']?)([\d\.]+)\1?/)) && (a = parseFloat(d[2]), b = parseInt(1 / a)) : d && (d = d.getAttribute("content").match(/initial\-dpr=(["']?)([\d\.]+)\1?/)) && (b = parseFloat(j[2]), a = parseFloat((1 / b).toFixed(2)));
-            !b && !a && (b = e.devicePixelRatio, b = g.appVersion.match(/android/gi) || g.appVersion.match(/iphone/gi) ? 3 <= b ? 3 : 2 <= b ? 2 : 1 : 1, a = 1 / b);
-            f.setAttribute("data-dpr", b);
-            i || (a = '<meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=' + a + ", maximum-scale=" + a + ", minimum-scale=" + a + ', user-scalable=no" />', f.firstElementChild ? (g = c.createElement("div"), g.innerHTML = a, f.firstElementChild.appendChild(g.firstChild)) : c.write(a));
-            e.dpr = b;
-            e.addEventListener("resize", k(h, 300), !1);
-            e.addEventListener("pageshow", k(function (a) {
-                a.persisted && h()
-            }, 300), !1);
-            "complete" === c.readyState ? c.body.style.fontSize = 12 * b + "px" : c.addEventListener("DOMContentLoaded", function () {
-                c.body.style.fontSize = 12 * b + "px"
-            }, !1);
-            h()
-        }(window);
-    </script>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name='apple-touch-fullscreen' content='yes'>
-    <!-- <meta name="full-screen" content="yes"> -->
-    <meta content="fullscreen=yes,preventMove=no" name="ML-Config">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
-    <!-- <meta name="format-detection" content="telephone=no,email=no,address=no" /> -->
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
     <link rel="stylesheet" href="css/module/company-info.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
@@ -66,21 +19,21 @@
             <div class="hd">
                 <h3 class="title">添加公司信息</h3>
             </div>
-            <div class="bd">
-                <a class="bd-l" href="orders.html">
-                    <span class="num">35</span>
+            <div class="pro-nav">
+                <a href="${ctx }/infomation/infoList?status=2">
+                    <span class="num">${cnt_sj}</span>
                     <span class="num-desc">上架</span>
                 </a>
-                <a class="bd-m" href="logistics.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=3" >
+                    <span class="num">${cnt_ys}</span>
                     <span class="num-desc">已售</span>
                 </a>
-                <a class="bd-m" href="logistics.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=4" >
+                    <span class="num">${cnt_xj}</span>
                     <span class="num-desc">下架</span>
                 </a>
-                <a class="bd-r" href="coupon.html">
-                    <span class="num">35</span>
+                <a href="${ctx }/infomation/infoList?status=0" >
+                    <span class="num">${cnt_cg}</span>
                     <span class="num-desc">草稿</span>
                 </a>
             </div>

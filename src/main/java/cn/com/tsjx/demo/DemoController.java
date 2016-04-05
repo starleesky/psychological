@@ -61,6 +61,7 @@ public class DemoController {
 
 	@RequestMapping(value = "/companyInfo")
 	public String companyInfo() {
+
 		return "/wap/company-info";
 	}
 

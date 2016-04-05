@@ -123,11 +123,14 @@ public class LoginController {
         model.addAttribute("cnt_cg", li_cg.size());
 
         if (user != null ) {
+            System.out.println(user);
             user = userService.get(user.getId());
             model.addAttribute("userInfo",user);
             //9、收藏
             List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
+            System.out.println(collectInfo.get(0));
             model.addAttribute("cnt_sc", collectInfo.size());
+            model.addAttribute("collections", collectInfo);
         }
         
         return "/wap/infor";

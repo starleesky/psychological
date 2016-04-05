@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -20,6 +21,7 @@
                 <a href="./index.html" class="prev-btn"><i class="icon iconfont">&#xe60d;</i></a>
                 <div class="img-title">
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
+                    <input type="hidden" id="id" value="${bean.id}" >
                     <p class="pro-price">${bean.price}元</p>
                     <p class="pro-num">汤森信息编号: BNE01068</p>
                 </div>
@@ -47,6 +49,10 @@
         <section class="img-big-box">
             <a href="javascript:;" class="jClose icon iconfont">&#xe622;</a>
             <img src="images/img_1.jpg" />
+        </section>
+        <section class="page-view-btn">
+          <input type="button" class="ui-button ui-button-submit" id="collection"  value="收藏">
+                    
         </section>
         <section class="pro-set-info pro-view-mod">
             <div class="hd">设备要求</div>
@@ -124,7 +130,9 @@
                     <div class="pro-img"><img src="images/img1.png" /></div>
                     <h3>${user.userName}</h3>
                     <ul>
-                        <li class="w100">注册时间：${user.createTime}</li>
+                        <li class="w100">注册时间：
+               <fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
+                        </li>
                         <liclass="w100">电话：<a href="tel:${user.mobile}">${user.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${user.telephone}">${user.telephone}</a></li>
                         <li class="w100">Q  Q：${user.qq}</li>
@@ -147,14 +155,26 @@
                         </c:if>
                     </ul>
                 </div>
+                <div class="pro-view-box">
+                    <h3>库存情况</h3>
+                    <div class="pro-view-box-num">
+                        <p class="bg-green">现有库存：${bean.stockCount}台</p>
+                        <p class="bg-gray">已售数量：${sellCount}台</p>
+                    </div>
+                </div>
                 <c:if test="${not empty company}">
                  <div class="pro-view-box">
                     <h3>公司简介</h3>
                    <p>${company.introduction}
                 </div>
-                        </c:if>
+                </c:if>
                
             </div>
+        </section>
+         <section class="page-view-btn">
+            <a href="tel:${user.mobile}" class="ui-button ui-button-submit">联系卖家</a>
+            <a href="javascript:;" class="ui-button ui-button-blue">库存情况</a>
+             <a href="javascript:;" class="ui-button ui-button-gray jCommentInfo">客户评价</a>
         </section>
 
     </div>

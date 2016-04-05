@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -124,7 +125,9 @@
                     <div class="pro-img"><img src="images/img1.png" /></div>
                     <h3>${user.userName}</h3>
                     <ul>
-                        <li class="w100">注册时间：${user.createTime}</li>
+                        <li class="w100">注册时间：
+               <fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
+                        </li>
                         <liclass="w100">电话：<a href="tel:${user.mobile}">${user.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${user.telephone}">${user.telephone}</a></li>
                         <li class="w100">Q  Q：${user.qq}</li>
@@ -152,7 +155,7 @@
                     <h3>公司简介</h3>
                    <p>${company.introduction}
                 </div>
-                        </c:if>
+                </c:if>
                
             </div>
         </section>

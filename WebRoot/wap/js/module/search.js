@@ -41,6 +41,7 @@ define(function(require,exports,module){
             data.sellType = $("#sellType").val();
             data.equipmentCondition = $("#equipmentCondition").val();
             data.procedures = $("#procedures").val();
+            data.order = $("#order").val();
             
             return data;
         },
@@ -205,6 +206,11 @@ define(function(require,exports,module){
     /** -------------------end ------------------------**/
     $("#searchResult").click(function () {
         $('#infoSearchForm').submit();
+    });
+    
+    $("select[name='orderSel']").change(function(){
+    	$("#order").val(this.value);
+    	 $('#infoSearchForm').submit();
     });
     
 

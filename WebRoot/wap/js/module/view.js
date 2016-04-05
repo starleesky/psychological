@@ -17,5 +17,14 @@ define(function(require,exports,module) {
     $bigBox.on('click','.jClose',function(){
         $bigBox.hide();
     });
+    $("#collection").click(function(){
+        $.post( url.collectionSave,
+          {
+        	informationId: $("#id").val()
+          }
+    	, function (data) {
+    		alert(data.message);
+        },'json');
+    })
 
 });

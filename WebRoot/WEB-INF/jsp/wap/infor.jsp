@@ -22,7 +22,8 @@
                 <div class="f-l">
                    <img src="images/dashboard_icon.png" />我的账号
                 </div>
-                <a href="javascript:;" class="f-r">隐藏</a>
+                <a href="javascript:;" class="f-r jIsHide">隐藏</a>
+                
             </div>
             <div class="bd">
                 <div class="info clearfix">
@@ -166,9 +167,9 @@
             </div>
             <div class="collect-bd">
                 <ul class="clearfix" style="display: none;">
-                    <c:forEach var ="item" items = "${collections}" varStatus="status">
+                    <c:forEach var ="bb" items = "${collections}" varStatus="status">
                     <li>
-                        <a href="${ctx}/infomation/input.htm?id=${item.id}">
+                        <a href="${ctx}/infomation/input.htm?id=${bb.id}">
                             <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
                             <span class="price"><b>价格：</b>${item.price}元</span>

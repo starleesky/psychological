@@ -1,6 +1,15 @@
 define(['jquery', 'url', 'plug/ajax','plug/box','plug/load/lazyload','plug/load/lazystream','plug/selectPro'], function ($, url, ajax,box,Lazyload,LazyStream) {
-	//$, url, ajax, box, Validator,Uploader
-	//'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod','plug/uploader/uploader-list','plug/imgLoading','plug/selectPro'
+	$body = $('body');
+    $body.on('click','.jIsHide',function(){
+        if($(this).hasClass('open')){
+            $(this).removeClass('open').html('隐藏');
+            $(this).parents('.hd').next('.bd').show();
+        }else{
+            $(this).addClass('open').html('显示');
+            $(this).parents('.hd').next('.bd').hide();
+        }
+    });
+    
 	 var oBigGoodsCatagory = $("#catagoryBigId");
 	    var oMiddleGoodsCatagory = $("#catagoryMidId");
 	    var oSmallGoodsCatagory = $("#catagoryId");

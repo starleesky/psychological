@@ -6,17 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.com.tsjx.common.model.Result;
-import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.collection.entity.Collection;
 import cn.com.tsjx.collection.service.CollectionService;
+import cn.com.tsjx.common.model.Result;
+import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.user.entity.User;
 
 
 @Controller
@@ -49,13 +52,25 @@ public class CollectionController {
     }
     
  
+    @ResponseBody
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(Collection collection,Model model) {
-    	
-    	collectionService.insert(collection);
-    	model.addAttribute("msg", "添加成功！");
-    	model.addAttribute("redirectionUrl", "/collection/list.htm");
-        return "/success";
+    public Result<Object> save(@RequestBody Collection collection,Model model,HttpSession httpSession) {
+        Result<Object> jsonResult = new Result<Object>();
+        User user = (User) httpSession.getAttribute("user");
+        if (user == null) {
+            jsonResult.setMessage("登录之后才能收藏");
+            jsonResult.setResult(false);
+            return jsonResult;
+        }
+        System.out.println(user.getId());
+        collection.setUserId(user.getId());
+        List<Collection> list = collectionService.find(collection);
+        if (list.isEmpty()) {
+            collectionService.insert(collection);
+        }
+        jsonResult.setResult(true);
+        jsonResult.setMessage("收藏成功");
+        return jsonResult;
     }
     
     

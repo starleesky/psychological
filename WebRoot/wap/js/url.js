@@ -32,7 +32,8 @@ define(function (require, exports, module) {
         toForgotpwdSuccess:baseUrl + '/wap/toForgotpwdSuccess',//找回密码成功
         userInfoUpdate:baseUrl + '/user/update',//修改个人信息
         
-        searchInfoList : baseUrl + '/infomation/search'	//高级检索查询列表
+        searchInfoList : baseUrl + '/infomation/search',	//高级检索查询列表
+        collectionSave:baseUrl+'/collection/save' //收藏
     }
     module.exports = URL;
 });

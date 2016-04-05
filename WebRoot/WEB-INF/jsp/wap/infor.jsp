@@ -166,13 +166,13 @@
                 <span class="icon iconfont">&#xe603;</span>我的收藏
             </div>
             <div class="collect-bd">
-                <ul class="clearfix" style="display: none;">
-                    <c:forEach var ="bb" items = "${collections}" varStatus="status">
+                <ul class="clearfix" style="display:;">
+                    <c:forEach var ="bb" items = "${collections}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${bb.id}">
-                            <span class="pro-img"><img src="images/blank.gif" class="jImg" data-url="images/img1.jpg" /></span>
-                            <span class="name">${item.brandName}${item.modelName}</span>
-                            <span class="price"><b>价格：</b>${item.price}元</span>
+                            <span class="pro-img"><img src="${ctx}${bb.imgUrl}" class="jImg" data-url="${ctx}${bb.imgUrl}" /></span>
+                            <span class="name">${bb.brandName}${bb.modelName}</span>
+                            <span class="price"><b>价格：</b>${bb.price}元</span>
                         </a>
                     </li>
 					</c:forEach>

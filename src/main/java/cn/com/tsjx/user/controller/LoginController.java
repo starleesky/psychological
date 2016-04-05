@@ -127,10 +127,16 @@ public class LoginController {
             user = userService.get(user.getId());
             model.addAttribute("userInfo",user);
             //9、收藏
-            List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);
-            System.out.println(collectInfo.get(0));
-            model.addAttribute("cnt_sc", collectInfo.size());
-            model.addAttribute("collections", collectInfo);
+            
+            Params param = Params.create();
+            param.add("deleted", Deleted.NO.value);
+            param.add("userId", user.getId());
+
+            Pager<InfomationDto> colleanInfo = infomationService.getPagerCollections(param, pager);
+            model.addAttribute("cnt_sc", colleanInfo.getTotalCount());
+            model.addAttribute("collections", colleanInfo.getItems());
+            System.out.println(colleanInfo.getTotalCount());
+            System.out.println(colleanInfo.getItems());
         }
         
         return "/wap/infor";

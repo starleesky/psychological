@@ -77,6 +77,17 @@
                         </div>
                         <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
 	                  		<img src="${ctx}${info.imgUrl}"  class="jImg" data-url="" />
+	                  		<c:choose>
+			                  	<c:when test="${status == 3}">
+			                  		<span>已售</span>
+			                  	</c:when>
+			                  	<c:when test="${status == 4}">
+			                  		<span>下架</span>
+			                  	</c:when>
+			                  	<c:otherwise>
+			                  		
+			                  	</c:otherwise>
+			                </c:choose>
                         </a>
                       
                         <div class="pro-info">
@@ -100,8 +111,8 @@
                             <p class="col-6"> 设备序列号:<span>${info.serialNum }</span> </p>
                             <p class="col-6"> 截止日期:<span><fmt:formatDate value="${info.endTime}" pattern="yyyy/MM/dd" /></span> </p>
                         </div>
-                        <c:if test="${status == 4 }">
-                        	<a href="javascript:;" data-url="#" class="pro-new-up jNewUp">重新上架</a>
+                        <c:if test="${status == 4 || status == 3}">
+                        	<a href="javascript:;" infoId="${info.id}" class="pro-new-up jNewUp">重新上架</a>
                         </c:if>
                         <c:if test="${status == 0 }">
                         	<a href="${ctx}/infomation/edit?id=${info.id}" data-url="#" class="pro-new-up jUpPro">修改商品</a>

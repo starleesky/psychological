@@ -132,9 +132,13 @@ define(
 			initOtherSel();
 
 			$('body').on('click', '.jNewUp', function() {
-				var url = $(this).attr('data-url');
+				var id = $(this).attr('infoId');
 				box.confirm('是否确认重新上架', function() {
-					window.location.href = url;
+					$.post(url.reUp, {id: id}, function (data) {
+						//box.alert(data.message,function() {
+							window.location.href = url.infoList + "?order=" + $("#order").val() + "&status=" + $("#curStatus").val();
+						//});
+					});
 				}, function() {
 				}, this);
 			});

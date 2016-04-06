@@ -3,16 +3,15 @@ package cn.com.tsjx.infomation.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +24,6 @@ import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
-import cn.com.tsjx.common.util.bean.BeanCopyUtil;
 import cn.com.tsjx.common.util.json.JsonMapper;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
@@ -36,6 +34,7 @@ import cn.com.tsjx.demo.pageOutDto;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
+import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 
@@ -501,6 +500,22 @@ public class InfomationController {
 		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
 		sb.append(")");
 		return sb.toString();
+	}
+	
+	@RequestMapping(value = "/reUp" , method = RequestMethod.POST)
+	public Result<String> reUp(Infomation infomation) {
+		
+		Result<String> result = new Result<String>();
+		
+		Date curDate = new Date();
+		infomation.setStatus(InfomationEnum.status_sj.code());
+		infomation.setModifyTime(curDate);
+		
+		infomationService.update(infomation);
+		
+		result.setMessage("操作成功");
+        result.setResult(true);
+        return result;
 	}
 	
 	private void pageOrder(String order, Pager pager) {

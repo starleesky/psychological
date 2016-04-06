@@ -45,6 +45,8 @@ public class PageDto {
 	private String equipmentCondition;
 	// 手续资料|
 	private String procedures;
+	//排序权重
+	private String order;
 	
 
 	public int getPageNo() {
@@ -165,6 +167,14 @@ public class PageDto {
 
 	public void setProcedures(String procedures) {
 		this.procedures = procedures;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
 	}
 	
 	

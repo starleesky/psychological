@@ -26,6 +26,7 @@ define(function (require, exports, module) {
         register2Url:baseUrl + '/wap/toRegister2',//注册下一步
         saveRegister2:baseUrl + '/wap/saveRegister2', //保存注册下一步
         registerSuccess:baseUrl + '/wap/register-success',//注册成功
+        infoList : baseUrl + '/infomation/infoList',	//我的信息列表
         moreInfo : baseUrl + '/infomation/moreInfo',	//信息列表下拉方法
         moreSearchInfo : baseUrl + '/infomation/moreSearchInfo', //信息列表下拉方法(带搜索条件列表)
         toForgotpwd:baseUrl + '/wap/toForgotpwd',//找回密码

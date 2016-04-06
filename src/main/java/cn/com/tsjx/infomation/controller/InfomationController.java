@@ -193,8 +193,7 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/infoList")
-	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession) {
-		//Map<String, Object> params = new HashMap<String, Object>();
+	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession, String order) {
 
 		String status = StringUtil.isBlank(infomation.getStatus()) ?
 				InfomationEnum.status_sj.code() :
@@ -211,12 +210,16 @@ public class InfomationController {
 		params.add("userId", user.getId());
 		params.add("status", status);
 		
+		pageOrder(order,pager);
+		
 		pager = infomationService.getInfoPagerWithImg(params, pager, true);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("bean", infomation);
 
 		model.addAttribute("status", status);
 		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status,"status"));
+		
+		model.addAttribute("order", order);
 
 		infoCounts(model, user);
 
@@ -318,6 +321,8 @@ public class InfomationController {
 		Params param = Params.create();
 		param.add("deleted", Deleted.NO.value);
 		param.add("userId", user.getId());
+		
+		pageOrder(pageDto.getOrder(),pager);
 		
 		if ("9".equals(pageDto.getStatus())) {
 			pager = infomationService.getPagerCollections(param, pager);
@@ -426,21 +431,8 @@ public class InfomationController {
 		
 		pager.setEntity(infomation);
 		
-		if(StringUtil.isBlank(order)) {
-			pager.setPageSort("price");
-			pager.setPageOrder("desc");
-		}else {
-			if("price_h".equals(order)) {
-				pager.setPageSort("price");
-				pager.setPageOrder("desc");
-			}else if("price_l".equals(order)) {
-				pager.setPageSort("price");
-				pager.setPageOrder("asc");
-			}else if("pub_h".equals(order)) {
-				pager.setPageSort("pub_time");
-				pager.setPageOrder("desc");
-			}
-		}
+		pageOrder(order,pager);
+		
 		pager = infomationService.getInfoPagerWithImg(params, pager, false);
 		
 		model.addAttribute("pager", pager.items);
@@ -466,8 +458,10 @@ public class InfomationController {
 		pager.setPageNo(pageDto.getPageNo() + 1);
 
 		Params params = Params.create();
-		
 		pager.setEntity(infomation);
+		
+		pageOrder(pageDto.getOrder(),pager);
+		
 		pager = infomationService.getInfoPagerWithImg(params, pager, false);
 
 		StringBuilder data = new StringBuilder();
@@ -507,5 +501,23 @@ public class InfomationController {
 		sb.append(JsonMapper.getMapper().toJson(pageOutDto));
 		sb.append(")");
 		return sb.toString();
+	}
+	
+	private void pageOrder(String order, Pager pager) {
+		if(StringUtil.isBlank(order)) {
+			pager.setPageSort("price");
+			pager.setPageOrder("desc");
+		}else {
+			if("price_h".equals(order)) {
+				pager.setPageSort("price");
+				pager.setPageOrder("desc");
+			}else if("price_l".equals(order)) {
+				pager.setPageSort("price");
+				pager.setPageOrder("asc");
+			}else if("pub_h".equals(order)) {
+				pager.setPageSort("pub_time");
+				pager.setPageOrder("desc");
+			}
+		}
 	}
 }

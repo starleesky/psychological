@@ -134,7 +134,7 @@ define(
 			$('body').on('click', '.jNewUp', function() {
 				var id = $(this).attr('infoId');
 				box.confirm('是否确认重新上架', function() {
-					$.post(url.reUp, {id: id}, function (data) {
+					$.getJSON(url.reUp, {id: id}, function (data) {
 						//box.alert(data.message,function() {
 							window.location.href = url.infoList + "?order=" + $("#order").val() + "&status=" + $("#curStatus").val();
 						//});

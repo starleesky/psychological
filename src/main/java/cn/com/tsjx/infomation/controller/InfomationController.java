@@ -517,7 +517,8 @@ public class InfomationController {
 		return sb.toString();
 	}
 	
-	@RequestMapping(value = "/reUp" , method = RequestMethod.POST)
+	@ResponseBody
+	@RequestMapping(value = "/reUp" , method = RequestMethod.GET)
 	public Result<String> reUp(Infomation infomation) {
 		
 		Result<String> result = new Result<String>();

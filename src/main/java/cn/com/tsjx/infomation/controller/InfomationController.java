@@ -1,5 +1,6 @@
 package cn.com.tsjx.infomation.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,8 +13,11 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,7 +38,6 @@ import cn.com.tsjx.demo.pageOutDto;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
-import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 
@@ -51,6 +54,11 @@ public class InfomationController {
 
 	@Resource
 	AttchService attchService;
+
+
+	// 写入文件
+	@Value("${file.uplaoddir}")
+	String path;
 
 	@RequestMapping(value = "/pub")
 	public String pub(Model model, HttpSession httpSession) {
@@ -145,7 +153,14 @@ public class InfomationController {
 				Attch attch = new Attch();
 				attch.setInformationId(infomation.getId());
 				attch.setUserId(user.getId());
-				attch.setAttchUrl(img);
+				if(!StringUtils.isEmpty(img)){
+					File afile = new File(path+img);
+					if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
+						attch.setAttchUrl("/images/information/" + afile.getName());
+					}else{
+						attch.setAttchUrl(img);
+					}
+				}
 				attchService.insert(attch);
 			}
 		}

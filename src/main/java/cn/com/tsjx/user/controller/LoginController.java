@@ -129,7 +129,7 @@ public class LoginController {
             user = userService.get(user.getId());
             model.addAttribute("userInfo",user);
             //9、收藏
-            
+
             Params param = Params.create();
             param.add("deleted", Deleted.NO.value);
             param.add("userId", user.getId());

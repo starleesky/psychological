@@ -113,10 +113,37 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
     };
 
 
-    //初始省市
-    getProvice();
+    if(status==""){
+        //初始省市
+        getProvice();
+    }
+
+    //隐藏域设置值
+
 
     $("#jSubmit").click(function () {
+
+        if(status=="1"){
+            box.error("认证成功，不能修改！");
+            return;
+        }
+        if(status!="2"&&status!=""){
+            box.error("不能修改");
+            return;
+        }
+
+        if($('input[name=_UPLOAD_0]').val()==""){
+            box.error("公司logo不能为空");
+            return;
+        }
+        if($('input[name=_UPLOAD_1]').val()==""){
+            box.error("营业执照副本不能为空");
+            return;
+        }
+        if($('input[name=_UPLOAD_2]').val()==""){
+            box.error("组织机构代码证不能为空");
+            return;
+        }
         $('#companyForm').submit();
 
     });
@@ -125,11 +152,29 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
         rules: {
             companyName: {
                 required: true
+            },
+            createBy: {
+                required: true
+            },
+            businessLicenseImageUrl: {
+                required: true
+            },
+            organizationCodeImageUrl: {
+                required: true
             }
         },
         messages: {
             companyName: {
                 required: '公司名称不能为空'
+            },
+            createBy: {
+                required: '公司logo不能为空'
+            },
+            businessLicenseImageUrl: {
+                required: '营业机构不能为空'
+            },
+            organizationCodeImageUrl: {
+                required: '组织机构不能为空'
             }
         },
         submitHandler: function (form) {
@@ -137,6 +182,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 url.saveCompany,
                 {
                     companyName: $(form).find('input[name=companyName]').val(),
+                    createBy: $(form).find('input[name=_UPLOAD_0]').val(),
                     businessLicenseImageUrl: $(form).find('input[name=_UPLOAD_1]').val(),
                     organizationCodeImageUrl: $(form).find('input[name=_UPLOAD_2]').val(),
                     telephone: $(form).find('input[name=telephone]').val(),
@@ -151,8 +197,10 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 function (data) {
                     if (data.result) {
                         box.ok(data.message);
+                        window.location.href = ctx+"/wap/infor";
                     } else {
                         box.error(data.message);
+                        window.location.href = ctx+"/wap/infor";
                     }
 
                 });

@@ -196,9 +196,15 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">工时/小时以内</label>
                     <div class="ui-form-bd">
-                        <input type="text"   name="price" id="price"   placeholder="请输入...">
+                        <input type="text"   name="workTime" id="workTime"   placeholder="请输入...">
                     </div>
                 </div>
+                    <div class="ui-form-mod">
+                        <label class="ui-form-hd">价格</label>
+                        <div class="ui-form-bd">
+                            <input type="text"   name="price" id="price"   placeholder="请输入...">
+                        </div>
+                    </div>
                 <div class="ui-form-title">买家附言</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>
@@ -226,7 +232,7 @@
                             <option value="60">60天</option>
                             <option value="90">90天</option>
                         </select>
-                        <input type="text" name="validTime1" placeholder="请输入..." />
+                        <%--<input type="text" name="validTime1" placeholder="请输入..." />--%>
                     </div>
                     <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
                 </div>

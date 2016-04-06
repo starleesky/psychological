@@ -46,16 +46,11 @@
         </section>
         <section class="mod-up-pro">
             <div class="pro-search-box">
-                <select>
-                    <option value="order=relevance">排 序</option>
-                    <option value="order=updated_at">Newest First</option>
-                    <option value="order=duration_end">Ending Soonest</option>
-                    <option value="order=name">Name: Z-A</option>
-                    <option value="order=name">Name: A-Z</option>
-                    <option value="order=price">Price: Highest First</option>
-                    <option value="order=price">Price: Lowest First</option>
-                    <option value="order=condition">Condition: Z-A</option>
-                    <option value="order=condition">Condition: A-Z</option>
+                <select name="orderSel">
+                 	<option value="">排序</option>
+                    <option value="price_h">价格从高到低</option>
+	                <option value="price_l">价格从低到高</option>
+	                <option value="pub_h">发布时间</option>
                 </select>
             </div>
             <div class="no-data">
@@ -64,6 +59,7 @@
             <div class="pro-buy-num">已售台数:<span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
             <div class="pro-list">
                 <form action="" method="post">
+                <input type="hidden" name="order" id="order" value="${order}"/>
                  <ul class="jPage">
                   <div data-page="1">
                   <c:forEach items="${pager}" var="info">

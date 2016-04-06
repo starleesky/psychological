@@ -197,8 +197,10 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 function (data) {
                     if (data.result) {
                         box.ok(data.message);
+                        window.location.href = ctx+"/wap/infor";
                     } else {
                         box.error(data.message);
+                        window.location.href = ctx+"/wap/infor";
                     }
 
                 });

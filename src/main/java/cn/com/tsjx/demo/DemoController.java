@@ -161,7 +161,7 @@ public class DemoController {
 		// 获得输入流：
 		InputStream input = file.getInputStream();
 		// 写入文件
-		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
+//		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
 		//当前月份
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");

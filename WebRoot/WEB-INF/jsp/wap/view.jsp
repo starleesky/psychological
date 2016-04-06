@@ -127,7 +127,7 @@
             <div class="hd">卖家信息</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <div class="pro-img"><img src="images/img1.png" /></div>
+                    <div class="pro-img"><img src="${ctx}${user.headIcon}" /></div>
                     <h3>${user.userName}</h3>
                     <ul>
                         <li class="w100">注册时间：

@@ -6,9 +6,9 @@
 <body>
 <div class="footer">
     <div class="ft-nav">
-        <a  href="${ctx}/about-us.html">关于我们</a>
-        <a  href="${ctx}/term-conditions.html">一般条款</a>
-        <a  href="${ctx}/contact-us.html">联系我们</a>
+        <a  href="${ctx}/wap/about-us.htm">关于我们</a>
+        <a  href="${ctx}/wap/terms-conditions.htm">一般条款</a>
+        <a  href="${ctx}/wap/contact-us.htm">联系我们</a>
     </div>
     <div class="copyright">
         Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd

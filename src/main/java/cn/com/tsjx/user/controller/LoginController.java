@@ -92,6 +92,7 @@ public class LoginController {
         InfomationDto infomation = new InfomationDto();
         Params params = Params.create();
 		infomation.setDeleted(Deleted.NO.value);
+		infomation.setStatus("2");//已上架的
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		if (user!=null) {
 		    infomation.setUserId(user.getId());
@@ -305,6 +306,21 @@ public class LoginController {
     @RequestMapping(value = "/getVerifyCode", method = RequestMethod.GET)
     public void getVerifyMCode(HttpServletRequest request, HttpServletResponse response) {
         SimpleCaptcha.showCaptcha(request, response, "verifyCode");
+    }
+    
+    @RequestMapping(value = "/terms-conditions")
+    public String termsConditions() {
+        return "/wap/terms-conditions"; 
+    }
+    
+    @RequestMapping(value = "/about-us")
+    public String aboutUs() {
+        return "/wap/about-us"; 
+    }
+    
+    @RequestMapping(value = "/contact-us")
+    public String contactUs() {
+        return "/wap/contact-us"; 
     }
 
 }

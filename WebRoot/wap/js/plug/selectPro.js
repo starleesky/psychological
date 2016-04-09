@@ -9,10 +9,10 @@ define(function(require, exports, module) {
     $body.on('click','.jProSelect',function(){
         var num = 0;
         if($(this).hasClass('isSelect')){
-            $(this).attr('src','../images/ok-1.png').removeClass('isSelect');
+            $(this).attr('src',ctx+'/wap/images/ok-1.png').removeClass('isSelect');
             $(this).siblings('input').val(0);
         }else{
-            $(this).attr('src','../images/ok-2.png').addClass('isSelect');
+            $(this).attr('src',ctx+'/wap/images/ok-2.png').addClass('isSelect');
             $(this).siblings('input').val(1);
         }
         num = $body.find('.isSelect').length;

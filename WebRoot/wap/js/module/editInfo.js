@@ -1,4 +1,4 @@
-define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'], function ($, url, ajax, box, Validator) {
+define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod','plug/uploader/uploader-list'], function ($, url, ajax, box, Validator,Uploader) {
 
     var oBigGoodsCatagory = $(".bigGoodsCatagory");
     var oMiddleGoodsCatagory = $(".middleGoodsCatagory");
@@ -164,6 +164,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     	$("select[name='proceduresSel']").val($("#procedures").val());
     	$("select[name='srcSel']").val($("#src").val());
     	$("select[name='equipYearSel']").val($("#equipYear").val());
+    	$("select[name='validTimeSel']").val($("#validTime").val());
     	
     }
 
@@ -216,17 +217,18 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     modelName: $(form).find('select[name=models]').find("option:selected").text(),
                     newBrand: $(form).find('input[name=newBrand]').val(),
                     newModel: $(form).find('input[name=newModels]').val(),
-                    sellType: $(form).find('select[name=sellType]').val(),
-                    equipmentCondition: $(form).find('select[name=equipmentCondition]').val(),
-                    procedures: $(form).find('select[name=procedures]').val(),
-                    src: $(form).find('select[name=src]').val(),
-                    equipYear: $(form).find('select[name=equipYear]').val(),
-                    remark: $(form).find('input[name=remark]').val(),
+                    sellType: $(form).find('select[name=sellTypeSel]').val(),
+                    equipmentCondition: $(form).find('select[name=equipmentConditionSel]').val(),
+                    procedures: $(form).find('select[name=proceduresSel]').val(),
+                    src: $(form).find('select[name=srcSel]').val(),
+                    equipYear: $(form).find('select[name=equipYearSel]').val(),
+                    remark: $(form).find('textarea[name=remark]').val(),
                     provinceName: $(form).find('select[name=regionProvice]').find("option:selected").text(),
                     cityName: $(form).find('select[name=regionCity]').find("option:selected").text(),
                     price: $(form).find('input[name=price]').val(),
+                    workTime: $(form).find('input[name=workTime]').val(),
                    // imgUrl:array,
-                    status:status
+                    status:$('#curStatus').val()
                 },
                 function (data) {
                     if (data.result) {

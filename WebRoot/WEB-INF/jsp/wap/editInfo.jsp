@@ -42,24 +42,14 @@ String _modelName = infomation.getModelName();
                     <span class="num">${cnt_cg }</span>
                     <span class="num-desc">草稿</span>
                 </a>
+                <a href="${ctx }/infomation/colleInfoList?status=9" status="9">
+                    <span class="num">${cnt_sc }</span>
+                    <span class="num-desc">收藏</span>
+                </a>
             </div>
         </section>
         <section class="mod-want-buy">
             <form class="ui-form" id="informationFrom">
-               <%--  <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
-                <div class="ui-form-mod upload-img">
-                    <div class="img-sp">
-                        <input type="file" name="file[]" value="aaa" />
-                        <img src="${ctx}/wap/images/camera_load_icon.png" />
-                        <span>照片</span>
-                    </div>
-                    <div class="img-sp">
-                        <input type="file" name="file[]" value="aaa" />
-                        <img src="${ctx}/wap/images/image_load_icon.png" />
-                        <span>上传图片</span>
-                    </div>
-
-                </div> --%>
                 <input type="hidden" id="id" name="id" value="${info.id}">
                 <c:if test="${info.sellType == '0' || info.sellType == '1'}">
 	                <div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>
@@ -182,6 +172,12 @@ String _modelName = infomation.getModelName();
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">工时/小时以内</label>
                     <div class="ui-form-bd">
+                        <input type="text"   name="workTime" id="workTime"  value="${info.workTime }" placeholder="请输入...">
+                    </div>
+                </div>
+                <div class="ui-form-mod">
+                    <label class="ui-form-hd">价格</label>
+                    <div class="ui-form-bd">
                         <input type="text"   name="price" id="price"  value="${info.price }" placeholder="请输入...">
                     </div>
                 </div>
@@ -189,7 +185,7 @@ String _modelName = infomation.getModelName();
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>
                     <div class="ui-form-bd">
-                        <textarea placeholder="请输入..."   name="remark" id="remark" value="${info.remark }"></textarea>
+                        <textarea placeholder="请输入..."   name="remark" id="remark" >${info.remark }</textarea>
                     </div>
                 </div>
                 <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>
@@ -208,12 +204,13 @@ String _modelName = infomation.getModelName();
                 	<div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
                 	<div class="ui-form-mod">
 	                    <div class="ui-form-bd">
-	                        <select >
-	                            <option value="1">30天</option>
-	                            <option value="2">60天</option>
-	                            <option value="3">90天</option>
+	                    	<input type="hidden" name="validTime" id="validTime" value="${info.validTime }">
+	                        <select id="validTimeSel" name="validTimeSel" onchange="validTime.value=this.value;">
+	                            <option value="30">30天</option>
+	                            <option value="60">60天</option>
+	                            <option value="90">90天</option>
 	                        </select>
-	                        <input type="text" name="validTime" placeholder="请输入..." />
+	                       <!--  <input type="text" name="validTime" placeholder="请输入..." /> -->
 	                    </div>
                     <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
                 </div>

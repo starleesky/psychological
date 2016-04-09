@@ -53,10 +53,31 @@
 	                <option value="pub_h">发布时间</option>
                 </select>
             </div>
-            <div class="no-data">
-                以下设备已过期，请重新上传。
-            </div>
-            <div class="pro-buy-num">已售台数:<span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
+             <c:choose>
+            	<c:when test="${status == 2 }">
+            		 <div class="no-data">当设备销售出后，请标记为已售。</div>
+            	</c:when>
+            	<c:when test="${status == 3 }">
+            		 <div class="pro-buy-des">设备已售后，删除或重新上传</div>
+            	</c:when>
+            	<c:when test="${status == 4 }">
+            		 <div class="no-data">以下设备已过期，请重新上传。</div>
+            	</c:when>
+            	<c:when test="${status == 0 }">
+            		 <div class="no-data"> 请完善信息后，重新上传。</div>
+            	</c:when>
+            	<c:otherwise>
+            		 <div class="no-data"></div>
+            	</c:otherwise>
+            </c:choose>
+            <c:choose>
+            	<c:when test="${status == 2 }">
+            		 <div class="pro-buy-num">已售台数:<span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
+            	</c:when>
+            	<c:otherwise>
+            		<div class="pro-buy-num"><span>1</span>台 <a href="javascript:;" class="icon iconfont jSelPro pro-sel">&#xe613;</a></div>
+            	</c:otherwise>
+            </c:choose>
             <div class="pro-list">
                 <form action="" method="post">
                 <input type="hidden" name="order" id="order" value="${order}"/>
@@ -73,7 +94,7 @@
                   </c:choose>
                         <div class="pro-select">
                             <input type="hidden" name="proSelect" value="0" />
-                            <img src="" class="jProSelect" />
+                            <img src="${ctx}/wap/images/ok-1.png" class="jProSelect" />
                         </div>
                         <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
 	                  		<img src="${ctx}${info.imgUrl}"  class="jImg" data-url="" />
@@ -125,12 +146,21 @@
                 </form>
             </div>
         </section>
-        <section class="pro-select-info">
-            <a href="#" class="button jProSelMsg">
-                已售<span></span>台
-            </a>
-            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe622;</a>
-        </section>
+        <c:choose>
+        	<c:when test="${status == 2 }">
+        		<section class="pro-select-info">
+		            <a href="#" class="button jProSelMsg">已售<span>0</span>台</a>
+		            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe622;</a>
+		        </section>
+        	</c:when>
+        	<c:otherwise>
+        		 <section class="pro-select-info del-bg">
+		            <a href="#" class="button jProSelMsg"> 删除<span>0</span>台</a>
+		            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe622;</a>
+		        </section>
+        	</c:otherwise>
+        </c:choose>
+        
     </div>
 </div>
 <%@ include file="footer.jsp" %>

@@ -2,9 +2,12 @@
 package cn.com.tsjx.admin;
 
 import cn.com.tsjx.attch.service.AttchService;
+import cn.com.tsjx.common.constants.enums.InfomationEnum;
+import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.common.constants.enums.UserEnum;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.company.service.CompanyService;
+import cn.com.tsjx.sysOption.service.SysoptionService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * MainController
@@ -26,64 +30,70 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class MainController {
 
-	@Resource
-	CompanyService companyService;
+    @Resource
+    CompanyService companyService;
 
-	@Resource
-	AttchService attchService;
+    @Resource
+    AttchService attchService;
 
-	@RequestMapping(value = "/main")
-	public String initMain(Model model) {
-		model.addAttribute("main", true);
-		return "admin/main";
-	}
+    @Resource
+    SysoptionService sysoptionService;
 
-	@RequestMapping(value = "/company/list")
-	public String companyInit(Model model) {
+    @RequestMapping(value = "/main")
+    public String initMain(Model model) {
+        model.addAttribute("main", true);
+        return "admin/main";
+    }
 
-		model.addAttribute("company", true);
-		return "admin/company/list";
-	}
+    @RequestMapping(value = "/company/list")
+    public String companyInit(Model model) {
 
-	@RequestMapping(value = "/infomation/list")
-	public String infomationInit(Model model) {
+        model.addAttribute("company", true);
+        return "admin/company/list";
+    }
 
-		model.addAttribute("infomation", true);
-		return "admin/infomation/list";
-	}
+    @RequestMapping(value = "/infomation/list")
+    public String infomationInit(Model model) {
 
-	@RequestMapping(value = "/notice/list")
-	public String adminNoticeInit(Model model) {
+        //判断是否自动审核
+        String val = sysoptionService.getVal(SysOptionConstant.INFORMATION_AUDIT_STATUS);
+        model.addAttribute("auditType", val);
+        model.addAttribute("infomation", true);
+        return "admin/infomation/list";
+    }
 
-		model.addAttribute("notice", true);
-		return "admin/notice/list";
-	}
+    @RequestMapping(value = "/notice/list")
+    public String adminNoticeInit(Model model) {
 
-	@RequestMapping(value = "/user/list")
-	public String adminUserInit(Model model) {
+        model.addAttribute("notice", true);
+        return "admin/notice/list";
+    }
 
-		model.addAttribute("adminUser", true);
-		return "admin/user/list";
-	}
+    @RequestMapping(value = "/user/list")
+    public String adminUserInit(Model model) {
 
-	@RequestMapping(value = "/catagory/list")
-	public String adminCatagoryInit(Model model) {
+        model.addAttribute("adminUser", true);
+        return "admin/user/list";
+    }
 
-		model.addAttribute("catagory", true);
-		return "admin/catagory/list";
-	}
+    @RequestMapping(value = "/catagory/list")
+    public String adminCatagoryInit(Model model) {
 
-	@RequestMapping(value = "/brand/list")
-	public String adminBrandInit(Model model) {
+        model.addAttribute("catagory", true);
+        return "admin/catagory/list";
+    }
 
-		model.addAttribute("brand", true);
-		return "admin/brand/list";
-	}
+    @RequestMapping(value = "/brand/list")
+    public String adminBrandInit(Model model) {
 
-	@RequestMapping(value = "/models/list")
-	public String adminModelsInit(Model model) {
+        model.addAttribute("brand", true);
+        return "admin/brand/list";
+    }
 
-		model.addAttribute("models", true);
-		return "admin/models/list";
-	}
+    @RequestMapping(value = "/models/list")
+    public String adminModelsInit(Model model) {
+
+        model.addAttribute("models", true);
+        return "admin/models/list";
+    }
 }

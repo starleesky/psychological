@@ -181,11 +181,19 @@ String _modelName = infomation.getModelName();
                         <input type="text"   name="price" id="price"  value="${info.price }" placeholder="请输入...">
                     </div>
                 </div>
-                <div class="ui-form-title">买家附言</div>
+                <c:choose>
+               		<c:when test="${info.sellType == '0' || info.sellType == '1'}">
+               			<div class="ui-form-title">卖家附言</div>
+               		</c:when>
+               		<c:otherwise>
+                		<div class="ui-form-title">买家附言</div>
+               		</c:otherwise>
+               	</c:choose>
+                
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>
                     <div class="ui-form-bd">
-                        <textarea placeholder="请输入..."   name="remark" id="remark" >${info.remark }</textarea>
+                        <textarea placeholder="请输入..."   name="remark" id="remark" maxlength="140">${info.remark }</textarea>
                     </div>
                 </div>
                 <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>

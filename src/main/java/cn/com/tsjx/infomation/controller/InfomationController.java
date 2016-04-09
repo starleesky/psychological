@@ -105,7 +105,7 @@ public class InfomationController {
 			}
 			if (user != null) {
 				Attch entity = new Attch();
-				entity.setUserId(user.getId());
+				//entity.setUserId(user.getId());
 				entity.setInformationId(id);
 				List<Attch> list = attchService.find(entity);
 				model.addAttribute("listAttch", list);

@@ -17,10 +17,10 @@
     <div class="page-view-body">
         <section class="search-title">
             <a href="javascript:;" class="ui-button   ui-button-white op-button-higSearch" >高级搜索</a>
-            <select>
-                <option value="2622">Aerial Platform</option>
-                <option value="903">Aggregate</option>
-                <option value="1500">Air Compressor</option>
+            <select name="orderSel" >
+                <option value="price_h">价格从高到低</option>
+                <option value="price_l">价格从低到高</option>
+                <option value="pub_h">发布时间</option>
             </select>
         </section>
         <section class="contact-mod">
@@ -60,6 +60,7 @@
                 <a href="javascript:;" class="f-r op-button-return">返回</a>
             </div>
             <form class="ui-form" id="infoSearchForm">
+            	<input type="hidden" name="order" id="order">
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备地点</label>
                     <div class="ui-form-bd">

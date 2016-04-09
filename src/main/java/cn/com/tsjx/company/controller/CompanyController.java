@@ -1,5 +1,6 @@
 package cn.com.tsjx.company.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpSession;
 import cn.com.tsjx.common.constants.enums.CompanyEnum;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +35,10 @@ public class CompanyController {
 
 	@Resource
 	UserService userService;
+
+	// 写入文件
+	@Value("${file.uplaoddir}")
+	String path;
 
 
     @RequestMapping(value = "/list")
@@ -60,12 +67,33 @@ public class CompanyController {
 	public Result<Boolean> save(Company company, HttpSession httpSession) {
 		User user = (User) httpSession.getAttribute("user");
 
+		if(!StringUtils.isEmpty(company.getCreateBy())){
+			File afile = new File(path+company.getCreateBy());
+			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
+				company.setCreateBy("/images/information/" + afile.getName());
+			}
+		}
+		if(!StringUtils.isEmpty(company.getBusinessLicenseImageUrl())){
+			File afile = new File(path+company.getBusinessLicenseImageUrl());
+			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
+				company.setCreateBy("/images/information/" + afile.getName());
+			}
+		}
+
+		if(!StringUtils.isEmpty(company.getOrganizationCodeImageUrl())){
+			File afile = new File(path+company.getOrganizationCodeImageUrl());
+			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
+				company.setCreateBy("/images/information/" + afile.getName());
+			}
+		}
 		company.setStatus(CompanyEnum.status_audit.code());
 		Company companyN = companyService.insert(company);
 		User updUser = new User();
 		updUser.setId(user.getId());
 		updUser.setCompanyId(String.valueOf(companyN.getId()));
 		userService.update(updUser);
+		user.setCompanyId(String.valueOf(companyN.getId()));
+		httpSession.setAttribute("user", user);
 		Result<Boolean> result = new Result<Boolean>();
 		result.setMessage("新增信息成功");
 		result.setObject(true);

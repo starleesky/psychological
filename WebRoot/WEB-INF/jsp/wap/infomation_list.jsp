@@ -46,16 +46,11 @@
         </section>
         <section class="mod-up-pro">
             <div class="pro-search-box">
-                <select>
-                    <option value="order=relevance">排 序</option>
-                    <option value="order=updated_at">Newest First</option>
-                    <option value="order=duration_end">Ending Soonest</option>
-                    <option value="order=name">Name: Z-A</option>
-                    <option value="order=name">Name: A-Z</option>
-                    <option value="order=price">Price: Highest First</option>
-                    <option value="order=price">Price: Lowest First</option>
-                    <option value="order=condition">Condition: Z-A</option>
-                    <option value="order=condition">Condition: A-Z</option>
+                <select name="orderSel">
+                 	<option value="">排序</option>
+                    <option value="price_h">价格从高到低</option>
+	                <option value="price_l">价格从低到高</option>
+	                <option value="pub_h">发布时间</option>
                 </select>
             </div>
             <div class="no-data">
@@ -64,6 +59,7 @@
             <div class="pro-buy-num">已售台数:<span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
             <div class="pro-list">
                 <form action="" method="post">
+                <input type="hidden" name="order" id="order" value="${order}"/>
                  <ul class="jPage">
                   <div data-page="1">
                   <c:forEach items="${pager}" var="info">
@@ -81,6 +77,17 @@
                         </div>
                         <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
 	                  		<img src="${ctx}${info.imgUrl}"  class="jImg" data-url="" />
+	                  		<c:choose>
+			                  	<c:when test="${status == 3}">
+			                  		<span>已售</span>
+			                  	</c:when>
+			                  	<c:when test="${status == 4}">
+			                  		<span>下架</span>
+			                  	</c:when>
+			                  	<c:otherwise>
+			                  		
+			                  	</c:otherwise>
+			                </c:choose>
                         </a>
                       
                         <div class="pro-info">
@@ -104,8 +111,8 @@
                             <p class="col-6"> 设备序列号:<span>${info.serialNum }</span> </p>
                             <p class="col-6"> 截止日期:<span><fmt:formatDate value="${info.endTime}" pattern="yyyy/MM/dd" /></span> </p>
                         </div>
-                        <c:if test="${status == 4 }">
-                        	<a href="javascript:;" data-url="#" class="pro-new-up jNewUp">重新上架</a>
+                        <c:if test="${status == 4 || status == 3}">
+                        	<a href="javascript:;" infoId="${info.id}" class="pro-new-up jNewUp">重新上架</a>
                         </c:if>
                         <c:if test="${status == 0 }">
                         	<a href="${ctx}/infomation/edit?id=${info.id}" data-url="#" class="pro-new-up jUpPro">修改商品</a>

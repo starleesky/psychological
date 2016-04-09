@@ -166,6 +166,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     cityName: $(form).find('select[name=regionCity]').find("option:selected").text(),
                     validTime: $(form).find('select[name=validTime]').find("option:selected").val(),
                     price: $(form).find('input[name=price]').val(),
+                    workTime: $(form).find('input[name=workTime]').val(),
                     imgUrl:array,
                     status:status
                 },

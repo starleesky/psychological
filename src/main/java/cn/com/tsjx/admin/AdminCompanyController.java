@@ -91,7 +91,6 @@ public class AdminCompanyController {
 		//查询公司对应的用户
 		User user = new User();
 		user.setCompanyId(String.valueOf(company.getId()));
-		user.setUserType(UserEnum.user_type_company.code());
 		List<User> users = userService.find(user);
 		if (users.size() > 0) {
 			user = users.get(0);
@@ -109,6 +108,7 @@ public class AdminCompanyController {
 		noticeService.insert(notice);
 
 		//修改用户用户的消息未读属性
+		user.setUserType(UserEnum.user_type_company.code());
 		user.setId(user.getId());
 		user.setIsNewMessage("1");//默认一条
 		userService.update(user);

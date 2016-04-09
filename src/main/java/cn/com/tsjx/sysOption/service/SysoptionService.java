@@ -8,4 +8,11 @@ import cn.com.tsjx.sysOption.entity.Sysoption;
  */
 public interface SysoptionService extends BaseService<Sysoption, Long> {
 
+	/**
+	 * 根据code取值
+	 *
+	 * @param code
+	 * @return
+	 */
+	public String getVal(String code);
 }

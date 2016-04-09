@@ -155,8 +155,10 @@ define(function (require) {
                             url: angular.path + '/catagory/uploadExcle',
                             success: function (resp, config) {
                                 if (resp.result) {
+                                    alert(2);
                                     alert("上传成功");
                                     $modalInstance.dismiss();
+                                    alert(1);
                                 } else {
                                     alert(resp.message);
                                 }

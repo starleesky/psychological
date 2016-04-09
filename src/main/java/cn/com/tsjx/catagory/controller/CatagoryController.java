@@ -139,10 +139,10 @@ public class CatagoryController {
 //			InputStream upyunInputStream = file.getInputStream();
 			catagoryService.uploadFileBuild(pomInputStream);
 		} catch (IOException e) {
-			LOG.error("上传费率模板发生异常", e);
-			result.setMessage("上传费率模板发生异常");
+			LOG.error("上传产品模板发生异常", e);
+			result.setMessage("上传产品模板发生异常");
 			result.setResult(false);
-			throw new Exception("上传费率模板发生异常");
+			throw new Exception("上传产品模板发生异常");
 
 		}
 		result.setMessage("上传成功");

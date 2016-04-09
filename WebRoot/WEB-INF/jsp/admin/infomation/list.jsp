@@ -19,6 +19,10 @@
             </div>
             <button type="submit" class="btn btn-primary">搜索</button>
 
+            <div class="form-group pull-right">
+                <button class="btn btn-primary" ng-click="upLoadFunc()">导入信息</button>
+            </div>
+
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup is-open="list.startopened"

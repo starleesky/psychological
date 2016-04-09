@@ -35,7 +35,8 @@ define(function (require, exports, module) {
         
         searchInfoList : baseUrl + '/infomation/search',	//高级检索查询列表
         collectionSave:baseUrl+'/collection/save', //收藏
-        reUp:baseUrl+'/infomation/reUp' //重新上架
+        reUp:baseUrl+'/infomation/reUp', //重新上架
+        updateInfo : baseUrl+'/infomation/update' //更新
     }
     module.exports = URL;
 });

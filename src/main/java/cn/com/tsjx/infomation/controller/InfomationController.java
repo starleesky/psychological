@@ -174,12 +174,15 @@ public class InfomationController {
 		}
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(Infomation infomation, Model model) {
+	@ResponseBody
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public Result<String> update(Infomation infomation, Model model) {
+		Result<String> result = new Result<String>();
+		
 		infomationService.update(infomation);
-		model.addAttribute("msg", "编辑成功！");
-		model.addAttribute("redirectionUrl", "/infomation/list.htm");
-		return "/success";
+		result.setMessage("操作成功");
+		//model.addAttribute("redirectionUrl", "/infomation/list.htm");
+		return result;
 	}
 
 	@ResponseBody

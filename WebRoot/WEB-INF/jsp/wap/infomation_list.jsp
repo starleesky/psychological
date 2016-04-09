@@ -94,7 +94,7 @@
                   </c:choose>
                         <div class="pro-select">
                             <input type="hidden" name="proSelect" value="0" />
-                            <img src="${ctx}/wap/images/ok-1.png" class="jProSelect" />
+                            <img src="${ctx}/wap/images/ok-1.png" infoId="${info.id}" class="jProSelect" />
                         </div>
                         <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
 	                  		<img src="${ctx}${info.imgUrl}"  class="jImg" data-url="" />

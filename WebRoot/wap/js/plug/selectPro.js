@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     var $ = require('jquery');
     var box = require('plug/box');
     var $body = $('.page-view-body');
+    var url = require('url');
 
 
     $body.on('click','.jProSelect',function(){
@@ -14,6 +15,20 @@ define(function(require, exports, module) {
         }else{
             $(this).attr('src',ctx+'/wap/images/ok-2.png').addClass('isSelect');
             $(this).siblings('input').val(1);
+            
+            var id = $(this).attr("infoId");
+        	var status = $("#curStatus").val();
+        	var infomation = new Object();
+        	if(status == '2') {
+        		infomation = {id:id,status:'3'};
+        	}else {
+        		infomation = {id:id,deleted:'T'};
+        	}
+        	
+        	$.getJSON(url.updateInfo, infomation, 
+        	function(data) {
+			});
+        	
         }
         num = $body.find('.isSelect').length;
         num == 0 ? $body.find('.pro-select-info').hide():$body.find('.pro-select-info').show();

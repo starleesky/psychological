@@ -72,6 +72,14 @@
                 </select>
             </div>
 
+            <div class="form-group pull-left">
+                <select class="form-control" name="isTop" ng-change="list.fetch()" ng-model="list.filter.auditType">
+                    <option value="">审核方式</option>
+                    <option value="0">人工审核</option>
+                    <option value="1">自动审核</option>
+                </select>
+            </div>
+
         </form>
         <!-- </div> -->
     </div>
@@ -88,6 +96,7 @@
             <th>型号</th>
             <th>销售方式</th>
             <th>是否推荐</th>
+            <th>审核方式</th>
             <th>时间</th>
             <th>信息状态</th>
             <th>操作</th>
@@ -115,6 +124,12 @@
                     <span ng-switch-when="1">是</span>
                 </div>
             </td>
+            <td>
+                <div ng-switch on="c.auditTSype">
+                    <span ng-switch-when="0">人工审核</span>
+                    <span ng-switch-when="1">自动审核</span>
+                </div>
+            </td>
             <td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td>
                 <div ng-switch on="c.status">
@@ -137,6 +152,10 @@
 
                 <div ng-show="c.status==2">
                     <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">下架</a>
+                </div>
+
+                <div>
+                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">删除</a>
                 </div>
             </td>
         </tr>

@@ -30,7 +30,11 @@ public enum InfomationEnum {
 	status_sj("2","上架","status"),		
 	status_ys("3","已售","status"),		
 	status_xj("4","下架","status"),
-	
+
+	/*审核类型*/
+	audit_type_per("0","人工审核","audit_type"),
+	audit_type_auto("1","自动审核","audit_type"),
+
 	deleted_t("T","删除","deleted"),
 	delete_f("F","未删除","deleted")
 	;		

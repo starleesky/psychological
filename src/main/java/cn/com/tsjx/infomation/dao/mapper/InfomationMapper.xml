@@ -36,6 +36,7 @@
 		   	USER_ID,
 		   	IS_TOP,
 		   	STATUS,
+		   	audit_type,
 		   	WEIGHT,
 		   	CREATE_TIME,
 		   	CREATE_BY,
@@ -73,6 +74,7 @@
 		   	#{userId,jdbcType=INTEGER},
 		   	#{isTop,jdbcType=VARCHAR},
 		   	#{status,jdbcType=VARCHAR},
+		   	#{auditType,jdbcType=INTEGER},
 		   	#{weight,jdbcType=VARCHAR},
 		   	#{createTime,jdbcType=TIMESTAMP},
 		   	#{createBy,jdbcType=VARCHAR},
@@ -182,6 +184,9 @@
 			<if test="status != null">
 				STATUS = #{status,jdbcType=VARCHAR},
 			</if>
+			<if test="auditType != null">
+				audit_type = #{auditType,jdbcType=VARCHAR},
+			</if>
 			<if test="weight != null">
 				WEIGHT = #{weight,jdbcType=VARCHAR},
 			</if>
@@ -249,6 +254,7 @@
 		       USER_ID userId,
 		       IS_TOP isTop,
 		       STATUS status,
+		       audit_type auditType,
 		       WEIGHT weight,
 		       CREATE_TIME createTime,
 		       CREATE_BY createBy,
@@ -365,6 +371,9 @@
 			<if test="status != null and status != ''">
 				AND STATUS = #{status,jdbcType=VARCHAR}
 			</if>
+			<if test="auditType != null and auditType != ''">
+				AND audit_type = #{auditType,jdbcType=VARCHAR}
+			</if>
 			<if test="weight != null and weight != ''">
 				AND WEIGHT = #{weight,jdbcType=VARCHAR}
 			</if>
@@ -472,6 +481,9 @@
 				</if>
 				<if test="entity.status != null and entity.status != ''">
 					AND STATUS = #{entity.status,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.auditType != null and entity.auditType != ''">
+					AND audit_type = #{entity.auditType,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.weight != null and entity.weight != ''">
 					AND WEIGHT = #{entity.weight,jdbcType=VARCHAR}

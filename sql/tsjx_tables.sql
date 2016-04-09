@@ -325,4 +325,9 @@ CREATE TABLE `tsjx`.`tsjx_sysOption` (
   `default_val` VARCHAR(45) NULL COMMENT '默认值',
   `deleted` VARCHAR(45) NULL COMMENT '是否删除',
   PRIMARY KEY (`id`));
+/*
+  2016-04-09 设置审核状态
+  */
+ALTER TABLE `tsjx_infomation`
+	ADD COLUMN `audit_type` tinyint(3) NULL DEFAULT '0' COMMENT '审核类型：0人工审核1自动审核' AFTER `status`;
 

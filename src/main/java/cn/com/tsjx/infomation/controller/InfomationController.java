@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.com.tsjx.common.constants.enums.SysOptionConstant;
+import cn.com.tsjx.sysOption.service.SysoptionService;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Controller;
@@ -55,6 +57,8 @@ public class InfomationController {
 	@Resource
 	AttchService attchService;
 
+	@Resource
+	SysoptionService sysoptionService;
 
 	// 写入文件
 	@Value("${file.uplaoddir}")
@@ -89,28 +93,28 @@ public class InfomationController {
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String input(Long id, Model model) {
 		if (id != null) {
-		    Infomation infomation = infomationService.get(id);
+			Infomation infomation = infomationService.get(id);
 			User user = null;
 			if (infomation.getUserId() != null) {
-			    user = userService.get(infomation.getUserId());
-			    model.addAttribute("user", user);
+				user = userService.get(infomation.getUserId());
+				model.addAttribute("user", user);
 			}
 			if (user != null && user.getCompanyId() != null) {
-			    Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-			    model.addAttribute("company", company);
+				Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+				model.addAttribute("company", company);
 			}
 			if (user != null) {
-			    Attch entity = new Attch();
-			    entity.setUserId(user.getId());
-			    entity.setInformationId(id);
-			    List<Attch> list = attchService.find(entity);
-			    model.addAttribute("listAttch", list);
-			    
-			    String firstImg = "";
-			    if(list.size() >0) {
-			        firstImg = list.get(0).getAttchUrl();
-			    }
-			    model.addAttribute("firstImg", firstImg);
+				Attch entity = new Attch();
+				entity.setUserId(user.getId());
+				entity.setInformationId(id);
+				List<Attch> list = attchService.find(entity);
+				model.addAttribute("listAttch", list);
+
+				String firstImg = "";
+				if (list.size() > 0) {
+					firstImg = list.get(0).getAttchUrl();
+				}
+				model.addAttribute("firstImg", firstImg);
 			}
 			model.addAttribute("bean", infomation);
 		}
@@ -133,17 +137,33 @@ public class InfomationController {
 		infomation.setUserId(user.getId());
 		infomation.setEquipmentLocation(infomation.getProvinceName() + "|" + infomation.getCityName());
 		infomation.setIsTop("0");
+		//默认人工审核
+		infomation.setAuditType(Integer.parseInt(InfomationEnum.audit_type_per.code()));
+
+		//判断是否提交待审核
+		if (InfomationEnum.status_sh.code().equals(infomation.getStatus())) {
+			//判断是否自动审核
+			String val = sysoptionService.getVal(SysOptionConstant.INFORMATION_AUDIT_STATUS);
+			if (val != null && InfomationEnum.audit_type_auto.code().equals(val)) {
+				//设置自动上架并且记录
+				infomation.setStatus(InfomationEnum.status_sj.code());
+				infomation.setAuditType(Integer.parseInt(InfomationEnum.audit_type_auto.code()));
+			}
+
+		}
+
 		if (infomation.getId() == null) {
 			infomation = (InfomationDto) infomationService.insert(infomation);
 		} else {
 			infomationService.update(infomation);
 		}
 
-		if ("2".equals(infomation.getSellType())||"3".equals(infomation.getSellType())) {
+		if ("2".equals(infomation.getSellType()) || "3".equals(infomation.getSellType())) {
 			Attch attch = new Attch();
 			attch.setInformationId(infomation.getId());
 			attch.setUserId(user.getId());
-			attch.setAttchUrl("/images/catagory/"+infomation.getCatagoryBigId()+"/"+infomation.getCatagoryMidId()+".jpg");
+			attch.setAttchUrl(
+					"/images/catagory/" + infomation.getCatagoryBigId() + "/" + infomation.getCatagoryMidId() + ".jpg");
 			attchService.insert(attch);
 		}
 		//
@@ -153,18 +173,17 @@ public class InfomationController {
 				Attch attch = new Attch();
 				attch.setInformationId(infomation.getId());
 				attch.setUserId(user.getId());
-				if(!StringUtils.isEmpty(img)){
-					File afile = new File(path+img);
-					if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
+				if (!StringUtils.isEmpty(img)) {
+					File afile = new File(path + img);
+					if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
 						attch.setAttchUrl("/images/information/" + afile.getName());
-					}else{
+					} else {
 						attch.setAttchUrl(img);
 					}
 				}
 				attchService.insert(attch);
 			}
 		}
-
 
 		response.setContentType("text/html;charset=utf-8");
 		try {
@@ -210,7 +229,8 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/infoList")
-	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession, String order) {
+	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
+			String order) {
 
 		String status = StringUtil.isBlank(infomation.getStatus()) ?
 				InfomationEnum.status_sj.code() :
@@ -226,16 +246,16 @@ public class InfomationController {
 		params.add("deleted", Deleted.NO.value);
 		params.add("userId", user.getId());
 		params.add("status", status);
-		
-		pageOrder(order,pager);
-		
+
+		pageOrder(order, pager);
+
 		pager = infomationService.getInfoPagerWithImg(params, pager, true);
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("bean", infomation);
 
 		model.addAttribute("status", status);
-		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status,"status"));
-		
+		model.addAttribute("statusMc", InfomationEnum.getDiscribeByCode(status, "status"));
+
 		model.addAttribute("order", order);
 
 		infoCounts(model, user);
@@ -253,7 +273,8 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/colleInfoList")
-	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model, HttpSession httpSession) {
+	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
+			HttpSession httpSession) {
 
 		//关联用户ID
 		User user = (User) httpSession.getAttribute("user");
@@ -338,9 +359,9 @@ public class InfomationController {
 		Params param = Params.create();
 		param.add("deleted", Deleted.NO.value);
 		param.add("userId", user.getId());
-		
-		pageOrder(pageDto.getOrder(),pager);
-		
+
+		pageOrder(pageDto.getOrder(), pager);
+
 		if ("9".equals(pageDto.getStatus())) {
 			pager = infomationService.getPagerCollections(param, pager);
 		} else {
@@ -358,7 +379,8 @@ public class InfomationController {
 			    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
 			    .append("<img src=\"\" class=\"jProSelect\" />")
 			    .append("</div>")
-			    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId()).append("\" class=\"pro-img\">")
+			    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
+			    .append("\" class=\"pro-img\">")
 			    .append("<img src=\"").append(ctx).append(info.getImgUrl()).append("\" class=\"jImg\" data-url=\"\" />")
 			    .append("</a>")
 			    .append("<div class=\"pro-info\">")
@@ -439,19 +461,20 @@ public class InfomationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/search")
-	public String search(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession, String order) {
+	public String search(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
+			String order) {
 
 		infomation.setStatus(InfomationEnum.status_sj.code());    // 查询上架的信息
 		infomation.setDeleted(Deleted.NO.value);
 
 		Params params = Params.create();
-		
+
 		pager.setEntity(infomation);
-		
-		pageOrder(order,pager);
-		
+
+		pageOrder(order, pager);
+
 		pager = infomationService.getInfoPagerWithImg(params, pager, false);
-		
+
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("info", infomation);
 
@@ -467,7 +490,8 @@ public class InfomationController {
 	 */
 	@RequestMapping(value = "/moreSearchInfo")
 	@ResponseBody
-	public String moreSearchInfo(PageDto pageDto, InfomationDto infomation, HttpSession session, Pager<InfomationDto> pager) {
+	public String moreSearchInfo(PageDto pageDto, InfomationDto infomation, HttpSession session,
+			Pager<InfomationDto> pager) {
 
 		infomation.setStatus(pageDto.getStatus());
 		infomation.setDeleted(Deleted.NO.value);
@@ -476,9 +500,9 @@ public class InfomationController {
 
 		Params params = Params.create();
 		pager.setEntity(infomation);
-		
-		pageOrder(pageDto.getOrder(),pager);
-		
+
+		pageOrder(pageDto.getOrder(), pager);
+
 		pager = infomationService.getInfoPagerWithImg(params, pager, false);
 
 		StringBuilder data = new StringBuilder();
@@ -489,7 +513,8 @@ public class InfomationController {
 			    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
 			    .append("<img src=\"\" class=\"jProSelect\" />")
 			    .append("</div>")
-			    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId()).append("\" class=\"pro-img\">")
+			    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
+			    .append("\" class=\"pro-img\">")
 			    .append("<img src=\"").append(ctx).append(info.getImgUrl()).append("\" class=\"jImg\" data-url=\"\" />")
 			    .append("</a>")
 			    .append("<div class=\"pro-info\">")
@@ -519,36 +544,36 @@ public class InfomationController {
 		sb.append(")");
 		return sb.toString();
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value = "/reUp" , method = RequestMethod.GET)
+	@RequestMapping(value = "/reUp", method = RequestMethod.GET)
 	public Result<String> reUp(Infomation infomation) {
-		
+
 		Result<String> result = new Result<String>();
-		
+
 		Date curDate = new Date();
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		infomation.setModifyTime(curDate);
-		
+
 		infomationService.update(infomation);
-		
+
 		result.setMessage("操作成功");
-        result.setResult(true);
-        return result;
+		result.setResult(true);
+		return result;
 	}
-	
+
 	private void pageOrder(String order, Pager pager) {
-		if(StringUtil.isBlank(order)) {
+		if (StringUtil.isBlank(order)) {
 			pager.setPageSort("price");
 			pager.setPageOrder("desc");
-		}else {
-			if("price_h".equals(order)) {
+		} else {
+			if ("price_h".equals(order)) {
 				pager.setPageSort("price");
 				pager.setPageOrder("desc");
-			}else if("price_l".equals(order)) {
+			} else if ("price_l".equals(order)) {
 				pager.setPageSort("price");
 				pager.setPageOrder("asc");
-			}else if("pub_h".equals(order)) {
+			} else if ("pub_h".equals(order)) {
 				pager.setPageSort("pub_time");
 				pager.setPageOrder("desc");
 			}

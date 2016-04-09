@@ -314,4 +314,15 @@ ALTER TABLE `tsjx`.`tsjx_user`
 ADD COLUMN `real_name` VARCHAR(45) NULL AFTER `deleted`,
 ADD COLUMN `weixin_account` VARCHAR(45) NULL AFTER `real_name`;
 
+/*
+ * 2016-04-03 添加系统配置表
+ */
+CREATE TABLE `tsjx`.`tsjx_sysOption` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` VARCHAR(45) NULL COMMENT '描述',
+  `code` VARCHAR(45) NULL COMMENT '编码',
+  `set_val` VARCHAR(45) NULL COMMENT '设置值',
+  `default_val` VARCHAR(45) NULL COMMENT '默认值',
+  `deleted` VARCHAR(45) NULL COMMENT '是否删除',
+  PRIMARY KEY (`id`));
 

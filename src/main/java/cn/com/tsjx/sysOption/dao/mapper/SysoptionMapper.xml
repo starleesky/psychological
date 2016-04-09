@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.tsjx.sysOption.dao.impl.SysoptionDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.tsjx.sysOption.entity.Sysoption">
+		<![CDATA[
+		INSERT INTO TSJX_SYSOPTION (
+		   	ID,
+		   	NAME,
+		   	CODE,
+		   	SET_VAL,
+		   	DEFAULT_VAL,
+		   	DELETED
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{name,jdbcType=VARCHAR},
+		   	#{code,jdbcType=VARCHAR},
+		   	#{setVal,jdbcType=VARCHAR},
+		   	#{defaultVal,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_SYSOPTION.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.tsjx.sysOption.entity.Sysoption">
+		UPDATE TSJX_SYSOPTION
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="setVal != null">
+				SET_VAL = #{setVal,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultVal != null">
+				DEFAULT_VAL = #{defaultVal,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.tsjx.sysOption.entity.Sysoption">
+		<![CDATA[
+		UPDATE TSJX_SYSOPTION
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       NAME name,
+		       CODE code,
+		       SET_VAL setVal,
+		       DEFAULT_VAL defaultVal,
+		       DELETED deleted
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.tsjx.sysOption.entity.Sysoption">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_SYSOPTION
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.tsjx.sysOption.entity.Sysoption" resultType="cn.com.tsjx.sysOption.entity.Sysoption">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_SYSOPTION
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="name != null and name != ''">
+				AND NAME = #{name,jdbcType=VARCHAR}
+			</if>
+			<if test="code != null and code != ''">
+				AND CODE = #{code,jdbcType=VARCHAR}
+			</if>
+			<if test="setVal != null and setVal != ''">
+				AND SET_VAL = #{setVal,jdbcType=VARCHAR}
+			</if>
+			<if test="defaultVal != null and defaultVal != ''">
+				AND DEFAULT_VAL = #{defaultVal,jdbcType=VARCHAR}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.tsjx.sysOption.entity.Sysoption">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_SYSOPTION
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.name != null and entity.name != ''">
+					AND NAME = #{entity.name,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.code != null and entity.code != ''">
+					AND CODE = #{entity.code,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.setVal != null and entity.setVal != ''">
+					AND SET_VAL = #{entity.setVal,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.defaultVal != null and entity.defaultVal != ''">
+					AND DEFAULT_VAL = #{entity.defaultVal,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_SYSOPTION
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.sysOption.entity.Sysoption">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_SYSOPTION
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

@@ -40,6 +40,7 @@
         <tr>
             <th>品牌ID</th>
             <th>品牌名称</th>
+            <th>品牌首字母</th>
             <th>产品分类ID</th>
             <th>操作</th>
         </tr>
@@ -48,6 +49,7 @@
         <tr ng-repeat="c in list.data.items">
             <td ng-bind="c.id"></td>
             <td ng-bind="c.brandName"></td>
+            <td ng-bind="c.firstLetter"></td>
             <td ng-bind="c.catagoryId"></td>
             <td>
                 <%--<button class="btn btn-primary" ng-click="showDetail(c,$index)">查询详情</button>--%>

@@ -7,6 +7,7 @@
         <![CDATA[
 		  FROM TSJX_BRAND
 		 WHERE catagory_id = #{catagoryId,jdbcType=INTEGER} and 1=1 and deleted='F'
+		 order BY first_letter
 		]]>
     </select>
 

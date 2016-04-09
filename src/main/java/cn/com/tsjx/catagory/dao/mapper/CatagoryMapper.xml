@@ -152,6 +152,9 @@
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
+				<if test="entity.id != null and entity.id != ''">
+					AND ID = #{entity.id,jdbcType=VARCHAR}
+				</if>
 				<if test="entity.code != null and entity.code != ''">
 					AND CODE = #{entity.code,jdbcType=VARCHAR}
 				</if>

@@ -77,7 +77,7 @@ public class Infomation extends BaseEntity<Long> {
 	//截止日期
 	private Date endTime;
 
-	private int auditType;
+	private Integer auditType;
 
 	@Override
 	public Long getId() {
@@ -345,11 +345,11 @@ public class Infomation extends BaseEntity<Long> {
 		this.endTime = endTime;
 	}
 
-	public int getAuditType() {
+	public Integer getAuditType() {
 		return auditType;
 	}
 
-	public void setAuditType(int auditType) {
+	public void setAuditType(Integer auditType) {
 		this.auditType = auditType;
 	}
 }

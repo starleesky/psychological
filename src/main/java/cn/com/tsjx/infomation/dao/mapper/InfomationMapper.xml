@@ -482,6 +482,7 @@
 				<if test="entity.status != null and entity.status != ''">
 					AND STATUS = #{entity.status,jdbcType=VARCHAR}
 				</if>
+					AND STATUS != 0
 				<if test="entity.auditType != null and entity.auditType != ''">
 					AND audit_type = #{entity.auditType,jdbcType=VARCHAR}
 				</if>

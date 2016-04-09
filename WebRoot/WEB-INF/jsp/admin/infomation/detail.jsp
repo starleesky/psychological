@@ -40,6 +40,11 @@
                 <button class="btn btn-primary " ng-click="openModel(2)">不通过</button>
             </div>
         </c:if>
+        <c:if test="${bean.auditType=='1'}"><br/>
+            <div class="btn-group btn-large">
+                <button class="btn btn-primary " ng-click="openModel(2)">不通过</button>
+            </div>
+        </c:if>
         <c:if test="${bean.status=='2'}">
             <div class="btn-group btn-large">
                 <a class="btn btn-primary pull-left " href="${ctx}/admin/infomation/input?id=${bean.id}&status=4">下架</a>

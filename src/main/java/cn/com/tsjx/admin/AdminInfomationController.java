@@ -31,10 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * MainController
@@ -72,6 +69,7 @@ public class AdminInfomationController {
 	public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", infomation);
+		params.put("notStatus", 0);
 		pager.setPageSort("create_time");
 		pager.setPageOrder("desc");
 		pager = infomationService.page(params, pager);
@@ -175,5 +173,20 @@ public class AdminInfomationController {
 		List<Attch> attches = attchService.find(attach);
 		model.addAttribute("beanImg", attches);
 		return "admin/infomation/detail";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/infomation/del", method = RequestMethod.GET)
+	public Result<Boolean> del(Long[] ids) {
+		Result<Boolean> result = new Result<Boolean>();
+		List<Long> list = new ArrayList<Long>();
+		for (Long id : ids) {
+			list.add(id);
+		}
+		infomationService.delete(list);
+		result.setMessage("删除成功");
+		result.setObject(true);
+		result.setResult(true);
+		return result;
 	}
 }

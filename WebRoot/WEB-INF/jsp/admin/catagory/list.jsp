@@ -22,6 +22,11 @@
                     <input type="text" class="form-control" placeholder="父类ID" ng-model="list.filter.parentId">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="产品ID" ng-model="list.filter.id">
+                </div>
+            </div>
 
             <button type="submit" class="btn btn-primary">搜索</button>
 

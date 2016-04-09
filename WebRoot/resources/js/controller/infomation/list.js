@@ -2,6 +2,9 @@ define(function (require) {
 
     require('js/service/commonList');
     //require('js/directives/filter-select');
+
+    require('js/service/common/uploadFileHandler');
+
     angular.module('App')
 
         .controller('mainCtrl', ['$scope', '$http', 'commonList', '$modal',
@@ -50,6 +53,81 @@ define(function (require) {
                     });
                 }
 
+                $scope.upLoadFunc = function () {
+                    $modal.open({
+                        templateUrl: angular.path + '/resources/templates/infomation/upLoad.html',
+                        controller: 'upLoadCtrl',
+                        backdrop: 'static',
+                        size: 'lg',
+                        resolve: {
+                            company: function () {
+                                return "";
+                            }
+                        }
+                    });
+                }
+
             }
-        ]);
+        ])
+        .controller('upLoadCtrl', ['$scope', '$modalInstance', '$modal', 'Upload', 'company', 'uploadFileHandler', function ($scope, $modalInstance, $modal, $upload, company, UploadFileHandler) {
+            $scope.setFile = function (files) {
+                $scope.file = files[0];
+                console.log($scope.file);
+            };
+
+            var uploadHandler = new UploadFileHandler($upload);
+
+            $scope.companyCityIdParam = company.companyCityId ? company.companyCityId : company;
+            $scope.upload = function (files) {
+
+                if ($scope.add_form.$invalid) {
+                    return;
+                }
+                if (!$scope.file) {
+                    alert('请选择文件');
+                    return;
+                }
+
+
+                else {
+                    var t = $scope.file.name.split('.');
+                    var fileType = t[t.length - 1];
+                    if (fileType.trim() == "xls" && $scope.file.size <= (3 * 1024 * 1024)) {
+
+                        var ext = $scope.file.name.substr($scope.file.name.lastIndexOf('.') + 1, $scope.file.name.length);
+                        $scope.uploading = true;
+
+                        uploadHandler.upload($scope.file, {
+                            url: angular.path + '/admin/infomation/uploadExcle',
+                            success: function (resp, config) {
+                                alert(resp.result);
+                                if (resp.result) {
+                                    alert("上传成功");
+                                    $modalInstance.dismiss();
+                                } else {
+                                    alert(resp.message);
+                                }
+                                $scope.uploading = false;
+                            },
+                            error: function (resp, config) {
+                                alert(resp.message);
+                                $scope.uploading = false;
+                                $modalInstance.dismiss();
+                            }
+                        });
+                    }
+                    else {
+                        alert("限定上传Excel .xlsx格式文件");
+                    }
+
+                }
+
+            }
+
+            $scope.cancel = function ($event) {
+                $event.preventDefault();
+                $modalInstance.dismiss();
+            };
+
+        }]);
 });

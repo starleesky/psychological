@@ -22,7 +22,16 @@
             <div class="form-group pull-right">
                 <button class="btn btn-primary" ng-click="upLoadFunc()">导入信息</button>
             </div>
-
+            <c:if test="${auditType==0}">
+                <div class="form-group pull-right">
+                    <button class="btn btn-primary" ng-click="auditTypeFunc(1)">开启自动审核</button>
+                </div>
+            </c:if>
+            <c:if test="${auditType==1}">
+                <div class="form-group pull-right">
+                    <button class="btn btn-primary" ng-click="auditTypeFunc(0)">关闭自动审核</button>
+                </div>
+            </c:if>
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup is-open="list.startopened"
@@ -147,15 +156,15 @@
             <td>
 
                 <%--<div ng-show="c.status==0">--%>
-                    <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>--%>
+                <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>--%>
                 <%--</div>--%>
 
                 <%--<div ng-show="c.status==1">--%>
-                    <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>--%>
+                <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>--%>
                 <%--</div>--%>
 
                 <%--<div ng-show="c.status==2">--%>
-                    <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">下架</a>--%>
+                <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">下架</a>--%>
                 <%--</div>--%>
 
                 <div>

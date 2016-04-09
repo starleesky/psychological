@@ -19,6 +19,8 @@ import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.models.service.ModelsService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
+import cn.com.tsjx.sysOption.entity.Sysoption;
+import cn.com.tsjx.sysOption.service.SysoptionService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import org.slf4j.Logger;
@@ -66,6 +68,9 @@ public class AdminInfomationController {
 
     @Resource
     ModelsService modelsService;
+
+    @Resource
+    SysoptionService sysoptionService;
 
     @RequestMapping(value = "/infomation/list/getData")
     @ResponseBody
@@ -184,6 +189,20 @@ public class AdminInfomationController {
         Result<Boolean> result = new Result<Boolean>();
         infomationService.delete(id);
         result.setMessage("删除成功");
+        result.setObject(true);
+        result.setResult(true);
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/infomation/changeAuditType", method = RequestMethod.GET)
+    public Result<Boolean> change(String type) {
+        Result<Boolean> result = new Result<Boolean>();
+        Sysoption sysoption = new Sysoption();
+        sysoption.setId(1L);
+        sysoption.setSetVal(type);
+        sysoptionService.update(sysoption);
+        result.setMessage("更新成功");
         result.setObject(true);
         result.setResult(true);
         return result;

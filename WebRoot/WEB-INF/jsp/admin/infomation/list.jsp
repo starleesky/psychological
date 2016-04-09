@@ -160,6 +160,7 @@
 
                 <div>
                     <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>
+                    <button class="btn btn-primary" ng-click="deleteOne(c,$index)">删除</button>
                 </div>
             </td>
         </tr>

@@ -38,8 +38,8 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
                 User user = (User) session.getAttribute("user");
                 if(user == null || user.getId() == null){
                     log.info("拦截成功--"+request.getRequestURI());
-                    response.sendRedirect(request.getContextPath()+"/wap/login.htm");
-                    //request.getRequestDispatcher("/wap/login.htm").forward(request, response);
+                    //response.sendRedirect(request.getContextPath()+"/wap/login.htm");
+                    request.getRequestDispatcher("/wap/login.htm").forward(request, response);
                     return false;
                 }
             }

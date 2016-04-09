@@ -53,8 +53,8 @@ public class CollectionController {
     
  
     @ResponseBody
-    @RequestMapping(value = "/save/my", method = RequestMethod.GET)
-    public Result<Object> save(@RequestBody Collection collection,Model model,HttpSession httpSession) {
+    @RequestMapping(value = "/save/my", method = RequestMethod.POST)
+    public Result<Object> save(Collection collection,Model model,HttpSession httpSession) {
         Result<Object> jsonResult = new Result<Object>();
         User user = (User) httpSession.getAttribute("user");
         if (user == null) {

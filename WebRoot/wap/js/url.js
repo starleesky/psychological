@@ -34,7 +34,7 @@ define(function (require, exports, module) {
         userInfoUpdate:baseUrl + '/user/update',//修改个人信息
         
         searchInfoList : baseUrl + '/infomation/search',	//高级检索查询列表
-        collectionSave:baseUrl+'/collection/save', //收藏
+        collectionSave:baseUrl+'/collection/save/my', //收藏
         reUp:baseUrl+'/infomation/reUp', //重新上架
         updateInfo : baseUrl+'/infomation/update' //更新
     }

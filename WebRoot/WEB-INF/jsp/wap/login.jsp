@@ -55,7 +55,7 @@
                 </fieldset>
             </div>
             <div class="field-submit">
-                <a href="javascrpt:;" class="ui-button   ui-button-blue" id="jSubmit">登录</a>
+                <input type="button" value="登录" class="ui-button   ui-button-blue" id="jSubmit">
             </div>
 
             <div class="field-forgetpassword">

@@ -228,7 +228,7 @@ public class InfomationController {
 	 * @param httpSession
 	 * @return
 	 */
-	@RequestMapping(value = "/infoList")
+	@RequestMapping(value = "/infoList/my")
 	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
 			String order) {
 
@@ -272,7 +272,7 @@ public class InfomationController {
 	 * @param httpSession
 	 * @return
 	 */
-	@RequestMapping(value = "/colleInfoList")
+	@RequestMapping(value = "/colleInfoList/my")
 	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
 			HttpSession httpSession) {
 

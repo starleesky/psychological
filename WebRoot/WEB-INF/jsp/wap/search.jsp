@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@
 		                        </a>
 		                        <div class="pro-info">
 		                            <a href="#" class="pro-title">${info.brandName }/${info.modelName }</a>
-		                            <strong class="pro-price">${info.price } 元</strong>
+		                            <strong class="pro-price"><fmt:formatNumber value="${info.price }" maxFractionDigits="0" />元</strong>
 		                            <p class="pro-date">
 		                                <span class="year f-l">${info.equipYear }年</span>
 		                                <span class="hourth f-r">${info.workTime }小时</span>

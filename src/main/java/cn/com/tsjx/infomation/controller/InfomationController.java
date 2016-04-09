@@ -220,18 +220,18 @@ public class InfomationController {
         return result;
     }
 
-    /**
-     * 查询我的信息列表
-     *
-     * @param pager
-     * @param infomation
-     * @param model
-     * @param httpSession
-     * @return
-     */
-    @RequestMapping(value = "/infoList")
-    public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
-                           String order) {
+	/**
+	 * 查询我的信息列表
+	 *
+	 * @param pager
+	 * @param infomation
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 */
+	@RequestMapping(value = "/infoList/my")
+	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
+			String order) {
 
         String status = StringUtil.isBlank(infomation.getStatus()) ?
                 InfomationEnum.status_sj.code() :
@@ -264,18 +264,18 @@ public class InfomationController {
         return "/wap/infomation_list";
     }
 
-    /**
-     * 查询“我的收藏”列表
-     *
-     * @param pager
-     * @param infomation
-     * @param model
-     * @param httpSession
-     * @return
-     */
-    @RequestMapping(value = "/colleInfoList")
-    public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
-                                HttpSession httpSession) {
+	/**
+	 * 查询“我的收藏”列表
+	 *
+	 * @param pager
+	 * @param infomation
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 */
+	@RequestMapping(value = "/colleInfoList")
+	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
+			HttpSession httpSession) {
 
         //关联用户ID
         User user = (User) httpSession.getAttribute("user");

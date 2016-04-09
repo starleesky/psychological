@@ -66,7 +66,7 @@
                 <code id="loginError"></code>
             </form>
             <p class="m-t">
-                <small>HangZhou 来聚吧 © 2016</small>
+                <small>Copyright@2015 湘ICP 14013012号-1 Tangsons(Hunan) Trading Co.Ltd</small>
             </p>
         </div>
     </div>

@@ -53,17 +53,15 @@ public class CollectionController {
     
  
     @ResponseBody
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save/my", method = RequestMethod.GET)
     public Result<Object> save(@RequestBody Collection collection,Model model,HttpSession httpSession) {
         Result<Object> jsonResult = new Result<Object>();
         User user = (User) httpSession.getAttribute("user");
-        System.out.println(collection);
         if (user == null) {
             jsonResult.setMessage("登录之后才能收藏");
             jsonResult.setResult(false);
             return jsonResult;
         }
-        System.out.println(collection);
         collection.setUserId(user.getId());
         List<Collection> list = collectionService.find(collection);
         if (list.isEmpty()) {

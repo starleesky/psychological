@@ -62,7 +62,7 @@ public class CompanyController {
         return "/company/company_input";
     }
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save/my", method = RequestMethod.POST)
 	@ResponseBody
 	public Result<Boolean> save(Company company, HttpSession httpSession) {
 		User user = (User) httpSession.getAttribute("user");

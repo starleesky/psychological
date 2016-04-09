@@ -81,69 +81,6 @@ public class LoginController {
         return "/wap/register";
     }
 
-    @RequestMapping(value = "/infor")
-    public String loginIndex(Model model,HttpSession httpSession){
-        User user = (User) httpSession.getAttribute("user");
-//        if (user == null) {
-//            return "/wap/login";
-//        }
-         
-        Pager<InfomationDto> pager = new Pager<InfomationDto>();
-        InfomationDto infomation = new InfomationDto();
-        Params params = Params.create();
-		infomation.setDeleted(Deleted.NO.value);
-		infomation.setStatus("2");//已上架的
-		infomation.setStatus(InfomationEnum.status_sj.code());
-		if (user!=null) {
-		    infomation.setUserId(user.getId());
-        }
-		pager.setEntity(infomation);
-		pager = infomationService.getInfoPagerWithImg(params, pager, false);
-        //Map<String, Object> params = new HashMap<String, Object>();
-        //params.put("entity", infomation);
-        //pager = infomationService.page(params, pager);
-        
-        // 今日推荐 前10
-        model.addAttribute("Tops", pager.getItems());
-        //1、上架
-        infomation.setStatus(InfomationEnum.status_sj.code());
-        List<Infomation> li_sj = infomationService.find(infomation);
-        model.addAttribute("cnt_sj", li_sj.size());
-
-        //2、已售
-        infomation.setStatus(InfomationEnum.status_ys.code());
-        List<Infomation> li_ys = infomationService.find(infomation);
-        model.addAttribute("cnt_ys", li_ys.size());
-
-        //3、下架
-        infomation.setStatus(InfomationEnum.status_xj.code());
-        List<Infomation> li_xj = infomationService.find(infomation);
-        model.addAttribute("cnt_xj", li_xj.size());
-
-        //4、草稿
-        infomation.setStatus(InfomationEnum.status_cg.code());
-        List<Infomation> li_cg = infomationService.find(infomation);
-        model.addAttribute("cnt_cg", li_cg.size());
-
-        if (user != null ) {
-            System.out.println(user);
-            user = userService.get(user.getId());
-            model.addAttribute("userInfo",user);
-            //9、收藏
-
-            Params param = Params.create();
-            param.add("deleted", Deleted.NO.value);
-            param.add("userId", user.getId());
-
-            Pager<InfomationDto> colleanInfo = infomationService.getPagerCollections(param, pager);
-            model.addAttribute("cnt_sc", colleanInfo.getTotalCount());
-            model.addAttribute("collections", colleanInfo.getItems());
-            System.out.println(colleanInfo.getTotalCount());
-            System.out.println(colleanInfo.getItems());
-        }
-        
-        return "/wap/infor";
-    }
     @RequestMapping(value = "/index")
     public String index(Model model, HttpSession httpSession) {
         httpSession.removeAttribute("user");
@@ -289,6 +226,12 @@ public class LoginController {
     public String loginOut(HttpSession httpSession) {
         httpSession.removeAttribute("user");
         return "/wap/infor";
+    }
+    
+    @RequestMapping(value = "/logout")
+    public String logout(Model model,HttpSession httpSession) {
+        httpSession.removeAttribute("adminUser");
+        return "login";
     }
     
     @RequestMapping(value = "/toForgotpwdSuccess", method = RequestMethod.GET)

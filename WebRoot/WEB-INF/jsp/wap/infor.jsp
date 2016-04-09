@@ -8,7 +8,7 @@
     <title>汤森机械网-首页</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,user-scalable=no" />
-    <link rel="stylesheet" href="css/module/infor.css?v=1" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="${ctx}/wap/css/module/infor.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
@@ -20,14 +20,14 @@
     <section class="login-info">
             <div class="hd">
                 <div class="f-l">
-                   <img src="images/dashboard_icon.png" />我的账号
+                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号
                 </div>
                 <a href="javascript:;" class="f-r jIsHide">隐藏</a>
                 
             </div>
             <div class="bd">
                 <div class="info clearfix">
-                    <img src="images/icon_2.png" class="f-l"  />
+                    <img src="${ctx}/wap/images/icon_2.png" class="f-l"  />
                     <div class="info-desc f-l">
                         <h2>${userInfo.userName}</h2>
                         <p>注册时间:<span class="date"> 
@@ -59,11 +59,11 @@
                 <a href="${ctx}/infomation/pub.htm" class="ui-button ui-button-blue">我要求购</a>
                 <div class="info-url">
                     <a href="${ctx}/wap/companyInfo.htm" class="clearfix">
-                        <img src="images/message_comp.png"/><span>公司信息</span>
+                        <img src="${ctx}/wap/images/message_comp.png"/><span>公司信息</span>
                         <span class="icon iconfont f-r">&#xe60e;</span>
                     </a>
                     <a href="${ctx }/wap/message.htm" class="clearfix">
-                        <img src="images/message_icon.png" /><span >消息</span>
+                        <img src="${ctx}/wap/images/message_icon.png" /><span >消息</span>
                         <span class="icon iconfont f-r">&#xe60e;</span>
                     </a>
                 </div>

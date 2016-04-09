@@ -27,9 +27,6 @@ import javax.servlet.http.HttpSession;
 public class MainController {
 
 	@Resource
-	UserService userService;
-
-	@Resource
 	CompanyService companyService;
 
 	@Resource
@@ -39,38 +36,6 @@ public class MainController {
 	public String initMain(Model model) {
 		model.addAttribute("main", true);
 		return "admin/main";
-	}
-
-	@RequestMapping(value = "/logout")
-	public String logout(Model model,HttpSession httpSession) {
-        httpSession.removeAttribute("adminUser");
-		return "login";
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/login")
-	public Result<String> login(@RequestBody User user, Model model, HttpSession httpSession) {
-
-		Result<String> result = new Result<String>();
-		//		System.out.println(user.getUserName() + user.getPassword());
-		result.setResult(false);
-		user = userService.getUsersByParam(user.getUserName(), user.getPassword());
-		if (user == null) {
-			result.setObject("1");
-			result.setMessage("用户名或密码错误");
-			return result;
-		} else if (!user.getUserType().equals(UserEnum.user_type_admin.code()) && !user.getUserType()
-		                                                                               .equals(UserEnum.user_type_master
-				                                                                               .code())) {
-			result.setObject("1");
-			result.setMessage("普通会员无法登陆系统");
-			return result;
-		}
-		httpSession.setAttribute("adminUser", user);
-		result.setResult(true);
-		result.setMessage("登录成功");
-		model.addAttribute("main", true);
-		return result;
 	}
 
 	@RequestMapping(value = "/company/list")

@@ -27,7 +27,7 @@ define(function (require, exports, module) {
         //var originalPsw = this.formData.password;
         //this.formData.password = password.generate(originalPsw);
         var self = this;
-        this.$http.post(angular.path + "/admin/login", this.formData).success(function (resp) {
+        this.$http.post(angular.path + "/manage/login", this.formData).success(function (resp) {
             if (resp.result) {
                 //Cookie.setCookie("UPS_user_name", self.formData.name, 720, "/");
                 window.location.href = angular.path + '/admin/main';

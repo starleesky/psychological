@@ -13,7 +13,7 @@ define(function (require, exports, module) {
 
         loginUrl: baseUrl + '/wap/loginIn',
         loginSuccessUrl: baseUrl + '/wap/index',
-        loginIndexUrl:baseUrl + '/wap/infor',//登录成功
+        loginIndexUrl:baseUrl + '/user/infor/my',//登录成功
         toRegisterUrl: baseUrl + '/toRegister',//去注册页面
 
         listGoodsCatagory: baseUrl + '/catagory/listCatagory', // 查询设备产品列表URL

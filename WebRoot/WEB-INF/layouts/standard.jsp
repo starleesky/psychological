@@ -172,7 +172,7 @@
                     <%--</li>--%>
                     <%--<li class="divider"></li>--%>
                     <%--<li>--%>
-                    <a href="${ctx}/admin/logout"><i class="fa fa-fw fa-power-off"></i>退出</a>
+                    <a href="${ctx}/manage/logout"><i class="fa fa-fw fa-power-off"></i>退出</a>
                     </li>
                 </ul>
             </li>

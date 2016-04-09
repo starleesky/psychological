@@ -8,7 +8,7 @@
                         http://www.springframework.org/schema/context  
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd  
                         http://www.springframework.org/schema/mvc  
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+                        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
     <mvc:resources mapping="/resources/**" location="resources/"/>
     <mvc:resources mapping="/images/**" location="images/"/>
@@ -60,18 +60,15 @@
         <property name="maxInMemorySize" value="40960"/>
     </bean>
     
-   <!--  <mvc:interceptors>
+   <mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/user/*" />
-			<mvc:exclude-mapping path="/wap/login/**"/> 
+			<mvc:mapping path="/admin/**" />
+			<mvc:mapping path="/*/*/my" />
+			<mvc:exclude-mapping path="/manage/*"/> 
+			<mvc:exclude-mapping path="/tsjx/wap/login.htm"/> 
 			<bean class="cn.com.tsjx.interceptor.UserInterceptor" />
 		</mvc:interceptor>
-		 <mvc:interceptor>
-			<mvc:mapping path="/admin/*" />
-			<mvc:exclude-mapping path="/admin/login/**"/> 
-			<bean class="cn.com.tsjx.interceptor.AdminInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+   </mvc:interceptors>
 	
 	
 </beans>

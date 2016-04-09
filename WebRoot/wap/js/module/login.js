@@ -1,3 +1,4 @@
+
 define(function(require,exports,module) {
 
     var $ = require('plug/jquery2');
@@ -33,6 +34,7 @@ define(function(require,exports,module) {
             }
         	, function (data) {
         		if(data.result){
+        			console.log(data);
         			window.location.href =url.loginIndexUrl;
         		}else{
         			box.ok(data.message);

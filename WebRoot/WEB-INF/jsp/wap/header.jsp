@@ -10,7 +10,7 @@
     	<a href="${ctx }/wap/message.htm" class="ui-left">
         <img src="${ctx}/wap/images/icon_2.png"  />
     </a>
-    <a href="${ctx}/wap/infor.htm" class="ui-title"><img src="${ctx}/wap/images/logo.png" /> </a>
+    <a href="${ctx}/user/infor.htm" class="ui-title"><img src="${ctx}/wap/images/logo.png" /> </a>
     <a  href="${ctx}/wap/loginOut.htm" class="ui-right">
         <img src="${ctx}/wap/images/upload_cloud.png" />
     </a>

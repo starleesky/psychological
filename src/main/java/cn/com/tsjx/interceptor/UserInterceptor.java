@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.record.common.UnicodeString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,17 +21,25 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		
-		log.info("request:"+request.getRequestURI());
-		
-		String userId = request.getParameter("userInfo");
+	    log.info("拦截开始--"+ request.getRequestURI());
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("user");
-		log.info("userId:"+userId);		 
-		if(user == null || user.getId() == null){
-		    response.sendRedirect(request.getContextPath()+"/wap/login.htm");
-		}
-		
+		if (session != null) {
+		    if (StringUtil.isNotTrimBlank(request.getRequestURI()) && request.getRequestURI().contains("admin")) {
+                User user = (User) session.getAttribute("adminUser");
+                if (user == null || user.getId() == null ) {
+                    log.info("拦截成功--"+request.getRequestURI());
+                    response.sendRedirect(request.getContextPath()+"/manage/logout.htm");
+                }
+            }else {
+                User user = (User) session.getAttribute("user");
+                if(user == null || user.getId() == null){
+                    log.info("拦截成功--"+request.getRequestURI());
+                    response.sendRedirect(request.getContextPath()+"/wap/login.htm");
+                }
+            }
+		    
+        }
+	    log.info("拦截结束--"+ request.getRequestURI());
 		return true;
 	}
 

@@ -18,6 +18,7 @@ define(function(require,exports,module) {
         $bigBox.hide();
     });
     $("#collection").click(function(){
+    	//alert($("#id").val());
         $.post( url.collectionSave,
           {
         	informationId: $("#id").val()

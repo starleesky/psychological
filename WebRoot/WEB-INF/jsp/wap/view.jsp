@@ -109,7 +109,7 @@
                         <c:if test="${bean.src == '3'}">法务
                         </c:if>
                         </li>
-                        <li>发布日期: ${bean.pubTime}</li>
+                        <li>发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
                         <li>有效期至: ${bean.validTime}</li>
                         <li>生产年份要求: ${bean.equipYear}年以后</li>
                         <li class="w100">工作小时要求: ${bean.workTime}小时以内</li>

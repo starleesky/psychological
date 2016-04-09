@@ -62,10 +62,11 @@
     
    <mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/admin/**" />
+<!-- 		后台过滤 -->
+			<mvc:mapping path="/admin/*" />
+			<mvc:mapping path="/admin/*/*" />
+<!-- 	 	前端过滤 -->
 			<mvc:mapping path="/*/*/my" />
-			<mvc:exclude-mapping path="/manage/*"/> 
-			<mvc:exclude-mapping path="/tsjx/wap/login.htm"/> 
 			<bean class="cn.com.tsjx.interceptor.UserInterceptor" />
 		</mvc:interceptor>
    </mvc:interceptors>

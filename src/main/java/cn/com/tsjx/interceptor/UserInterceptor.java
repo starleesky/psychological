@@ -26,15 +26,21 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 		if (session != null) {
 		    if (StringUtil.isNotTrimBlank(request.getRequestURI()) && request.getRequestURI().contains("admin")) {
                 User user = (User) session.getAttribute("adminUser");
+       
                 if (user == null || user.getId() == null ) {
-                    log.info("拦截成功--"+request.getRequestURI());
-                    response.sendRedirect(request.getContextPath()+"/manage/logout.htm");
+                    log.info("拦截成功--"+request.getContextPath()+request.getRequestURI());
+                    //response.sendRedirect(request.getContextPath()+"/manage/logout.htm");
+                    request.getRequestDispatcher("/manage/logout.htm").forward(request, response);
+                    return false;
+
                 }
             }else {
                 User user = (User) session.getAttribute("user");
                 if(user == null || user.getId() == null){
                     log.info("拦截成功--"+request.getRequestURI());
                     response.sendRedirect(request.getContextPath()+"/wap/login.htm");
+                    //request.getRequestDispatcher("/wap/login.htm").forward(request, response);
+                    return false;
                 }
             }
 		    

@@ -125,7 +125,7 @@
                 </div>
             </td>
             <td>
-                <div ng-switch on="c.auditTSype">
+                <div ng-switch on="c.auditType">
                     <span ng-switch-when="0">人工审核</span>
                     <span ng-switch-when="1">自动审核</span>
                 </div>
@@ -136,26 +136,26 @@
                     <span ng-switch-when="0">草稿</span>
                     <span ng-switch-when="1">待审核</span>
                     <span ng-switch-when="2">发布</span>
-                    <span ng-switch-when="3">下架</span>
-                    <span ng-switch-when="4">已售</span>
+                    <span ng-switch-when="3">已售</span>
+                    <span ng-switch-when="4">下架</span>
                 </div>
             </td>
             <td>
 
-                <div ng-show="c.status==0">
-                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>
-                </div>
+                <%--<div ng-show="c.status==0">--%>
+                    <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>--%>
+                <%--</div>--%>
 
-                <div ng-show="c.status==1">
-                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>
-                </div>
+                <%--<div ng-show="c.status==1">--%>
+                    <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">审核</a>--%>
+                <%--</div>--%>
 
-                <div ng-show="c.status==2">
-                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">下架</a>
-                </div>
+                <%--<div ng-show="c.status==2">--%>
+                    <%--<a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">下架</a>--%>
+                <%--</div>--%>
 
                 <div>
-                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">删除</a>
+                    <a href="${ctx}/admin/infomation/getDetail?id={{c.id}}" class="btn btn-primary">查看</a>
                 </div>
             </td>
         </tr>

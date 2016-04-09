@@ -37,6 +37,14 @@ define(function (require) {
                     //if ($scope.edit_car_form.$invalid) {
                     //    return;
                     //}
+                    var remark="";
+                    if ($scope.infomation.remark2 != undefined) {
+                        remark += $scope.infomation.remark2;
+                    }
+                    if ($scope.infomation.remark1 != undefined) {
+                        remark += $scope.infomation.remark1;
+                    }
+                    $scope.infomation.remark = remark;
                     $http.post(angular.path + "/admin/infomation/update", $scope.infomation).success(function (resp) {
                         if (resp.result) {
                             window.location.href = angular.path + '/admin/infomation/list';

@@ -15,5 +15,5 @@ package cn.com.tsjx.common.constants.enums;
  */
 public class SysOptionConstant {
 
-	public static final String INFORMATION_AUDIT_STATUS = "0";
+	public static final String INFORMATION_AUDIT_STATUS = "INFORMATION_AUDIT_STATUS";
 }

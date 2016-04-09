@@ -1,6 +1,6 @@
 <div class="modal-header">
 	<h3 class="modal-title">
-		<div ng-switch on="status">
+		<div ng-switch on="infomation.auditStatus">
 			<span ng-switch-when="1">审核成功</span>
 			<span ng-switch-when="2">审核失败</span>
 		</div>
@@ -10,7 +10,7 @@
 
 	<form class="form-horizontal" name="edit_car_form">
 	  <div class="form-group">
-	    <label for="caruserName" class="col-sm-2 control-label"></label>
+	    <label for="caruserName" class="col-sm-2 control-label">信息ID</label>
 	    <div class="col-sm-10">
 	      <input type="text" class="form-control" ng-model="infomation.id" disabled="disabled" required>
 	    </div>
@@ -21,10 +21,24 @@
 	      <!--<input type="text" class="form-control" ng-model="param.paramValue" placeholder="参数值" required>-->
 	    <!--</div>-->
 	  <!--</div>-->
+
+		<div ng-show="infomation.auditStatus==2">
+			<div class="form-group">
+			<label for="caruserName" class="col-sm-2 control-label">失败原因</label>
+			<div class="col-sm-10">
+				<select name="provnice" required ng-model="infomation.remark2" class="form-control">
+					<option value="图片模糊" >图片模糊</option>
+					<option value="图片错误" >图片错误</option>
+					<option value="信息错误" >信息错误</option>
+				</select>
+			</div>
+			</div>
+		</div>
+
 	  <div class="form-group">
 	    <label for="caruserName" class="col-sm-2 control-label">备注</label>
 	    <div class="col-sm-10">
-	    	<textarea class="form-control" style="width:100%;" ng-model="infomation.remark"></textarea>
+	    	<textarea class="form-control" style="width:100%;" ng-model="infomation.remark1"></textarea>
 	    </div>
 	  </div>
 	</form>

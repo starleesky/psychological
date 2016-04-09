@@ -180,13 +180,9 @@ public class AdminInfomationController {
 
     @ResponseBody
     @RequestMapping(value = "/infomation/del", method = RequestMethod.GET)
-    public Result<Boolean> del(Long[] ids) {
+    public Result<Boolean> del(Long id) {
         Result<Boolean> result = new Result<Boolean>();
-        List<Long> list = new ArrayList<Long>();
-        for (Long id : ids) {
-            list.add(id);
-        }
-        infomationService.delete(list);
+        infomationService.delete(id);
         result.setMessage("删除成功");
         result.setObject(true);
         result.setResult(true);

@@ -124,7 +124,7 @@ public class DemoController {
 
 	}
 
-	@RequestMapping(value = "/message")
+	@RequestMapping(value = "/message/my")
 	public String message(Model model, HttpSession httpSession) {
 		Notice notice = new Notice();
 		User user = (User) httpSession.getAttribute("user");

@@ -7,7 +7,9 @@
 <header class="ui-header">
      
     <c:if test="${not empty sessionScope.user.id}">
-    	<a href="${ctx }/wap/message.htm" class="ui-left">
+    	<c:if test="${not empty sessionScope.isNewMessage}">
+    	</c:if>
+    	<a href="${ctx }/wap/message/my.htm" class="ui-left">
         <img src="${ctx}/wap/images/icon_2.png"  />
     </a>
     <a href="${ctx}/user/infor/my.htm" class="ui-title"><img src="${ctx}/wap/images/logo.png" /> </a>

@@ -174,7 +174,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                    var str= JSON.parse(data);
                     if (str.result) {
                         box.ok(data.message);
-                        window.location.href = ctx+"/infomation/infoList?status=0"
+                        window.location.href = ctx+url.infoList+"?status=0";
 
                     } else {
                         box.error(str.message);

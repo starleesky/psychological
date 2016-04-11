@@ -1,12 +1,1 @@
-/* line 1, ../../sass/common/search.scss */
-.search-type-mod {
-  background: #413333;
-  overflow: hidden;
-}
-/* line 4, ../../sass/common/search.scss */
-.search-type-mod .search-type-hd {
-  margin: 10px auto;
-  color: #fff;
-  text-align: center;
-  font-size: 20px;
-}
+.search-type-mod{background:#413333;overflow:hidden}.search-type-mod .search-type-hd{margin:10px auto;color:#fff;text-align:center;font-size:20px}

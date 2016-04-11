@@ -114,7 +114,7 @@
                         <li>生产年份要求: ${bean.equipYear}年以后</li>
                         <li class="w100">工作小时要求: ${bean.workTime}小时以内</li>
                         <li class="w100">设备位置要求: ${bean.equipmentLocation}</li>
-                        <li class="w100 cl-1">期望价格: ${bean.price}元左右</li>
+                        <li class="w100 cl-1">期望价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元左右</li>
                     </ul>
                 </div>
                 <div class="pro-view-box">

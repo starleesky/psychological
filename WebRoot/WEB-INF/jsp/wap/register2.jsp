@@ -39,7 +39,7 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">城市</label>
                         <div class="ui-form-bd">
-                            <select class="regionCity"  name="cityId" id="cityId" validate="required:true" ><option>请选择城市</option></select>                    </div>
+                            <select class="regionCity"  name="cityId" id="cityId" validate="required:true" ><option>请选择城市</option></select>
                         </div>
                     </div>
                     <div class="ui-form-mod">

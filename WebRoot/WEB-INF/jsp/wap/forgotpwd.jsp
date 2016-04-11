@@ -18,23 +18,18 @@
 <div class="page-view">
     <section class="ui-login">
         <form action="" class="ui-form" id="forgotForm" method="post">
-            <div class="ui-border">
-                <fieldset>
-                    <div class="field-username filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe607;</i>
-                            <input type="text" name="email" id="email" placeholder="请输入邮箱" value="">
-                        </div>
-                    </div>
-                    <div class="field-captcha filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe62c;</i>
-                            <input type="text" id="captchaCode" name="captchaCode" placeholder="验证码" value="">
-                            <img id="captchaImage" src="${ctx}/wap/getVerifyCode.htm" alt="换一张" /></li>
-                            
-                        </div>
-                    </div>
-                </fieldset>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">邮箱</label>
+                <div class="ui-form-bd">
+                    <input type="text" name="email" id="email" placeholder="请输入邮箱" value="">
+                </div>
+            </div>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">邮箱</label>
+                <div class="ui-form-bd">
+                    <input type="text" id="captchaCode" name="captchaCode" placeholder="验证码" value="">
+                    <img id="captchaImage" src="${ctx}/wap/getVerifyCode.htm" alt="换一张" /></li>
+                </div>
             </div>
             <div class="field-submit">
                 <input type="submit" class="ui-button ui-button-submit" id="jSubmit" value="下一步">

@@ -7,7 +7,7 @@
 <head>
     <title>汤森机械网-首页</title>
     <%@ include file = "meta.jsp" %>
-    <link rel="stylesheet" href="css/module/infor.css?v=1" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="${ctx}/wap/css/module/infor.css?v=1" type="text/css" charset="utf-8">
 
 </head>
 <body>

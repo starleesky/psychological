@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.sysOption.service.SysoptionService;
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Controller;
@@ -177,6 +179,14 @@ public class InfomationController {
                 if (!StringUtils.isEmpty(img)) {
                     File afile = new File(path + img);
                     if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
+                        //添加水印
+                        WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
+                        //上传图片
+                        try {
+                            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(),"/images/information/" + afile.getName());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         attch.setAttchUrl("/images/information/" + afile.getName());
                     } else {
                         attch.setAttchUrl(img);

@@ -18,6 +18,8 @@ import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
 import cn.com.tsjx.user.entity.User;
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -89,7 +91,6 @@ public class DemoController {
 	/**
 	 * 查询不同信息状态数字
 	 *
-	 * @param infomation
 	 * @param model
 	 * @param user
 	 */
@@ -175,6 +176,10 @@ public class DemoController {
 		File source = new File(path + src);
 		file.transferTo(source);
 		//		createPreviewImage("E://test.png", "E://test2.png");
+//		//添加水印
+//		WaterSet.pressImage(path+"/wap/images/watermark.png",path + src,4,1);
+//		//上传图片
+//		new UploadDemo().uploadImgs(path + src,src);
 		UploadDto uploadDto = new UploadDto();
 		uploadDto.setUrl(src);
 

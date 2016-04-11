@@ -1,6 +1,7 @@
 package cn.com.tsjx.company.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import cn.com.tsjx.common.constants.enums.CompanyEnum;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,12 +74,14 @@ public class CompanyController {
 			File afile = new File(path+company.getCreateBy());
 			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
 				company.setCreateBy("/images/information/" + afile.getName());
+				handleImg(afile);
 			}
 		}
 		if(!StringUtils.isEmpty(company.getBusinessLicenseImageUrl())){
 			File afile = new File(path+company.getBusinessLicenseImageUrl());
 			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
 				company.setCreateBy("/images/information/" + afile.getName());
+				handleImg(afile);
 			}
 		}
 
@@ -84,6 +89,8 @@ public class CompanyController {
 			File afile = new File(path+company.getOrganizationCodeImageUrl());
 			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
 				company.setCreateBy("/images/information/" + afile.getName());
+				handleImg(afile);
+
 			}
 		}
 		company.setStatus(CompanyEnum.status_audit.code());
@@ -99,6 +106,17 @@ public class CompanyController {
 		result.setObject(true);
 		result.setResult(true);
 		return result;
+	}
+
+	private void handleImg(File afile) {
+		//添加水印
+		WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
+		//上传图片
+		try {
+            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(),"/images/information/" + afile.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

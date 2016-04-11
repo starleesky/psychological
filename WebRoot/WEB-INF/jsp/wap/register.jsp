@@ -15,7 +15,7 @@
 <!--head begin-->
 <header class="ui-header">
     <a href="${ctx}/wap/index.htm" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
+        <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
     </a>
     <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
         <img src="${ctx}/wap/images/user_icon.png" />登录
@@ -29,33 +29,35 @@
     </div>
     <section class="ui-login">
         <form action="${ctx}/wap/register" class="ui-form" id="register" method="post">
-            <div class="ui-border">
-                <fieldset>
-                    <div class="field-password filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe610;</i>
-                            <input type="text" id="email" name="email" placeholder="请输入邮箱" value="">
-                        </div>
-                    </div>
-                    <div class="field-username filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe631;</i>
-                            <input type="text" name="mobile" id="mobile" placeholder="请输入手机号码" value="">
-                        </div>
-                    </div>
-                    <div class="field-password filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe633;</i>
-                            <input type="password" id="password" name="password" placeholder="请输入密码" value="">
-                        </div>
-                    </div>
-                    <div class="field-password filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe626;</i>
-                            <input type="password" id="confirmPwd" name="confirmPwd" placeholder="请输入确认密码" value="">
-                        </div>
-                    </div>
-                </fieldset>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">姓名</label>
+                <div class="ui-form-bd">
+                    <input type="text" id="email" name="username" placeholder="请输入姓名" value="">
+                </div>
+            </div>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">邮箱</label>
+                <div class="ui-form-bd">
+                    <input type="text" id="email" name="email" placeholder="请输入邮箱" value="">
+                </div>
+            </div>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">手机号码</label>
+                <div class="ui-form-bd">
+                    <input type="text" name="mobile" id="mobile" placeholder="请输入手机号码" value="">
+                </div>
+            </div>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">密码</label>
+                <div class="ui-form-bd">
+                    <input type="password" id="password" name="password" placeholder="请输入密码" value="">
+                </div>
+            </div>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">确认密码</label>
+                <div class="ui-form-bd">
+                    <input type="password" id="confirmPwd" name="confirmPwd" placeholder="请输入确认密码" value="">
+                </div>
             </div>
             <div class="field-submit">
                <a href="javascrpt:;" class="ui-button   ui-button-blue" id="jSubmit">下一步</a>

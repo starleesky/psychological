@@ -8,8 +8,7 @@
 <html>
 <head>
     <title>汤森机械网-登录</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/login.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>

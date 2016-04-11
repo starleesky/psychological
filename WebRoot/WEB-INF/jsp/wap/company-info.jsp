@@ -5,8 +5,7 @@
 <html>
 <head>
     <title>汤森机械网-公司信息</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,user-scalable=no"/>
+    <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="css/module/company-info.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>

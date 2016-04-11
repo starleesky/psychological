@@ -8,15 +8,14 @@
 <html>
 <head>
     <title>汤森机械网-登录</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/login.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
 <header class="ui-header">
     <a href="#" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
+        <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
     </a>
 
 <!--     <a  href="login.html" class="ui-right ui-login"> -->
@@ -31,28 +30,17 @@
     </div>
     <section class="ui-login">
         <form action="/wap/loginIn" class="ui-form" id="loginForm"  method="post">
-            <div class="ui-border">
-                <fieldset>
-                    <div class="field-username filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe607;</i>
-                            <input type="text" name="UserName" id="UserName" placeholder="请输入邮箱" value="">
-                        </div>
-                    </div>
-                    <div class="field-password filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe633;</i>
-                            <input type="password" id="Pwd"  name="Pwd" placeholder="请输入密码" value="">
-                        </div>
-                    </div>
-                    <!--<div class="field-captcha filed-item">
-                        <div class="ui-form-item">
-                            <i class="icon iconfont">&#xe62c;</i>
-                            <input type="text" id="captcha" name="captchaCode" placeholder="验证码" value="">
-                            <img src="https://ssl.yunhou.com/bubugao-passport/captcha?type=0&amp;seq=ABE41819E72E5784A160999BF2550DA6&amp;t=1443658215899" data-type="0">
-                        </div>
-                    </div>-->
-                </fieldset>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">邮箱</label>
+                <div class="ui-form-bd">
+                    <input type="text" name="UserName" id="UserName" placeholder="请输入邮箱" value="">
+                </div>
+            </div>
+            <div class="ui-form-mod">
+                <label class="ui-form-hd">密码</label>
+                <div class="ui-form-bd">
+                    <input type="password" id="Pwd"  name="Pwd" placeholder="请输入密码" value="">
+                </div>
             </div>
             <div class="field-submit">
                 <input type="button" value="登录" class="ui-button   ui-button-blue" id="jSubmit">

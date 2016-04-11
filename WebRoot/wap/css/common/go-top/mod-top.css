@@ -1,17 +1,1 @@
-/* line 1, ../../../sass/common/go-top/mod-top.scss */
-.mod-gotop {
-  position: fixed;
-  bottom: 72px;
-  right: 8px;
-  width: 88px;
-  height: 88px;
-  padding: 20px 0 0 20px;
-  z-index: 100;
-}
-/* line 9, ../../../sass/common/go-top/mod-top.scss */
-.mod-gotop .iconfont {
-  font-size: 88px;
-  line-height: 88px;
-  color: #666;
-  opacity: 0.8;
-}
+.mod-gotop{position:fixed;bottom:72px;right:8px;width:88px;height:88px;padding:20px 0 0 20px;z-index:100}.mod-gotop .iconfont{font-size:88px;line-height:88px;color:#666;opacity:0.8}

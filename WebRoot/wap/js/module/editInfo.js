@@ -233,7 +233,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 function (data) {
                     if (data.result) {
                         box.ok(data.message);
-                    	window.location.href = ctx + "/infomation/infoList?status=0";
+                    	window.location.href = ctx + url.infoList+"?status=0";
                     } else {
                         box.error(data.message);
                     }

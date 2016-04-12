@@ -73,6 +73,8 @@ public class LoginController {
         model.addAttribute("userId",user.getId());
         result.setResult(true);
         result.setMessage("登录成功");
+        
+        System.out.println(result);
         return result;
     }
 

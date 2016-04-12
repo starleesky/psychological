@@ -55,14 +55,14 @@
                         <span class="num-desc">草稿</span>
                     </a>
                 </div>
-                <a href="${ctx}/infomation/sale.htm" class="ui-button ui-button-submit">我要销售</a>
-                <a href="${ctx}/infomation/pub.htm" class="ui-button ui-button-blue">我要求购</a>
+                <a href="${ctx}/infomation/sale/my.htm" class="ui-button ui-button-submit">我要销售</a>
+                <a href="${ctx}/infomation/pub/my.htm" class="ui-button ui-button-blue">我要求购</a>
                 <div class="info-url">
-                    <a href="${ctx}/wap/companyInfo.htm" class="clearfix">
+                    <a href="${ctx}/wap/companyInfo/my.htm" class="clearfix">
                         <img src="${ctx}/wap/images/message_comp.png"/><span>公司信息</span>
                         <span class="icon iconfont f-r">&#xe60e;</span>
                     </a>
-                    <a href="${ctx }/wap/message.htm" class="clearfix">
+                    <a href="${ctx }/wap/message/my.htm" class="clearfix">
                         <img src="${ctx}/wap/images/message_icon.png" /><span >消息</span>
                         <span class="icon iconfont f-r">&#xe60e;</span>
                     </a>

@@ -66,7 +66,7 @@ public class InfomationController {
 	@Value("${file.uplaoddir}")
 	String path;
 
-	@RequestMapping(value = "/pub")
+	@RequestMapping(value = "/pub/my")
 	public String pub(Model model, HttpSession httpSession) {
 		model.addAttribute("type", 1);
 		User user = (User) httpSession.getAttribute("user");
@@ -74,7 +74,7 @@ public class InfomationController {
 		return "/wap/want-release";
 	}
 
-	@RequestMapping(value = "/sale")
+	@RequestMapping(value = "/sale/my")
 	public String sale(Model model, HttpSession httpSession) {
 		model.addAttribute("type", 2);
 		User user = (User) httpSession.getAttribute("user");

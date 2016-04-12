@@ -75,7 +75,7 @@ public class DemoController {
 		return "/wap/search";
 	}
 
-	@RequestMapping(value = "/companyInfo")
+	@RequestMapping(value = "/companyInfo/my")
 	public String companyInfo(Model model, HttpSession httpSession) {
 		User user = (User) httpSession.getAttribute("user");
 		if (user != null && !StringUtils.isEmpty(user.getCompanyId())) {

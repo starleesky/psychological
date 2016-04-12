@@ -25,6 +25,7 @@ import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,6 +73,9 @@ public class AdminInfomationController {
     @Resource
     SysoptionService sysoptionService;
 
+    @Value("${img.host}")
+    String imgHost;
+
     @RequestMapping(value = "/infomation/list/getData")
     @ResponseBody
     public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
@@ -95,6 +99,7 @@ public class AdminInfomationController {
         attach.setInformationId(id);
         List<Attch> attches = attchService.find(attach);
         model.addAttribute("beanImg", attches);
+        model.addAttribute("imgHost", imgHost);
         return "admin/infomation/detail";
     }
 

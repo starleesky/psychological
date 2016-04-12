@@ -20,8 +20,8 @@ define(function (require, exports, module) {
         listBrand: baseUrl + '/brand/listBrand',//查询设备品牌URL
         listModels: baseUrl + '/models/listModels',//查询设备型号URL
         listRegion: baseUrl + '/region/listRegion',//查询省市级
-        saveInfo: baseUrl + '/infomation/save',//信息发布
-        saveCompany: baseUrl + '/company/save',//信息发布
+        saveInfo: baseUrl + '/infomation/save/my',//信息发布
+        saveCompany: baseUrl + '/company/save/my',//信息发布
         registerUrl:baseUrl + '/wap/register',//保存注册第一步
         register2Url:baseUrl + '/wap/toRegister2',//注册下一步
         saveRegister2:baseUrl + '/wap/saveRegister2', //保存注册下一步

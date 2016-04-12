@@ -1,5 +1,7 @@
 package cn.com.tsjx.user.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,9 +10,13 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.apache.commons.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,7 +44,9 @@ public class UserController {
 
 	@Resource
     private InfomationService infomationService;
-
+    // 写入文件
+    @Value("${file.uplaoddir}")
+    String path;
 
     @RequestMapping(value = "/list")
     public String list(Pager<User> pager,User user,Model model) {
@@ -87,7 +95,21 @@ public class UserController {
         }
         String newPwdString = Base64.encodeBase64String(user.getPassword().getBytes());
         user.setPassword(newPwdString);
-    	userService.update(user);
+        if(!StringUtils.isEmpty(user.getHeadIcon())){
+            File afile = new File(path + user.getHeadIcon());
+            if (afile.renameTo(new File(path + "/images/headicon/" + afile.getName()))) {
+                //添加水印
+                WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/headicon/" + afile.getName(),4,1);
+                //上传图片
+                try {
+                    new UploadDemo().uploadImgs(path + "/images/headicon/" + afile.getName(),"/images/headicon/" + afile.getName());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                user.setHeadIcon("/images/information/" + afile.getName());
+            }
+        }
+        userService.update(user);
     	jsonResult.setMessage("保存成功！");
     	jsonResult.setSuccess(true);
         return jsonResult;

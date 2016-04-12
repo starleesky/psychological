@@ -16,7 +16,7 @@ public class UploadDemo {
     //要上传的空间
     String bucketname = "tangsons";
     //上传到七牛后保存的文件名
-    String key = "/images/information/1460393223588.jpg";
+    String key = "images/information/1460393223588.jpg";
     //上传文件的路径
     String FilePath = "D://workspace//tsjx//WebRoot/images/information/1460393223587.jpg";
 

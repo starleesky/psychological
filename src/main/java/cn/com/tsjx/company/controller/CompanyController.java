@@ -72,23 +72,23 @@ public class CompanyController {
 
 		if(!StringUtils.isEmpty(company.getCreateBy())){
 			File afile = new File(path+company.getCreateBy());
-			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
-				company.setCreateBy("/images/information/" + afile.getName());
+			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
+				company.setCreateBy("/images/company/" + afile.getName());
 				handleImg(afile);
 			}
 		}
 		if(!StringUtils.isEmpty(company.getBusinessLicenseImageUrl())){
 			File afile = new File(path+company.getBusinessLicenseImageUrl());
-			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
-				company.setCreateBy("/images/information/" + afile.getName());
+			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
+				company.setCreateBy("/images/company/" + afile.getName());
 				handleImg(afile);
 			}
 		}
 
 		if(!StringUtils.isEmpty(company.getOrganizationCodeImageUrl())){
 			File afile = new File(path+company.getOrganizationCodeImageUrl());
-			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
-				company.setCreateBy("/images/information/" + afile.getName());
+			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
+				company.setCreateBy("/images/company/" + afile.getName());
 				handleImg(afile);
 
 			}
@@ -110,10 +110,10 @@ public class CompanyController {
 
 	private void handleImg(File afile) {
 		//添加水印
-		WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
+//		WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
 		//上传图片
 		try {
-            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(),"/images/information/" + afile.getName());
+            new UploadDemo().uploadImgs(path + "/images/company/" + afile.getName(),"/images/company/" + afile.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }

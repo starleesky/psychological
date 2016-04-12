@@ -123,7 +123,7 @@ public class InfomationController {
 		return "/wap/view";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save/my", method = RequestMethod.POST)
     public void save(InfomationDto infomation, HttpServletResponse response, HttpSession httpSession) {
 
         //新增发布信息人记录表
@@ -165,6 +165,7 @@ public class InfomationController {
             Attch attch = new Attch();
             attch.setInformationId(infomation.getId());
             attch.setUserId(user.getId());
+
             attch.setAttchUrl(
                     "/images/catagory/" + infomation.getCatagoryBigId() + "/" + infomation.getCatagoryMidId() + ".jpg");
             attchService.insert(attch);

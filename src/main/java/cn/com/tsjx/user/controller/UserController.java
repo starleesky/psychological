@@ -110,7 +110,7 @@ public class UserController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                user.setHeadIcon("/images/information/" + afile.getName());
+                user.setHeadIcon("/images/headicon/" + afile.getName());
             }
         }
         userService.update(user);

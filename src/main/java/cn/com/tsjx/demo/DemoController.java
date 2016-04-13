@@ -70,6 +70,11 @@ public class DemoController {
 	@Resource
 	InfomationService infomationService;
 
+
+	@Value("${img.host}")
+	String imgHost;
+
+
 	@RequestMapping(value = "/search")
 	public String search() {
 		return "/wap/search";
@@ -85,6 +90,7 @@ public class DemoController {
 			model.addAttribute("company", new Company());
 		}
 		infoCounts(model,user);
+		model.addAttribute("imgHost", imgHost);
 		return "/wap/company-info";
 	}
 

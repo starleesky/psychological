@@ -50,7 +50,7 @@ public class WaterSet {
     }
 
     public static void main(String[] args) {
-        pressImage("d:/11.png","d:/2.jpg",4,1);
+        pressImage("d:/watermark.png","d:/12.jpg",5,1);
     }
 
     /**

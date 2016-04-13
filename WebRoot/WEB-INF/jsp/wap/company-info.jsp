@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
+<c:set var="imgHost" value="${imgHost}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <title>汤森机械网-公司信息</title>
     <%@ include file = "meta.jsp" %>
-    <link rel="stylesheet" href="css/module/company-info.css?v=1" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="${ctx}/wap/css/module/company-info.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
@@ -65,10 +66,11 @@
                     <div class="ui-form-bd upload-img <c:if test="${company.createBy!=null}">edit</c:if>">
                         <a href="javascript:;" node-type="uploadButton">
                             <span class="upload-txt">选择图片</span>
+                            <input type="hidden" name="_UPLOAD_00" value="${company.createBy}">
                         </a>
                         <c:if test="${company.createBy!=null}">
                             <div class="upload-div">
-                                <img src="${ctx}${company.createBy}">
+                                <img src="${imgHost}${company.createBy}">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>
@@ -100,7 +102,7 @@
                     <div class="ui-form-bd">
                         <select class="regionProvice" name="regionProvice" id="regionProvice" validate="required:true">
                             <c:if test="${company.provinceName!=null}">
-                                <option>${company.provinceName}</option>
+                                <option value="${company.provinceId}">${company.provinceName}</option>
                             </c:if>
                             <option>请选择省份</option>
                         </select>
@@ -109,9 +111,9 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">所在城市</label>
                     <div class="ui-form-bd">
-                        <select class="regionCity" name="regionCity" id="regionCity" validate="required:true">
+                        <select class="regionCity" name="regionCity" id="regionCity" validate="required:true" >
                             <c:if test="${company.cityName!=null}">
-                                <option>${company.cityName}</option>
+                                <option value="${company.cityId}">${company.cityName}</option>
                             </c:if>
                             <option>请选择城市</option>
                         </select>
@@ -155,10 +157,11 @@
                     <div class="ui-form-bd upload-img <c:if test="${company.businessLicenseImageUrl!=null}">edit</c:if>">
                         <a href="javascript:;" node-type="uploadButton">
                             <span class="upload-txt">选择图片</span>
+                            <input type="hidden" name="_UPLOAD_01" value="${company.businessLicenseImageUrl}">
                         </a>
                         <c:if test="${company.businessLicenseImageUrl!=null}">
                             <div class="upload-div">
-                                <img src="${ctx}${company.businessLicenseImageUrl}">
+                                <img src="${imgHost}${company.businessLicenseImageUrl}">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>
@@ -170,10 +173,11 @@
                     <div class="ui-form-bd upload-img <c:if test="${company.organizationCodeImageUrl!=null}">edit</c:if>">
                         <a href="javascript:;" node-type="uploadButton">
                             <span class="upload-txt">选择图片</span>
+                            <input type="hidden" name="_UPLOAD_02" value="${company.organizationCodeImageUrl}">
                         </a>
                         <c:if test="${company.organizationCodeImageUrl!=null}">
                             <div class="upload-div">
-                                <img src="${ctx}${company.organizationCodeImageUrl}">
+                                <img src="${imgHost}${company.organizationCodeImageUrl}">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>
@@ -189,11 +193,12 @@
     </div>
 </div>
 <%@ include file="footer.jsp" %>
-<script type="text/javascript" src="js/require.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
+<script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
     var ctx = "${ctx}";
     var status = "${company.status}";
+    var companyId = "${company.id}";
     require(['module/company-info']);
 </script>
 </body>

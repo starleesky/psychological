@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.com.tsjx.catagory.entity.Catagory;
+import cn.com.tsjx.catagory.service.CatagoryService;
 import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.sysOption.service.SysoptionService;
 import com.qiniu.UploadDemo;
@@ -49,81 +51,84 @@ import cn.com.tsjx.user.service.UserService;
 @RequestMapping("/infomation")
 public class InfomationController {
 
-	@Resource
-	InfomationService infomationService;
-	@Resource
-	UserService userService;
-	@Resource
-	CompanyService companyService;
+    @Resource
+    InfomationService infomationService;
+    @Resource
+    UserService userService;
+    @Resource
+    CompanyService companyService;
 
-	@Resource
-	AttchService attchService;
+    @Resource
+    AttchService attchService;
 
-	@Resource
-	SysoptionService sysoptionService;
+    @Resource
+    SysoptionService sysoptionService;
 
-	// 写入文件
-	@Value("${file.uplaoddir}")
-	String path;
+    @Resource
+    CatagoryService catagoryService;
 
-	@RequestMapping(value = "/pub/my")
-	public String pub(Model model, HttpSession httpSession) {
-		model.addAttribute("type", 1);
-		User user = (User) httpSession.getAttribute("user");
-		infoCounts(model, user);
-		return "/wap/want-release";
-	}
+    // 写入文件
+    @Value("${file.uplaoddir}")
+    String path;
 
-	@RequestMapping(value = "/sale/my")
-	public String sale(Model model, HttpSession httpSession) {
-		model.addAttribute("type", 2);
-		User user = (User) httpSession.getAttribute("user");
-		infoCounts(model, user);
-		return "/wap/want-release";
-	}
+    @RequestMapping(value = "/pub/my")
+    public String pub(Model model, HttpSession httpSession) {
+        model.addAttribute("type", 1);
+        User user = (User) httpSession.getAttribute("user");
+        infoCounts(model, user);
+        return "/wap/want-release";
+    }
 
-	@RequestMapping(value = "/list")
-	public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("entity", infomation);
-		pager = infomationService.page(params, pager);
-		model.addAttribute("pager", pager);
-		model.addAttribute("bean", infomation);
-		return "/infomation/infomation_list";
-	}
+    @RequestMapping(value = "/sale/my")
+    public String sale(Model model, HttpSession httpSession) {
+        model.addAttribute("type", 2);
+        User user = (User) httpSession.getAttribute("user");
+        infoCounts(model, user);
+        return "/wap/want-release";
+    }
 
-	@RequestMapping(value = "/input", method = RequestMethod.GET)
-	public String input(Long id, Model model) {
-		if (id != null) {
-			Infomation infomation = infomationService.get(id);
-			User user = null;
-			if (infomation.getUserId() != null) {
-				user = userService.get(infomation.getUserId());
-				model.addAttribute("user", user);
-			}
-			if (user != null && user.getCompanyId() != null) {
-				Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-				model.addAttribute("company", company);
-			}
-			if (user != null) {
-				Attch entity = new Attch();
-				//entity.setUserId(user.getId());
-				entity.setInformationId(id);
-				List<Attch> list = attchService.find(entity);
-				model.addAttribute("listAttch", list);
+    @RequestMapping(value = "/list")
+    public String list(Pager<Infomation> pager, Infomation infomation, Model model) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("entity", infomation);
+        pager = infomationService.page(params, pager);
+        model.addAttribute("pager", pager);
+        model.addAttribute("bean", infomation);
+        return "/infomation/infomation_list";
+    }
 
-				String firstImg = "";
-				if (list.size() > 0) {
-					firstImg = list.get(0).getAttchUrl();
-				}
-				model.addAttribute("firstImg", firstImg);
-			}
-			model.addAttribute("bean", infomation);
-		}
-		return "/wap/view";
-	}
+    @RequestMapping(value = "/input", method = RequestMethod.GET)
+    public String input(Long id, Model model) {
+        if (id != null) {
+            Infomation infomation = infomationService.get(id);
+            User user = null;
+            if (infomation.getUserId() != null) {
+                user = userService.get(infomation.getUserId());
+                model.addAttribute("user", user);
+            }
+            if (user != null && user.getCompanyId() != null) {
+                Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+                model.addAttribute("company", company);
+            }
+            if (user != null) {
+                Attch entity = new Attch();
+                //entity.setUserId(user.getId());
+                entity.setInformationId(id);
+                List<Attch> list = attchService.find(entity);
+                model.addAttribute("listAttch", list);
 
-	@RequestMapping(value = "/save/my", method = RequestMethod.POST)
+                String firstImg = "";
+                if (list.size() > 0) {
+                    firstImg = list.get(0).getAttchUrl();
+                }
+                model.addAttribute("firstImg", firstImg);
+            }
+            model.addAttribute("bean", infomation);
+        }
+        return "/wap/view";
+    }
+
+    @RequestMapping(value = "/save/my", method = RequestMethod.POST)
     public void save(InfomationDto infomation, HttpServletResponse response, HttpSession httpSession) {
 
         //新增发布信息人记录表
@@ -165,9 +170,11 @@ public class InfomationController {
             Attch attch = new Attch();
             attch.setInformationId(infomation.getId());
             attch.setUserId(user.getId());
-
-            attch.setAttchUrl(
-                    "/images/catagory/" + infomation.getCatagoryBigId() + "/" + infomation.getCatagoryMidId() + ".jpg");
+            Catagory catagory = catagoryService.get(infomation.getCatagoryMidId());
+            if (catagory != null) {
+                attch.setAttchUrl(
+                        catagory.getCode());
+            }
             attchService.insert(attch);
         }
         //
@@ -181,10 +188,10 @@ public class InfomationController {
                     File afile = new File(path + img);
                     if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
                         //添加水印
-                        WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
+                        WaterSet.pressImage(path + "/wap/images/watermark.png", path + "/images/information/" + afile.getName(), 4, 1);
                         //上传图片
                         try {
-                            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(),"/images/information/" + afile.getName());
+                            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(), "/images/information/" + afile.getName());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -205,44 +212,44 @@ public class InfomationController {
         }
     }
 
-	@ResponseBody
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public Result<String> update(Infomation infomation, Model model) {
-		Result<String> result = new Result<String>();
-		
-		infomationService.update(infomation);
-		result.setMessage("操作成功");
-		//model.addAttribute("redirectionUrl", "/infomation/list.htm");
-		return result;
-	}
+    @ResponseBody
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public Result<String> update(Infomation infomation, Model model) {
+        Result<String> result = new Result<String>();
 
-	@ResponseBody
-	@RequestMapping(value = "/del", method = RequestMethod.GET)
-	public Result<Boolean> del(Long[] ids) {
-		Result<Boolean> result = new Result<Boolean>();
-		List<Long> list = new ArrayList<Long>();
-		for (Long id : ids) {
-			list.add(id);
-		}
-		infomationService.delete(list);
-		result.setMessage("删除成功");
-		result.setObject(true);
-		result.setResult(true);
-		return result;
-	}
+        infomationService.update(infomation);
+        result.setMessage("操作成功");
+        //model.addAttribute("redirectionUrl", "/infomation/list.htm");
+        return result;
+    }
 
-	/**
-	 * 查询我的信息列表
-	 *
-	 * @param pager
-	 * @param infomation
-	 * @param model
-	 * @param httpSession
-	 * @return
-	 */
-	@RequestMapping(value = "/infoList/my")
-	public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
-			String order) {
+    @ResponseBody
+    @RequestMapping(value = "/del", method = RequestMethod.GET)
+    public Result<Boolean> del(Long[] ids) {
+        Result<Boolean> result = new Result<Boolean>();
+        List<Long> list = new ArrayList<Long>();
+        for (Long id : ids) {
+            list.add(id);
+        }
+        infomationService.delete(list);
+        result.setMessage("删除成功");
+        result.setObject(true);
+        result.setResult(true);
+        return result;
+    }
+
+    /**
+     * 查询我的信息列表
+     *
+     * @param pager
+     * @param infomation
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping(value = "/infoList/my")
+    public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
+                           String order) {
 
         String status = StringUtil.isBlank(infomation.getStatus()) ?
                 InfomationEnum.status_sj.code() :
@@ -275,18 +282,18 @@ public class InfomationController {
         return "/wap/infomation_list";
     }
 
-	/**
-	 * 查询“我的收藏”列表
-	 *
-	 * @param pager
-	 * @param infomation
-	 * @param model
-	 * @param httpSession
-	 * @return
-	 */
-	@RequestMapping(value = "/colleInfoList/my")
-	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
-			HttpSession httpSession) {
+    /**
+     * 查询“我的收藏”列表
+     *
+     * @param pager
+     * @param infomation
+     * @param model
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping(value = "/colleInfoList/my")
+    public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
+                                HttpSession httpSession) {
 
         //关联用户ID
         User user = (User) httpSession.getAttribute("user");

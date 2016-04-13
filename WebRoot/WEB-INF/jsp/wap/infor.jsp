@@ -27,7 +27,7 @@
             </div>
             <div class="bd">
                 <div class="info clearfix">
-                    <img src="${ctx}/wap/images/icon_2.png" class="f-l"  />
+                    <img src="${imgHost}${userInfo.headIcon}" class="f-l"  />
                     <div class="info-desc f-l">
                         <h2>${userInfo.userName}</h2>
                         <p>注册时间:<span class="date"> 
@@ -35,7 +35,7 @@
                          </span>
                          </p>
                     </div>
-                    <a href="${ctx}/user/input.htm?id=${userInfo.id}" class="up-info f-l">修改</a>
+                    <a href="${ctx}/user/input/my.htm?id=${userInfo.id}" class="up-info f-l">修改</a>
                 </div>
                 <div class="pro-nav">
                     <a href="${ctx }/infomation/infoList/my?status=2">

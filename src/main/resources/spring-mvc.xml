@@ -74,6 +74,7 @@
 			<mvc:mapping path="/admin/*/*" />
 <!-- 	 	前端过滤 -->
 			<mvc:mapping path="/*/*/my" />
+			<mvc:mapping path="/*/*/my*" />
 			<bean class="cn.com.tsjx.interceptor.UserInterceptor" />
 		</mvc:interceptor>
    </mvc:interceptors>

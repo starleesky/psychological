@@ -28,12 +28,12 @@
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
-                    <img src="${ctx}${firstImg}" />
+                    <img src="${imgHost}${firstImg}" />
                 </div>
                 <div class="img-list">
                 	<c:forEach items="${listAttch }" var="attach">
-	                	<a href="javascript:;" data-url="${ctx }${attach.attchUrl}">
-	                        <img src="${ctx }${attach.attchUrl}" />
+	                	<a href="javascript:;" data-url="${imgHost}${attach.attchUrl}">
+	                        <img src="${imgHost}${attach.attchUrl}" />
 	                    </a>
                 	</c:forEach>
                    <!--  <a href="javascript:;" data-url="images/img_1.jpg">

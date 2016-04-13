@@ -65,6 +65,10 @@ public class InfomationController {
 	// 写入文件
 	@Value("${file.uplaoddir}")
 	String path;
+	
+	@Value("${img.host}")
+    String imgHost;
+	
 
 	@RequestMapping(value = "/pub/my")
 	public String pub(Model model, HttpSession httpSession) {
@@ -119,6 +123,8 @@ public class InfomationController {
 				model.addAttribute("firstImg", firstImg);
 			}
 			model.addAttribute("bean", infomation);
+	        model.addAttribute("imgHost", imgHost);
+
 		}
 		return "/wap/view";
 	}

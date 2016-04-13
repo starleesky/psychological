@@ -46,6 +46,7 @@
             <th>ID</th>
             <th>产品名称</th>
             <th>父类ID</th>
+            <th>图片路径</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -54,6 +55,7 @@
             <td ng-bind="c.id"></td>
             <td ng-bind="c.catagoryName"></td>
             <td ng-bind="c.parentId"></td>
+            <td ng-bind="c.code"></td>
             <td>
                 <%--<button class="btn btn-primary" ng-click="showDetail(c,$index)">查询详情</button>--%>
                 <button class="btn btn-primary" ng-click="edit(c,$index)">修改</button>

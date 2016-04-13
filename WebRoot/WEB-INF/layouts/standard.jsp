@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="shortcut icon" href="${ctx}/wap/images/favicon.ico" type="image/x-icon" />
     <title>汤森机械管理后台系统</title>
 
     <!-- Bootstrap Core CSS -->
@@ -53,6 +53,7 @@
     <script src="${ctx}/resources/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
     <script src="${ctx}/resources/config.js"></script>
+
 
 </head>
 

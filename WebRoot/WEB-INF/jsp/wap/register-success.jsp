@@ -5,15 +5,14 @@
 <html>
 <head>
     <title>汤森机械网-注册</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,user-scalable=no" />
+    <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/register.css?v=1" type="text/css" charset="utf-8">
 </head>
 <body>
 <!--head begin-->
 <header class="ui-header">
     <a href="${ctx}/wap/index.htm" class="ui-left">
-        <img src="${ctx}/wap/images/logo.gif" class="ui-logo" />
+        <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
     </a>
     <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
         <img src="${ctx}/wap/images/user_icon.png" />登录

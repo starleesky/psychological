@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
+<c:set var="imgHost" value="${imgHost}"/>
 <style type="text/css">
     h3 {
         border-bottom: 1px solid #ddd;
@@ -186,7 +187,7 @@
 <div>
     <h3 class="clearfix">信息图片</h3><br/>
     <c:forEach var="img" items="${beanImg}">
-        <img src="${ctx}${img.attchUrl}" style="max-width: 100%;"
+        <img src="${imgHost}${img.attchUrl}" style="max-width: 100%;"
              alt="">
     </c:forEach>
 </div>

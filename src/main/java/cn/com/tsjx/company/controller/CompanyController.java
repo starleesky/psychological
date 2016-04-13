@@ -1,6 +1,7 @@
 package cn.com.tsjx.company.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import cn.com.tsjx.common.constants.enums.CompanyEnum;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +44,11 @@ public class CompanyController {
 	String path;
 
 
-    @RequestMapping(value = "/list")
+	@Value("${img.host}")
+	String imgHost;
+
+
+	@RequestMapping(value = "/list")
     public String list(Pager<Company> pager,Company company,Model model) {
         Map<String,Object> params=new HashMap<String,Object>();
         params.put("entity", company);
@@ -69,36 +76,59 @@ public class CompanyController {
 
 		if(!StringUtils.isEmpty(company.getCreateBy())){
 			File afile = new File(path+company.getCreateBy());
-			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
-				company.setCreateBy("/images/information/" + afile.getName());
+			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
+				company.setCreateBy("/images/company/" + afile.getName());
+				handleImg(afile);
 			}
 		}
 		if(!StringUtils.isEmpty(company.getBusinessLicenseImageUrl())){
 			File afile = new File(path+company.getBusinessLicenseImageUrl());
-			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
-				company.setCreateBy("/images/information/" + afile.getName());
+			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
+				company.setBusinessLicenseImageUrl("/images/company/" + afile.getName());
+				handleImg(afile);
 			}
 		}
 
 		if(!StringUtils.isEmpty(company.getOrganizationCodeImageUrl())){
 			File afile = new File(path+company.getOrganizationCodeImageUrl());
-			if (afile.renameTo(new File(path+"/images/information/" + afile.getName()))) {
-				company.setCreateBy("/images/information/" + afile.getName());
+			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
+				company.setOrganizationCodeImageUrl("/images/company/" + afile.getName());
+				handleImg(afile);
+
 			}
 		}
 		company.setStatus(CompanyEnum.status_audit.code());
-		Company companyN = companyService.insert(company);
+		Company companyN;
 		User updUser = new User();
-		updUser.setId(user.getId());
-		updUser.setCompanyId(String.valueOf(companyN.getId()));
-		userService.update(updUser);
-		user.setCompanyId(String.valueOf(companyN.getId()));
+		if(company.getId()!=null&&company.getId()!=0){
+			companyService.update(company);
+			updUser.setId(user.getId());
+			updUser.setCompanyId(String.valueOf(company.getId()));
+			userService.update(updUser);
+		}else{
+			companyN = companyService.insert(company);
+			updUser.setId(user.getId());
+			updUser.setCompanyId(String.valueOf(companyN.getId()));
+			userService.update(updUser);
+		}
+		user.setCompanyId(updUser.getCompanyId());
 		httpSession.setAttribute("user", user);
 		Result<Boolean> result = new Result<Boolean>();
 		result.setMessage("新增信息成功");
 		result.setObject(true);
 		result.setResult(true);
 		return result;
+	}
+
+	private void handleImg(File afile) {
+		//添加水印
+		WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/company/" + afile.getName(),4,1);
+		//上传图片
+		try {
+            new UploadDemo().uploadImgs(path + "/images/company/" + afile.getName(),"/images/company/" + afile.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)

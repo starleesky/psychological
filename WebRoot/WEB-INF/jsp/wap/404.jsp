@@ -2,8 +2,7 @@
 <html>
 <head>
 <title>汤森机械网</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,user-scalable=no" />
+	<%@ include file = "meta.jsp" %>
 <link rel="stylesheet" href="css/module/404.css" type="text/css" charset="utf-8">
 </head>
 <body>

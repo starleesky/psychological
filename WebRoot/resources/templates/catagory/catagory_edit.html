@@ -21,6 +21,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">图片路径</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="code" name="code" placeholder="父类Id" required ng-model="user.code">
+                <span class="form-error" ng-show="submitted && add_form.code.$invalid">必须填写</span>
+            </div>
+        </div>
+
     </form>
 
 </div>

@@ -119,6 +119,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
     }
 
     //隐藏域设置值
+    var up0,up1,up2;
 
 
     $("#jSubmit").click(function () {
@@ -132,18 +133,40 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             return;
         }
 
-        if($('input[name=_UPLOAD_0]').val()==""){
-            box.error("公司logo不能为空");
-            return;
+        if(companyId==""){
+            if($('input[name=_UPLOAD_0]').val()==""){
+                box.error("公司logo不能为空");
+                return;
+            }
+            if($('input[name=_UPLOAD_1]').val()==""){
+                box.error("营业执照副本不能为空");
+                return;
+            }
+            if($('input[name=_UPLOAD_2]').val()==""){
+                box.error("组织机构代码证不能为空");
+                return;
+            }
+            up0=$('input[name=_UPLOAD_0]').val();
+            up1=$('input[name=_UPLOAD_1]').val();
+            up2=$('input[name=_UPLOAD_2]').val();
+        }else{
+            if($('input[name=_UPLOAD_0]').val()!=""){
+                up0=$('input[name=_UPLOAD_0]').val();
+            }else{
+                up0=$('input[name=_UPLOAD_00]').val();
+            }
+            if($('input[name=_UPLOAD_1]').val()!=""){
+                up1=$('input[name=_UPLOAD_1]').val();
+            }else{
+                up2=$('input[name=_UPLOAD_01]').val();
+            }
+            if($('input[name=_UPLOAD_2]').val()!=""){
+                up2=$('input[name=_UPLOAD_2]').val();
+            }else{
+                up2=$('input[name=_UPLOAD_0]').val();
+            }
         }
-        if($('input[name=_UPLOAD_1]').val()==""){
-            box.error("营业执照副本不能为空");
-            return;
-        }
-        if($('input[name=_UPLOAD_2]').val()==""){
-            box.error("组织机构代码证不能为空");
-            return;
-        }
+
         $('#companyForm').submit();
 
     });
@@ -181,10 +204,11 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             $.post(
                 url.saveCompany,
                 {
+                    id:companyId,
                     companyName: $(form).find('input[name=companyName]').val(),
-                    createBy: $(form).find('input[name=_UPLOAD_0]').val(),
-                    businessLicenseImageUrl: $(form).find('input[name=_UPLOAD_1]').val(),
-                    organizationCodeImageUrl: $(form).find('input[name=_UPLOAD_2]').val(),
+                    createBy: up0,
+                    businessLicenseImageUrl: up1,
+                    organizationCodeImageUrl: up2,
                     telephone: $(form).find('input[name=telephone]').val(),
                     fax: $(form).find('input[name=fax]').val(),
                     address: $(form).find('input[name=address]').val(),
@@ -197,10 +221,10 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 function (data) {
                     if (data.result) {
                         box.ok(data.message);
-                        window.location.href = ctx+"/wap/infor";
+                        window.location.href = ctx+"/user/infor/my";
                     } else {
                         box.error(data.message);
-                        window.location.href = ctx+"/wap/infor";
+                        window.location.href = ctx+"/user/infor/my";
                     }
 
                 });

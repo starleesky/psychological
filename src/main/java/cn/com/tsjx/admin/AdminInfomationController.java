@@ -19,10 +19,13 @@ import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.models.service.ModelsService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
+import cn.com.tsjx.sysOption.entity.Sysoption;
+import cn.com.tsjx.sysOption.service.SysoptionService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +70,12 @@ public class AdminInfomationController {
     @Resource
     ModelsService modelsService;
 
+    @Resource
+    SysoptionService sysoptionService;
+
+    @Value("${img.host}")
+    String imgHost;
+
     @RequestMapping(value = "/infomation/list/getData")
     @ResponseBody
     public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
@@ -90,6 +99,7 @@ public class AdminInfomationController {
         attach.setInformationId(id);
         List<Attch> attches = attchService.find(attach);
         model.addAttribute("beanImg", attches);
+        model.addAttribute("imgHost", imgHost);
         return "admin/infomation/detail";
     }
 
@@ -184,6 +194,20 @@ public class AdminInfomationController {
         Result<Boolean> result = new Result<Boolean>();
         infomationService.delete(id);
         result.setMessage("删除成功");
+        result.setObject(true);
+        result.setResult(true);
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/infomation/changeAuditType", method = RequestMethod.GET)
+    public Result<Boolean> change(String type) {
+        Result<Boolean> result = new Result<Boolean>();
+        Sysoption sysoption = new Sysoption();
+        sysoption.setId(1L);
+        sysoption.setSetVal(type);
+        sysoptionService.update(sysoption);
+        result.setMessage("更新成功");
         result.setObject(true);
         result.setResult(true);
         return result;

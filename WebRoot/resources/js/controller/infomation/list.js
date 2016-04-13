@@ -86,6 +86,29 @@ define(function (require) {
                     }
                 }
 
+                //删除
+                $scope.auditTypeFunc = function (type) {
+                    var title = "";
+                    if(type==1){
+                        title = "开启自动审核";
+                    }else{
+                        title = "关闭自动审核";
+                    }
+                    if (confirm("确认"+title+"？")) {
+                        $http.get(angular.path + "/admin/infomation/changeAuditType?type=" + type)
+                            .success(function (resp) {
+                                if (resp.result) {
+                                    alert(title+"成功！");
+                                    window.location.href = angular.path + '/admin/infomation/list';
+                                } else {
+                                    alert("开启失败，请重试！");
+                                }
+                            })
+                            .error(function () {
+                                alert("开启失败，请重试！");
+                            });
+                    }
+                }
             }
         ])
         .controller('upLoadCtrl', ['$scope', '$modalInstance', '$modal', 'Upload', 'company', 'uploadFileHandler', function ($scope, $modalInstance, $modal, $upload, company, UploadFileHandler) {

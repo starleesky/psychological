@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.sysOption.service.SysoptionService;
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.stereotype.Controller;
@@ -64,7 +66,7 @@ public class InfomationController {
 	@Value("${file.uplaoddir}")
 	String path;
 
-	@RequestMapping(value = "/pub")
+	@RequestMapping(value = "/pub/my")
 	public String pub(Model model, HttpSession httpSession) {
 		model.addAttribute("type", 1);
 		User user = (User) httpSession.getAttribute("user");
@@ -72,7 +74,7 @@ public class InfomationController {
 		return "/wap/want-release";
 	}
 
-	@RequestMapping(value = "/sale")
+	@RequestMapping(value = "/sale/my")
 	public String sale(Model model, HttpSession httpSession) {
 		model.addAttribute("type", 2);
 		User user = (User) httpSession.getAttribute("user");
@@ -121,7 +123,7 @@ public class InfomationController {
 		return "/wap/view";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save/my", method = RequestMethod.POST)
     public void save(InfomationDto infomation, HttpServletResponse response, HttpSession httpSession) {
 
         //新增发布信息人记录表
@@ -163,6 +165,7 @@ public class InfomationController {
             Attch attch = new Attch();
             attch.setInformationId(infomation.getId());
             attch.setUserId(user.getId());
+
             attch.setAttchUrl(
                     "/images/catagory/" + infomation.getCatagoryBigId() + "/" + infomation.getCatagoryMidId() + ".jpg");
             attchService.insert(attch);
@@ -177,6 +180,14 @@ public class InfomationController {
                 if (!StringUtils.isEmpty(img)) {
                     File afile = new File(path + img);
                     if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
+                        //添加水印
+                        WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
+                        //上传图片
+                        try {
+                            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(),"/images/information/" + afile.getName());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         attch.setAttchUrl("/images/information/" + afile.getName());
                     } else {
                         attch.setAttchUrl(img);
@@ -273,7 +284,7 @@ public class InfomationController {
 	 * @param httpSession
 	 * @return
 	 */
-	@RequestMapping(value = "/colleInfoList")
+	@RequestMapping(value = "/colleInfoList/my")
 	public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
 			HttpSession httpSession) {
 

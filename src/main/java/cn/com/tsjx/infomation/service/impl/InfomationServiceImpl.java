@@ -14,11 +14,14 @@ import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.util.StringUtil;
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import cn.com.tsjx.common.dao.BaseDao;
@@ -43,6 +46,9 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 
     @Resource
     AttchService attchService;
+
+    @Value("${file.uplaoddir}")
+    String path;
 
     @Override
     protected BaseDao<Infomation, Long> getBaseDao() {
@@ -138,11 +144,27 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
                     Attch attch = new Attch();
                     attch.setInformationId(infomation.getId());
 //                    attch.setUserId(user.getId());
-                    attch.setAttchUrl("/images/upload/"+img);
+                    attch.setAttchUrl("/images/upload/" + img);
+                    handleImg("/images/upload/" + img);
                     attchService.insert(attch);
                 }
             }
         }
 
+    }
+
+    private void handleImg(String filePath) {
+        //添加水印
+        WaterSet.pressImage(path + "/wap/images/watermark.png", path + filePath, 4, 1);
+        //上传图片
+        try {
+            new UploadDemo().uploadImgs(path + filePath, filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void autoDown(){
+    	infomationDao.autoDown();
     }
 }

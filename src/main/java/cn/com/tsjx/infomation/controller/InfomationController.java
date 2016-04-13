@@ -13,14 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import cn.com.tsjx.catagory.entity.Catagory;
-import cn.com.tsjx.catagory.service.CatagoryService;
-import cn.com.tsjx.common.constants.enums.SysOptionConstant;
-import cn.com.tsjx.sysOption.service.SysoptionService;
-import com.qiniu.UploadDemo;
-import com.qiniu.WaterSet;
 import org.springframework.beans.factory.annotation.Value;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -28,9 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.qiniu.UploadDemo;
+import com.qiniu.WaterSet;
+
 import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
+import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
@@ -44,6 +41,7 @@ import cn.com.tsjx.demo.pageOutDto;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
+import cn.com.tsjx.sysOption.service.SysoptionService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 
@@ -64,12 +62,13 @@ public class InfomationController {
     @Resource
     SysoptionService sysoptionService;
 
-    @Resource
-    CatagoryService catagoryService;
-
     // 写入文件
     @Value("${file.uplaoddir}")
     String path;
+    
+    @Value("${img.host}")
+    String imgHost;
+    
 
     @RequestMapping(value = "/pub/my")
     public String pub(Model model, HttpSession httpSession) {
@@ -124,6 +123,8 @@ public class InfomationController {
                 model.addAttribute("firstImg", firstImg);
             }
             model.addAttribute("bean", infomation);
+            model.addAttribute("imgHost", imgHost);
+
         }
         return "/wap/view";
     }
@@ -170,11 +171,9 @@ public class InfomationController {
             Attch attch = new Attch();
             attch.setInformationId(infomation.getId());
             attch.setUserId(user.getId());
-            Catagory catagory = catagoryService.get(infomation.getCatagoryMidId());
-            if (catagory != null) {
-                attch.setAttchUrl(
-                        catagory.getCode());
-            }
+
+            attch.setAttchUrl(
+                    "/images/catagory/" + infomation.getCatagoryBigId() + "/" + infomation.getCatagoryMidId() + ".jpg");
             attchService.insert(attch);
         }
         //
@@ -188,10 +187,10 @@ public class InfomationController {
                     File afile = new File(path + img);
                     if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
                         //添加水印
-                        WaterSet.pressImage(path + "/wap/images/watermark.png", path + "/images/information/" + afile.getName(), 4, 1);
+                        WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/information/" + afile.getName(),4,1);
                         //上传图片
                         try {
-                            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(), "/images/information/" + afile.getName());
+                            new UploadDemo().uploadImgs(path + "/images/information/" + afile.getName(),"/images/information/" + afile.getName());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -216,7 +215,7 @@ public class InfomationController {
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public Result<String> update(Infomation infomation, Model model) {
         Result<String> result = new Result<String>();
-
+        
         infomationService.update(infomation);
         result.setMessage("操作成功");
         //model.addAttribute("redirectionUrl", "/infomation/list.htm");
@@ -249,7 +248,7 @@ public class InfomationController {
      */
     @RequestMapping(value = "/infoList/my")
     public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
-                           String order) {
+            String order) {
 
         String status = StringUtil.isBlank(infomation.getStatus()) ?
                 InfomationEnum.status_sj.code() :
@@ -293,7 +292,7 @@ public class InfomationController {
      */
     @RequestMapping(value = "/colleInfoList/my")
     public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
-                                HttpSession httpSession) {
+            HttpSession httpSession) {
 
         //关联用户ID
         User user = (User) httpSession.getAttribute("user");

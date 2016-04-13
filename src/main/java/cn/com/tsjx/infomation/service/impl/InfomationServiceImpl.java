@@ -163,4 +163,8 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
             e.printStackTrace();
         }
     }
+    
+    public void autoDown(){
+    	infomationDao.autoDown();
+    }
 }

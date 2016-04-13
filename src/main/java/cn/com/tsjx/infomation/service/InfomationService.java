@@ -52,4 +52,10 @@ public interface InfomationService extends BaseService<Infomation, Long> {
      * @param inputStream
      */
     public void bathInfomation(InputStream inputStream) throws IOException;
+    
+    
+    /**
+     * 自动下架定时任务
+     */
+    public void autoDown();
 }

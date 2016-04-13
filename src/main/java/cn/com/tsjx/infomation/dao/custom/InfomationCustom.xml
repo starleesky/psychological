@@ -222,4 +222,13 @@
 		<include refid="mybatis.pageEndSQL" />
 	</select>
 	
+	<update id="autoDown" parameterType="cn.com.tsjx.infomation.entity.Infomation">
+		<![CDATA[
+		update tsjx_infomation 
+			set status = '4' 
+		where to_days(now()) - to_days(pub_time) > valid_time and status = '2'
+		]]>
+	</update>
+	
+	
 </mapper>   

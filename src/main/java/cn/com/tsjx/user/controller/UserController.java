@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
+import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.common.web.model.JsonResult;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
@@ -48,6 +49,9 @@ public class UserController {
     @Value("${file.uplaoddir}")
     String path;
 
+    @Value("${img.host}")
+    String imgHost;
+
     @RequestMapping(value = "/list")
     public String list(Pager<User> pager,User user,Model model) {
         Map<String,Object> params=new HashMap<String,Object>();
@@ -59,7 +63,7 @@ public class UserController {
     }
     
 
-    @RequestMapping(value = "/input", method = RequestMethod.GET)
+    @RequestMapping(value = "/input/my", method = RequestMethod.GET)
     public String input(Long id,Model model) {
         User user=new User();
     	if(id!=null){
@@ -84,7 +88,7 @@ public class UserController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public JsonResult update(UserDto user,Model model) {
         JsonResult jsonResult = new JsonResult();
-        if(user!=null && user.getOldPassword() != null){
+        if(user!=null && StringUtil.isNotTrimBlank(user.getOldPassword())){
             User user2 = userService.get(user.getId());
             String StringBase = Base64.encodeBase64String(user.getOldPassword().getBytes()) ;
             if(!StringBase.equals(user2.getPassword())){
@@ -187,6 +191,7 @@ public class UserController {
            Pager<InfomationDto> colleanInfo = infomationService.getPagerCollections(param, pager);
            model.addAttribute("cnt_sc", colleanInfo.getTotalCount());
            model.addAttribute("collections", colleanInfo.getItems());
+           model.addAttribute("imgHost", imgHost);
        }
        
        return "/wap/infor";

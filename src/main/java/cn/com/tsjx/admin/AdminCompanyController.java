@@ -48,10 +48,6 @@ public class AdminCompanyController {
 	@Resource
 	NoticeService noticeService;
 
-
-	@Value("${img.host}")
-	String imgHost;
-
 	@RequestMapping(value = "/company/list/getData")
 	@ResponseBody
 	public Pager<Company> list(Pager<Company> pager, Company company, Model model) {
@@ -70,7 +66,6 @@ public class AdminCompanyController {
 			company = companyService.get(id);
 		}
 		model.addAttribute("bean", company);
-		model.addAttribute("imgHost", imgHost);
 		//		model.addAttribute("bean", JsonMapper.getMapper().toJson(company));
 		return "admin/company/detail";
 	}

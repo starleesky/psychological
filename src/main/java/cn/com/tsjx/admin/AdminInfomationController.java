@@ -73,9 +73,6 @@ public class AdminInfomationController {
     @Resource
     SysoptionService sysoptionService;
 
-    @Value("${img.host}")
-    String imgHost;
-
     @RequestMapping(value = "/infomation/list/getData")
     @ResponseBody
     public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
@@ -99,7 +96,6 @@ public class AdminInfomationController {
         attach.setInformationId(id);
         List<Attch> attches = attchService.find(attach);
         model.addAttribute("beanImg", attches);
-        model.addAttribute("imgHost", imgHost);
         return "admin/infomation/detail";
     }
 

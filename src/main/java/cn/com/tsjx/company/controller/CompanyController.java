@@ -43,11 +43,6 @@ public class CompanyController {
 	@Value("${file.uplaoddir}")
 	String path;
 
-
-	@Value("${img.host}")
-	String imgHost;
-
-
 	@RequestMapping(value = "/list")
     public String list(Pager<Company> pager,Company company,Model model) {
         Map<String,Object> params=new HashMap<String,Object>();

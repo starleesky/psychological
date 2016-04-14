@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
-<c:set var="imgHost" value="${imgHost}"/>
+<c:set var="imgHost" value="${initParam.imgHost}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +70,7 @@
                         </a>
                         <c:if test="${company.createBy!=null}">
                             <div class="upload-div">
-                                <img src="${imgHost}${company.createBy}">
+                                <img src="${initParam.imgHost}${company.createBy}">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>
@@ -161,7 +161,7 @@
                         </a>
                         <c:if test="${company.businessLicenseImageUrl!=null}">
                             <div class="upload-div">
-                                <img src="${imgHost}${company.businessLicenseImageUrl}">
+                                <img src="${initParam.imgHost}${company.businessLicenseImageUrl}">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>
@@ -177,7 +177,7 @@
                         </a>
                         <c:if test="${company.organizationCodeImageUrl!=null}">
                             <div class="upload-div">
-                                <img src="${imgHost}${company.organizationCodeImageUrl}">
+                                <img src="${initParam.imgHost}${company.organizationCodeImageUrl}">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>

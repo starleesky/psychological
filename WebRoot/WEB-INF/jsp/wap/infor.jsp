@@ -20,14 +20,14 @@
     <section class="login-info">
             <div class="hd">
                 <div class="f-l">
-                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号
+                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号${img.host}11
                 </div>
                 <a href="javascript:;" class="f-r jIsHide">隐藏</a>
                 
             </div>
             <div class="bd">
                 <div class="info clearfix">
-                    <img src="${imgHost}${userInfo.headIcon}" class="f-l"  />
+                    <img src="${initParam.imgHost}${userInfo.headIcon}" class="f-l"  />
                     <div class="info-desc f-l">
                         <h2>${userInfo.userName}</h2>
                         <p>注册时间:<span class="date"> 

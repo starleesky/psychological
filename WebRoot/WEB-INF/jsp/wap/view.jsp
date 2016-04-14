@@ -57,7 +57,7 @@
             <div class="hd">设备要求</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <h3>${bean.brandName}${bean.modelName}的求购信息</h3>
+                    <h3>${bean.brandName}${bean.modelName}</h3>
                     <ul>
                         <li>类别: ${bean.catagoryName}</li>
                         <li>品牌: ${bean.brandName}</li>
@@ -126,7 +126,7 @@
             <div class="hd">卖家信息</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <div class="pro-img"><img src="${ctx}${user.headIcon}" /></div>
+                    <div class="pro-img"><img src="${initParam.imgHost}${user.headIcon}" /></div>
                     <h3>${user.userName}</h3>
                     <ul>
                         <li class="w100">注册时间：

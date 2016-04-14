@@ -20,7 +20,7 @@
     <section class="login-info">
             <div class="hd">
                 <div class="f-l">
-                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号${img.host}11
+                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号
                 </div>
                 <a href="javascript:;" class="f-r jIsHide">隐藏</a>
                 
@@ -140,7 +140,7 @@
                    <c:forEach var="item" items="${Tops}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
-                            <span class="pro-img"><img src="${ctx }${item.imgUrl}" class="jImg" data-url="${ctx }${item.imgUrl}" /></span>
+                            <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
                             <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
@@ -170,7 +170,7 @@
                     <c:forEach var ="bb" items = "${collections}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${bb.id}">
-                            <span class="pro-img"><img src="${ctx}${bb.imgUrl}" class="jImg" data-url="${ctx}${bb.imgUrl}" /></span>
+                            <span class="pro-img"><img src="${initParam.imgHost}${bb.imgUrl}" class="jImg" data-url="${initParam.imgHost}${bb.imgUrl}" /></span>
                             <span class="name">${bb.brandName}${bb.modelName}</span>
                             <span class="price"><b>价格：</b>${bb.price}元</span>
                         </a>

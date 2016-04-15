@@ -148,6 +148,7 @@ public class UserController {
        if (user!=null) {
            infomation.setUserId(user.getId());
        }
+       infomation.setIsTop("1");
        pager.setEntity(infomation);
        pager = infomationService.getInfoPagerWithImg(params, pager, false);
        //Map<String, Object> params = new HashMap<String, Object>();

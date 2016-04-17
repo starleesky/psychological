@@ -204,7 +204,6 @@
 		    tsjx_infomation a WHERE 1=1
     		]]>
 		<include refid="page_condition_infos" />
-		order by create_time desc
 		<include refid="mybatis.pageEndSQL" />
 	</select>
 	
@@ -224,8 +223,6 @@
 		    tsjx_infomation a
     		]]>
 		<include refid="page_condition_infoWithoutUser" />
-				order by create_time desc
-		
 		<include refid="mybatis.pageEndSQL" />
 	</select>
 	

@@ -92,36 +92,46 @@
 					<div class="ui-form-mod">
                         <label class="ui-form-hd">产品大类</label>
                         <div class="ui-form-bd">
-                            <select class="bigGoodsCatagory"  name="catagoryBigId" id="catagoryBigId">
-                </select>
+                        <input type="hidden" name="catagoryBigId"  value="${info.catagoryBigId}"/>
+                    	<input type="hidden" name="catagoryBigName" id="catagoryBigName" value="${info.catagoryBigName}"/>
+                        <select class="bigGoodsCatagory"  name="bigGoodsCatagory" id="bigGoodsCatagory" validate="required:true" ><option value="" selected>请选择产品大类</option></select>
+                    
                         </div>
                     </div>
                         
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">产品子类</label>
                         <div class="ui-form-bd">
-                            <select class="middleGoodsCatagory"  name="catagoryMidId" id="catagoryMidId" >
+                        <input type="hidden" name="catagoryMidId"  value="${info.catagoryMidId}"/>
+                    	<input type="hidden" name="catagoryMidName" id="catagoryMidName" value="${info.catagoryMidName}"/>
+                            <select class="middleGoodsCatagory"  name="middleGoodsCatagory" id="middleGoodsCatagory" >
                        </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">产品</label>
                         <div class="ui-form-bd">
-                            <select class="catagorySmall" name="catagoryId" id="catagoryId" >
+                        <input type="hidden" name="catagoryId" value="${info.catagoryId}"/>
+                    	<input type="hidden" name="catagoryName" id="catagoryName" value="${info.catagoryName}"/>
+                       <select class="smallGoodsCatagory" name="catagorySmall" id="catagorySmall" validate="required:true"><option>请选择产品</option></select>
                            </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">品牌</label>
                         <div class="ui-form-bd">
-                            <select class="brand" name="brandId" id="brandId"  >
+                        <input type="hidden" name="brandId" value="${info.brandId}"/>
+                    	<input type="hidden" name="brandName" id="brandName" value="${info.brandName}"/>
+                            <select class="brand" name="brand" id="brand"  >
     </select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">型号</label>
                         <div class="ui-form-bd">
-                            <select class="models" name="modelId" id="modelId" >
+                           <input type="hidden" name="modelId" value="${info.modelId}"/>
+                    	<input type="hidden" name="modelName" id="modelName" value="${info.modelName}"/>
+                       	<select class="models"  name="models" id="models" validate="required:true"><option>请选择型号</option></select>
      </select>
                         </div>
                     </div>

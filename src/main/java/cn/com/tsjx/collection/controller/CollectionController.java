@@ -66,6 +66,10 @@ public class CollectionController {
         List<Collection> list = collectionService.find(collection);
         if (list.isEmpty()) {
             collectionService.insert(collection);
+        }else {
+            jsonResult.setResult(true);
+            jsonResult.setMessage("该信息已收藏");
+            return jsonResult;
         }
         jsonResult.setResult(true);
         jsonResult.setMessage("收藏成功");

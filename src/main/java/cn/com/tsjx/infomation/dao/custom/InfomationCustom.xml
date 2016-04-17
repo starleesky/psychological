@@ -104,6 +104,7 @@
 		and a.deleted = #{deleted,jdbcType=VARCHAR}
 		and a.user_id = #{userId,jdbcType=INTEGER}
 		and a.status = #{status,jdbcType=VARCHAR}
+		and a.is_top = #{isTop,jdbcType=VARCHAR}
 	</sql>
 	
 	<sql id="page_condition_infoWithoutUser">
@@ -152,6 +153,9 @@
 			</if>
 			<if test="entity.status != null and entity.status != ''">
 				AND a.STATUS = #{entity.status,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.isTop != null and entity.isTop != ''">
+				AND a.is_top = #{entity.isTop,jdbcType=VARCHAR}
 			</if>
 		</where>
 	</sql>

@@ -113,8 +113,11 @@
                     	<input type="hidden" name="sellType" id="sellType" value="${info.sellType}"/>
                         <select name="sellTypeSel" onchange="sellType.value=this.value">
                         	<option value="" selected></option>
+                        	<option value="0">出售</option>
+                       		<option value="1">租赁</option>
                         	<option value="2">求购</option>
                        		<option value="3">求租</option>
+                       		
                        	</select>
                     </div>
                 </div>

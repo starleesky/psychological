@@ -22,18 +22,17 @@
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}" >
                     <p class="pro-price"><fmt:formatNumber value="${bean.price }" maxFractionDigits="0" />元</p>
-                    <p class="pro-num">汤森信息编号: BNE01068</p>
                 </div>
                 <a href="./index.html" class="next-btn"><i class="icon iconfont">&#xe60e;</i></a>
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
-                    <img src="${imgHost}${firstImg}" />
+                    <img src="${initParam.imgHost}${firstImg}" />
                 </div>
                 <div class="img-list">
                 	<c:forEach items="${listAttch }" var="attach">
-	                	<a href="javascript:;" data-url="${imgHost}${attach.attchUrl}">
-	                        <img src="${imgHost}${attach.attchUrl}" />
+	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}">
+	                        <img src="${initParam.imgHost}${attach.attchUrl}" />
 	                    </a>
                 	</c:forEach>
                    <!--  <a href="javascript:;" data-url="images/img_1.jpg">
@@ -57,7 +56,7 @@
             <div class="hd">设备要求</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <h3>${bean.brandName}${bean.modelName}的求购信息</h3>
+                    <h3>${bean.brandName}${bean.modelName}</h3>
                     <ul>
                         <li>类别: ${bean.catagoryName}</li>
                         <li>品牌: ${bean.brandName}</li>
@@ -126,7 +125,7 @@
             <div class="hd">卖家信息</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <div class="pro-img"><img src="${ctx}${user.headIcon}" /></div>
+                    <div class="pro-img"><img src="${initParam.imgHost}${user.headIcon}" /></div>
                     <h3>${user.userName}</h3>
                     <ul>
                         <li class="w100">注册时间：

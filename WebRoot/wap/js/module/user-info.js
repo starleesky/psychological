@@ -75,7 +75,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             },
     		realName:{
     			required:true,
-    			maxlength:2
+    			minlength:2
     		}
         },
         messages: {
@@ -84,7 +84,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             },
             realName:{
             	required:'此项不能为空',
-            	maxlength:'最少不能少于2位'
+            	minlength:'最少不能少于2位'
             }
         },
         submitHandler: function (form) { 

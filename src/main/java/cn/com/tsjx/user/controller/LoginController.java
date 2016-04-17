@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.qiniu.util.Json;
+
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
@@ -90,6 +93,7 @@ public class LoginController {
         Infomation infomation = new Infomation();
         Params params = Params.create();
         params.add("entity", infomation);
+        params.add("isTop","1");
         pager = infomationService.getInfoPagerWithImg(params, pager,false);
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());

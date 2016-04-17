@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
-<c:set var="imgHost" value="${imgHost}"/>
+<c:set var="imgHost" value="${initParam.imgHost}"/>
 <style type="text/css">
     h3 {
         border-bottom: 1px solid #ddd;
@@ -92,17 +92,17 @@
     <div>
         <h4 class="clearfix">公司logo图片</h4><br/>
         <c:if test="${bean.createBy!=null}">
-            <img src="${imgHost}${bean.createBy}" style="max-width: 100%;"
+            <img src="${initParam.imgHost}${bean.createBy}" style="max-width: 100%;"
                  alt="营业执照图片">
         </c:if>
     <h4 class="clearfix">营业执照图片</h4><br/>
     <c:if test="${bean.businessLicenseImageUrl!=null}">
-        <img src="${imgHost}${bean.businessLicenseImageUrl}" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${bean.businessLicenseImageUrl}" style="max-width: 100%;"
              alt="营业执照图片">
     </c:if>
     <h4 class="clearfix">组织机构代码图片</h4><br/>
     <c:if test="${bean.organizationCodeImageUrl!=null}">
-        <img src="${imgHost}${bean.organizationCodeImageUrl}" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${bean.organizationCodeImageUrl}" style="max-width: 100%;"
              alt="组织机构代码图片">
     </c:if>
     </div>

@@ -27,7 +27,7 @@
             </div>
             <div class="bd">
                 <div class="info clearfix">
-                    <img src="${imgHost}${userInfo.headIcon}" class="f-l"  />
+                    <img src="${initParam.imgHost}${userInfo.headIcon}" class="f-l"  />
                     <div class="info-desc f-l">
                         <h2>${userInfo.userName}</h2>
                         <p>注册时间:<span class="date"> 
@@ -81,7 +81,7 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">搜索类型</label>
                         <div class="ui-form-bd">
-                            <select>
+                            <select id = "sellType" name = "sellType">
                                 <option value="0">出售</option>
                                 <option value="1">租赁</option>
                                 <option value="2">求购</option>
@@ -140,7 +140,7 @@
                    <c:forEach var="item" items="${Tops}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
-                            <span class="pro-img"><img src="${ctx }${item.imgUrl}" class="jImg" data-url="${ctx }${item.imgUrl}" /></span>
+                            <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
                             <span class="price"><b>价格：</b>${item.price}元</span>
                         </a>
@@ -170,7 +170,7 @@
                     <c:forEach var ="bb" items = "${collections}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${bb.id}">
-                            <span class="pro-img"><img src="${ctx}${bb.imgUrl}" class="jImg" data-url="${ctx}${bb.imgUrl}" /></span>
+                            <span class="pro-img"><img src="${initParam.imgHost}${bb.imgUrl}" class="jImg" data-url="${initParam.imgHost}${bb.imgUrl}" /></span>
                             <span class="name">${bb.brandName}${bb.modelName}</span>
                             <span class="price"><b>价格：</b>${bb.price}元</span>
                         </a>

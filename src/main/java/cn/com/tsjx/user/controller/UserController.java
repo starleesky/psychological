@@ -49,9 +49,6 @@ public class UserController {
     @Value("${file.uplaoddir}")
     String path;
 
-    @Value("${img.host}")
-    String imgHost;
-
     @RequestMapping(value = "/list")
     public String list(Pager<User> pager,User user,Model model) {
         Map<String,Object> params=new HashMap<String,Object>();
@@ -151,6 +148,7 @@ public class UserController {
        if (user!=null) {
            infomation.setUserId(user.getId());
        }
+       infomation.setIsTop("1");
        pager.setEntity(infomation);
        pager = infomationService.getInfoPagerWithImg(params, pager, false);
        //Map<String, Object> params = new HashMap<String, Object>();
@@ -191,7 +189,6 @@ public class UserController {
            Pager<InfomationDto> colleanInfo = infomationService.getPagerCollections(param, pager);
            model.addAttribute("cnt_sc", colleanInfo.getTotalCount());
            model.addAttribute("collections", colleanInfo.getItems());
-           model.addAttribute("imgHost", imgHost);
        }
        
        return "/wap/infor";

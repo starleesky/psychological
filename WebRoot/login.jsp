@@ -45,7 +45,6 @@
 
 <body>
 
-
 <div id="pace-done">
     <div data-ng-controller="userLoginCtrl" class="middle-box text-center loginscreen  animated fadeInDown">
         <div>

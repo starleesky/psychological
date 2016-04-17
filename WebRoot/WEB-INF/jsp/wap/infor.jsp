@@ -81,7 +81,7 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">搜索类型</label>
                         <div class="ui-form-bd">
-                            <select>
+                            <select id = "sellType" name = "sellType">
                                 <option value="0">出售</option>
                                 <option value="1">租赁</option>
                                 <option value="2">求购</option>

@@ -152,7 +152,7 @@
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
                             <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
-                            <span class="price"><b>价格：</b>${item.price}元</span>
+                            <span class="price"><b>价格：</b><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />元</span>
                         </a>
                     </li>
                    </c:forEach>
@@ -182,7 +182,7 @@
                         <a href="${ctx}/infomation/input.htm?id=${bb.id}">
                             <span class="pro-img"><img src="${initParam.imgHost}${bb.imgUrl}" class="jImg" data-url="${initParam.imgHost}${bb.imgUrl}" /></span>
                             <span class="name">${bb.brandName}${bb.modelName}</span>
-                            <span class="price"><b>价格：</b>${bb.price}元</span>
+                            <span class="price"><b>价格：</b><fmt:formatNumber value="${bb.price}" maxFractionDigits="0" />元</span>
                         </a>
                     </li>
 					</c:forEach>

@@ -157,6 +157,8 @@ public class UserController {
        
        // 今日推荐 前10
        model.addAttribute("Tops", pager.getItems());
+       
+       infomation.setIsTop(null);
        //1、上架
        infomation.setStatus(InfomationEnum.status_sj.code());
        List<Infomation> li_sj = infomationService.find(infomation);

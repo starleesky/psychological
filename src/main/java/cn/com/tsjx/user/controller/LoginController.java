@@ -123,6 +123,7 @@ public class LoginController {
         User entity = new User();
         entity.setEmail(user.getEmail());
         entity.setDeleted(Deleted.NO.value);
+        entity.setIsActivate(Deleted.YES.value);
         List<User> list = userService.find(entity);
         if (!list.isEmpty()) {
             result.setMessage("邮箱已注册");

@@ -50,8 +50,8 @@ define(
 		    }
 
 		    oBigGoodsCatagory.change(function () {
-		    	$("#catagoryBigId").val($('#infoSearchForm').find('select[name=catagoryBig]').val());
-		    	$("#catagoryBigName").val($('#infoSearchForm').find('select[name=catagoryBig]').find("option:selected").text());
+		    	$("#catagoryBigId").val($('#infoSearchForm').find('select[name=bigGoodsCatagory]').val());
+		    	$("#catagoryBigName").val($('#infoSearchForm').find('select[name=bigGoodsCatagory]').find("option:selected").text());
 		        getMiddle();
 		    });
 
@@ -73,8 +73,8 @@ define(
 		    }
 
 		    oMiddleGoodsCatagory.change(function () {
-		    	$("#catagoryMidId").val($('#infoSearchForm').find('select[name=catagoryMid]').val());
-		    	$("#catagoryMidName").val($('#infoSearchForm').find('select[name=catagoryMid]').find("option:selected").text());
+		    	$("#catagoryMidId").val($('#infoSearchForm').find('select[name=middleGoodsCatagory]').val());
+		    	$("#catagoryMidName").val($('#infoSearchForm').find('select[name=middleGoodsCatagory]').find("option:selected").text());
 		        getSmall();
 		    });
 

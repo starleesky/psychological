@@ -21,7 +21,11 @@
                 <div class="img-title">
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}" >
-                    <p class="pro-price"><fmt:formatNumber value="${bean.price }" maxFractionDigits="0" />元</p>
+                    <p class="pro-price"><fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</p>
+                      <c:if test="${not empty bean.serialNum}">
+             			<p class="pro-num">汤森信息编号: ${bean.serialNum}</p>
+		 			 </c:if>
+                    
                 </div>
                 <a href="./index.html" class="next-btn"><i class="icon iconfont">&#xe60e;</i></a>
             </div>

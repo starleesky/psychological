@@ -16,7 +16,7 @@ public class NoticeDaoImpl extends BaseDaoImpl<Notice, Long> implements NoticeDa
 	@Override public List<Notice> getUserAndAdminNotice(Notice notice) {
 		Params params = Params.create();
 		params.add("deleted", Deleted.NO.value);
-		params.add("userId", notice.getId());
+		params.add("userId", notice.getUserId());
 		return this.selectList(this.getMethodName(), params);
 	}
 }

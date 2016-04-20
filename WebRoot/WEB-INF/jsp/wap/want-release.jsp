@@ -192,6 +192,12 @@
                         </select>
                     </div>
                 </div>
+                    <div class="ui-form-mod">
+                        <label class="ui-form-hd">设备序列号</label>
+                        <div class="ui-form-bd">
+                            <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入...">
+                        </div>
+                    </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">工时/小时以内</label>
                     <div class="ui-form-bd">

@@ -99,7 +99,7 @@ public class InfomationController {
             User user = null;
             if (infomation.getUserId() != null) {
                 user = userService.get(infomation.getUserId());
-                model.addAttribute("user", user);
+                model.addAttribute("sellUser", user);
             }
             if (user != null && user.getCompanyId() != null) {
                 Company company = companyService.get(Long.valueOf(user.getCompanyId()));
@@ -297,6 +297,17 @@ public class InfomationController {
         param.add("userId", user.getId());
 
         pager = infomationService.getPagerCollections(param, pager);
+        for (InfomationDto infomationDto : pager.getItems()) {
+            if (infomationDto.getUserId() != null) {
+                User user2 = userService.get(infomationDto.getUserId());
+                if (user2 != null && user2.getCompanyId() != null) {
+                    Company company =  companyService.get(Long.valueOf(user2.getCompanyId()));
+                    infomationDto.setSrcName(company.getCompanyName());
+                }else {
+                    infomationDto.setSrcName(user2.getRealName());
+                }
+            }
+        }
         model.addAttribute("pager", pager.items);
 
         model.addAttribute("status", "9");

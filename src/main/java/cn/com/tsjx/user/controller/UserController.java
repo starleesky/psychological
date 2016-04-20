@@ -31,6 +31,8 @@ import cn.com.tsjx.common.web.model.Params;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
 import cn.com.tsjx.infomation.service.InfomationService;
+import cn.com.tsjx.region.entity.Region;
+import cn.com.tsjx.region.service.RegionService;
 import cn.com.tsjx.user.dto.UserDto;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
@@ -42,7 +44,8 @@ public class UserController {
 
 	@Resource
 	UserService userService;
-
+	@Resource
+	RegionService regionService ;
 	@Resource
     private InfomationService infomationService;
     // 写入文件
@@ -108,6 +111,18 @@ public class UserController {
                     e.printStackTrace();
                 }
                 user.setHeadIcon("/images/headicon/" + afile.getName());
+            }
+        }
+        if (user.getCityId() != null) {
+            Region region = regionService.get(user.getCityId());
+            if (region!= null) {
+                user.setCityName(region.getRegionName());
+            }
+        }
+        if (user.getProvinceId() != null) {
+            Region region = regionService.get(user.getProvinceId());
+            if (region != null) {
+                user.setProvinceName(region.getRegionName());
             }
         }
         userService.update(user);

@@ -14,7 +14,7 @@
 <body>
 <!--head begin-->
 <header class="ui-header">
-    <a href="#" class="ui-left">
+    <a href="/" class="ui-left">
         <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
     </a>
 

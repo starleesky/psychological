@@ -1,7 +1,7 @@
 define(function (require, exports, module) {
     var baseUrl = 'http://www.tangsons.cn/';
     //var baseUrl = 'http://192.168.8.121:8080/tsjx';
-    if (!ctx == null && ctx == '') {
+    if (window.ctx && window.ctx != '') {
         baseUrl = ctx;
     }
     //baseUrl = 'http://tangsonsgroup.com';

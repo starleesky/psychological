@@ -21,7 +21,7 @@
         <form class="ui-form" id = "userInfo" method = "POST">
         <input type="hidden" name = "id" value = "${bean.id}" >
             <div class="ui-form-mod info clearfix">
-                <p>您好${bean.userName}&nbsp;&nbsp;欢迎使用汤森机械网. </p>
+                <p>您好${bean.realName}&nbsp;&nbsp;欢迎使用汤森机械网. </p>
                 <c:if test="${not empty bean.headIcon}">
                 <img src="${ctx}${bean.headIcon}" class="f-l"  />
                 </c:if>
@@ -64,8 +64,11 @@
             </div>
             <div class="ui-form-mod">
                 <label class="ui-form-hd">省份<em>*</em></label>
+                <input type="hidden" name="equipmentLocation" id="equipmentLocation" value="${bean.provinceName}|${bean.cityName}" />
+                <input type="hidden" name="provinceName" id="provinceName" value="${bean.provinceName}"/>
+                <input type="hidden" name="cityName" id="cityName" value="${bean.cityName}"/>
                 <div class="ui-form-bd">
-                    <select class="regionProvice"  name="regionProvice" id="regionProvice" validate="required:true" >
+                    <select class="regionProvice"  name="provinceId" id="provinceId" validate="required:true" >
                     <option>请选择省份</option>
                     </select>
                 </div>
@@ -74,7 +77,7 @@
             <div class="ui-form-mod">
                 <label class="ui-form-hd">城市<em>*</em></label>
                 <div class="ui-form-bd">
-                   <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" >
+                   <select class="regionCity"  name="cityId" id="cityId" validate="required:true" >
                    	<option>请选择城市</option>
                    </select>                   
                 </div>

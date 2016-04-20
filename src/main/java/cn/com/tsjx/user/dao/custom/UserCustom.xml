@@ -34,7 +34,6 @@
 		       (t.email = #{userName,jdbcType=VARCHAR}
 		       or t.user_name = #{userName,jdbcType=VARCHAR}
 			   or t.mobile = #{userName,jdbcType=VARCHAR}) 
-		       and IS_ACTIVATE = #{isActivate,jdbcType=VARCHAR}
 		       and password = #{password,jdbcType=VARCHAR}
 		       and deleted = #{deleted,jdbcType=VARCHAR}
 	</select>

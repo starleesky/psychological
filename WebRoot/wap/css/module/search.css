@@ -1262,15 +1262,18 @@ section select {
 /* line 38, ../../sass/module/search.scss */
 .search-title select {
   float: right;
+  border: 1px solid #999;
+  line-height: 38px;
+  height: 38px;
 }
-/* line 41, ../../sass/module/search.scss */
+/* line 44, ../../sass/module/search.scss */
 .search-title .ui-button-white {
   height: 38px;
   line-height: 38px;
   font-size: 20px;
 }
 
-/* line 48, ../../sass/module/search.scss */
+/* line 51, ../../sass/module/search.scss */
 .contact-mod .no-login {
   text-align: center;
   line-height: 40px;
@@ -1280,12 +1283,12 @@ section select {
   font-weight: 700;
   background: #3E3131;
 }
-/* line 56, ../../sass/module/search.scss */
+/* line 59, ../../sass/module/search.scss */
 .contact-mod .no-login a, .contact-mod .no-login a:hover {
   color: #fff;
 }
 
-/* line 61, ../../sass/module/search.scss */
+/* line 64, ../../sass/module/search.scss */
 .search-form {
   display: none;
   border-top: 5px solid #e45540;
@@ -1297,61 +1300,61 @@ section select {
   background: url('../../images/refine-background.jpg') repeat-y top left;
   background-size: 100% auto;
 }
-/* line 72, ../../sass/module/search.scss */
+/* line 75, ../../sass/module/search.scss */
 .search-form .search-form-title {
   padding: 8px 8px 15px;
   width: 95%;
 }
-/* line 75, ../../sass/module/search.scss */
+/* line 78, ../../sass/module/search.scss */
 .search-form .search-form-title h2, .search-form .search-form-title a {
   display: inline-block;
   color: #fff;
 }
-/* line 79, ../../sass/module/search.scss */
+/* line 82, ../../sass/module/search.scss */
 .search-form .search-form-title h2 {
   width: 80%;
 }
-/* line 83, ../../sass/module/search.scss */
+/* line 86, ../../sass/module/search.scss */
 .search-form .ui-form {
   width: 98%;
 }
-/* line 85, ../../sass/module/search.scss */
+/* line 88, ../../sass/module/search.scss */
 .search-form .ui-form .ui-form-mod {
   width: 96%;
   margin: 5px 10px 0;
 }
-/* line 88, ../../sass/module/search.scss */
+/* line 91, ../../sass/module/search.scss */
 .search-form .ui-form .ui-form-mod label {
   color: #fff;
   font-size: 16px;
 }
-/* line 93, ../../sass/module/search.scss */
+/* line 96, ../../sass/module/search.scss */
 .search-form .ui-form .ui-form-mod .ui-form-hd.ui-form-hd, .search-form .ui-form .ui-form-mod .ui-form-bd.ui-form-hd {
   text-align: right;
 }
-/* line 97, ../../sass/module/search.scss */
+/* line 100, ../../sass/module/search.scss */
 .search-form .ui-form .ui-form-mod .ui-form-hd.ui-form-bd select, .search-form .ui-form .ui-form-mod .ui-form-bd.ui-form-bd select {
   min-height: 30px !important;
 }
-/* line 104, ../../sass/module/search.scss */
+/* line 107, ../../sass/module/search.scss */
 .search-form .ui-form .field-submit {
   width: 97%;
 }
-/* line 108, ../../sass/module/search.scss */
+/* line 111, ../../sass/module/search.scss */
 .search-form .ui-form .ui-small-select select, .search-form .ui-form .ui-small-select span {
   display: inline-block;
 }
-/* line 111, ../../sass/module/search.scss */
+/* line 114, ../../sass/module/search.scss */
 .search-form .ui-form .ui-small-select select {
   width: 43%;
 }
-/* line 114, ../../sass/module/search.scss */
+/* line 117, ../../sass/module/search.scss */
 .search-form .ui-form .ui-small-select span {
   color: #fff;
 }
 
 @media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
-  /* line 123, ../../sass/module/search.scss */
+  /* line 126, ../../sass/module/search.scss */
   .search-form .search-form-title h2 {
     width: 90%;
   }

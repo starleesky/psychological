@@ -151,12 +151,21 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
         $('#userInfo').submit();
      });
     
+    var oEquipmentLocation = $("#equipmentLocation");
+
     //初始化
     var getProvice = function () {
         $.getJSON(url.listRegion, {id: '0'}, function (data) {
             var oProvice_html;
+            var oldProvince = (oEquipmentLocation.val()).split("|")[0]
             $.each(data.object, function (i, data) {
-                oProvice_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	console.log(data.regionName);
+            	if(oldProvince == data.regionName) {
+            		$("#provinceName").val(data.regionName)
+            		oProvice_html += "<option value='" + data.id + "' selected>" + data.regionName + "</option>";
+            	}else {
+            		oProvice_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	}
             });
             oRegionProvice.html(oProvice_html);
             getCity();
@@ -171,8 +180,14 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
         var n = oRegionProvice.val();
         $.getJSON(url.listRegion, {id: n}, function (data) {
             var oCity_html;
+            var oldCity = (oEquipmentLocation.val()).split("|")[1];
             $.each(data.object, function (i, data) {
-                oCity_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	$("#cityName").val(data.regionName)
+            	if(oldCity == data.regionName) {
+            		oCity_html += "<option value='" + data.id + "' selected>" + data.regionName + "</option>";
+            	}else {
+            		oCity_html += "<option value='" + data.id + "'>" + data.regionName + "</option>";
+            	}
             });
             oRegionCity.html(oCity_html);
         });

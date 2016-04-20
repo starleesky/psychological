@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="field-submit">
-                        <input type="submit" class="ui-button ui-button-submit ui-button-blue" id="jSave" value="搜索">
+                        <a href="javascript:;" class="ui-button ui-button-submit ui-button-blue" id="jSave">搜索</a>
                     </div>
                 </form>
             </div>

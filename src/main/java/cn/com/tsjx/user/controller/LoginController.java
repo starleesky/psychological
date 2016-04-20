@@ -71,6 +71,9 @@ public class LoginController {
         if (user == null) {
             result.setMessage("用户名或密码错误");
             return result;
+        }else if (Deleted.NO.value.equals(user.getIsActivate())) {
+            result.setMessage("账号未激活，请激活后登录");
+            return result;
         }
         httpSession.setAttribute("user", user);
         model.addAttribute("userId",user.getId());

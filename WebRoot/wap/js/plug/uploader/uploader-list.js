@@ -59,10 +59,10 @@ define(function(require, exports, module) {
     var fileFilter = function(file) {
         var type = file.get('type');
         var size = file.get('size');
-        if (size >= 2 * 1024 * 1024) {
+        /*if (size >= 2 * 1024 * 1024) {
             box.tips('上传的图片不能大于2M!');
             return false;
-        }
+        }*/
         return /^image\//.test(type);
     };
 

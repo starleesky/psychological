@@ -68,7 +68,7 @@ define(function(require, exports, module) {
 
 
     // Defaut duration for auto close box.
-    var boxDelay = 2000;
+    var boxDelay = 5000;
 
     /**
      * Basic message box.

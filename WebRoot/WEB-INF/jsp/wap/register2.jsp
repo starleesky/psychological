@@ -71,7 +71,7 @@
                 </fieldset>
             </div>
             <div class="field-submit">
-               <a href="javascrpt:;" class="ui-button   ui-button-blue" id="jSubmit">下一步</a>
+               <input type="button" value="下一步" class="ui-button   ui-button-blue" id="jSubmit">
             </div>
         </form>
     </section>

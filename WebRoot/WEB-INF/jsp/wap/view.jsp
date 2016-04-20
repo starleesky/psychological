@@ -24,19 +24,19 @@
                     <p class="pro-price"><fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</p>
                       <c:if test="${not empty bean.serialNum}">
              			<p class="pro-num">汤森信息编号: ${bean.serialNum}</p>
-		 			 </c:if>
+		  </c:if>
                     
                 </div>
                 <a href="./index.html" class="next-btn"><i class="icon iconfont">&#xe60e;</i></a>
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
-                    <img src="${initParam.imgHost}${firstImg}" />
+                    <img src="${initParam.imgHost}${firstImg}/figure" />
                 </div>
                 <div class="img-list">
                 	<c:forEach items="${listAttch }" var="attach">
 	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}">
-	                        <img src="${initParam.imgHost}${attach.attchUrl}" />
+	                        <img src="${initParam.imgHost}${attach.attchUrl}/small" />
 	                    </a>
                 	</c:forEach>
                    <!--  <a href="javascript:;" data-url="images/img_1.jpg">
@@ -129,27 +129,27 @@
             <div class="hd">卖家信息</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <div class="pro-img"><img src="${initParam.imgHost}${user.headIcon}" /></div>
-                    <h3>${user.userName}</h3>
+                    <div class="pro-img"><img src="${initParam.imgHost}${sellUser.headIcon}/small" /></div>
+                    <h3>${sellUser.realName}</h3>
                     <ul>
                         <li class="w100">注册时间：
                <fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
                         </li>
-                        <liclass="w100">电话：<a href="tel:${user.mobile}">${user.mobile}</a></li>
-                        <li class="w100">座机：<a href="tel:${user.telephone}">${user.telephone}</a></li>
+                        <liclass="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
+                        <li class="w100">座机：<a href="tel:${sellUser.telephone}">${sellUser.telephone}</a></li>
                         <li class="w100">Q  Q：${user.qq}</li>
                         <li>经营范围:
-                        <c:if test="${user.businessScope == '1'}">工程机械</c:if>
-                        <c:if test="${user.businessScope == '2'}">农业机械</c:if>
-                        <c:if test="${user.businessScope == '3'}">矿山机械</c:if>
-                        <c:if test="${user.businessScope == '4'}">林业机械</c:if>
-                        <c:if test="${user.businessScope == '5'}">运输机械</c:if>
+                        <c:if test="${sellUser.businessScope == '1'}">工程机械</c:if>
+                        <c:if test="${sellUser.businessScope == '2'}">农业机械</c:if>
+                        <c:if test="${sellUser.businessScope == '3'}">矿山机械</c:if>
+                        <c:if test="${sellUser.businessScope == '4'}">林业机械</c:if>
+                        <c:if test="${sellUser.businessScope == '5'}">运输机械</c:if>
                         </li>
                         <li>经营性质：
-                             <c:if test="${user.businessNature == '0'}">出售</c:if>
-                             <c:if test="${user.businessNature == '1'}">租赁</c:if>
-                             <c:if test="${user.businessNature == '2'}">求购</c:if>
-                             <c:if test="${user.businessNature == '3'}">求租</c:if>
+                             <c:if test="${sellUser.businessNature == '0'}">出售</c:if>
+                             <c:if test="${sellUser.businessNature == '1'}">租赁</c:if>
+                             <c:if test="${sellUser.businessNature == '2'}">求购</c:if>
+                             <c:if test="${sellUser.businessNature == '3'}">求租</c:if>
                         </li>
                         <c:if test="${not empty company}">
                         <li class="w100">所属公司：${company.companyName}</li>
@@ -174,7 +174,7 @@
             </div>
         </section>
          <section class="page-view-btn">
-            <a href="tel:${user.mobile}" class="ui-button ui-button-submit">联系卖家</a>
+            <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
             <a href="javascript:;" class="ui-button ui-button-blue">库存情况</a>
              <a href="javascript:;" class="ui-button ui-button-gray jCommentInfo">客户评价</a>
         </section>

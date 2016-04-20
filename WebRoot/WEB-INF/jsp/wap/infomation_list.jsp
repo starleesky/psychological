@@ -96,7 +96,8 @@
                             <img src="${ctx}/wap/images/ok-1.png" infoId="${info.id}" class="jProSelect" />
                         </div>
                         <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
-	                  		<img src="${ctx}${info.imgUrl}"  class="jImg" data-url="" />
+	                  		<img src="${initParam.imgHost}${info.imgUrl}/small"  class="jImg" data-url="" />
+	                  		
 	                  		<c:choose>
 			                  	<c:when test="${status == 3}">
 			                  		<span>已售</span>
@@ -127,7 +128,7 @@
                             <p class="pro-msg">
                                 <span></span>
                             </p> -->
-                            <p class="col-6"> 信息来源：汤森 </p>
+                            <p class="col-6"> 信息来源：${info.srcName} </p>
                             <p class="col-6"> 设备序列号:<span>${info.serialNum }</span> </p>
                             <p class="col-6"> 截止日期:<span><fmt:formatDate value="${info.endTime}" pattern="yyyy/MM/dd" /></span> </p>
                         </div>

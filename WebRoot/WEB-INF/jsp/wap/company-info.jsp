@@ -157,11 +157,11 @@
                     <div class="ui-form-bd upload-img <c:if test="${company.businessLicenseImageUrl!=null}">edit</c:if>">
                         <a href="javascript:;" node-type="uploadButton">
                             <span class="upload-txt">选择图片</span>
-                            <input type="hidden" name="_UPLOAD_01" value="${company.businessLicenseImageUrl}">
+                            <input type="hidden" name="_UPLOAD_01" value="${company.businessLicenseImageUrl}/small">
                         </a>
                         <c:if test="${company.businessLicenseImageUrl!=null}">
                             <div class="upload-div">
-                                <img src="${initParam.imgHost}${company.businessLicenseImageUrl}">
+                                <img src="${initParam.imgHost}${company.businessLicenseImageUrl}/small">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>
@@ -173,11 +173,11 @@
                     <div class="ui-form-bd upload-img <c:if test="${company.organizationCodeImageUrl!=null}">edit</c:if>">
                         <a href="javascript:;" node-type="uploadButton">
                             <span class="upload-txt">选择图片</span>
-                            <input type="hidden" name="_UPLOAD_02" value="${company.organizationCodeImageUrl}">
+                            <input type="hidden" name="_UPLOAD_02" value="${company.organizationCodeImageUrl}/small">
                         </a>
                         <c:if test="${company.organizationCodeImageUrl!=null}">
                             <div class="upload-div">
-                                <img src="${initParam.imgHost}${company.organizationCodeImageUrl}">
+                                <img src="${initParam.imgHost}${company.organizationCodeImageUrl}/small">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>

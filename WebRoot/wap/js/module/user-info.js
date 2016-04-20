@@ -159,7 +159,6 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             var oProvice_html;
             var oldProvince = (oEquipmentLocation.val()).split("|")[0]
             $.each(data.object, function (i, data) {
-            	console.log(data.regionName);
             	if(oldProvince == data.regionName) {
             		$("#provinceName").val(data.regionName)
             		oProvice_html += "<option value='" + data.id + "' selected>" + data.regionName + "</option>";

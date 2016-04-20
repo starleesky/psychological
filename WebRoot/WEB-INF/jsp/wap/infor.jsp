@@ -29,7 +29,7 @@
                 <div class="info clearfix">
                     <img src="${initParam.imgHost}${userInfo.headIcon}" class="f-l"  />
                     <div class="info-desc f-l">
-                        <h2>${userInfo.userName}</h2>
+                        <h2>${userInfo.realName}</h2>
                         <p>注册时间:<span class="date"> 
                          <fmt:formatDate value="${userInfo.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
                          </span>

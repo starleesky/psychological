@@ -131,12 +131,19 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         rules: {
             price: {
                 required: true
+            },
+            remark: {
+                maxlength: 140
             }
         },
         messages: {
             price: {
                 required: '价格不能为空'
+            },
+            remark: {
+                maxlength: '附言不能大于140个字'
             }
+
         },
         submitHandler: function (form) {
             $.post(
@@ -167,6 +174,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     validTime: $(form).find('select[name=validTime]').find("option:selected").val(),
                     price: $(form).find('input[name=price]').val(),
                     workTime: $(form).find('input[name=workTime]').val(),
+                    serialNum: $(form).find('input[name=serialNum]').val(),
                     imgUrl:array,
                     status:status
                 },

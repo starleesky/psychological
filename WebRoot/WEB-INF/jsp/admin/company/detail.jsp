@@ -92,17 +92,17 @@
     <div>
         <h4 class="clearfix">公司logo图片</h4><br/>
         <c:if test="${bean.createBy!=null}">
-            <img src="${initParam.imgHost}${bean.createBy}" style="max-width: 100%;"
+            <img src="${initParam.imgHost}${bean.createBy}/figure" style="max-width: 100%;"
                  alt="营业执照图片">
         </c:if>
     <h4 class="clearfix">营业执照图片</h4><br/>
     <c:if test="${bean.businessLicenseImageUrl!=null}">
-        <img src="${initParam.imgHost}${bean.businessLicenseImageUrl}" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${bean.businessLicenseImageUrl}/figure" style="max-width: 100%;"
              alt="营业执照图片">
     </c:if>
     <h4 class="clearfix">组织机构代码图片</h4><br/>
     <c:if test="${bean.organizationCodeImageUrl!=null}">
-        <img src="${initParam.imgHost}${bean.organizationCodeImageUrl}" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${bean.organizationCodeImageUrl}/figure" style="max-width: 100%;"
              alt="组织机构代码图片">
     </c:if>
     </div>

@@ -187,7 +187,7 @@
 <div>
     <h3 class="clearfix">信息图片</h3><br/>
     <c:forEach var="img" items="${beanImg}">
-        <img src="${initParam.imgHost}${img.attchUrl}" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${img.attchUrl}/figure" style="max-width: 100%;"
              alt="">
     </c:forEach>
 </div>

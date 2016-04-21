@@ -72,14 +72,14 @@ public class CompanyController {
 		if(!StringUtils.isEmpty(company.getCreateBy())){
 			File afile = new File(path+company.getCreateBy());
 			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
-				company.setCreateBy("/images/company/" + afile.getName());
+				company.setCreateBy("/images/company/".replaceAll("/","%2F") + afile.getName());
 				handleImg(afile);
 			}
 		}
 		if(!StringUtils.isEmpty(company.getBusinessLicenseImageUrl())){
 			File afile = new File(path+company.getBusinessLicenseImageUrl());
 			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
-				company.setBusinessLicenseImageUrl("/images/company/" + afile.getName());
+				company.setBusinessLicenseImageUrl("/images/company/".replaceAll("/","%2F") + afile.getName());
 				handleImg(afile);
 			}
 		}
@@ -87,7 +87,7 @@ public class CompanyController {
 		if(!StringUtils.isEmpty(company.getOrganizationCodeImageUrl())){
 			File afile = new File(path+company.getOrganizationCodeImageUrl());
 			if (afile.renameTo(new File(path+"/images/company/" + afile.getName()))) {
-				company.setOrganizationCodeImageUrl("/images/company/" + afile.getName());
+				company.setOrganizationCodeImageUrl("/images/company/".replaceAll("/","%2F") + afile.getName());
 				handleImg(afile);
 
 			}

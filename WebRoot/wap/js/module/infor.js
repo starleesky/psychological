@@ -36,9 +36,9 @@ define(
 		        $.getJSON(url.listGoodsCatagory, {id: '0'}, function (data) {
 		            var oBig_html = "";
 		            if(_bigCataId == '') {
-		            	oBig_html = "<option value='' selected></option>";	
+		            	oBig_html = "<option value='' selected>请选择产品大类</option>";
 		            }else {
-		            	oBig_html = "<option value=''></option>";	
+		            	oBig_html = "<option value=''>请选择产品大类</option>";
 		            }
 		            $.each(data.object, function (i, data) {
 		            	if(_bigCataId == data.id) {
@@ -62,7 +62,7 @@ define(
 		    var getMiddle = function () {
 		        var n = oBigGoodsCatagory.val() == '' ? '-9999999' : oBigGoodsCatagory.val();
 		        $.getJSON(url.listGoodsCatagory, {id: n}, function (data) {
-		            var oMiddle_html = "<option value=''></option>";
+		            var oMiddle_html = "<option value=''>请选择产品子类</option>";
 		            $.each(data.object, function (i, data) {
 		            	if(_midCataId == data.id) {
 		            		oMiddle_html += "<option value='" + data.id + "' selected>" + data.catagoryName + "</option>";
@@ -85,7 +85,7 @@ define(
 		    var getSmall = function () {
 		        var n = oMiddleGoodsCatagory.val() == '' ? '-9999999' : oMiddleGoodsCatagory.val();
 		        $.getJSON(url.listGoodsCatagory, {id: n}, function (data) {
-		            var oSamll_html = "<option value=''></option>";
+		            var oSamll_html = "<option value=''>请选择产品类型</option>";
 		            $.each(data.object, function (i, data) {
 		            	if(_CataId == data.id) {
 		            		 oSamll_html += "<option value='" + data.id + "' selected>" + data.catagoryName + "</option>";
@@ -109,7 +109,7 @@ define(
 		    var getBrand = function () {
 		        var n = oSmallGoodsCatagory.val() == '' ? '-9999999' : oSmallGoodsCatagory.val();
 		        $.getJSON(url.listBrand, {catagoryId: n}, function (data) {
-		            var oBrand_html = "<option value=''></option>";
+		            var oBrand_html = "<option value=''>请选择品牌</option>";
 		            $.each(data.object, function (i, data) {
 		            	if(_brandId == data.id) {
 		            		oBrand_html += "<option value='" + data.id + "' selected>" + data.brandName + "</option>";
@@ -132,7 +132,7 @@ define(
 		    var getModels = function () {
 		        var n = oBrand.val() == '' ? '-9999999' : oBrand.val();
 		        $.getJSON(url.listModels, {brandId: n}, function (data) {
-		            var oModels_html = "<option value=''></option>";
+		            var oModels_html = "<option value=''>请选择型号</option>";
 		            $.each(data.object, function (i, data) {
 		            	if(_modelId == data.id) {
 		            		oModels_html += "<option value='" + data.id + "' selected>" + data.modelsName + "</option>";

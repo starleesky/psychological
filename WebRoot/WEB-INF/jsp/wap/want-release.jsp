@@ -218,18 +218,17 @@
                     </div>
                 </div>
                 <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>
+					 <input type="hidden" name="equipmentLocation" id="equipmentLocation" value="${info.equipmentLocation}" />
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">省份</label>
                     <div class="ui-form-bd">
                         <select class="regionProvice"  name="regionProvice" id="regionProvice" validate="required:true" ><option>请选择省份</option></select>
-                </div>
-    <div class="ui-form-mod">
-                <label class="ui-form-hd">城市</label>
-                <div class="ui-form-bd">
-                    <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" ><option>请选择城市</option></select>                    </div>
-                    </div>
-                </div>
-                <div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
+                	</div>
+                	<label class="ui-form-hd">城市</label>
+	                <div class="ui-form-bd">
+	                    <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" ><option>请选择城市</option></select>                    </div>
+	                    </div>
+					<div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
                         <select id="validTime" name="validTime">

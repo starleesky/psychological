@@ -110,7 +110,7 @@ public class UserController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                user.setHeadIcon("/images/headicon/" + afile.getName());
+                user.setHeadIcon("/images/headicon/".replaceAll("/","%2F") + afile.getName());
             }
         }
         if (user.getCityId() != null) {

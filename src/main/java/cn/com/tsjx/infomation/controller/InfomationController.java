@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.com.tsjx.catagory.entity.Catagory;
+import cn.com.tsjx.catagory.service.CatagoryService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,6 +63,9 @@ public class InfomationController {
 
     @Resource
     SysoptionService sysoptionService;
+
+    @Resource
+    CatagoryService catagoryService;
 
     // 写入文件
     @Value("${file.uplaoddir}")
@@ -166,9 +171,8 @@ public class InfomationController {
             Attch attch = new Attch();
             attch.setInformationId(infomation.getId());
             attch.setUserId(user.getId());
-
-            attch.setAttchUrl(
-                    "/images/catagory/" + infomation.getCatagoryBigId() + "/" + infomation.getCatagoryMidId() + ".jpg");
+            Catagory catagory = catagoryService.get(infomation.getCatagoryMidId());
+            attch.setAttchUrl( catagory.getCode().replaceAll("/","%2F"));
             attchService.insert(attch);
         }
         //
@@ -189,9 +193,9 @@ public class InfomationController {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        attch.setAttchUrl("/images/information/" + afile.getName());
+                        attch.setAttchUrl("/images/information/".replaceAll("/","%2F") + afile.getName());
                     } else {
-                        attch.setAttchUrl(img);
+                        attch.setAttchUrl(img.replaceAll("/","%2F"));
                     }
                 }
                 attchService.insert(attch);

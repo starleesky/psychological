@@ -11,8 +11,12 @@
 <body>
 <!--head begin-->
 <header class="ui-header">
-    <a href="javascript:;" class="icon iconfont ui-back">&#xe60d</a>
-    <span class="ui-title">找回密码</span>
+    <a href="${ctx}/wap/index.htm" class="ui-left">
+        <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
+    </a>
+    <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
+        <span class="icon iconfont">&#xe600;</span>登录
+    </a>
 </header>
 <!--head end-->
 <div class="page-view">

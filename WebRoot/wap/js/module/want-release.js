@@ -221,10 +221,15 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     $("#jSubmit").click(function () {
         //alert('提交之前请先保存');
         status = 1;
+        if(submitIng){
+            box.error('不能重复提交！');
+            return;
+        }
          var   _text = $("input[name^='_UPLOAD_']");
         for(var i=0;i<_text.length;i++){
             array+=_text[i].value+",";
         }
+        submitIng=true;
         $('#informationFrom').submit();
     });
 

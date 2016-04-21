@@ -102,29 +102,9 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">手续资料</label>
-                    <div class="ui-form-bd">
-                        <select name="procedures">
-                            <option value="0">手续齐全</option>
-                            <option value="1">无手续</option>
-                            <option value="2">有无手续均可</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">设备来源</label>
-                    <div class="ui-form-bd">
-                        <select name="src">
-                            <option value="0">个人</option>
-                            <option value="1">单位</option>
-                            <option value="2">抵押</option>
-                            <option value="3">法务</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">年份/以后</label>
+                    <label class="ui-form-hd">年份</label>
                     <div class="ui-form-bd">
                         <select name="equipYear">
                             <option value="2015">2015</option>
@@ -162,7 +142,7 @@
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">工时/小时以内</label>
+                    <label class="ui-form-hd">工时</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="price" id="price"   placeholder="请输入...">
                     </div>

@@ -20,7 +20,7 @@
     <section class="login-info">
             <div class="hd">
                 <div class="f-l">
-                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号
+                   <img src="${ctx}/wap/images/dashboard_icon.png" />账号管理
                 </div>
                 <a href="javascript:;" class="f-r jIsHide">隐藏</a>
                 
@@ -55,7 +55,7 @@
                         <span class="num-desc">草稿</span>
                     </a>
                 </div>
-                <a href="${ctx}/infomation/sale/my.htm" class="ui-button ui-button-submit">我要销售</a>
+                <a href="${ctx}/infomation/sale/my.htm" class="ui-button ui-button-submit">发布销售</a>
                 <a href="${ctx}/infomation/pub/my.htm" class="ui-button ui-button-blue">我要求购</a>
                 <div class="info-url">
                     <a href="${ctx}/wap/companyInfo/my.htm" class="clearfix">

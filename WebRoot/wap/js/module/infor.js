@@ -13,6 +13,9 @@ define(
 				}
 			});
 
+			$body.on('click','#jSave',function(){
+				$(this).parents('form').submit();
+			});
 
 		    /** ---------------初始化查询条件下拉列表 ----------------**/
 		    var oBigGoodsCatagory = $(".bigGoodsCatagory");

@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="field-submit">
-                <input type="button" value="登录" class="ui-button   ui-button-blue" id="jSubmit">
+                <a href="javascript:;" class="ui-button   ui-button-blue" id="jSubmit">登录</a>
             </div>
 
             <div class="field-forgetpassword">

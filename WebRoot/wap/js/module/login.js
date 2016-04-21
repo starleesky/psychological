@@ -48,7 +48,7 @@ define(function(require,exports,module) {
     });
 
     $('#jSubmit').on('click',function(){
-       $('#loginForm').submit();
+       $(this).parents('form').submit();
     });
 
 });

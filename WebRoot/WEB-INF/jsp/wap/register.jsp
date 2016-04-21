@@ -18,7 +18,7 @@
         <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
     </a>
     <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
-        <img src="${ctx}/wap/images/user_icon.png" />登录
+        <span class="icon iconfont">&#xe600;</span>登录
     </a>
 </header>
 <!--head end-->

@@ -104,7 +104,7 @@
                         <div class="ui-form-bd">
                         <input type="hidden" name="catagoryMidId"  id="catagoryMidId" value="${info.catagoryMidId}"/>
                     	<input type="hidden" name="catagoryMidName" id="catagoryMidName" value="${info.catagoryMidName}"/>
-                            <select class="middleGoodsCatagory"  name="middleGoodsCatagory" id="middleGoodsCatagory" >
+                            <select class="middleGoodsCatagory"  name="middleGoodsCatagory" id="middleGoodsCatagory" ><option>请选择产品子类</option>
                        </select>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                         <div class="ui-form-bd">
                         <input type="hidden" name="brandId" id="brandId" value="${info.brandId}"/>
                     	<input type="hidden" name="brandName" id="brandName" value="${info.brandName}"/>
-                            <select class="brand" name="brand" id="brand"  ></select>
+                            <select class="brand" name="brand" id="brand"  ><option>请选择品牌</option></select>
                         </div>
                     </div>
                     <div class="ui-form-mod">
@@ -141,7 +141,7 @@
         </section>
         <section class="recommended-mod" id="jRecommend">
             <div class="recommended-hd">
-                <span class="icon iconfont">&#xe619;</span>今日推荐
+                <span class="icon iconfont">&#xe604;</span>今日推荐
             </div>
             <div class="recommended-bd">
                 <ul class="clearfix">
@@ -161,7 +161,7 @@
          <c:if test="${empty sessionScope.user.id}">
          <section class="collect-mod" id="jCollect">
             <div class="collect-hd">
-                <span class="icon iconfont">&#xe603;</span>我的收藏
+                <span class="icon iconfont">&#xe60a;</span>我的收藏
             </div>
             <div class="collect-bd">
                 <div class="no-login">登录后查看我的收藏</div>
@@ -171,7 +171,7 @@
          <c:if test="${not empty sessionScope.user.id}">
         <section class="collect-mod" id="jCollect">
             <div class="collect-hd">
-                <span class="icon iconfont">&#xe603;</span>我的收藏
+                <span class="icon iconfont">&#xe60a;</span>我的收藏
             </div>
             <div class="collect-bd">
                 <ul class="clearfix" style="display:;">

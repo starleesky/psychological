@@ -17,7 +17,7 @@
     <div class="page-view-body">
         <section class="pro-view-mod img-box">
             <div class="hd">
-                <a href="./index.html" class="prev-btn"><i class="icon iconfont">&#xe60d;</i></a>
+                <a href="./index.html" class="prev-btn"><i class="icon iconfont">&#xe603;</i></a>
                 <div class="img-title">
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}" >
@@ -27,7 +27,7 @@
 		  </c:if>
                     
                 </div>
-                <a href="./index.html" class="next-btn"><i class="icon iconfont">&#xe60e;</i></a>
+                <a href="./index.html" class="next-btn"><i class="icon iconfont">&#xe60b;</i></a>
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
@@ -49,7 +49,7 @@
             </div>
         </section>
         <section class="img-big-box">
-            <a href="javascript:;" class="jClose icon iconfont">&#xe622;</a>
+            <a href="javascript:;" class="jClose icon iconfont">&#xe606;</a>
             <img src="images/img_1.jpg" />
         </section>
         <section class="page-view-btn">

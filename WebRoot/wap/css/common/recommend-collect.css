@@ -7,7 +7,7 @@
 /* line 5, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-hd, .recommended-mod .collect-hd, .collect-mod .recommended-hd, .collect-mod .collect-hd {
   padding-left: 10px;
-  font-size: 30px;
+  font-size: 24px;
   height: 80px;
   line-height: 80px;
   border-bottom: 1px solid #ccc;
@@ -17,24 +17,25 @@
 }
 /* line 14, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-hd .icon, .recommended-mod .collect-hd .icon, .collect-mod .recommended-hd .icon, .collect-mod .collect-hd .icon {
-  padding-right: 10px;
-  font-size: 30px;
+  padding-right: 5px;
+  font-size: 24px;
+  line-height: 80px;
   vertical-align: bottom;
 }
-/* line 18, ../../sass/common/recommend-collect.scss */
+/* line 19, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-hd .icon img, .recommended-mod .collect-hd .icon img, .collect-mod .recommended-hd .icon img, .collect-mod .collect-hd .icon img {
   padding: 0;
   max-width: 30px;
   max-height: 30px;
   vertical-align: middle;
 }
-/* line 26, ../../sass/common/recommend-collect.scss */
+/* line 27, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd, .recommended-mod .collect-bd, .collect-mod .recommended-bd, .collect-mod .collect-bd {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
 }
-/* line 30, ../../sass/common/recommend-collect.scss */
+/* line 31, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd .no-login, .recommended-mod .collect-bd .no-login, .collect-mod .recommended-bd .no-login, .collect-mod .collect-bd .no-login {
   text-align: center;
   line-height: 40px;
@@ -44,18 +45,18 @@
   color: #fff;
   background: #3E3131;
 }
-/* line 38, ../../sass/common/recommend-collect.scss */
+/* line 39, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd .no-login a, .recommended-mod .recommended-bd .no-login a:hover, .recommended-mod .collect-bd .no-login a, .recommended-mod .collect-bd .no-login a:hover, .collect-mod .recommended-bd .no-login a, .collect-mod .recommended-bd .no-login a:hover, .collect-mod .collect-bd .no-login a, .collect-mod .collect-bd .no-login a:hover {
   color: #fff;
 }
-/* line 42, ../../sass/common/recommend-collect.scss */
+/* line 43, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul, .recommended-mod .collect-bd ul, .collect-mod .recommended-bd ul, .collect-mod .collect-bd ul {
   overflow: hidden;
   margin: 0;
   padding: 5px 10px;
   width: 150%;
 }
-/* line 47, ../../sass/common/recommend-collect.scss */
+/* line 48, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul li, .recommended-mod .collect-bd ul li, .collect-mod .recommended-bd ul li, .collect-mod .collect-bd ul li {
   float: left;
   margin-right: 20px;
@@ -67,7 +68,7 @@
   position: relative;
   margin-top: 10px;
 }
-/* line 57, ../../sass/common/recommend-collect.scss */
+/* line 58, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul li img, .recommended-mod .collect-bd ul li img, .collect-mod .recommended-bd ul li img, .collect-mod .collect-bd ul li img {
   display: block;
   background: #cccccc;
@@ -76,7 +77,7 @@
   margin: 0 auto;
   border: 5px solid #fff;
 }
-/* line 65, ../../sass/common/recommend-collect.scss */
+/* line 66, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul li span, .recommended-mod .collect-bd ul li span, .collect-mod .recommended-bd ul li span, .collect-mod .collect-bd ul li span {
   display: block;
   white-space: nowrap;
@@ -86,15 +87,15 @@
   line-height: 20px;
   font-size: 14px;
 }
-/* line 74, ../../sass/common/recommend-collect.scss */
+/* line 75, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul li span.pro-img, .recommended-mod .collect-bd ul li span.pro-img, .collect-mod .recommended-bd ul li span.pro-img, .collect-mod .collect-bd ul li span.pro-img {
   box-shadow: 0 0px 2px #808080;
 }
-/* line 77, ../../sass/common/recommend-collect.scss */
+/* line 78, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul li span.name, .recommended-mod .collect-bd ul li span.name, .collect-mod .recommended-bd ul li span.name, .collect-mod .collect-bd ul li span.name {
   color: #333;
 }
-/* line 80, ../../sass/common/recommend-collect.scss */
+/* line 81, ../../sass/common/recommend-collect.scss */
 .recommended-mod .recommended-bd ul li span.price, .recommended-mod .collect-bd ul li span.price, .collect-mod .recommended-bd ul li span.price, .collect-mod .collect-bd ul li span.price {
   color: #666;
 }

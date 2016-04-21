@@ -180,6 +180,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 },
                 function (data) {
                    var str= JSON.parse(data);
+                    submitFlag=false;
                     if (str.result) {
                         box.ok(data.message);
                         window.location.href = ctx+url.infoList+"?status=0";
@@ -195,9 +196,13 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         },
         success: null
     });
-
+    var submitIng=false;
     var array="";
     $("#jSave").click(function () {
+        if(submitIng){
+            box.error('不能重复提交！');
+            return;
+        }
         status = 0;
         var modelsId = oModels.val();
         if (modelsId == null || modelsId == "") {
@@ -208,6 +213,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         for(var i=0;i<_text.length;i++){
             array+=_text[i].value+",";
         }
+        submitFlag=true;
         $('#informationFrom').submit();
 
     });

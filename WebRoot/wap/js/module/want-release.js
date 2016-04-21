@@ -180,7 +180,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 },
                 function (data) {
                    var str= JSON.parse(data);
-                    submitFlag=false;
+                    submitIng=false;
                     if (str.result) {
                         box.ok(data.message);
                         window.location.href = ctx+url.infoList+"?status=0";
@@ -213,7 +213,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         for(var i=0;i<_text.length;i++){
             array+=_text[i].value+",";
         }
-        submitFlag=true;
+        submitIng=true;
         $('#informationFrom').submit();
 
     });

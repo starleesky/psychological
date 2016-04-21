@@ -26,7 +26,7 @@
 <div class="page-view">
     <div class="logo">
         <img src="${ctx}/wap/images/logo2.png" />
-        <span>欢迎</span>
+        <span>欢迎登录</span>
     </div>
     <section class="ui-login">
         <form action="/wap/loginIn" class="ui-form" id="loginForm"  method="post">
@@ -47,8 +47,7 @@
             </div>
 
             <div class="field-forgetpassword">
-                <p>还没有账号！<br/>赶快免费注册吧!</p>
-                <a  href="${ctx}/wap/toRegister.htm">注册</a>
+                <a  href="${ctx}/wap/toRegister.htm">免费注册</a>
                 <a  href="${ctx}/wap/forgotpwd.htm">忘记密码</a>
             </div>
         </form>

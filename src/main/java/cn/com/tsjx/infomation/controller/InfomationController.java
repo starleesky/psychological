@@ -452,7 +452,7 @@ public class InfomationController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/my", method = RequestMethod.GET)
     public String edit(Long id, Model model) {
         Infomation infomation = new Infomation();
         if (id != null) {

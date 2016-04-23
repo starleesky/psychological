@@ -40,7 +40,6 @@ define(function(require,exports,module) {
 		btn.innerHTML = text.length > 64 ? "...显示全部" : "";
 		btn.href = "###";
 		btn.onclick = function() {
-			console.log(newBox.innerHTML)
 			if (btn.innerHTML == "...显示全部") {
 				btn.innerHTML = "收起";
 				newBox.innerHTML = text;

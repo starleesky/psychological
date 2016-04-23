@@ -2,8 +2,8 @@
 /* common */
 @font-face {
   font-family: "iconfont";
-  src: url('../../fonts/iconfont.eot?1461246324');
-  src: url('../../fonts/iconfont.eot?1461246324#iefix') format("embedded-opentype"), url('../../fonts/iconfont.ttf?1461246324') format("truetype"), url('../../fonts/iconfont.woff?1461246324') format("woff"), url('../../fonts/iconfont.svg?1461246324') format("svg");
+  src: url('../../fonts/iconfont.eot?1461416286');
+  src: url('../../fonts/iconfont.eot?1461416286#iefix') format("embedded-opentype"), url('../../fonts/iconfont.ttf?1461416286') format("truetype"), url('../../fonts/iconfont.woff?1461416286') format("woff"), url('../../fonts/iconfont.svg?1461416286') format("svg");
 }
 /* line 9, ../../sass/fonts/_base.scss */
 .iconfont {
@@ -163,7 +163,7 @@ a {
   padding: 0 10px;
   font-size: 12px;
   min-width: 80px;
-  color: #333;
+  color: #666;
   background: #eee;
 }
 /* line 106, ../../sass/common.scss */
@@ -173,7 +173,7 @@ a {
 }
 /* line 110, ../../sass/common.scss */
 .ui-header .ui-login .iconfont {
-  font-size: 18px;
+  font-size: 20px;
   color: #999;
   font-weight: 400;
   line-height: 70px;

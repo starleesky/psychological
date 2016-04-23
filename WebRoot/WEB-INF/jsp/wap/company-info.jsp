@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 <div class="field-submit">
-                    <input type="button" class="ui-button ui-button-blue " id="jSubmit" value="提交">
+                    <a href="javascript:;" class="ui-button ui-button-blue " id="jSubmit">提交</a>
                 </div>
             </form>
         </section>

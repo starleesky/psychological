@@ -8,6 +8,15 @@
     <title>汤森机械网-详情页面</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/view.css?v=1" type="text/css" charset="utf-8">
+    <style>
+    .img-box .bd .img-list{margin-top:10px;}
+    .pro-view-mod .bd h3{ font-size:20px;}
+    .pro-view-mod .bd ul li{font-size:18px;overflow:hidden;text-overflow:ellipsis;height:30px;line-height:30px;}
+    .pro-view-mod .bd ul li.cl-1{font-size:20px;}
+    .pro-view-mod .bd .pro-view-box .pro-img{width:200px;height:100px;line-height:100px;}
+    .pro-view-mod .bd .pro-view-box .pro-img img{max-width:200px;max-height:100px;}
+    .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -51,18 +60,18 @@
             <img src="images/img_1.jpg" />
         </section>
         <section class="page-view-btn">
-          <input type="button" class="ui-button ui-button-submit" id="collection"  value="收藏">
-                    
+            <a href="javascript:;" class="ui-button ui-button-blue">分享</a>
+            <a href="javascript:;" class="ui-button ui-button-submit" id="collection" >收藏</a>
         </section>
         <section class="pro-set-info pro-view-mod">
             <div class="hd">设备要求</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <h3>${bean.brandName}${bean.modelName}</h3>
+                    <h3>${bean.brandName}${bean.modelName}出售详细信息</h3>
                     <ul>
-                        <li>类别: ${bean.catagoryName}</li>
                         <li>品牌: ${bean.brandName}</li>
-                        <li>求购类型:
+                        <li>型号: ${bean.brandName}</li>
+                        <li>方式:
                         <c:if test="${bean.sellType == '0'}">
                         	出售
                         </c:if>
@@ -76,45 +85,14 @@
                         	求租
                         </c:if>
                         </li>
-	
-                        <li>设备类型: 
-                        <c:if test="${bean.equipmentCondition == '0'}">
-                        新设备
-                        </c:if>
-                        <c:if test="${bean.equipmentCondition == '1'}">
-                        二手设备
-                        </c:if>
-                        <c:if test="${bean.equipmentCondition == '2'}">
-                        再制造
-                        </c:if>
-                        </li>
-                        <li>手续资料要求: 
-                        <c:if test="${bean.procedures == '0'}">
-                        手续齐全
-                        </c:if>
-                        <c:if test="${bean.procedures == '1'}">
-                        无手续
-                        </c:if>
-                        <c:if test="${bean.procedures == '2'}">
-                        有无手续均可
-                        </c:if>
-                        </li>
-                        <li>设备来源要求: 
-                        <c:if test="${bean.src == '0'}">个人
-                        </c:if>
-                        <c:if test="${bean.src == '1'}">单位
-                        </c:if>
-                        <c:if test="${bean.src == '2'}">抵押
-                        </c:if>
-                        <c:if test="${bean.src == '3'}">法务
-                        </c:if>
-                        </li>
-                        <li>发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
-                        <li>有效期至: ${bean.validTime}</li>
-                        <li>生产年份要求: ${bean.equipYear}年以后</li>
-                        <li class="w100">工作小时要求: ${bean.workTime}小时以内</li>
-                        <li class="w100">设备位置要求: ${bean.equipmentLocation}</li>
-                        <li class="w100 cl-1">期望价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元左右</li>
+                        <li>类别: ${bean.brandName}</li>
+                        <li>年份: ${bean.equipYear}年</li>
+                        <li >工时: ${bean.workTime}小时</li>
+                        <li class="w100">位置: ${bean.equipmentLocation}</li>
+                        <li  class="w100">设备序列号: ${bean.workTime}小时</li>
+                        <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
+                        <li  class="w100">有效期至: ${bean.validTime}</li>
+                        <li class="w100 cl-1" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>
                     </ul>
                 </div>
                 <div class="pro-view-box">
@@ -129,15 +107,17 @@
             <div class="hd">卖家信息</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <div class="pro-img"><img src="${initParam.imgHost}${sellUser.headIcon}/small" /></div>
+                    <div class="pro-img">
+                        <img src="${initParam.imgHost}${sellUser.headIcon}/small" />
+                    </div>
                     <h3>${sellUser.realName}</h3>
                     <ul>
                         <li class="w100">注册时间：
                <fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
                         </li>
-                        <liclass="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
+                        <li class="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${sellUser.telephone}">${sellUser.telephone}</a></li>
-                        <li class="w100">Q  Q：${user.qq}</li>
+                        <li class="w100">地址：湖南省长沙市岳麓区</li>
                         <li>经营范围:
                         <c:if test="${sellUser.businessScope == '1'}">工程机械</c:if>
                         <c:if test="${sellUser.businessScope == '2'}">农业机械</c:if>
@@ -157,13 +137,7 @@
                         </c:if>
                     </ul>
                 </div>
-                <div class="pro-view-box">
-                    <h3>库存情况</h3>
-                    <div class="pro-view-box-num">
-                        <p class="bg-green">现有库存：${bean.stockCount}台</p>
-                        <p class="bg-gray">已售数量：${sellCount}台</p>
-                    </div>
-                </div>
+
                 <c:if test="${not empty company}">
                  <div class="pro-view-box">
                     <h3>公司简介</h3>
@@ -176,7 +150,6 @@
          <section class="page-view-btn">
             <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
             <a href="javascript:;" class="ui-button ui-button-blue">库存情况</a>
-             <a href="javascript:;" class="ui-button ui-button-gray jCommentInfo">客户评价</a>
         </section>
 
     </div>

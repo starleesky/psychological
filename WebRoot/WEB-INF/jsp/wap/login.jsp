@@ -26,7 +26,7 @@
 <div class="page-view">
     <div class="logo">
         <img src="${ctx}/wap/images/logo2.png" />
-        <span>欢迎登录</span>
+        <span>登  录</span>
     </div>
     <section class="ui-login">
         <form action="/wap/loginIn" class="ui-form" id="loginForm"  method="post">

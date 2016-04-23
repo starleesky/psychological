@@ -119,7 +119,9 @@
                 </div>
                 <div class="pro-view-box">
                     <h3>买家附言</h3>
-                    <p>${bean.remark}</p>
+                    <div id = "box">
+                    	<p>${bean.remark}</p>
+                    </div>
                 </div>
             </div>
         </section>

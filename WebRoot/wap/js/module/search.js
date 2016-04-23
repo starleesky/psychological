@@ -52,7 +52,7 @@ define(function(require,exports,module){
         load: function(el) {
             Lazyload.load($(el).find('.jImg'));
         },
-        noAnyMore:'<div class="loading">sorry,已经没有下一页了...</div>'
+        noAnyMore:''
     });
     /** ---------------- end --------------------------*/
    

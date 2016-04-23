@@ -77,7 +77,7 @@
                 </c:if>
                 <div class="ui-form-title">选择产品类别</div>
                 <div class="ui-form-mod">
-                    <div class="ui-form-bd">
+                    <div class="ui-form-bd more-select">
                         <select class="bigGoodsCatagory"  name="catagoryBig" id="catagoryBig" validate="required:true" ><option>请选择产品大类</option></select>
                         <select class="middleGoodsCatagory" name="catagoryMid" id="catagoryMid" validate="required:true"><option>请选择产品子类</option></select>
                         <select class="smallGoodsCatagory" name="catagorySmall" id="catagorySmall" validate="required:true"><option>请选择产品</option></select>
@@ -86,7 +86,7 @@
                 <div class="ui-form-title">选择品牌和 & 型号</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">品牌和 & 型号</label>
-                    <div class="ui-form-bd">
+                    <div class="ui-form-bd more-select">
                         <select class="brand" name="brand" id="brand" validate="required:true"><option>请选择品牌</option></select>
                         <select class="models"  name="models" id="models" validate="required:true"><option>请选择型号</option></select>
                     </div>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="ui-form-title">设备详情</div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">求购方式</label>
+                    <label class="ui-form-hd">销售方式</label>
                     <div class="ui-form-bd">
                         <select name="sellType">
                             <c:if test="${type==1}">
@@ -134,28 +134,7 @@
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">手续资料</label>
-                    <div class="ui-form-bd">
-                        <select name="procedures">
-                            <option value="0">手续齐全</option>
-                            <option value="1">无手续</option>
-                            <option value="2">有无手续均可</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">设备来源</label>
-                    <div class="ui-form-bd">
-                        <select name="src">
-                            <option value="0">个人</option>
-                            <option value="1">单位</option>
-                            <option value="2">抵押</option>
-                            <option value="3">法务</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">年份/以后</label>
+                    <label class="ui-form-hd">年份</label>
                     <div class="ui-form-bd">
                         <select name="equipYear">
                             <option value="2015">2015</option>
@@ -192,16 +171,16 @@
                         </select>
                     </div>
                 </div>
-                    <div class="ui-form-mod">
-                        <label class="ui-form-hd">设备序列号</label>
-                        <div class="ui-form-bd">
-                            <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入...">
-                        </div>
-                    </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">工时/小时以内</label>
+                    <label class="ui-form-hd">工时</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="workTime" id="workTime"   placeholder="请输入...">
+                    </div>
+                </div>
+                <div class="ui-form-mod">
+                    <label class="ui-form-hd">设备序列号</label>
+                    <div class="ui-form-bd">
+                        <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入...">
                     </div>
                 </div>
                     <div class="ui-form-mod">
@@ -210,14 +189,14 @@
                             <input type="text"   name="price" id="price"   placeholder="请输入...">
                         </div>
                     </div>
-                <div class="ui-form-title">买家附言</div>
+                <div class="ui-form-title">卖家附言</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>
                     <div class="ui-form-bd">
-                        <textarea placeholder="请输入..."   name="remark" id="remark" ></textarea>
+                        <textarea placeholder="请输入...（限定140个字符）"   name="remark" id="remark" ></textarea>
                     </div>
                 </div>
-                <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>
+                <div class="ui-form-title"><i class="icon iconfont">&#xe60e;</i>设备位置</div>
 					 <input type="hidden" name="equipmentLocation" id="equipmentLocation" value="${info.equipmentLocation}" />
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">省份</label>
@@ -228,21 +207,24 @@
 	                <div class="ui-form-bd">
 	                    <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" ><option>请选择城市</option></select>                    </div>
 	                    </div>
-					<div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
+					<div class="ui-form-title"><i class="icon iconfont">&#xe60d;</i>上传有效期</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
-                        <select id="validTime" name="validTime">
+                        <select id="validTime" name="validTime" >
                             <option value="30">30天</option>
                             <option value="60">60天</option>
                             <option value="90">90天</option>
                         </select>
                         <%--<input type="text" name="validTime1" placeholder="请输入..." />--%>
                     </div>
-                    <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
+
+                </div>
+                <div class="ui-form-mod">
+                    <div class="ui-form-bd" style="text-align:center;">有效期至:<span class="jDate"></span></div>
                 </div>
                 <div class="field-submit">
-                    <input type="button" class="ui-button ui-button-blue" id="jSave" value="保存">
-                    <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="提交">
+                    <a href="javascript:;" class="ui-button ui-button-blue" id="jSave">保存</a>
+                    <a href="javascript:;"  class="ui-button ui-button-submit" id="jSubmit">提交</a>
                 </div>
             </form>
         </section>

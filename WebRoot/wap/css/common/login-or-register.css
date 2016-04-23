@@ -23,7 +23,7 @@ html, body {
   height: 30px;
   color: #fff;
   font-size: 40px;
-  width: 170px;
+  width: 100px;
 }
 /* line 22, ../../sass/common/login-or-register.scss */
 .logo .field-submit input {
@@ -51,28 +51,24 @@ html, body {
   color: #fff;
   font-size: 18px;
 }
-/* line 46, ../../sass/common/login-or-register.scss */
-.ui-form .ui-form-mod .ui-form-bd {
-  width: 95%;
-}
-/* line 48, ../../sass/common/login-or-register.scss */
+/* line 47, ../../sass/common/login-or-register.scss */
 .ui-form .ui-form-mod .ui-form-bd input {
   font-size: 20px;
   height: 40px;
   line-height: 40px;
 }
-/* line 53, ../../sass/common/login-or-register.scss */
+/* line 52, ../../sass/common/login-or-register.scss */
 .ui-form .ui-form-mod .ui-form-bd .ui-tiptext-error {
   color: #f00;
 }
 
-/* line 60, ../../sass/common/login-or-register.scss */
+/* line 59, ../../sass/common/login-or-register.scss */
 section {
   margin-bottom: 40px;
 }
 
 @media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
-  /* line 64, ../../sass/common/login-or-register.scss */
+  /* line 63, ../../sass/common/login-or-register.scss */
   .ui-form .ui-form-mod .ui-form-bd {
     width: 100%;
   }

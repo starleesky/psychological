@@ -46,6 +46,8 @@ public class InfomationDto extends Infomation {
 
 	private String newModel;
 
+	private String nextPage;
+
 	public String getRemark() {
 		return remark;
 	}
@@ -149,5 +151,12 @@ public class InfomationDto extends Infomation {
     public void setSellTypeName(String sellTypeName) {
         this.sellTypeName = sellTypeName;
     }
-	
+
+	public String getNextPage() {
+		return nextPage;
+	}
+
+	public void setNextPage(String nextPage) {
+		this.nextPage = nextPage;
+	}
 }

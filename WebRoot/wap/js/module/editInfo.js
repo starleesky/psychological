@@ -186,25 +186,33 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     
     //初始化手动添加品牌型号内容（如果有）
     initNewBrand();
-    
 
+
+    var status = 0;
     //信息提交
     Validator.validate('#informationFrom', {
         rules: {
             price: {
                 required: true
+            },
+            remark: {
+                maxlength: 140
             }
         },
         messages: {
             price: {
                 required: '价格不能为空'
+            },
+            remark: {
+                maxlength: '附言不能大于140个字'
             }
+
         },
         submitHandler: function (form) {
             $.post(
                 url.saveInfo,
                 {
-                	id : $(form).find('input[name=id]').val(),
+                    id : $(form).find('input[name=id]').val(),
                     catagoryBigId: $(form).find('select[name=catagoryBig]').val(),
                     catagoryBigName: $(form).find('select[name=catagoryBig]').find("option:selected").text(),
                     catagoryMidId: $(form).find('select[name=catagoryMid]').val(),
@@ -223,19 +231,26 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     src: $(form).find('select[name=srcSel]').val(),
                     equipYear: $(form).find('select[name=equipYearSel]').val(),
                     remark: $(form).find('textarea[name=remark]').val(),
+                    provinceId: $(form).find('select[name=regionProvice]').val(),
                     provinceName: $(form).find('select[name=regionProvice]').find("option:selected").text(),
+                    cityId: $(form).find('select[name=regionCity]').val(),
                     cityName: $(form).find('select[name=regionCity]').find("option:selected").text(),
+                    validTime: $(form).find('select[name=validTime]').find("option:selected").val(),
                     price: $(form).find('input[name=price]').val(),
                     workTime: $(form).find('input[name=workTime]').val(),
-                   // imgUrl:array,
-                    status:$('#curStatus').val()
+                    serialNum: $(form).find('input[name=serialNum]').val(),
+                    imgUrl:array,
+                    status:status
                 },
                 function (data) {
-                    if (data.result) {
+                    var str= JSON.parse(data);
+                    submitIng=false;
+                    if (str.result) {
                         box.ok(data.message);
-                    	window.location.href = ctx + url.infoList+"?status=0";
+                        window.location.href = ctx+url.infoList+"?status=0";
+
                     } else {
-                        box.error(data.message);
+                        box.error(str.message);
                     }
 
                 });
@@ -245,25 +260,60 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         },
         success: null
     });
-
+    var submitIng=false;
+    var array="";
     $("#jSave").click(function () {
+        if(submitIng){
+            box.error('不能重复提交！');
+            return;
+        }
+        status = 0;
         var modelsId = oModels.val();
         if (modelsId == null || modelsId == "") {
-        	var newModels = $("input[name='newModels']").val();
-        	if(newModels == null || newModels == "") {
-        		alert('型号未选择');
-        		return;
-        	}
+            alert('型号未选择');
+            return;
         }
+        var  _text = $("input[name^='_UPLOAD_']");
+        for(var i=0;i<_text.length;i++){
+            array+=_text[i].value+",";
+        }
+        submitIng=true;
+        ValidBrandAndModel();
         $('#informationFrom').submit();
 
     });
 
     $("#jSubmit").click(function () {
+        //alert('提交之前请先保存');
+        status = 1;
+        if(submitIng){
+            box.error('不能重复提交！');
+            return;
+        }
+        var   _text = $("input[name^='_UPLOAD_']");
+        for(var i=0;i<_text.length;i++){
+            array+=_text[i].value+",";
+        }
+        submitIng=true;
+        ValidBrandAndModel();
         $('#informationFrom').submit();
-
-       // alert('提交之前请先保存');
     });
+
+    if(isNew=="0"){
+        $('.desc-child').addClass('isHide');
+        $(this).removeClass('open');
+    }else{
+        $('.desc-child').removeClass('isHide');
+        $(this).addClass('open');
+    }
+
+    var ValidBrandAndModel=function (){
+        if($('.desc-child').hasClass('isHide')){
+            $('input[name=newBrand]').val('');
+            $('input[name=newModels]').val('');
+        }
+    }
+
 
     //图片管理
     var clickHandlers = {

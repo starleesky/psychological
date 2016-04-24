@@ -26,15 +26,15 @@
     <div class="page-view-body">
         <section class="pro-view-mod img-box">
             <div class="hd">
-                <a href="./index.html" class="prev-btn"><i class="icon iconfont">&#xe603;</i></a>
+                <a href="${ctx}/infomation/input?id=${bean.id}&page=prev" class="prev-btn"><i class="icon iconfont">&#xe603;</i></a>
                 <div class="img-title">
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}" >
                     <p class="pro-price"><fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</p>
              			<p class="pro-num">汤森信息编号: ts${bean.id}</p>
-                    
+
                 </div>
-                <a href="./index.html" class="next-btn"><i class="icon iconfont">&#xe60b;</i></a>
+                <a href="${ctx}/infomation/input?id=${bean.id}&page=next" class="next-btn"><i class="icon iconfont">&#xe60b;</i></a>
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">

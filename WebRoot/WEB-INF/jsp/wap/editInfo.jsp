@@ -62,7 +62,19 @@ String _modelName = infomation.getModelName();
                             <img src="${ctx}/wap/images/image_load_icon.png" />
                             <span>上传图片</span>
                         </div>
+                        <c:forEach items="${attches}" var="attches" varStatus="status">
+                            <div class="progressbar"><div style="width: 99%;">99%</div></div>
+                            <input type="hidden" value="${attches.attchUrl}" name="_UPLOAD_${status.index}">
+                        </c:forEach>
                     </a>
+                        <div class="up-img-list">
+                            <c:forEach items="${attches}" var="attches">
+                                <div class="up-img-box file-uploaded">
+                                    <img src="${initParam.imgHost}${attches.attchUrl}/figure">
+                                    <b class="icon-delete" node-type="deleteImgBtn"></b>
+                                </div>
+                            </c:forEach>
+                        </div>
                 </div>
                 </c:if>
                 <div class="ui-form-title">选择产品类别</div>
@@ -93,13 +105,13 @@ String _modelName = infomation.getModelName();
                 <div class="ui-form-mod isHide desc-child">
                     <label class="ui-form-hd">添加品牌</label>
                     <div class="ui-form-bd">
-                        <input type="text" name="newBrand" value="" placeholder="请输入...">
+                        <input type="text" name="newBrand" value="${info.brandName}" placeholder="请输入...">
                     </div>
                 </div>
                 <div class="ui-form-mod isHide desc-child">
                     <label class="ui-form-hd">添加型号</label>
                     <div class="ui-form-bd">
-                        <input type="text" name="newModels" value="" placeholder="请输入...">
+                        <input type="text" name="newModels" value="${info.modelName}" placeholder="请输入...">
                     </div>
                 </div>
                 <div class="ui-form-title">设备详情</div>
@@ -237,6 +249,7 @@ String _modelName = infomation.getModelName();
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
     var ctx = "${ctx}";
+    var isNew="${info.isNew}"
     require(['module/editInfo']);
 </script>
 </body></html>

@@ -106,6 +106,8 @@
         <section class="buy-man-info pro-view-mod">
             <div class="hd">卖家信息</div>
             <div class="bd">
+                            <c:if test="${empty company}">
+            
                 <div class="pro-view-box">
                     <div class="pro-img">
                         <img src="${initParam.imgHost}${sellUser.headIcon}/small" />
@@ -131,20 +133,22 @@
                              <c:if test="${sellUser.businessNature == '2'}">求购</c:if>
                              <c:if test="${sellUser.businessNature == '3'}">求租</c:if>
                         </li>
-                        <c:if test="${not empty company}">
-                        <li class="w100">所属公司：${company.companyName}</li>
-                        <li class="w100">公司地址：${company.address}</li>
-                        </c:if>
                     </ul>
                 </div>
-
+				      </c:if>         
                 <c:if test="${not empty company}">
+                 <div class="pro-view-box">
+			         <ul>
+	                    <li class="w100">所属公司：${company.companyName}</li>
+                        <li class="w100">联系电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
+                        <li class="w100">公司地址：${company.address}</li>
+                     </ul>
+				</div>
                  <div class="pro-view-box">
                     <h3>公司简介</h3>
                    <p>${company.introduction}
                 </div>
                 </c:if>
-               
             </div>
         </section>
          <section class="page-view-btn">

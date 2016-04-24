@@ -260,7 +260,9 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     });
 
     $("#jSubmit").click(function () {
-        alert('提交之前请先保存');
+        $('#informationFrom').submit();
+
+       // alert('提交之前请先保存');
     });
 
     //图片管理

@@ -208,6 +208,16 @@ public class UserController {
            model.addAttribute("collections", colleanInfo.getItems());
        }
        
+       //最新发布10
+       Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
+       Infomation infomation2 = new Infomation();
+       infomation2.setStatus(InfomationEnum.status_sj.code());
+       params.add("entity", infomation2);
+       pagerNew.setPageOrder(Pager.ORDER_DESC);
+       pagerNew.setPageSort("create_time");
+       pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
+       model.addAttribute("News", pagerNew.getItems());
+       
        return "/wap/infor";
    }
 }

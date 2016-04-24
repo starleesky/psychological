@@ -79,8 +79,6 @@ public class LoginController {
         model.addAttribute("userId",user.getId());
         result.setResult(true);
         result.setMessage("登录成功");
-        
-        System.out.println(result);
         return result;
     }
 
@@ -101,6 +99,15 @@ public class LoginController {
         pager = infomationService.getInfoPagerWithImg(params, pager,false);
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
+        //最新发布10
+        Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
+        Infomation infomation2 = new Infomation();
+        infomation2.setStatus("2");
+        params.add("entity", infomation2);
+        pagerNew.setPageOrder(Pager.ORDER_DESC);
+        pagerNew.setPageSort("create_time");
+        pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
+        model.addAttribute("News", pagerNew.getItems());
         return "/wap/infor";
     }
 

@@ -222,7 +222,7 @@ String _modelName = infomation.getModelName();
 	                        </select>
 	                       <!--  <input type="text" name="validTime" placeholder="请输入..." /> -->
 	                    </div>
-                    <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
+<!--                     <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div> -->
                 </div>
                 <div class="field-submit">
                     <input type="button" class="ui-button ui-button-blue" id="jSave" value="保存">

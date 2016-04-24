@@ -173,7 +173,7 @@
             </div>
             <div class="collect-bd">
                 <ul class="clearfix jProList" >
-                    <c:forEach var="item" items="${Tops}">
+                    <c:forEach var="item" items="${News}">
                         <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
                         <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>

@@ -1,8 +1,8 @@
 /* common */
 @font-face {
   font-family: "iconfont";
-  src: url('../../fonts/iconfont.eot?1461421534');
-  src: url('../../fonts/iconfont.eot?1461421534#iefix') format("embedded-opentype"), url('../../fonts/iconfont.ttf?1461421534') format("truetype"), url('../../fonts/iconfont.woff?1461421534') format("woff"), url('../../fonts/iconfont.svg?1461421534') format("svg");
+  src: url('../../fonts/iconfont.eot?1461487210');
+  src: url('../../fonts/iconfont.eot?1461487210#iefix') format("embedded-opentype"), url('../../fonts/iconfont.ttf?1461487208') format("truetype"), url('../../fonts/iconfont.woff?1461487210') format("woff"), url('../../fonts/iconfont.svg?1461487210') format("svg");
 }
 /* line 9, ../../sass/fonts/_base.scss */
 .iconfont {
@@ -1475,9 +1475,10 @@ fieldset {
   right: 20px;
   font-size: 20px;
   color: #333;
+  font-weight: 400;
 }
 
-/* line 89, ../../sass/module/want.scss */
+/* line 90, ../../sass/module/want.scss */
 .pro-select-info {
   display: none;
   position: fixed;
@@ -1488,11 +1489,11 @@ fieldset {
   background: rgba(77, 185, 109, 0.8);
   z-index: 20;
 }
-/* line 98, ../../sass/module/want.scss */
+/* line 99, ../../sass/module/want.scss */
 .pro-select-info.del-bg {
   background: rgba(230, 85, 65, 0.8);
 }
-/* line 101, ../../sass/module/want.scss */
+/* line 102, ../../sass/module/want.scss */
 .pro-select-info a, .pro-select-info a:hover {
   position: absolute;
   top: 10px;
@@ -1500,13 +1501,13 @@ fieldset {
   color: #fff;
   font-size: 16px;
 }
-/* line 107, ../../sass/module/want.scss */
+/* line 108, ../../sass/module/want.scss */
 .pro-select-info a.iconfont, .pro-select-info a:hover.iconfont {
   top: 14px;
   right: 20px;
   font-size: 24px;
 }
-/* line 112, ../../sass/module/want.scss */
+/* line 113, ../../sass/module/want.scss */
 .pro-select-info a.button, .pro-select-info a:hover.button {
   font-weight: 700;
   left: 20px;
@@ -1518,19 +1519,19 @@ fieldset {
   overflow: hidden;
 }
 
-/* line 126, ../../sass/module/want.scss */
+/* line 127, ../../sass/module/want.scss */
 .ui-form .upload-img {
   margin: 0 0 10px 0;
   width: 100%;
   color: #fff;
   font-weight: 700;
 }
-/* line 132, ../../sass/module/want.scss */
+/* line 133, ../../sass/module/want.scss */
 .ui-form .upload-img .ui-button-upload {
   line-height: 20px;
   background: #E45540;
 }
-/* line 136, ../../sass/module/want.scss */
+/* line 137, ../../sass/module/want.scss */
 .ui-form .upload-img a {
   position: relative;
   display: block;
@@ -1539,7 +1540,7 @@ fieldset {
   color: #fff;
   overflow: hidden;
 }
-/* line 144, ../../sass/module/want.scss */
+/* line 145, ../../sass/module/want.scss */
 .ui-form .upload-img .img-sp {
   position: relative;
   float: left;
@@ -1548,25 +1549,25 @@ fieldset {
   text-align: center;
   overflow: hidden;
 }
-/* line 151, ../../sass/module/want.scss */
+/* line 152, ../../sass/module/want.scss */
 .ui-form .upload-img .img-sp img {
   max-width: 100px;
   max-height: 100px;
   margin: 10px 20px 0;
 }
-/* line 156, ../../sass/module/want.scss */
+/* line 157, ../../sass/module/want.scss */
 .ui-form .upload-img .img-sp span {
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-/* line 164, ../../sass/module/want.scss */
+/* line 165, ../../sass/module/want.scss */
 .ui-form .upload-img .up-img-list {
   margin-top: 10px;
   float: left;
 }
-/* line 167, ../../sass/module/want.scss */
+/* line 168, ../../sass/module/want.scss */
 .ui-form .upload-img .up-img-list .up-img-box {
   position: relative;
   float: left;
@@ -1575,14 +1576,14 @@ fieldset {
   text-align: center;
   overflow: hidden;
 }
-/* line 174, ../../sass/module/want.scss */
+/* line 175, ../../sass/module/want.scss */
 .ui-form .upload-img .up-img-list .up-img-box img {
   display: block;
   max-width: 100px;
   max-height: 100px;
   vertical-align: middle;
 }
-/* line 180, ../../sass/module/want.scss */
+/* line 181, ../../sass/module/want.scss */
 .ui-form .upload-img .up-img-list .up-img-box .icon-delete {
   background: url('../../images/uploadify-cancel.png') no-repeat scroll center center transparent;
   background-size: cover;
@@ -1595,7 +1596,7 @@ fieldset {
 }
 
 @media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
-  /* line 196, ../../sass/module/want.scss */
+  /* line 197, ../../sass/module/want.scss */
   .pro-select-info a.button {
     width: 86%;
   }

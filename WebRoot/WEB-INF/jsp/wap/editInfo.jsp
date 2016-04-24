@@ -84,7 +84,7 @@ String _modelName = infomation.getModelName();
                 <input type="hidden" id="_brandId" value="${info.brandId }">
                 <input type="hidden" id="_modelId" value="${info.modelId }">
                 <div class="ui-form-mod">
-                    <div class="ui-form-bd">
+                    <div class="ui-form-bd more-select">
                         <select class="bigGoodsCatagory"  name="catagoryBig" id="catagoryBig" validate="required:true" ><option>请选择产品大类</option></select>
                         <select class="middleGoodsCatagory" name="catagoryMid" id="catagoryMid" validate="required:true"><option>请选择产品子类</option></select>
                         <select class="smallGoodsCatagory" name="catagorySmall" id="catagorySmall" validate="required:true"><option>请选择产品</option></select>
@@ -93,7 +93,7 @@ String _modelName = infomation.getModelName();
                 <div class="ui-form-title">选择品牌和 & 型号</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">品牌和 & 型号</label>
-                    <div class="ui-form-bd">
+                    <div class="ui-form-bd more-select">
                         <select class="brand" name="brand" id="brand" validate="required:true"><option>请选择品牌</option></select>
                         <select class="models"  name="models" id="models" validate="required:true"><option>请选择型号</option></select>
                     </div>
@@ -168,7 +168,7 @@ String _modelName = infomation.getModelName();
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">年份/以后</label>
+                    <label class="ui-form-hd">年份</label>
                     <div class="ui-form-bd">
                     	<input type="hidden" name="equipYear" id="equipYear" value="${info.equipYear}"/>
                         <select name="equipYearSel">
@@ -186,7 +186,7 @@ String _modelName = infomation.getModelName();
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">工时/小时以内</label>
+                    <label class="ui-form-hd">工时</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="workTime" id="workTime"  value="${info.workTime }" placeholder="请输入...">
                     </div>
@@ -212,7 +212,7 @@ String _modelName = infomation.getModelName();
                         <textarea placeholder="请输入..."   name="remark" id="remark" maxlength="140">${info.remark }</textarea>
                     </div>
                 </div>
-                <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>
+                <div class="ui-form-title"><i class="icon iconfont">&#xe60e;</i>设备地址</div>
                 <input type="hidden" name="equipmentLocation" id="equipmentLocation" value="${info.equipmentLocation}" />
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">省份</label>
@@ -223,7 +223,7 @@ String _modelName = infomation.getModelName();
 	                <div class="ui-form-bd">
 	                    <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" ><option>请选择城市</option></select>                    </div>
 	                    </div>
-                	<div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
+                	<div class="ui-form-title"><i class="icon iconfont">&#xe60d;</i>上传有效期</div>
                 	<div class="ui-form-mod">
 	                    <div class="ui-form-bd">
 	                    	<input type="hidden" name="validTime" id="validTime" value="${info.validTime }">
@@ -237,8 +237,8 @@ String _modelName = infomation.getModelName();
 <!--                     <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div> -->
                 </div>
                 <div class="field-submit">
-                    <input type="button" class="ui-button ui-button-blue" id="jSave" value="保存">
-                    <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="提交">
+                    <a href="javascript:;" class="ui-button ui-button-blue" id="jSave">保存</a>
+                    <a href="javascript:;" class="ui-button ui-button-submit" id="jSubmit">提交</a>
                 </div>
             </form>
         </section>

@@ -1,8 +1,5 @@
-define(function(require,exports,module) {
+define(['jquery','plug/ajax','url'],function($,ajax,url) {
 
-    var $ = require('jquery');
-    var ajax = require('plug/ajax');
-    var url = require('url');
     var $jImg = $('#jImgBox'),$bigBox = $('.img-big-box');
     $jImg.on('click','a',function(){
         var src = $(this).attr('data-url');
@@ -34,7 +31,7 @@ define(function(require,exports,module) {
 		var text = box.innerHTML;
 		var newBox = document.createElement("div");
 		var btn = document.createElement("a");
-		//去首尾空格
+		//去首尾空�?
 		text = text.replace(/(^\s*)|(\s*$)/g, "");
 		newBox.innerHTML = text.substring(0, 64);
 		btn.innerHTML = text.length > 64 ? "...显示全部" : "";

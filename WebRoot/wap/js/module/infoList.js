@@ -208,7 +208,7 @@ define(
 						load : function(el) {
 							Lazyload.load($(el).find('.jImg'));
 						},
-						noAnyMore : '<div class="loading">sorry,已经没有下一页了...</div>'
+						noAnyMore : ''
 					});
 
 			$("select[name='orderSel']").change(

@@ -57,7 +57,7 @@
             		 <div class="no-data">当设备销售出后，请标记为已售。</div>
             	</c:when>
             	<c:when test="${status == 3 }">
-            		 <div class="pro-buy-des">设备已售后，删除或重新上传</div>
+            		 <div class="no-data">设备已售后，删除或重新上传</div>
             	</c:when>
             	<c:when test="${status == 4 }">
             		 <div class="no-data">以下设备已过期，请重新上传。</div>
@@ -71,10 +71,10 @@
             </c:choose>
             <c:choose>
             	<c:when test="${status == 2 }">
-            		 <div class="pro-buy-num">已售台数:<span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
+            		 <div class="pro-buy-num"><span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
             	</c:when>
             	<c:otherwise>
-            		<div class="pro-buy-num"><span>1</span>台 <a href="javascript:;" class="icon iconfont jSelPro pro-sel">&#xe613;</a></div>
+            		<div class="pro-buy-num"><span>1</span>台 <a href="javascript:;" class="icon iconfont jSelPro pro-sel">&#xe60f;</a></div>
             	</c:otherwise>
             </c:choose>
             <div class="pro-list">
@@ -150,13 +150,13 @@
         	<c:when test="${status == 2 }">
         		<section class="pro-select-info">
 		            <a href="#" class="button jProSelMsg">已售<span>0</span>台</a>
-		            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe622;</a>
+		            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe60f;</a>
 		        </section>
         	</c:when>
         	<c:otherwise>
         		 <section class="pro-select-info del-bg">
 		            <a href="#" class="button jProSelMsg"> 删除<span>0</span>台</a>
-		            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe622;</a>
+		            <a href="javascript:;" class="icon iconfont jCloseProSel">&#xe60f;</a>
 		        </section>
         	</c:otherwise>
         </c:choose>

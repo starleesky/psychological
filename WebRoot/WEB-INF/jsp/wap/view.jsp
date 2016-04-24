@@ -69,7 +69,7 @@
                 <div class="pro-view-box">
                     <h3>${bean.brandName}${bean.modelName}出售详细信息</h3>
                     <ul>
-                        <li>品牌: ${bean.brandName}</li>
+                        <li>品牌: ${bean.catagoryName}</li>
                         <li>型号: ${bean.brandName}</li>
                         <li>方式:
                         <c:if test="${bean.sellType == '0'}">
@@ -85,7 +85,15 @@
                         	求租
                         </c:if>
                         </li>
-                        <li>类别: ${bean.brandName}</li>
+                        <li>类别: <c:if test="${bean.equipmentCondition == '0'}">
+                        新设备
+                        </c:if>
+                        <c:if test="${bean.equipmentCondition == '1'}">
+                        二手设备
+                        </c:if>
+                        <c:if test="${bean.equipmentCondition == '2'}">
+                        再制造
+                        </c:if></li>
                         <li>年份: ${bean.equipYear}年</li>
                         <li >工时: ${bean.workTime}小时</li>
                         <li class="w100">位置: ${bean.equipmentLocation}</li>

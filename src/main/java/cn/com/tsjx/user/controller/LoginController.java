@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.qiniu.util.Json;
-
-import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
@@ -91,6 +87,8 @@ public class LoginController {
     public String index(Model model, HttpSession httpSession) {
         httpSession.removeAttribute("user");
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
+        pager.setPageOrder(Pager.ORDER_DESC);
+        pager.setPageSort("a.create_time");
         Infomation infomation = new Infomation();
         Params params = Params.create();
         infomation.setStatus("2");
@@ -105,7 +103,7 @@ public class LoginController {
         infomation2.setStatus("2");
         params.add("entity", infomation2);
         pagerNew.setPageOrder(Pager.ORDER_DESC);
-        pagerNew.setPageSort("create_time");
+        pagerNew.setPageSort("a.create_time");
         pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
         model.addAttribute("News", pagerNew.getItems());
         return "/wap/infor";

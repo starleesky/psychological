@@ -42,7 +42,7 @@
                 </div>
                 <div class="img-list">
                 	<c:forEach items="${listAttch }" var="attach">
-	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}">
+	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}/figure">
 	                        <img src="${initParam.imgHost}${attach.attchUrl}/small" />
 	                    </a>
                 	</c:forEach>
@@ -127,7 +127,7 @@
                         </li>
                         <li class="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${sellUser.telephone}">${sellUser.telephone}</a></li>
-                        <li class="w100">地址：湖南省长沙市岳麓区</li>
+                        <li class="w100">地址：${sellUser.provinceName }${sellUser.cityName }</li>
                         <li>经营范围:
                         <c:if test="${sellUser.businessScope == '1'}">工程机械</c:if>
                         <c:if test="${sellUser.businessScope == '2'}">农业机械</c:if>
@@ -161,7 +161,7 @@
         </section>
          <section class="page-view-btn">
             <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
-            <a href="javascript:;" class="ui-button ui-button-blue">库存情况</a>
+            <a href="javascript:;" class="ui-button ui-button-blue">库存情况${bean.stockCount}</a>
         </section>
 
     </div>

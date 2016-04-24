@@ -161,6 +161,12 @@
 			<if test="entity.isTop != null and entity.isTop != ''">
 				AND a.is_top = #{entity.isTop,jdbcType=VARCHAR}
 			</if>
+			<if test="entity.nextPage =='next'">
+				AND a.id > #{entity.id,jdbcType=VARCHAR}
+			</if>
+			<if test="entity.nextPage == 'prev'">
+				AND a.id  &lt;  #{entity.id,jdbcType=VARCHAR}
+			</if>
 		</where>
 	</sql>
 	

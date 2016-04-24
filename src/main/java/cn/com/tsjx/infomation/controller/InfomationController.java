@@ -3,11 +3,7 @@ package cn.com.tsjx.infomation.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -98,7 +94,26 @@ public class InfomationController {
     }
 
     @RequestMapping(value = "/input", method = RequestMethod.GET)
-    public String input(Long id, Model model) {
+    public String input(Long id,String page, Model model) {
+        if("next".equals(page)||"prev".equals(page)){
+            Params params = Params.create();
+            params.add("deleted", Deleted.NO.value);
+            params.add("status", InfomationEnum.status_sj.code());
+            Pager<InfomationDto> pager =new Pager<InfomationDto>();
+            pager.setPageSize(1);
+            InfomationDto infomationDto = new InfomationDto();
+            infomationDto.setNextPage(page);
+            infomationDto.setId(id);
+            infomationDto.setStatus( InfomationEnum.status_sj.code());
+            params.add("entity", infomationDto);
+            pager.setEntity(infomationDto);
+            pager = infomationService.getInfoPagerWithImg(params, pager, false);
+            if(pager!=null&&pager.getItems().size()==1){
+                Iterator<InfomationDto> iterator = pager.getItems().iterator();
+                id = iterator.next().getId();
+            }
+        }
+
         if (id != null) {
             Infomation infomation = infomationService.get(id);
             User user = null;
@@ -165,6 +180,7 @@ public class InfomationController {
             infomation = (InfomationDto) infomationService.insert(infomation);
         } else {
             infomationService.update(infomation);
+            attchService.delete(infomation.getId());
         }
 
         if ("2".equals(infomation.getSellType()) || "3".equals(infomation.getSellType())) {
@@ -468,6 +484,12 @@ public class InfomationController {
             model.addAttribute("company", company);
         }
         model.addAttribute("info", infomation);
+
+        Attch attch = new Attch();
+        attch.setInformationId(id);
+        List<Attch> attches = attchService.find(attch);
+
+        model.addAttribute("attches", attches);
 
         Infomation tempInfo = new Infomation();
         tempInfo.setDeleted(Deleted.NO.value);

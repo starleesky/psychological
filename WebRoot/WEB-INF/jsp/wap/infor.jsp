@@ -8,7 +8,15 @@
     <title>汤森机械网-首页</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/infor.css?v=1" type="text/css" charset="utf-8">
-
+    <style>
+    .recommended-mod, .collect-mod{padding:0 0 10px 0;}
+    .collect-mod .collect-hd .icon{font-size:26px;}
+    .recommended-mod .recommended-hd, .recommended-mod .collect-hd, .collect-mod .recommended-hd, .collect-mod .collect-hd{height:60px;line-height:60px;}
+    .recommended-mod .recommended-hd .icon,.collect-mod .collect-hd .icon{line-height:60px;}
+    .recommended-mod .recommended-hd .icon{line-height:63px;}
+    .recommended-mod .recommended-bd ul li, .recommended-mod .collect-bd ul li, .collect-mod .recommended-bd ul li, .collect-mod .collect-bd ul li{margin-right:15px;}
+    .recommended-mod .recommended-bd ul li span.price, .recommended-mod .collect-bd ul li span.price, .collect-mod .recommended-bd ul li span.price, .collect-mod .collect-bd ul li span.price{text-align:center;font-size:16px;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -20,7 +28,7 @@
     <section class="login-info">
             <div class="hd">
                 <div class="f-l">
-                   <img src="${ctx}/wap/images/dashboard_icon.png" />我的账号
+                   <img src="${ctx}/wap/images/dashboard_icon.png" />账号管理
                 </div>
                 <a href="javascript:;" class="f-r jIsHide">隐藏</a>
                 
@@ -35,7 +43,7 @@
                          </span>
                          </p>
                     </div>
-                    <a href="${ctx}/user/input/my.htm?id=${userInfo.id}" class="up-info f-l">修改</a>
+                    <a href="${ctx}/user/input/my.htm?id=${userInfo.id}" class="up-info f-l">修改个人信息</a>
                 </div>
                 <div class="pro-nav">
                     <a href="${ctx }/infomation/infoList/my?status=2">
@@ -55,16 +63,16 @@
                         <span class="num-desc">草稿</span>
                     </a>
                 </div>
-                <a href="${ctx}/infomation/sale/my.htm" class="ui-button ui-button-submit">我要销售</a>
+                <a href="${ctx}/infomation/sale/my.htm" class="ui-button ui-button-submit">发布销售</a>
                 <a href="${ctx}/infomation/pub/my.htm" class="ui-button ui-button-blue">我要求购</a>
                 <div class="info-url">
                     <a href="${ctx}/wap/companyInfo/my.htm" class="clearfix">
                         <img src="${ctx}/wap/images/message_comp.png"/><span>公司信息</span>
-                        <span class="icon iconfont f-r">&#xe60e;</span>
+                        <span class="icon iconfont f-r">&#xe60b;</span>
                     </a>
                     <a href="${ctx }/wap/message/my.htm" class="clearfix">
                         <img src="${ctx}/wap/images/message_icon.png" /><span >消息</span>
-                        <span class="icon iconfont f-r">&#xe60e;</span>
+                        <span class="icon iconfont f-r">&#xe60b;</span>
                     </a>
                 </div>
             </div>
@@ -109,7 +117,7 @@
                         </div>
                     </div>
                     <div class="ui-form-mod">
-                        <label class="ui-form-hd">产品</label>
+                        <label class="ui-form-hd">产品详细</label>
                         <div class="ui-form-bd">
                         <input type="hidden" name="catagoryId" id="catagoryId" value="${info.catagoryId}"/>
                     	<input type="hidden" name="catagoryName" id="catagoryName" value="${info.catagoryName}"/>
@@ -134,23 +142,23 @@
                         </div>
                     </div>
                     <div class="field-submit">
-                        <a href="javascript:;" class="ui-button ui-button-submit ui-button-blue" id="jSave">搜索</a>
+                        <a href="javascript:;" class="ui-button ui-button-submit ui-button-blue" id="jSave">搜  索</a>
                     </div>
                 </form>
             </div>
         </section>
         <section class="recommended-mod" id="jRecommend">
             <div class="recommended-hd">
-                <span class="icon iconfont">&#xe604;</span>今日推荐
+                <span class="icon iconfont">&#xe604;</span>热门推荐
             </div>
             <div class="recommended-bd">
-                <ul class="clearfix">
+                <ul class="clearfix jProList">
                    <c:forEach var="item" items="${Tops}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
                             <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
-                            <span class="price"><b>价格：</b><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />元</span>
+                            <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />元</span>
                         </a>
                     </li>
                    </c:forEach>
@@ -158,36 +166,25 @@
             </div>
         </section>
         
-         <c:if test="${empty sessionScope.user.id}">
-         <section class="collect-mod" id="jCollect">
-            <div class="collect-hd">
-                <span class="icon iconfont">&#xe60a;</span>我的收藏
-            </div>
-            <div class="collect-bd">
-                <div class="no-login">登录后查看我的收藏</div>
-            </div>
-        </section>
-         </c:if>
-         <c:if test="${not empty sessionScope.user.id}">
+
         <section class="collect-mod" id="jCollect">
             <div class="collect-hd">
-                <span class="icon iconfont">&#xe60a;</span>我的收藏
+                <span class="icon iconfont">&#xe60c;</span>最新发布
             </div>
             <div class="collect-bd">
-                <ul class="clearfix" style="display:;">
-                    <c:forEach var ="bb" items = "${collections}">
-                    <li>
-                        <a href="${ctx}/infomation/input.htm?id=${bb.id}">
-                            <span class="pro-img"><img src="${initParam.imgHost}${bb.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${bb.imgUrl}" /></span>
-                            <span class="name">${bb.brandName}${bb.modelName}</span>
-                            <span class="price"><b>价格：</b><fmt:formatNumber value="${bb.price}" maxFractionDigits="0" />元</span>
+                <ul class="clearfix jProList" >
+                    <c:forEach var="item" items="${News}">
+                        <li>
+                        <a href="${ctx}/infomation/input.htm?id=${item.id}">
+                        <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
+                        <span class="name">${item.brandName}${item.modelName}</span>
+                        <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />元</span>
                         </a>
-                    </li>
-					</c:forEach>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
         </section>
-    </c:if>
     </div>
 </div>
 

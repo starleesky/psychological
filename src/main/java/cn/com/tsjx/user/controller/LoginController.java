@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
-import com.qiniu.util.Json;
-
-import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
@@ -79,8 +75,6 @@ public class LoginController {
         model.addAttribute("userId",user.getId());
         result.setResult(true);
         result.setMessage("登录成功");
-        
-        System.out.println(result);
         return result;
     }
 
@@ -93,13 +87,25 @@ public class LoginController {
     public String index(Model model, HttpSession httpSession) {
         httpSession.removeAttribute("user");
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
+        pager.setPageOrder(Pager.ORDER_DESC);
+        pager.setPageSort("a.create_time");
         Infomation infomation = new Infomation();
         Params params = Params.create();
+        infomation.setStatus("2");
+        infomation.setIsTop("1");
         params.add("entity", infomation);
-        params.add("isTop","1");
         pager = infomationService.getInfoPagerWithImg(params, pager,false);
         // 今日推荐 前10
         model.addAttribute("Tops", pager.getItems());
+        //最新发布10
+        Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
+        Infomation infomation2 = new Infomation();
+        infomation2.setStatus("2");
+        params.add("entity", infomation2);
+        pagerNew.setPageOrder(Pager.ORDER_DESC);
+        pagerNew.setPageSort("a.create_time");
+        pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
+        model.addAttribute("News", pagerNew.getItems());
         return "/wap/infor";
     }
 

@@ -96,7 +96,7 @@
 		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
 		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
 		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
-		 WHERE ID = #{id,jdbcType=INTEGER}
+		 WHERE information_id = #{id,jdbcType=INTEGER}
 		]]>
 	</update>
 

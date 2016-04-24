@@ -128,7 +128,7 @@
 			<if test="isNewMessage != null">
 				IS_NEW_MESSAGE = #{isNewMessage,jdbcType=VARCHAR},
 			</if>
-			<if test="headIcon != null">
+			<if test="headIcon != null and headIcon != ''">
 				HEAD_ICON = #{headIcon,jdbcType=VARCHAR},
 			</if>
 			<if test="lastLoginTime != null">

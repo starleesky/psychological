@@ -23,9 +23,12 @@
                 <option value="pub_h">发布时间</option>
             </select>
         </section>
+                 <c:if test="${empty sessionScope.user.id}">
+        
         <section class="contact-mod">
-            <div class="no-login"><a href="./login.html">登录后可以收藏</a></div>
+            <div class="no-login"><a href="${ctx}/login.htm">登录后可以收藏</a></div>
         </section>
+        </c:if>
         <section class="search-mod">
             <div class="search-hd"></div>
             <div class="pro-list search-bd">

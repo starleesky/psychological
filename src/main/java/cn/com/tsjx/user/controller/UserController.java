@@ -165,6 +165,8 @@ public class UserController {
        }
        infomation.setIsTop("1");
        pager.setEntity(infomation);
+       pager.setPageOrder(Pager.ORDER_DESC);
+       pager.setPageSort("a.create_time");
        pager = infomationService.getInfoPagerWithImg(params, pager, false);
        //Map<String, Object> params = new HashMap<String, Object>();
        //params.put("entity", infomation);
@@ -207,6 +209,16 @@ public class UserController {
            model.addAttribute("cnt_sc", colleanInfo.getTotalCount());
            model.addAttribute("collections", colleanInfo.getItems());
        }
+       
+       //最新发布10
+       Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
+       Infomation infomation2 = new Infomation();
+       infomation2.setStatus(InfomationEnum.status_sj.code());
+       params.add("entity", infomation2);
+       pagerNew.setPageOrder(Pager.ORDER_DESC);
+       pagerNew.setPageSort("a.create_time");
+       pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
+       model.addAttribute("News", pagerNew.getItems());
        
        return "/wap/infor";
    }

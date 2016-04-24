@@ -212,4 +212,15 @@ define(
 								+ this.value + "&status="
 								+ $("#curStatus").val();
 					});
+
+			$('.jProList').each(function(){
+				var len = $(this).find('li').length,winWidth = $(window).width();
+				if(len*125>winWidth){
+					$(this).width(len*125);
+					$(this).parent().css('overflow-x','auto');
+				}else{
+					$(this).width(winWidth);
+					$(this).parent().css('overflow-x','hidden');
+				}
+			});
 		});

@@ -13,7 +13,7 @@
         <img src="${ctx}/wap/images/icon_2.png"  />
     </a>
     <a href="${ctx}/user/infor/my.htm" class="ui-title"><img src="${ctx}/wap/images/icon_2.png" /> </a>
-    <a  href="${ctx}/wap/loginOut.htm" class="ui-right">
+    <a  href="${ctx}/wap/index.htm" class="ui-right">
         <img src="${ctx}/wap/images/upload_cloud.png" />
     </a>
     </c:if>

@@ -95,4 +95,12 @@ define(['jquery','plug/box','plug/uploader/uploader-list','url','plug/imgLoading
         }
     });
 
+    //计算有效期时间
+    $body.on('change','input[name=validTime]',function(){
+        var $date = $('.jDate'),val = $(this).val(),currentDate = new Date().getDay();
+        console.log('currentDate:'+currentDate+'  val'+val);
+
+
+    })
+
 });

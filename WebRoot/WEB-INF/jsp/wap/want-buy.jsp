@@ -102,29 +102,9 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">手续资料</label>
-                    <div class="ui-form-bd">
-                        <select name="procedures">
-                            <option value="0">手续齐全</option>
-                            <option value="1">无手续</option>
-                            <option value="2">有无手续均可</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">设备来源</label>
-                    <div class="ui-form-bd">
-                        <select name="src">
-                            <option value="0">个人</option>
-                            <option value="1">单位</option>
-                            <option value="2">抵押</option>
-                            <option value="3">法务</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">年份/以后</label>
+                    <label class="ui-form-hd">年份</label>
                     <div class="ui-form-bd">
                         <select name="equipYear">
                             <option value="2015">2015</option>
@@ -162,7 +142,7 @@
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">工时/小时以内</label>
+                    <label class="ui-form-hd">工时</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="price" id="price"   placeholder="请输入...">
                     </div>
@@ -174,7 +154,7 @@
                         <textarea placeholder="请输入..."   name="remark" id="remark" ></textarea>
                     </div>
                 </div>
-                <div class="ui-form-title"><i class="icon iconfont">&#xe620;</i>设备要求所在地</div>
+                <div class="ui-form-title"><i class="icon iconfont">&#xe60e;</i>设备要求所在地</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">省份</label>
                     <div class="ui-form-bd">
@@ -186,7 +166,7 @@
                     <select class="regionCity"  name="regionCity" id="regionCity" validate="required:true" ><option>请选择城市</option></select>                    </div>
                     </div>
                 </div>
-                <div class="ui-form-title"><i class="icon iconfont">&#xe600;</i>上传有效期</div>
+                <div class="ui-form-title"><i class="icon iconfont">&#xe60d;</i>上传有效期</div>
                 <div class="ui-form-mod">
                     <div class="ui-form-bd">
                         <select >
@@ -199,8 +179,8 @@
                     <div class="ui-form-ft">此信息有效期截止至:2016年5月30日</div>
                 </div>
                 <div class="field-submit">
-                    <input type="button" class="ui-button ui-button-blue" id="jSave" value="保存">
-                    <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="提交">
+                    <a href="javascript:;" class="ui-button ui-button-blue" id="jSave">保存</a>
+                    <a href="javascript:;"  class="ui-button ui-button-submit" id="jSubmit">提交</a>
                 </div>
             </form>
         </section>

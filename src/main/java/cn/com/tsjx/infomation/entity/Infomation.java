@@ -79,6 +79,7 @@ public class Infomation extends BaseEntity<Long> {
 
 	private Integer auditType;
 
+	private String nextPage;
 	@Override
 	public Long getId() {
 		return super.getId();
@@ -289,9 +290,6 @@ public class Infomation extends BaseEntity<Long> {
 		this.stockCount = stockCount;
 	}
 
-	public String getSellCount() {
-		return this.sellCount;
-	}
 
 	public void setSellCount(String sellCount) {
 		this.sellCount = sellCount;
@@ -351,5 +349,13 @@ public class Infomation extends BaseEntity<Long> {
 
 	public void setAuditType(Integer auditType) {
 		this.auditType = auditType;
+	}
+
+	public String getNextPage() {
+		return nextPage;
+	}
+
+	public void setNextPage(String nextPage) {
+		this.nextPage = nextPage;
 	}
 }

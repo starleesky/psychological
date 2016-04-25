@@ -28,8 +28,8 @@
                 <select class="form-control" name="auditStatus" ng-change="list.fetch()"
                         ng-model="list.filter.isActivate">
                     <option value="">是否激活</option>
-                    <option value="0">是</option>
-                    <option value="1">否</option>
+                    <option value="T">是</option>
+                    <option value="F">否</option>
                 </select>
             </div>
             <div class="form-group pull-left">
@@ -38,8 +38,8 @@
                     <option value="">用户类型</option>
                     <option value="0">系统管理员</option>
                     <option value="1">普通管理员</option>
-                    <option value="1">普通用户</option>
-                    <option value="1">企业管理员</option>
+                    <option value="2">普通用户</option>
+                    <option value="3">企业管理员</option>
                 </select>
             </div>
             <div class="form-group pull-right">

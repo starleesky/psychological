@@ -74,7 +74,7 @@
             		 <div class="pro-buy-num"><span>${cnt_ys }</span>台<a href="javascript:;" class="jSelPro pro-sel">标明已售</a> </div>
             	</c:when>
             	<c:otherwise>
-            		<div class="pro-buy-num"><span>1</span>台 <a href="javascript:;" class="icon iconfont jSelPro pro-sel">&#xe60f;</a></div>
+            		<div class="pro-buy-num"><!-- <span>1</span>台  --><a href="javascript:;" class="icon iconfont jSelPro pro-sel">&#xe60f;</a></div>
             	</c:otherwise>
             </c:choose>
             <div class="pro-list">

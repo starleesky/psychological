@@ -595,6 +595,12 @@ public class InfomationController {
         return sb.toString();
     }
 
+    /**
+     * 重新上架
+     *
+     * @param infomation
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/reUp", method = RequestMethod.GET)
     public Result<String> reUp(Infomation infomation) {

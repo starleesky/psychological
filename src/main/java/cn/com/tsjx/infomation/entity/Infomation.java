@@ -290,6 +290,9 @@ public class Infomation extends BaseEntity<Long> {
 		this.stockCount = stockCount;
 	}
 
+	public String getSellCount() {
+		return this.sellCount;
+	}
 
 	public void setSellCount(String sellCount) {
 		this.sellCount = sellCount;

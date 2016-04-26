@@ -12,7 +12,7 @@
     	<a href="${ctx }/wap/message/my.htm" class="ui-left">
         <img src="${ctx}/wap/images/icon_2.png"  />
     </a>
-    <a href="${ctx}/user/infor/my.htm" class="ui-title"><img src="${ctx}/wap/images/icon_2.png" /> </a>
+    <a href="${ctx}/user/infor/my.htm" class="ui-title"><img src="${ctx}/wap/images/icon_2.png" width="50" height="50" /> </a>
     <a  href="${ctx}/infomation/sale/my.htm" class="ui-right">
         <img src="${ctx}/wap/images/upload_cloud.png" />
     </a>

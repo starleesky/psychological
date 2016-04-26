@@ -28,7 +28,7 @@
     <section class="login-info">
             <div class="hd">
                 <div class="f-l">
-                   <img src="${ctx}/wap/images/dashboard_icon.png" />账号管理
+                   <img src="${ctx}/wap/images/dashboard_icon.png" width="50" height="50" />账号管理
                 </div>
                 <a href="javascript:;" class="f-r jIsHide">隐藏</a>
                 
@@ -36,10 +36,10 @@
             <div class="bd">
                 <div class="info clearfix">
                 <c:if test="${not empty userInfo.headIcon}">
-                <img src="${initParam.imgHost}${userInfo.headIcon}/small" class="f-l"  />
+                <img src="${initParam.imgHost}${userInfo.headIcon}/small" class="f-l" width="50" height="50"   />
                 </c:if>
                 <c:if test="${empty userInfo.headIcon}">
-                		<img src="${ctx}/wap/images/icon_2.png" class="f-l"  />
+                		<img src="${ctx}/wap/images/icon_2.png" class="f-l" width="50" height="50"   />
 				</c:if>  
                     <div class="info-desc f-l">
                         <h2>${userInfo.realName}</h2>
@@ -69,7 +69,7 @@
                     </a>
                 </div>
                 <a href="${ctx}/infomation/sale/my.htm" class="ui-button ui-button-submit">发布销售</a>
-                <a href="${ctx}/infomation/pub/my.htm" class="ui-button ui-button-blue">我要求购</a>
+                <a href="${ctx}/infomation/pub/my.htm" class="ui-button ui-button-blue">发布求购</a>
                 <div class="info-url">
                     <a href="${ctx}/wap/companyInfo/my.htm" class="clearfix">
                         <img src="${ctx}/wap/images/message_comp.png"/><span>公司信息</span>

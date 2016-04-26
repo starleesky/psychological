@@ -317,8 +317,12 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
 
     //图片管理
     var clickHandlers = {
-        deleteImgBtn: function(e) {
-            clickHandlers.changeInputName($('.ui-button-upload'));
+        deleteImgBtn: function(obj) {
+            var $parent =  $(obj).parents('.file-uploaded'),index = $parent.index();
+            var $upBtn = $parent.parent().siblings('.ui-button-upload');
+            $parent.remove();
+            $upBtn.find('input[type=hidden]:eq('+index+')').remove();
+            clickHandlers.changeInputName($upBtn);
         },
         changeInputName:function($obj){
             $.each($obj.find('input[type=hidden]'),function(i){
@@ -327,6 +331,9 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         }
     };
 
+    $('[node-type="deleteImgBtn"]').on('click',function(){
+        clickHandlers.deleteImgBtn(this);
+    });
     //file uploader buton installations  失败：-1 初始值0 正在上传1 成功2
     var uploadArray = [];
     $('[node-type="uploadButton"]').each(function(i, el) {

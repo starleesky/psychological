@@ -15,7 +15,7 @@
     .pro-view-mod .bd ul li.cl-1{font-size:20px;}
     .pro-view-mod .bd .pro-view-box .pro-img{width:200px;height:100px;line-height:100px;}
     .pro-view-mod .bd .pro-view-box .pro-img img{max-width:200px;max-height:100px;}
-    .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
+    .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%);-moz-transform:translate(-50%,-50%) ;-webkit-transform:translate(-50%,-50%) ; -o-transform:translate(-50%,-50%) ;-ms-transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
     </style>
 </head>
 <body>
@@ -67,40 +67,42 @@
             <div class="hd">设备要求</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <h3>${bean.brandName}${bean.modelName}出售详细信息</h3>
+                    <h3>${bean.brandName} ${bean.modelName}出售详细信息</h3>
                     <ul>
-                        <li>品牌: ${bean.catagoryName}</li>
-                        <li>型号: ${bean.modelsName}</li>
-                        <li>方式:
-                        <c:if test="${bean.sellType == '0'}">
-                        	出售
-                        </c:if>
-                        <c:if test="${bean.sellType == '1'}">
-                        	租赁
-                        </c:if>
-                        <c:if test="${bean.sellType == '2'}">
-                        	求购
-                        </c:if>
-                        <c:if test="${bean.sellType == '3'}">
-                        	求租
-                        </c:if>
-                        </li>
-                        <li>类别: <c:if test="${bean.equipmentCondition == '0'}">
+
+
+                        <li>设备情况: <c:if test="${bean.equipmentCondition == '0'}">
                         新设备
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '1'}">
-                        二手设备
+                        二手
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '2'}">
                         再制造
                         </c:if></li>
+                        <li>销售方式:
+                        <c:if test="${bean.sellType == '0'}">
+                            出售
+                        </c:if>
+                        <c:if test="${bean.sellType == '1'}">
+                            租赁
+                        </c:if>
+                        <c:if test="${bean.sellType == '2'}">
+                            求购
+                        </c:if>
+                        <c:if test="${bean.sellType == '3'}">
+                            求租
+                        </c:if>
+                        </li>
+                        <li>品牌: ${bean.brandName}</li>
+                        <li>型号: ${bean.modelName}</li>
                         <li>年份: ${bean.equipYear}年</li>
                         <li >工时: ${bean.workTime}小时</li>
-                        <li class="w100">位置: ${bean.equipmentLocation}</li>
-                        <li  class="w100">设备序列号: ${bean.serialNum}</li>
+                        <li class="w100">设备位置: ${bean.equipmentLocation}</li>
+                        <li  class="w100">出厂编号: ${bean.serialNum}</li>
                         <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
                         <li  class="w100">有效期至: ${bean.validTime}</li>
-                        <li class="w100 cl-1" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>
+                        <li class="w100 cl-1" style="margin-top:5px;" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>
                     </ul>
                 </div>
                 <div class="pro-view-box">

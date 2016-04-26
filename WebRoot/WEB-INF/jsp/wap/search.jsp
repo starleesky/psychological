@@ -8,6 +8,10 @@
     <title>汤森机械网-搜索&高级搜索</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx }/wap/css/module/search.css?v=1" type="text/css" charset="utf-8">
+    <style>
+    .ui-form-mod .ui-small-txt input,.ui-form-mod .ui-small-txt span{display:inline-block;width:45%;}
+    .ui-form-mod .ui-small-txt span{width:6%;text-align:center;color:#fff;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -67,7 +71,7 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备地点</label>
                     <div class="ui-form-bd">
-                       
+                            <select class="bigGoodsCatagory"  name="catagoryBig" id="catagoryBig" validate="required:true" ><option value="" selected>设备地点</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">
@@ -137,47 +141,27 @@
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">手续资料</label>
-                    <div class="ui-form-bd">
-                    	<input type="hidden" name="procedures" id="procedures" value="${info.procedures}"/>
-                        <select name="proceduresSel" onchange="procedures.value=this.value">
-                        	<option value="" selected></option>
-                            <option value="0">手续齐全</option>
-                            <option value="1">无手续</option>
-                            <option value="2">有无手续均可</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="ui-form-mod">
                     <label class="ui-form-hd">年份</label>
-                    <div class="ui-form-bd">
-                        <select>
-                            
-                        </select>
+                    <div class="ui-form-bd ui-small-txt">
+                           <input type="text"  placeholder="请输入..."/>
+                            <span>TO</span>
+                            <input type="text"  placeholder="请输入..."/>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">工时</label>
-                    <div class="ui-form-bd ui-small-select">
-                        <select>
-                           
-                        </select>
+                    <div class="ui-form-bd ui-small-txt">
+                        <input type="text"  placeholder="请输入..."/>
                         <span>TO</span>
-                        <select>
-                            
-                        </select>
+                        <input type="text"  placeholder="请输入..."/>
                     </div>
                 </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">价格</label>
-                    <div class="ui-form-bd ui-small-select">
-                        <select>
-                          
-                        </select>
-                        <span>TO</span>
-                        <select>
-                           
-                        </select>
+                    <div class="ui-form-bd ui-small-txt">
+                            <input type="text"  placeholder="请输入..."/>
+                            <span>TO</span>
+                            <input type="text"  placeholder="请输入..."/>
                     </div>
                 </div>
                 <div class="field-submit">

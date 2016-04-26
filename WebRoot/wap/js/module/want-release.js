@@ -318,5 +318,25 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
             $(this).addClass('open');
         }
     });
+
+
+    //计算有效期时间
+    var GetDateStr = function (AddDayCount){
+        var dd = new Date();
+        dd.setDate(dd.getDate()+parseInt(AddDayCount));//获取AddDayCount天后的日期
+        var y = dd.getFullYear();
+        var m = (dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);//获取当前月份的日期，不足10补0
+        var d = dd.getDate()<10?"0"+dd.getDate():dd.getDate(); //获取当前几号，不足10补0
+        return y+"年"+m+"月"+d+"日";
+    };
+    var $date = $('.jDate'),$select = $('select[name=validTime]');
+    if($select.length){
+        $date.html(GetDateStr($select.val()));
+    };
+    $('body').on('change','select[name=validTime]',function(){
+        var val = $(this).val();
+        $date.html(GetDateStr(val));
+
+    });
 })
 ;

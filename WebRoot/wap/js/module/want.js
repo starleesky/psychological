@@ -98,16 +98,16 @@ define(['jquery','plug/box','plug/uploader/uploader-list','url','plug/imgLoading
     //计算有效期时间
     var GetDateStr = function (AddDayCount){
         var dd = new Date();
-        dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
-        var y = dd.getYear();
+        dd.setDate(dd.getDate()+parseInt(AddDayCount));//获取AddDayCount天后的日期
+        var y = dd.getFullYear();
         var m = (dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);//获取当前月份的日期，不足10补0
         var d = dd.getDate()<10?"0"+dd.getDate():dd.getDate(); //获取当前几号，不足10补0
-        return y+"-"+m+"-"+d;
-    }
-    $body.on('change','input[name=validTime]',function(){
-        var $date = $('.jDate'),val = $(this).val(),currentDate = new Date().getDay();
-        console.log(GetDateStr(val));
+        return y+"年"+m+"月"+d+"日";
+    };
+    $body.on('change','select[name=validTime]',function(){
+        var $date = $('.jDate'),val = $(this).val();
+        $date.html(GetDateStr(val));
 
-    })
+    });
 
 });

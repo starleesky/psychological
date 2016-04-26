@@ -25,6 +25,9 @@
                 <c:if test="${not empty bean.headIcon}">
                 <img src="${initParam.imgHost}${bean.headIcon}/small" class="f-l"  />
                 </c:if>
+                <c:if test="${empty bean.headIcon}">
+                		<img src="${ctx}/wap/images/icon_2.png" class="f-l"  />
+				</c:if>                
                 <div class="info-desc f-l">
                     <a href="javascript:;" class="current jAddImg">上传LOGO</a>
                     <a href="javascript:;" class="jDelImg">删除LOGO</a>

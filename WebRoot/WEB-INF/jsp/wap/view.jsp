@@ -70,7 +70,7 @@
                     <h3>${bean.brandName}${bean.modelName}出售详细信息</h3>
                     <ul>
                         <li>品牌: ${bean.catagoryName}</li>
-                        <li>型号: ${bean.brandName}</li>
+                        <li>型号: ${bean.modelsName}</li>
                         <li>方式:
                         <c:if test="${bean.sellType == '0'}">
                         	出售
@@ -97,7 +97,7 @@
                         <li>年份: ${bean.equipYear}年</li>
                         <li >工时: ${bean.workTime}小时</li>
                         <li class="w100">位置: ${bean.equipmentLocation}</li>
-                        <li  class="w100">设备序列号: ${bean.workTime}小时</li>
+                        <li  class="w100">设备序列号: ${bean.serialNum}</li>
                         <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
                         <li  class="w100">有效期至: ${bean.validTime}</li>
                         <li class="w100 cl-1" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>

@@ -13,7 +13,7 @@
         <img src="${ctx}/wap/images/icon_2.png"  />
     </a>
     <a href="${ctx}/user/infor/my.htm" class="ui-title"><img src="${ctx}/wap/images/icon_2.png" /> </a>
-    <a  href="${ctx}/wap/index.htm" class="ui-right">
+    <a  href="${ctx}/infomation/sale/my.htm" class="ui-right">
         <img src="${ctx}/wap/images/upload_cloud.png" />
     </a>
     </c:if>
@@ -21,7 +21,7 @@
     <a href="${ctx}/wap/index.htm" class="ui-left">
         <img src="${ctx}/wap/images/logo.png" class="ui-logo" />
     </a>
-    <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
+        <a  href="${ctx}/wap/login.htm" class="ui-right ui-login">
         <span class="icon iconfont">&#xe600;</span>登录
     </a>
     </c:if>   

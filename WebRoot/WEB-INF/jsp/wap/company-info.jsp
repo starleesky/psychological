@@ -70,7 +70,7 @@
                         </a>
                         <c:if test="${company.createBy!=null}">
                             <div class="upload-div">
-                                <img src="${initParam.imgHost}${company.createBy}">
+                                <img src="${initParam.imgHost}${company.createBy}/small">
                                 <b class="icon-delete" node-type="deleteImgBtn"></b>
                             </div>
                         </c:if>

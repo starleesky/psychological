@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="field-submit">
-                <input type="submit" class="ui-button ui-button-submit" id="jSubmit" value="下一步">
+                <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="下一步">
             </div>
         </form>
     </section>

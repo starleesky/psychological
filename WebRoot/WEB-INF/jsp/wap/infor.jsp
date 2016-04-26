@@ -35,7 +35,12 @@
             </div>
             <div class="bd">
                 <div class="info clearfix">
-                    <img src="${initParam.imgHost}${userInfo.headIcon}/small" class="f-l"  />
+                <c:if test="${not empty userInfo.headIcon}">
+                <img src="${initParam.imgHost}${userInfo.headIcon}/small" class="f-l"  />
+                </c:if>
+                <c:if test="${empty userInfo.headIcon}">
+                		<img src="${ctx}/wap/images/icon_2.png" class="f-l"  />
+				</c:if>  
                     <div class="info-desc f-l">
                         <h2>${userInfo.realName}</h2>
                         <p>注册时间:<span class="date"> 

@@ -71,7 +71,8 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备地点</label>
                     <div class="ui-form-bd">
-                            <select class="bigGoodsCatagory"  name="catagoryBig" id="catagoryBig" validate="required:true" ><option value="" selected>设备地点</option></select>
+                    	<input type="hidden" name="equipmentLocation" id="equipmentLocation" value="${info.equipmentLocation}"/>
+                        <select class="regionProvice"  name="equipmentLocationSel" id="equipmentLocationSel" validate="required:true" ><option>请选择省份</option></select>
                     </div>
                 </div>
                 <div class="ui-form-mod">

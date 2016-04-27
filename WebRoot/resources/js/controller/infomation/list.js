@@ -159,7 +159,7 @@ define(function (require) {
                         });
                     }
                     else {
-                        alert("限定上传Excel .xlsx格式文件");
+                        alert("限定上传Excel .xls格式文件");
                     }
 
                 }

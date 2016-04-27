@@ -15,7 +15,7 @@
     .pro-view-mod .bd ul li.cl-1{font-size:20px;}
     .pro-view-mod .bd .pro-view-box .pro-img{width:200px;height:100px;line-height:100px;}
     .pro-view-mod .bd .pro-view-box .pro-img img{max-width:200px;max-height:100px;}
-    .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
+    .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%);-moz-transform:translate(-50%,-50%) ;-webkit-transform:translate(-50%,-50%) ; -o-transform:translate(-50%,-50%) ;-ms-transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
     </style>
 </head>
 <body>
@@ -31,7 +31,7 @@
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}" >
                     <p class="pro-price"><fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</p>
-             			<p class="pro-num">汤森信息编号: ts${bean.id}</p>
+             			<p class="pro-num">汤森信息编号: TS${bean.id}</p>
 
                 </div>
                 <a href="${ctx}/infomation/input?id=${bean.id}&page=next" class="next-btn"><i class="icon iconfont">&#xe60b;</i></a>
@@ -67,40 +67,42 @@
             <div class="hd">设备要求</div>
             <div class="bd">
                 <div class="pro-view-box">
-                    <h3>${bean.brandName}${bean.modelName}出售详细信息</h3>
+                    <h3>${bean.brandName} ${bean.modelName}出售详细信息</h3>
                     <ul>
-                        <li>品牌: ${bean.catagoryName}</li>
-                        <li>型号: ${bean.brandName}</li>
-                        <li>方式:
-                        <c:if test="${bean.sellType == '0'}">
-                        	出售
-                        </c:if>
-                        <c:if test="${bean.sellType == '1'}">
-                        	租赁
-                        </c:if>
-                        <c:if test="${bean.sellType == '2'}">
-                        	求购
-                        </c:if>
-                        <c:if test="${bean.sellType == '3'}">
-                        	求租
-                        </c:if>
-                        </li>
-                        <li>类别: <c:if test="${bean.equipmentCondition == '0'}">
+
+
+                        <li>设备情况: <c:if test="${bean.equipmentCondition == '0'}">
                         新设备
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '1'}">
-                        二手设备
+                        二手
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '2'}">
                         再制造
                         </c:if></li>
+                        <li>销售方式:
+                        <c:if test="${bean.sellType == '0'}">
+                            出售
+                        </c:if>
+                        <c:if test="${bean.sellType == '1'}">
+                            租赁
+                        </c:if>
+                        <c:if test="${bean.sellType == '2'}">
+                            求购
+                        </c:if>
+                        <c:if test="${bean.sellType == '3'}">
+                            求租
+                        </c:if>
+                        </li>
+                        <li>品牌: ${bean.brandName}</li>
+                        <li>型号: ${bean.modelName}</li>
                         <li>年份: ${bean.equipYear}年</li>
                         <li >工时: ${bean.workTime}小时</li>
-                        <li class="w100">位置: ${bean.equipmentLocation}</li>
-                        <li  class="w100">设备序列号: ${bean.workTime}小时</li>
+                        <li class="w100">设备位置: ${bean.equipmentLocation}</li>
+                        <li  class="w100">出厂编号: ${bean.serialNum}</li>
                         <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
                         <li  class="w100">有效期至: ${bean.validTime}</li>
-                        <li class="w100 cl-1" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>
+                        <li class="w100 cl-1" style="margin-top:5px;" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>
                     </ul>
                 </div>
                 <div class="pro-view-box">
@@ -114,16 +116,17 @@
         <section class="buy-man-info pro-view-mod">
             <div class="hd">卖家信息</div>
             <div class="bd">
-                            <c:if test="${empty company}">
-            
+                        <c:if test="${empty company}">
                 <div class="pro-view-box">
+       					<c:if test="${not empty sellUser.headIcon}">
                     <div class="pro-img">
-                        <img src="${initParam.imgHost}${sellUser.headIcon}/small" />
+                        	<img src="${initParam.imgHost}${sellUser.headIcon}/small" />
                     </div>
+                        </c:if>
                     <h3>${sellUser.realName}</h3>
                     <ul>
                         <li class="w100">注册时间：
-               <fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
+               			<fmt:formatDate value="${sellUser.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
                         </li>
                         <li class="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${sellUser.telephone}">${sellUser.telephone}</a></li>
@@ -146,6 +149,11 @@
 				      </c:if>         
                 <c:if test="${not empty company}">
                  <div class="pro-view-box">
+                	<div class="pro-img">
+						<c:if test="${not empty company.createBy}">
+                		<img src="${initParam.imgHost}${company.createBy}/small" class="f-l" width="100" height="100"   />
+						</c:if> 
+                    </div>
 			         <ul>
 	                    <li class="w100">所属公司：${company.companyName}</li>
                         <li class="w100">联系电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>

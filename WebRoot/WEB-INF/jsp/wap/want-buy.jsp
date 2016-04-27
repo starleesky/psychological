@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>汤森机械网-我要销售</title>
+    <title>汤森机械网-发布销售</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href=${ctx}/wap/css/module/want.css?v=1" type="text/css" charset="utf-8">
 </head>
@@ -16,7 +16,7 @@
     <div class="page-view-body">
         <section class="mod-info">
             <div class="hd">
-                <h3 class="title">我要销售</h3>
+                <h3 class="title">发布销售</h3>
             </div>
             <div class="bd">
                 <a class="bd-l" href="orders.html">

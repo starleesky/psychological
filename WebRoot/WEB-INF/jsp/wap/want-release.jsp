@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>汤森机械网-我要销售</title>
+    <title>汤森机械网-发布销售</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href=${ctx}/wap/css/module/want.css?v=1" type="text/css" charset="utf-8">
 </head>
@@ -17,8 +17,8 @@
         <section class="mod-info">
             <div class="hd">
                 <h3 class="title">
-                    <c:if test="${type==1}"> 我要求购</c:if>
-                    <c:if test="${type==2}"> 我要销售</c:if>
+                    <c:if test="${type==1}">发布求购</c:if>
+                    <c:if test="${type==2}"> 发布销售</c:if>
                 </h3>
             </div>
             <div class="bd">
@@ -177,12 +177,12 @@
                         <input type="text"   name="workTime" id="workTime"   placeholder="请输入...">
                     </div>
                 </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">设备序列号</label>
-                    <div class="ui-form-bd">
-                        <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入...">
-                    </div>
-                </div>
+<!--                 <div class="ui-form-mod"> -->
+<!--                     <label class="ui-form-hd">设备序列号</label> -->
+<!--                     <div class="ui-form-bd"> -->
+<!--                         <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入..."> -->
+<!--                     </div> -->
+<!--                 </div> -->
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">价格</label>
                         <div class="ui-form-bd">

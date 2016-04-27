@@ -123,7 +123,7 @@ public class InfomationController {
                     user = userService.get(infomation.getUserId());
                     model.addAttribute("sellUser", user);
                 }
-                if (infomation.getValidTime() != null) {
+                if (infomation.getValidTime() != null && infomation.getPubTime() != null) {
                     Calendar validDate = Calendar.getInstance();
                     validDate.setTime(infomation.getPubTime());
                     validDate.add(Calendar.DATE, Integer.valueOf(infomation.getValidTime()));

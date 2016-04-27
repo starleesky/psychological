@@ -41,7 +41,7 @@
                 <c:if test="${empty userInfo.headIcon}">
                 		<img src="${ctx}/wap/images/icon_2.png" class="f-l" width="50" height="50"   />
 				</c:if>  
-                    <div class="info-desc f-l">
+                    <div class="info clearfix">
                         <h2>${userInfo.realName}</h2>
                         <p>注册时间:<span class="date"> 
                          <fmt:formatDate value="${userInfo.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />

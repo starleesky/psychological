@@ -228,10 +228,37 @@ public class InfomationController {
 
     @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public Result<String> update(Infomation infomation, Model model) {
+    public Result<String> update(String oper, String infoIds,HttpSession httpSession) {
         Result<String> result = new Result<String>();
         
-        infomationService.update(infomation);
+        String status = null;
+        String deleted = null;
+        Date curDate = new Date();
+        User user = (User) httpSession.getAttribute("user");
+        
+        List<Infomation> list = new ArrayList<Infomation>();
+        
+        if("ys".equals(oper)) {
+        	status = InfomationEnum.status_ys.code();
+        }else if("sc".equals(oper)) {
+        	deleted = Deleted.YES.value();
+        }
+        
+        String[] idsArr = infoIds.split(",");
+        for(String id : idsArr) {
+        	Infomation infomation = new Infomation();
+        	infomation.setId(new Long(id));
+        	infomation.setStatus(status);
+        	infomation.setDeleted(deleted);
+        	
+        	infomation.setModifyTime(curDate);
+        	infomation.setUserId(user == null ? -1 : user.getId());
+        	
+        	list.add(infomation);
+        }
+        
+        infomationService.update(list);
+        
         result.setMessage("操作成功");
         //model.addAttribute("redirectionUrl", "/infomation/list.htm");
         return result;

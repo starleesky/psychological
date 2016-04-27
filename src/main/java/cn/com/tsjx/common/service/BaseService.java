@@ -28,6 +28,13 @@ public interface BaseService<T extends BaseEntity<PK>, PK extends java.io.Serial
 	 * @return 影响行数
 	 */
 	public int update(T entity);
+	
+	/**
+     * 批量更新数据实体
+     * 
+     * @param entities
+     */
+	public int update(Collection<T> entities);
 
 	/**
 	 * 根据标识删除数据对象

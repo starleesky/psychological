@@ -29,6 +29,7 @@ import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.util.date.DateUtil;
 import cn.com.tsjx.common.util.json.JsonMapper;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
@@ -117,15 +118,23 @@ public class InfomationController {
         if (id != null) {
             Infomation infomation = infomationService.get(id);
             User user = null;
-            if (infomation.getUserId() != null) {
-                user = userService.get(infomation.getUserId());
-                model.addAttribute("sellUser", user);
-            }
-            if (user != null && user.getCompanyId() != null) {
-                Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-                model.addAttribute("company", company);
+            if (infomation != null) {
+                if (infomation.getUserId() != null) {
+                    user = userService.get(infomation.getUserId());
+                    model.addAttribute("sellUser", user);
+                }
+                if (infomation.getValidTime() != null) {
+                    Calendar validDate = Calendar.getInstance();
+                    validDate.setTime(infomation.getPubTime());
+                    validDate.add(Calendar.DATE, Integer.valueOf(infomation.getValidTime()));
+                    infomation.setValidTime(DateUtil.format(validDate.getTime(),"yyyy/MM/dd"));
+                }
             }
             if (user != null) {
+                if (user.getCompanyId() != null) {
+                    Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+                    model.addAttribute("company", company);
+                }
                 Attch entity = new Attch();
                 //entity.setUserId(user.getId());
                 entity.setInformationId(id);

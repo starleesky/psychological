@@ -225,62 +225,91 @@
 	<sql id="page_condition">
 		<where>
 				<if test="entity.companyName != null and entity.companyName != ''">
-					AND COMPANY_NAME = #{entity.companyName,jdbcType=VARCHAR}
+					AND c.COMPANY_NAME = #{entity.companyName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.telephone != null and entity.telephone != ''">
-					AND TELEPHONE = #{entity.telephone,jdbcType=VARCHAR}
+					AND c.TELEPHONE = #{entity.telephone,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.fax != null and entity.fax != ''">
-					AND FAX = #{entity.fax,jdbcType=VARCHAR}
+					AND c.FAX = #{entity.fax,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.provinceName != null and entity.provinceName != ''">
-					AND PROVINCE_NAME = #{entity.provinceName,jdbcType=VARCHAR}
+					AND c.PROVINCE_NAME = #{entity.provinceName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.provinceId != null">
-					AND PROVINCE_ID = #{entity.provinceId,jdbcType=INTEGER}
+					AND c.PROVINCE_ID = #{entity.provinceId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.cityName != null and entity.cityName != ''">
-					AND CITY_NAME = #{entity.cityName,jdbcType=VARCHAR}
+					AND c.CITY_NAME = #{entity.cityName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.cityId != null">
-					AND CITY_ID = #{entity.cityId,jdbcType=INTEGER}
+					AND c.CITY_ID = #{entity.cityId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.address != null and entity.address != ''">
-					AND ADDRESS = #{entity.address,jdbcType=VARCHAR}
+					AND c.ADDRESS = #{entity.address,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.introduction != null and entity.introduction != ''">
-					AND INTRODUCTION = #{entity.introduction,jdbcType=VARCHAR}
+					AND c.INTRODUCTION = #{entity.introduction,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.businessLicenseImageUrl != null and entity.businessLicenseImageUrl != ''">
-					AND BUSINESS_LICENSE_IMAGE_URL = #{entity.businessLicenseImageUrl,jdbcType=VARCHAR}
+					AND c.BUSINESS_LICENSE_IMAGE_URL = #{entity.businessLicenseImageUrl,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.organizationCodeImageUrl != null and entity.organizationCodeImageUrl != ''">
-					AND ORGANIZATION_CODE_IMAGE_URL = #{entity.organizationCodeImageUrl,jdbcType=VARCHAR}
+					AND c.ORGANIZATION_CODE_IMAGE_URL = #{entity.organizationCodeImageUrl,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.status != null and entity.status != ''">
-					AND STATUS = #{entity.status,jdbcType=VARCHAR}
+					AND c.STATUS = #{entity.status,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.deleted != null and entity.deleted != ''">
-					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
+					AND c.DELETED = #{entity.deleted,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.userName != null and entity.userName != ''">
+					AND u.user_name like CONCAT('%',#{entity.userName,jdbcType=VARCHAR},'%')
 				</if>
 		</where>
+	</sql>
+
+
+	<!-- 查询字段 -->
+	<sql id="selectField">
+		<![CDATA[
+		SELECT
+		       c.ID id,
+		       c.COMPANY_NAME companyName,
+		       c.TELEPHONE telephone,
+		       c.FAX fax,
+		       c.PROVINCE_NAME provinceName,
+		       c.PROVINCE_ID provinceId,
+		       c.CITY_NAME cityName,
+		       c.CITY_ID cityId,
+		       c.ADDRESS address,
+		       c.INTRODUCTION introduction,
+		       c.BUSINESS_LICENSE_IMAGE_URL businessLicenseImageUrl,
+		       c.ORGANIZATION_CODE_IMAGE_URL organizationCodeImageUrl,
+		       c.STATUS status,
+		       c.CREATE_TIME createTime,
+		       c.CREATE_BY createBy,
+		       c.MODIFY_TIME modifyTime,
+		       c.MODIFY_BY modifyBy,
+		       c.DELETED deleted
+		]]>
 	</sql>
 
 	<!-- 分页查询（计数） -->
 	<select id="page_count" parameterType="map" resultType="int">
 		<![CDATA[
 		SELECT count(*)
-		  FROM TSJX_COMPANY
+		  FROM TSJX_COMPANY  c LEFT JOIN TSJX_USER u ON c.id=u.company_id
 		]]>
 		<include refid="page_condition" />
 	</select>
 
 	<!-- 分页查询（数据） -->
-	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.company.entity.Company">
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.company.entity.CompanyUser">
 		<include refid="mybatis.pageStartSQL" />
-		<include refid="selectFieldSQL" />
-		<![CDATA[
-		  FROM TSJX_COMPANY
+		<include refid="selectField" />
+		<![CDATA[ ,u.user_name as userName
+		  FROM TSJX_COMPANY  c LEFT JOIN TSJX_USER u ON c.id=u.company_id
 		]]>
 		<include refid="page_condition" />
 		<include refid="mybatis.pageEndSQL" />

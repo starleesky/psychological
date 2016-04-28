@@ -123,6 +123,7 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
                 infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + row.getCell(11).toString());
                 infomation.setValidTime("30");
                 infomation.setIsTop("0");
+                infomation.setUserId(1L);
                 infomation.setStatus(InfomationEnum.status_sj.code());
                 infomation.setAuditType(Integer.parseInt(InfomationEnum.audit_type_auto.code()));
                 if (!StringUtils.isEmpty(row.getCell(12))) {

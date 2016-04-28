@@ -7,6 +7,7 @@ import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.company.entity.Company;
 import cn.com.tsjx.company.entity.CompanyDto;
+import cn.com.tsjx.company.entity.CompanyUser;
 import cn.com.tsjx.company.service.CompanyService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
@@ -50,10 +51,10 @@ public class AdminCompanyController {
 
 	@RequestMapping(value = "/company/list/getData")
 	@ResponseBody
-	public Pager<Company> list(Pager<Company> pager, Company company, Model model) {
+	public Pager<CompanyUser> list(Pager<CompanyUser> pager, CompanyUser company, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", company);
-		pager.setPageSort("create_time");
+		pager.setPageSort("c.create_time");
 		pager.setPageOrder("desc");
 		pager = companyService.page(params, pager);
 		return pager;

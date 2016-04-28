@@ -17,6 +17,11 @@
 			      <input type="text" class="form-control" placeholder="企业名称" ng-model="list.filter.companyName">
 			    </div>
 			  </div>
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="用户姓名" ng-model="list.filter.userName">
+					</div>
+				</div>
 			  <button type="submit" class="btn btn-primary">搜索</button>
 
 			  <div class="form-group">
@@ -66,6 +71,7 @@
 				<th>城市</th>
 				<th>详细地址</th>
 				<th>时间</th>
+				<th>用户姓名</th>
 				<th>状态</th>
 				<th>操作</th>
 			</tr>
@@ -79,6 +85,7 @@
 				<td ng-bind="c.cityName"></td>
 				<td ng-bind="c.address"></td>
 				<td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
+				<td ng-bind="c.userName"></td>
 				<td>
 					<div ng-switch on="c.status">
 						<span ng-switch-when="0">待审核</span>

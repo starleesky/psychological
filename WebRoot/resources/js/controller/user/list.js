@@ -38,7 +38,7 @@ define(function (require) {
                         }
                     });
                     modal.result.then(function (user) {
-                        list.data.data.unshift(user);
+                        list.fetch();
                     });
 
                 };

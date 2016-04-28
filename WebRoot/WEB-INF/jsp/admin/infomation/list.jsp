@@ -17,6 +17,11 @@
                     <input type="text" class="form-control" placeholder="产品大类" ng-model="list.filter.catagoryBigName">
                 </div>
             </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="用户姓名" ng-model="list.filter.userName">
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">搜索</button>
 
             <div class="form-group pull-right">
@@ -109,6 +114,7 @@
             <th>型号</th>
             <th>销售方式</th>
             <th>是否推荐</th>
+            <th>用户姓名</th>
             <th>审核方式</th>
             <th>时间</th>
             <th>信息状态</th>
@@ -137,6 +143,7 @@
                     <span ng-switch-when="1">是</span>
                 </div>
             </td>
+            <td ng-bind="c.userName"></td>
             <td>
                 <div ng-switch on="c.auditType">
                     <span ng-switch-when="0">人工审核</span>

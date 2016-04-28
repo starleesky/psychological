@@ -396,120 +396,167 @@
 	<sql id="page_condition">
 		<where>
 				<if test="entity.catagoryBigId != null">
-					AND CATAGORY_BIG_ID = #{entity.catagoryBigId,jdbcType=INTEGER}
+					AND i.CATAGORY_BIG_ID = #{entity.catagoryBigId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.catagoryBigName != null and entity.catagoryBigName != ''">
-					AND CATAGORY_BIG_NAME = #{entity.catagoryBigName,jdbcType=VARCHAR}
+					AND i.CATAGORY_BIG_NAME = #{entity.catagoryBigName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.catagoryMidId != null">
-					AND CATAGORY_MID_ID = #{entity.catagoryMidId,jdbcType=INTEGER}
+					AND i.CATAGORY_MID_ID = #{entity.catagoryMidId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.catagoryMidName != null and entity.catagoryMidName != ''">
-					AND CATAGORY_MID_NAME = #{entity.catagoryMidName,jdbcType=VARCHAR}
+					AND i.CATAGORY_MID_NAME = #{entity.catagoryMidName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.catagoryId != null">
-					AND CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
+					AND i.CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.catagoryName != null and entity.catagoryName != ''">
-					AND CATAGORY_NAME = #{entity.catagoryName,jdbcType=VARCHAR}
+					AND i.CATAGORY_NAME = #{entity.catagoryName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.brandId != null">
-					AND BRAND_ID = #{entity.brandId,jdbcType=INTEGER}
+					AND i.BRAND_ID = #{entity.brandId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.brandName != null and entity.brandName != ''">
-					AND BRAND_NAME = #{entity.brandName,jdbcType=VARCHAR}
+					AND i.BRAND_NAME = #{entity.brandName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.modelId != null">
-					AND MODEL_ID = #{entity.modelId,jdbcType=INTEGER}
+					AND i.MODEL_ID = #{entity.modelId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.modelName != null and entity.modelName != ''">
-					AND MODEL_NAME = #{entity.modelName,jdbcType=VARCHAR}
+					AND i.MODEL_NAME = #{entity.modelName,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.isNew != null and entity.isNew != ''">
-					AND IS_NEW = #{entity.isNew,jdbcType=VARCHAR}
+					AND i.IS_NEW = #{entity.isNew,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.sellType != null and entity.sellType != ''">
-					AND SELL_TYPE = #{entity.sellType,jdbcType=VARCHAR}
+					AND i.SELL_TYPE = #{entity.sellType,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.equipmentCondition != null and entity.equipmentCondition != ''">
-					AND EQUIPMENT_CONDITION = #{entity.equipmentCondition,jdbcType=VARCHAR}
+					AND i.EQUIPMENT_CONDITION = #{entity.equipmentCondition,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.procedures != null and entity.procedures != ''">
-					AND PROCEDURES = #{entity.procedures,jdbcType=VARCHAR}
+					AND i.PROCEDURES = #{entity.procedures,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.src != null and entity.src != ''">
-					AND SRC = #{entity.src,jdbcType=VARCHAR}
+					AND i.SRC = #{entity.src,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.equipYear != null and entity.equipYear != ''">
-					AND EQUIP_YEAR = #{entity.equipYear,jdbcType=VARCHAR}
+					AND i.EQUIP_YEAR = #{entity.equipYear,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.workTime != null and entity.workTime != ''">
-					AND WORK_TIME = #{entity.workTime,jdbcType=VARCHAR}
+					AND i.WORK_TIME = #{entity.workTime,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.price != null">
-					AND PRICE = #{entity.price,jdbcType=DECIMAL}
+					AND i.PRICE = #{entity.price,jdbcType=DECIMAL}
 				</if>
 				<if test="entity.serialNum != null and entity.serialNum != ''">
-					AND SERIAL_NUM = #{entity.serialNum,jdbcType=VARCHAR}
+					AND i.SERIAL_NUM = #{entity.serialNum,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.inStockCode != null and entity.inStockCode != ''">
-					AND IN_STOCK_CODE = #{entity.inStockCode,jdbcType=VARCHAR}
+					AND i.IN_STOCK_CODE = #{entity.inStockCode,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.remark != null and entity.remark != ''">
-					AND REMARK = #{entity.remark,jdbcType=VARCHAR}
+					AND i.REMARK = #{entity.remark,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.equipmentLocation != null and entity.equipmentLocation != ''">
-					AND EQUIPMENT_LOCATION = #{entity.equipmentLocation,jdbcType=VARCHAR}
+					AND i.EQUIPMENT_LOCATION = #{entity.equipmentLocation,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.pubTime != null">
-					AND PUB_TIME = #{entity.pubTime,jdbcType=TIMESTAMP}
+					AND i.PUB_TIME = #{entity.pubTime,jdbcType=TIMESTAMP}
 				</if>
 				<if test="entity.validTime != null and entity.validTime != ''">
-					AND VALID_TIME = #{entity.validTime,jdbcType=VARCHAR}
+					AND i.VALID_TIME = #{entity.validTime,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.stockCount != null and entity.stockCount != ''">
-					AND STOCK_COUNT = #{entity.stockCount,jdbcType=VARCHAR}
+					AND i.STOCK_COUNT = #{entity.stockCount,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.sellCount != null and entity.sellCount != ''">
-					AND SELL_COUNT = #{entity.sellCount,jdbcType=VARCHAR}
+					AND i.SELL_COUNT = #{entity.sellCount,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.userId != null">
-					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
+					AND i.USER_ID = #{entity.userId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.isTop != null and entity.isTop != ''">
 					AND IS_TOP = #{entity.isTop,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.status != null and entity.status != ''">
-					AND STATUS = #{entity.status,jdbcType=VARCHAR}
+					AND i.STATUS = #{entity.status,jdbcType=VARCHAR}
 				</if>
-					AND STATUS != 0
+					AND i.STATUS != 0
 				<if test="entity.auditType != null and entity.auditType != ''">
-					AND audit_type = #{entity.auditType,jdbcType=VARCHAR}
+					AND i.audit_type = #{entity.auditType,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.weight != null and entity.weight != ''">
-					AND WEIGHT = #{entity.weight,jdbcType=VARCHAR}
+					AND i.WEIGHT = #{entity.weight,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.deleted != null and entity.deleted != ''">
-					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
+					AND i.DELETED = #{entity.deleted,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.userName != null and entity.userName != ''">
+					AND u.user_name like CONCAT('%',#{entity.userName,jdbcType=VARCHAR},'%')
 				</if>
 		</where>
 	</sql>
 
+
+	<!-- 查询字段 -->
+	<sql id="selectField">
+		<![CDATA[
+		SELECT
+		       i.ID id,
+		       i.CATAGORY_BIG_ID catagoryBigId,
+		       i.CATAGORY_BIG_NAME catagoryBigName,
+		       i.CATAGORY_MID_ID catagoryMidId,
+		       i.CATAGORY_MID_NAME catagoryMidName,
+		       i.CATAGORY_ID catagoryId,
+		       i.CATAGORY_NAME catagoryName,
+		       i.BRAND_ID brandId,
+		       i.BRAND_NAME brandName,
+		       i.MODEL_ID modelId,
+		       i.MODEL_NAME modelName,
+		       i.IS_NEW isNew,
+		       i.SELL_TYPE sellType,
+		       i.EQUIPMENT_CONDITION equipmentCondition,
+		       i.PROCEDURES procedures,
+		       i.SRC src,
+		       i.EQUIP_YEAR equipYear,
+		       i.WORK_TIME workTime,
+		       i.PRICE price,
+		       i.SERIAL_NUM serialNum,
+		       i.IN_STOCK_CODE inStockCode,
+		       i.REMARK remark,
+		       i.EQUIPMENT_LOCATION equipmentLocation,
+		       i.PUB_TIME pubTime,
+		       i.VALID_TIME validTime,
+		       i.STOCK_COUNT stockCount,
+		       i.SELL_COUNT sellCount,
+		       i.USER_ID userId,
+		       i.IS_TOP isTop,
+		       i.STATUS status,
+		       i.audit_type auditType,
+		       i.WEIGHT weight,
+		       i.CREATE_TIME createTime,
+		       i.CREATE_BY createBy,
+		       i.MODIFY_TIME modifyTime,
+		       i.MODIFY_BY modifyBy,
+		       i.DELETED deleted
+		]]>
+	</sql>
 	<!-- 分页查询（计数） -->
 	<select id="page_count" parameterType="map" resultType="int">
 		<![CDATA[
 		SELECT count(*)
-		  FROM TSJX_INFOMATION
+		  FROM TSJX_INFOMATION i LEFT JOIN TSJX_USER u ON i.user_id=u.id
 		]]>
 		<include refid="page_condition" />
 	</select>
 
 	<!-- 分页查询（数据） -->
-	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.infomation.entity.Infomation">
+	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.infomation.entity.InfomationUser">
 		<include refid="mybatis.pageStartSQL" />
-		<include refid="selectFieldSQL" />
-		<![CDATA[
-		  FROM TSJX_INFOMATION
+		<include refid="selectField" />
+		<![CDATA[ ,u.user_name as userName
+		  FROM TSJX_INFOMATION i LEFT JOIN TSJX_USER u ON i.user_id=u.id
 		]]>
 		<include refid="page_condition" />
 		<include refid="mybatis.pageEndSQL" />

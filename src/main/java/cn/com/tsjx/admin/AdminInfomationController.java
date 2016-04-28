@@ -14,6 +14,7 @@ import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.infomation.entity.Infomation;
 import cn.com.tsjx.infomation.entity.InfomationDto;
+import cn.com.tsjx.infomation.entity.InfomationUser;
 import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.models.service.ModelsService;
@@ -75,11 +76,11 @@ public class AdminInfomationController {
 
     @RequestMapping(value = "/infomation/list/getData")
     @ResponseBody
-    public Pager<Infomation> list(Pager<Infomation> pager, Infomation infomation, Model model) {
+    public Pager<InfomationUser> list(Pager<InfomationUser> pager, InfomationUser infomation, Model model) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("entity", infomation);
         params.put("notStatus", 0);
-        pager.setPageSort("create_time");
+        pager.setPageSort("i.create_time");
         pager.setPageOrder("desc");
         pager = infomationService.page(params, pager);
         return pager;

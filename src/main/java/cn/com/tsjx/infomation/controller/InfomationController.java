@@ -135,18 +135,18 @@ public class InfomationController {
                     Company company = companyService.get(Long.valueOf(user.getCompanyId()));
                     model.addAttribute("company", company);
                 }
-                Attch entity = new Attch();
-                //entity.setUserId(user.getId());
-                entity.setInformationId(id);
-                List<Attch> list = attchService.find(entity);
-                model.addAttribute("listAttch", list);
-
-                String firstImg = "";
-                if (list.size() > 0) {
-                    firstImg = list.get(0).getAttchUrl();
-                }
-                model.addAttribute("firstImg", firstImg);
             }
+            Attch entity = new Attch();
+            //entity.setUserId(user.getId());
+            entity.setInformationId(id);
+            List<Attch> list = attchService.find(entity);
+            model.addAttribute("listAttch", list);
+            
+            String firstImg = "";
+            if (list.size() > 0) {
+                firstImg = list.get(0).getAttchUrl();
+            }
+            model.addAttribute("firstImg", firstImg);
             model.addAttribute("bean", infomation);
 
         }

@@ -29,15 +29,18 @@ define(function (require) {
                     index = $index;
                     modal = $modal.open({
                         templateUrl: angular.path + '/resources/templates/user/user_edit.html?data=' + new Date(),
+                        controller: 'editNewCtrl',
                         backdrop: 'static',
-                        scope: $scope,
-                        size: 'lg',
                         resolve: {
                             user: function () {
                                 return $scope.user;
                             }
                         }
                     });
+                    modal.result.then(function (user) {
+                        list.data.data.unshift(user);
+                    });
+
                 };
 
                 //打开新增窗口
@@ -109,15 +112,15 @@ define(function (require) {
         ]).controller('addNewCtrl', ['$scope', '$http', '$modalInstance', 'address', 'scope',
         function ($scope, $http, $modalInstance, address, scope) {
 
-
             $scope.provinceList = address.getProvinceList();
 
             //$scope.cityList = address.getCitysByPid();
             $scope.$watch('user.provinceId', function () {
                 $scope.user.provinceName = $scope.provinceList[$scope.user.provinceId];
+                $scope.citys=address.getCitysByPid($scope.user.provinceId);
             }, true);
             $scope.$watch('user.cityId', function () {
-                $scope.user.cityName = $scope.user.cityId;
+                $scope.user.cityName =$scope.citys[$scope.user.cityId];
             }, true);
             var data = $scope.user = {
                 isActivate: 'T'
@@ -148,6 +151,53 @@ define(function (require) {
                 $modalInstance.close(data);
 
             };
+
+            $scope.cancel = function () {
+                $modalInstance.dismiss();
+            };
+
+        }
+    ]).controller('editNewCtrl', ['$scope', '$http', '$modalInstance', 'address', 'user',
+        function ($scope, $http, $modalInstance, address, user) {
+
+            $scope.user =  angular.copy(user);
+            $scope.provinceList = address.getProvinceList();
+            console.log($scope.provinceList);
+            //$scope.cityList = address.getCitysByPid();
+            $scope.$watch('user.provinceId', function () {
+                $scope.user.provinceName = $scope.provinceList[$scope.user.provinceId];
+                $scope.citys=address.getCitysByPid($scope.user.provinceId);
+            }, true);
+            $scope.$watch('user.cityId', function () {
+                $scope.user.cityName =$scope.citys[$scope.user.cityId];
+            }, true);
+
+            //alert($scope.user.provinceName);
+            //var data = $scope.user = {
+            //    isActivate: 'T'
+            //};
+
+            $scope.submitting = $scope.submitted = false;
+            //更新
+            $scope.updateParam = function () {
+                $scope.submitted = true;
+                if ($scope.edit_form.$invalid) {
+                    return;
+                }
+                $http.post(angular.path + "/admin/user/update", $scope.user)
+                    .success(function (resp) {
+                        if (resp.result) {
+                            //if(index>=0&&list.data.data.length>0){
+                            //    list.data.data[index] = angular.copy($scope.data);
+                            //}
+                            $modalInstance.close($scope.user);
+                        } else {
+                            alert(resp.message);
+                        }
+                    });
+            }
+
+
 
             $scope.cancel = function () {
                 $modalInstance.dismiss();

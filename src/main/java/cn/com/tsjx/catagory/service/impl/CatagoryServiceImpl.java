@@ -121,6 +121,7 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
 				Brand brand1 = new Brand();
 				brand1.setBrandName(x);
 				brand1.setCatagoryId(catagoryId);
+				brand1.setFirstLetter(x.substring(0,1));
 				brand1 = brandService.insert(brand1);
 				List<String> mode = models.get(x);
 				for (String s : mode) {

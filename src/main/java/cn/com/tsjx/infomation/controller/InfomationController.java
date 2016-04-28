@@ -29,6 +29,7 @@ import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.util.date.DateUtil;
 import cn.com.tsjx.common.util.json.JsonMapper;
 import cn.com.tsjx.common.web.model.Pager;
 import cn.com.tsjx.common.web.model.Params;
@@ -114,29 +115,39 @@ public class InfomationController {
 			}
 		}
 
-		if (id != null) {
-			Infomation infomation = infomationService.get(id);
-			User user = null;
-			if (infomation.getUserId() != null) {
-				user = userService.get(infomation.getUserId());
-				model.addAttribute("sellUser", user);
-			}
-			if (user != null && user.getCompanyId() != null) {
-				Company company = companyService.get(Long.valueOf(user.getCompanyId()));
-				model.addAttribute("company", company);
-			}
-			Attch entity = new Attch();
-			//entity.setUserId(user.getId());
-			entity.setInformationId(id);
-			List<Attch> list = attchService.find(entity);
-			model.addAttribute("listAttch", list);
+        if (id != null) {
+            Infomation infomation = infomationService.get(id);
+            User user = null;
+            if (infomation != null) {
+                if (infomation.getUserId() != null) {
+                    user = userService.get(infomation.getUserId());
+                    model.addAttribute("sellUser", user);
+                }
+                if (infomation.getValidTime() != null && infomation.getPubTime() != null) {
+                    Calendar validDate = Calendar.getInstance();
+                    validDate.setTime(infomation.getPubTime());
+                    validDate.add(Calendar.DATE, Integer.valueOf(infomation.getValidTime()));
+                    infomation.setValidTime(DateUtil.format(validDate.getTime(),"yyyy/MM/dd"));
+                }
+            }
+            if (user != null) {
+                if (user.getCompanyId() != null) {
+                    Company company = companyService.get(Long.valueOf(user.getCompanyId()));
+                    model.addAttribute("company", company);
+                }
+            }
+            Attch entity = new Attch();
+            //entity.setUserId(user.getId());
+            entity.setInformationId(id);
+            List<Attch> list = attchService.find(entity);
+            model.addAttribute("listAttch", list);
 
-			String firstImg = "";
-			if (list.size() > 0) {
-				firstImg = list.get(0).getAttchUrl();
-			}
-			model.addAttribute("firstImg", firstImg);
-			model.addAttribute("bean", infomation);
+            String firstImg = "";
+            if (list.size() > 0) {
+                firstImg = list.get(0).getAttchUrl();
+            }
+            model.addAttribute("firstImg", firstImg);
+            model.addAttribute("bean", infomation);
 
 		}
 		return "/wap/view";
@@ -226,16 +237,43 @@ public class InfomationController {
 		}
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public Result<String> update(Infomation infomation, Model model) {
-		Result<String> result = new Result<String>();
+    @ResponseBody
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public Result<String> update(String oper, String infoIds,HttpSession httpSession) {
+        Result<String> result = new Result<String>();
 
-		infomationService.update(infomation);
-		result.setMessage("操作成功");
-		//model.addAttribute("redirectionUrl", "/infomation/list.htm");
-		return result;
-	}
+        String status = null;
+        String deleted = null;
+        Date curDate = new Date();
+        User user = (User) httpSession.getAttribute("user");
+
+        List<Infomation> list = new ArrayList<Infomation>();
+
+        if("ys".equals(oper)) {
+        	status = InfomationEnum.status_ys.code();
+        }else if("sc".equals(oper)) {
+        	deleted = Deleted.YES.value();
+        }
+
+        String[] idsArr = infoIds.split(",");
+        for(String id : idsArr) {
+        	Infomation infomation = new Infomation();
+        	infomation.setId(new Long(id));
+        	infomation.setStatus(status);
+        	infomation.setDeleted(deleted);
+
+        	infomation.setModifyTime(curDate);
+        	infomation.setUserId(user == null ? -1 : user.getId());
+
+        	list.add(infomation);
+        }
+
+        infomationService.update(list);
+
+        result.setMessage("操作成功");
+        //model.addAttribute("redirectionUrl", "/infomation/list.htm");
+        return result;
+    }
 
 	@ResponseBody
 	@RequestMapping(value = "/del", method = RequestMethod.GET)

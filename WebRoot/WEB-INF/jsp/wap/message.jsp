@@ -29,7 +29,9 @@
                     <img src="${ctx }/wap/images/blank.gif" class="jImg" data-url="${ctx }/wap/images/face.png" />
                     <div class="msg-info">
                         <p class="msg-title">${notice.title}</p>
+                        <div id = "box">
                         <p class="msg-txt">${notice.content}</p>
+                        </div>
                         <p class="msg-date"><fmt:formatDate value="${notice.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
                         </p>
                     </div>

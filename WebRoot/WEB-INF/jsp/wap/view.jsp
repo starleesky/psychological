@@ -31,7 +31,7 @@
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}" >
                     <p class="pro-price"><fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</p>
-             			<p class="pro-num">汤森信息编号: ts${bean.id}</p>
+             			<p class="pro-num">汤森信息编号: TS${bean.id}</p>
 
                 </div>
                 <a href="${ctx}/infomation/input?id=${bean.id}&page=next" class="next-btn"><i class="icon iconfont">&#xe60b;</i></a>
@@ -116,16 +116,17 @@
         <section class="buy-man-info pro-view-mod">
             <div class="hd">卖家信息</div>
             <div class="bd">
-                            <c:if test="${empty company}">
-            
+                        <c:if test="${empty company}">
                 <div class="pro-view-box">
+       					<c:if test="${not empty sellUser.headIcon}">
                     <div class="pro-img">
-                        <img src="${initParam.imgHost}${sellUser.headIcon}/small" />
+                        	<img src="${initParam.imgHost}${sellUser.headIcon}/small" />
                     </div>
+                        </c:if>
                     <h3>${sellUser.realName}</h3>
                     <ul>
                         <li class="w100">注册时间：
-               <fmt:formatDate value="${user.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
+               			<fmt:formatDate value="${sellUser.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
                         </li>
                         <li class="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
                         <li class="w100">座机：<a href="tel:${sellUser.telephone}">${sellUser.telephone}</a></li>
@@ -148,6 +149,11 @@
 				      </c:if>         
                 <c:if test="${not empty company}">
                  <div class="pro-view-box">
+                	<div class="pro-img">
+						<c:if test="${not empty company.createBy}">
+                		<img src="${initParam.imgHost}${company.createBy}/small" class="f-l" width="100" height="100"   />
+						</c:if> 
+                    </div>
 			         <ul>
 	                    <li class="w100">所属公司：${company.companyName}</li>
                         <li class="w100">联系电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>

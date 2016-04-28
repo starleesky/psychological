@@ -146,7 +146,9 @@
                 </form>
             </div>
         </section>
+        <input id="infoIds" type="hidden"/>
         <c:choose>
+        	
         	<c:when test="${status == 2 }">
         		<section class="pro-select-info">
 		            <a href="#" class="button jProSelMsg">已售<span>0</span>台</a>

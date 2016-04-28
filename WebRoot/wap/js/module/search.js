@@ -39,6 +39,7 @@ define(function(require,exports,module){
             data.modelId = $("#modelId").val();
             data.modelName = $("#modelName").val();
             data.sellType = $("#sellType").val();
+            data.equipmentLocation = $("#equipmentLocation").val();
             data.equipmentCondition = $("#equipmentCondition").val();
             data.procedures = $("#procedures").val();
             data.order = $("#order").val();
@@ -61,11 +62,15 @@ define(function(require,exports,module){
     var oMiddleGoodsCatagory = $(".middleGoodsCatagory");
     var oSmallGoodsCatagory = $(".smallGoodsCatagory");
     
+    var oRegionProvice = $(".regionProvice");
+    
     var _bigCataId = $("input#catagoryBigId").val();
     var _midCataId = $("input#catagoryMidId").val();
     var _CataId = $("input#catagoryId").val();
     var _brandId = $("input#brandId").val();
     var _modelId = $("input#modelId").val();
+    
+    var _equipmentLocation = $("input#equipmentLocation").val();
 
     var oBrand = $(".brand");
     var oModels = $(".models");
@@ -188,6 +193,30 @@ define(function(require,exports,module){
     	$("#modelName").val($('#infoSearchForm').find('select[name=models]').find("option:selected").text());
     });
     
+    //初始化设备地址下拉框
+    var getProvice = function () {
+    	var oProvice_html;
+    	if(_equipmentLocation == '') {
+    		oProvice_html = "<option value='' selected></option>";	
+        }else {
+        	oProvice_html = "<option value=''></option>";	
+        }
+        $.getJSON(url.listRegion, {id: '0'}, function (data) {
+            $.each(data.object, function (i, data) {
+            	if(_equipmentLocation == data.regionName) {
+            		oProvice_html += "<option value='" + data.regionName + "' selected>" + data.regionName + "</option>";
+            	}else {
+            		oProvice_html += "<option value='" + data.regionName + "'>" + data.regionName + "</option>";
+            	}
+            });
+            oRegionProvice.html(oProvice_html);
+        });
+    }
+    
+    oRegionProvice.change(function () {
+    	$("#equipmentLocation").val($('#infoSearchForm').find('select[name=equipmentLocationSel]').val());
+    });
+    
     var initOtherSel = function() {
     	$("select[name='sellTypeSel']").val($("#sellType").val());
     	$("select[name='equipmentConditionSel']").val($("#equipmentCondition").val());
@@ -197,8 +226,11 @@ define(function(require,exports,module){
     	
     }
     
-  //初始化其他下拉框
+    //初始化其他下拉框
     initOtherSel();
+    
+    //初始化设备地点下拉框
+    getProvice();
 
     //初始化产品大类
     getBig();

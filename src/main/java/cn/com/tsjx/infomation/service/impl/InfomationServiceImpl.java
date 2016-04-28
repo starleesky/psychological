@@ -145,7 +145,7 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
                     attch.setInformationId(infomation.getId());
 //                    attch.setUserId(user.getId());
                     attch.setAttchUrl("/images/upload/".replaceAll("/","%2F") + img);
-                    handleImg("/images/upload/" + img);
+//                    handleImg("/images/upload/" + img);
                     attchService.insert(attch);
                 }
             }

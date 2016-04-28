@@ -146,6 +146,9 @@
 			<if test="entity.sellType != null and entity.sellType != ''">
 				AND SELL_TYPE = #{entity.sellType,jdbcType=VARCHAR}
 			</if>
+			<if test="entity.equipmentLocation != null and entity.equipmentLocation != ''">
+				AND EQUIPMENT_LOCATION like CONCAT('%',#{entity.equipmentLocation,jdbcType=VARCHAR},'%' )
+			</if>
 			<if test="entity.equipmentCondition != null and entity.equipmentCondition != ''">
 				AND EQUIPMENT_CONDITION = #{entity.equipmentCondition,jdbcType=VARCHAR}
 			</if>

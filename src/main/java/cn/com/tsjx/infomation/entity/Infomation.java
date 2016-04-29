@@ -78,6 +78,8 @@ public class Infomation extends BaseEntity<Long> {
 	private Date endTime;
 
 	private Integer auditType;
+	
+	private String priceUnit;	//价格单位
 
 	private String nextPage;
 	@Override
@@ -361,4 +363,14 @@ public class Infomation extends BaseEntity<Long> {
 	public void setNextPage(String nextPage) {
 		this.nextPage = nextPage;
 	}
+
+	public String getPriceUnit() {
+		return priceUnit;
+	}
+
+	public void setPriceUnit(String priceUnit) {
+		this.priceUnit = priceUnit;
+	}
+	
+	
 }

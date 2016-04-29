@@ -330,4 +330,9 @@ CREATE TABLE `tsjx`.`tsjx_sysOption` (
   */
 ALTER TABLE `tsjx_infomation`
 	ADD COLUMN `audit_type` tinyint(3) NULL DEFAULT '0' COMMENT '审核类型：0人工审核1自动审核' AFTER `status`;
+/*
+  2016-04-29 增加价格单位字段
+  */
+ALTER TABLE `tsjx_infomation`
+	ADD COLUMN `price_unit` varchar(32)  COMMENT '价格单位';
 

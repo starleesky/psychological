@@ -178,6 +178,38 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     	}
     }
     
+    var initPriceUnit = function() {
+    	var sellType = $('select[name=sellTypeSel]').val();
+    	var priceUnit = $('input[name=priceUnit]').val();
+    	initPriceUnitOpt(sellType,priceUnit);
+    }
+    
+    var initPriceUnitOpt = function(sellType,priceUnit) {
+    	var unitOptHtml = "";
+        if(sellType == '0') {	//出售
+        	unitOptHtml = "<option value='元'>元</option>";
+        }else if(sellType == '1') {	//租赁
+        	unitOptHtml += priceUnit =="元/天" ? "<option value='元/天' selected>元/天</option>" : "<option value='元/天'>元/天</option>";
+        	unitOptHtml += priceUnit =="元/月" ? "<option value='元/月' selected>元/月</option>" : "<option value='元/月'>元/月</option>";
+        	unitOptHtml += priceUnit =="元/小时" ? "<option value='元/小时' selected>元/小时</option>" : "<option value='元/小时'>元/小时</option>";
+        	unitOptHtml += priceUnit =="元/亩" ? "<option value='元/亩' selected>元/亩</option>" : "<option value='元/亩'>元/亩</option>";
+        	unitOptHtml += priceUnit =="元/吨" ? "<option value='元/吨' selected>元/吨</option>" : "<option value='元/吨'>元/吨</option>";
+        	unitOptHtml += priceUnit =="元/立方" ? "<option value='元/立方' selected>元/立方</option>" : "<option value='元/立方'>元/立方</option>";
+        	unitOptHtml += priceUnit =="元/公里" ? "<option value='元/公里' selected>元/公里</option>" : "<option value='元/公里'>元/公里</option>";
+        }else if(sellType == '2') {	//求购
+        	unitOptHtml = "<option value='元左右'>元左右</option>";
+        }else if(sellType == '3') {	//求租
+        	unitOptHtml += priceUnit =="元/天" ? "<option value='元/天' selected>元/天</option>" : "<option value='元/天'>元/天</option>";
+        	unitOptHtml += priceUnit =="元/月" ? "<option value='元/月' selected>元/月</option>" : "<option value='元/月'>元/月</option>";
+        	unitOptHtml += priceUnit =="元/小时" ? "<option value='元/小时' selected>元/小时</option>" : "<option value='元/小时'>元/小时</option>";
+        	unitOptHtml += priceUnit =="元/亩" ? "<option value='元/亩' selected>元/亩</option>" : "<option value='元/亩'>元/亩</option>";
+        	unitOptHtml += priceUnit =="元/吨" ? "<option value='元/吨' selected>元/吨</option>" : "<option value='元/吨'>元/吨</option>";
+        	unitOptHtml += priceUnit =="元/立方" ? "<option value='元/立方' selected>元/立方</option>" : "<option value='元/立方'>元/立方</option>";
+        	unitOptHtml += priceUnit =="元/公里" ? "<option value='元/公里' selected>元/公里</option>" : "<option value='元/公里'>元/公里</option>";
+        }
+        $("select[name='priceUnitSel']").html(unitOptHtml);
+    }
+    
     //初始省市
     getProvice();
     
@@ -186,7 +218,9 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     
     //初始化手动添加品牌型号内容（如果有）
     initNewBrand();
-
+    
+    //初始化价格单位
+    initPriceUnit();
 
     var status = 0;
     //信息提交
@@ -239,6 +273,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     price: $(form).find('input[name=price]').val(),
                     workTime: $(form).find('input[name=workTime]').val(),
                     serialNum: $(form).find('input[name=serialNum]').val(),
+                    priceUnit: $(form).find('select[name=priceUnitSel]').val(),
                     imgUrl:array,
                     status:status
                 },
@@ -396,6 +431,12 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
             $('.desc-child').removeClass('isHide');
             $(this).addClass('open');
         }
+    });
+    
+    //根据不同的销售方式，确定价格的单位
+    $('body').on('change','select[name=sellTypeSel]',function(){
+        var val = $(this).val();
+        initPriceUnitOpt(val);
     });
 })
 ;

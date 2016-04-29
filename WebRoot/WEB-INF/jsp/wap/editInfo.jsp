@@ -197,6 +197,15 @@ String _modelName = infomation.getModelName();
                         <input type="text"   name="price" id="price"  value="${info.price }" placeholder="请输入...">
                     </div>
                 </div>
+                <div class="ui-form-mod">
+                        <label class="ui-form-hd">单位</label>
+                        <input type="hidden" name="priceUnit" value="${info.priceUnit }">
+                        <div class="ui-form-bd">
+                             <select name="priceUnitSel">
+	                            <option value="元">元</option>
+	                        </select>
+                        </div>
+                    </div>
                 <c:choose>
                		<c:when test="${info.sellType == '0' || info.sellType == '1'}">
                			<div class="ui-form-title">卖家附言</div>

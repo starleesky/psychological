@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import cn.com.tsjx.common.bean.entity.BaseEntity;
+import cn.com.tsjx.common.util.StringUtil;
 
 /**
  * 实体对象： 信息内容表
@@ -365,7 +366,7 @@ public class Infomation extends BaseEntity<Long> {
 	}
 
 	public String getPriceUnit() {
-		return priceUnit;
+		return StringUtil.isBlank(priceUnit) ? "元" : priceUnit;
 	}
 
 	public void setPriceUnit(String priceUnit) {

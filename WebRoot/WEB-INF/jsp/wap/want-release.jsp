@@ -185,8 +185,17 @@
 <!--                 </div> -->
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">价格</label>
+                       
                         <div class="ui-form-bd">
                             <input type="text"   name="price" id="price"   placeholder="请输入...">
+                        </div>
+                    </div>
+                    <div class="ui-form-mod">
+                        <label class="ui-form-hd">单位</label>
+                        <div class="ui-form-bd">
+                             <select name="priceUnitSel">
+	                            <option value="元">元</option>
+	                        </select>
                         </div>
                     </div>
                 <div class="ui-form-title">卖家附言</div>

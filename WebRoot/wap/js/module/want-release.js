@@ -122,8 +122,37 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     };
 
 
+    var initPriceUnit = function() {
+    	var sellType = $('select[name=sellType]').val();
+    	initPriceUnitOpt(sellType);
+    }
+    
+    var initPriceUnitOpt = function(sellType) {
+    	var unitOptHtml = "";
+        if(sellType == '0') {	//出售
+        	unitOptHtml = "<option value='元'>元</option>";
+        }else if(sellType == '1') {	//租赁
+        	unitOptHtml = "<option value='元/天'>元/天</option><option value='元/月'>元/月</option>"
+        				 +"<option value='元/小时'>元/小时</option><option value='元/亩'>元/亩</option>"
+        				 +"<option value='元/吨'>元/吨</option><option value='元/立方'>元/立方</option>"
+        				 +"<option value='元/公里'>元/公里</option>"
+        }else if(sellType == '2') {	//求购
+        	unitOptHtml = "<option value='元左右'>元左右</option>";
+        }else if(sellType == '3') {	//求租
+        	unitOptHtml = "<option value='元/天'>元/天</option><option value='元/月'>元/月</option>"
+				 +"<option value='元/小时'>元/小时</option><option value='元/亩'>元/亩</option>"
+				 +"<option value='元/吨'>元/吨</option><option value='元/立方'>元/立方</option>"
+				 +"<option value='元/公里'>元/公里</option>"
+        }
+        $("select[name='priceUnitSel']").html(unitOptHtml);
+    }
+    
     //初始省市
     getProvice();
+    
+    //初始化价格单位
+    initPriceUnit();
+    
 
     var status = 0;
     //信息提交
@@ -175,6 +204,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     price: $(form).find('input[name=price]').val(),
                     workTime: $(form).find('input[name=workTime]').val(),
                     serialNum: $(form).find('input[name=serialNum]').val(),
+                    priceUnit: $(form).find('select[name=priceUnitSel]').val(),
                     imgUrl:array,
                     status:status
                 },
@@ -338,5 +368,13 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $date.html(GetDateStr(val));
 
     });
+    
+    //根据不同的销售方式，确定价格的单位
+    $('body').on('change','select[name=sellType]',function(){
+        var val = $(this).val();
+        initPriceUnitOpt(val);
+    });
+    
+    
 })
 ;

@@ -38,7 +38,8 @@
 		IS_TOP isTop,
 		STATUS
 		status,
-		WEIGHT weight
+		WEIGHT weight,
+		price_unit priceUnit
 		FROM
 	</sql>
 	
@@ -79,7 +80,8 @@
 		STATUS
 		status,
 		WEIGHT weight,
-		(select h.attch_url  from tsjx_attch h where a.id = h.information_id order by h.create_time limit 0,1) imgUrl
+		(select h.attch_url  from tsjx_attch h where a.id = h.information_id order by h.create_time limit 0,1) imgUrl,
+		price_unit priceUnit
 		FROM
 	</sql>
 	

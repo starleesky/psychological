@@ -163,7 +163,7 @@
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
                             <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
-                            <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />元</span>
+                            <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />${item.priceUnit}</span>
                         </a>
                     </li>
                    </c:forEach>
@@ -183,7 +183,7 @@
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
                         <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
                         <span class="name">${item.brandName}${item.modelName}</span>
-                        <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />元</span>
+                        <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />${item.priceUnit}</span>
                         </a>
                         </li>
                     </c:forEach>

@@ -42,7 +42,8 @@
 		   	CREATE_BY,
 		   	MODIFY_TIME,
 		   	MODIFY_BY,
-		   	DELETED
+		   	DELETED,
+		   	price_unit
 		) VALUES (
 		   	#{id,jdbcType=INTEGER},
 		   	#{catagoryBigId,jdbcType=INTEGER},
@@ -80,7 +81,8 @@
 		   	#{createBy,jdbcType=VARCHAR},
 		   	#{modifyTime,jdbcType=TIMESTAMP},
 		   	#{modifyBy,jdbcType=VARCHAR},
-		   	#{deleted,jdbcType=VARCHAR}
+		   	#{deleted,jdbcType=VARCHAR},
+		   	#{priceUnit,jdbcType=VARCHAR}
 		)
 		]]>
 		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
@@ -205,6 +207,9 @@
 			<if test="deleted != null">
 				DELETED = #{deleted,jdbcType=VARCHAR},
 			</if>
+			<if test="priceUnit != null">
+				price_unit = #{priceUnit,jdbcType=VARCHAR},
+			</if>
 		</set>
 		WHERE ID = #{id,jdbcType=INTEGER}
 	</update>
@@ -260,7 +265,8 @@
 		       CREATE_BY createBy,
 		       MODIFY_TIME modifyTime,
 		       MODIFY_BY modifyBy,
-		       DELETED deleted
+		       DELETED deleted,
+		       price_unit priceUnit
 		]]>
 	</sql>
 
@@ -539,7 +545,8 @@
 		       i.CREATE_BY createBy,
 		       i.MODIFY_TIME modifyTime,
 		       i.MODIFY_BY modifyBy,
-		       i.DELETED deleted
+		       i.DELETED deleted,
+		       i.price_unit priceUnit
 		]]>
 	</sql>
 	<!-- 分页查询（计数） -->

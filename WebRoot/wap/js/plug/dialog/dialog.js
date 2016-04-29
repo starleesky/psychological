@@ -371,19 +371,19 @@ define(function(require) {
 
             switch (type) {
             case 'tips':
-                strIcon = '&#xe639;';
+                strIcon = '&#xe608;';
                 break;
             case 'warn':
-                strIcon = '&#xe639;';
+                strIcon = '&#xe608;';
                 break;
             case 'question':
-                strIcon = '&#xe639;';
+                strIcon = '&#xe608;';
                 break;
             case 'error':
-                strIcon = '&#xe62b;';
+                strIcon = '&#xe606;';
                 break;
             case 'ok':
-                strIcon = '&#xe634;';
+                strIcon = '&#xe607;';
                 break;
             case 'loading-text':
                 strIcon = '<img src="//static5.bubugao.com/public/img/loading/loading32x32.gif" />';

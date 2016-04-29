@@ -64,54 +64,20 @@
             <a href="javascript:;" class="ui-button ui-button-submit" id="collection" >收藏</a>
         </section>
         <section class="pro-set-info pro-view-mod">
-            <div class="hd">设备要求</div>
-            <div class="bd">
-                <div class="pro-view-box">
-                    <h3>${bean.brandName} ${bean.modelName}出售详细信息</h3>
-                    <ul>
-
-
-                        <li>设备情况: <c:if test="${bean.equipmentCondition == '0'}">
-                        新设备
-                        </c:if>
-                        <c:if test="${bean.equipmentCondition == '1'}">
-                        二手
-                        </c:if>
-                        <c:if test="${bean.equipmentCondition == '2'}">
-                        再制造
-                        </c:if></li>
-                        <li>销售方式:
-                        <c:if test="${bean.sellType == '0'}">
-                            出售
-                        </c:if>
-                        <c:if test="${bean.sellType == '1'}">
-                            租赁
-                        </c:if>
-                        <c:if test="${bean.sellType == '2'}">
-                            求购
-                        </c:if>
-                        <c:if test="${bean.sellType == '3'}">
-                            求租
-                        </c:if>
-                        </li>
-                        <li>品牌: ${bean.brandName}</li>
-                        <li>型号: ${bean.modelName}</li>
-                        <li>年份: ${bean.equipYear}年</li>
-                        <li >工时: ${bean.workTime}小时</li>
-                        <li class="w100">设备位置: ${bean.equipmentLocation}</li>
-                        <li  class="w100">出厂编号: ${bean.serialNum}</li>
-                        <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
-                        <li  class="w100">有效期至: ${bean.validTime}</li>
-                        <li class="w100 cl-1" style="margin-top:5px;" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元</li>
-                    </ul>
-                </div>
-                <div class="pro-view-box">
-                    <h3>买家附言</h3>
-                    <div id = "box">
-                    	<p>${bean.remark}</p>
-                    </div>
-                </div>
-            </div>
+        <c:choose>  
+		   <c:when test="${bean.sellType == '0'}">
+		       <%@ include file = "chushou.jsp" %> 
+		   </c:when>  
+		   <c:when test="${bean.sellType == '1'}">
+		       <%@ include file = "chuzhu.jsp" %> 
+		   </c:when>  
+		   <c:when test="${bean.sellType == '2'}">
+		       <%@ include file = "qiugou.jsp" %> 
+		   </c:when>  
+		   <c:when test="${bean.sellType == '3'}">
+		       <%@ include file = "qiuzhu.jsp" %> 
+		   </c:when>  
+		</c:choose> 
         </section>
         <section class="buy-man-info pro-view-mod">
             <div class="hd">卖家信息</div>
@@ -169,7 +135,6 @@
         </section>
          <section class="page-view-btn">
             <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
-            <a href="javascript:;" class="ui-button ui-button-blue">库存情况${bean.stockCount}</a>
         </section>
 
     </div>

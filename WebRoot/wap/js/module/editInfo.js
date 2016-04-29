@@ -83,9 +83,9 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
             var oBrand_html;
             $.each(data.object, function (i, data) {
             	if(_brandId == data.id) {
-            		oBrand_html += "<option value='" + data.id + "' selected>" + data.brandName + "</option>";
+            		oBrand_html += "<option value='" + data.id + "' selected>" + data.firstLetter +" "+ data.brandName + "</option>";
             	}else {
-            		oBrand_html += "<option value='" + data.id + "'>" + data.brandName + "</option>";
+            		oBrand_html += "<option value='" + data.id + "'>" + data.firstLetter +" "+ data.brandName + "</option>";
             	}
             });
             oBrand.html(oBrand_html);

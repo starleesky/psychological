@@ -143,11 +143,11 @@ define(
 					$.each(data.object, function(i, data) {
 						if (_brandId == data.id) {
 							oBrand_html += "<option value='" + data.id
-									+ "' selected>" + data.brandName
+									+ "' selected>" + data.firstLetter +" "+  data.brandName
 									+ "</option>";
 						} else {
 							oBrand_html += "<option value='" + data.id + "'>"
-									+ data.brandName + "</option>";
+									+ data.firstLetter +" "+ data.brandName + "</option>";
 						}
 					});
 					oBrand.html(oBrand_html);

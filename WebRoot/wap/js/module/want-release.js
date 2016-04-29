@@ -63,7 +63,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listBrand, {catagoryId: n}, function (data) {
             var oBrand_html;
             $.each(data.object, function (i, data) {
-                oBrand_html += "<option value='" + data.id + "'>" + data.brandName + "</option>";
+                oBrand_html += "<option value='" + data.id + "'>" +data.firstLetter +" "+ data.brandName + "</option>";
             });
             oBrand.html(oBrand_html);
             getModels();

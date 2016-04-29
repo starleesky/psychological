@@ -112,9 +112,9 @@ define(
 		            var oBrand_html = "<option value=''>请选择品牌</option>";
 		            $.each(data.object, function (i, data) {
 		            	if(_brandId == data.id) {
-		            		oBrand_html += "<option value='" + data.id + "' selected>" + data.brandName + "</option>";
+		            		oBrand_html += "<option value='" + data.id + "' selected>" + data.firstLetter +" "+ data.brandName + "</option>";
 		            	}else {
-		            		oBrand_html += "<option value='" + data.id + "'>" + data.brandName + "</option>";
+		            		oBrand_html += "<option value='" + data.id + "'>" + data.firstLetter +" "+ data.brandName + "</option>";
 		            	}
 		            });
 		            oBrand.html(oBrand_html);

@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import cn.com.tsjx.brand.entity.Brand;
 import cn.com.tsjx.brand.service.BrandService;
+import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.models.service.ModelsService;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -16,6 +17,7 @@ import cn.com.tsjx.common.service.BaseServiceImpl;
 import cn.com.tsjx.catagory.dao.CatagoryDao;
 import cn.com.tsjx.catagory.entity.Catagory;
 import cn.com.tsjx.catagory.service.CatagoryService;
+import org.springframework.util.StringUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -121,7 +123,9 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
 				Brand brand1 = new Brand();
 				brand1.setBrandName(x);
 				brand1.setCatagoryId(catagoryId);
-				brand1.setFirstLetter(x.substring(0,1));
+				if(!StringUtils.isEmpty(x)){
+					brand1.setFirstLetter(x.substring(0,1));
+				}
 				brand1 = brandService.insert(brand1);
 				List<String> mode = models.get(x);
 				for (String s : mode) {

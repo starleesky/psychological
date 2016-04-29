@@ -8,6 +8,9 @@
     <title>汤森机械网-消息</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx }/wap/css/module/message.css?v=1" type="text/css" charset="utf-8" media="all">
+    <style>
+    .msg-list li .msg-info p{max-height:44px;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -26,7 +29,7 @@
 
                 <c:forEach items="${notices}" var="notice">
                 <li>
-                    <img src="${ctx }/wap/images/blank.gif" class="jImg" data-url="${ctx }/wap/images/face.png" />
+                    <img src="${ctx }/wap/images/blank.gif" class="jImg" data-url="${ctx }/wap/images/icon_2.png" width="60" height="60" />
                     <div class="msg-info">
                         <p class="msg-title">${notice.title}</p>
                         <div id = "box">

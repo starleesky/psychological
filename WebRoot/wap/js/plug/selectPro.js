@@ -59,6 +59,7 @@ define(function(require, exports, module) {
     
     $body.on('click','.jProSelMsg',function(){
     	var opt = {};
+    	var status = $("#curStatus").val();
     	if(status == '2') {
     		opt = {oper:"ys",infoIds : $("#infoIds").val()};	//oper : ys 改为已售	
     	}else {

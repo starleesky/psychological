@@ -45,7 +45,9 @@ define(function(require,exports,module) {
             $.post( url.saveRegister2,
               {
             	provinceId: $(form).find('select[name=provinceId]').val(),
+            	provinceName: $(form).find('select[name=provinceId]').find("option:selected").text(),
             	cityId: $(form).find('select[name=cityId]').val(),
+            	cityName: $(form).find('select[name=cityId]').find("option:selected").text(),
             	businessScope: $(form).find('select[name=businessScope]').val(),
             	businessNature: $(form).find('select[name=businessNature]').val(),
             	id: $(form).find('input[name=id]').val()

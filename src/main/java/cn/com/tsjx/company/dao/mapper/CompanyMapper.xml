@@ -264,7 +264,7 @@
 					AND c.DELETED = #{entity.deleted,jdbcType=VARCHAR}
 				</if>
 				<if test="entity.userName != null and entity.userName != ''">
-					AND u.user_name like CONCAT('%',#{entity.userName,jdbcType=VARCHAR},'%')
+					AND u.real_name like CONCAT('%',#{entity.userName,jdbcType=VARCHAR},'%')
 				</if>
 		</where>
 	</sql>
@@ -308,7 +308,7 @@
 	<select id="page_datas" parameterType="map" resultType="cn.com.tsjx.company.entity.CompanyUser">
 		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectField" />
-		<![CDATA[ ,u.user_name as userName
+		<![CDATA[ ,u.real_name as userName
 		  FROM TSJX_COMPANY  c LEFT JOIN TSJX_USER u ON c.id=u.company_id
 		]]>
 		<include refid="page_condition" />

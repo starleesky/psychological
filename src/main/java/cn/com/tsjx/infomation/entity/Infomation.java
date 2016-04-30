@@ -335,7 +335,7 @@ public class Infomation extends BaseEntity<Long> {
 
 	public Date getEndTime() {
 
-		if (pubTime != null) {
+		if (pubTime != null && StringUtil.isNotBlank(validTime)) {
 			Calendar c = Calendar.getInstance();
 			c.setTime(pubTime);
 			c.add(Calendar.DATE, Integer.valueOf(validTime));

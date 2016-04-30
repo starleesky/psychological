@@ -103,9 +103,9 @@ public class AdminCompanyController {
 		notice.setNoticeType(NoticeEnum.notice_type_user.code());
 		notice.setTitle(TsjxConstant.company_audit_title);
 		if (AuditRecordEnum.audit_status_success.code().equals(company.getStatus())) {
-			notice.setContent(TsjxConstant.company_audit_success.replace("%s", company.getRemark()));
+			notice.setContent(TsjxConstant.company_audit_success.replace("%1", company.getCompanyName()).replace("%2", company.getRemark()));
 		} else {
-			notice.setContent(TsjxConstant.company_audit_failure.replace("%s", company.getRemark()));
+			notice.setContent(TsjxConstant.company_audit_failure.replace("%1", company.getCompanyName()).replace("%2", company.getRemark()));
 		}
 		noticeService.insert(notice);
 

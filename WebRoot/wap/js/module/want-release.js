@@ -185,7 +185,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     catagoryId: $(form).find('select[name=catagorySmall]').val(),
                     catagoryName: $(form).find('select[name=catagorySmall]').find("option:selected").text(),
                     brandId: $(form).find('select[name=brand]').val(),
-                    brandName: $(form).find('select[name=brand]').find("option:selected").text(),
+                    brandName: $(form).find('select[name=brand]').find("option:selected").text().substring(2),
                     modelId: $(form).find('select[name=models]').val(),
                     modelName: $(form).find('select[name=models]').find("option:selected").text(),
                     newBrand: $(form).find('input[name=newBrand]').val(),
@@ -223,6 +223,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 });
         },
         showError: function (elem, msg) {
+            submitIng=true;
             box.error(msg, elem);
         },
         success: null

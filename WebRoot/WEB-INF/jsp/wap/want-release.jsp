@@ -177,12 +177,12 @@
                         <input type="text"   name="workTime" id="workTime"   placeholder="请输入...">
                     </div>
                 </div>
-<!--                 <div class="ui-form-mod"> -->
-<!--                     <label class="ui-form-hd">设备序列号</label> -->
-<!--                     <div class="ui-form-bd"> -->
-<!--                         <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入..."> -->
-<!--                     </div> -->
-<!--                 </div> -->
+                <div class="ui-form-mod">
+                    <label class="ui-form-hd">设备序列号</label>
+                    <div class="ui-form-bd">
+                        <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入...">
+                    </div>
+                </div> 
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">价格</label>
                        
@@ -196,6 +196,12 @@
                              <select name="priceUnitSel">
 	                            <option value="元">元</option>
 	                        </select>
+                        </div>
+                    </div>
+                    <div class="ui-form-mod">
+                        <label class="ui-form-hd">库存数量</label>
+                        <div class="ui-form-bd">
+                            <input type="text" name="stockCount" id="stockCount"   placeholder="请输入...">
                         </div>
                     </div>
                 <div class="ui-form-title">卖家附言</div>

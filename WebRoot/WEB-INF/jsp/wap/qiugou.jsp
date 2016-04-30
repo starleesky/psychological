@@ -43,7 +43,7 @@
                         <li  class="w100">出厂编号: ${bean.serialNum}</li>
                         <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
                         <li  class="w100">有效期至: ${bean.validTime}</li>
-                        <li class="w100 cl-1" style="margin-top:5px;" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />元左右</li>
+                        <li class="w100 cl-1" style="margin-top:5px;" >价格: <fmt:formatNumber value="${bean.price}" maxFractionDigits="0" />${bean.priceUnit}</li>
                     </ul>
                 </div>
                 <div class="pro-view-box">

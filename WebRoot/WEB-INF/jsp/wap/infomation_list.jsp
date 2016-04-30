@@ -105,6 +105,9 @@
 			                  	<c:when test="${status == 4}">
 			                  		<span>下架</span>
 			                  	</c:when>
+			                  	<c:when test="${info.status == 1}">
+			                  		<span>审核中</span>
+			                  	</c:when>
 			                  	<c:otherwise>
 			                  		
 			                  	</c:otherwise>
@@ -135,7 +138,7 @@
                         <c:if test="${status == 4 || status == 3}">
                         	<a href="javascript:;" infoId="${info.id}" class="pro-new-up jNewUp">重新上架</a>
                         </c:if>
-                        <c:if test="${status == 0 }">
+                        <c:if test="${info.status == 0 }">
                         	<a href="${ctx}/infomation/edit/my?id=${info.id}" data-url="#" class="pro-new-up jUpPro">修改商品</a>
                         </c:if>
                         

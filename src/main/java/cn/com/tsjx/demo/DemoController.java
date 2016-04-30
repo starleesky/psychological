@@ -114,10 +114,12 @@ public class DemoController {
 		List<Infomation> li_xj = infomationService.find(infomation);
 		model.addAttribute("cnt_xj", li_xj.size());
 
-		//4、草稿
+		//4、草稿(包括草稿+审核中)
 		infomation.setStatus(InfomationEnum.status_cg.code());
-		List<Infomation> li_cg = infomationService.find(infomation);
-		model.addAttribute("cnt_cg", li_cg.size());
+		List<Infomation> li_cg1 = infomationService.find(infomation);
+		infomation.setStatus(InfomationEnum.status_sh.code());
+		List<Infomation> li_cg2 = infomationService.find(infomation);
+		model.addAttribute("cnt_cg", li_cg1.size() + li_cg2.size());
 
 		//9、收藏
 		List<Infomation> collectInfo = infomationService.getInfomationsByParam(user, infomation);

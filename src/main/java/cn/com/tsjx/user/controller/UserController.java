@@ -191,10 +191,12 @@ public class UserController {
        List<Infomation> li_xj = infomationService.find(infomation);
        model.addAttribute("cnt_xj", li_xj.size());
 
-       //4、草稿
-       infomation.setStatus(InfomationEnum.status_cg.code());
-       List<Infomation> li_cg = infomationService.find(infomation);
-       model.addAttribute("cnt_cg", li_cg.size());
+       //4、草稿(包括草稿+审核中)
+	   infomation.setStatus(InfomationEnum.status_cg.code());
+	   List<Infomation> li_cg1 = infomationService.find(infomation);
+	   infomation.setStatus(InfomationEnum.status_sh.code());
+       List<Infomation> li_cg2 = infomationService.find(infomation);
+	   model.addAttribute("cnt_cg", li_cg1.size() + li_cg2.size());
 
        if (user != null ) {
            user = userService.get(user.getId());

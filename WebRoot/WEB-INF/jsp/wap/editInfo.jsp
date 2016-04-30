@@ -192,20 +192,34 @@ String _modelName = infomation.getModelName();
                     </div>
                 </div>
                 <div class="ui-form-mod">
+                    <label class="ui-form-hd">设备序列号</label>
+                    <div class="ui-form-bd">
+                        <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入..." value="${info.serialNum }">
+                    </div>
+                </div> 
+                <div class="ui-form-mod">
                     <label class="ui-form-hd">价格</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="price" id="price"  value="${info.price }" placeholder="请输入...">
                     </div>
                 </div>
                 <div class="ui-form-mod">
-                        <label class="ui-form-hd">单位</label>
-                        <input type="hidden" name="priceUnit" value="${info.priceUnit }">
-                        <div class="ui-form-bd">
-                             <select name="priceUnitSel">
-	                            <option value="元">元</option>
-	                        </select>
-                        </div>
+                    <label class="ui-form-hd">单位</label>
+                    <input type="hidden" name="priceUnit" value="${info.priceUnit }">
+                    <div class="ui-form-bd">
+                         <select name="priceUnitSel">
+                         <option value="元">元</option>
+                     </select>
                     </div>
+                </div>
+                <c:if test="${ info.sellType == '0' || info.sellType == '1'}">
+	                <div class="ui-form-mod">
+	                    <label class="ui-form-hd">库存数量</label>
+	                    <div class="ui-form-bd">
+	                        <input type="text" name="stockCount" id="stockCount" value="${info.stockCount }"  placeholder="请输入...">
+	                    </div>
+	                </div>
+                </c:if>
                 <c:choose>
                		<c:when test="${info.sellType == '0' || info.sellType == '1'}">
                			<div class="ui-form-title">卖家附言</div>

@@ -273,6 +273,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     price: $(form).find('input[name=price]').val(),
                     workTime: $(form).find('input[name=workTime]').val(),
                     serialNum: $(form).find('input[name=serialNum]').val(),
+                    stockCount: $(form).find('input[name=stockCount]').val(),
                     priceUnit: $(form).find('select[name=priceUnitSel]').val(),
                     imgUrl:array,
                     status:status

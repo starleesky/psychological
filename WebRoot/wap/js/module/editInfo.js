@@ -292,7 +292,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 });
         },
         showError: function (elem, msg) {
-            submitIng=true;
+            submitIng=false;
             box.error(msg, elem);
         },
         success: null
@@ -301,7 +301,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     var array="";
     $("#jSave").click(function () {
         if(submitIng){
-            box.error('不能重复提交！');
+            box.error('上传中，不能重复提交！');
             return;
         }
         status = 0;
@@ -324,7 +324,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         //alert('提交之前请先保存');
         status = 1;
         if(submitIng){
-            box.error('不能重复提交！');
+            box.error('上传中，不能重复提交！');
             return;
         }
         var   _text = $("input[name^='_UPLOAD_']");

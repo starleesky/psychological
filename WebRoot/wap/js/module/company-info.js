@@ -124,7 +124,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
     var submitIng=false;
     $("#jSubmit").click(function () {
         if(submitIng){
-            box.error('不能重复提交！');
+            box.error('上传中，不能重复提交！');
             return;
         }
 
@@ -246,7 +246,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 });
         },
         showError: function (elem, msg) {
-            submitIng=true;
+            submitIng=false;
             box.error(msg, elem);
         },
         success: null

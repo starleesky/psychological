@@ -191,12 +191,14 @@ String _modelName = infomation.getModelName();
                         <input type="text"   name="workTime" id="workTime"  value="${info.workTime }" placeholder="请输入...">
                     </div>
                 </div>
+                <c:if test="${info.sellType == '0' || info.sellType == '1'}">
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备序列号</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入..." value="${info.serialNum }">
                     </div>
                 </div> 
+                </c:if>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">价格</label>
                     <div class="ui-form-bd">

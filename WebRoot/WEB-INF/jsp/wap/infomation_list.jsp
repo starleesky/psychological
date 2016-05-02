@@ -138,7 +138,7 @@
                         <c:if test="${status == 4 || status == 3}">
                         	<a href="javascript:;" infoId="${info.id}" class="pro-new-up jNewUp">重新上架</a>
                         </c:if>
-                        <c:if test="${info.status == 0 }">
+                        <c:if test="${status == 0 }">
                         	<a href="${ctx}/infomation/edit/my?id=${info.id}" data-url="#" class="pro-new-up jUpPro">修改商品</a>
                         </c:if>
                         

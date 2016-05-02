@@ -121,8 +121,12 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
     //隐藏域设置值
     var up0,up1,up2;
 
-
+    var submitIng=false;
     $("#jSubmit").click(function () {
+        if(submitIng){
+            box.error('上传中，不能重复提交！');
+            return;
+        }
 
         if(status=="1"){
             box.error("认证成功，不能修改！");
@@ -166,7 +170,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 up2=$('input[name=_UPLOAD_0]').val();
             }
         }
-
+        submitIng=true;
         $('#companyForm').submit();
 
     });
@@ -184,6 +188,12 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             },
             organizationCodeImageUrl: {
                 required: true
+            },
+            introduction: {
+                required: true
+            },
+            address: {
+                required: true
             }
         },
         messages: {
@@ -198,6 +208,12 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
             },
             organizationCodeImageUrl: {
                 required: '组织机构不能为空'
+            },
+            introduction: {
+                required: '公司介绍不能为空'
+            },
+            address: {
+                required: '详细地址不能为空'
             }
         },
         submitHandler: function (form) {
@@ -230,6 +246,7 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 });
         },
         showError: function (elem, msg) {
+            submitIng=false;
             box.error(msg, elem);
         },
         success: null

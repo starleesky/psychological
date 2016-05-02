@@ -80,7 +80,7 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
 
             } else {
                 if (catagoryList != null && catagoryList.size() > 0) {
-                    catagory.setCatagoryName(row.getCell(2).toString().trim());
+                    catagory.setCatagoryName(row.getCell(2).toString().trim().replaceAll(" ",""));
                     catagory.setParentId(String.valueOf(catagoryList.get(0).getId()));
                     catagory = catagoryService.insert(catagory);
                     catagoryId = catagory.getId();
@@ -95,7 +95,7 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
             for (int j = 1; j < rowLen; j++) {
                 row = sheet.getRow(j);
                 System.out.println("品牌:" + row.getCell(4) + "型号:" + row.getCell(5));
-                if (row.getCell(4) == null || row.getCell(5) == null) {
+                if (row.getCell(3) == null ||row.getCell(4) == null || row.getCell(5) == null) {
                     System.out.println("多少行忽略了：" + j);
                     continue;
                 }
@@ -131,7 +131,7 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
                 Brand brand1 = new Brand();
                 if (split.length == 2) {
                     brand1.setFirstLetter(split[0]);
-                    brand1.setBrandName(split[1]);
+                    brand1.setBrandName(split[1].replaceAll(" ",""));
                 }
 
                 brand1.setCatagoryId(catagoryId);
@@ -139,7 +139,7 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
                 List<String> mode = models.get(x);
                 for (String s : mode) {
                     Models modelss = new Models();
-                    modelss.setModelsName(s);
+                    modelss.setModelsName(s.replaceAll(" ",""));
                     modelss.setBrandId(brand1.getId());
                     modelsService.insert(modelss);
                 }
@@ -148,5 +148,9 @@ public class CatagoryServiceImpl extends BaseServiceImpl<Catagory, Long> impleme
             models.clear();
         }
         System.out.println("解析结束了");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("WB140 ".replaceAll(" ","")+"111");
     }
 }

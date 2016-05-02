@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="ui-form-mod">
-                <label class="ui-form-hd">邮箱</label>
+                <label class="ui-form-hd">验证码</label>
                 <div class="ui-form-bd">
                     <input type="text" id="captchaCode" name="captchaCode" placeholder="验证码" value="">
                     <img id="captchaImage" src="${ctx}/wap/getVerifyCode.htm" alt="换一张" /></li>

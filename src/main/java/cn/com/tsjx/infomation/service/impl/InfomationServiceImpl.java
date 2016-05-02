@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,8 +13,14 @@ import javax.annotation.Resource;
 
 import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
+import cn.com.tsjx.brand.entity.Brand;
+import cn.com.tsjx.brand.service.BrandService;
+import cn.com.tsjx.catagory.entity.Catagory;
+import cn.com.tsjx.catagory.service.CatagoryService;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.models.entity.Models;
+import cn.com.tsjx.models.service.ModelsService;
 import com.qiniu.UploadDemo;
 import com.qiniu.WaterSet;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -46,6 +53,15 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 
     @Resource
     AttchService attchService;
+
+    @Resource
+    CatagoryService catagoryService;
+
+    @Resource
+    BrandService brandService;
+
+    @Resource
+    ModelsService modelsService;
 
     @Value("${file.uplaoddir}")
     String path;
@@ -92,23 +108,82 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
             for (int j = 1; j < rowLen; j++) {
                 row = sheet.getRow(j);
                 Infomation infomation = new Infomation();
+                if (row.getCell(0) == null || "".equals(row.getCell(0))) {
+                    continue;
+                }
 
-                if ("出售".equals(row.getCell(0).toString())) {
+                if ("出售".equals(row.getCell(0).toString().trim())) {
                     infomation.setSellType("0");
-                } else if ("租赁".equals(row.getCell(0).toString())) {
+                } else if ("租赁".equals(row.getCell(0).toString().trim())) {
                     infomation.setSellType("1");
-                } else if ("求购".equals(row.getCell(0).toString())) {
+                } else if ("求购".equals(row.getCell(0).toString().trim())) {
                     infomation.setSellType("2");
-                } else if ("求租".equals(row.getCell(0).toString())) {
+                } else if ("求租".equals(row.getCell(0).toString().trim())) {
                     infomation.setSellType("3");
                 }
-                infomation.setCatagoryBigName(row.getCell(1).toString());
-                infomation.setCatagoryMidName(row.getCell(2).toString());
+                infomation.setCatagoryBigName(row.getCell(1).toString().trim());
+                infomation.setCatagoryMidName(row.getCell(2).toString().trim());
                 if (!StringUtils.isEmpty(row.getCell(3))) {
-                    infomation.setCatagoryName(row.getCell(3).toString());
+                    infomation.setCatagoryName(row.getCell(3).toString().trim());
                 }
-                infomation.setBrandName(row.getCell(4).toString());
-                infomation.setModelName(row.getCell(5).toString());
+                infomation.setBrandName(row.getCell(4).toString().trim());
+                infomation.setModelName(row.getCell(5).toString().trim());
+
+                Catagory catagory = new Catagory();
+                catagory.setLayer("0");
+                catagory.setCatagoryName(infomation.getCatagoryBigName());
+                List<Catagory> catagories = catagoryService.find(catagory);
+                if (catagories != null && catagories.size() > 0) {
+                    infomation.setCatagoryBigId(catagories.get(0).getId());
+
+                    catagory.setCatagoryName(infomation.getCatagoryMidName());
+                    catagory.setLayer("1");
+                    catagories = catagoryService.find(catagory);
+                    if (catagories != null && catagories.size() > 0) {
+                        infomation.setCatagoryMidId(catagories.get(0).getId());
+
+                        catagory.setCatagoryName(infomation.getCatagoryName());
+                        catagory.setLayer(null);
+                        catagories = catagoryService.find(catagory);
+                        if (catagories != null && catagories.size() > 0) {
+                            infomation.setCatagoryId(catagories.get(0).getId());
+                        }
+                    }
+                }
+
+                //品牌型号ID
+                if (infomation.getCatagoryId() != null && infomation.getCatagoryId() != 0) {
+
+                    Brand brand = new Brand();
+                    brand.setBrandName(infomation.getBrandName());
+                    brand.setCatagoryId(infomation.getCatagoryId());
+                    List<Brand> brands = brandService.find(brand);
+                    //品牌存在
+                    if (brands != null && brands.size() > 0) {
+                        infomation.setBrandId(brands.get(0).getId());
+
+                        Models models = new Models();
+                        models.setBrandId(brands.get(0).getId());
+                        models.setModelsName(infomation.getModelName());
+                        List<Models> modelses = modelsService.find(models);
+                        //型号存在
+                        if (modelses != null && modelses.size() > 0) {
+                            infomation.setModelId(modelses.get(0).getId());
+                        } else {//型号不存在
+                            models = modelsService.insert(models);
+                            infomation.setModelId(models.getId());
+                        }
+                    } else { //品牌不存在，新增自定义的品牌型号
+                        brand = brandService.insert(brand);
+                        Models models = new Models();
+                        models.setBrandId(brand.getId());
+                        models.setModelsName(infomation.getModelName());
+                        models = modelsService.insert(models);
+                        infomation.setBrandId(brand.getId());
+                        infomation.setModelId(models.getId());
+                    }
+                }
+
 
                 infomation.setEquipYear(row.getCell(6).toString());
                 infomation.setWorkTime(row.getCell(7).toString());
@@ -120,11 +195,14 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
                 infomation.setProcedures("0");
                 infomation.setSrc("0");
 
-                infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + row.getCell(11).toString());
+                DecimalFormat df = new DecimalFormat("0");
+                String strCell = df.format(row.getCell(11).getNumericCellValue());
+                infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + strCell);
                 infomation.setValidTime("30");
                 infomation.setIsTop("0");
                 infomation.setUserId(1L);
                 infomation.setStatus(InfomationEnum.status_sj.code());
+                infomation.setWeight("1");//暂时表示导入数据
                 infomation.setAuditType(Integer.parseInt(InfomationEnum.audit_type_auto.code()));
                 if (!StringUtils.isEmpty(row.getCell(12))) {
                     infomation.setCreateBy(row.getCell(12).toString());//暂存图片
@@ -145,7 +223,7 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
                     Attch attch = new Attch();
                     attch.setInformationId(infomation.getId());
 //                    attch.setUserId(user.getId());
-                    attch.setAttchUrl("/images/upload/".replaceAll("/","%2F") + img);
+                    attch.setAttchUrl("/images/upload/".replaceAll("/", "%2F") + img);
 //                    handleImg("/images/upload/" + img);
                     attchService.insert(attch);
                 }
@@ -164,8 +242,8 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
             e.printStackTrace();
         }
     }
-    
-    public void autoDown(){
-    	infomationDao.autoDown();
+
+    public void autoDown() {
+        infomationDao.autoDown();
     }
 }

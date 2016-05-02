@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="用户名称" ng-model="list.filter.userName">
+                    <input type="text" class="form-control" placeholder="用户名称" ng-model="list.filter.realName">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">搜索</button>
@@ -55,6 +55,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th>登陆账号</th>
             <th>用户名称</th>
             <th>手机号码</th>
             <th>邮箱</th>
@@ -71,6 +72,7 @@
         <tbody>
         <tr ng-repeat="c in list.data.items">
             <td ng-bind="c.userName"></td>
+            <td ng-bind="c.realName"></td>
             <td ng-bind="c.mobile"></td>
             <td ng-bind="c.email"></td>
             <td ng-bind="c.provinceName"></td>

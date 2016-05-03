@@ -184,9 +184,13 @@ public class LoginController {
 
             // 发送邮箱验证
             String url =  validateUrl + Base64.encodeBase64String(user.getId().toString().getBytes());
-            System.out.println(url);
             try {
-                mailService.sendMail(user.getEmail(), "汤森机械-账号激活", "<a href='" + url + "'>点击我完成注册</a>", "汤森机械");
+                mailService.sendMail(user.getEmail(), "汤森机械网— --帐号激活", "感谢您注册汤森机械网！"
+                        + "</br>你的登录邮箱为："+user.getEmail()+"请点击以下链接激活帐号："
+                        + "</br>"+"链接：<a href=' + url + '>点击我完成注册</a>"
+                        + "</br>如果以上链接无法点击，请将上面的地址复制到你的浏览器(如IE)的地址栏进入汤森机械网。 （该链接在48小时内有效，48小时后需要重新注册）"
+                        + "</br>祝您在汤森机械网找到称心如意之选！"
+                        + "</br>如有任何疑问，请搜索并关注我们微信公众号(汤森机械网),将有后台服务人员竭诚为您服务！", "汤森机械");
 
             } catch (Exception e) {
                 e.printStackTrace();

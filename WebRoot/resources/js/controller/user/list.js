@@ -14,6 +14,9 @@ define(function (require) {
             function ($scope, $http, commonList, $modal, address) {
 
                 $scope.provinceList = address.getProvinceList();
+                $scope.$watch('provinceId', function () {
+                    $scope.citys=address.getCitysByPid($scope.provinceId);
+                }, true);
                 var list = $scope.list = commonList;
                 list.filter.key = '';
                 list.url = "/admin/user/list/getData";

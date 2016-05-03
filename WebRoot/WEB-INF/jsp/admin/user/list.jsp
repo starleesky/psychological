@@ -42,6 +42,9 @@
                     <option value="3">企业管理员</option>
                 </select>
             </div>
+            <select name="provnice" required ng-model="list.filter.provinceId" class="form-control" ng-options="id as name for (id, name) in provinceList" ng-change="list.fetch()">
+            </select>
+            <city-list name="city" required ng-model="list.filter.cityId" provice="list.filter.provinceId" class="form-control" ng-change="list.fetch()"></city-list>
             <div class="form-group pull-right">
                 <button class="btn btn-primary" ng-click="addNew()">新增</button>
             </div>
@@ -88,10 +91,19 @@
             </td>
             <td>
                 <div ng-switch on="c.businessNature">
-                    <span ng-switch-when="0">出售</span>
-                    <span ng-switch-when="1">租赁</span>
-                    <span ng-switch-when="2">求购</span>
-                    <span ng-switch-when="3">求租</span>
+                    <%--<span ng-switch-when="0">出售</span>--%>
+                    <%--<span ng-switch-when="1">租赁</span>--%>
+                    <%--<span ng-switch-when="2">求购</span>--%>
+                    <%--<span ng-switch-when="3">求租</span>--%>
+                    <span ng-switch-when="1"> 生产商</span>
+                    <span ng-switch-when="2"> 代理商</span>
+                    <span ng-switch-when="3"> 买家</span>
+                    <span ng-switch-when="4"> 卖家</span>
+                    <span ng-switch-when="5"> 买卖贸易</span>
+                    <span ng-switch-when="6"> 中介</span>
+                    <span ng-switch-when="7"> 维修</span>
+                    <span ng-switch-when="8"> 配件商</span>
+                    <span ng-switch-when="9"> 抵押</span>
                 </div>
             </td>
             <td>

@@ -6,10 +6,18 @@
 	<form class="form-horizontal" name="add_form">
 
 		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">用户名</label>
+			<label for="name" class="col-sm-2 control-label">登陆账号</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="userName" name="userName" placeholder="登录名" required ng-model="user.userName">
+				<input type="text" class="form-control" id="userName" name="userName" placeholder="登陆账号" required ng-model="user.userName">
 				<span class="form-error" ng-show="submitted && add_form.userName.$invalid">必须填写</span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="name" class="col-sm-2 control-label">用户名称</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="realName" name="realName" placeholder="用户名称" required ng-model="user.realName">
+				<span class="form-error" ng-show="submitted && edit_form.realName.$invalid">必须填写</span>
 			</div>
 		</div>
 
@@ -84,10 +92,16 @@
 		<div class="form-group">
 			<label for="bankName" class="col-sm-2 control-label">经营性质</label>
 			<div class="col-sm-10">
-				<input type="radio" ng-model="user.businessNature"  value="0" checked> 出售
-				<input type="radio" ng-model="user.businessNature" value="1"> 租赁
-				<input type="radio" ng-model="user.businessNature" value="2"> 求购
-				<input type="radio" ng-model="user.businessNature" value="3"> 求租
+				<!--买家, 卖家, 买卖贸易, 中介, 维修, 配件商, 抵押-->
+				<input type="radio" ng-model="user.businessNature" value="1" checked> 生产商
+				<input type="radio" ng-model="user.businessNature" value="2"> 代理商
+				<input type="radio" ng-model="user.businessNature" value="3"> 买家
+				<input type="radio" ng-model="user.businessNature" value="4"> 卖家
+				<input type="radio" ng-model="user.businessNature" value="5"> 买卖贸易
+				<input type="radio" ng-model="user.businessNature" value="6"> 中介
+				<input type="radio" ng-model="user.businessNature" value="7"> 维修
+				<input type="radio" ng-model="user.businessNature" value="8"> 配件商
+				<input type="radio" ng-model="user.businessNature" value="9"> 抵押
 			</div>
 		</div>
 

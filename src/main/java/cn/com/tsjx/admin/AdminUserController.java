@@ -35,6 +35,8 @@ public class AdminUserController {
 	public Pager<User> list(Pager<User> pager, User user, Model model) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("entity", user);
+		pager.setPageSort("create_time");
+		pager.setPageOrder("desc");
 		pager = userService.page(params, pager);
 		for (User user1 : pager.getItems()) {
 			if (Base64.decode(user1.getPassword()) != null) {

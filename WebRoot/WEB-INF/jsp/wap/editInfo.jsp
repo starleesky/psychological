@@ -141,10 +141,11 @@ String _modelName = infomation.getModelName();
                             <option value="0">新设备</option>
                             <option value="1">二手设备</option>
                             <option value="2">再制造</option>
+                            <option value="3">库存机</option>
                         </select>
                     </div>
                 </div>
-                <div class="ui-form-mod">
+                <%-- <div class="ui-form-mod">
                     <label class="ui-form-hd">手续资料</label>
                     <div class="ui-form-bd">
                     	<input type="hidden" name="procedures" id="procedures" value="${info.procedures}"/>
@@ -166,7 +167,7 @@ String _modelName = infomation.getModelName();
                             <option value="3">法务</option>
                         </select>
                     </div>
-                </div>
+                </div> --%>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">年份</label>
                     <div class="ui-form-bd">
@@ -193,7 +194,7 @@ String _modelName = infomation.getModelName();
                 </div>
                 <c:if test="${info.sellType == '0' || info.sellType == '1'}">
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">设备序列号</label>
+                    <label class="ui-form-hd">出厂编码</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入..." value="${info.serialNum }">
                     </div>

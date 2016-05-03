@@ -18,7 +18,20 @@ public enum UserEnum {
     user_scope_ny("2","农业机械","user_scope"),
     user_scope_ks("3","矿山机械","user_scope"),
     user_scope_ly("4","林业机械","user_scope"),
-    user_scope_gccl("5","运输车辆","user_scope");
+    user_scope_gccl("5","运输车辆","user_scope"),
+	
+	/**
+	 * 经营性质
+	 */
+	user_business_nature_scs("1","生产商","user_business_nature"),
+	user_business_nature_dls("2","代理商","user_business_nature"),
+	user_business_nature_mj1("3","买家","user_business_nature"),
+	user_business_nature_mj2("4","卖家","user_business_nature"),
+	user_business_nature_mmmy("5","买卖贸易","user_business_nature"),
+	user_business_nature_zj("6","中介","user_business_nature"),
+	user_business_nature_wx("7","维修","user_business_nature"),
+	user_business_nature_pjs("8","配件商","user_business_nature"),
+	user_business_nature_dy("9","抵押","user_business_nature");
 
 	private final String code;
 	private final String description;

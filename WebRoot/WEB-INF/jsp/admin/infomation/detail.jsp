@@ -127,12 +127,12 @@
         <td>${bean.price}</td>
     </tr>
     <tr>
-        <td class="tab-head">设备序列号</td>
+        <td class="tab-head">出厂编码</td>
         <td class="tab-content-head">${bean.serialNum}</td>
         <td class="tab-head">内部库存编码</td>
         <td class="tab-content-head">${bean.inStockCode}</td>
     </tr>
-    <td class="tab-head">设备位置</td>
+    <td class="tab-head">设备位置</td>出厂编码
     <td class="tab-content-head">${bean.equipmentLocation}</td>
     <td class="tab-head">发布日期</td>
     <td class="tab-content-head">${bean.pubTime}</td>
@@ -144,7 +144,7 @@
         <td class="tab-content-head">${bean.stockCount}</td>
     </tr>
     <tr>
-        <td class="tab-head">设备序列号</td>
+        <td class="tab-head">出厂编码</td>
         <td class="tab-content-head">${bean.sellCount}</td>
         <td class="tab-head">是否推荐</td>
         <td class="tab-content-head">${bean.isTop}</td>

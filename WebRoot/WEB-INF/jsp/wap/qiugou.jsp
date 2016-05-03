@@ -20,7 +20,11 @@
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '2'}">
                         再制造
-                        </c:if></li>
+                        </c:if>
+                        <c:if test="${bean.equipmentCondition == '3'}">
+                       库存机
+                        </c:if>
+                        </li>
                         <li>销售方式:
                         <c:if test="${bean.sellType == '0'}">
                             出售

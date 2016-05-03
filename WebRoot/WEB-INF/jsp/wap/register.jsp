@@ -32,7 +32,7 @@
             <div class="ui-form-mod">
                 <label class="ui-form-hd">姓名</label>
                 <div class="ui-form-bd">
-                    <input type="text" id="email" name="username" placeholder="请输入姓名" value="">
+                    <input type="text" id="realName" name="realName" placeholder="请输入姓名" value="">
                 </div>
             </div>
             <div class="ui-form-mod">

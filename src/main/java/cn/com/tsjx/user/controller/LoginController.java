@@ -1,5 +1,6 @@
 package cn.com.tsjx.user.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -71,6 +72,8 @@ public class LoginController {
             result.setMessage("账号未激活，请激活后登录");
             return result;
         }
+        user.setLastLoginTime(new Date());
+        userService.update(user);
         httpSession.setAttribute("user", user);
         model.addAttribute("userId",user.getId());
         result.setResult(true);
@@ -141,6 +144,7 @@ public class LoginController {
         user.setUserName(user.getEmail());
         user.setDeleted(Deleted.YES.value);
         user.setIsActivate(Deleted.NO.value);
+        user.setUserType("2");
         user.setPassword(Base64.encodeBase64String(user.getPassword().getBytes()));
         user = userService.insert(user);
         // model.addAttribute("user", user);

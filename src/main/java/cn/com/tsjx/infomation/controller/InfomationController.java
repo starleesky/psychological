@@ -199,7 +199,7 @@ public class InfomationController {
             Attch attch = new Attch();
             attch.setInformationId(infomation.getId());
             attch.setUserId(user.getId());
-            Catagory catagory = catagoryService.get(infomation.getCatagoryMidId());
+            Catagory catagory = catagoryService.get(infomation.getCatagoryId());
             attch.setAttchUrl(catagory.getCode().replaceAll("/", "%2F"));
             attchService.insert(attch);
         }

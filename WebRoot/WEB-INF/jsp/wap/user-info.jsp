@@ -122,10 +122,15 @@
                 <label class="ui-form-hd">经营性质<em>*</em></label>
                 <div class="ui-form-bd">
                      <select name = "businessNature">
-                         <option <c:if test="${bean.businessNature == 0}">selected="selected"</c:if> value="0">出售</option>
-                         <option <c:if test="${bean.businessNature == 1}">selected="selected"</c:if> value="1">租赁</option>
-                         <option <c:if test="${bean.businessNature == 2}">selected="selected"</c:if> value="2">求购</option>
-                         <option <c:if test="${bean.businessNature == 3}">selected="selected"</c:if> value="3">求租</option>
+                         <option <c:if test="${bean.businessNature == 1}">selected="selected"</c:if> value="1">生产商</option>
+                         <option <c:if test="${bean.businessNature == 2}">selected="selected"</c:if> value="2">代理商</option>
+                         <option <c:if test="${bean.businessNature == 3}">selected="selected"</c:if> value="3">买家</option>
+                         <option <c:if test="${bean.businessNature == 4}">selected="selected"</c:if> value="4">卖家</option>
+                         <option <c:if test="${bean.businessNature == 5}">selected="selected"</c:if> value="5">买卖贸易</option>
+                         <option <c:if test="${bean.businessNature == 6}">selected="selected"</c:if> value="6">中介</option>
+                         <option <c:if test="${bean.businessNature == 7}">selected="selected"</c:if> value="7">维修</option>
+                         <option <c:if test="${bean.businessNature == 8}">selected="selected"</c:if> value="8">配件商</option>
+                         <option <c:if test="${bean.businessNature == 9}">selected="selected"</c:if> value="9">抵押</option>
                      </select>
                 </div>
             </div>

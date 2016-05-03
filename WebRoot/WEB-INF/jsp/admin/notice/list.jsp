@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<div class="line">
+<div class="line" style="overflow-y:auto; overflow-x:auto;">
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -61,7 +61,7 @@
                 </div>
             </td>
             <td ng-bind="c.title"></td>
-            <td ng-bind="c.content"></td>
+            <td ng-bind="c.content" width="50%"></td>
             <td ng-bind="c.userId"></td>
             <td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="imgHost" value="${initParam.imgHost}"/>
 <style type="text/css">
     h3 {
@@ -83,7 +84,10 @@
         <td class="tab-head">型号</td>
         <td class="tab-content-head">${bean.modelName}</td>
         <td class="tab-head">用户自定义新增</td>
-        <td>${bean.isNew}</td>
+        <td>
+            <c:if test="${bean.isNew==0}">否</c:if>
+            <c:if test="${bean.isNew==1}">是</c:if>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -100,6 +104,7 @@
             <c:if test="${bean.equipmentCondition==0}">新设备</c:if>
             <c:if test="${bean.equipmentCondition==1}">二手设备</c:if>
             <c:if test="${bean.equipmentCondition==2}">再制造</c:if>
+            <c:if test="${bean.equipmentCondition==3}">库存机</c:if>
         </td>
         <td class="tab-head">手续资料</td>
         <td>
@@ -127,24 +132,24 @@
         <td>${bean.price}</td>
     </tr>
     <tr>
-        <td class="tab-head">设备序列号</td>
+        <td class="tab-head">出厂编码</td>
         <td class="tab-content-head">${bean.serialNum}</td>
         <td class="tab-head">内部库存编码</td>
         <td class="tab-content-head">${bean.inStockCode}</td>
     </tr>
-    <td class="tab-head">设备位置</td>
+    <td class="tab-head">设备位置</td>出厂编码
     <td class="tab-content-head">${bean.equipmentLocation}</td>
     <td class="tab-head">发布日期</td>
-    <td class="tab-content-head">${bean.pubTime}</td>
+    <td class="tab-content-head"><fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></td>
     </tr>
     <tr>
         <td class="tab-head">到期日期</td>
-        <td class="tab-content-head">${bean.validTime}</td>
+        <td class="tab-content-head"><fmt:formatDate value="${bean.endTime}" pattern="yyyy/MM/dd" />(${bean.validTime})</td>
         <td class="tab-head">库存数量</td>
         <td class="tab-content-head">${bean.stockCount}</td>
     </tr>
     <tr>
-        <td class="tab-head">设备序列号</td>
+        <td class="tab-head">已售数量</td>
         <td class="tab-content-head">${bean.sellCount}</td>
         <td class="tab-head">是否推荐</td>
         <td class="tab-content-head">${bean.isTop}</td>

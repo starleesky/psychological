@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>汤森机械网-详情页面</title>
+    <title>二手品牌+型号+产品详细(案例:二手东方红1204拖拉机) -二手品牌+型号+产品详细价格-二手品牌+型号+产品详细出售-汤森机械网</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/view.css?v=1" type="text/css" charset="utf-8">
     <style>
@@ -105,10 +105,15 @@
                         <c:if test="${sellUser.businessScope == '5'}">运输机械</c:if>
                         </li>
                         <li>经营性质：
-                             <c:if test="${sellUser.businessNature == '0'}">出售</c:if>
-                             <c:if test="${sellUser.businessNature == '1'}">租赁</c:if>
-                             <c:if test="${sellUser.businessNature == '2'}">求购</c:if>
-                             <c:if test="${sellUser.businessNature == '3'}">求租</c:if>
+                             <c:if test="${sellUser.businessNature == '1'}">生产商</c:if>
+                             <c:if test="${sellUser.businessNature == '2'}">代理商</c:if>
+                             <c:if test="${sellUser.businessNature == '3'}">买家</c:if>
+                             <c:if test="${sellUser.businessNature == '4'}">卖家</c:if>
+                             <c:if test="${sellUser.businessNature == '5'}">买卖贸易</c:if>
+                             <c:if test="${sellUser.businessNature == '6'}">中介</c:if>
+                             <c:if test="${sellUser.businessNature == '7'}">维修</c:if>
+                             <c:if test="${sellUser.businessNature == '8'}">配件商</c:if>
+                             <c:if test="${sellUser.businessNature == '9'}">抵押</c:if>
                         </li>
                     </ul>
                 </div>

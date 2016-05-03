@@ -130,6 +130,7 @@
                             <option value="0">新设备</option>
                             <option value="1">二手设备</option>
                             <option value="2">再制造</option>
+                            <option value="3">库存机</option>
                         </select>
                     </div>
                 </div>
@@ -179,7 +180,7 @@
                 </div>
                  <c:if test="${type==2}">
                 <div class="ui-form-mod">
-                    <label class="ui-form-hd">设备序列号</label>
+                    <label class="ui-form-hd">出厂编码</label>
                     <div class="ui-form-bd">
                         <input type="text"   name="serialNum" id="serialNum"   placeholder="请输入...">
                     </div>

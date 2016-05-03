@@ -12,6 +12,7 @@ public enum InfomationEnum {
 	equipment_condition_xsb("0","新设备","equipment_condition"),
 	equipment_condition_ers("1","二手设备","equipment_condition"),
 	equipment_condition_zzz("2","再制造","equipment_condition"),
+	equipment_condition_kcj("3","库存机","equipment_condition"),
 	
 	/*手续资料*/
 	procedures_qq("0","手续齐全","procedures"),

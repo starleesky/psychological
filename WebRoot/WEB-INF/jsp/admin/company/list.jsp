@@ -64,6 +64,7 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
+				<th>用户姓名</th>
 				<th>企业名称</th>
 				<th>联系电话</th>
 				<th>传真</th>
@@ -71,13 +72,13 @@
 				<th>城市</th>
 				<th>详细地址</th>
 				<th>时间</th>
-				<th>用户姓名</th>
 				<th>状态</th>
 				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="c in list.data.items">
+				<td ng-bind="c.userName"></td>
 				<td ng-bind="c.companyName"></td>
 				<td ng-bind="c.telephone"></td>
 				<td ng-bind="c.fax"></td>
@@ -85,7 +86,6 @@
 				<td ng-bind="c.cityName"></td>
 				<td ng-bind="c.address"></td>
 				<td ng-bind="c.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
-				<td ng-bind="c.userName"></td>
 				<td>
 					<div ng-switch on="c.status">
 						<span ng-switch-when="0">待审核</span>

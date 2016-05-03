@@ -99,6 +99,7 @@
                             <option value="0">新设备</option>
                             <option value="1">二手设备</option>
                             <option value="2">再制造</option>
+                            <option value="3">库存机</option>
                         </select>
                     </div>
                 </div>

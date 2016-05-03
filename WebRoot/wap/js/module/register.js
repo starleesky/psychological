@@ -51,6 +51,7 @@ define(function(require,exports,module) {
             $.post( url.registerUrl,
               {
             	email: $(form).find('input[name=email]').val(),
+            	realName: $(form).find('input[name=realName]').val(),
                 mobile: $(form).find('input[name=mobile]').val(),
                 password: $(form).find('input[name=password]').val()
               }

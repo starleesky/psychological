@@ -161,7 +161,7 @@
                    <c:forEach var="item" items="${Tops}">
                     <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
-                            <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
+                            <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small"   /></span>
                             <span class="name">${item.brandName}${item.modelName}</span>
                             <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />${item.priceUnit}</span>
                         </a>
@@ -181,7 +181,7 @@
                     <c:forEach var="item" items="${News}">
                         <li>
                         <a href="${ctx}/infomation/input.htm?id=${item.id}">
-                        <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${item.imgUrl}" /></span>
+                        <span class="pro-img"><img src="${initParam.imgHost}${item.imgUrl}/small"   /></span>
                         <span class="name">${item.brandName}${item.modelName}</span>
                         <span class="price"><fmt:formatNumber value="${item.price}" maxFractionDigits="0" />${item.priceUnit}</span>
                         </a>

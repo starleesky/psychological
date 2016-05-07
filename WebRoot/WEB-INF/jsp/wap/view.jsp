@@ -38,11 +38,11 @@
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
-                    <img src="${initParam.imgHost}${firstImg}/figure" />
+                    <img src="${initParam.imgHost}${firstImg}/oryginalny" />
                 </div>
                 <div class="img-list">
                 	<c:forEach items="${listAttch }" var="attach">
-	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}/figure">
+	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}/oryginalny">
 	                        <img src="${initParam.imgHost}${attach.attchUrl}/small" />
 	                    </a>
                 	</c:forEach>
@@ -57,10 +57,10 @@
         </section>
         <section class="img-big-box">
             <a href="javascript:;" class="jClose icon iconfont">&#xe606;</a>
-            <img src="images/img_1.jpg" />
+            <img src="http://www.tangsons.cn/wap/images/pro-bg.jpg" />
         </section>
         <section class="page-view-btn">
-            <a href="javascript:;" class="ui-button ui-button-blue">分享</a>
+            <a href="javascript:;" class="ui-button ui-button-blue" style="display:none;">分享</a>
             <a href="javascript:;" class="ui-button ui-button-submit" id="collection" >收藏</a>
         </section>
         <section class="pro-set-info pro-view-mod">

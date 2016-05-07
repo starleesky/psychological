@@ -89,9 +89,9 @@ $.fn.imgLoading = function(options) {
                                 }
                                 opt.callback && opt.callback(obj);
                             }, function() {
-                                $(this).css({
-                                    'opacity': '1'
-                                });
+                                obj.css(
+                                    'opacity', '1'
+                                );
                                 opt.errorFun && opt.errorFun();
                                 return false;
                             });

@@ -9,7 +9,9 @@
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx }/wap/css/module/message.css?v=1" type="text/css" charset="utf-8" media="all">
     <style>
+    .msg-list li .msg-info{width:75%;}
     .msg-list li .msg-info p{max-height:44px;}
+
     </style>
 </head>
 <body>

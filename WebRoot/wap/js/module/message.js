@@ -1,5 +1,5 @@
 define(['jquery','plug/imgLoading'],function($){
-	 function show() {
+	/* function show() {
 			var box = document.getElementById("box");
 			var text = box.innerHTML;
 			var newBox = document.createElement("div");
@@ -22,5 +22,24 @@ define(['jquery','plug/imgLoading'],function($){
 			box.appendChild(newBox);
 			box.appendChild(btn);
 		}
-		show(); 
+		show();*/
+
+	var txtList = $('.msg-txt');
+	txtList.each(function(){
+		var $parent = $(this).parent(),text = $(this).text(),strTxt = "",$btn = $('<a  href="javascript:;" class="isHide">...显示全部</a>');
+		if(text.length>0){
+			text = text.replace(/(^\s*)|(\s*$)/g, "");
+			if(text.length > 64){
+				$btn.on('click',function(){
+					if($(this).hasClass('isHide')){
+						$(this).text("收起").removeClass('isHide');
+						$(this).prev(".msg-txt").css("max-height","none");
+					}else{
+						$(this).text("...显示全部").addClass('isHide');
+						$(this).prev(".msg-txt").css("max-height","44px");
+					}
+				}).appendTo($parent);
+			}
+		}
+	});
 });

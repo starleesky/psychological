@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
 <div class="hd">设备要求</div>
             <div class="bd">
                 <div class="pro-view-box">
@@ -30,7 +24,6 @@
                         <li>年份: ${bean.equipYear}年</li>
                         <li>工时: ${bean.workTime}小时</li>
                         <li class="w100">设备位置: ${bean.equipmentLocation}</li>
-                        <li class="w100">库存数量: ${bean.stockCount}</li>
                         <li class="w100">出厂编号: ${bean.serialNum}</li>
                         <li class="w100">发布日期:<fmt:formatDate value="${bean.pubTime}" pattern="yyyy/MM/dd" /></li>
                         <li class="w100">有效期至: ${bean.validTime}</li>
@@ -45,6 +38,3 @@
                 </div>
             </div>
                         <a href="javascript:;" class="ui-button ui-button-blue">库存情况${bean.stockCount}</a>
-            
-</body>
-</html>

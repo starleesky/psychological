@@ -1,4 +1,4 @@
-define(['jquery','plug/ajax','url'],function($,ajax,url) {
+define(['jquery','plug/ajax','url','plug/box'],function($,ajax,url,box) {
 
     var $jImg = $('#jImgBox'),$bigBox = $('.img-big-box');
     $jImg.on('click','a',function(){
@@ -21,7 +21,7 @@ define(['jquery','plug/ajax','url'],function($,ajax,url) {
         	informationId: $("#id").val()
           }
     	, function (data) {
-    		alert(data.message);
+    		box.tips(data.message);
         },'json');
     })
     
@@ -31,7 +31,7 @@ define(['jquery','plug/ajax','url'],function($,ajax,url) {
 		var text = box.innerHTML;
 		var newBox = document.createElement("div");
 		var btn = document.createElement("a");
-		//去首尾空�?
+		//去首尾空�?
 		text = text.replace(/(^\s*)|(\s*$)/g, "");
 		newBox.innerHTML = text.substring(0, 64);
 		btn.innerHTML = text.length > 64 ? "...显示全部" : "";
@@ -49,8 +49,10 @@ define(['jquery','plug/ajax','url'],function($,ajax,url) {
 		box.appendChild(newBox);
 		box.appendChild(btn);
 	}
-	show(); 
-    	
+	show();
+
+
+
     	
 
 });

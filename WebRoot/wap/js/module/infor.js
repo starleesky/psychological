@@ -1,7 +1,4 @@
-define(
-		[ 'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/load/lazyload',
-				'plug/load/lazystream', 'plug/selectPro' ],
-		function($, url, ajax, box, Lazyload, LazyStream) {
+define([ 'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/imgLoading','plug/load/lazystream', 'plug/selectPro' ],function($, url, ajax, box, imgLoading, LazyStream) {
 			$body = $('body');
 			$body.on('click', '.jIsHide', function() {
 				if ($(this).hasClass('open')) {
@@ -200,7 +197,7 @@ define(
 								+ '/wap/images/loading2.gif" class="load-gif" />正在加载，请稍后...</div>',
 						//
 						load : function(el) {
-							Lazyload.load($(el).find('.jImg'));
+							$(el).find('.jImg').imgLoading();
 						},
 						noAnyMore : ''
 					});
@@ -223,4 +220,8 @@ define(
 					$(this).parent().css('overflow-x','hidden');
 				}
 			});
+	document.addEventListener("touchmove",function(e){
+		$('.jProList').find('.jImg').imgLoading();
+	});
+
 		});

@@ -108,6 +108,7 @@ public class LoginController {
         params.add("entity", infomation2);
         pagerNew.setPageOrder(Pager.ORDER_DESC);
         pagerNew.setPageSort("a.create_time");
+        pagerNew.setPageSize(20);
         pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
         model.addAttribute("News", pagerNew.getItems());
         return "/wap/infor";

@@ -165,6 +165,7 @@ public class UserController {
        }
        infomation.setIsTop("1");
        pager.setEntity(infomation);
+       pager.setPageSize(20);
        pager.setPageOrder(Pager.ORDER_DESC);
        pager.setPageSort("a.create_time");
        pager = infomationService.getInfoPagerWithImg(params, pager, false);
@@ -172,7 +173,7 @@ public class UserController {
        //params.put("entity", infomation);
        //pager = infomationService.page(params, pager);
        
-       // 今日推荐 前10
+       // 今日推荐 前20
        model.addAttribute("Tops", pager.getItems());
        
        infomation.setIsTop(null);
@@ -212,13 +213,14 @@ public class UserController {
            model.addAttribute("collections", colleanInfo.getItems());
        }
        
-       //最新发布10
+       //最新发布20
        Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
        Infomation infomation2 = new Infomation();
        infomation2.setStatus(InfomationEnum.status_sj.code());
        params.add("entity", infomation2);
        pagerNew.setPageOrder(Pager.ORDER_DESC);
        pagerNew.setPageSort("a.create_time");
+       pagerNew.setPageSize(20);
        pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
        model.addAttribute("News", pagerNew.getItems());
        

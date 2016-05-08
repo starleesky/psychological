@@ -99,9 +99,9 @@ public class LoginController {
         infomation.setIsTop("1");
         params.add("entity", infomation);
         pager = infomationService.getInfoPagerWithImg(params, pager,false);
-        // 今日推荐 前10
+        // 今日推荐 前20
         model.addAttribute("Tops", pager.getItems());
-        //最新发布10
+        //最新发布20
         Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
         Infomation infomation2 = new Infomation();
         infomation2.setStatus("2");

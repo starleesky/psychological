@@ -92,6 +92,7 @@ public class LoginController {
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
         pager.setPageOrder(Pager.ORDER_DESC);
         pager.setPageSort("a.create_time");
+        pager.setPageSize(20);
         Infomation infomation = new Infomation();
         Params params = Params.create();
         infomation.setStatus("2");

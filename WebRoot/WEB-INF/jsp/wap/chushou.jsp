@@ -37,4 +37,4 @@
                     </div>
                 </div>
             </div>
-                        <a href="javascript:;" class="ui-button ui-button-blue">库存情况${bean.stockCount}</a>
+                        <a href="javascript:;" class="ui-button ui-button-blue">库存情况${cnt_sj}</a>

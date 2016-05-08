@@ -19,6 +19,21 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
+                    <input type="text" class="form-control" placeholder="产品组" ng-model="list.filter.catagoryMidName">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="产品类" ng-model="list.filter.catagoryName">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="汤森信息编号" ng-model="list.filter.id">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="用户姓名" ng-model="list.filter.userName">
                 </div>
             </div>
@@ -107,6 +122,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th>编号</th>
             <th>用户姓名</th>
             <th>产品大类</th>
             <th>产品组</th>
@@ -123,6 +139,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="c in list.data.items">
+            <td ng-bind="c.id"></td>
             <td ng-bind="c.userName"></td>
             <td ng-bind="c.catagoryBigName"></td>
             <td ng-bind="c.catagoryMidName"></td>

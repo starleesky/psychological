@@ -236,7 +236,7 @@ public class InfomationController {
                         }
                         attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
                     } else {
-                        attch.setAttchUrl(img.replaceAll("/", "%2F"));
+                        attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
                     }
                 }
                 attchService.insert(attch);

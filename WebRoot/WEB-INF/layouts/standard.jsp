@@ -222,12 +222,12 @@
                         <%--</li>--%>
                         <%--</ul>--%>
                         <%--</li>--%>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i>公司信息管理</a>
-                    </li>
-                    <li>
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i>发布信息管理</a>
-                    </li>
+                    <%--<li ng-class="{true: 'active', false: 'noac'}['${infomation}']">--%>
+                        <%--<a href="${ctx}/admin/infomation/list"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息管理</a>--%>
+                    <%--</li>--%>
+                    <%--<li ng-class="{true: 'active', false: 'noac'}['${company}']">--%>
+                        <%--<a href="${ctx}/admin/company/list"><i class="fa fa-fw fa-table"></i> 公司信息管理</a>--%>
+                    <%--</li>--%>
                 </ul>
             </div>
         </c:if>

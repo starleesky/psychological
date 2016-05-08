@@ -51,7 +51,7 @@ public interface InfomationService extends BaseService<Infomation, Long> {
      *
      * @param inputStream
      */
-    public void bathInfomation(InputStream inputStream) throws IOException;
+    public void bathInfomation(InputStream inputStream,Long userId) throws IOException;
     
     
     /**

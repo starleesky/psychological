@@ -322,6 +322,8 @@ public class InfomationController {
         params.add("status", status);
 
         pageOrder(order, pager);
+        
+        //pager.setPageSize(1);
 
         pager = infomationService.getInfoPagerWithImg(params, pager, true);
         model.addAttribute("pager", pager.items);
@@ -439,6 +441,7 @@ public class InfomationController {
         infomation.setDeleted(Deleted.NO.value);
 
         pager.setPageNo(pageDto.getPageNo() + 1);
+        //pager.setPageSize(1);
 
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("entity", infomation);
@@ -460,6 +463,7 @@ public class InfomationController {
 
         StringBuilder data = new StringBuilder();
         String ctx = session.getServletContext().getContextPath();
+        String imgHost = session.getServletContext().getInitParameter("imgHost");
         for (InfomationDto info : pager.getItems()) {
             data.append("<li class=\"pro-box\">")
                     .append("<div class=\"pro-select\">")
@@ -468,7 +472,7 @@ public class InfomationController {
                     .append("</div>")
                     .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
                     .append("\" class=\"pro-img\">")
-                    .append("<img src=\"").append(ctx).append(info.getImgUrl()).append("\" class=\"jImg\" data-url=\"\" />")
+                    .append("<img src=\"").append(imgHost).append(info.getImgUrl()).append("/small").append("\" class=\"jImg\" data-url=\"\" />")
                     .append("</a>")
                     .append("<div class=\"pro-info\">")
                     .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")
@@ -485,7 +489,7 @@ public class InfomationController {
                     .append("<p class=\"col-6\"> 信息来源：汤森 </p>")
                     .append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>");
 
-            data.append("<p class=\"col-6\"> 截止日期:<span>").append(sdf.format(info.getEndTime())).append("</span> </p>")
+            data.append("<p class=\"col-6\"> 截止日期:<span>").append(info.getEndTime() == null ? "" : sdf.format(info.getEndTime())).append("</span> </p>")
                     .append("</div>");
             if (InfomationEnum.status_xj.code().equals(pageDto.getStatus())) {
                 data.append("<a href=\"javascript:;\" data-url=\"#\" class=\"pro-new-up jNewUp\">重新上架</a>");
@@ -600,6 +604,7 @@ public class InfomationController {
 
         StringBuilder data = new StringBuilder();
         String ctx = session.getServletContext().getContextPath();
+        String imgHost = session.getServletContext().getInitParameter("imgHost");
         for (InfomationDto info : pager.getItems()) {
             data.append("<li class=\"pro-box\">")
                     .append("<div class=\"pro-select\">")
@@ -608,7 +613,7 @@ public class InfomationController {
                     .append("</div>")
                     .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
                     .append("\" class=\"pro-img\">")
-                    .append("<img src=\"").append(ctx).append(info.getImgUrl()).append("\" class=\"jImg\" data-url=\"\" />")
+                    .append("<img src=\"").append(imgHost).append(info.getImgUrl()).append("/small").append("\" class=\"jImg\" data-url=\"\" />")
                     .append("</a>")
                     .append("<div class=\"pro-info\">")
                     .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName()).append("/")

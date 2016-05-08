@@ -7,7 +7,7 @@
                     <h3>${bean.brandName} ${bean.modelName}出售详细信息</h3>
                     <ul>
                         <li>设备情况: <c:if test="${bean.equipmentCondition == '0'}">
-                        新设备
+                        全新
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '1'}">
                         二手
@@ -16,7 +16,7 @@
                         再制造
                         </c:if>
                         <c:if test="${bean.equipmentCondition == '3'}">
-                       库存机
+                       库存
                         </c:if></li>
                         <li>销售方式:出售</li>
                         <li>品牌: ${bean.brandName}</li>

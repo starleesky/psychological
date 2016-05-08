@@ -101,10 +101,10 @@
     <tr>
         <td class="tab-head">设备情况</td>
         <td class="tab-content-head" ng-model="company">
-            <c:if test="${bean.equipmentCondition==0}">新设备</c:if>
-            <c:if test="${bean.equipmentCondition==1}">二手设备</c:if>
+            <c:if test="${bean.equipmentCondition==0}">全新</c:if>
+            <c:if test="${bean.equipmentCondition==1}">二手</c:if>
             <c:if test="${bean.equipmentCondition==2}">再制造</c:if>
-            <c:if test="${bean.equipmentCondition==3}">库存机</c:if>
+            <c:if test="${bean.equipmentCondition==3}">库存</c:if>
         </td>
         <td class="tab-head">手续资料</td>
         <td>

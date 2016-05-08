@@ -127,10 +127,10 @@
                     <label class="ui-form-hd">设备情况</label>
                     <div class="ui-form-bd">
                         <select name="equipmentCondition">
-                            <option value="0">新设备</option>
-                            <option value="1">二手设备</option>
+                            <option value="0">全新</option>
+                            <option value="1">二手</option>
                             <option value="2">再制造</option>
-                            <option value="3">库存机</option>
+                            <option value="3">库存</option>
                         </select>
                     </div>
                 </div>

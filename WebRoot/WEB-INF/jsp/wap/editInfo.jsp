@@ -138,10 +138,10 @@ String _modelName = infomation.getModelName();
                     <div class="ui-form-bd">
                     	<input type="hidden" name="equipmentCondition" id="equipmentCondition" value="${info.equipmentCondition}"/>
                         <select name="equipmentConditionSel" onchange="equipmentCondition.value=this.value">
-                            <option value="0">新设备</option>
-                            <option value="1">二手设备</option>
+                            <option value="0">全新</option>
+                            <option value="1">二手</option>
                             <option value="2">再制造</option>
-                            <option value="3">库存机</option>
+                            <option value="3">库存</option>
                         </select>
                     </div>
                 </div>

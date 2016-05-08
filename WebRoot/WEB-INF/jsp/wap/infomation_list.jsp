@@ -131,7 +131,6 @@
                             <p class="pro-msg">
                                 <span></span>
                             </p> -->
-                            <p class="col-6"> 信息来源：${info.srcName} </p>
                             <p class="col-6"> 出厂编码:<span>${info.serialNum }</span> </p>
                             <p class="col-6"> 截止日期:<span><fmt:formatDate value="${info.endTime}" pattern="yyyy/MM/dd" /></span> </p>
                         </div>

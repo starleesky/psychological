@@ -153,8 +153,7 @@
             </div>
         </section>
          <section class="page-view-btn">
-            <a href="javascript:;" class="ui-button ui-button-blue">库存情况(${bean.stockCount})</a>
-            <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
+            <a href="javascript:;" class="ui-button ui-button-blue">库存情况(${cnt_sj})</a>            <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
         </section>
 
     </div>

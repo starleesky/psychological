@@ -183,8 +183,9 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 					}
 				}
 
-				infomation.setEquipYear(row.getCell(6).toString());
-				infomation.setWorkTime(row.getCell(7).toString());
+				DecimalFormat df = new DecimalFormat("0");
+				infomation.setEquipYear(df.format(row.getCell(6).getNumericCellValue()));
+				infomation.setWorkTime(df.format(row.getCell(7).getNumericCellValue()));
 				infomation.setPrice(new BigDecimal(row.getCell(8).toString()));
 				infomation.setEquipmentLocation(row.getCell(9).toString());
 
@@ -193,10 +194,10 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 				infomation.setProcedures("0");
 				infomation.setSrc("0");
 
-				DecimalFormat df = new DecimalFormat("0");
+
 				String strCell = df.format(row.getCell(11).getNumericCellValue());
 				infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + strCell);
-				if (row.getCell(13) != null && "".equals(row.getCell(13))) {
+				if (row.getCell(13) != null && !"".equals(row.getCell(13))) {
 					infomation.setRemark(infomation.getRemark() + ",备注：" + row.getCell(13).toString());
 				}
 				infomation.setValidTime("30");

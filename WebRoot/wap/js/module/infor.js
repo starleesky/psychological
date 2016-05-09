@@ -1,4 +1,5 @@
-define([ 'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/imgLoading','plug/load/lazystream', 'plug/selectPro' ],function($, url, ajax, box, imgLoading, LazyStream) {
+define([ 'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/imgLoading','plug/load/lazystream','plug/scrollIcon','plug/selectPro'],function($, url, ajax, box, imgLoading, LazyStream,scrollIcon) {
+	scrollIcon();
 			$body = $('body');
 			$body.on('click', '.jIsHide', function() {
 				if ($(this).hasClass('open')) {
@@ -209,19 +210,16 @@ define([ 'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/imgLoading','plug/load/
 								+ this.value + "&status="
 								+ $("#curStatus").val();
 					});
-
+			var winWidth = parseInt($(window).width());
 			$('.jProList').each(function(){
-				var len = $(this).find('li').length,winWidth = $(window).width();
-				if(len*125>winWidth){
-					$(this).width(len*125);
-					$(this).parent().css('overflow-x','auto');
+				var width = parseInt($(this).find('li').length*120),_this = this,num =1;
+				if(width>winWidth){
+					$(this).width(width);
+					$(this).css('overflow-x','auto');
 				}else{
 					$(this).width(winWidth);
-					$(this).parent().css('overflow-x','hidden');
 				}
+
 			});
-	document.addEventListener("touchmove",function(e){
-		$('.jProList').find('.jImg').imgLoading();
-	});
 
 		});

@@ -1,4 +1,5 @@
-define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod','plug/uploader/uploader-list','plug/imgLoading','plug/selectPro'], function ($, url, ajax, box, Validator,Uploader) {
+define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod','plug/uploader/uploader-list','plug/imgLoading','plug/scrollIcon','plug/selectPro'], function ($, url, ajax, box, Validator,Uploader,imgLoading,scrollIcon) {
+    scrollIcon();
 
     var oBigGoodsCatagory = $(".bigGoodsCatagory");
     var oMiddleGoodsCatagory = $(".middleGoodsCatagory");
@@ -213,7 +214,8 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                    var str= JSON.parse(data);
                     submitIng=false;
                     if (str.result) {
-                        box.ok(data.message);
+                        $('#saving_product').length>0? $('#saving_product').animate({'width':'100%'},1000):box.ok(data.msg);
+                        $('#redirecting').length>0?$('#redirecting').text('Redirecting...'):box.ok(data.msg);
                         window.location.href = ctx+url.infoList+"?status=0";
 
                     } else {
@@ -228,17 +230,33 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         },
         success: null
     });
+
+    var saveSubmit = function(){
+        var fixHtml = '<div class="fixed text-align-center white-text" style="position: fixed;top:100%; height: 100%; left:0; height:auto; bottom:0; width:100%; background:rgba(224,80,64,0.95)" id="saving_product_frame">';
+            fixHtml += '<h1 style="margin:100px 40px 0; line-height:36px;text-align:center;color: #f0f0f0;" class="white-text" id="redirecting">正在保存...</h1>';
+            fixHtml += '<div style="height:8px; background:rgba(17,0,0,0.5); margin:40px ">';
+            fixHtml += '<div style="height:8px; background:rgba(17,0,0,0.5); width:0%" id="saving_product"></div></div> ';
+            fixHtml += '<div class="font-small" style="text-align:center;font-size: 14px;overflow: hidden;color: #f0f0f0;">设备保存后，我们将尽快审核.</div></div>';
+        $('body').append(fixHtml);
+        $('#saving_product_frame').animate({'top':'0'},500, function(){
+            $('#saving_product').animate({'width':'80%'},5000);
+        });
+    };
+
+
+
     var submitIng=false;
     var array="";
     $("#jSave").click(function () {
         if(submitIng){
-            box.error('上传中，不能重复提交！');
+           /* box.error('上传中，不能重复提交！');*/
+            saveSubmit();
             return;
         }
         status = 0;
         var modelsId = oModels.val();
         if (modelsId == null || modelsId == "") {
-            alert('型号未选择');
+            box.error('型号未选择');
             return;
         }
          var  _text = $("input[name^='_UPLOAD_']");
@@ -254,7 +272,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         //alert('提交之前请先保存');
         status = 1;
         if(submitIng){
-            box.error('上传中，不能重复提交！');
+            saveSubmit();
             return;
         }
          var   _text = $("input[name^='_UPLOAD_']");

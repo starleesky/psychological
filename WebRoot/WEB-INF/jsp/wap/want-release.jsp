@@ -7,6 +7,10 @@
     <title>汤森机械网-发布销售</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href=${ctx}/wap/css/module/want.css?v=1" type="text/css" charset="utf-8">
+    <style>
+    .ui-form .upload-img .up-img-list .up-img-box{width:100px;height:100px;margin:0 5px;}
+    .ui-form .upload-img .up-img-list .up-img-box img{width:100px;height:100px;max-width:none;max-height:none;}
+    </style>
 </head>
 <body>
 <!--head begin-->

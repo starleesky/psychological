@@ -9,13 +9,21 @@
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/view.css?v=1" type="text/css" charset="utf-8">
     <style>
-    .img-box .bd .img-list{margin-top:10px;}
+    .img-box .hd{height:140px;}
+    .img-box .hd .img-title{padding:10px 0;}
+    .img-box .bd .img-list{margin-top:10px;height:90px;padding-bottom:10px;}
+    .img-box .bd .img-list a{width:90px;height:90px;margin-right:10px;}
+    .img-box .bd .img-list a img{width:90px;height:90px;max-width:none;max-height:none;}
+    .img-box .hd .img-title .pro-name{height:50px;line-height:50px;}
+    .img-box .hd .img-title .pro-price{height:40px;line-height:40px;}
+    .img-box .hd .img-title .pro-num{height:30px;line-height:30px;}
     .pro-view-mod .bd h3{ font-size:20px;}
     .pro-view-mod .bd ul li{font-size:18px;overflow:hidden;text-overflow:ellipsis;height:30px;line-height:30px;}
     .pro-view-mod .bd ul li.cl-1{font-size:20px;}
     .pro-view-mod .bd .pro-view-box .pro-img{width:200px;height:100px;line-height:100px;}
     .pro-view-mod .bd .pro-view-box .pro-img img{max-width:200px;max-height:100px;}
     .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%);-moz-transform:translate(-50%,-50%) ;-webkit-transform:translate(-50%,-50%) ; -o-transform:translate(-50%,-50%) ;-ms-transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
+    .img-big-box .iconfont{z-index:9999;}
     </style>
 </head>
 <body>
@@ -38,12 +46,12 @@
             </div>
             <div class="bd" id="jImgBox">
                 <div class="big-img">
-                    <img src="${initParam.imgHost}${firstImg}/oryginalny" />
+                    <img src="${initParam.imgHost}${firstImg}/oryginalny"  data-index="0"/>
                 </div>
                 <div class="img-list">
-                	<c:forEach items="${listAttch }" var="attach">
+                	<c:forEach items="${listAttch }" var="attach" varStatus="at">
 	                	<a href="javascript:;" data-url="${initParam.imgHost}${attach.attchUrl}/oryginalny">
-	                        <img src="${initParam.imgHost}${attach.attchUrl}/small" />
+	                        <img src="${initParam.imgHost}${attach.attchUrl}/small" data-index='<c:out value="${at.index}"/>' />
 	                    </a>
                 	</c:forEach>
                    <!--  <a href="javascript:;" data-url="images/img_1.jpg">
@@ -139,11 +147,13 @@
             </div>
         </section>
          <section class="page-view-btn">
+            <a href="javascript:;" class="ui-button ui-button-blue">库存情况${bean.stockCount}</a>
             <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
         </section>
 
     </div>
 </div>
+
 <%@ include file="footer.jsp" %>
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>

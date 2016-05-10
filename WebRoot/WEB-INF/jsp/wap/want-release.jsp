@@ -205,14 +205,7 @@
 	                        </select>
                         </div>
                     </div>
-                    <c:if test="${type==2}">
-                    <div class="ui-form-mod">
-                        <label class="ui-form-hd">库存数量</label>
-                        <div class="ui-form-bd">
-                            <input type="text" name="stockCount" id="stockCount"   placeholder="请输入...">
-                        </div>
-                    </div>
-                    </c:if>
+
                 <div class="ui-form-title">卖家附言</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>

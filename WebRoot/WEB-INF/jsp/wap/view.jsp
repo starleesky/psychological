@@ -24,6 +24,10 @@
     .pro-view-mod .bd .pro-view-box .pro-img img{max-width:200px;max-height:100px;}
     .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%);-moz-transform:translate(-50%,-50%) ;-webkit-transform:translate(-50%,-50%) ; -o-transform:translate(-50%,-50%) ;-ms-transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
     .img-big-box .iconfont{z-index:9999;}
+    .pro-view-mod .bd .user-info .pro-img{overflow: hidden;border-radius: 60px;height: 70px;width: 70px;float: left;margin-bottom:10px;}
+    .pro-view-mod .bd .user-info .pro-img img{width: 70px; height: 70px;max-width: none;max-height: none;vertical-align: top;}
+    .pro-view-mod .bd .user-info  .user-info-cont{float: left;margin-left: 15px;width: 70%;}
+    .pro-view-mod .bd .user-info  .user-info-cont p{line-height: 36px;font-size: 16px;}
     </style>
 </head>
 <body>
@@ -94,17 +98,25 @@
             <div class="hd">卖家信息</div>
             <div class="bd">
                 <c:if test="${empty company}">
-                    <div class="pro-view-box">
-                        <c:if test="${not empty sellUser.headIcon}">
+                    <div class="pro-view-box user-info">
+                    <c:choose>
+                    <c:when test="${not empty sellUser.headIcon}">
                             <div class="pro-img">
                                 <img src="${initParam.imgHost}${sellUser.headIcon}/small"/>
                             </div>
-                        </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="pro-img" style="">
+                            <img src="/wap/images/icon_2.png"/>
+                            </div>
+
+                        </c:otherwise>
+                    </c:choose>
+                    <diiv class="user-info-cont">
                         <h3>${sellUser.realName}</h3>
+                        <P>注册时间： <fmt:formatDate value="${sellUser.createTime}" pattern="yyyy/MM/dd  HH:mm:ss"/></P>
+                    </diiv>
                         <ul>
-                            <li class="w100">注册时间：
-                                <fmt:formatDate value="${sellUser.createTime}" pattern="yyyy/MM/dd  HH:mm:ss"/>
-                            </li>
                             <li class="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
                             <c:if test="${not empty company}">
                                 <li class="w100">座机：<a href="tel:${sellUser.telephone}">${sellUser.telephone}</a></li>
@@ -135,8 +147,7 @@
                     <div class="pro-view-box">
                         <div class="pro-img">
                             <c:if test="${not empty company.createBy}">
-                                <img src="${initParam.imgHost}${company.createBy}/small" class="f-l" width="100"
-                                     height="100"/>
+                                <img src="${initParam.imgHost}${company.createBy}/small" class="f-l"  />
                             </c:if>
                         </div>
                         <ul>

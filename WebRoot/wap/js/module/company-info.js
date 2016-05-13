@@ -190,7 +190,8 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 required: true
             },
             introduction: {
-                required: true
+                required: true,
+                maxlength: 140
             },
             address: {
                 required: true
@@ -210,7 +211,8 @@ define(['jquery','plug/box','plug/uploader/uploader','url','plug/validate/valida
                 required: '组织机构不能为空'
             },
             introduction: {
-                required: '公司介绍不能为空'
+                required: '公司介绍不能为空',
+                maxlength:"公司介绍不能大于140个字"
             },
             address: {
                 required: '详细地址不能为空'

@@ -101,6 +101,20 @@
             <form class="ui-form" id="infoSearchForm">
                 <input type="hidden" name="order" id="order">
                 <div class="ui-form-mod">
+                    <label class="ui-form-hd">销售方式</label>
+                    <div class="ui-form-bd">
+                        <input type="hidden" name="sellType" id="sellType" value="${info.sellType}"/>
+                        <select name="sellTypeSel" onchange="sellType.value=this.value">
+                            <option value="" selected></option>
+                            <option value="0">出售</option>
+                            <option value="1">租赁</option>
+                            <option value="2">求购</option>
+                            <option value="3">求租</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="ui-form-mod">
                     <label class="ui-form-hd">设备地点</label>
                     <div class="ui-form-bd">
                         <input type="hidden" name="equipmentLocation" id="equipmentLocation"
@@ -165,20 +179,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="ui-form-mod">
-                    <label class="ui-form-hd">销售方式</label>
-                    <div class="ui-form-bd">
-                        <input type="hidden" name="sellType" id="sellType" value="${info.sellType}"/>
-                        <select name="sellTypeSel" onchange="sellType.value=this.value">
-                            <option value="" selected></option>
-                            <option value="0">出售</option>
-                            <option value="1">租赁</option>
-                            <option value="2">求购</option>
-                            <option value="3">求租</option>
 
-                        </select>
-                    </div>
-                </div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">设备情况</label>
                     <div class="ui-form-bd">

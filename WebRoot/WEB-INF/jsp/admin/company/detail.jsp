@@ -32,6 +32,9 @@
         <button class="btn btn-primary " ng-click="openModel(2)">不通过</button>
     </div>
 </c:if>
+<div class="btn-group btn-large">
+    <button class="btn btn-primary " ng-click="editCompany()">修改公司信息</button>
+</div>
     </h3>
     <table class="table table-bordered">
     <tbody>
@@ -66,43 +69,72 @@
     </div>
 
     <c:if test="${bean.status!=null&&bean.status!=0}">
-        <div>
-            <h3 class="clearfix">审核记录</h3>
-            <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="tab-head">修改时间</th>
-                        <th class="tab-head">修改人员</th>
-                        <th class="tab-head">审核备注</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td ng-bind="log.dateValue | date : 'yyyy-MM-dd HH:mm:ss'"></td>
-                        <td ng-bind="log.operator"></td>
-                        <td ng-bind="switchReason(log.rejectCode)"></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <%--<div>--%>
+            <%--<h3 class="clearfix">审核记录</h3>--%>
+            <%--<div class="col-md-12">--%>
+                <%--<table class="table table-bordered">--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                        <%--<th class="tab-head">修改时间</th>--%>
+                        <%--<th class="tab-head">修改人员</th>--%>
+                        <%--<th class="tab-head">审核备注</th>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody>--%>
+                    <%--<tr>--%>
+                        <%--<td ng-bind="log.dateValue | date : 'yyyy-MM-dd HH:mm:ss'"></td>--%>
+                        <%--<td ng-bind="log.operator"></td>--%>
+                        <%--<td ng-bind="switchReason(log.rejectCode)"></td>--%>
+                    <%--</tr>--%>
+                    <%--</tbody>--%>
+                <%--</table>--%>
+            <%--</div>--%>
+        <%--</div>--%>
     </c:if>
+<div>
+    <h3 class="clearfix">用户信息</h3>
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="tab-head">用户名称</th>
+                <th class="tab-head">手机号码</th>
+                <th class="tab-head">地区</th>
+                <th class="tab-head">经营性质</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${user.realName}</td>
+                <td>${user.telephone}</td>
+                <td>${user.provinceName}|${user.cityName}</td>
+                <td>
+                    <c:if test="${user.businessScope == 1}">工程机械</c:if>
+                    <c:if test="${user.businessScope == 2}">农业机械</c:if>
+                    <c:if test="${user.businessScope == 3}">矿山机械</c:if>
+                    <c:if test="${user.businessScope == 4}">林业机械</c:if>
+                    <c:if test="${user.businessScope == 5}">运输机械</c:if>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <div>
         <h4 class="clearfix">公司logo图片</h4><br/>
         <c:if test="${bean.createBy!=null}">
-            <img src="${initParam.imgHost}${bean.createBy}/figure" style="max-width: 100%;"
+            <img src="${initParam.imgHost}${bean.createBy}/oryginalny" style="max-width: 100%;"
                  alt="营业执照图片">
         </c:if>
     <h4 class="clearfix">营业执照图片</h4><br/>
     <c:if test="${bean.businessLicenseImageUrl!=null}">
-        <img src="${initParam.imgHost}${bean.businessLicenseImageUrl}/figure" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${bean.businessLicenseImageUrl}/oryginalny" style="max-width: 100%;"
              alt="营业执照图片">
     </c:if>
     <h4 class="clearfix">组织机构代码图片</h4><br/>
     <c:if test="${bean.organizationCodeImageUrl!=null}">
-        <img src="${initParam.imgHost}${bean.organizationCodeImageUrl}/figure" style="max-width: 100%;"
+        <img src="${initParam.imgHost}${bean.organizationCodeImageUrl}/oryginalny" style="max-width: 100%;"
              alt="组织机构代码图片">
     </c:if>
     </div>
@@ -114,6 +146,14 @@
     <script>
     angular.companyId = "${bean.id}";
     angular.companyName = "${bean.companyName}";
+    angular.telephone = "${bean.telephone}";
+    angular.fax = "${bean.fax}";
+    angular.provinceId = "${bean.provinceId}";
+    angular.provinceName = "${bean.provinceName}";
+    angular.cityId = "${bean.cityId}";
+    angular.cityName = "${bean.cityName}";
+    angular.address = "${bean.address}";
+    angular.introduction = "${bean.introduction}";
     seajs.use(['js/controller/common/app', 'js/controller/company/detail'], function () {
     angular.bootstrap(document, ['App']);
     });

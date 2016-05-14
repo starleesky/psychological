@@ -49,6 +49,25 @@ define(function (require) {
                         }
                     });
                 }
+                //删除
+                $scope.deleteOne = function (data, $index) {
+                    if (confirm("确认删除？")) {
+                        $http.get(angular.path + "/admin/company/del?id=" + data.id)
+                            .success(function (resp) {
+                                if (resp.result) {
+                                    alert("删除成功！");
+                                    //$scope.list.data.data.splice($index,1);
+                                    list.fetch();
+                                } else {
+                                    alert("删除失败，请重试！");
+                                }
+                            })
+                            .error(function () {
+                                alert("删除失败，请重试！");
+                            });
+                    }
+                }
+
 
             }
         ]);

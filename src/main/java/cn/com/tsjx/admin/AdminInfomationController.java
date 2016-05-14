@@ -97,6 +97,10 @@ public class AdminInfomationController {
 		attach.setInformationId(id);
 		List<Attch> attches = attchService.find(attach);
 		model.addAttribute("beanImg", attches);
+		User user = userService.get(infomation.getUserId());
+		if (user != null ) {
+			model.addAttribute("user", user);
+		}
 		return "admin/infomation/detail";
 	}
 
@@ -160,6 +164,23 @@ public class AdminInfomationController {
 		user.setIsNewMessage("1");//默认一条
 		userService.update(user);
 
+		Result<String> result = new Result<String>();
+		result.setMessage("修改成功！");
+		result.setResult(true);
+		return result;
+	}
+
+	@RequestMapping(value = "/infomation/update2", method = RequestMethod.POST)
+	@ResponseBody
+	public Result<String> update2(@RequestBody InfomationDto infomation, HttpSession httpSession) {
+		infomationService.update(infomation);
+//		User adminUser = (User) httpSession.getAttribute("adminUser");
+//		AuditRecord auditRecord = new AuditRecord();
+//		auditRecord.setAuditType(AuditRecordEnum.audit_type_information.code());
+//		auditRecord.setRemark(remark);
+//		auditRecord.setUserId(adminUser.getId());
+//		auditRecord.setAuditStatus(infomation.getAuditStatus());
+//		auditRecordService.insert(auditRecord);
 		Result<String> result = new Result<String>();
 		result.setMessage("修改成功！");
 		result.setResult(true);

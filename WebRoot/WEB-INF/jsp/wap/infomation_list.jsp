@@ -115,7 +115,7 @@
                         </a>
                       
                         <div class="pro-info">
-                            <a href="javascript:;" class="pro-title">${info.brandName }/${info.modelName }</a>
+                            <a href="javascript:;" class="pro-title">${info.brandName }${info.modelName }</a>
                             <strong class="pro-price"><fmt:formatNumber value="${info.price }" maxFractionDigits="0" /> ${info.priceUnit }</strong>
                             <p class="pro-date">
                                 <span class="year f-l">${info.equipYear }年</span>

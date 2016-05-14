@@ -7,7 +7,8 @@ define(function(require,exports,module){
     var LazyStream = require('plug/load/lazystream');
     var Validator = require('plug/validate/validator');
     var box = require('plug/box');
-
+    var scrollIcon = require('plug/scrollIcon');
+    scrollIcon();
     var $view = $('.page-view-body')
 
     $view.on('click','.op-button-higSearch',function(){

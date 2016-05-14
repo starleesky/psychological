@@ -7,6 +7,10 @@
     <title>汤森机械网-发布销售</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href=${ctx}/wap/css/module/want.css?v=1" type="text/css" charset="utf-8">
+    <style>
+    .ui-form .upload-img .up-img-list .up-img-box{width:100px;height:100px;margin:0 5px;}
+    .ui-form .upload-img .up-img-list .up-img-box img{width:100px;height:100px;max-width:none;max-height:none;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -201,14 +205,7 @@
 	                        </select>
                         </div>
                     </div>
-                    <c:if test="${type==2}">
-                    <div class="ui-form-mod">
-                        <label class="ui-form-hd">库存数量</label>
-                        <div class="ui-form-bd">
-                            <input type="text" name="stockCount" id="stockCount"   placeholder="请输入...">
-                        </div>
-                    </div>
-                    </c:if>
+
                 <div class="ui-form-title">卖家附言</div>
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">附言</label>

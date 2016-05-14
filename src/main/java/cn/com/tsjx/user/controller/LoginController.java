@@ -92,21 +92,23 @@ public class LoginController {
         Pager<InfomationDto> pager = new Pager<InfomationDto>();
         pager.setPageOrder(Pager.ORDER_DESC);
         pager.setPageSort("a.create_time");
+        pager.setPageSize(20);
         Infomation infomation = new Infomation();
         Params params = Params.create();
         infomation.setStatus("2");
         infomation.setIsTop("1");
         params.add("entity", infomation);
         pager = infomationService.getInfoPagerWithImg(params, pager,false);
-        // 今日推荐 前10
+        // 今日推荐 前20
         model.addAttribute("Tops", pager.getItems());
-        //最新发布10
+        //最新发布20
         Pager<InfomationDto> pagerNew = new Pager<InfomationDto>();
         Infomation infomation2 = new Infomation();
         infomation2.setStatus("2");
         params.add("entity", infomation2);
         pagerNew.setPageOrder(Pager.ORDER_DESC);
         pagerNew.setPageSort("a.create_time");
+        pagerNew.setPageSize(20);
         pagerNew = infomationService.getInfoPagerWithImg(params, pagerNew, false);
         model.addAttribute("News", pagerNew.getItems());
         return "/wap/infor";

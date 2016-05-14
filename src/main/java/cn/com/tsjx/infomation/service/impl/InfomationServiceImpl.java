@@ -45,205 +45,216 @@ import org.springframework.util.StringUtils;
 @Service("infomationService")
 public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> implements InfomationService {
 
+	private static Logger LOG = LoggerFactory.getLogger(InfomationServiceImpl.class);
 
-    private static Logger LOG = LoggerFactory.getLogger(InfomationServiceImpl.class);
+	@Resource
+	private InfomationDao infomationDao;
 
-    @Resource
-    private InfomationDao infomationDao;
+	@Resource
+	AttchService attchService;
 
-    @Resource
-    AttchService attchService;
+	@Resource
+	CatagoryService catagoryService;
 
-    @Resource
-    CatagoryService catagoryService;
+	@Resource
+	BrandService brandService;
 
-    @Resource
-    BrandService brandService;
+	@Resource
+	ModelsService modelsService;
 
-    @Resource
-    ModelsService modelsService;
+	@Value("${file.uplaoddir}")
+	String path;
 
-    @Value("${file.uplaoddir}")
-    String path;
+	@Override
+	protected BaseDao<Infomation, Long> getBaseDao() {
+		return this.infomationDao;
+	}
 
-    @Override
-    protected BaseDao<Infomation, Long> getBaseDao() {
-        return this.infomationDao;
-    }
+	@Override
+	public List<Infomation> getInfomationsByParam(User user, Infomation infomation) {
 
-    @Override
-    public List<Infomation> getInfomationsByParam(User user, Infomation infomation) {
+		return infomationDao.getInfomationsByParam(user, infomation);
+	}
 
-        return infomationDao.getInfomationsByParam(user, infomation);
-    }
+	@Override
+	public Pager<InfomationDto> getPagerCollections(Params map, Pager<InfomationDto> pager) {
 
-    @Override
-    public Pager<InfomationDto> getPagerCollections(Params map, Pager<InfomationDto> pager) {
+		return infomationDao.getPagerCollections(map, pager);
+	}
 
-        return infomationDao.getPagerCollections(map, pager);
-    }
+	@Override
+	public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager, Boolean relUser) {
 
-    @Override
-    public Pager<InfomationDto> getInfoPagerWithImg(Params map, Pager<InfomationDto> pager, Boolean relUser) {
+		if (relUser) {
+			return infomationDao.getInfoPagerWithImg(map, pager);
+		} else {
+			return infomationDao.getInfoPagerWithImgNoUser(map, pager);
+		}
+	}
 
-        if (relUser) {
-            return infomationDao.getInfoPagerWithImg(map, pager);
-        } else {
-            return infomationDao.getInfoPagerWithImgNoUser(map, pager);
-        }
-    }
+	@Override
+	public void bathInfomation(InputStream inputStream, Long userId) throws IOException {
+		List<Infomation> infomationList = new ArrayList<Infomation>();
+		HSSFWorkbook workbook = new HSSFWorkbook(inputStream);
+		int sheetSize = workbook.getNumberOfSheets();
 
-    @Override
-    public void bathInfomation(InputStream inputStream) throws IOException {
-        List<Infomation> infomationList = new ArrayList<Infomation>();
-        HSSFWorkbook workbook = new HSSFWorkbook(inputStream);
-        int sheetSize = workbook.getNumberOfSheets();
+		for (int i = 0; i < sheetSize; i++) {
+			HSSFSheet sheet = workbook.getSheetAt(i);
+			int rowLen = sheet.getLastRowNum() + 1; // 最后一行的索引值加 1 才是总行数
 
-        for (int i = 0; i < sheetSize; i++) {
-            HSSFSheet sheet = workbook.getSheetAt(i);
-            int rowLen = sheet.getLastRowNum() + 1; // 最后一行的索引值加 1 才是总行数
+			HSSFRow row = sheet.getRow(1);
 
-            HSSFRow row = sheet.getRow(1);
+			for (int j = 1; j < rowLen; j++) {
+				row = sheet.getRow(j);
+				Infomation infomation = new Infomation();
+				if (row.getCell(0) == null || "".equals(row.getCell(0))) {
+					continue;
+				}
 
-            for (int j = 1; j < rowLen; j++) {
-                row = sheet.getRow(j);
-                Infomation infomation = new Infomation();
-                if (row.getCell(0) == null || "".equals(row.getCell(0))) {
-                    continue;
-                }
+				if ("出售".equals(row.getCell(0).toString().trim())) {
+					infomation.setSellType("0");
+				} else if ("租赁".equals(row.getCell(0).toString().trim())) {
+					infomation.setSellType("1");
+				} else if ("求购".equals(row.getCell(0).toString().trim())) {
+					infomation.setSellType("2");
+				} else if ("求租".equals(row.getCell(0).toString().trim())) {
+					infomation.setSellType("3");
+				}
+				infomation.setCatagoryBigName(row.getCell(1).toString().trim());
+				infomation.setCatagoryMidName(row.getCell(2).toString().trim());
+				if (!StringUtils.isEmpty(row.getCell(3))) {
+					infomation.setCatagoryName(row.getCell(3).toString().trim());
+				}
+				infomation.setBrandName(row.getCell(4).toString().trim());
+				infomation.setModelName(row.getCell(5).toString().trim());
 
-                if ("出售".equals(row.getCell(0).toString().trim())) {
-                    infomation.setSellType("0");
-                } else if ("租赁".equals(row.getCell(0).toString().trim())) {
-                    infomation.setSellType("1");
-                } else if ("求购".equals(row.getCell(0).toString().trim())) {
-                    infomation.setSellType("2");
-                } else if ("求租".equals(row.getCell(0).toString().trim())) {
-                    infomation.setSellType("3");
-                }
-                infomation.setCatagoryBigName(row.getCell(1).toString().trim());
-                infomation.setCatagoryMidName(row.getCell(2).toString().trim());
-                if (!StringUtils.isEmpty(row.getCell(3))) {
-                    infomation.setCatagoryName(row.getCell(3).toString().trim());
-                }
-                infomation.setBrandName(row.getCell(4).toString().trim());
-                infomation.setModelName(row.getCell(5).toString().trim());
+				Catagory catagory = new Catagory();
+				catagory.setLayer("0");
+				catagory.setCatagoryName(infomation.getCatagoryBigName());
+				List<Catagory> catagories = catagoryService.find(catagory);
+				if (catagories != null && catagories.size() > 0) {
+					infomation.setCatagoryBigId(catagories.get(0).getId());
 
-                Catagory catagory = new Catagory();
-                catagory.setLayer("0");
-                catagory.setCatagoryName(infomation.getCatagoryBigName());
-                List<Catagory> catagories = catagoryService.find(catagory);
-                if (catagories != null && catagories.size() > 0) {
-                    infomation.setCatagoryBigId(catagories.get(0).getId());
+					catagory.setCatagoryName(infomation.getCatagoryMidName());
+					catagory.setLayer("1");
+					catagories = catagoryService.find(catagory);
+					if (catagories != null && catagories.size() > 0) {
+						infomation.setCatagoryMidId(catagories.get(0).getId());
 
-                    catagory.setCatagoryName(infomation.getCatagoryMidName());
-                    catagory.setLayer("1");
-                    catagories = catagoryService.find(catagory);
-                    if (catagories != null && catagories.size() > 0) {
-                        infomation.setCatagoryMidId(catagories.get(0).getId());
+						catagory.setCatagoryName(infomation.getCatagoryName());
+						catagory.setLayer(null);
+						catagories = catagoryService.find(catagory);
+						if (catagories != null && catagories.size() > 0) {
+							infomation.setCatagoryId(catagories.get(0).getId());
+						}
+					}
+				}
 
-                        catagory.setCatagoryName(infomation.getCatagoryName());
-                        catagory.setLayer(null);
-                        catagories = catagoryService.find(catagory);
-                        if (catagories != null && catagories.size() > 0) {
-                            infomation.setCatagoryId(catagories.get(0).getId());
-                        }
-                    }
-                }
+				//品牌型号ID
+				if (infomation.getCatagoryId() != null && infomation.getCatagoryId() != 0) {
 
-                //品牌型号ID
-                if (infomation.getCatagoryId() != null && infomation.getCatagoryId() != 0) {
+					Brand brand = new Brand();
+					brand.setBrandName(infomation.getBrandName());
+					brand.setCatagoryId(infomation.getCatagoryId());
+					List<Brand> brands = brandService.find(brand);
+					//品牌存在
+					if (brands != null && brands.size() > 0) {
+						infomation.setBrandId(brands.get(0).getId());
 
-                    Brand brand = new Brand();
-                    brand.setBrandName(infomation.getBrandName());
-                    brand.setCatagoryId(infomation.getCatagoryId());
-                    List<Brand> brands = brandService.find(brand);
-                    //品牌存在
-                    if (brands != null && brands.size() > 0) {
-                        infomation.setBrandId(brands.get(0).getId());
+						Models models = new Models();
+						models.setBrandId(brands.get(0).getId());
+						models.setModelsName(infomation.getModelName());
+						List<Models> modelses = modelsService.find(models);
+						//型号存在
+						if (modelses != null && modelses.size() > 0) {
+							infomation.setModelId(modelses.get(0).getId());
+						} else {//型号不存在
+							models = modelsService.insert(models);
+							infomation.setModelId(models.getId());
+						}
+					} else { //品牌不存在，新增自定义的品牌型号
+						brand = brandService.insert(brand);
+						Models models = new Models();
+						models.setBrandId(brand.getId());
+						models.setModelsName(infomation.getModelName());
+						models = modelsService.insert(models);
+						infomation.setBrandId(brand.getId());
+						infomation.setModelId(models.getId());
+					}
+				}
 
-                        Models models = new Models();
-                        models.setBrandId(brands.get(0).getId());
-                        models.setModelsName(infomation.getModelName());
-                        List<Models> modelses = modelsService.find(models);
-                        //型号存在
-                        if (modelses != null && modelses.size() > 0) {
-                            infomation.setModelId(modelses.get(0).getId());
-                        } else {//型号不存在
-                            models = modelsService.insert(models);
-                            infomation.setModelId(models.getId());
-                        }
-                    } else { //品牌不存在，新增自定义的品牌型号
-                        brand = brandService.insert(brand);
-                        Models models = new Models();
-                        models.setBrandId(brand.getId());
-                        models.setModelsName(infomation.getModelName());
-                        models = modelsService.insert(models);
-                        infomation.setBrandId(brand.getId());
-                        infomation.setModelId(models.getId());
-                    }
-                }
+				DecimalFormat df = new DecimalFormat("0");
+				infomation.setEquipYear(df.format(row.getCell(6).getNumericCellValue()));
+				infomation.setWorkTime(df.format(row.getCell(7).getNumericCellValue()));
+				infomation.setPrice(new BigDecimal(row.getCell(8).toString()));
+				infomation.setEquipmentLocation(row.getCell(9).toString());
+
+				infomation.setIsNew("0");
+				infomation.setEquipmentCondition("0");
+				infomation.setProcedures("0");
+				infomation.setSrc("0");
 
 
-                infomation.setEquipYear(row.getCell(6).toString());
-                infomation.setWorkTime(row.getCell(7).toString());
-                infomation.setPrice(new BigDecimal(row.getCell(8).toString()));
-                infomation.setEquipmentLocation(row.getCell(9).toString());
+				String strCell = df.format(row.getCell(11).getNumericCellValue());
+				infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + strCell);
+				if (row.getCell(13) != null && !"".equals(row.getCell(13))) {
+					infomation.setRemark(infomation.getRemark() + ",备注：" + row.getCell(13).toString());
+				}
+				infomation.setValidTime("30");
+				infomation.setIsTop("0");
+				infomation.setUserId(userId);
+				infomation.setStatus(InfomationEnum.status_sj.code());
+				infomation.setWeight("1");//暂时表示导入数据
+				infomation.setAuditType(Integer.parseInt(InfomationEnum.audit_type_auto.code()));
+				if ("全新".equals(row.getCell(12).toString().trim())) {
+					infomation.setEquipmentCondition("0");
+				} else if ("二手".equals(row.getCell(12).toString().trim())) {
+					infomation.setEquipmentCondition("1");
+				} else if ("再制造".equals(row.getCell(12).toString().trim())) {
+					infomation.setEquipmentCondition("2");
+				} else if ("库存".equals(row.getCell(12).toString().trim())) {
+					infomation.setEquipmentCondition("3");
+				}
+				if (!StringUtils.isEmpty(row.getCell(14))) {
+					infomation.setCreateBy(row.getCell(14).toString());//暂存图片
+				}
+				infomation.setPubTime(new Date());
+				infomationList.add(infomation);
+			}
+		}
+		LOG.info("本次上传总计导入信息{}条!" + infomationList.size());
 
-                infomation.setIsNew("0");
-                infomation.setEquipmentCondition("0");
-                infomation.setProcedures("0");
-                infomation.setSrc("0");
+		for (Infomation infomation : infomationList) {
+			String imgUrl = infomation.getCreateBy();
+			infomation.setCreateBy("");
+			infomationDao.insert(infomation);
+			if (StringUtil.isNotBlank(imgUrl)) {
+				String[] imgs = imgUrl.split(",");
+				for (String img : imgs) {
+					Attch attch = new Attch();
+					attch.setInformationId(infomation.getId());
+					//                    attch.setUserId(user.getId());
+					attch.setAttchUrl("/images/upload/".replaceAll("/", "%2F") + img);
+					//                    handleImg("/images/upload/" + img);
+					attchService.insert(attch);
+				}
+			}
+		}
 
-                DecimalFormat df = new DecimalFormat("0");
-                String strCell = df.format(row.getCell(11).getNumericCellValue());
-                infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + strCell);
-                infomation.setValidTime("30");
-                infomation.setIsTop("0");
-                infomation.setUserId(1L);
-                infomation.setStatus(InfomationEnum.status_sj.code());
-                infomation.setWeight("1");//暂时表示导入数据
-                infomation.setAuditType(Integer.parseInt(InfomationEnum.audit_type_auto.code()));
-                if (!StringUtils.isEmpty(row.getCell(12))) {
-                    infomation.setCreateBy(row.getCell(12).toString());//暂存图片
-                }
-                infomation.setPubTime(new Date());
-                infomationList.add(infomation);
-            }
-        }
-        LOG.info("本次上传总计导入信息{}条!" + infomationList.size());
+	}
 
-        for (Infomation infomation : infomationList) {
-            String imgUrl = infomation.getCreateBy();
-            infomation.setCreateBy("");
-            infomationDao.insert(infomation);
-            if (StringUtil.isNotBlank(imgUrl)) {
-                String[] imgs = imgUrl.split(",");
-                for (String img : imgs) {
-                    Attch attch = new Attch();
-                    attch.setInformationId(infomation.getId());
-//                    attch.setUserId(user.getId());
-                    attch.setAttchUrl("/images/upload/".replaceAll("/", "%2F") + img);
-//                    handleImg("/images/upload/" + img);
-                    attchService.insert(attch);
-                }
-            }
-        }
+	private void handleImg(String filePath) {
+		//添加水印
+		WaterSet.pressImage(path + "/wap/images/watermark.png", path + filePath, 4, 1);
+		//上传图片
+		try {
+			new UploadDemo().uploadImgs(path + filePath, filePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-    }
-
-    private void handleImg(String filePath) {
-        //添加水印
-        WaterSet.pressImage(path + "/wap/images/watermark.png", path + filePath, 4, 1);
-        //上传图片
-        try {
-            new UploadDemo().uploadImgs(path + filePath, filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void autoDown() {
-        infomationDao.autoDown();
-    }
+	public void autoDown() {
+		infomationDao.autoDown();
+	}
 }

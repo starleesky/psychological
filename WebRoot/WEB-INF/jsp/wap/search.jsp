@@ -9,8 +9,18 @@
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx }/wap/css/module/search.css?v=1" type="text/css" charset="utf-8">
     <style>
+    .pro-list .pro-box .pro-info{width:63%;}
     .ui-form-mod .ui-small-txt input,.ui-form-mod .ui-small-txt span{display:inline-block;width:45%;}
     .ui-form-mod .ui-small-txt span{width:6%;text-align:center;color:#fff;}
+    .pro-list .pro-box .pro-img img{width:120px;height:120px;}
+    @media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
+        .pro-list .pro-box {
+        width: 46%;
+        }
+    }
+    @media only screen and (min-device-width: 320px){
+    .pro-list .pro-box .pro-info{width:56%;}
+    }
     </style>
 </head>
 <body>
@@ -44,7 +54,7 @@
 		                            <img src="${initParam.imgHost}${info.imgUrl}/small" class="jImg" data-url="${initParam.imgHost}${info.imgUrl}" />
 		                        </a>
 		                        <div class="pro-info">
-		                            <a href="#" class="pro-title">${info.brandName }/${info.modelName }</a>
+		                            <a href="#" class="pro-title">${info.brandName }${info.modelName }</a>
 		                            <strong class="pro-price"><fmt:formatNumber value="${info.price }" maxFractionDigits="0" />${info.priceUnit }</strong>
 		                            <p class="pro-date">
 		                                <span class="year f-l">${info.equipYear }年</span>

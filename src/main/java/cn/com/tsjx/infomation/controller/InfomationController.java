@@ -122,6 +122,18 @@ public class InfomationController {
                 if (infomation.getUserId() != null) {
                     user = userService.get(infomation.getUserId());
                     model.addAttribute("sellUser", user);
+
+                    //1、上架
+                    Infomation infomation2 = new Infomation();
+                    infomation2.setStatus(InfomationEnum.status_sj.code());
+                    infomation2.setUserId(infomation.getUserId());
+                    List<Infomation> li_sj = infomationService.find(infomation2);
+                    int count = 0 ;
+                    if (!li_sj.isEmpty()) {
+                        count = li_sj.size();
+                    }
+                    model.addAttribute("cnt_sj", count);
+                    
                 }
                 if (infomation.getValidTime() != null && infomation.getPubTime() != null) {
                     Calendar validDate = Calendar.getInstance();
@@ -148,7 +160,6 @@ public class InfomationController {
             }
             model.addAttribute("firstImg", firstImg);
             model.addAttribute("bean", infomation);
-
         }
         return "/wap/view";
     }
@@ -225,7 +236,7 @@ public class InfomationController {
                         }
                         attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
                     } else {
-                        attch.setAttchUrl(img.replaceAll("/", "%2F"));
+                        attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
                     }
                 }
                 attchService.insert(attch);

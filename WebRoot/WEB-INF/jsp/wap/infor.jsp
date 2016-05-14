@@ -14,7 +14,8 @@
     .recommended-mod .recommended-hd, .recommended-mod .collect-hd, .collect-mod .recommended-hd, .collect-mod .collect-hd{height:60px;line-height:60px;}
     .recommended-mod .recommended-hd .icon,.collect-mod .collect-hd .icon{line-height:60px;}
     .recommended-mod .recommended-hd .icon{line-height:63px;}
-    .recommended-mod .recommended-bd ul li, .recommended-mod .collect-bd ul li, .collect-mod .recommended-bd ul li, .collect-mod .collect-bd ul li{margin-right:15px;}
+    .recommended-mod .recommended-bd ul li, .recommended-mod .collect-bd ul li, .collect-mod .recommended-bd ul li, .collect-mod .collect-bd ul li{margin-right:10px;}
+    .recommended-mod .recommended-bd ul li span, .recommended-mod .collect-bd ul li span,.collect-mod .recommended-bd ul li span, .collect-mod .collect-bd ul li span{text-align:center;}
     .recommended-mod .recommended-bd ul li span.price, .recommended-mod .collect-bd ul li span.price, .collect-mod .recommended-bd ul li span.price, .collect-mod .collect-bd ul li span.price{text-align:center;font-size:16px;}
     </style>
 </head>

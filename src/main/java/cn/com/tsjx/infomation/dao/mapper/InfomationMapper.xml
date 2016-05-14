@@ -401,6 +401,9 @@
 	<!-- 分页查询（条件） -->
 	<sql id="page_condition">
 		<where>
+				<if test="entity.id != null">
+					AND i.id = #{entity.id,jdbcType=INTEGER}
+				</if>
 				<if test="entity.catagoryBigId != null">
 					AND i.CATAGORY_BIG_ID = #{entity.catagoryBigId,jdbcType=INTEGER}
 				</if>

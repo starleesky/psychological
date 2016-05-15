@@ -5,8 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>汤森机械网-首页</title>
     <%@ include file = "meta.jsp" %>
+    <title>汤森机械网-二手农业机械,二手工程机械,二手运输车辆,二手矿山机械及二手林业机械</title>
+	<meta name="keywords" content="汤森机械网,二手农业机械,二手工程机械,二手运输车辆,二手矿山机械,二手林业机械">
+	<meta name="description" content="汤森机械网:汤森机械网是一家二手机械交易平台网站,涵盖二手农业机械,二手工程机械,二手林业机械,二手矿山机械,二手运输车辆五大领域,提供即时有效的出售,求购,租赁,拍卖等信息.">
     <link rel="stylesheet" href="${ctx}/wap/css/module/infor.css?v=1" type="text/css" charset="utf-8">
     <style>
     .recommended-mod, .collect-mod{padding:0 0 10px 0;}

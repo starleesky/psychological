@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import cn.com.tsjx.common.bean.entity.BaseEntity;
+import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.util.StringUtil;
 
 /**
@@ -83,6 +84,12 @@ public class Infomation extends BaseEntity<Long> {
 	private String priceUnit;	//价格单位
 
 	private String nextPage;
+	
+	// 设备情况名称
+	private String equipmentConditionStr;
+	// 销售方式（类型）名称
+	private String sellTypeStr;
+	
 	@Override
 	public Long getId() {
 		return super.getId();
@@ -372,6 +379,20 @@ public class Infomation extends BaseEntity<Long> {
 	public void setPriceUnit(String priceUnit) {
 		this.priceUnit = priceUnit;
 	}
+
+	public String getEquipmentConditionStr() {
+		
+		equipmentConditionStr = InfomationEnum.getDiscribeByCode(equipmentCondition,"equipment_condition");
+		
+		return equipmentConditionStr;
+	}
+
+	public String getSellTypeStr() {
+		sellTypeStr = InfomationEnum.getDiscribeByCode(sellType,"sell_type");
+		return sellTypeStr;
+	}
+	
+	
 	
 	
 }

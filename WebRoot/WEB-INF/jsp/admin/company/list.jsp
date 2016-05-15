@@ -102,6 +102,7 @@
 							<span ng-switch-when="2">查看详情</span>
 						</div>
 					</a>
+						<button class="btn btn-primary" ng-click="deleteOne(c,$index)">删除</button>
 						<div ng-switch on="c.status">
 				</td>
 			</tr>

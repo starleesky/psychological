@@ -45,7 +45,7 @@
                     <div class="info clearfix">
                         <h2>${userInfo.realName}</h2>
                         <p>注册时间:<span class="date"> 
-                         <fmt:formatDate value="${userInfo.createTime}" pattern="yyyy/MM/dd  HH:mm:ss" />
+                         <fmt:formatDate value="${userInfo.createTime}" pattern="yyyy/MM/dd" />
                          </span>
                          </p>
                     </div>

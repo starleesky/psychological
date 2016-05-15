@@ -64,6 +64,9 @@
             </div>
         </c:if>
     </h3>
+    <div class="btn-group btn-large">
+        <button class="btn btn-primary " ng-click="editInfomation()">修改公司信息</button>
+    </div>
 </div>
 <table class="table table-bordered">
     <tbody>
@@ -122,7 +125,7 @@
             <c:if test="${bean.src==2}">抵押</c:if>
             <c:if test="${bean.src==3}">法务</c:if>
         </td>
-        <td class="tab-head">设备年费</td>
+        <td class="tab-head">设备年份</td>
         <td class="tab-content-head">${bean.equipYear}</td>
     </tr>
     <tr>
@@ -166,29 +169,57 @@
 </div>
 
 <c:if test="${bean.status!=null&&bean.status!=0}">
-    <div>
-        <h3 class="clearfix">审核记录</h3>
-        <div class="col-md-12">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th class="tab-head">修改时间</th>
-                    <th class="tab-head">修改人员</th>
-                    <th class="tab-head">审核备注</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td ng-bind="log.dateValue | date : 'yyyy-MM-dd HH:mm:ss'"></td>
-                    <td ng-bind="log.operator"></td>
-                    <td ng-bind="switchReason(log.rejectCode)"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <%--<div>--%>
+        <%--<h3 class="clearfix">审核记录</h3>--%>
+        <%--<div class="col-md-12">--%>
+            <%--<table class="table table-bordered">--%>
+                <%--<thead>--%>
+                <%--<tr>--%>
+                    <%--<th class="tab-head">修改时间</th>--%>
+                    <%--<th class="tab-head">修改人员</th>--%>
+                    <%--<th class="tab-head">审核备注</th>--%>
+                <%--</tr>--%>
+                <%--</thead>--%>
+                <%--<tbody>--%>
+                <%--<tr>--%>
+                    <%--<td ng-bind="log.dateValue | date : 'yyyy-MM-dd HH:mm:ss'"></td>--%>
+                    <%--<td ng-bind="log.operator"></td>--%>
+                    <%--<td ng-bind="switchReason(log.rejectCode)"></td>--%>
+                <%--</tr>--%>
+                <%--</tbody>--%>
+            <%--</table>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </c:if>
-
+<div>
+    <h3 class="clearfix">用户信息</h3>
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th class="tab-head">用户名称</th>
+                <th class="tab-head">手机号码</th>
+                <th class="tab-head">地区</th>
+                <th class="tab-head">经营性质</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${user.realName}</td>
+                <td>${user.telephone}</td>
+                <td>${user.provinceName}|${user.cityName}</td>
+                <td>
+                    <c:if test="${user.businessScope == 1}">工程机械</c:if>
+                    <c:if test="${user.businessScope == 2}">农业机械</c:if>
+                    <c:if test="${user.businessScope == 3}">矿山机械</c:if>
+                    <c:if test="${user.businessScope == 4}">林业机械</c:if>
+                    <c:if test="${user.businessScope == 5}">运输机械</c:if>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <div>
     <h3 class="clearfix">信息图片</h3><br/>
     <c:forEach var="img" items="${beanImg}">
@@ -208,6 +239,19 @@
     angular.brandName = "${bean.brandName}";
     angular.modelName = "${bean.modelName}";
     angular.catagoryId = "${bean.catagoryId}";
+    angular.equipmentCondition = "${bean.equipmentCondition}";
+    angular.procedures = "${bean.procedures}";
+    angular.src = "${bean.src}";
+    angular.equipYear = "${bean.equipYear}";
+    angular.workTime = "${bean.workTime}";
+    angular.price = "${bean.price}";
+    angular.serialNum = "${bean.serialNum}";
+    angular.inStockCode = "${bean.inStockCode}";
+    angular.equipmentLocation = "${bean.equipmentLocation}";
+    angular.stockCount = "${bean.stockCount}";
+    angular.sellCount = "${bean.sellCount}";
+    angular.remark = "${bean.remark}";
+
     seajs.use(['js/controller/common/app', 'js/controller/infomation/detail'], function () {
         angular.bootstrap(document, ['App']);
     });

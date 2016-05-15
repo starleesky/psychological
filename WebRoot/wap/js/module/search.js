@@ -36,7 +36,7 @@ define(function(require,exports,module){
             data.catagoryMidName = $("#catagoryMidName").val();
             data.catagoryName = $("#catagoryName").val();
             data.brandId = $("#brandId").val();
-            data.brandName = $("#brandName").val();
+            //data.brandName = $("#brandName").val();
             data.modelId = $("#modelId").val();
             data.modelName = $("#modelName").val();
             data.sellType = $("#sellType").val();
@@ -169,7 +169,7 @@ define(function(require,exports,module){
 
     oBrand.change(function () {
     	$("#brandId").val($('#infoSearchForm').find('select[name=brand]').val());
-    	$("#brandName").val($('#infoSearchForm').find('select[name=brand]').find("option:selected").text());
+    	//$("#brandName").val($('#infoSearchForm').find('select[name=brand]').find("option:selected").text());
         getModels();
     });
 

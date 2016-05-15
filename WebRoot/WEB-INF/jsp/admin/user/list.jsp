@@ -83,9 +83,9 @@
             <td>
                 <div ng-switch on="c.businessScope">
                     <span ng-switch-when="1">工程机械</span>
-                    <span ng-switch-when="2">矿山机械</span>
-                    <span ng-switch-when="3">林业机械</span>
-                    <span ng-switch-when="4">农业机械</span>
+                    <span ng-switch-when="2">农业机械</span>
+                    <span ng-switch-when="3">矿山机械</span>
+                    <span ng-switch-when="4">林业机械</span>
                     <span ng-switch-when="5">运输机械</span>
                 </div>
             </td>

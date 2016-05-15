@@ -122,7 +122,7 @@ define([ 'jquery', 'url', 'plug/ajax', 'plug/box', 'plug/imgLoading','plug/load/
 
 		    oBrand.change(function () {
 		    	$("#brandId").val($('#infoSearchForm').find('select[name=brand]').val());
-		    	$("#brandName").val($('#infoSearchForm').find('select[name=brand]').find("option:selected").text());
+		    	//$("#brandName").val($('#infoSearchForm').find('select[name=brand]').find("option:selected").text());
 		        getModels();
 		    });
 

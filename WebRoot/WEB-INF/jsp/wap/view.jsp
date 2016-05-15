@@ -114,7 +114,7 @@
                     </c:choose>
                     <diiv class="user-info-cont">
                         <h3>${sellUser.realName}</h3>
-                        <P>注册时间： <fmt:formatDate value="${sellUser.createTime}" pattern="yyyy/MM/dd  HH:mm:ss"/></P>
+                        <P>注册时间： <fmt:formatDate value="${sellUser.createTime}" pattern="yyyy/MM/dd"/></P>
                     </diiv>
                         <ul>
                             <li class="w100">电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
@@ -158,7 +158,9 @@
                     </div>
                     <div class="pro-view-box">
                         <h3>公司简介</h3>
-                        <p>${company.introduction}
+                        <div id = "boxCompany">
+                        	<p>${company.introduction}
+                        </div>
                     </div>
                 </c:if>
             </div>

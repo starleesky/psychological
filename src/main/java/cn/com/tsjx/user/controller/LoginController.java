@@ -186,6 +186,7 @@ public class LoginController {
 
             // 发送邮箱验证
             String url =  validateUrl + Base64.encodeBase64String(user.getId().toString().getBytes());
+            url = url + "&email="+user.getEmail();
             try {
                 mailService.sendMail(user.getEmail(), "汤森机械网— --帐号激活", "感谢您注册汤森机械网！"
                         + "</br>你的登录邮箱为："+user.getEmail()+"请点击以下链接激活帐号："
@@ -202,7 +203,17 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/emailSuccess")
-    public String emailSuccess(String r) {
+    public String emailSuccess(String r,String email) {
+        
+        User usertemp = new User();
+        usertemp.setEmail(email);
+        List<User> list = userService.find(usertemp);
+        for (User user : list) {
+            if (Deleted.YES.value.equals(user.getIsActivate())) {
+                System.out.println("已有激活");
+                return "/wap/login";
+            }
+        }
         String string2 = new String(Base64.decodeBase64(r.getBytes()));
         User user = userService.get(Long.valueOf(string2));
         if (user == null) {

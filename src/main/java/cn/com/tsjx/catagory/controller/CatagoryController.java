@@ -42,7 +42,7 @@ public class CatagoryController {
 	public Result<List<Catagory>> getGoodsCatagory(@RequestParam(value = "id", required = false) String id) {
 		Result<List<Catagory>> result = new Result<List<Catagory>>();
 		List<Catagory> list = catagoryDao.getCatagoryByParentId(id);
-		System.out.println(list);
+//		System.out.println(list);
 		result.setMessage("查询成功");
 		result.setObject(list);
 		result.setResult(true);

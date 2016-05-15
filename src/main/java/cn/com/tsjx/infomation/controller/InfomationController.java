@@ -133,7 +133,7 @@ public class InfomationController {
                         count = li_sj.size();
                     }
                     model.addAttribute("cnt_sj", count);
-                    
+
                 }
                 if (infomation.getValidTime() != null && infomation.getPubTime() != null) {
                     Calendar validDate = Calendar.getInstance();
@@ -170,7 +170,7 @@ public class InfomationController {
         //新增发布信息人记录表
         User user = (User) httpSession.getAttribute("user");
         if (infomation.getNewBrand() != null && infomation.getNewModel() != null && !infomation.getNewModel()
-                .equals("")) {
+                                                                                               .equals("")) {
             infomation.setIsNew("1");
             infomation.setBrandName(infomation.getNewBrand());
             infomation.setModelName(infomation.getNewModel());
@@ -315,7 +315,7 @@ public class InfomationController {
      */
     @RequestMapping(value = "/infoList/my")
     public String infoList(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
-                           String order) {
+            String order) {
 
         String status = StringUtil.isBlank(infomation.getStatus()) ?
                 InfomationEnum.status_sj.code() :
@@ -333,7 +333,7 @@ public class InfomationController {
         params.add("status", status);
 
         pageOrder(order, pager);
-        
+
         //pager.setPageSize(1);
 
         pager = infomationService.getInfoPagerWithImg(params, pager, true);
@@ -361,7 +361,7 @@ public class InfomationController {
      */
     @RequestMapping(value = "/colleInfoList/my")
     public String colleInfoList(Pager<InfomationDto> pager, Infomation infomation, Model model,
-                                HttpSession httpSession) {
+            HttpSession httpSession) {
 
         //关联用户ID
         User user = (User) httpSession.getAttribute("user");
@@ -477,31 +477,31 @@ public class InfomationController {
         String imgHost = session.getServletContext().getInitParameter("imgHost");
         for (InfomationDto info : pager.getItems()) {
             data.append("<li class=\"pro-box\">")
-                    .append("<div class=\"pro-select\">")
-                    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
-                    .append("<img src=\"\" class=\"jProSelect\" />")
-                    .append("</div>")
-                    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
-                    .append("\" class=\"pro-img\">")
-                    .append("<img src=\"").append(imgHost).append(info.getImgUrl()).append("/small").append("\" class=\"jImg\" data-url=\"\" />")
-                    .append("</a>")
-                    .append("<div class=\"pro-info\">")
-                    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName())
-                    .append(info.getModelName()).append("</a>")
-                    .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
-                    .append("<p class=\"pro-date\">")
-                    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
-                    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
-                    .append("</p>")
-                    .append("<p>")
-                    .append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
-                    .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
-                    .append("</p>")
-                    .append("<p class=\"col-6\"> 信息来源：汤森 </p>")
-                    .append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>");
+                .append("<div class=\"pro-select\">")
+                .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
+                .append("<img src=\"\" class=\"jProSelect\" />")
+                .append("</div>")
+                .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
+                .append("\" class=\"pro-img\">")
+                .append("<img src=\"").append(imgHost).append(info.getImgUrl()).append("/small").append("\" class=\"jImg\" data-url=\"\" />")
+                .append("</a>")
+                .append("<div class=\"pro-info\">")
+                .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName())
+                .append(info.getModelName()).append("</a>")
+                .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+                .append("<p class=\"pro-date\">")
+                .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
+                .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
+                .append("</p>")
+                .append("<p>")
+                .append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
+                .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
+                .append("</p>")
+                .append("<p class=\"col-6\"> 信息来源：汤森 </p>")
+                .append("<p class=\"col-6\"> 设备序列号:<span>").append(info.getSerialNum()).append("</span> </p>");
 
             data.append("<p class=\"col-6\"> 截止日期:<span>").append(info.getEndTime() == null ? "" : sdf.format(info.getEndTime())).append("</span> </p>")
-                    .append("</div>");
+                .append("</div>");
             if (InfomationEnum.status_xj.code().equals(pageDto.getStatus())) {
                 data.append("<a href=\"javascript:;\" data-url=\"#\" class=\"pro-new-up jNewUp\">重新上架</a>");
             }
@@ -570,7 +570,7 @@ public class InfomationController {
      */
     @RequestMapping(value = "/search")
     public String search(Pager<InfomationDto> pager, InfomationDto infomation, Model model, HttpSession httpSession,
-                         String order) {
+            String order) {
 
         infomation.setStatus(InfomationEnum.status_sj.code());    // 查询上架的信息
         infomation.setDeleted(Deleted.NO.value);
@@ -599,7 +599,7 @@ public class InfomationController {
     @RequestMapping(value = "/moreSearchInfo")
     @ResponseBody
     public String moreSearchInfo(PageDto pageDto, InfomationDto infomation, HttpSession session,
-                                 Pager<InfomationDto> pager) {
+            Pager<InfomationDto> pager) {
 
         infomation.setStatus(pageDto.getStatus());
         infomation.setDeleted(Deleted.NO.value);
@@ -618,27 +618,27 @@ public class InfomationController {
         String imgHost = session.getServletContext().getInitParameter("imgHost");
         for (InfomationDto info : pager.getItems()) {
             data.append("<li class=\"pro-box\">")
-                    .append("<div class=\"pro-select\">")
-                    .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
-                    .append("<img src=\"\" class=\"jProSelect\" />")
-                    .append("</div>")
-                    .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
-                    .append("\" class=\"pro-img\">")
-                    .append("<img src=\"").append(imgHost).append(info.getImgUrl()).append("/small").append("\" class=\"jImg\" data-url=\"\" />")
-                    .append("</a>")
-                    .append("<div class=\"pro-info\">")
-                    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName())
-                    .append(info.getModelName()).append("</a>")
-                    .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
-                    .append("<p class=\"pro-date\">")
-                    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
-                    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
-                    .append("</p>")
-                    .append("<p>")
-                    .append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
-                    .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
-                    .append("</p>")
-                    .append("</div>");
+	            .append("<div class=\"pro-select\">")
+	            .append("<input type=\"hidden\" name=\"proSelect\" value=\"0\" />")
+	            .append("<img src=\"\" class=\"jProSelect\" />")
+	            .append("</div>")
+	            .append("<a href=\"").append(ctx).append("/infomation/input.htm?id=").append(info.getId())
+	            .append("\" class=\"pro-img\">")
+	            .append("<img src=\"").append(imgHost).append(info.getImgUrl()).append("/small").append("\" class=\"jImg\" data-url=\"\" />")
+	            .append("</a>")
+	            .append("<div class=\"pro-info\">")
+	            .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName())
+	            .append(info.getModelName()).append("</a>")
+	            .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+	            .append("<p class=\"pro-date\">")
+	            .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
+	            .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
+	            .append("</p>")
+	            .append("<p>")
+	            .append("<span class=\"ready-num f-l\">浏览<em class=\"jRNum\">次</em></span>")
+	            .append("<span class=\"pro-addr f-r\">").append(info.getEquipmentLocation()).append("</span>")
+	            .append("</p>")
+	            .append("</div>");
 
             data.append("</li>");
         }

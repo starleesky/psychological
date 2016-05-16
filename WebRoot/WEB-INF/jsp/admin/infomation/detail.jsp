@@ -65,7 +65,10 @@
         </c:if>
     </h3>
     <div class="btn-group btn-large">
-        <button class="btn btn-primary " ng-click="editInfomation()">修改公司信息</button>
+        <button class="btn btn-primary " ng-click="editInfomation1()">修改产品类别</button>
+    </div>
+    <div class="btn-group btn-large">
+        <button class="btn btn-primary " ng-click="editInfomation()">修改设备信息</button>
     </div>
 </div>
 <table class="table table-bordered">
@@ -237,8 +240,15 @@
     angular.userId = "${bean.userId}";
     angular.isNew = "${bean.isNew}";
     angular.brandName = "${bean.brandName}";
+    angular.brandId = "${bean.brandId}";
     angular.modelName = "${bean.modelName}";
+    angular.modelId = "${bean.modelId}";
     angular.catagoryId = "${bean.catagoryId}";
+    angular.catagoryName = "${bean.catagoryName}";
+    angular.catagoryMidId = "${bean.catagoryMidId}";
+    angular.catagoryMidName = "${bean.catagoryMidName}";
+    angular.catagoryBigId = "${bean.catagoryBigId}";
+    angular.catagoryBigName = "${bean.catagoryBigName}";
     angular.equipmentCondition = "${bean.equipmentCondition}";
     angular.procedures = "${bean.procedures}";
     angular.src = "${bean.src}";
@@ -251,6 +261,7 @@
     angular.stockCount = "${bean.stockCount}";
     angular.sellCount = "${bean.sellCount}";
     angular.remark = "${bean.remark}";
+    angular.status = "${bean.status}";
 
     seajs.use(['js/controller/common/app', 'js/controller/infomation/detail'], function () {
         angular.bootstrap(document, ['App']);

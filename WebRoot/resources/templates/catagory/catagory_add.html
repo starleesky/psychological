@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="modal-title">新增产品</h3>
+</div>
+<div class="modal-body">
+
+    <form class="form-horizontal" name="edit_form">
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">产品名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="catagoryName" name="catagoryName" placeholder="产品名称" required ng-model="user.catagoryName">
+                <span class="form-error" ng-show="submitted && add_form.catagoryName.$invalid">必须填写</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">父类ID</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="parentId" name="parentId" placeholder="父类Id" required ng-model="user.parentId">
+                <span class="form-error" ng-show="submitted && add_form.parentId.$invalid">必须填写</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">图片路径</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="code" name="code" placeholder="图片路径" required ng-model="user.code">
+                <span class="form-error" ng-show="submitted && add_form.code.$invalid">必须填写</span>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="addParam()"
+            ng-disabled="submitting">保存
+    </button>
+    <button class="btn btn-warning" ng-click="cancel()">取消</button>
+</div>

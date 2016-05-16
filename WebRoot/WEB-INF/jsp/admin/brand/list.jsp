@@ -24,6 +24,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">搜索</button>
+            <div class="form-group pull-right">
+                <button class="btn btn-primary" ng-click="add()">新增品牌</button>
+            </div>
 
             <%--<div class="form-group pull-right">--%>
                 <%--<button class="btn btn-primary" ng-click="upLoadFunc()">导入EXCEL基础数据</button>--%>

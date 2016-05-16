@@ -113,6 +113,33 @@ define(function (require) {
                         });
                 }
 
+                $scope.add = function () {
+                    $scope.user = {};
+                    modal = $modal.open({
+                        templateUrl: angular.path + '/resources/templates/brand/brand_add.html?data=' + new Date(),
+                        backdrop: 'static',
+                        scope: $scope,
+                        size: 'lg',
+                        resolve: {
+                            user: function () {
+                                return $scope.user;
+                            }
+                        }
+                    });
+                };
+
+                $scope.addParam = function () {
+                    $http.post(angular.path + "/admin/brand/add", $scope.user)
+                        .success(function (resp) {
+                            if (resp.result) {
+                                list.fetch();
+                                modal.close();
+                            } else {
+                                alert(resp.message);
+                            }
+                        });
+                }
+
                 //取消处理
                 $scope.cancel = function () {
                     modal.close();

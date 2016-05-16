@@ -4,7 +4,10 @@
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <%
 cn.com.tsjx.infomation.entity.Infomation info_ = (cn.com.tsjx.infomation.entity.Infomation)request.getAttribute("bean");
-String location = info_.getEquipmentLocation().replace("|", "");
+String location = info_.getEquipmentLocation();
+if(location != null && !"".equals(location)) {
+	location = location.replace("|", "");
+}
 %>
 <!DOCTYPE html>
 <html>

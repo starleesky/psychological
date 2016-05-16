@@ -23,9 +23,11 @@ import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.models.service.ModelsService;
 import com.qiniu.UploadDemo;
 import com.qiniu.WaterSet;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -125,8 +127,8 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 				if (!StringUtils.isEmpty(row.getCell(3))) {
 					infomation.setCatagoryName(row.getCell(3).toString().trim());
 				}
-				infomation.setBrandName(row.getCell(4).toString().trim());
-				infomation.setModelName(row.getCell(5).toString().trim());
+				infomation.setBrandName(getString(row.getCell(4)).trim());
+				infomation.setModelName(getString(row.getCell(5)).trim());
 
 				Catagory catagory = new Catagory();
 				catagory.setLayer("0");
@@ -194,7 +196,6 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 				infomation.setProcedures("0");
 				infomation.setSrc("0");
 
-
 				String strCell = df.format(row.getCell(11).getNumericCellValue());
 				infomation.setRemark("联系人：" + row.getCell(10).toString() + ",联系方式：" + strCell);
 				if (row.getCell(13) != null && !"".equals(row.getCell(13))) {
@@ -241,6 +242,23 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 			}
 		}
 
+	}
+
+	public String getString(Cell cell) {
+		String result = "";
+		DecimalFormat df = new DecimalFormat("0");
+		switch (cell.getCellType()) {
+		case HSSFCell.CELL_TYPE_NUMERIC:
+			result = String.valueOf(df.format(cell.getNumericCellValue()));
+			break;
+		case HSSFCell.CELL_TYPE_STRING:
+			result = cell.getRichStringCellValue().getString();
+			break;
+		case HSSFCell.CELL_TYPE_FORMULA:
+			result = cell.getCellFormula();
+			break;
+		}
+		return result;
 	}
 
 	private void handleImg(String filePath) {

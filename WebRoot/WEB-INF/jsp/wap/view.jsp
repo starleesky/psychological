@@ -12,10 +12,8 @@ if(location != null && !"".equals(location)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <title>二手品牌+型号+产品详细(案例:二手东方红1204拖拉机) -二手品牌+型号+产品详细价格-二手品牌+型号+产品详细出售-汤森机械网</title> -->
     <title>${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}${bean.sellTypeStr}-汤森机械网</title>
-    <meta name="keywords" content="${bean.sellTypeStr}${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}，${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}价格-<%=location %>${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}市场-汤森机械网">
-    <!-- <meta name="description" content="汤森机械网农业机械[产品大类]交易平台, 为广大河北廊坊[省份+城市]用户提供二手麦赛福格森7624拖拉机信息,已工作600小时, 价格60000元, 汤森机械网为您提供最真实,最详细的二手麦赛福格森7624拖拉机信息。"> -->
+    <meta name="keywords" content="${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}，${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}价格-<%=location %>${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}市场-汤森机械网">
     <meta name="description" content="汤森机械网${bean.catagoryBigName}交易平台, 为广大<%=location %>用户提供${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}信息,已工作${bean.workTime}小时, 价格${bean.price}${bean.priceUnit}, 汤森机械网为您提供最真实,最详细的${bean.equipmentConditionStr}${bean.brandName}${bean.modelName}${bean.catagoryName}信息。">
     <%@ include file="meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/view.css?v=1" type="text/css" charset="utf-8">

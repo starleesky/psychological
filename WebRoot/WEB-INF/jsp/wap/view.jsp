@@ -35,8 +35,8 @@ if(location != null && !"".equals(location)) {
     .pro-view-mod .bd .pro-view-box .pro-img img{max-width:200px;max-height:100px;}
     .img-big-box img{left: 50%;top: 50%;transform: translate(-50%,-50%);-moz-transform:translate(-50%,-50%) ;-webkit-transform:translate(-50%,-50%) ; -o-transform:translate(-50%,-50%) ;-ms-transform: translate(-50%,-50%); max-height: 95%;max-width: 95%;}
     .img-big-box .iconfont{z-index:9999;}
-    .pro-view-mod .bd .user-info .pro-img{overflow: hidden;border-radius: 60px;height: 70px;width: 70px;float: left;margin-bottom:10px;}
-    .pro-view-mod .bd .user-info .pro-img img{width: 70px; height: 70px;max-width: none;max-height: none;vertical-align: top;}
+    .pro-view-mod .bd .user-info .pro-img{overflow: hidden;border-radius: 60px;height: 60px;width: 60px;float: left;margin-bottom:10px;}
+    .pro-view-mod .bd .user-info .pro-img img{width: 60px; height: 60px;max-width: none;max-height: none;vertical-align: top;}
     .pro-view-mod .bd .user-info  .user-info-cont{float: left;margin-left: 15px;width: 70%;}
     .pro-view-mod .bd .user-info  .user-info-cont p{line-height: 36px;font-size: 16px;}
     </style>

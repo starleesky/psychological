@@ -8,6 +8,9 @@
     <title>汤森机械网-上架</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx }/wap/css/module/want.css?v=1" type="text/css" charset="utf-8" media="all">
+    <style>
+    .pro-list .pro-box .pro-img img{width:120px;height:120px;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -84,18 +87,18 @@
                   <div data-page="1">
                   <c:forEach items="${pager}" var="info">
                   <c:choose>
-                  	<c:when test="${status == 3 || status == 4 }">
+                  	<c:when test="${status == 3 || status == 4  || info.status == 1 }">
                   		<li class="pro-box no-buy">
                   	</c:when>
                   	<c:otherwise>
-                  		<li class="pro-box">
+                  		<li class="pro-box ">
                   	</c:otherwise>
                   </c:choose>
                         <div class="pro-select">
                             <input type="hidden" name="proSelect" value="0" />
                             <img src="${ctx}/wap/images/ok-1.png" infoId="${info.id}" class="jProSelect" />
                         </div>
-                        <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img">
+                        <a href="${ctx}/infomation/input.htm?id=${info.id}" class="pro-img ">
 	                  		<img src="${initParam.imgHost}${info.imgUrl}/small"  class="jImg" data-url="" />
 	                  		
 	                  		<c:choose>
@@ -115,7 +118,7 @@
                         </a>
                       
                         <div class="pro-info">
-                            <a href="javascript:;" class="pro-title">${info.brandName }${info.modelName }</a>
+                            <a href="javascript:;" class="pro-title">${info.brandName }/${info.modelName }</a>
                             <strong class="pro-price"><fmt:formatNumber value="${info.price }" maxFractionDigits="0" /> ${info.priceUnit }</strong>
                             <p class="pro-date">
                                 <span class="year f-l">${info.equipYear }年</span>

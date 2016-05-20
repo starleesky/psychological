@@ -73,7 +73,6 @@ public class UploadDemo {
 			long begin = new Date().getTime();
 			Response res = uploadManager.put(filePath, key, getUpToken());
 			long endTime = new Date().getTime();
-			System.out.println("图片同步到七牛的时间" + (endTime - begin));
 			//打印返回的信息
 			System.out.println(res.bodyString());
 		} catch (QiniuException e) {

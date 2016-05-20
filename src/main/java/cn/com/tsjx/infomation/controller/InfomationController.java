@@ -231,22 +231,23 @@ public class InfomationController {
 				attch.setInformationId(infomation.getId());
 				attch.setUserId(user.getId());
 				if (!StringUtils.isEmpty(img)) {
-					File afile = new File(path + img);
-					if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
-						//添加水印
-						WaterSet.pressImage(path + "/wap/images/watermark.png",
-								path + "/images/information/" + afile.getName(), 4, 1);
-						//上传图片
-						try {
-							uploadDemo.uploadImgs(path + "/images/information/" + afile.getName(),
-									"/images/information/" + afile.getName());
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
-					} else {
-						attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
-					}
+					//					File afile = new File(path + img);
+					//					if (afile.renameTo(new File(path + "/images/information/" + afile.getName()))) {
+					//						//添加水印
+					//						WaterSet.pressImage(path + "/wap/images/watermark.png",
+					//								path + "/images/information/" + afile.getName(), 4, 1);
+					//						//上传图片
+					//						try {
+					//							uploadDemo.uploadImgs(path + "/images/information/" + afile.getName(),
+					//									"/images/information/" + afile.getName());
+					//						} catch (IOException e) {
+					//							e.printStackTrace();
+					//						}
+					//						attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
+					//					} else {
+					//						attch.setAttchUrl("/images/information/".replaceAll("/", "%2F") + afile.getName());
+					//					}
+					attch.setAttchUrl(img.replaceAll("/", "%2F"));
 				}
 				attchService.insert(attch);
 			}
@@ -282,7 +283,7 @@ public class InfomationController {
 		FileInputStream newin=null;
 		File tempfile=null;
 		try {
-				img = ImageIO.read(in);
+			img = ImageIO.read(in);
 			int width = img.getWidth(null);
 			int height = img.getHeight(null);
 

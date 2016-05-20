@@ -117,7 +117,7 @@ public class CompanyController {
 
 	private void handleImg(File afile) {
 		//添加水印
-		WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/company/" + afile.getName(),4,1);
+//		WaterSet.pressImage(path+"/wap/images/watermark.png",path + "/images/company/" + afile.getName(),4,1);
 		//上传图片
 		try {
             new UploadDemo().uploadImgs(path + "/images/company/" + afile.getName(),"/images/company/" + afile.getName());

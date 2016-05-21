@@ -7,6 +7,7 @@
  */
 package cn.com.tsjx.demo;
 
+import cn.com.tsjx.common.constants.ConstantUtils;
 import cn.com.tsjx.common.constants.enums.CompanyEnum;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.enums.Deleted;
@@ -18,8 +19,11 @@ import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.notice.entity.Notice;
 import cn.com.tsjx.notice.service.NoticeService;
 import cn.com.tsjx.user.entity.User;
+import cn.com.tsjx.util.ImagesUtil;
 import com.qiniu.UploadDemo;
 import com.qiniu.WaterSet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,12 +44,15 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * DemoConcroller
@@ -70,6 +77,13 @@ public class DemoController {
 	@Resource
 	InfomationService infomationService;
 
+	ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10);
+
+	private static Logger LOG = LoggerFactory.getLogger(DemoController.class);
+
+	@Resource(name = "uploadDemo")
+	cn.com.tsjx.util.UploadDemo uploadDemo;
+
 	@RequestMapping(value = "/search")
 	public String search() {
 		return "/wap/search";
@@ -84,7 +98,7 @@ public class DemoController {
 		} else {
 			model.addAttribute("company", new Company());
 		}
-		infoCounts(model,user);
+		infoCounts(model, user);
 		return "/wap/company-info";
 	}
 
@@ -164,7 +178,7 @@ public class DemoController {
 		// 获得输入流：
 		InputStream input = file.getInputStream();
 		// 写入文件
-//		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
+		//		String path = "E:\\木星\\资料大全\\tsjx\\WebRoot";
 		//当前月份
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
@@ -178,10 +192,64 @@ public class DemoController {
 		File source = new File(path + src);
 		file.transferTo(source);
 		//		createPreviewImage("E://test.png", "E://test2.png");
+		//		//添加水印
+		//		WaterSet.pressImage(path+"/wap/images/watermark.png",path + src,4,1);
+		//		//上传图片
+		//		new UploadDemo().uploadImgs(path + src,src);
+		UploadDto uploadDto = new UploadDto();
+		uploadDto.setUrl(src);
+
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().write("{\"code\":1,\"url\":\"" + uploadDto.getUrl() + "\"}");
+	}
+
+	@RequestMapping(value = "/file/compress", method = RequestMethod.POST)
+	public void handleRequest2(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 获得文件：
+		MultipartFile file = multipartRequest.getFile("Filedata");
+		// 获得文件名：
+		String filename = file.getOriginalFilename();
+		// 获得输入流：
+		InputStream input = file.getInputStream();
+
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
+
+		File mkFile = new File(path + "/images/" + sdf.format(d));
+		if (!mkFile.exists()) {
+			mkFile.mkdir();
+		}
+		String fileEnd = filename.substring(filename.lastIndexOf(".") + 1).toLowerCase();
+		final String src = "/images/information/" + d.getTime() + "." + fileEnd;
+		File source = new File(path + src);
+		file.transferTo(source);
+		//压缩
+		ImagesUtil imgCom = new ImagesUtil(path + src);
+		imgCom.resizeFix(900, 900);
 //		//添加水印
-//		WaterSet.pressImage(path+"/wap/images/watermark.png",path + src,4,1);
-//		//上传图片
-//		new UploadDemo().uploadImgs(path + src,src);
+//		WaterSet.pressImage(path + "/wap/images/watermark.png",
+//				path + src, 4, 1);
+		//异步到七牛
+		fixedThreadPool.execute(new Runnable() {
+			@Override public void run() {
+
+				//上传图片
+				try {
+					long begin = new Date().getTime();
+					uploadDemo.uploadImgs(path + src,
+							src);
+					long endTime = new Date().getTime();
+					LOG.info("线程：" + Thread.currentThread().getName() + ",图片：{}同步到七牛时间：{}", src,
+							endTime - begin);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		UploadDto uploadDto = new UploadDto();
 		uploadDto.setUrl(src);
 

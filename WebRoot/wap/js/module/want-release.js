@@ -307,7 +307,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
 
         // initialize file upload component
         var uploader = Uploader(el, {
-            endpoint:  url.demoUploadUrl
+            endpoint:  url.compressUploadUrl
         });
 
 

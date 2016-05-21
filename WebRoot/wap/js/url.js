@@ -1,5 +1,6 @@
 define(function (require, exports, module) {
     var baseUrl = 'http://www.tangsons.cn/';
+    //var baseUrl = 'http://localhost:8080/';
     //var baseUrl = 'http://192.168.8.121:8080/tsjx';
     if (window.ctx && window.ctx != '') {
         baseUrl = ctx;
@@ -10,6 +11,7 @@ define(function (require, exports, module) {
         domain: baseUrl,
         demoPageUrl: baseUrl + '/wap/demo/page',
         demoUploadUrl: baseUrl + '/wap/file/upload',
+        compressUploadUrl: baseUrl + '/wap/file/compress',
 
         loginUrl: baseUrl + '/wap/loginIn',
         loginSuccessUrl: baseUrl + '/wap/index',

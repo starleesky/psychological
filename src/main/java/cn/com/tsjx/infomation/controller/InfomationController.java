@@ -766,7 +766,8 @@ public class InfomationController {
 
 	private void pageOrder(String order, Pager pager) {
 		if (StringUtil.isBlank(order)) {
-			pager.setPageSort("price");
+			//pager.setPageSort("price");
+			pager.setPageSort("pub_time");
 			pager.setPageOrder("desc");
 		} else {
 			if ("price_h".equals(order)) {

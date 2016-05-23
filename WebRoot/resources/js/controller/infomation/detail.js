@@ -150,7 +150,7 @@ define(function (require) {
             $scope.catagoryMidList = address.getCatagoryList($scope.infomation.catagoryBigId);
             $scope.catagoryList = address.getCatagoryList($scope.infomation.catagoryMidId);
             var flag =true;
-            if($scope.infomation.isNew==1||$scope.infomation.status!=1){
+            if($scope.infomation.isNew==1&&$scope.infomation.status!=1){
                 flag=false;
             }
             if(flag){

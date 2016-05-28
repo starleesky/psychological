@@ -82,7 +82,7 @@
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">公司名称<em>*</em></label>
                     <div class="ui-form-bd">
-                        <input type="text" name="companyName" class="ui-input" value="${company.companyName}"/>
+                        <input type="text" name="companyName" class="ui-input"  value="${company.companyName}"/>
                     </div>
                 </div>
                 <div class="ui-form-mod">

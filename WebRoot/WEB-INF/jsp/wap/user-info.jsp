@@ -44,7 +44,7 @@
             <div class="ui-form-mod">
                 <label class="ui-form-hd">姓名<em>*</em></label>
                 <div class="ui-form-bd">
-                    <input type="text"  class="ui-input" id = "realName" name = "realName" value="${bean.realName}" />
+                    <input type="text"  class="ui-input" id = "realName"  maxlength="6"  name = "realName" value="${bean.realName}" />
                 </div>
             </div>
             <div class="ui-form-mod">

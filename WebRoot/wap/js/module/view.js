@@ -48,7 +48,7 @@ define(['jquery','plug/ajax','url','plug/box','plug/touch','plug/scrollIcon'],fu
     });
     
 
-	    function show() {
+	   /* function show() {
 		var box = document.getElementById("box");
 		var text = box.innerHTML;
 		var newBox = document.createElement("div");
@@ -96,7 +96,7 @@ define(['jquery','plug/ajax','url','plug/box','plug/touch','plug/scrollIcon'],fu
 			box.appendChild(newBox);
 			box.appendChild(btn);
 		}
-	 showCompany();
+	 showCompany();*/
 		
 		
 

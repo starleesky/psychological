@@ -18,26 +18,9 @@
             <div class="hd">
                 <h3 class="title">发布销售</h3>
             </div>
-            <div class="bd">
-                <a class="bd-l" href="orders.html">
-                    <span class="num">35</span>
-                    <span class="num-desc">上架</span>
-                </a>
-                <a class="bd-m" href="logistics.html">
-                    <span class="num">35</span>
-                    <span class="num-desc">已售</span>
-                </a>
-                <a class="bd-m" href="logistics.html">
-                    <span class="num">35</span>
-                    <span class="num-desc">下架</span>
-                </a>
-                <a class="bd-r" href="coupon.html">
-                    <span class="num">35</span>
-                    <span class="num-desc">草稿</span>
-                </a>
-            </div>
+
         </section>
-        <section class="mod-want-buy">
+        <section class="mod-want-buy" style="margin-top:0;">
             <form class="ui-form" id="informationFrom">
                 <%--<div class="ui-form-title"><img src="${ctx}/wap/images/photo_icon.png"/> 上传图片</div>--%>
                 <%--<div class="ui-form-mod upload-img">--%>
@@ -187,7 +170,7 @@
         </section>
     </div>
 </div>
-<%@ include file="footer.jsp" %>
+
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">

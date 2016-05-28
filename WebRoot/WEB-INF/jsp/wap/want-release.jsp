@@ -8,6 +8,7 @@
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href=${ctx}/wap/css/module/want.css?v=1" type="text/css" charset="utf-8">
     <style>
+    .mod-want-buy{margin-top:0;}
     .ui-form .upload-img .up-img-list .up-img-box{width:100px;height:100px;margin:0 5px;}
     .ui-form .upload-img .up-img-list .up-img-box img{width:100px;height:100px;max-width:none;max-height:none;}
     </style>
@@ -25,28 +26,7 @@
                     <c:if test="${type==2}"> 发布销售</c:if>
                 </h3>
             </div>
-            <div class="bd">
-                <a href="${ctx }/infomation/infoList/my?status=2" status="2">
-                    <span class="num">${cnt_sj }</span>
-                    <span class="num-desc">上架</span>
-                </a>
-                <a href="${ctx }/infomation/infoList/my?status=3" status="3">
-                    <span class="num">${cnt_ys }</span>
-                    <span class="num-desc">已售</span>
-                </a>
-                <a href="${ctx }/infomation/infoList/my?status=4" status="4">
-                    <span class="num">${cnt_xj }</span>
-                    <span class="num-desc">下架</span>
-                </a>
-                <a href="${ctx }/infomation/infoList/my?status=0" status="0">
-                    <span class="num">${cnt_cg }</span>
-                    <span class="num-desc">草稿</span>
-                </a>
-                <a href="${ctx }/infomation/colleInfoList/my?status=9" status="9">
-                    <span class="num">${cnt_sc }</span>
-                    <span class="num-desc">收藏</span>
-                </a>
-            </div>
+
         </section>
         <section class="mod-want-buy">
             <form class="ui-form" id="informationFrom">
@@ -247,7 +227,7 @@
         </section>
     </div>
 </div>
-<%@ include file="footer.jsp" %>
+
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">

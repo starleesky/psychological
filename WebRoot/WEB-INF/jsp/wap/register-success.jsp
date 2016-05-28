@@ -29,6 +29,9 @@
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
 var ctx ="${ctx}";
+    setTimeout(function(){
+     window.location.href="/wap/login.htm";
+    },10000);
     require(['module/register']);
 </script>
 </body></html>

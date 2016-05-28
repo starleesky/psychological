@@ -72,4 +72,24 @@ define(function(require,exports,module) {
     $('#jSubmit').on('click',function(){
     	$('#register').submit();
     });
+
+    //短信发送
+    function sendMsg($obj,time){
+        $obj.text(time+'秒后重新发送');
+        if(time==0){
+            $obj.addClass('ui-button-blue').removeClass('ui-button-disabled').text('发送短信');
+            return false;
+        }
+        setTimeout(function(){
+            time--;
+            sendMsg($obj,time);
+        },1000);
+    }
+    $('body').on('click','.jSendMsg',function(){
+        if(!$(this).hasClass('ui-button-disabled')){
+            $(this).addClass('ui-button-disabled').removeClass('ui-button-blue').text('60秒后重新发送');
+            sendMsg($(this),60);
+            //发送短信接口请求
+        }
+    });
 });

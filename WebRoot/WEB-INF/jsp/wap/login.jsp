@@ -31,9 +31,9 @@
     <section class="ui-login">
         <form action="/wap/loginIn" class="ui-form" id="loginForm"  method="post">
             <div class="ui-form-mod">
-                <label class="ui-form-hd">邮箱</label>
+                <label class="ui-form-hd">账号</label>
                 <div class="ui-form-bd">
-                    <input type="text" name="UserName" id="UserName" placeholder="请输入邮箱" value="">
+                    <input type="text" name="UserName" id="UserName" placeholder="请输入手机号码或邮箱账号" value="">
                 </div>
             </div>
             <div class="ui-form-mod">
@@ -47,7 +47,8 @@
             </div>
 
             <div class="field-forgetpassword">
-                <a  href="${ctx}/wap/toRegister.htm">免费注册</a>
+                <a  href="${ctx}/wap/toRegister.htm">手机注册</a>
+                <a  href="${ctx}/wap/toRegister.htm">邮箱注册</a>
                 <a  href="${ctx}/wap/forgotpwd.htm">忘记密码</a>
             </div>
         </form>

@@ -10,11 +10,6 @@
     <title>汤森机械网-注册</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/register.css?v=1" type="text/css" charset="utf-8">
-    <style>
-    .ui-form-mod .ui-form-bd{position:relative;}
-    .ui-form-mod .ui-form-bd.dx-box input{width: 68%;}
-    .ui-form-mod .ui-form-bd .ui-button{position: absolute;top:0;right: 0;display: inline-block;width: 30%;}
-    </style>
 </head>
 <body>
 <!--head begin-->
@@ -35,16 +30,9 @@
     <section class="ui-login">
         <form action="${ctx}/wap/register" class="ui-form" id="register" method="post">
             <div class="ui-form-mod">
-                <label class="ui-form-hd">手机号码</label>
+                <label class="ui-form-hd">邮箱</label>
                 <div class="ui-form-bd">
-                    <input type="text" name="mobile" id="mobile" placeholder="请输入手机号码" value="">
-                </div>
-            </div>
-            <div class="ui-form-mod">
-                <label class="ui-form-hd">短信验证码</label>
-                <div class="ui-form-bd dx-box">
-                    <input type="password" id="password" name="password" placeholder="请输入短信验证码" value="">
-                    <span class="ui-button ui-button-blue jSendMsg">发送短信</span>
+                    <input type="text" id="email" name="email" placeholder="请输入邮箱" value="">
                 </div>
             </div>
             <div class="ui-form-mod">

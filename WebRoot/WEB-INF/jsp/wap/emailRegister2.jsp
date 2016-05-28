@@ -38,9 +38,9 @@
                         </div>
                     </div>
                     <div class="ui-form-mod">
-                        <label class="ui-form-hd">邮箱</label>
+                        <label class="ui-form-hd">手机号码</label>
                         <div class="ui-form-bd">
-                                <input type="text" id="email" name="email" placeholder="请输入邮箱" value="">
+                                 <input type="text" name="mobile" id="mobile" placeholder="请输入手机号码" value="">
                         </div>
                     </div>
                     <div class="ui-form-mod">

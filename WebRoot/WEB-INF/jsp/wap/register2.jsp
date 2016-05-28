@@ -95,7 +95,7 @@
         </form>
     </section>
 </div>
-<%@ include file="footer.jsp" %>
+
 <script type="text/javascript" src="${ctx}/wap/js/require.js"></script>
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">

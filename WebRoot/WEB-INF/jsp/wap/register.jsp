@@ -44,7 +44,7 @@
                 <label class="ui-form-hd">短信验证码</label>
                 <div class="ui-form-bd dx-box">
                     <input type="password" id="password" name="password" placeholder="请输入短信验证码" value="">
-                    <span class="ui-button ui-button-blue jSendMsg">发送短信</span>
+                    <span class="ui-button ui-button-blue jSendMsg">获取验证码</span>
                 </div>
             </div>
             <div class="ui-form-mod">

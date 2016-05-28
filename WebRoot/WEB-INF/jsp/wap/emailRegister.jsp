@@ -10,6 +10,15 @@
     <title>汤森机械网-注册</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/register.css?v=1" type="text/css" charset="utf-8">
+    <style>
+    .logo{padding:0 0 20px;}
+    .logo img{margin: 20px auto 0;}
+    section{margin-bottom:0;}
+    .logo span{text-align: center;}
+    .ui-form-mod .ui-form-bd{position:relative;}
+    .ui-form-mod .ui-form-bd.dx-box input{width: 68%;}
+    .ui-form-mod .ui-form-bd .ui-button{position: absolute;top:0;right: 0;display: inline-block;width: 30%;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -48,7 +57,7 @@
                 </div>
             </div>
             <div class="field-submit">
-                    <a href="javascript:;" class="ui-button   ui-button-blue" id="jSubmit">下一步</a>
+                    <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmit">下一步</a>
             </div>
         </form>
     </section>

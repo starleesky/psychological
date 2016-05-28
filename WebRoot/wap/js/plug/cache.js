@@ -34,7 +34,7 @@ define(function(require, exports, module) {
         },
         //写cookies
         setCookie:function(name,value,time){
-            var strsec = this.getsec(time);
+            var strsec = this.getsec(time || "");
             var exp = new Date();
             exp.setTime(exp.getTime() + strsec*1);
             document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();

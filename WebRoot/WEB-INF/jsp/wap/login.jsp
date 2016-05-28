@@ -10,6 +10,11 @@
     <title>汤森机械网-登录</title>
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/login.css?v=1" type="text/css" charset="utf-8">
+    <style>
+    .logo{padding:0 0 20px;}
+    .logo img{margin: 20px auto 0;}
+    .logo span{text-align: center;}
+    </style>
 </head>
 <body>
 <!--head begin-->
@@ -47,8 +52,7 @@
             </div>
 
             <div class="field-forgetpassword">
-                <a  href="${ctx}/wap/toRegister.htm">手机注册</a>
-                <a  href="${ctx}/wap/toRegister.htm">邮箱注册</a>
+                <a  href="${ctx}/wap/toRegister.htm">免费注册</a>
                 <a  href="${ctx}/wap/forgotpwd.htm">忘记密码</a>
             </div>
         </form>

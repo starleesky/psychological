@@ -8,6 +8,9 @@
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="css/module/forgotpwd.css?v=1" type="text/css" charset="utf-8">
     <style>
+    .logo{padding:0 0 20px;}
+    .logo img{margin: 20px auto 0;}
+    .logo span{width:100%;text-align: center;}
     .ui-form-mod .ui-form-bd{position:relative;}
     .ui-form-mod .ui-form-bd.dx-box input{width: 68%;}
     .ui-form-mod .ui-form-bd .ui-button{position: absolute;top:0;right: 0;display: inline-block;width: 30%;}
@@ -25,6 +28,10 @@
 </header>
 <!--head end-->
 <div class="page-view">
+    <div class="logo">
+        <img src="../images/logo2.png" />
+        <span>找回密码</span>
+    </div>
     <section class="ui-login">
         <form action="" class="ui-form" id="forgotForm" method="post">
             <div class="ui-form-mod">
@@ -43,6 +50,9 @@
             <div class="field-submit">
                 <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="下一步">
             </div>
+        <div class="field-submit" style="margin-top: 40px;">
+        <a href="/emailRegister.jsp"  style="display:block;text-align: center;width: 100%;font-size: 20px;line-height: 30px;color: #fff;" >邮箱找回密码 点击此处</a>
+        </div>
         </form>
     </section>
 </div>

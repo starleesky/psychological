@@ -11,6 +11,10 @@
     <%@ include file = "meta.jsp" %>
     <link rel="stylesheet" href="${ctx}/wap/css/module/register.css?v=1" type="text/css" charset="utf-8">
     <style>
+    .logo{padding:0 0 20px;}
+    .logo img{margin: 20px auto 0;}
+    section{margin-bottom:0;}
+    .logo span{text-align: center;}
     .ui-form-mod .ui-form-bd{position:relative;}
     .ui-form-mod .ui-form-bd.dx-box input{width: 68%;}
     .ui-form-mod .ui-form-bd .ui-button{position: absolute;top:0;right: 0;display: inline-block;width: 30%;}
@@ -30,14 +34,14 @@
 <div class="page-view">
     <div class="logo">
         <img src="images/logo2.png" />
-        <span>注册</span>
+        <span>注 册</span>
     </div>
     <section class="ui-login">
         <form action="${ctx}/wap/register" class="ui-form" id="register" method="post">
             <div class="ui-form-mod">
                 <label class="ui-form-hd">手机号码</label>
                 <div class="ui-form-bd">
-                    <input type="text" name="mobile" id="mobile" placeholder="请输入手机号码" value="">
+                    <input type="text" name="mobile" id="mobile"  maxlength="11" placeholder="请输入手机号码" value="">
                 </div>
             </div>
             <div class="ui-form-mod">
@@ -60,7 +64,10 @@
                 </div>
             </div>
             <div class="field-submit">
-                    <a href="javascript:;" class="ui-button   ui-button-blue" id="jSubmit">下一步</a>
+                    <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmit">下一步</a>
+            </div>
+            <div class="field-submit" style="margin-top: 40px;">
+                <a href="/emailRegister.jsp"  style="display:block;text-align: center;width: 100%;font-size:20px;line-height: 30px;color: #fff;" >邮箱注册 点击此处</a>
             </div>
         </form>
     </section>

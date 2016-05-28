@@ -3,7 +3,7 @@
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <div class="footer">
     <div class="ft-nav">
-        <a  href="${ctx}/wap/about-us.htm">关于我们</a>
+        <a  href="${ctx}/wap/about-us.htm">产品导航</a>
         <a  href="${ctx}/wap/terms-conditions.htm">一般条款</a>
         <a  href="${ctx}/wap/contact-us.htm">联系我们</a>
     </div>

@@ -38,12 +38,6 @@
                         </div>
                     </div>
                     <div class="ui-form-mod">
-                        <label class="ui-form-hd">邮箱</label>
-                        <div class="ui-form-bd">
-                                <input type="text" id="email" name="email" placeholder="请输入邮箱" value="">
-                        </div>
-                    </div>
-                    <div class="ui-form-mod">
                         <label class="ui-form-hd">省份</label>
                         <div class="ui-form-bd">
                        <select class="regionProvice"  name="provinceId" id="provinceId" validate="required:true" ><option>请选择省份</option></select>

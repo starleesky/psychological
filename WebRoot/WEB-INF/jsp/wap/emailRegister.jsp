@@ -59,6 +59,9 @@
             <div class="field-submit">
                     <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmitEmail">下一步</a>
             </div>
+            <div class="field-submit" style="margin-top: 40px;">
+                <a href="${ctx}/wap/toRegister"  style="display:block;text-align: center;width: 100%;font-size:20px;line-height: 30px;color: #fff;" >手机注册 点击此处</a>
+            </div>
         </form>
     </section>
 </div>

@@ -1,21 +1,28 @@
 package cn.com.tsjx.infomation.controller;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.tools.Tool;
 
-import cn.com.tsjx.catagory.entity.Catagory;
-import cn.com.tsjx.catagory.service.CatagoryService;
-import cn.com.tsjx.util.UploadDemo;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +31,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.qiniu.WaterSet;
-
 import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
+import cn.com.tsjx.catagory.entity.Catagory;
+import cn.com.tsjx.catagory.service.CatagoryService;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.constants.enums.SysOptionConstant;
 import cn.com.tsjx.common.enums.Deleted;
@@ -47,7 +54,7 @@ import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.sysOption.service.SysoptionService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
-import sun.awt.image.ImageDecoder;
+import cn.com.tsjx.util.UploadDemo;
 
 @Controller
 @RequestMapping("/infomation")
@@ -559,6 +566,10 @@ public class InfomationController {
 		StringBuilder data = new StringBuilder();
 		String ctx = session.getServletContext().getContextPath();
 		String imgHost = session.getServletContext().getInitParameter("imgHost");
+		DecimalFormat df = new DecimalFormat() ;
+		df.setMaximumFractionDigits(0);
+		df.setGroupingUsed(false);
+		
 		for (InfomationDto info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
 			    .append("<div class=\"pro-select\">")
@@ -573,7 +584,7 @@ public class InfomationController {
 			    .append("<div class=\"pro-info\">")
 			    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName())
 			    .append(info.getModelName()).append("</a>")
-			    .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+			    .append("<strong class=\"pro-price\">").append(df.format(info.getPrice())).append("元</strong>")
 			    .append("<p class=\"pro-date\">")
 			    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
 			    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")
@@ -671,6 +682,7 @@ public class InfomationController {
 
 		model.addAttribute("pager", pager.items);
 		model.addAttribute("info", infomation);
+		model.addAttribute("order", order);
 
 		return "/wap/search";
 	}
@@ -702,6 +714,10 @@ public class InfomationController {
 		StringBuilder data = new StringBuilder();
 		String ctx = session.getServletContext().getContextPath();
 		String imgHost = session.getServletContext().getInitParameter("imgHost");
+		DecimalFormat df = new DecimalFormat() ;
+		df.setMaximumFractionDigits(0);
+		df.setGroupingUsed(false);
+		
 		for (InfomationDto info : pager.getItems()) {
 			data.append("<li class=\"pro-box\">")
 			    .append("<div class=\"pro-select\">")
@@ -716,7 +732,7 @@ public class InfomationController {
 			    .append("<div class=\"pro-info\">")
 			    .append("<a href=\"javascript:;\" class=\"pro-title\">").append(info.getBrandName())
 			    .append(info.getModelName()).append("</a>")
-			    .append("<strong class=\"pro-price\">").append(info.getPrice()).append("元</strong>")
+			    .append("<strong class=\"pro-price\">").append(df.format(info.getPrice())).append("元</strong>")
 			    .append("<p class=\"pro-date\">")
 			    .append("<span class=\"year f-l\">").append(info.getEquipYear()).append("年</span>")
 			    .append("<span class=\"hourth f-r\">").append(info.getWorkTime()).append("小时</span>")

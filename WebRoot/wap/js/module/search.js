@@ -43,7 +43,8 @@ define(function(require,exports,module){
             data.equipmentLocation = $("#equipmentLocation").val();
             data.equipmentCondition = $("#equipmentCondition").val();
             data.procedures = $("#procedures").val();
-            data.order = $("#order").val();
+            //data.order = $("#order").val();
+            data.order = $("select[name='orderSel']").val();
             
             return data;
         },
@@ -222,6 +223,9 @@ define(function(require,exports,module){
     	$("select[name='sellTypeSel']").val($("#sellType").val());
     	$("select[name='equipmentConditionSel']").val($("#equipmentCondition").val());
     	$("select[name='proceduresSel']").val($("#procedures").val());
+    	if($("#order").val() != '' && $("#order").val() != null) {
+    		$("select[name='orderSel']").val($("#order").val());
+    	}
     	//$("select[name='srcSel']").val($("#src").val());
     	//$("select[name='equipYearSel']").val($("#equipYear").val());
     	

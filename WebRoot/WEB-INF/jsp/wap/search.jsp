@@ -99,7 +99,7 @@
                 <a href="javascript:;" class="f-r op-button-return">返回</a>
             </div>
             <form class="ui-form" id="infoSearchForm">
-                <input type="hidden" name="order" id="order">
+                <input type="hidden" name="order" id="order" value="${order}">
                 <div class="ui-form-mod">
                     <label class="ui-form-hd">销售方式</label>
                     <div class="ui-form-bd">

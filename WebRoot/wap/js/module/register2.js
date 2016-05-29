@@ -51,7 +51,7 @@ define(function(require,exports,module) {
             $.post( url.saveRegister2,
               {
             	provinceId: $(form).find('select[name=provinceId]').val(),
-            	realName: $(form).find('select[name=realName]').val(),
+            	realName: $(form).find('input[name=realName]').val(),
             	provinceName: $(form).find('select[name=provinceId]').find("option:selected").text(),
             	cityId: $(form).find('select[name=cityId]').val(),
             	cityName: $(form).find('select[name=cityId]').find("option:selected").text(),

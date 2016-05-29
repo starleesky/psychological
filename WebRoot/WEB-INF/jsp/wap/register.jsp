@@ -37,7 +37,7 @@
         <span>注 册</span>
     </div>
     <section class="ui-login">
-        <form action="${ctx}/wap/register" class="ui-form" id="register" method="post">
+        <form action="${ctx}/wap/register" class="ui-form" id="registerMobile" method="post">
             <div class="ui-form-mod">
                 <label class="ui-form-hd">手机号码</label>
                 <div class="ui-form-bd">
@@ -47,7 +47,7 @@
             <div class="ui-form-mod">
                 <label class="ui-form-hd">短信验证码</label>
                 <div class="ui-form-bd dx-box">
-                    <input type="password" id="password" name="password" placeholder="请输入短信验证码" value="">
+                    <input type="text" id="smsCode" name="smsCode" placeholder="请输入短信验证码" value="">
                     <span class="ui-button ui-button-blue jSendMsg">获取验证码</span>
                 </div>
             </div>
@@ -64,10 +64,10 @@
                 </div>
             </div>
             <div class="field-submit">
-                    <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmit">下一步</a>
+                    <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmitMobile">下一步</a>
             </div>
             <div class="field-submit" style="margin-top: 40px;">
-                <a href="/emailRegister.jsp"  style="display:block;text-align: center;width: 100%;font-size:20px;line-height: 30px;color: #fff;" >邮箱注册 点击此处</a>
+                <a href="${ctx}/wap/emailRegister"  style="display:block;text-align: center;width: 100%;font-size:20px;line-height: 30px;color: #fff;" >邮箱注册 点击此处</a>
             </div>
         </form>
     </section>

@@ -53,7 +53,7 @@
 
             <div class="field-forgetpassword">
                 <a  href="${ctx}/wap/toRegister.htm">免费注册</a>
-                <a  href="${ctx}/wap/forgotpwd.htm">忘记密码</a>
+                <a  href="${ctx}/wap/forgotpwd2.htm">忘记密码</a>
             </div>
         </form>
     </section>

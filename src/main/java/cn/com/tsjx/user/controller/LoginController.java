@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
+import cn.com.tsjx.common.bean.entity.Entity;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
@@ -29,6 +32,7 @@ import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import cn.com.tsjx.util.SimpleCaptcha;
+import cn.com.tsjx.util.TaobaioSmsUtil;
 
 @Controller
 @RequestMapping("/wap")
@@ -85,6 +89,10 @@ public class LoginController {
     public String toRegister(User user, Model model) {
         return "/wap/register";
     }
+    @RequestMapping(value = "/emailRegister")
+    public String emailRegister(User user, Model model) {
+        return "/wap/emailRegister";
+    }
 
     @RequestMapping(value = "/index")
     public String index(Model model, HttpSession httpSession) {
@@ -115,17 +123,13 @@ public class LoginController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/register")
-    public Result<String> register(User user, Model model, HttpSession httpSession) {
+    @RequestMapping(value = "/registerEmail")
+    public Result<String> registerEmail(User user, Model model, HttpSession httpSession) {
         Result<String> result = new Result<String>();
         result.setResult(false);
         if (user != null) {
             if (StringUtil.isTrimBlank(user.getEmail())) {
                 result.setMessage("邮箱不能为空");
-                return result;
-            }
-            if (StringUtil.isTrimBlank(user.getMobile())) {
-                result.setMessage("手机号不能为空");
                 return result;
             }
             if (StringUtil.isTrimBlank(user.getPassword())) {
@@ -153,13 +157,17 @@ public class LoginController {
         httpSession.setAttribute("user", user);
         if (user.getId() != null && user.getId() != 0) {
             model.addAttribute("userId", user.getId());
-            result.setObject("/wap/register2");
+            result.setObject("/wap/emailRegister2");
             result.setResult(true);
             return result;
         }
         return result;
     }
 
+    @RequestMapping(value = "/toRegisterEmail2")
+    public String toEmailRegister2() {
+        return "/wap/emailRegister2";
+    }
     @RequestMapping(value = "/toRegister2")
     public String toRegister2() {
         return "/wap/register2";
@@ -173,9 +181,21 @@ public class LoginController {
 
     // 下一步
     @ResponseBody
-    @RequestMapping(value = "/saveRegister2")
-    public Result<Object> registe2(User user, Model model) {
+    @RequestMapping(value = "/saveRegisterEmail2")
+    public Result<Object> saveRegisterEmail2(User user, Model model) {
         Result<Object> result = new Result<Object>();
+        
+        // 判断手机是否已注册
+        User entity = new User();
+        entity.setMobile(user.getMobile());
+        entity.setDeleted(Deleted.NO.value);
+        entity.setIsActivate(Deleted.YES.value);
+        List<User> list = userService.find(entity);
+        if (!list.isEmpty()) {
+            result.setMessage("手机已注册");
+            return result;
+        }
+        
         int count = userService.update(user);
         result.setResult(false);
         result.setMessage("注册失败");
@@ -230,6 +250,12 @@ public class LoginController {
 
         return "/wap/forgotpwd";
     }
+    
+    @RequestMapping(value = "/forgotpwd2", method = RequestMethod.GET)
+    public String forgotpwd2() {
+
+        return "/wap/forgotpwd2";
+    }
 
     @ResponseBody
     @RequestMapping(value = "/toForgotpwd", method = RequestMethod.POST)
@@ -237,12 +263,13 @@ public class LoginController {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setSuccess(false);
         String verifyCode = (String) httpSession.getAttribute("verifyCode");
-        if (verifyCode != null && verifyCode.equals(captchaCode)) {
+        if (verifyCode != null && verifyCode.equals(captchaCode.toLowerCase())) {
             if (email != null) {
                 User entity = new User();
                 entity.setEmail(email);
+                entity.setIsActivate("T");
                 List<User> list = userService.find(entity);
-                if (list == null || list.isEmpty() || list.size() > 1) {
+                if (list.isEmpty()) {
                     jsonResult.setMessage("邮箱未注册");
                     return jsonResult;
                 }
@@ -258,6 +285,37 @@ public class LoginController {
         }
         return jsonResult;
     }
+    
+    @ResponseBody
+    @RequestMapping(value = "/toForgotpwdBySms")
+    public JsonResult toForgotpwdBySms(String mobile, String captchaCode, HttpSession httpSession) {
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setSuccess(false);
+        String smsCode = (String) httpSession.getAttribute("smsCode");
+        if (captchaCode.equals(smsCode)) {
+            if (mobile != null) {
+                User entity = new User();
+                entity.setMobile(mobile);
+                entity.setIsActivate("T");
+                entity.setDeleted("F");
+                List<User> list = userService.find(entity);
+                if (list.isEmpty()) {
+                    jsonResult.setMessage("手机号未注册");
+                    return jsonResult;
+                }
+                String password = list.get(0).getPassword();
+                String returnString  = new String(Base64.decodeBase64(password));
+                //TaobaioSmsUtil.getpwd(mobile, returnString);
+                jsonResult.setSuccess(true);
+            }else {
+                jsonResult.setMessage("邮箱不能为空");
+            }
+        }else {
+            jsonResult.setMessage("验证码错误");
+        }
+        return jsonResult;
+    }
+    
 
     @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
     public String loginOut(HttpSession httpSession) {
@@ -288,6 +346,18 @@ public class LoginController {
         SimpleCaptcha.showCaptcha(request, response, "verifyCode");
     }
     
+    
+    /**
+     * 获取短信验证码
+     * 
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/getSmsCode")
+    public void getSmsCode(String mobile,HttpServletRequest request, HttpServletResponse response) {
+        SimpleCaptcha.getSmsCode(request, response, mobile);
+    }
+ 
     @RequestMapping(value = "/terms-conditions")
     public String termsConditions() {
         return "/wap/terms-conditions"; 
@@ -303,4 +373,68 @@ public class LoginController {
         return "/wap/contact-us"; 
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/registerMobile")
+    public Result<String> registerMobile(User user, Model model, HttpSession httpSession) {
+        Result<String> result = new Result<String>();
+        System.out.println(JSON.toJSONString(user));
+        result.setResult(false);
+        if (user != null) {
+           String smsCode =  (String) httpSession.getAttribute("smsCode");
+            if (user.getSmsCode() == null || !user.getSmsCode().equals(smsCode)) {
+                result.setMessage("验证码不正确");
+                return result;
+            }
+            if (StringUtil.isTrimBlank(user.getMobile())) {
+                result.setMessage("手机号不能为空");
+                return result;
+            }
+            if (StringUtil.isTrimBlank(user.getPassword())) {
+                result.setMessage("密码不能为空");
+                return result;
+            }
+        }
+        // 判断手机是否已注册
+        User entity = new User();
+        entity.setMobile(user.getMobile());
+        entity.setDeleted(Deleted.NO.value);
+        entity.setIsActivate(Deleted.YES.value);
+        List<User> list = userService.find(entity);
+        if (!list.isEmpty()) {
+            result.setMessage("手机已注册");
+            return result;
+        }
+        user.setUserName(user.getMobile());
+        user.setDeleted(Deleted.YES.value);
+        user.setIsActivate(Deleted.NO.value);
+        user.setUserType("2");
+        user.setPassword(Base64.encodeBase64String(user.getPassword().getBytes()));
+        user = userService.insert(user);
+        // model.addAttribute("user", user);
+        httpSession.setAttribute("user", user);
+        if (user.getId() != null && user.getId() != 0) {
+            model.addAttribute("userId", user.getId());
+            result.setObject("/wap/register2");
+            result.setResult(true);
+            return result;
+        }
+        return result;
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/saveRegister2")
+    public Result<String> saveRegister2(User user, Model model, HttpSession httpSession) {
+        Result<String> result = new Result<String>();
+        user.setIsActivate("T");
+        user.setDeleted("F");
+        int count = userService.update(user);
+        result.setResult(false);
+        result.setMessage("注册失败");
+        if (count > 0) {
+            result.setMessage("注册成功");
+            result.setResult(true);
+        }
+        return result;
+    }
+    
 }

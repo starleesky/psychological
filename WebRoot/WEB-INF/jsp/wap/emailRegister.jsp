@@ -37,7 +37,7 @@
         <span>注册</span>
     </div>
     <section class="ui-login">
-        <form action="${ctx}/wap/register" class="ui-form" id="register" method="post">
+        <form action="${ctx}/wap/register" class="ui-form" id="registerEmail" method="post">
             <div class="ui-form-mod">
                 <label class="ui-form-hd">邮箱</label>
                 <div class="ui-form-bd">
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="field-submit">
-                    <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmit">下一步</a>
+                    <a href="javascript:;" class="ui-button   ui-button-submit" id="jSubmitEmail">下一步</a>
             </div>
         </form>
     </section>
@@ -67,6 +67,6 @@
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
 	var ctx = "${ctx}";
-    require(['module/register']);
+    require(['module/registerEmail']);
 </script>
 </body></html>

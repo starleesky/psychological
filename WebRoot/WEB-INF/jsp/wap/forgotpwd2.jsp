@@ -33,7 +33,7 @@
         <span>找回密码</span>
     </div>
     <section class="ui-login">
-        <form action="" class="ui-form" id="forgotForm" method="post">
+        <form action="" class="ui-form" id="formMobile" method="post">
             <div class="ui-form-mod">
                 <label class="ui-form-hd">手机号码</label>
                 <div class="ui-form-bd">
@@ -43,15 +43,15 @@
             <div class="ui-form-mod">
                 <label class="ui-form-hd">短信验证码</label>
                 <div class="ui-form-bd dx-box">
-                    <input type="password" id="password" name="password" placeholder="请输入短信验证码" value="">
+                    <input type="text" id="captchaCode" name="captchaCode" placeholder="请输入短信验证码" value="">
                 <span class="ui-button ui-button-blue jSendMsg">获取验证码</span>
                 </div>
             </div>
             <div class="field-submit">
-                <input type="button" class="ui-button ui-button-submit" id="jSubmit" value="下一步">
+                <input type="button" class="ui-button ui-button-submit" id="jSubmitMobile" value="下一步">
             </div>
         <div class="field-submit" style="margin-top: 40px;">
-        <a href="/emailRegister.jsp"  style="display:block;text-align: center;width: 100%;font-size: 20px;line-height: 30px;color: #fff;" >邮箱找回密码 点击此处</a>
+        <a href="${ctx}/wap/forgotpwd.htm"  style="display:block;text-align: center;width: 100%;font-size: 20px;line-height: 30px;color: #fff;" >邮箱找回密码 点击此处</a>
         </div>
         </form>
     </section>
@@ -61,6 +61,6 @@
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
 var ctx = "${ctx}"
-    require(['module/forgotpwd']);
+    require(['module/forgotpwd2']);
 </script>
 </body></html>

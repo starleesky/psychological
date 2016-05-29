@@ -8,12 +8,16 @@ define(function(require,exports,module) {
 
     Validator.validate('#register2', {
         rules: {
-        	realName: {
-        		required: true
-        	},
+        	mobile: {
+                required: true,
+                mobile:true
+            },
+            realName: {
+                required: true
+            },
         	provinceId: {
-        		required: true
-        	},
+                required: true
+            },
             cityId: {
             	required: true
             },
@@ -28,11 +32,15 @@ define(function(require,exports,module) {
 			}
         },
         messages: {
-        	realName: {
-                required: '此项不能为空'
+        	mobile: {
+                required:'此项不能为空',
+                mobile:"手机号不正确"
             },
-            provinceId: {
-            	required: '此项不能为空'
+            realName: {
+                required:'此项不能为空'
+            },
+        	provinceId: {
+                required: '此项不能为空'
             },
             cityId: {
             	required: '此项不能为空'
@@ -48,10 +56,11 @@ define(function(require,exports,module) {
 			}
         },
         submitHandler: function (form) {
-            $.post( url.saveRegister2,
+            $.post( url.domain+'/wap/saveRegisterEmail2',
               {
             	provinceId: $(form).find('select[name=provinceId]').val(),
-            	realName: $(form).find('select[name=realName]').val(),
+            	mobile: $(form).find('input[name=mobile]').val(),
+            	realName: $(form).find('input[name=realName]').val(),
             	provinceName: $(form).find('select[name=provinceId]').find("option:selected").text(),
             	cityId: $(form).find('select[name=cityId]').val(),
             	cityName: $(form).find('select[name=cityId]').find("option:selected").text(),
@@ -61,11 +70,7 @@ define(function(require,exports,module) {
               }
         	, function (data) {
         		if(data.result){
-        			box.ok("注册成功");
-        			setTimeout(function(){
-        	            window.location.href =url.domain+"/wap/login.htm";
-        	        },1000);
-        			
+        			window.location.href =url.registerSuccess;
         		}else{
         			box.ok(data.message);
         		}

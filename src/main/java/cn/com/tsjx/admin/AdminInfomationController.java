@@ -6,6 +6,8 @@ import cn.com.tsjx.auditRecord.entity.AuditRecord;
 import cn.com.tsjx.auditRecord.service.AuditRecordService;
 import cn.com.tsjx.brand.entity.Brand;
 import cn.com.tsjx.brand.service.BrandService;
+import cn.com.tsjx.catagory.entity.Catagory;
+import cn.com.tsjx.catagory.service.CatagoryService;
 import cn.com.tsjx.common.constants.enums.AuditRecordEnum;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
 import cn.com.tsjx.common.constants.enums.NoticeEnum;
@@ -74,6 +76,9 @@ public class AdminInfomationController {
 	@Resource
 	SysoptionService sysoptionService;
 
+	@Resource
+	CatagoryService catagoryService;
+
 	@RequestMapping(value = "/infomation/list/getData")
 	@ResponseBody
 	public Pager<InfomationUser> list(Pager<InfomationUser> pager, InfomationUser infomation, Model model) {
@@ -98,7 +103,7 @@ public class AdminInfomationController {
 		List<Attch> attches = attchService.find(attach);
 		model.addAttribute("beanImg", attches);
 		User user = userService.get(infomation.getUserId());
-		if (user != null ) {
+		if (user != null) {
 			model.addAttribute("user", user);
 		}
 		return "admin/infomation/detail";
@@ -127,12 +132,15 @@ public class AdminInfomationController {
 			}
 		} else {
 			infomation.setStatus(InfomationEnum.status_cg.code());
+			infomation.setModifyBy("1");
 		}
 		infomation.setRemark(null);
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
 			infomation.setPubTime(new Date());
 		}
 		infomationService.update(infomation);
+
+
 
 		//新增审核人记录表
 		User adminUser = (User) httpSession.getAttribute("adminUser");
@@ -174,13 +182,24 @@ public class AdminInfomationController {
 	@ResponseBody
 	public Result<String> update2(@RequestBody InfomationDto infomation, HttpSession httpSession) {
 		infomationService.update(infomation);
-//		User adminUser = (User) httpSession.getAttribute("adminUser");
-//		AuditRecord auditRecord = new AuditRecord();
-//		auditRecord.setAuditType(AuditRecordEnum.audit_type_information.code());
-//		auditRecord.setRemark(remark);
-//		auditRecord.setUserId(adminUser.getId());
-//		auditRecord.setAuditStatus(infomation.getAuditStatus());
-//		auditRecordService.insert(auditRecord);
+		//		User adminUser = (User) httpSession.getAttribute("adminUser");
+		//		AuditRecord auditRecord = new AuditRecord();
+		//		auditRecord.setAuditType(AuditRecordEnum.audit_type_information.code());
+		//		auditRecord.setRemark(remark);
+		//		auditRecord.setUserId(adminUser.getId());
+		//		auditRecord.setAuditStatus(infomation.getAuditStatus());
+		//		auditRecordService.insert(auditRecord);
+		if ("2".equals(infomation.getSellType()) || "3".equals(infomation.getSellType())) {
+			Attch attch = new Attch();
+			attch.setInformationId(infomation.getId());
+			List<Attch> attches = attchService.find(attch);
+			if (attches.size() > 0) {
+				Catagory catagory = catagoryService.get(infomation.getCatagoryId());
+				attch.setAttchUrl(catagory.getCode().replaceAll("/", "%2F"));
+				attch.setId(attches.get(0).getId());
+				attchService.update(attch);
+			}
+		}
 		Result<String> result = new Result<String>();
 		result.setMessage("修改成功！");
 		result.setResult(true);
@@ -267,7 +286,7 @@ public class AdminInfomationController {
 		// 解析并保存费率信息
 		try {
 			InputStream pomInputStream = file.getInputStream();
-			infomationService.bathInfomation(pomInputStream,adminUser.getId());
+			infomationService.bathInfomation(pomInputStream, adminUser.getId());
 		} catch (IOException e) {
 			LOG.error("上传产品模板发生异常", e);
 			result.setMessage("上传产品模板发生异常");

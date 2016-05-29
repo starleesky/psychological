@@ -144,7 +144,7 @@
 	<sql id="page_condition">
 		<where>
 				<if test="entity.brandName != null and entity.brandName != ''">
-					AND BRAND_NAME = #{entity.brandName,jdbcType=VARCHAR}
+					AND BRAND_NAME like CONCAT('%',#{entity.brandName,jdbcType=VARCHAR},'%')
 				</if>
 				<if test="entity.firstLetter != null and entity.firstLetter != ''">
 					AND FIRST_LETTER = #{entity.firstLetter,jdbcType=VARCHAR}

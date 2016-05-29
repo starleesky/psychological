@@ -262,6 +262,7 @@
     angular.sellCount = "${bean.sellCount}";
     angular.remark = "${bean.remark}";
     angular.status = "${bean.status}";
+    angular.sellType = "${bean.sellType}";
 
     seajs.use(['js/controller/common/app', 'js/controller/infomation/detail'], function () {
         angular.bootstrap(document, ['App']);

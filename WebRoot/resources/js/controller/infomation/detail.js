@@ -44,7 +44,7 @@ define(function (require) {
                 $scope.infomation.sellCount = angular.sellCount;
                 $scope.infomation.remark = angular.remark;
                 $scope.infomation.status = angular.status;
-
+                $scope.infomation.sellType = angular.sellType;
                 $scope.openModel = function (data) {
                     $scope.infomation.auditStatus = data;
                     //if(data==1){
@@ -61,8 +61,9 @@ define(function (require) {
                 };
 
                 $scope.editInfomation = function () {
-                    modal = $modal.open({
-                        templateUrl: angular.path + '/resources/templates/infomation/infomation_edit.html',
+                    modal = $moda
+                    l.open({
+                        templateUrl: angular.path + '/resources/templates/infomation/infomation_edit.html?data='+new Date(),
                         controller: 'editNewCtrl',
                         backdrop: 'static',
                         resolve: {
@@ -75,8 +76,8 @@ define(function (require) {
 
                 $scope.editInfomation1 = function () {
                     modal = $modal.open({
-                        templateUrl: angular.path + '/resources/templates/infomation/infomation_edit1.html',
-                        controller: 'editNewCtrl1',
+                        templateUrl: angular.path + '/resources/templates/infomation/infomation_edit1.html?data='+new Date(),
+                        controller: 'editNewCtrl2',
                         backdrop: 'static',
                         resolve: {
                             infomation: function () {
@@ -142,18 +143,18 @@ define(function (require) {
             };
 
         }
-    ]).controller('editNewCtrl1', ['$scope', '$http', '$modalInstance', 'infomation','address',
+    ]).controller('editNewCtrl2', ['$scope', '$http', '$modalInstance', 'infomation','address',
         function ($scope, $http, $modalInstance, infomation,address) {
 
             $scope.infomation = angular.copy(infomation);
             $scope.catagoryBigList = address.getCatagoryList(0);
             $scope.catagoryMidList = address.getCatagoryList($scope.infomation.catagoryBigId);
             $scope.catagoryList = address.getCatagoryList($scope.infomation.catagoryMidId);
-            var flag =true;
-            if($scope.infomation.isNew==1&&$scope.infomation.status!=1){
-                flag=false;
+            $scope.flag =true;
+            if($scope.infomation.isNew==1&&$scope.infomation.status==1){
+                $scope.flag=false;
             }
-            if(flag){
+            if($scope.flag){
                 $scope.brandList = address.getBrandList($scope.infomation.catagoryId);
                 $scope.modelList = address.getModelList($scope.infomation.brandId);
             }
@@ -167,11 +168,11 @@ define(function (require) {
             }, true);
             $scope.$watch('infomation.catagoryId', function () {
                 $scope.infomation.catagoryName = $scope.catagoryList[$scope.infomation.catagoryId];
-                if(flag){
+                if($scope.flag){
                     $scope.brandList = address.getBrandList($scope.infomation.catagoryId);
                 }
             }, true);
-            if(flag){
+            if($scope.flag){
                 $scope.$watch('infomation.brandId', function () {
                     $scope.infomation.brandName = $scope.brandList[$scope.infomation.brandId];
                     $scope.modelList = address.getModelList($scope.infomation.brandId);
@@ -180,7 +181,6 @@ define(function (require) {
                     $scope.infomation.modelName = $scope.modelList[$scope.infomation.modelId];
                 }, true);
             }
-
             $scope.submitting = $scope.submitted = false;
             //更新
             $scope.updateParam = function () {

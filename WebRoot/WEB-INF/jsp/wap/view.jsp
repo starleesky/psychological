@@ -106,7 +106,7 @@ if(location != null && !"".equals(location)) {
         <section class="buy-man-info pro-view-mod">
             <div class="hd">卖家信息</div>
             <div class="bd">
-                <c:if test="${empty company}">
+                <c:if test="${empty company||(not empty company && company.status!=1)}">
                     <div class="pro-view-box user-info">
                     <c:choose>
                     <c:when test="${not empty sellUser.headIcon}">
@@ -152,7 +152,7 @@ if(location != null && !"".equals(location)) {
                         </ul>
                     </div>
                 </c:if>
-                <c:if test="${not empty company}">
+                <c:if test="${not empty company && company.status==1 }">
                     <div class="pro-view-box">
                         <div class="pro-img">
                             <c:if test="${not empty company.createBy}">

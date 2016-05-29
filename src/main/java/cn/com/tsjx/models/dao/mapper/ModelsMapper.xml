@@ -135,7 +135,7 @@
 	<sql id="page_condition">
 		<where>
 				<if test="entity.modelsName != null and entity.modelsName != ''">
-					AND MODELS_NAME = #{entity.modelsName,jdbcType=VARCHAR}
+					AND MODELS_NAME like CONCAT('%',#{entity.modelsName,jdbcType=VARCHAR},'%')
 				</if>
 				<if test="entity.brandId != null">
 					AND BRAND_ID = #{entity.brandId,jdbcType=INTEGER}

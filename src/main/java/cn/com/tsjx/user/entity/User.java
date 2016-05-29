@@ -53,6 +53,17 @@ public class User extends BaseEntity<Long> {
     private String realName;
     // 
     private String weixinAccount;
+    
+    //注册短信验证码
+    String smsCode;
+    
+    public String getSmsCode() {
+        return smsCode;
+    }
+
+    public void setSmsCode(String smsCode) {
+        this.smsCode = smsCode;
+    }
 
     @Override
     public Long getId() {

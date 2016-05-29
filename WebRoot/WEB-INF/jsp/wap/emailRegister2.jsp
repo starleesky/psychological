@@ -41,7 +41,7 @@
                     <div class="ui-form-mod">
                         <label class="ui-form-hd">姓名</label>
                         <div class="ui-form-bd">
-                         <input type="text" id="realName" name="realName"  maxlength="6" placeholder="请输入姓名" value="">
+                         <input type="text" id="realName" name="realName"  maxlength="6"  mleinngth="2" placeholder="请输入姓名" value="">
                         </div>
                     </div>
                     <div class="ui-form-mod">
@@ -106,6 +106,6 @@
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
 var ctx = "${ctx}";
-    require(['module/register2']);
+    require(['module/registerEmail2']);
 </script>
 </body></html>

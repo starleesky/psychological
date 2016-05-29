@@ -36,6 +36,7 @@
 			   or t.mobile = #{userName,jdbcType=VARCHAR}) 
 		       and password = #{password,jdbcType=VARCHAR}
 		       and deleted = #{deleted,jdbcType=VARCHAR}
+		       and IS_ACTIVATE = 'T'
 	</select>
 
     <!-- 删除实体 -->

@@ -3,7 +3,7 @@ define(function(require, exports, module) {
     'use strict';
 
     var $ = require('jquery');
-    var dialog = require('plug/dialog');
+    var dialog = require('plug/dialo/dialogg');
 
     module.exports = {
         valid:function(id){

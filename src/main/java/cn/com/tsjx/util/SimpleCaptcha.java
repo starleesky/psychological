@@ -65,4 +65,23 @@ public class SimpleCaptcha {
         System.out.println(captcha.getAnswer());
         CaptchaServletUtil.writeImage(response, captcha.getImage());
 	}
+	
+	   
+    public static String getSmsCode(HttpServletRequest request, HttpServletResponse response,
+            String mobile){  
+        Random rad=new Random();  
+        
+        String result  = rad.nextInt(1000000) +"";  
+        if(result.length()!=6){  
+            return getSmsCode(request,response,mobile);  
+        }  
+        System.out.println(result);
+        //发短信
+        TaobaioSmsUtil.send(mobile, result);
+        //存session
+        request.getSession().setAttribute("smsCode", result);
+        return result;  
+    }
+    
+    
 }

@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
-    var baseUrl = 'http://www.tangsons.cn/';
-    //var baseUrl = 'http://localhost:8080/';
+    //var baseUrl = 'http://www.tangsons.cn/';
+    var baseUrl = 'http://localhost:8080/';
     //var baseUrl = 'http://192.168.8.121:8080/tsjx';
     if (window.ctx && window.ctx != '') {
         baseUrl = ctx;
@@ -25,6 +25,8 @@ define(function (require, exports, module) {
         saveInfo: baseUrl + '/infomation/save/my',//信息发布
         saveCompany: baseUrl + '/company/save/my',//信息发布
         registerUrl:baseUrl + '/wap/register',//保存注册第一步
+        smsCodeUrl:baseUrl + '/wap/getSmsCode',//获取短信
+        registerMobile:baseUrl + '/wap/registerMobile',//手机注册
         register2Url:baseUrl + '/wap/toRegister2',//注册下一步
         saveRegister2:baseUrl + '/wap/saveRegister2', //保存注册下一步
         registerSuccess:baseUrl + '/wap/register-success',//注册成功

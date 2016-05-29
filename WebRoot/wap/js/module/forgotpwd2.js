@@ -6,60 +6,11 @@ define(function(require,exports,module) {
     var box = require('plug/box');
     var url = require('url');
 
-    Validator.validate('#forgotForm', {
-        rules: {
-            email: {
-                required: true,
-                email:true
-            },
-            captchaCode: {
-                required: true
-            }
-        },
-        messages: {
-        	email: {
-                required: '此项不能为空',
-                email:"请输入正确的邮箱"
-                
-            },
-            captchaCode: {
-                required: '此项不能为空'
-            }
-        },
-        submitHandler: function (form) {          
-            $.post( url.toForgotpwd,
-              {
-            		email: $(form).find('input[name=email]').val(),
-                    captchaCode: $(form).find('input[name=captchaCode]').val()
-            }
-        	, function (data) {
-        		if(data.success){
-        			window.location.href =url.toForgotpwdSuccess;
-        		}else{
-        			box.ok(data.message);
-        		}
-            },'json');
-        },
-        showError:function(elem,msg){
-            box.error(msg,elem);
-        },
-        success:null
-    });
-
-    $("#captchaImage").click(function(){
-		$(this).attr("src",$(this).attr("src")+"?"+Math.random());
-	});
-    
-    $('#jSubmit').on('click',function(){
-       $('#forgotForm').submit();
-    });
-
-
-    Validator.validate('#forgotFormMobile', {
+    Validator.validate('#formMobile', {
         rules: {
             mobile: {
                 required: true,
-                email:true
+                mobile:true
             },
             captchaCode: {
                 required: true
@@ -68,7 +19,7 @@ define(function(require,exports,module) {
         messages: {
         	mobile: {
                 required: '此项不能为空',
-                email:"请输入正确的手机号"
+                mobile:"请输入正确的手机号"
                 
             },
             captchaCode: {
@@ -76,18 +27,18 @@ define(function(require,exports,module) {
             }
         },
         submitHandler: function (form) {          
-            $.post( url.toForgotpwd,
+            $.post( url.domain+'/wap/toForgotpwdBySms.htm',
               {
-            		email: $(form).find('input[name=mobile]').val(),
+            		mobile: $(form).find('input[name=mobile]').val(),
                     captchaCode: $(form).find('input[name=captchaCode]').val()
-            }
-        	, function (data) {
+              }, function (data) {
         		if(data.success){
-        			window.location.href =url.toForgotpwdSuccess;
+        			window.location.href =url.domain+'/wap/login.htm';
         		}else{
         			box.ok(data.message);
         		}
             },'json');
+            
         },
         showError:function(elem,msg){
             box.error(msg,elem);
@@ -96,7 +47,7 @@ define(function(require,exports,module) {
     });
 
     $('#jSubmitMobile').on('click',function(){
-       $('#forgotFormMobile').submit();
+       $('#formMobile').submit();
     });
     
     //短信发送

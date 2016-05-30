@@ -90,8 +90,11 @@
                   	<c:when test="${status == 3 || status == 4  || info.status == 1 }">
                   		<li class="pro-box no-buy">
                   	</c:when>
+                  	<c:when test="${info.status eq 0 && info.modifyBy eq '1'}">
+                  		<li class="pro-box no-buy">
+                  	</c:when>
                   	<c:otherwise>
-                  		<li class="pro-box ">
+                  		<li class="pro-box">
                   	</c:otherwise>
                   </c:choose>
                         <div class="pro-select">

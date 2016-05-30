@@ -81,7 +81,8 @@
 		status,
 		WEIGHT weight,
 		(select h.attch_url  from tsjx_attch h where a.id = h.information_id order by h.create_time limit 0,1) imgUrl,
-		price_unit priceUnit
+		price_unit priceUnit,
+		a.modify_by modifyBy
 		FROM
 	</sql>
 	

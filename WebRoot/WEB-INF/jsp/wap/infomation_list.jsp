@@ -111,6 +111,9 @@
 			                  	<c:when test="${info.status == 1}">
 			                  		<span>审核中</span>
 			                  	</c:when>
+			                  	<c:when test="${info.status eq 0 && info.modifyBy eq '1'}">
+			                  		<span>审核失败</span>
+			                  	</c:when>
 			                  	<c:otherwise>
 			                  		
 			                  	</c:otherwise>

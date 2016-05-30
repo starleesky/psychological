@@ -53,6 +53,7 @@ if(location != null && !"".equals(location)) {
                     <h2 class="pro-name">${bean.brandName}${bean.modelName}</h2>
                     <input type="hidden" id="id" value="${bean.id}">
                     <p class="pro-price"><fmt:formatNumber value="${bean.price}"
+                    									   groupingUsed="false"
                                                            maxFractionDigits="0"/>${bean.priceUnit}</p>
                     <p class="pro-num">汤森信息编号: TS${bean.id}</p>
 

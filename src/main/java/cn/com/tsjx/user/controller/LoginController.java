@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +40,7 @@ import cn.com.tsjx.util.TaobaioSmsUtil;
 @RequestMapping("/wap")
 public class LoginController {
 
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Resource
     public UserService userService;
     @Resource
@@ -59,6 +62,7 @@ public class LoginController {
     public Result<String> loginIn(Model model, String userName, String password, HttpSession httpSession) {
         Result<String> result = new Result<String>();
         result.setResult(false);
+        try {
         if (StringUtil.isTrimBlank(userName)) {
             result.setMessage("用户名不能为空");
             return result;
@@ -82,6 +86,12 @@ public class LoginController {
         model.addAttribute("userId",user.getId());
         result.setResult(true);
         result.setMessage("登录成功");
+        } catch (Exception e) {
+            logger.info("登录异常--------------------------------------");
+            e.printStackTrace();
+            result.setMessage("登录失败，请联系管理员");
+            return result;
+        }
         return result;
     }
 

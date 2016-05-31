@@ -50,9 +50,9 @@
             <div class="pro-search-box">
                 <select name="orderSel">
                  	<option value="">排序</option>
+                    <option value="pub_h">发布时间</option>
                     <option value="price_h">价格从高到低</option>
-	                <option value="price_l">价格从低到高</option>
-	                <option value="pub_h">发布时间</option>
+                    <option value="price_l">价格从低到高</option>
                 </select>
             </div>
              <c:choose>

@@ -51,9 +51,9 @@
         <section class="search-title">
             <a href="javascript:;" class="ui-button   ui-button-white op-button-higSearch">高级搜索</a>
             <select name="orderSel">
+                <option value="pub_h">发布时间</option>
                 <option value="price_h">价格从高到低</option>
                 <option value="price_l">价格从低到高</option>
-                <option value="pub_h">发布时间</option>
             </select>
         </section>
         <c:if test="${empty sessionScope.user.id}">

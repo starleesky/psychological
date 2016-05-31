@@ -61,8 +61,7 @@ define(function (require) {
                 };
 
                 $scope.editInfomation = function () {
-                    modal = $moda
-                    l.open({
+                    modal = $modal.open({
                         templateUrl: angular.path + '/resources/templates/infomation/infomation_edit.html?data='+new Date(),
                         controller: 'editNewCtrl',
                         backdrop: 'static',

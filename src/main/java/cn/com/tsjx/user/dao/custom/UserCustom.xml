@@ -48,4 +48,14 @@
 
         ]]>
 	</update>
+	
+	 <!-- 自动删除未及时激活的注册用户 -->
+	<update id="autoDeteleUser" parameterType="cn.com.tsjx.user.entity.User">
+		<![CDATA[
+		update tsjx_user t 
+			set t.deleted = 'T' 
+		where t.is_activate = 'F'  and t.deleted = 'F'
+				and t.create_time < DATE_SUB(NOW(),INTERVAL 10 MINUTE)
+		]]>
+	</update>
 </mapper>   

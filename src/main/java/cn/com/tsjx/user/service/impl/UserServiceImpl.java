@@ -32,4 +32,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements User
 		userDao.updateMsgAll();
 
 	}
+	
+	@Override
+	public void autoDeteleUser() {
+		userDao.autoDeteleUser();
+	}
 }

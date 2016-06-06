@@ -8,4 +8,6 @@ public interface UserDao extends BaseDao<User, Long> {
     public User getUsersByParam(String userName, String password);
 
     public void updateMsgAll();
+    
+    public void autoDeteleUser();
 }

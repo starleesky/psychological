@@ -25,5 +25,11 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 		Params params = Params.create();
 		this.selectOne(this.getMethodName(), params);
 	}
+	
+	@Override
+	public void autoDeteleUser() {
+		Params param = Params.create();
+    	this.update(this.getMethodName(),param);
+	}
 
 }

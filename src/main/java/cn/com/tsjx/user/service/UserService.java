@@ -21,4 +21,9 @@ public interface UserService extends BaseService<User, Long> {
 	 * 更新所有用户消息状体
 	 */
 	public void updateMsgAll();
+	
+	/**
+	 * 自动删除未及时激活的注册用户
+	 */
+	public void autoDeteleUser();
 }

@@ -174,7 +174,7 @@
                         <label class="ui-form-hd">价格</label>
                        
                         <div class="ui-form-bd">
-                            <input type="text"   name="price" id="price"   placeholder="请输入...">
+                            <input type="text"   name="price" id="price"   placeholder="请输入价格，只能为整数">
                         </div>
                     </div>
                     <div class="ui-form-mod">

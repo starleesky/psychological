@@ -47,7 +47,19 @@ define(function(require,exports,module) {
     });
 
     $('#jSubmitMobile').on('click',function(){
-       $('#formMobile').submit();
+    	$.post( url.domain+'wap/toForgotpwdBySms.htm',
+                	{	
+    				mobile: $("#mobile").val(),
+                    captchaCode: $("#captchaCode").val()
+	                }, function (data) {
+	                	console.log(data)
+		          		if(data.success){
+		          			alert(data.success)
+		          			window.location.href =url.domain+'/wap/login.htm';
+		          		}else{
+		          			box.ok(data.message);
+		          		}
+	                },'json');
     });
     
     //短信发送
@@ -72,7 +84,7 @@ define(function(require,exports,module) {
             $(this).addClass('ui-button-disabled').removeClass('ui-button-blue').text('60秒后重新发送');
             sendMsg($(this),60);
             //发送短信接口请求
-            $.get(url.smsCodeUrl,{mobile:$("#mobile").val()},function(data){
+            $.get(url.domain+"/wap/getpwdSmsCode.htm",{mobile:$("#mobile").val()},function(data){
                 console.log(data);
             })
         }

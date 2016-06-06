@@ -30,29 +30,25 @@
 <div class="page-view">
     <div class="logo">
         <img src="${ctx}/wap/images/logo2.png" />
-        <span>找回密码</span>
+        <span>重置密码</span>
     </div>
     <section class="ui-login">
-        <form action="${ctx}/wap/toForgotpwdBySms.htm" class="ui-form"  method="post">
+        <form action="${ctx}/wap/savepwd.htm" class="ui-form" id="formMobile" method="post">
             <div class="ui-form-mod">
-                <label class="ui-form-hd">手机号码</label>
+                <label class="ui-form-hd">密码</label>
                 <div class="ui-form-bd">
-                    <input type="text" name="mobile" id="mobile" placeholder="请输入手机号码" value="">
+                    <input type="password" name="pwd" id="pwd" placeholder="请输入密码" value="">
                 </div>
             </div>
-            <div class="ui-form-mod">
-                <label class="ui-form-hd">短信验证码</label>
-                <div class="ui-form-bd dx-box">
-                    <input type="text" id="captchaCode" name="captchaCode" placeholder="请输入短信验证码" value="">
-                <span class="ui-button ui-button-blue jSendMsg">获取验证码</span>
+             <div class="ui-form-mod">
+                <label class="ui-form-hd">确认密码</label>
+                <div class="ui-form-bd">
+                    <input type="password" name="repwd" id="repwd" placeholder="请再次输入密码" value="">
                 </div>
             </div>
             <div class="field-submit">
-                <input type="submit" class="ui-button ui-button-submit" id="jSubmitMobile1111" value="下一步">
+                <input type="submit" class="ui-button ui-button-submit" value="提交">
             </div>
-        <div class="field-submit" style="margin-top: 40px;">
-        <a href="${ctx}/wap/forgotpwd.htm"  style="display:block;text-align: center;width: 100%;font-size: 20px;line-height: 30px;color: #fff;" >邮箱找回密码 点击此处</a>
-        </div>
         </form>
     </section>
 </div>
@@ -61,6 +57,6 @@
 <script type="text/javascript" src="${ctx}/wap/js/app.js"></script>
 <script type="text/javascript">
 var ctx = "${ctx}"
-    require(['module/forgotpwd2']);
+     
 </script>
 </body></html>

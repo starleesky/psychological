@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.com.tsjx.common.bean.entity.Entity;
 import cn.com.tsjx.common.enums.Deleted;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
@@ -34,7 +33,6 @@ import cn.com.tsjx.sys.MailService;
 import cn.com.tsjx.user.entity.User;
 import cn.com.tsjx.user.service.UserService;
 import cn.com.tsjx.util.SimpleCaptcha;
-import cn.com.tsjx.util.TaobaioSmsUtil;
 
 @Controller
 @RequestMapping("/wap")
@@ -296,13 +294,44 @@ public class LoginController {
         return jsonResult;
     }
     
-    @ResponseBody
-    @RequestMapping(value = "/toForgotpwdBySms")
-    public JsonResult toForgotpwdBySms(String mobile, String captchaCode, HttpSession httpSession) {
-        JsonResult jsonResult = new JsonResult();
-        jsonResult.setSuccess(false);
-        String smsCode = (String) httpSession.getAttribute("smsCode");
-        if (captchaCode.equals(smsCode)) {
+//    @ResponseBody
+//    @RequestMapping(value = "/toForgotpwdByMobile", method = RequestMethod.POST)
+//    public JsonResult toForgotpwdByMobile(String mobile, String captchaCode, HttpSession httpSession) {
+//        JsonResult jsonResult = new JsonResult();
+//        jsonResult.setSuccess(false);
+//        String verifyCode = (String) httpSession.getAttribute("verifyCode");
+//        if (verifyCode != null && verifyCode.equals(captchaCode.toLowerCase())) {
+//            if (mobile != null) {
+//                User entity = new User();
+//                entity.setMobile(mobile);
+//                entity.setIsActivate("T");
+//                List<User> list = userService.find(entity);
+//                if (list.isEmpty()) {
+//                    jsonResult.setMessage("手机未注册");
+//                    return jsonResult;
+//                }
+//            }else {
+//                jsonResult.setMessage("邮箱不能为空");
+//            }
+//        }else {
+//            jsonResult.setMessage("验证码错误");
+//        }
+//        return jsonResult;
+//    }
+    
+    @RequestMapping("/savepwd")
+    public String savepwd(String pwd, String captchaCode, HttpSession httpSession) {
+        User user = (User) httpSession.getAttribute("user");
+        user.setPassword(Base64.encodeBase64String(pwd.getBytes()));
+        userService.update(user);
+        return "/wap/login";
+    }
+    @RequestMapping(value = "/toForgotpwdBySms",method = RequestMethod.POST)
+    public String toForgotpwdBySms(String mobile, String captchaCode, HttpSession httpSession) {
+        Result<User> jsonResult = new Result<User>();
+        jsonResult.setResult(false);
+        String smsCode = (String) httpSession.getAttribute("pwdSmsCode");
+        if (smsCode.equals(captchaCode)) {
             if (mobile != null) {
                 User entity = new User();
                 entity.setMobile(mobile);
@@ -311,19 +340,21 @@ public class LoginController {
                 List<User> list = userService.find(entity);
                 if (list.isEmpty()) {
                     jsonResult.setMessage("手机号未注册");
-                    return jsonResult;
+                    return "";
                 }
-                String password = list.get(0).getPassword();
-                String returnString  = new String(Base64.decodeBase64(password));
-                //TaobaioSmsUtil.getpwd(mobile, returnString);
-                jsonResult.setSuccess(true);
+                User user = list.get(0);
+                jsonResult.setObject(user);
+                httpSession.setAttribute("user", user);
+                jsonResult.setResult(true);
+                return "/wap/resetpwd";
             }else {
-                jsonResult.setMessage("邮箱不能为空");
+                jsonResult.setMessage("手机号不能为空");
             }
         }else {
             jsonResult.setMessage("验证码错误");
         }
-        return jsonResult;
+        
+        return "/wap/resetpwd";
     }
     
 
@@ -368,6 +399,19 @@ public class LoginController {
         SimpleCaptcha.getSmsCode(request, response, mobile);
     }
  
+    
+    /**
+     * 获取手机找回密码验证码
+     * 
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/getpwdSmsCode")
+    public void getpwdSmsCode(String mobile,HttpServletRequest request, HttpServletResponse response) {
+        SimpleCaptcha.getPwdSmsCode(request, response, mobile);
+    }
+    
+    
     @RequestMapping(value = "/terms-conditions")
     public String termsConditions() {
         return "/wap/terms-conditions"; 

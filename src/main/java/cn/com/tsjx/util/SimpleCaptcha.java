@@ -83,5 +83,20 @@ public class SimpleCaptcha {
         return result;  
     }
     
+    public static String getPwdSmsCode(HttpServletRequest request, HttpServletResponse response,
+            String mobile){  
+        Random rad=new Random();  
+        
+        String result  = rad.nextInt(1000000) +"";  
+        if(result.length()!=6){  
+            return getPwdSmsCode(request,response,mobile);  
+        }  
+        System.out.println(result);
+        //发短信
+        TaobaioSmsUtil.getpwd(mobile, result);
+        //存session
+        request.getSession().setAttribute("pwdSmsCode", result);
+        return result;  
+    }
     
 }

@@ -160,7 +160,8 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     Validator.validate('#informationFrom', {
         rules: {
             price: {
-                required: true
+                required: true,
+                digits:true
             },
             remark: {
                 maxlength: 140
@@ -168,7 +169,8 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         },
         messages: {
             price: {
-                required: '价格不能为空'
+                required: '价格不能为空',
+                digits:'价格必须是整数'
             },
             remark: {
                 maxlength: '附言不能大于140个字'

@@ -162,7 +162,7 @@ define(function (require) {
                 $scope.catagoryMidList = address.getCatagoryList($scope.infomation.catagoryBigId);
             }, true);
             $scope.$watch('infomation.catagoryMidId', function () {
-                $scope.infomation.catagoryMidName = $scope.catagoryBigList[$scope.infomation.catagoryMidId];
+                $scope.infomation.catagoryMidName = $scope.catagoryMidList[$scope.infomation.catagoryMidId];
                 $scope.catagoryList = address.getCatagoryList($scope.infomation.catagoryMidId);
             }, true);
             $scope.$watch('infomation.catagoryId', function () {

@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="ui-form-mod">
-                        <label class="ui-form-hd"><input type="checkbox" name = "isAgree" /> 同意条款<em>*</em> </label>
+                        <label class="ui-form-hd"><input type="checkbox" checked="checked" name = "isAgree" /> 同意条款<em>*</em> </label>
                     </div>
                 </fieldset>
             </div>

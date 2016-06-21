@@ -46,6 +46,7 @@ define(['jquery','plug/ajax','url','plug/box','plug/touch','plug/scrollIcon'],fu
     		box.tips(data.message);
         },'json');
     });
+    $("#linkuser").click(function(){box.tips("先登录")});
     
 
 	   /* function show() {

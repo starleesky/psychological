@@ -162,7 +162,7 @@ if(location != null && !"".equals(location)) {
                         </div>
                         <ul>
                             <li class="w100">所属公司：${company.companyName}</li>
-                            <li class="w100">联系电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li>
+                             <c:if test="${sessionScope.user.id != null}"><li class="w100">联系电话：<a href="tel:${sellUser.mobile}">${sellUser.mobile}</a></li></c:if>
                             <li class="w100">公司地址：${company.address}</li>
                         </ul>
                     </div>
@@ -176,7 +176,10 @@ if(location != null && !"".equals(location)) {
             </div>
         </section>
          <section class="page-view-btn">
-            <a href="javascript:;" class="ui-button ui-button-blue">库存情况(${cnt_sj})</a>            <a href="tel:${sellUser.mobile}" class="ui-button ui-button-submit">联系卖家</a>
+            <a href="javascript:;" class="ui-button ui-button-blue">库存情况(${cnt_sj})</a>          
+            <a <c:if test="${sessionScope.user.id != null}"> href="tel:${sellUser.mobile}" </c:if>
+            <c:if test="${sessionScope.user.id == null}"> id="linkuser" </c:if>
+            class="ui-button ui-button-submit">联系卖家</a>
         </section>
 
     </div>

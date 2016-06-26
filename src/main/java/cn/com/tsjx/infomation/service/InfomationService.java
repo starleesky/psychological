@@ -58,4 +58,11 @@ public interface InfomationService extends BaseService<Infomation, Long> {
      * 自动下架定时任务
      */
     public void autoDown();
+
+    /**
+     * 获取信息的
+     * @param infomationId
+     * @return
+     */
+    public Infomation getPublicTimeAndVaildTime(Long infomationId,String status);
 }

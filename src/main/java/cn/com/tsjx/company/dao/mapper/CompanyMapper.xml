@@ -225,7 +225,7 @@
 	<sql id="page_condition">
 		<where>
 				<if test="entity.companyName != null and entity.companyName != ''">
-					AND c.COMPANY_NAME = #{entity.companyName,jdbcType=VARCHAR}
+					AND c.COMPANY_NAME  like CONCAT('%',#{entity.companyName,jdbcType=VARCHAR},'%')
 				</if>
 				<if test="entity.telephone != null and entity.telephone != ''">
 					AND c.TELEPHONE = #{entity.telephone,jdbcType=VARCHAR}

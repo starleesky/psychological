@@ -1,16 +1,5 @@
 package cn.com.tsjx.infomation.service.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import cn.com.tsjx.attch.entity.Attch;
 import cn.com.tsjx.attch.service.AttchService;
 import cn.com.tsjx.brand.entity.Brand;
@@ -18,9 +7,18 @@ import cn.com.tsjx.brand.service.BrandService;
 import cn.com.tsjx.catagory.entity.Catagory;
 import cn.com.tsjx.catagory.service.CatagoryService;
 import cn.com.tsjx.common.constants.enums.InfomationEnum;
+import cn.com.tsjx.common.dao.BaseDao;
+import cn.com.tsjx.common.service.BaseServiceImpl;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.web.model.Pager;
+import cn.com.tsjx.common.web.model.Params;
+import cn.com.tsjx.infomation.dao.InfomationDao;
+import cn.com.tsjx.infomation.entity.Infomation;
+import cn.com.tsjx.infomation.entity.InfomationDto;
+import cn.com.tsjx.infomation.service.InfomationService;
 import cn.com.tsjx.models.entity.Models;
 import cn.com.tsjx.models.service.ModelsService;
+import cn.com.tsjx.user.entity.User;
 import com.qiniu.UploadDemo;
 import com.qiniu.WaterSet;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -32,17 +30,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import cn.com.tsjx.common.dao.BaseDao;
-import cn.com.tsjx.common.service.BaseServiceImpl;
-import cn.com.tsjx.common.web.model.Pager;
-import cn.com.tsjx.common.web.model.Params;
-import cn.com.tsjx.infomation.dao.InfomationDao;
-import cn.com.tsjx.infomation.entity.Infomation;
-import cn.com.tsjx.infomation.entity.InfomationDto;
-import cn.com.tsjx.infomation.service.InfomationService;
-import cn.com.tsjx.user.entity.User;
 import org.springframework.util.StringUtils;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Service("infomationService")
 public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> implements InfomationService {
@@ -274,5 +273,16 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 
 	public void autoDown() {
 		infomationDao.autoDown();
+	}
+
+	@Override public Infomation getPublicTimeAndVaildTime(Long infomationId, String status) {
+		Infomation infomation = infomationDao.get(infomationId);
+		Calendar now = Calendar.getInstance();
+		now.setTime(infomation.getPubTime());
+		now.add(Calendar.DAY_OF_MONTH, 30);
+		if (now.getTime().getTime() > new Date().getTime()) {
+			return infomation;
+		}
+		return infomation;
 	}
 }

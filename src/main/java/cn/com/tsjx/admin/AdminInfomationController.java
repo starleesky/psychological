@@ -116,6 +116,7 @@ public class AdminInfomationController {
 		String remark = infomation.getRemark();
 		if (AuditRecordEnum.audit_status_success.code().equals(infomation.getAuditStatus())) {
 			infomation.setStatus(InfomationEnum.status_sj.code());
+
 			//如果是新增品牌型号，添加到基础库
 			if ("1".equals(infomation.getIsNew())) {
 				Brand brand = new Brand();
@@ -139,8 +140,6 @@ public class AdminInfomationController {
 			infomation.setPubTime(new Date());
 		}
 		infomationService.update(infomation);
-
-
 
 		//新增审核人记录表
 		User adminUser = (User) httpSession.getAttribute("adminUser");
@@ -214,6 +213,11 @@ public class AdminInfomationController {
 		infomation.setId(id);
 		infomation.setStatus(status);
 		infomation.setIsTop(top);
+		if (InfomationEnum.status_sj.code().equals(status)) {
+			Infomation publicTimeAndVaildTime = infomationService.getPublicTimeAndVaildTime(infomation.getId(), status);
+			infomation.setPubTime(publicTimeAndVaildTime.getPubTime());
+			infomation.setValidTime(publicTimeAndVaildTime.getValidTime());
+		}
 		infomationService.update(infomation);
 
 		if (id != null) {
@@ -225,6 +229,31 @@ public class AdminInfomationController {
 		List<Attch> attches = attchService.find(attach);
 		model.addAttribute("beanImg", attches);
 		return "admin/infomation/detail";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/infomation/inputs", method = RequestMethod.GET)
+	public Result<String> inputStatus(String ids, String status, String top, Model model) {
+
+		Infomation infomation = new Infomation();
+		String[] split = ids.split(",");
+		for (String s : split) {
+			infomation.setId(Long.parseLong(s));
+			infomation.setStatus(status);
+			infomation.setIsTop(top);
+			if (InfomationEnum.status_sj.code().equals(status)) {
+				Infomation publicTimeAndVaildTime = infomationService
+						.getPublicTimeAndVaildTime(infomation.getId(), status);
+				infomation.setPubTime(publicTimeAndVaildTime.getPubTime());
+				infomation.setValidTime(publicTimeAndVaildTime.getValidTime());
+			}
+			infomationService.update(infomation);
+		}
+
+		Result<String> result = new Result<String>();
+		result.setMessage("修改成功！");
+		result.setResult(true);
+		return result;
 	}
 
 	@ResponseBody

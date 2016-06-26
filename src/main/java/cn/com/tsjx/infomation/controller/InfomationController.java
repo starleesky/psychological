@@ -772,7 +772,9 @@ public class InfomationController {
 		Date curDate = new Date();
 		infomation.setStatus(InfomationEnum.status_sj.code());
 		infomation.setModifyTime(curDate);
-
+		Infomation publicTimeAndVaildTime = infomationService.getPublicTimeAndVaildTime(infomation.getId(), "");
+		infomation.setPubTime(publicTimeAndVaildTime.getPubTime());
+		infomation.setValidTime(publicTimeAndVaildTime.getValidTime());
 		infomationService.update(infomation);
 
 		result.setMessage("操作成功");

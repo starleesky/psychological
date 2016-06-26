@@ -52,6 +52,8 @@
                     <button class="btn btn-primary" ng-click="auditTypeFunc(0)">关闭自动审核</button>
                 </div>
             </c:if>
+
+
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" class="form-control" datepicker-popup is-open="list.startopened"
@@ -92,8 +94,8 @@
                     <option value="">认证状态</option>
                     <option value="1">待审核</option>
                     <option value="2">发布</option>
-                    <option value="3">下架</option>
-                    <option value="4">已售</option>
+                    <option value="3">已售</option>
+                    <option value="4">下架</option>
                     <option value="0">草稿箱</option>
                 </select>
             </div>
@@ -114,6 +116,12 @@
             </div>
 
         </form>
+        <div class="form-group">
+            <div class="form-group pull-left">
+                <button class="btn btn-primary" ng-click="batchOperate(2)">批量上架</button>
+                <button class="btn btn-primary" ng-click="batchOperate(4)">批量下架</button>
+            </div>
+            </div>
         <!-- </div> -->
     </div>
 </div>
@@ -122,6 +130,7 @@
     <table class="table table-bordered">
         <thead>
         <tr>
+            <th>-</th>
             <th>编号</th>
             <th>用户姓名</th>
             <th>产品大类</th>
@@ -139,6 +148,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="c in list.data.items">
+            <th><input data-ng-model="chk" type="checkbox" data-ng-click="check(c.id,chk)"/></th>
             <td ng-bind="c.id"></td>
             <td ng-bind="c.userName"></td>
             <td ng-bind="c.catagoryBigName"></td>

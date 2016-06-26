@@ -1,4 +1,4 @@
-define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod','plug/uploader/uploader-list','plug/imgLoading','plug/scrollIcon','plug/selectPro'], function ($, url, ajax, box, Validator,Uploader,imgLoading,scrollIcon) {
+define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod', 'plug/uploader/uploader-list', 'plug/imgLoading', 'plug/scrollIcon', 'plug/selectPro'], function ($, url, ajax, box, Validator, Uploader, imgLoading, scrollIcon) {
     scrollIcon();
 
     var oBigGoodsCatagory = $(".bigGoodsCatagory");
@@ -64,7 +64,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         $.getJSON(url.listBrand, {catagoryId: n}, function (data) {
             var oBrand_html;
             $.each(data.object, function (i, data) {
-                oBrand_html += "<option value='" + data.id + "'>" +data.firstLetter +" "+ data.brandName + "</option>";
+                oBrand_html += "<option value='" + data.id + "'>" + data.firstLetter + " " + data.brandName + "</option>";
             });
             oBrand.html(oBrand_html);
             getModels();
@@ -123,37 +123,37 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     };
 
 
-    var initPriceUnit = function() {
-    	var sellType = $('select[name=sellType]').val();
-    	initPriceUnitOpt(sellType);
+    var initPriceUnit = function () {
+        var sellType = $('select[name=sellType]').val();
+        initPriceUnitOpt(sellType);
     }
-    
-    var initPriceUnitOpt = function(sellType) {
-    	var unitOptHtml = "";
-        if(sellType == '0') {	//出售
-        	unitOptHtml = "<option value='元'>元</option>";
-        }else if(sellType == '1') {	//租赁
-        	unitOptHtml = "<option value='元/天'>元/天</option><option value='元/月'>元/月</option>"
-        				 +"<option value='元/小时'>元/小时</option><option value='元/亩'>元/亩</option>"
-        				 +"<option value='元/吨'>元/吨</option><option value='元/立方'>元/立方</option>"
-        				 +"<option value='元/公里'>元/公里</option>"
-        }else if(sellType == '2') {	//求购
-        	unitOptHtml = "<option value='元左右'>元左右</option>";
-        }else if(sellType == '3') {	//求租
-        	unitOptHtml = "<option value='元/天'>元/天</option><option value='元/月'>元/月</option>"
-				 +"<option value='元/小时'>元/小时</option><option value='元/亩'>元/亩</option>"
-				 +"<option value='元/吨'>元/吨</option><option value='元/立方'>元/立方</option>"
-				 +"<option value='元/公里'>元/公里</option>"
+
+    var initPriceUnitOpt = function (sellType) {
+        var unitOptHtml = "";
+        if (sellType == '0') {	//出售
+            unitOptHtml = "<option value='元'>元</option>";
+        } else if (sellType == '1') {	//租赁
+            unitOptHtml = "<option value='元/天'>元/天</option><option value='元/月'>元/月</option>"
+                + "<option value='元/小时'>元/小时</option><option value='元/亩'>元/亩</option>"
+                + "<option value='元/吨'>元/吨</option><option value='元/立方'>元/立方</option>"
+                + "<option value='元/公里'>元/公里</option>"
+        } else if (sellType == '2') {	//求购
+            unitOptHtml = "<option value='元左右'>元左右</option>";
+        } else if (sellType == '3') {	//求租
+            unitOptHtml = "<option value='元/天'>元/天</option><option value='元/月'>元/月</option>"
+                + "<option value='元/小时'>元/小时</option><option value='元/亩'>元/亩</option>"
+                + "<option value='元/吨'>元/吨</option><option value='元/立方'>元/立方</option>"
+                + "<option value='元/公里'>元/公里</option>"
         }
         $("select[name='priceUnitSel']").html(unitOptHtml);
     }
-    
+
     //初始省市
     getProvice();
-    
+
     //初始化价格单位
     initPriceUnit();
-    
+
 
     var status = 0;
     //信息提交
@@ -161,7 +161,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         rules: {
             price: {
                 required: true,
-                digits:true
+                digits: true
             },
             remark: {
                 maxlength: 140
@@ -170,7 +170,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         messages: {
             price: {
                 required: '价格不能为空',
-                digits:'价格必须是整数'
+                digits: '价格必须是整数'
             },
             remark: {
                 maxlength: '附言不能大于140个字'
@@ -209,16 +209,16 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                     serialNum: $(form).find('input[name=serialNum]').val(),
                     stockCount: $(form).find('input[name=stockCount]').val(),
                     priceUnit: $(form).find('select[name=priceUnitSel]').val(),
-                    imgUrl:array,
-                    status:status
+                    imgUrl: array,
+                    status: status
                 },
                 function (data) {
-                   var str= JSON.parse(data);
-                    submitIng=false;
+                    var str = JSON.parse(data);
+                    submitIng = false;
                     if (str.result) {
-                        $('#saving_product').length>0? $('#saving_product').animate({'width':'100%'},1000):box.ok(data.msg);
-                        $('#redirecting').length>0?$('#redirecting').text('Redirecting...'):box.ok(data.msg);
-                        window.location.href = ctx+url.infoList+"?status=0";
+                        $('#saving_product').length > 0 ? $('#saving_product').animate({'width': '100%'}, 1000) : box.ok(data.msg);
+                        $('#redirecting').length > 0 ? $('#redirecting').text('Redirecting...') : box.ok(data.msg);
+                        window.location.href = ctx + url.infoList + "?status=0";
 
                     } else {
                         box.error(str.message);
@@ -227,31 +227,30 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 });
         },
         showError: function (elem, msg) {
-            submitIng=false;
+            submitIng = false;
             box.error(msg, elem);
         },
         success: null
     });
 
-    var saveSubmit = function(){
+    var saveSubmit = function () {
         var fixHtml = '<div class="fixed text-align-center white-text" style="position: fixed;top:100%; height: 100%; left:0; height:auto; bottom:0; width:100%; background:rgba(224,80,64,0.95)" id="saving_product_frame">';
-            fixHtml += '<h1 style="margin:100px 40px 0; line-height:36px;text-align:center;color: #f0f0f0;" class="white-text" id="redirecting">正在保存...</h1>';
-            fixHtml += '<div style="height:8px; background:rgba(17,0,0,0.5); margin:40px ">';
-            fixHtml += '<div style="height:8px; background:rgba(17,0,0,0.5); width:0%" id="saving_product"></div></div> ';
-            fixHtml += '<div class="font-small" style="text-align:center;font-size: 14px;overflow: hidden;color: #f0f0f0;">设备保存后，我们将尽快审核.</div></div>';
+        fixHtml += '<h1 style="margin:100px 40px 0; line-height:36px;text-align:center;color: #f0f0f0;" class="white-text" id="redirecting">正在保存...</h1>';
+        fixHtml += '<div style="height:8px; background:rgba(17,0,0,0.5); margin:40px ">';
+        fixHtml += '<div style="height:8px; background:rgba(17,0,0,0.5); width:0%" id="saving_product"></div></div> ';
+        fixHtml += '<div class="font-small" style="text-align:center;font-size: 14px;overflow: hidden;color: #f0f0f0;">设备保存后，我们将尽快审核.</div></div>';
         $('body').append(fixHtml);
-        $('#saving_product_frame').animate({'top':'0'},500, function(){
-            $('#saving_product').animate({'width':'80%'},5000);
+        $('#saving_product_frame').animate({'top': '0'}, 500, function () {
+            $('#saving_product').animate({'width': '80%'}, 5000);
         });
     };
 
 
-
-    var submitIng=false;
-    var array="";
+    var submitIng = false;
+    var array = "";
     $("#jSave").click(function () {
-        if(submitIng){
-           /* box.error('上传中，不能重复提交！');*/
+        if (submitIng) {
+            /* box.error('上传中，不能重复提交！');*/
             saveSubmit();
             return;
         }
@@ -261,11 +260,16 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
             box.error('型号未选择');
             return;
         }
-         var  _text = $("input[name^='_UPLOAD_']");
-        for(var i=0;i<_text.length;i++){
-            array+=_text[i].value+",";
+        var _text = $("input[name^='_UPLOAD_']");
+        for (var i = 0; i < _text.length; i++) {
+            array += _text[i].value + ",";
         }
-        submitIng=true;
+        var sellType = $('select[name=sellType]').val();
+        if (_text.length < 2 && (sellType == 0 || sellType == 1)) {
+            box.error('需要上传3张以上的照片');
+            return;
+        }
+        submitIng = true;
         $('#informationFrom').submit();
 
     });
@@ -273,34 +277,34 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
     $("#jSubmit").click(function () {
         //alert('提交之前请先保存');
         status = 1;
-        if(submitIng){
+        if (submitIng) {
             saveSubmit();
             return;
         }
-         var   _text = $("input[name^='_UPLOAD_']");
-        for(var i=0;i<_text.length;i++){
-            array+=_text[i].value+",";
+        var _text = $("input[name^='_UPLOAD_']");
+        for (var i = 0; i < _text.length; i++) {
+            array += _text[i].value + ",";
         }
-        submitIng=true;
+        submitIng = true;
         $('#informationFrom').submit();
     });
 
 
     //图片管理
     var clickHandlers = {
-        deleteImgBtn: function(e) {
+        deleteImgBtn: function (e) {
             clickHandlers.changeInputName($('.ui-button-upload'));
         },
-        changeInputName:function($obj){
-            $.each($obj.find('input[type=hidden]'),function(i){
-                $(this).attr('name','_UPLOAD_'+i);
+        changeInputName: function ($obj) {
+            $.each($obj.find('input[type=hidden]'), function (i) {
+                $(this).attr('name', '_UPLOAD_' + i);
             });
         }
     };
 
     //file uploader buton installations  失败：-1 初始值0 正在上传1 成功2
     var uploadArray = [];
-    $('[node-type="uploadButton"]').each(function(i, el) {
+    $('[node-type="uploadButton"]').each(function (i, el) {
         uploadArray[i] = 0;
         var $el = $(el),
             fieldName = $el.data('name');
@@ -309,24 +313,23 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
 
         // initialize file upload component
         var uploader = Uploader(el, {
-            endpoint:  url.compressUploadUrl
+            endpoint: url.compressUploadUrl
         });
 
 
-
-        uploader.on('fileselect', function(e) {
+        uploader.on('fileselect', function (e) {
             var html = '<div class="progressbar"><div></div></div>';
             $el.append(html);
             uploadArray[i] = 1;
         });
 
-        uploader.on('uploadprogress', function(e) {
+        uploader.on('uploadprogress', function (e) {
             var percent = Math.min(e.percentLoaded, 99) + '%';
             $el.find('.progressbar div').css('width', percent).text(percent);
         });
 
-        uploader.on('uploadcomplete', function(e) {
-            var res = e.data || {},fieldInput = $('<input type="hidden" />');
+        uploader.on('uploadcomplete', function (e) {
+            var res = e.data || {}, fieldInput = $('<input type="hidden" />');
             if (res.code == "1") {
                 uploadArray[i] = 2;
                 fieldInput.val(res.url);
@@ -334,7 +337,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 clickHandlers.changeInputName($el);
             } else {
                 var isFirst = true;
-                var timer = setInterval(function() {
+                var timer = setInterval(function () {
                     var eImg = $el.next().find('.up-img-box ').last();
                     if (isFirst && eImg.length > 0) {
                         box.tips(res.msg || '图片上传失败');
@@ -345,7 +348,7 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
                 }, 100);
             }
         });
-        uploader.on('uploaderror', function(e) {
+        uploader.on('uploaderror', function (e) {
             uploadArray[i] = -1;
             box.tips('图片上传失败!');
         });
@@ -361,11 +364,11 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
         }
     }
 
-    $('body').on('click','.jAddProType',function(){
-        if($(this).hasClass('open')){
+    $('body').on('click', '.jAddProType', function () {
+        if ($(this).hasClass('open')) {
             $('.desc-child').addClass('isHide');
             $(this).removeClass('open');
-        }else{
+        } else {
             $('.desc-child').removeClass('isHide');
             $(this).addClass('open');
         }
@@ -373,30 +376,31 @@ define(['jquery', 'url', 'plug/ajax', 'plug/box', 'plug/validate/validateMethod'
 
 
     //计算有效期时间
-    var GetDateStr = function (AddDayCount){
+    var GetDateStr = function (AddDayCount) {
         var dd = new Date();
-        dd.setDate(dd.getDate()+parseInt(AddDayCount));//获取AddDayCount天后的日期
+        dd.setDate(dd.getDate() + parseInt(AddDayCount));//获取AddDayCount天后的日期
         var y = dd.getFullYear();
-        var m = (dd.getMonth()+1)<10?"0"+(dd.getMonth()+1):(dd.getMonth()+1);//获取当前月份的日期，不足10补0
-        var d = dd.getDate()<10?"0"+dd.getDate():dd.getDate(); //获取当前几号，不足10补0
-        return y+"年"+m+"月"+d+"日";
+        var m = (dd.getMonth() + 1) < 10 ? "0" + (dd.getMonth() + 1) : (dd.getMonth() + 1);//获取当前月份的日期，不足10补0
+        var d = dd.getDate() < 10 ? "0" + dd.getDate() : dd.getDate(); //获取当前几号，不足10补0
+        return y + "年" + m + "月" + d + "日";
     };
-    var $date = $('.jDate'),$select = $('select[name=validTime]');
-    if($select.length){
+    var $date = $('.jDate'), $select = $('select[name=validTime]');
+    if ($select.length) {
         $date.html(GetDateStr($select.val()));
-    };
-    $('body').on('change','select[name=validTime]',function(){
+    }
+    ;
+    $('body').on('change', 'select[name=validTime]', function () {
         var val = $(this).val();
         $date.html(GetDateStr(val));
 
     });
-    
+
     //根据不同的销售方式，确定价格的单位
-    $('body').on('change','select[name=sellType]',function(){
+    $('body').on('change', 'select[name=sellType]', function () {
         var val = $(this).val();
         initPriceUnitOpt(val);
     });
-    
-    
+
+
 })
 ;

@@ -402,25 +402,26 @@
 	<sql id="page_condition">
 		<where>
 				<if test="entity.id != null">
-					AND i.id = #{entity.id,jdbcType=INTEGER}
+					AND i.id like CONCAT('%',#{entity.id,jdbcType=INTEGER},'%')
 				</if>
 				<if test="entity.catagoryBigId != null">
 					AND i.CATAGORY_BIG_ID = #{entity.catagoryBigId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.catagoryBigName != null and entity.catagoryBigName != ''">
-					AND i.CATAGORY_BIG_NAME = #{entity.catagoryBigName,jdbcType=VARCHAR}
+					AND i.CATAGORY_BIG_NAME
+					like CONCAT('%',#{entity.catagoryBigName,jdbcType=VARCHAR},'%')
 				</if>
 				<if test="entity.catagoryMidId != null">
 					AND i.CATAGORY_MID_ID = #{entity.catagoryMidId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.catagoryMidName != null and entity.catagoryMidName != ''">
-					AND i.CATAGORY_MID_NAME = #{entity.catagoryMidName,jdbcType=VARCHAR}
+					AND i.CATAGORY_MID_NAME like CONCAT('%',#{entity.catagoryMidName,jdbcType=VARCHAR},'%')
 				</if>
 				<if test="entity.catagoryId != null">
 					AND i.CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.catagoryName != null and entity.catagoryName != ''">
-					AND i.CATAGORY_NAME = #{entity.catagoryName,jdbcType=VARCHAR}
+					AND i.CATAGORY_NAME like CONCAT('%',#{entity.catagoryName,jdbcType=VARCHAR},'%')
 				</if>
 				<if test="entity.brandId != null">
 					AND i.BRAND_ID = #{entity.brandId,jdbcType=INTEGER}

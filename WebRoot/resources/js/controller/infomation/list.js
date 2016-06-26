@@ -22,6 +22,7 @@ define(function (require) {
 
                 var param = $scope.param = {};
 
+
                 var modal = null, index = null;
                 $scope.edit = function (rw, $index) {
                     $scope.param = rw;
@@ -106,6 +107,45 @@ define(function (require) {
                             })
                             .error(function () {
                                 alert("开启失败，请重试！");
+                            });
+                    }
+                }
+
+                $scope.chk = false;
+                var id ="";
+                $scope.check= function(val,chk){
+                    if(chk == true){
+                        id += val+",";
+                    }
+                };
+
+
+                //批量操作
+                $scope.batchOperate = function (type) {
+
+                    if(id==""){
+                        alert("请选择批量操作的信息！");
+                        return;
+                    }
+                    var title = "";
+                    if(type==2){
+                        title = "批量上架";
+                    }else{
+                        title = "批量下架";
+                    }
+
+                    if (confirm("确认"+title+"？")) {
+                        $http.get(angular.path + "/admin/infomation/inputs?ids="+id+"&status=" + type)
+                            .success(function (resp) {
+                                if (resp.result) {
+                                    alert(title+"成功！");
+                                    window.location.href = angular.path + '/admin/infomation/list';
+                                } else {
+                                    alert("批量操作失败，请重试！");
+                                }
+                            })
+                            .error(function () {
+                                alert("批量操作失败，请重试！");
                             });
                     }
                 }

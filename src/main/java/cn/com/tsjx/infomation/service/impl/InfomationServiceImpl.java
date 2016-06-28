@@ -279,10 +279,12 @@ public class InfomationServiceImpl extends BaseServiceImpl<Infomation, Long> imp
 		Infomation infomation = infomationDao.get(infomationId);
 		Calendar now = Calendar.getInstance();
 		now.setTime(infomation.getPubTime());
-		now.add(Calendar.DAY_OF_MONTH, 30);
+
 		if (now.getTime().getTime() > new Date().getTime()) {
 			return infomation;
 		}
+		now.add(Calendar.DAY_OF_MONTH, 30);
+		infomation.setPubTime(now.getTime());
 		return infomation;
 	}
 }

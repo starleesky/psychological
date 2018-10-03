@@ -7,5 +7,5 @@ target/
 .idea
 WebRoot/WEB-INF/classes
 /logs/
-jdbc.properties
+src/main/resources/jdbc.properties
 *.DS_Store

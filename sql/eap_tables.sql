@@ -105,7 +105,7 @@ create table eap_answer
 
 alter table eap_answer comment '答案表';
 
-CREATE TABLE `eap_sysOption` (
+CREATE TABLE `eap_sys_option` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` VARCHAR(45) NULL COMMENT '描述',
   `code` VARCHAR(45) NULL COMMENT '编码',
@@ -113,4 +113,4 @@ CREATE TABLE `eap_sysOption` (
   `default_val` VARCHAR(45) NULL COMMENT '默认值',
   `deleted` VARCHAR(45) NULL COMMENT '是否删除',
   PRIMARY KEY (`id`));
-alter table eap_sysOption comment '系统配置表';
+alter table eap_sys_option comment '系统配置表';

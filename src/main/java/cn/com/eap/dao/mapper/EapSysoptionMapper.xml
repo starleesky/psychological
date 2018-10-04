@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.eap.dao.impl.EapSysoptionDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.eap.entity.EapSysoption">
+		<![CDATA[
+		INSERT INTO TSJX_EAP_SYSOPTION (
+		) VALUES (
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.eap.entity.EapSysoption">
+		UPDATE TSJX_EAP_SYSOPTION
+		<set>
+		</set>
+		WHERE ID = #{id,jdbcType=}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.eap.entity.EapSysoption">
+		<![CDATA[
+		DELETE FROM TSJX_EAP_SYSOPTION WHERE ID = #{id,jdbcType=}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.eap.entity.EapSysoption">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_SYSOPTION
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.eap.entity.EapSysoption" resultType="cn.com.eap.entity.EapSysoption">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_SYSOPTION
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.eap.entity.EapSysoption">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_SYSOPTION
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_EAP_SYSOPTION
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.eap.entity.EapSysoption">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_SYSOPTION
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.eap.dao.impl.EapUserDaoImpl">
+
+	<!-- 插入实体 -->
+	<insert id="insert" parameterType="cn.com.eap.entity.EapUser">
+		<![CDATA[
+		INSERT INTO TSJX_EAP_USER (
+		   	ID,
+		   	USER_NAME,
+		   	USER_PHONE,
+		   	COMPANY,
+		   	SEX,
+		   	AGE,
+		   	WECHAT_ID,
+		   	SUBSCRIBE_COUNT,
+		   	EVALUATING_COUNT,
+		   	SRC,
+		   	CREATE_TIME,
+		   	CREATE_BY,
+		   	MODIFY_TIME,
+		   	MODIFY_BY,
+		   	DELETED
+		) VALUES (
+		   	#{id,jdbcType=INTEGER},
+		   	#{userName,jdbcType=VARCHAR},
+		   	#{userPhone,jdbcType=VARCHAR},
+		   	#{company,jdbcType=VARCHAR},
+		   	#{sex,jdbcType=VARCHAR},
+		   	#{age,jdbcType=VARCHAR},
+		   	#{wechatId,jdbcType=VARCHAR},
+		   	#{subscribeCount,jdbcType=INTEGER},
+		   	#{evaluatingCount,jdbcType=INTEGER},
+		   	#{src,jdbcType=VARCHAR},
+		   	#{createTime,jdbcType=TIMESTAMP},
+		   	#{createBy,jdbcType=VARCHAR},
+		   	#{modifyTime,jdbcType=TIMESTAMP},
+		   	#{modifyBy,jdbcType=VARCHAR},
+		   	#{deleted,jdbcType=VARCHAR}
+		)
+		]]>
+		<selectKey databaseId="mysql" keyProperty="id" order="AFTER" resultType="long">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT SEQ_TSJX_EAP_USER.nextval as id FROM dual
+			]]>
+		</selectKey>
+	</insert>
+
+	<!-- 更新实体 -->
+	<update id="update" parameterType="cn.com.eap.entity.EapUser">
+		UPDATE TSJX_EAP_USER
+		<set>
+			<if test="userName != null">
+				USER_NAME = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="userPhone != null">
+				USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				COMPANY = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="age != null">
+				AGE = #{age,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatId != null">
+				WECHAT_ID = #{wechatId,jdbcType=VARCHAR},
+			</if>
+			<if test="subscribeCount != null">
+				SUBSCRIBE_COUNT = #{subscribeCount,jdbcType=INTEGER},
+			</if>
+			<if test="evaluatingCount != null">
+				EVALUATING_COUNT = #{evaluatingCount,jdbcType=INTEGER},
+			</if>
+			<if test="src != null">
+				SRC = #{src,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createBy != null">
+				CREATE_BY = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyTime != null">
+				MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyBy != null">
+				MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+			</if>
+			<if test="deleted != null">
+				DELETED = #{deleted,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除实体 -->
+	<update id="delete" parameterType="cn.com.eap.entity.EapUser">
+		<![CDATA[
+		UPDATE TSJX_EAP_USER
+		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
+		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
+		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		]]>
+	</update>
+
+	<!-- 查询字段 -->
+	<sql id="selectFieldSQL">
+		<![CDATA[
+		SELECT 
+		       ID id,
+		       USER_NAME userName,
+		       USER_PHONE userPhone,
+		       COMPANY company,
+		       SEX sex,
+		       AGE age,
+		       WECHAT_ID wechatId,
+		       SUBSCRIBE_COUNT subscribeCount,
+		       EVALUATING_COUNT evaluatingCount,
+		       SRC src,
+		       CREATE_TIME createTime,
+		       CREATE_BY createBy,
+		       MODIFY_TIME modifyTime,
+		       MODIFY_BY modifyBy,
+		       DELETED deleted
+		]]>
+	</sql>
+
+	<!-- 查询 -->
+	<select id="get" parameterType="map" resultType="cn.com.eap.entity.EapUser">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_USER
+		 WHERE ID = #{id,jdbcType=INTEGER}
+		   AND DELETED = #{deleted,jdbcType=VARCHAR}
+		]]>
+	</select>
+
+	<!-- 查询 -->
+	<select id="find" parameterType="cn.com.eap.entity.EapUser" resultType="cn.com.eap.entity.EapUser">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_USER
+		]]>
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="userName != null and userName != ''">
+				AND USER_NAME = #{userName,jdbcType=VARCHAR}
+			</if>
+			<if test="userPhone != null and userPhone != ''">
+				AND USER_PHONE = #{userPhone,jdbcType=VARCHAR}
+			</if>
+			<if test="company != null and company != ''">
+				AND COMPANY = #{company,jdbcType=VARCHAR}
+			</if>
+			<if test="sex != null and sex != ''">
+				AND SEX = #{sex,jdbcType=VARCHAR}
+			</if>
+			<if test="age != null and age != ''">
+				AND AGE = #{age,jdbcType=VARCHAR}
+			</if>
+			<if test="wechatId != null and wechatId != ''">
+				AND WECHAT_ID = #{wechatId,jdbcType=VARCHAR}
+			</if>
+			<if test="subscribeCount != null">
+				AND SUBSCRIBE_COUNT = #{subscribeCount,jdbcType=INTEGER}
+			</if>
+			<if test="evaluatingCount != null">
+				AND EVALUATING_COUNT = #{evaluatingCount,jdbcType=INTEGER}
+			</if>
+			<if test="src != null and src != ''">
+				AND SRC = #{src,jdbcType=VARCHAR}
+			</if>
+			<if test="deleted != null and deleted != ''">
+				AND DELETED = #{deleted,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<!-- 查询所有 -->
+	<select id="findAll" parameterType="map" resultType="cn.com.eap.entity.EapUser">
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_USER
+		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
+		]]>
+	</select>
+
+	<!-- 分页查询（条件） -->
+	<sql id="page_condition">
+		<where>
+				<if test="entity.userName != null and entity.userName != ''">
+					AND USER_NAME = #{entity.userName,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.userPhone != null and entity.userPhone != ''">
+					AND USER_PHONE = #{entity.userPhone,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.company != null and entity.company != ''">
+					AND COMPANY = #{entity.company,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.sex != null and entity.sex != ''">
+					AND SEX = #{entity.sex,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.age != null and entity.age != ''">
+					AND AGE = #{entity.age,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.wechatId != null and entity.wechatId != ''">
+					AND WECHAT_ID = #{entity.wechatId,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.subscribeCount != null">
+					AND SUBSCRIBE_COUNT = #{entity.subscribeCount,jdbcType=INTEGER}
+				</if>
+				<if test="entity.evaluatingCount != null">
+					AND EVALUATING_COUNT = #{entity.evaluatingCount,jdbcType=INTEGER}
+				</if>
+				<if test="entity.src != null and entity.src != ''">
+					AND SRC = #{entity.src,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.deleted != null and entity.deleted != ''">
+					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
+				</if>
+		</where>
+	</sql>
+
+	<!-- 分页查询（计数） -->
+	<select id="page_count" parameterType="map" resultType="int">
+		<![CDATA[
+		SELECT count(*)
+		  FROM TSJX_EAP_USER
+		]]>
+		<include refid="page_condition" />
+	</select>
+
+	<!-- 分页查询（数据） -->
+	<select id="page_datas" parameterType="map" resultType="cn.com.eap.entity.EapUser">
+		<include refid="mybatis.pageStartSQL" />
+		<include refid="selectFieldSQL" />
+		<![CDATA[
+		  FROM TSJX_EAP_USER
+		]]>
+		<include refid="page_condition" />
+		<include refid="mybatis.pageEndSQL" />
+	</select>
+
+</mapper>   

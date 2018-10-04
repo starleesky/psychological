@@ -51,7 +51,7 @@ create table eap_evaluating
    user_name            varchar(40) comment '用户名|',
    user_phone           varchar(16) comment '手机号|',
    company              varchar(32) comment '企业单位|',
-   sex                  varchar(32) comment '性别 0 男, 1 女 2 未知',
+   sex                  varchar(32) comment '性别 0 未知, 1 男 2 女',
    age                  varchar(32) comment '年龄',
    eva_type             varchar(32) comment '评测类型：1 MBTI,2 OQ45,3 SCL90',
    eva_name             varchar(32) comment '评测名称',
@@ -84,6 +84,26 @@ create table eap_msg
 );
 
 alter table eap_msg comment '短信验证码';
+
+drop table if exists eap_answer;
+create table eap_answer
+(
+   id                   bigint AUTO_INCREMENT comment '主键ID|',
+   eva_type             varchar(32) comment '评测类型：1 MBTI,2 OQ45,3 SCL90',
+   num                  varchar(32) comment '题号',
+   dimension            varchar(2) comment '维度',
+   options              varchar(2) comment '选项',
+   score                varchar(2) comment '得分',
+   sex                  varchar(32) comment '性别 0 未知, 1 男 2 女',
+   create_time          datetime comment '创建时间|',
+   create_by            varchar(40) comment '创建者|',
+   modify_time          datetime comment '更新时间|',
+   modify_by            varchar(40) comment '修改者|',
+   deleted              varchar(8) comment '是否删除(T删除，F未删除)|',
+   primary key (id)
+);
+
+alter table eap_answer comment '答案表';
 
 CREATE TABLE `eap_sysOption` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',

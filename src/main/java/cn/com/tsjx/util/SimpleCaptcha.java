@@ -23,7 +23,7 @@ import nl.captcha.text.renderer.WordRenderer;
 @Service("simpleCaptcha")
 public class SimpleCaptcha {
 
-    
+
     private static Random random = new Random();
     //宽度
 	private static int _width = 90;
@@ -49,7 +49,7 @@ public class SimpleCaptcha {
                 20 + random.nextInt(110)));
         colors.add(new Color(20 + random.nextInt(110), 20 + random.nextInt(110),
                 20 + random.nextInt(110)));
-        
+
         List<Font> fonts = new ArrayList<Font>();
         fonts.add(new Font("Geneva", 1, 28));
         fonts.add(new Font("Courier", 2, 28));
@@ -57,7 +57,7 @@ public class SimpleCaptcha {
         fonts.add(new Font("Times New Roman",4, 28));
         //WordRenderer wordRenderer = new ColoredEdgesWordRenderer(colors, fonts);
         WordRenderer wordRenderer = new DefaultWordRenderer(colors, fonts);
-        
+
         Captcha captcha = new Captcha.Builder(_width, _height).addText(wordRenderer).gimp(new DropShadowGimpyRenderer())
                 .addBackground(new FlatColorBackgroundProducer(ImageTool.getRandColor(160, 200))).build();
 
@@ -65,38 +65,38 @@ public class SimpleCaptcha {
         System.out.println(captcha.getAnswer());
         CaptchaServletUtil.writeImage(response, captcha.getImage());
 	}
-	
-	   
+
+
     public static String getSmsCode(HttpServletRequest request, HttpServletResponse response,
-            String mobile){  
-        Random rad=new Random();  
-        
-        String result  = rad.nextInt(1000000) +"";  
-        if(result.length()!=6){  
-            return getSmsCode(request,response,mobile);  
-        }  
+            String mobile){
+        Random rad=new Random();
+
+        String result  = rad.nextInt(1000000) +"";
+        if(result.length()!=6){
+            return getSmsCode(request,response,mobile);
+        }
         System.out.println(result);
         //发短信
         TaobaioSmsUtil.send(mobile, result);
         //存session
         request.getSession().setAttribute("smsCode", result);
-        return result;  
+        return result;
     }
-    
+
     public static String getPwdSmsCode(HttpServletRequest request, HttpServletResponse response,
-            String mobile){  
-        Random rad=new Random();  
-        
-        String result  = rad.nextInt(1000000) +"";  
-        if(result.length()!=6){  
-            return getPwdSmsCode(request,response,mobile);  
-        }  
+            String mobile){
+        Random rad=new Random();
+
+        String result  = rad.nextInt(1000000) +"";
+        if(result.length()!=6){
+            return getPwdSmsCode(request,response,mobile);
+        }
         System.out.println(result);
         //发短信
         TaobaioSmsUtil.getpwd(mobile, result);
         //存session
         request.getSession().setAttribute("pwdSmsCode", result);
-        return result;  
+        return result;
     }
-    
+
 }

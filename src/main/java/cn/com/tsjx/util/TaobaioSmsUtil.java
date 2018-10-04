@@ -37,7 +37,7 @@ public class TaobaioSmsUtil {
         }
         System.out.println(rsp.getBody());
     }
-    
+
     public static void getpwd(String mobile,String result) {
         TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
         AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
@@ -45,8 +45,8 @@ public class TaobaioSmsUtil {
         req.setSmsType("normal");
         req.setSmsFreeSignName("汤森机械网");
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("code",result);  
-        map.put("product", mobile);  
+        map.put("code",result);
+        map.put("product", mobile);
         req.setSmsParamString(JSON.toJSONString(map));
         req.setRecNum(mobile);
         req.setSmsTemplateCode("SMS_9646637");

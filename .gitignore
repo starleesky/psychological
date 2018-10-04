@@ -9,4 +9,4 @@ WebRoot/WEB-INF/classes
 /logs/
 src/main/resources/jdbc.properties
 *.DS_Store
-out/
+out

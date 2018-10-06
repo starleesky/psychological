@@ -5,7 +5,7 @@
 	<!-- 插入实体 -->
 	<insert id="insert" parameterType="cn.com.eap.entity.EapSysOption">
 		<![CDATA[
-		INSERT INTO TSJX_EAP_SYS_OPTION (
+		INSERT INTO EAP_SYS_OPTION (
 		   	ID,
 		   	NAME,
 		   	CODE,
@@ -26,14 +26,14 @@
 		</selectKey>
 		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
 			<![CDATA[
-				SELECT SEQ_TSJX_EAP_SYS_OPTION.nextval as id FROM dual
+				SELECT SEQ_EAP_SYS_OPTION.nextval as id FROM dual
 			]]>
 		</selectKey>
 	</insert>
 
 	<!-- 更新实体 -->
 	<update id="update" parameterType="cn.com.eap.entity.EapSysOption">
-		UPDATE TSJX_EAP_SYS_OPTION
+		UPDATE EAP_SYS_OPTION
 		<set>
 			<if test="name != null">
 				NAME = #{name,jdbcType=VARCHAR},
@@ -57,7 +57,7 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.eap.entity.EapSysOption">
 		<![CDATA[
-		UPDATE TSJX_EAP_SYS_OPTION
+		UPDATE EAP_SYS_OPTION
 		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
 		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
 		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
@@ -82,7 +82,7 @@
 	<select id="get" parameterType="map" resultType="cn.com.eap.entity.EapSysOption">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_SYS_OPTION
+		  FROM EAP_SYS_OPTION
 		 WHERE ID = #{id,jdbcType=INTEGER}
 		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
@@ -92,7 +92,7 @@
 	<select id="find" parameterType="cn.com.eap.entity.EapSysOption" resultType="cn.com.eap.entity.EapSysOption">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_SYS_OPTION
+		  FROM EAP_SYS_OPTION
 		]]>
 		<where>
 			<if test="id != null">
@@ -120,7 +120,7 @@
 	<select id="findAll" parameterType="map" resultType="cn.com.eap.entity.EapSysOption">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_SYS_OPTION
+		  FROM EAP_SYS_OPTION
 		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
@@ -150,7 +150,7 @@
 	<select id="page_count" parameterType="map" resultType="int">
 		<![CDATA[
 		SELECT count(*)
-		  FROM TSJX_EAP_SYS_OPTION
+		  FROM EAP_SYS_OPTION
 		]]>
 		<include refid="page_condition" />
 	</select>
@@ -160,7 +160,7 @@
 		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_SYS_OPTION
+		  FROM EAP_SYS_OPTION
 		]]>
 		<include refid="page_condition" />
 		<include refid="mybatis.pageEndSQL" />

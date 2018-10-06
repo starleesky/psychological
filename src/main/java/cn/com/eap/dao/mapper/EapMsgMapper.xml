@@ -5,7 +5,7 @@
 	<!-- 插入实体 -->
 	<insert id="insert" parameterType="cn.com.eap.entity.EapMsg">
 		<![CDATA[
-		INSERT INTO TSJX_EAP_MSG (
+		INSERT INTO EAP_MSG (
 		   	ID,
 		   	PHONE,
 		   	CODE,
@@ -30,14 +30,14 @@
 		</selectKey>
 		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
 			<![CDATA[
-				SELECT SEQ_TSJX_EAP_MSG.nextval as id FROM dual
+				SELECT SEQ_EAP_MSG.nextval as id FROM dual
 			]]>
 		</selectKey>
 	</insert>
 
 	<!-- 更新实体 -->
 	<update id="update" parameterType="cn.com.eap.entity.EapMsg">
-		UPDATE TSJX_EAP_MSG
+		UPDATE EAP_MSG
 		<set>
 			<if test="phone != null">
 				PHONE = #{phone,jdbcType=VARCHAR},
@@ -67,7 +67,7 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.eap.entity.EapMsg">
 		<![CDATA[
-		UPDATE TSJX_EAP_MSG
+		UPDATE EAP_MSG
 		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
 		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
 		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
@@ -94,7 +94,7 @@
 	<select id="get" parameterType="map" resultType="cn.com.eap.entity.EapMsg">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_MSG
+		  FROM EAP_MSG
 		 WHERE ID = #{id,jdbcType=INTEGER}
 		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
@@ -104,7 +104,7 @@
 	<select id="find" parameterType="cn.com.eap.entity.EapMsg" resultType="cn.com.eap.entity.EapMsg">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_MSG
+		  FROM EAP_MSG
 		]]>
 		<where>
 			<if test="id != null">
@@ -126,7 +126,7 @@
 	<select id="findAll" parameterType="map" resultType="cn.com.eap.entity.EapMsg">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_MSG
+		  FROM EAP_MSG
 		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
@@ -150,7 +150,7 @@
 	<select id="page_count" parameterType="map" resultType="int">
 		<![CDATA[
 		SELECT count(*)
-		  FROM TSJX_EAP_MSG
+		  FROM EAP_MSG
 		]]>
 		<include refid="page_condition" />
 	</select>
@@ -160,7 +160,7 @@
 		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_MSG
+		  FROM EAP_MSG
 		]]>
 		<include refid="page_condition" />
 		<include refid="mybatis.pageEndSQL" />

@@ -13,9 +13,10 @@
                         http://www.springframework.org/schema/task  
 						http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
-    <mvc:resources mapping="/resources/**" location="resources/"/>
-    <mvc:resources mapping="/images/**" location="images/"/>
-    <mvc:resources mapping="/wap/**" location="wap/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/wap/**" location="/wap/"/>
+    <mvc:resources mapping="/eap/**" location="/eap/"/>
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="cn.com.eap,cn.com.tsjx"/>
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
@@ -33,7 +34,6 @@
 
     <!-- task任务扫描注解 -->
     <task:annotation-driven/>
-    <context:component-scan base-package="cn.com.tsjx.infomation.task"></context:component-scan>
 
     <context:property-placeholder location="classpath*:config.properties,classpath*:sms.properties"/>
 
@@ -50,11 +50,11 @@
         </property>
     </bean>
     <!-- 定义跳转的文件的前后缀 ，视图模式配置-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2">
-        <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2">-->
+    <!--&lt;!&ndash; 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 &ndash;&gt;-->
+    <!--<property name="prefix" value="/WEB-INF/jsp/"/>-->
+    <!--<property name="suffix" value=".jsp"/>-->
+    <!--</bean>-->
 
     <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
     <bean id="multipartResolver"

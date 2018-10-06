@@ -92,8 +92,8 @@
         <property name="mapperLocations">
 			<array>
 				<value>classpath:/mybatis/mybatis-pager.xml</value>
-				<value>classpath*:cn/com/tsjx/**/dao/mapper/*.xml</value>
-				<value>classpath*:cn/com/tsjx/**/dao/custom/*.xml</value>
+				<value>classpath*:cn/com/eap/**/dao/mapper/*.xml</value>
+				<value>classpath*:cn/com/eap/**/dao/custom/*.xml</value>
 			</array>
 		</property>
     </bean>  

@@ -101,6 +101,7 @@ public class CommonController {
     /**
      * 获取评测题目
      *
+     *  type:mbti,oq45,scl90
      * @param type
      */
     @ResponseBody

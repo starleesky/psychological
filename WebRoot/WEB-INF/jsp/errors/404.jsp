@@ -25,7 +25,7 @@
 
 <body>
   <div class="error_page">
-    <img alt="Kidmondo_face_sad" src="${ctx}/resources/images/error_page.gif">
+    <%--<img alt="Kidmondo_face_sad" src="${ctx}/resources/images/error_page.gif">--%>
     <h1>很抱歉！</h1>
     <p>你所访问的网页内容不存在.</p>
     <p><a href="${ctx}/wap/index">返回到首页</a></p>

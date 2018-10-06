@@ -8,5 +8,6 @@ target/
 WebRoot/WEB-INF/classes
 /logs/
 src/main/resources/jdbc.properties
+src/main/resources/sms.properties
 *.DS_Store
 out

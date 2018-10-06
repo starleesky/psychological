@@ -214,9 +214,8 @@
 
         $("#forwardOne").click(function () {
             $("#formSubmit").css("display", "none");
-            count--;
-
-            if (count >= 1) {
+            --count;
+            if (count > 0) {
                 var pre = count;
                 $("#count").html(count)
                 var present = (count) / total * 100;
@@ -238,12 +237,13 @@
                     if(opt.options == preOne[0]){
                         $options = $options +"<i class=\"weui-icon-success-no-circle\"></i>";
                     }
+
                     $options = $options +     "                    </a>";
 
                 })
-
                 $("#options").html($options);
-            } else {
+            }
+            if(count == 1){
                 $("#forwardOne").css("display", "none");
             }
         })

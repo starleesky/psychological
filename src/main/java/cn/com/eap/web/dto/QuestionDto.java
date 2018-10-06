@@ -43,6 +43,7 @@ public class QuestionDto {
 
         private int num;
         private String topic;
+        private String type;
         private List<AnswerBean> answer;
 
         public int getNum() {
@@ -67,6 +68,14 @@ public class QuestionDto {
 
         public void setAnswer(List<AnswerBean> answer) {
             this.answer = answer;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
 
         public static class AnswerBean {

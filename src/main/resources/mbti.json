@@ -1,33 +1,1342 @@
 {
-  "total": 98,
   "questions": [
     {
-      "num": 1,
-      "topic": "我通常",
       "answer": [
         {
-          "options": "A",
-          "description": "善于跟别人交往"
+          "description": "善于跟别人交往",
+          "options": "A"
         },
         {
-          "options": "B",
-          "description": "沉默寡语"
+          "description": "沉默寡语",
+          "options": "B"
         }
-      ]
+      ],
+      "num": 1,
+      "topic": "我通常"
     },
     {
-      "num": 2,
-      "topic": "我通常",
       "answer": [
         {
-          "options": "A",
-          "description": "善于跟别人交往"
+          "description": "实用性强的科目",
+          "options": "A"
         },
         {
-          "options": "B",
-          "description": "沉默寡语"
+          "description": "理论性强的科目",
+          "options": "B"
         }
-      ]
+      ],
+      "num": 2,
+      "topic": "如果我是老师，我想教"
+    },
+    {
+      "answer": [
+        {
+          "description": "感性驾驭理性",
+          "options": "A"
+        },
+        {
+          "description": "理性驾驭感性",
+          "options": "B"
+        }
+      ],
+      "num": 3,
+      "topic": "我经常"
+    },
+    {
+      "answer": [
+        {
+          "description": "事先做好日程安排",
+          "options": "A"
+        },
+        {
+          "description": "无计划出门",
+          "options": "B"
+        }
+      ],
+      "num": 4,
+      "topic": "出门之前，我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "与很多人进行交流",
+          "options": "A"
+        },
+        {
+          "description": "找熟悉的人私下交流",
+          "options": "B"
+        }
+      ],
+      "num": 5,
+      "topic": "与一群人在一起时，我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "想象力丰富的人交流",
+          "options": "A"
+        },
+        {
+          "description": "有现实感的人交流",
+          "options": "B"
+        }
+      ],
+      "num": 6,
+      "topic": "我更喜欢与"
+    },
+    {
+      "answer": [
+        {
+          "description": "性情中",
+          "options": "A"
+        },
+        {
+          "description": "合理的",
+          "options": "B"
+        }
+      ],
+      "num": 7,
+      "topic": "对我来说更好的评价是"
+    },
+    {
+      "answer": [
+        {
+          "description": "事先制定计划，并按照计划进行",
+          "options": "A"
+        },
+        {
+          "description": "根据情况自由进",
+          "options": "B"
+        }
+      ],
+      "num": 8,
+      "topic": "由我来筹备聚会时，我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "我来介绍其他人",
+          "options": "A"
+        },
+        {
+          "description": "由别人来介绍",
+          "options": "B"
+        }
+      ],
+      "num": 9,
+      "topic": "与陌生人时见面时，通常是"
+    },
+    {
+      "answer": [
+        {
+          "description": "务实、有现实",
+          "options": "A"
+        },
+        {
+          "description": "有创意，有独创精",
+          "options": "B"
+        }
+      ],
+      "num": 10,
+      "topic": "我想得到他人认可的部分是"
+    },
+    {
+      "answer": [
+        {
+          "description": "注重感性甚于理",
+          "options": "A"
+        },
+        {
+          "description": "注重理性甚于感",
+          "options": "B"
+        }
+      ],
+      "num": 11,
+      "topic": "我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "做突如其来的事情或需要迅速做的事情",
+          "options": "A"
+        },
+        {
+          "description": "按照精细的计划做事情",
+          "options": "B"
+        }
+      ],
+      "num": 12,
+      "topic": "在以下情况下我能更好地完成事情"
+    },
+    {
+      "answer": [
+        {
+          "description": "与少数人有较深的交",
+          "options": "A"
+        },
+        {
+          "description": "与各种各样的人进行交",
+          "options": "B"
+        }
+      ],
+      "num": 13,
+      "topic": "我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "较保守，不轻易被人了解的人",
+          "options": "A"
+        },
+        {
+          "description": "独创一格、有个性，不在乎被人了解的人",
+          "options": "B"
+        }
+      ],
+      "num": 14,
+      "topic": "我更尊重"
+    },
+    {
+      "answer": [
+        {
+          "description": "缺乏同情",
+          "options": "A"
+        },
+        {
+          "description": "不合",
+          "options": "B"
+        }
+      ],
+      "num": 15,
+      "topic": "以下两点中我认为更糟的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "让我感到很舒",
+          "options": "A"
+        },
+        {
+          "description": "让我感到很不自",
+          "options": "B"
+        }
+      ],
+      "num": 16,
+      "topic": "按日程表行事"
+    },
+    {
+      "answer": [
+        {
+          "description": "信息较为闭塞",
+          "options": "A"
+        },
+        {
+          "description": "信息比较灵通",
+          "options": "B"
+        }
+      ],
+      "num": 17,
+      "topic": "我在朋友当中"
+    },
+    {
+      "answer": [
+        {
+          "description": "不断有新创意的",
+          "options": "A"
+        },
+        {
+          "description": "有现实感的",
+          "options": "B"
+        }
+      ],
+      "num": 18,
+      "topic": "我想交的朋友是"
+    },
+    {
+      "answer": [
+        {
+          "description": "一向亲切的",
+          "options": "A"
+        },
+        {
+          "description": "一向公正的",
+          "options": "B"
+        }
+      ],
+      "num": 19,
+      "topic": "我更喜欢一起共事的人是"
+    },
+    {
+      "answer": [
+        {
+          "description": "比较得心应手",
+          "options": "A"
+        },
+        {
+          "description": "不太愿意做这种事",
+          "options": "B"
+        },
+        {
+          "description": "想到此事心里就沉甸甸",
+          "options": "C"
+        }
+      ],
+      "num": 20,
+      "topic": "对周末要做的事情做日程安排，对我来说"
+    },
+    {
+      "answer": [
+        {
+          "description": "能够与任何人进行交",
+          "options": "A"
+        },
+        {
+          "description": "与特定的人或在特定的情况下才能进行交",
+          "options": "B"
+        }
+      ],
+      "num": 21,
+      "topic": "通常我"
+    },
+    {
+      "answer": [
+        {
+          "description": "内容独特、具有独创性的书籍",
+          "options": "A"
+        },
+        {
+          "description": "条理清晰，准确表达作者想法的书籍",
+          "options": "B"
+        }
+      ],
+      "num": 22,
+      "topic": "我更喜欢阅读"
+    },
+    {
+      "answer": [
+        {
+          "description": "过分亲",
+          "options": "A"
+        },
+        {
+          "description": "不亲",
+          "options": "B"
+        }
+      ],
+      "num": 23,
+      "topic": "我认为更不好的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "我喜欢在迫在眉睫的情况下做事情",
+          "options": "A"
+        },
+        {
+          "description": "我不喜欢做事时赶时间",
+          "options": "B"
+        },
+        {
+          "description": "为了不赶时间，我一般事先制定计",
+          "options": "C"
+        }
+      ],
+      "num": 24,
+      "type":1,
+      "topic": "在日常生活中（这个问题可以选两个）"
+    },
+    {
+      "answer": [
+        {
+          "description": "很快就了解我的兴趣所",
+          "options": "A"
+        },
+        {
+          "description": "有了较深的交往以后才知道我的兴趣所",
+          "options": "B"
+        }
+      ],
+      "num": 25,
+      "topic": "与我初次见面的人"
+    },
+    {
+      "answer": [
+        {
+          "description": "喜欢按照惯例处理",
+          "options": "A"
+        },
+        {
+          "description": "喜欢想出独特的方法去处",
+          "options": "B"
+        }
+      ],
+      "num": 26,
+      "topic": "处理日常事务时，我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "尊重别人的感",
+          "options": "A"
+        },
+        {
+          "description": "保护别人的权",
+          "options": "B"
+        }
+      ],
+      "num": 27,
+      "topic": "我更关注的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "事先小心制定计",
+          "options": "A"
+        },
+        {
+          "description": "在处理事情的过程中根据情况找出相应的对",
+          "options": "B"
+        }
+      ],
+      "num": 28,
+      "topic": "需要处理特殊的事情时，我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "能够自由地表达自己的情感和感受",
+          "options": "A"
+        },
+        {
+          "description": "不愿流露自己的情感和感受，而是将它们埋在心里",
+          "options": "B"
+        }
+      ],
+      "num": 29,
+      "topic": "我一般"
+    },
+    {
+      "answer": [
+        {
+          "description": "独具一格的生活方",
+          "options": "A"
+        },
+        {
+          "description": "普普通通的生活方式",
+          "options": "B"
+        }
+      ],
+      "num": 30,
+      "topic": "我更偏好"
+    },
+    {
+      "answer": [
+        {
+          "description": "温和的",
+          "options": "A"
+        },
+        {
+          "description": "强健的",
+          "options": "B"
+        }
+      ],
+      "num": 31,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "我感到很高兴，因为这样我就可以事先做好准备",
+          "options": "A"
+        },
+        {
+          "description": "我感到有些懊恼，因为我讨厌被束缚",
+          "options": "B"
+        }
+      ],
+      "num": 32,
+      "topic": "在做某件事情时若事先被告知实施计划"
+    },
+    {
+      "answer": [
+        {
+          "description": "比别人更积",
+          "options": "A"
+        },
+        {
+          "description": "不如别人积",
+          "options": "B"
+        }
+      ],
+      "num": 33,
+      "topic": "做事情时，我一般"
+    },
+    {
+      "answer": [
+        {
+          "description": "愿景（Vision）",
+          "options": "A"
+        },
+        {
+          "description": "常识",
+          "options": "B"
+        }
+      ],
+      "num": 34,
+      "topic": "我认为更贴近自己的词是"
+    },
+    {
+      "answer": [
+        {
+          "description": "思考",
+          "options": "A"
+        },
+        {
+          "description": "情感",
+          "options": "B"
+        }
+      ],
+      "num": 35,
+      "topic": "我认为更贴近自己的词是"
+    },
+    {
+      "answer": [
+        {
+          "description": "喜欢接近截止日期处理事",
+          "options": "A"
+        },
+        {
+          "description": "接近截止日期处理事情感到焦",
+          "options": "B"
+        }
+      ],
+      "num": 36,
+      "topic": "我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "我有时感到很无",
+          "options": "A"
+        },
+        {
+          "description": "一般来说都是很愉快",
+          "options": "B"
+        }
+      ],
+      "num": 37,
+      "topic": "在聚会或派对上"
+    },
+    {
+      "answer": [
+        {
+          "description": "在现有环境中找出可能",
+          "options": "A"
+        },
+        {
+          "description": "适应现有的环",
+          "options": "B"
+        }
+      ],
+      "num": 38,
+      "topic": "我认为更重要的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "说服人",
+          "options": "A"
+        },
+        {
+          "description": "感动人",
+          "options": "B"
+        }
+      ],
+      "num": 39,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "没什么不适",
+          "options": "A"
+        },
+        {
+          "description": "有必要，但每天重复同一件事情会感到不舒服",
+          "options": "B"
+        }
+      ],
+      "num": 40,
+      "topic": "我认为处理每天的日常事务"
+    },
+    {
+      "answer": [
+        {
+          "description": "在流行的前头",
+          "options": "A"
+        },
+        {
+          "description": "对流行不感兴",
+          "options": "B"
+        }
+      ],
+      "num": 41,
+      "topic": "我通常"
+    },
+    {
+      "answer": [
+        {
+          "description": "支持现有体",
+          "options": "A"
+        },
+        {
+          "description": "分析现有体制的问题，并提示改善方案",
+          "options": "B"
+        }
+      ],
+      "num": 42,
+      "topic": "一般来说我会"
+    },
+    {
+      "answer": [
+        {
+          "description": "分析",
+          "options": "A"
+        },
+        {
+          "description": "同情",
+          "options": "B"
+        }
+      ],
+      "num": 43,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "我经常忘记，事后才想起",
+          "options": "A"
+        },
+        {
+          "description": "为了不忘记，我将这些写在记事本",
+          "options": "B"
+        },
+        {
+          "description": "我会及时处理这些事",
+          "options": "C"
+        }
+      ],
+      "num": 44,
+      "topic": "对应处理的琐事或应购买的东西，"
+    },
+    {
+      "answer": [
+        {
+          "description": "较容易与我交上朋友",
+          "options": "A"
+        },
+        {
+          "description": "不太容易与我交上朋",
+          "options": "B"
+        }
+      ],
+      "num": 45,
+      "topic": "别人一般"
+    },
+    {
+      "answer": [
+        {
+          "description": "事实",
+          "options": "A"
+        },
+        {
+          "description": "主意（Idea）",
+          "options": "B"
+        }
+      ],
+      "num": 46,
+      "topic": "我认为更贴近自己的词是"
+    },
+    {
+      "answer": [
+        {
+          "description": "正义",
+          "options": "A"
+        },
+        {
+          "description": "慈爱",
+          "options": "B"
+        }
+      ],
+      "num": 47,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "重复日常事务",
+          "options": "A"
+        },
+        {
+          "description": "不断变化",
+          "options": "B"
+        }
+      ],
+      "num": 48,
+      "topic": "对我来说更难适应的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "改换话",
+          "options": "A"
+        },
+        {
+          "description": "开玩笑来摆脱窘迫局",
+          "options": "B"
+        },
+        {
+          "description": "几天以后才想起当时应该怎样",
+          "options": "C"
+        }
+      ],
+      "num": 49,
+      "topic": "谈话中若出现窘迫局面，我会"
+    },
+    {
+      "answer": [
+        {
+          "description": "描述事实",
+          "options": "A"
+        },
+        {
+          "description": "抽象思维",
+          "options": "B"
+        }
+      ],
+      "num": 50,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "内心温暖",
+          "options": "A"
+        },
+        {
+          "description": "思维犀利",
+          "options": "B"
+        }
+      ],
+      "num": 51,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "首先制定计划，决定事情的先后顺序",
+          "options": "A"
+        },
+        {
+          "description": "马上着手处理",
+          "options": "B"
+        }
+      ],
+      "num": 52,
+      "topic": "处理一周内必须完成的大事时，我会"
+    },
+    {
+      "answer": [
+        {
+          "description": "一般了解我的感",
+          "options": "A"
+        },
+        {
+          "description": "若我不说出来还是不太了解我的感受",
+          "options": "B"
+        }
+      ],
+      "num": 53,
+      "topic": "与我亲近的人"
+    },
+    {
+      "answer": [
+        {
+          "description": "推论",
+          "options": "A"
+        },
+        {
+          "description": "确证",
+          "options": "B"
+        }
+      ],
+      "num": 54,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "有益于人",
+          "options": "A"
+        },
+        {
+          "description": "施舍于人",
+          "options": "B"
+        }
+      ],
+      "num": 55,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "提前开始提早完",
+          "options": "A"
+        },
+        {
+          "description": "快到截止日期急忙完",
+          "options": "B"
+        }
+      ],
+      "num": 56,
+      "topic": "处理事情时，我一般"
+    },
+    {
+      "answer": [
+        {
+          "description": "推动聚会顺利进",
+          "options": "A"
+        },
+        {
+          "description": "让人们自得其",
+          "options": "B"
+        }
+      ],
+      "num": 57,
+      "topic": "聚会时我喜欢"
+    },
+    {
+      "answer": [
+        {
+          "description": "文字本意",
+          "options": "A"
+        },
+        {
+          "description": "比喻",
+          "options": "B"
+        }
+      ],
+      "num": 58,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "判决",
+          "options": "A"
+        },
+        {
+          "description": "奉献",
+          "options": "B"
+        }
+      ],
+      "num": 59,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "马上说出做什",
+          "options": "A"
+        },
+        {
+          "description": "罗列出很多要做的事",
+          "options": "B"
+        },
+        {
+          "description": "说到时候才能知道该做什",
+          "options": "C"
+        }
+      ],
+      "num": 60,
+      "topic": "如果在某个休息日早上有人问我怎么过一天，我会"
+    },
+    {
+      "answer": [
+        {
+          "description": "充满活力",
+          "options": "A"
+        },
+        {
+          "description": "安静",
+          "options": "B"
+        }
+      ],
+      "num": 61,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "想象",
+          "options": "A"
+        },
+        {
+          "description": "事实",
+          "options": "B"
+        }
+      ],
+      "num": 62,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "坚定的意志",
+          "options": "A"
+        },
+        {
+          "description": "温柔的心",
+          "options": "B"
+        }
+      ],
+      "num": 63,
+      "topic": "我认为更贴近自己的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "容易、舒心",
+          "options": "A"
+        },
+        {
+          "description": "无",
+          "options": "B"
+        }
+      ],
+      "num": 64,
+      "topic": "对我来说日常事务"
+    },
+    {
+      "answer": [
+        {
+          "description": "沉默寡语",
+          "options": "A"
+        },
+        {
+          "description": "健谈",
+          "options": "B"
+        }
+      ],
+      "num": 65,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "制作",
+          "options": "A"
+        },
+        {
+          "description": "创作",
+          "options": "B"
+        }
+      ],
+      "num": 66,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "调解",
+          "options": "A"
+        },
+        {
+          "description": "判定",
+          "options": "B"
+        }
+      ],
+      "num": 67,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "计划",
+          "options": "A"
+        },
+        {
+          "description": "无计划",
+          "options": "B"
+        }
+      ],
+      "num": 68,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "沉着",
+          "options": "A"
+        },
+        {
+          "description": "活泼",
+          "options": "B"
+        }
+      ],
+      "num": 69,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "分辨能力",
+          "options": "A"
+        },
+        {
+          "description": "魅力",
+          "options": "B"
+        }
+      ],
+      "num": 70,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "温柔",
+          "options": "A"
+        },
+        {
+          "description": "强壮",
+          "options": "B"
+        }
+      ],
+      "num": 71,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "系统化",
+          "options": "A"
+        },
+        {
+          "description": "自由化",
+          "options": "B"
+        }
+      ],
+      "num": 72,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "说",
+          "options": "A"
+        },
+        {
+          "description": "写",
+          "options": "B"
+        }
+      ],
+      "num": 73,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "制作",
+          "options": "A"
+        },
+        {
+          "description": "设计",
+          "options": "B"
+        }
+      ],
+      "num": 74,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "原谅",
+          "options": "A"
+        },
+        {
+          "description": "容忍",
+          "options": "B"
+        }
+      ],
+      "num": 75,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "按照计划",
+          "options": "A"
+        },
+        {
+          "description": "根据情况",
+          "options": "B"
+        }
+      ],
+      "num": 76,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "社交",
+          "options": "A"
+        },
+        {
+          "description": "超然自得",
+          "options": "B"
+        }
+      ],
+      "num": 77,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "具体",
+          "options": "A"
+        },
+        {
+          "description": "抽象",
+          "options": "B"
+        }
+      ],
+      "num": 78,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "人",
+          "options": "A"
+        },
+        {
+          "description": "事",
+          "options": "B"
+        }
+      ],
+      "num": 79,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "冲动",
+          "options": "A"
+        },
+        {
+          "description": "决断",
+          "options": "B"
+        }
+      ],
+      "num": 80,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "聚会",
+          "options": "A"
+        },
+        {
+          "description": "读书",
+          "options": "B"
+        }
+      ],
+      "num": 81,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "制造",
+          "options": "A"
+        },
+        {
+          "description": "发明",
+          "options": "B"
+        }
+      ],
+      "num": 82,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "接纳",
+          "options": "A"
+        },
+        {
+          "description": "判断",
+          "options": "B"
+        }
+      ],
+      "num": 83,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "按时",
+          "options": "A"
+        },
+        {
+          "description": "随时",
+          "options": "B"
+        }
+      ],
+      "num": 84,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "基石",
+          "options": "A"
+        },
+        {
+          "description": "榜样",
+          "options": "B"
+        }
+      ],
+      "num": 85,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "小心谨慎",
+          "options": "A"
+        },
+        {
+          "description": "不拘小节",
+          "options": "B"
+        }
+      ],
+      "num": 86,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "不断变化",
+          "options": "A"
+        },
+        {
+          "description": "永久",
+          "options": "B"
+        }
+      ],
+      "num": 87,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "理论",
+          "options": "A"
+        },
+        {
+          "description": "经验",
+          "options": "B"
+        }
+      ],
+      "num": 88,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "同意",
+          "options": "A"
+        },
+        {
+          "description": "讨论",
+          "options": "B"
+        }
+      ],
+      "num": 89,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "规律",
+          "options": "A"
+        },
+        {
+          "description": "随意",
+          "options": "B"
+        }
+      ],
+      "num": 90,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "图画",
+          "options": "A"
+        },
+        {
+          "description": "文字",
+          "options": "B"
+        }
+      ],
+      "num": 91,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "迅速",
+          "options": "A"
+        },
+        {
+          "description": "慎重",
+          "options": "B"
+        }
+      ],
+      "num": 92,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "接受",
+          "options": "A"
+        },
+        {
+          "description": "改变",
+          "options": "B"
+        }
+      ],
+      "num": 93,
+      "topic": "以下各题中最贴近我的是"
+    },
+    {
+      "answer": [
+        {
+          "description": "已知",
+          "options": "A"
+        },
+        {
+          "description": "未知",
+          "options": "B"
+        }
+      ],
+      "num": 94,
+      "topic": "以下各题中最贴近我的是"
     }
-  ]
+  ],
+  "total": 94
 }

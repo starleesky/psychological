@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>汤森机械</title>
-    <meta http-equiv="Refresh" content="0;url=${ctx}/eap/index.html">
+    <meta http-equiv="Refresh" content="0;url=${ctx}/eap/static/index.html">
 </head>
 <body>
 </body>

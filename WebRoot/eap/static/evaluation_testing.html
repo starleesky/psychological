@@ -11,41 +11,28 @@
         <div class="page__bd" style="height: 100%;">
             <div class="weui-tab">
                 <div class="weui-cell__ft" style="margin-right: 80%;height: 20px;float:left; display:inline">
-                    <p style="margin-left: 0.85em;color: black;">进度 <i style="font-style: normal;">6</i>/20</p>
+                    <p style="margin-left: 0.85em;color: black;">进度 <i style="font-style: normal;" id="count"></i>/<i
+                            id="total"></i></p>
                 </div>
                 <div class="weui-slider" style="margin-left: 30%;">
                     <div class="weui-slider__inner">
-                        <div style="width: 50%;" class="weui-slider__track"></div>
-                        <div style="left: 50%;" class="weui-slider__handler"></div>
+                        <div style="width: 0%;" class="weui-slider__track"></div>
+                        <div style="left: 0%;" class="weui-slider__handler"></div>
                     </div>
                 </div>
 
                 <a class="weui-cell weui-cell_access">
                     <div class="weui-cell__bd">
-                        <p>你认为自己是一个积极的人吗?你认为自己是一个积极的人吗?你认为自己是一个积极的人吗?你认为自己是一个积极的人吗?你认为自己是一个积极的人吗?你认为自己是一个积极的人吗?</p>
+                        <p id="topic"></p>
                     </div>
                 </a>
-                <a class="weui-cell weui-cell_access">
-                    <div class="weui-cell__bd">
-                        <p>A.是的</p>
-                    </div>
-                </a>
-                <a class="weui-cell weui-cell_access">
-                    <div class="weui-cell__bd">
-                        <p>B.不是</p>
-                    </div>
-                    <i class="weui-icon-success-no-circle"></i>
-                </a>
-                <a class="weui-cell weui-cell_access">
-                    <div class="weui-cell__bd">
-                        <p>C.不确定</p>
-                    </div>
-                </a>
-
+                <div id="options">
+                </div>
                 <div class="weui-cell">
-                    <a href="javascript:;" class="syt">上一题</a>
-                    <div class="weui-cell__bd">
-                        <a href="./evaluation_success.html" class="weui-btn weui-btn_primary" style="width: 25%;margin-right:1em;font-size:13px">提交</a>
+                    <a href="javascript:;" id="forwardOne" class="syt" style="display: none;">上一题</a>
+                    <div id="formSubmit" class="weui-cell__bd" style="display: none">
+                        <a href="./evaluation_success.html" class="weui-btn weui-btn_primary"
+                           style="width: 25%;margin-right:1em;font-size:13px">提交</a>
                     </div>
                 </div>
             </div>
@@ -55,4 +42,222 @@
 </body>
 <script type="text/javascript" src="./commons/js/third/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="./commons/js/third/jquery-weui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var str = "{\n" +
+            "\t\"total\": 8,\n" +
+            "\t\"questions\": [{\n" +
+            "\t\t\t\"num\": 1,\n" +
+            "\t\t\t\"topic\": \"我通常1\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}, {\n" +
+            "\t\t\t\"num\": 2,\n" +
+            "\t\t\t\"topic\": \"我通常2\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往2\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语2\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}, {\n" +
+            "\t\t\t\"num\": 3,\n" +
+            "\t\t\t\"topic\": \"我通常3\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}, {\n" +
+            "\t\t\t\"num\": 4,\n" +
+            "\t\t\t\"topic\": \"我通常4\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}, {\n" +
+            "\t\t\t\"num\": 5,\n" +
+            "\t\t\t\"topic\": \"我通常5\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}, {\n" +
+            "\t\t\t\"num\": 6,\n" +
+            "\t\t\t\"topic\": \"我通常6\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}, {\n" +
+            "\t\t\t\"num\": 7,\n" +
+            "\t\t\t\"topic\": \"我通常7\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t},\n" +
+            "\t\t{\n" +
+            "\t\t\t\"num\": 8,\n" +
+            "\t\t\t\"topic\": \"我通常8\",\n" +
+            "\t\t\t\"answer\": [{\n" +
+            "\t\t\t\t\t\"options\": \"A\",\n" +
+            "\t\t\t\t\t\"description\": \"善于跟别人交往\"\n" +
+            "\t\t\t\t},\n" +
+            "\t\t\t\t{\n" +
+            "\t\t\t\t\t\"options\": \"B\",\n" +
+            "\t\t\t\t\t\"description\": \"沉默寡语\"\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t]\n" +
+            "\t\t}\n" +
+            "\t]\n" +
+            "}";
+        var strJson = JSON.parse(str);
+        var total = strJson.total;
+        var result = new Array()
+        var count = 0;
+        $("#total").html(total);
+        strJson.questions.forEach(function (obj) {
+            //初始第一个
+            if (obj.num == 1) {
+                $("#count").html(0)
+                $("#topic").html(obj.topic)
+                var present = 0;
+                $(".weui-slider__track").css("width", present + "%");
+                $(".weui-slider__handler").css("left", present + "%");
+                var $options = "";
+                obj.answer.forEach(function (opt) {
+                    $options = $options + "<a data-val=" + opt.options + " class=\"weui-cell weui-cell_access\">\n" +
+                        "                        <div class=\"weui-cell__bd\">\n" +
+                        "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
+                        "                        </div>\n" +
+                        "                    </a>"
+                })
+                $("#options").html($options);
+                count++;
+            }
+        })
+
+        $(document).on('click', '#options a.weui-cell', function () {
+            $(this).siblings().children("i").remove();
+            $(this).children("i").remove();
+            $(this).append("<i class=\"weui-icon-success-no-circle\"></i>");
+
+
+            if (count == total) {
+                $("#formSubmit").css("display", "block");
+                $("#count").html(total)
+                $(".weui-slider__track").css("width", "100%");
+                $(".weui-slider__handler").css("left", "100%");
+                if (result.length == total) {
+                    result.pop();
+                }
+                result.push($(this).attr("data-val"));
+            } else {
+                var obj = strJson.questions[count];
+                var $options = "";
+                $("#topic").html(obj.topic);
+                $("#count").html(count)
+                var present = (count) / total * 100;
+                $(".weui-slider__track").css("width", present + "%");
+                $(".weui-slider__handler").css("left", present + "%");
+                obj.answer.forEach(function (opt) {
+                    $options = $options + "<a data-val=" + opt.options + " class=\"weui-cell weui-cell_access\">\n" +
+                        "                        <div class=\"weui-cell__bd\">\n" +
+                        "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
+                        "                        </div>\n" +
+                        "                    </a>"
+                })
+                result.push($(this).attr("data-val"));
+                count++;
+                $("#options").html($options);
+            }
+            if (count > 1) {
+                $("#forwardOne").css("display", "block");
+            }
+
+        });
+
+        $("#forwardOne").click(function () {
+            $("#formSubmit").css("display", "none");
+            --count;
+            if (count > 0) {
+                var pre = count;
+                $("#count").html(count)
+                var present = (count) / total * 100;
+                $(".weui-slider__track").css("width", present + "%");
+                $(".weui-slider__handler").css("left", present + "%");
+                var obj = strJson.questions[count - 1];
+                $("#topic").html(obj.topic);
+                var $options = "";
+                //删除最后一个
+                result.pop();
+                //获取上一个题的选择答案
+                var preOne = result.slice(result.length-1);
+                obj.answer.forEach(function (opt) {
+                    console.log(opt.options == preOne[0])
+                    $options = $options + "<a data-val=" + opt.options + " class=\"weui-cell weui-cell_access\">\n" +
+                        "                        <div class=\"weui-cell__bd\">\n" +
+                        "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
+                        "                        </div>\n";
+                    if(opt.options == preOne[0]){
+                        $options = $options +"<i class=\"weui-icon-success-no-circle\"></i>";
+                    }
+
+                    $options = $options +     "                    </a>";
+
+                })
+                $("#options").html($options);
+            }
+            if(count == 1){
+                $("#forwardOne").css("display", "none");
+            }
+        })
+
+    });
+
+    function sleep(numberMillis) {
+        var now = new Date();
+        var exitTime = now.getTime() + numberMillis;
+        while (true) {
+            now = new Date();
+            if (now.getTime() > exitTime) return;
+        }
+    }
+
+</script>
 </html>

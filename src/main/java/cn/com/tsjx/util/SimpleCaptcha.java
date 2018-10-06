@@ -77,7 +77,7 @@ public class SimpleCaptcha {
         }
         System.out.println(result);
         //发短信
-        TaobaioSmsUtil.send(mobile, result);
+//        TaobaioSmsUtil.send(mobile, result);
         //存session
         request.getSession().setAttribute("smsCode", result);
         return result;

@@ -17,7 +17,7 @@
     <mvc:resources mapping="/images/**" location="images/"/>
     <mvc:resources mapping="/wap/**" location="wap/"/>
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-    <context:component-scan base-package="cn.com.tsjx"/>
+    <context:component-scan base-package="cn.com.eap,cn.com.tsjx"/>
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -35,7 +35,7 @@
     <task:annotation-driven/>
     <context:component-scan base-package="cn.com.tsjx.infomation.task"></context:component-scan>
 
-    <context:property-placeholder location="classpath*:config.properties"/>
+    <context:property-placeholder location="classpath*:config.properties,classpath*:sms.properties"/>
 
     <!-- ViewResolver配置：TilesViewResolver -->
     <bean id="tilesViewResolver"
@@ -84,5 +84,6 @@
         <constructor-arg name="appKey" value="${thrid.alidayu.appKey}"></constructor-arg>
         <constructor-arg name="appSecret" value="${thrid.alidayu.appSecret}"></constructor-arg>
     </bean>
+
 
 </beans>

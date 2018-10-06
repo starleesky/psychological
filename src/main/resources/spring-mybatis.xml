@@ -14,12 +14,13 @@
                         http://www.springframework.org/schema/mvc    
                         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">  
     <!-- 自动扫描 -->  
-    <context:component-scan base-package="cn.com.tsjx" />  
+    <context:component-scan base-package="cn.com.eap" />
     <bean id="commonConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:config.properties</value>
 				<value>classpath:jdbc.properties</value>
+				<value>classpath:sms.properties</value>
 			</list>
 		</property>
 	</bean>

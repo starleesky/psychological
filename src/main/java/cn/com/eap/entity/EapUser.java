@@ -24,9 +24,9 @@ public class EapUser extends BaseEntity<Long> {
 	// 微信id
 	private String wechatId;
 	// 预约次数
-	private Long subscribeCount;
+	private Integer subscribeCount;
 	// 评测次数
-	private Long evaluatingCount;
+	private Integer evaluatingCount;
 	// 用户来源 0 预约, 1 评测|
 	private String src;
 
@@ -75,16 +75,16 @@ public class EapUser extends BaseEntity<Long> {
 	public void setWechatId(String wechatId) {
 		this.wechatId = wechatId;
 	}
-	public Long getSubscribeCount() {
+	public Integer getSubscribeCount() {
 		return this.subscribeCount;
 	}
-	public void setSubscribeCount(Long subscribeCount) {
+	public void setSubscribeCount(Integer subscribeCount) {
 		this.subscribeCount = subscribeCount;
 	}
-	public Long getEvaluatingCount() {
+	public Integer getEvaluatingCount() {
 		return this.evaluatingCount;
 	}
-	public void setEvaluatingCount(Long evaluatingCount) {
+	public void setEvaluatingCount(Integer evaluatingCount) {
 		this.evaluatingCount = evaluatingCount;
 	}
 	public String getSrc() {

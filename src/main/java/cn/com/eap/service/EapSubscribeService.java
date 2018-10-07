@@ -8,4 +8,12 @@ import cn.com.eap.entity.EapSubscribe;
  */
 public interface EapSubscribeService extends BaseService<EapSubscribe, Long> {
 
+
+    /**
+     * 用户提交预约
+     * @param eapSubscribe
+     * @return
+     */
+    public boolean sumbit(EapSubscribe eapSubscribe);
+
 }

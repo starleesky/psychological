@@ -33,8 +33,6 @@ public class EapEvaluating extends BaseEntity<Long> {
 	private String score;
 	// 结果描述
 	private String result;
-	// 产品类别（第三级）ID|
-	private Long catagoryId;
 
 	@Override
 	public Long getId() {
@@ -110,11 +108,5 @@ public class EapEvaluating extends BaseEntity<Long> {
 	}
 	public void setResult(String result) {
 		this.result = result;
-	}
-	public Long getCatagoryId() {
-		return this.catagoryId;
-	}
-	public void setCatagoryId(Long catagoryId) {
-		this.catagoryId = catagoryId;
 	}
 }

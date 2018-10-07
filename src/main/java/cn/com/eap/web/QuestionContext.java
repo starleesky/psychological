@@ -31,7 +31,7 @@ public class QuestionContext implements InitializingBean {
         InputStream resource = getClass().getClassLoader().getResourceAsStream("mbti.json");
         String jsonString = FileUtil.ReadFile(resource);
         QuestionDto questionDto = JSON.parseObject(jsonString, QuestionDto.class);
-        QUESTION_DTO_MAP.put("mbti", questionDto);
+        QUESTION_DTO_MAP.put(EvaTypeEnum.MBTI.code(), questionDto);
 
         log.info("评测题目初始化成功");
 

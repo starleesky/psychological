@@ -1,5 +1,5 @@
-drop table if exists eap_user;
-create table eap_user
+drop table if exists EAP_USER;
+create table EAP_USER
 (
    id                   bigint not null auto_increment comment '用户ID|',
    user_name            varchar(40) comment '用户名|',
@@ -19,10 +19,10 @@ create table eap_user
    primary key (id)
 );
 
-alter table eap_user comment '用户表';
+alter table EAP_USER comment '用户表';
 
-drop table if exists eap_subscribe;
-create table eap_subscribe
+drop table if exists EAP_SUBSCRIBE;
+create table EAP_SUBSCRIBE
 (
    id                   bigint not null AUTO_INCREMENT comment '企业ID|',
    user_id              bigint comment '用户id',
@@ -41,10 +41,10 @@ create table eap_subscribe
    primary key (id)
 );
 
-alter table eap_subscribe comment '预约记录';
+alter table EAP_SUBSCRIBE comment '预约记录';
 
-drop table if exists eap_evaluating;
-create table eap_evaluating
+drop table if exists EAP_EVALUATING;
+create table EAP_EVALUATING
 (
    id                   bigint AUTO_INCREMENT comment '主键ID|',
    user_id              bigint comment '用户id',
@@ -67,10 +67,10 @@ create table eap_evaluating
    primary key (id)
 );
 
-alter table eap_evaluating comment '评测记录';
+alter table EAP_EVALUATING comment '评测记录';
 
-drop table if exists eap_msg;
-create table eap_msg
+drop table if exists EAP_MSG;
+create table EAP_MSG
 (
    id                   bigint AUTO_INCREMENT comment '主键ID|',
    phone                varchar(64) comment '手机号码',
@@ -83,10 +83,10 @@ create table eap_msg
    primary key (id)
 );
 
-alter table eap_msg comment '短信验证码';
+alter table EAP_MSG comment '短信验证码';
 
-drop table if exists eap_answer;
-create table eap_answer
+drop table if exists EAP_ANSWER;
+create table EAP_ANSWER
 (
    id                   bigint AUTO_INCREMENT comment '主键ID|',
    eva_type             varchar(32) comment '评测类型：1 MBTI,2 OQ45,3 SCL90',
@@ -103,9 +103,9 @@ create table eap_answer
    primary key (id)
 );
 
-alter table eap_answer comment '答案表';
+alter table EAP_ANSWER comment '答案表';
 
-CREATE TABLE `eap_sys_option` (
+CREATE TABLE `EAP_SYS_OPTION` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` VARCHAR(45) NULL COMMENT '描述',
   `code` VARCHAR(45) NULL COMMENT '编码',
@@ -113,4 +113,4 @@ CREATE TABLE `eap_sys_option` (
   `default_val` VARCHAR(45) NULL COMMENT '默认值',
   `deleted` VARCHAR(45) NULL COMMENT '是否删除',
   PRIMARY KEY (`id`));
-alter table eap_sys_option comment '系统配置表';
+alter table EAP_SYS_OPTION comment '系统配置表';

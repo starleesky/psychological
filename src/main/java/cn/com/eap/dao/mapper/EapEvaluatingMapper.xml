@@ -18,7 +18,6 @@
 		   	ANSWER,
 		   	SCORE,
 		   	RESULT,
-		   	CATAGORY_ID,
 		   	CREATE_TIME,
 		   	CREATE_BY,
 		   	MODIFY_TIME,
@@ -37,7 +36,6 @@
 		   	#{answer,jdbcType=VARCHAR},
 		   	#{score,jdbcType=VARCHAR},
 		   	#{result,jdbcType=VARCHAR},
-		   	#{catagoryId,jdbcType=INTEGER},
 		   	#{createTime,jdbcType=TIMESTAMP},
 		   	#{createBy,jdbcType=VARCHAR},
 		   	#{modifyTime,jdbcType=TIMESTAMP},
@@ -92,9 +90,6 @@
 			<if test="result != null">
 				RESULT = #{result,jdbcType=VARCHAR},
 			</if>
-			<if test="catagoryId != null">
-				CATAGORY_ID = #{catagoryId,jdbcType=INTEGER},
-			</if>
 			<if test="createTime != null">
 				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
 			</if>
@@ -141,7 +136,6 @@
 		       ANSWER answer,
 		       SCORE score,
 		       RESULT result,
-		       CATAGORY_ID catagoryId,
 		       CREATE_TIME createTime,
 		       CREATE_BY createBy,
 		       MODIFY_TIME modifyTime,
@@ -203,9 +197,6 @@
 			<if test="result != null and result != ''">
 				AND RESULT = #{result,jdbcType=VARCHAR}
 			</if>
-			<if test="catagoryId != null">
-				AND CATAGORY_ID = #{catagoryId,jdbcType=INTEGER}
-			</if>
 			<if test="deleted != null and deleted != ''">
 				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
@@ -256,9 +247,6 @@
 				</if>
 				<if test="entity.result != null and entity.result != ''">
 					AND RESULT = #{entity.result,jdbcType=VARCHAR}
-				</if>
-				<if test="entity.catagoryId != null">
-					AND CATAGORY_ID = #{entity.catagoryId,jdbcType=INTEGER}
 				</if>
 				<if test="entity.deleted != null and entity.deleted != ''">
 					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}

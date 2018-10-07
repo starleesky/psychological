@@ -1,14 +1,16 @@
 package cn.com.eap.web.wap;
 
+import cn.com.eap.service.EapSubscribeService;
+import cn.com.eap.web.AliSmsService;
 import cn.com.eap.web.QuestionContext;
+import cn.com.eap.web.SmsTemplateEnum;
+import cn.com.eap.web.dto.EapEvaluatingParam;
 import cn.com.eap.web.dto.EapSubscribeParam;
 import cn.com.eap.web.dto.QuestionDto;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
 import cn.com.tsjx.util.SimpleCaptcha;
 import com.alibaba.fastjson.JSON;
-import cn.com.eap.web.AliSmsService;
-import cn.com.eap.web.SmsTemplateEnum;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import org.slf4j.Logger;
@@ -35,6 +37,9 @@ public class CommonController {
     @Resource(name = "aliSmsService")
     AliSmsService aliSmsService;
 
+    @Resource
+    EapSubscribeService eapSubscribeService;
+
     /**
      * 获取短信验证码
      *
@@ -56,6 +61,7 @@ public class CommonController {
         map.put("code", smsCode);
         sendSmsRequest.setTemplateParam(JSON.toJSONString(map));
         SendSmsResponse sendSmsResponse = aliSmsService.sendSms(sendSmsRequest);
+        log.info("验证码短信sendSmsResponse:{}", JSON.toJSONString(sendSmsResponse));
         if (sendSmsResponse != null) {
             result.setResult(true);
             result.setMessage("成功");
@@ -91,7 +97,7 @@ public class CommonController {
             return result;
         }
 
-        // TODO: 2018/10/6 保存预约信息，关联用户信息,短信通知
+        eapSubscribeService.sumbit(eapSubscribeParam);
         result.setResult(true);
         result.setMessage("成功");
         return result;
@@ -123,14 +129,16 @@ public class CommonController {
     /**
      * 提交答案
      *
-     * @param type
+     * @param eapEvaluatingParam
      */
     @ResponseBody
     @RequestMapping(value = "/submitAnswer")
-    public Result<String> submitAnswer(String type) {
+    public Result<String> submitAnswer(@RequestBody EapEvaluatingParam eapEvaluatingParam) {
         Result<String> result = new Result<String>();
         result.setResult(false);
-        // TODO: 2018/10/6 获取题目，并缓存
+        // TODO: 2018/10/6 计算结果，关联用户
+
+
         result.setResult(true);
         result.setMessage("成功");
         return result;

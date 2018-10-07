@@ -7,7 +7,7 @@ package cn.com.eap.web;
  */
 public enum EvaTypeEnum {
 
-    MBTI("MBTI", "", ""), OQ45("OQ45", "", ""), SCL90("SCL90", "", "");
+    MBTI("MBTI", "", "1"), OQ45("OQ45", "", "2"), SCL90("SCL90", "", "3");
 
     private final String code;
     private final String description;
@@ -17,6 +17,10 @@ public enum EvaTypeEnum {
         this.code = code;
         this.description = description;
         this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String code() {
@@ -31,6 +35,16 @@ public enum EvaTypeEnum {
         String description = null;
         for (EvaTypeEnum ie : EvaTypeEnum.values()) {
             if (ie.code.equals(code)) {
+                description = ie.description;
+            }
+        }
+        return description;
+    }
+
+    public static String getDiscribeByType(String type) {
+        String description = null;
+        for (EvaTypeEnum ie : EvaTypeEnum.values()) {
+            if (ie.type.equals(type)) {
                 description = ie.description;
             }
         }

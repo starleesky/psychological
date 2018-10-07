@@ -1,5 +1,6 @@
 package cn.com.eap.web.wap;
 
+import cn.com.eap.service.EapEvaluatingService;
 import cn.com.eap.service.EapSubscribeService;
 import cn.com.eap.web.AliSmsService;
 import cn.com.eap.web.QuestionContext;
@@ -39,6 +40,9 @@ public class CommonController {
 
     @Resource
     EapSubscribeService eapSubscribeService;
+
+    @Resource
+    EapEvaluatingService eapEvaluatingService;
 
     /**
      * 获取短信验证码
@@ -135,12 +139,8 @@ public class CommonController {
     @RequestMapping(value = "/submitAnswer")
     public Result<String> submitAnswer(@RequestBody EapEvaluatingParam eapEvaluatingParam) {
         Result<String> result = new Result<String>();
-        result.setResult(false);
-        // TODO: 2018/10/6 计算结果，关联用户
-
-
-        result.setResult(true);
-        result.setMessage("成功");
+        boolean submit = eapEvaluatingService.submit(eapEvaluatingParam);
+        result.setResult(submit);
         return result;
     }
 

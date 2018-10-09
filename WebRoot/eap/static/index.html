@@ -2,101 +2,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>WeUI</title>
-    <link rel="stylesheet" href="./../commons/css/weui.css">
+    <title>预约咨询</title>
+    <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
 </head>
 <body ontouchstart="">
 <div class="container" id="container">
     <div class="page tabbar js_show">
         <div class="page__bd" style="height: 100%;">
             <div class="weui-tab">
-                <div class="weui-navbar" style="position: fixed">
-                    <div class="weui-navbar__item weui-bar__item--on">
-                        预约咨询
+                <div class="weui-article">
+                    <div>
+                        <img src="./images/logo.png" style="margin-left: 33%">
+                    </div>
+                    <div style="height: 30px;margin-top: 10px">
+                        <p class="weui-cell__by">欢迎使用易安陂平台预约咨询</p>
+                        <p class="weui-cell__by">我们会为您匹配最适合的咨询师</p>
                     </div>
                 </div>
+
+                <p class="weui-cell__yyxx">预约信息</p>
                 <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">预约人</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="姓名">
+                            <input class="weui-input" type="text" maxlength="10" required="required" minlength="2" placeholder="姓名">
                         </div>
                     </div>
-                </div>
-                <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">所在单位</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="单位名称">
+                            <input class="weui-input" type="text" maxlength="30" placeholder="单位名称">
                         </div>
                     </div>
-                </div>
-                <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入qq号">
+                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请选择">
                         </div>
                     </div>
-                </div>
-                <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">年龄</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="年龄">
+                            <input class="weui-input" type="number" pattern="[0-9]*" maxlength="3" placeholder="年龄">
                         </div>
                     </div>
-                </div>
-                <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="手机号">
+                            <input class="weui-input" type="tel" placeholder="手机号">
+                        </div>
+                        <div class="weui-cell__ft">
+                            <button class="weui-vcode-btn">获取验证码</button>
                         </div>
                     </div>
-                </div>
-                <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="输入短信验证码">
+                            <input class="weui-input" type="number" pattern="[0-6]*" placeholder="输入短信验证码">
                         </div>
                     </div>
-                </div>
-                <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">需求描述</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="可不填(最多输入100字)">
+                            <input class="weui-input" type="text" size="100" placeholder="可不填(最多输入100字)">
                         </div>
                     </div>
+                    <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn">立即预约</a>
                 </div>
-                <div class="weui-tab__panel">
-
+                <div>
+                    <p class="weui-cell__lxwm">联系我们 <a href="tel:0571-87389185" style="color: #999999;">0571-87389185</a></p>
+                    <p class="weui-cell__lxwm">预约咨询服务时间 9:00-20:00</p>
                 </div>
-                <div class="weui-tabbar" style="position: fixed">
-                    <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
-                    <span style="display: inline-block;position: relative;">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                    </span>
-                        <p class="weui-tabbar__label">咨询预约</p>
-                    </a>
-                    <a href="javascript:;" class="weui-tabbar__item">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                        <p class="weui-tabbar__label">心理测评</p>
-                    </a>
-                    <a href="javascript:;" class="weui-tabbar__item">
-                    <span style="display: inline-block;position: relative;">
-                        <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
-                    </span>
-                        <p class="weui-tabbar__label">星火陪护计划</p>
-                    </a>
-                </div>
+                <div class="footer"></div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="./js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="./js/weui.min.js"></script>
 </body>
+<script type="text/javascript" src="/eap/static/commons/js/third/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
+<script type="text/javascript" src="/eap/static/js/footer.js"></script>
+<script type="text/javascript">
+    $("#submitBtn").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/common/subscribe',
+            data: JSON.stringify({
+                "userName": $("#userName").val(),
+                "userPhone": $("#userPhone").val(),
+                "company": $("#company").val(),
+                "sex": $("#sex").val(),
+                "age": $("#age").val(),
+                "remark": $("#remark").val(),
+                "code": $("#code").val()
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                if (data.result){
+                    result = new Array();
+                    location.href = "reservation_success.html";
+                }else{
+                    $.toast("提交失败");
+                }
+            }
+        });
+    })
+</script>
 </html>

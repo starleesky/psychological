@@ -15,39 +15,51 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">测试人</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" pattern="[0-9]*" placeholder="姓名">
+                            <input class="weui-input" type="text" id="userName" pattern="[0-9]*" placeholder="姓名">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">所在单位</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" pattern="[0-9]*" placeholder="单位名称">
+                            <input class="weui-input" type="text" id="company" pattern="[0-9]*" placeholder="单位名称">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请选择">
+                            <input class="weui-input" type="number" id="sex" pattern="[0-9]*" placeholder="请选择">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">年龄</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="年龄">
+                            <input class="weui-input" type="number" id="age" pattern="[0-9]*" placeholder="年龄">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="tel" placeholder="手机号">
+                            <input class="weui-input" type="tel" id="userPhone" placeholder="手机号">
                         </div>
                     </div>
                     <div style="height:100px;"></div>
-                    <a href="./evaluation_testing.html" class="weui-btn weui-btn_primary">进入测试</a>
+                    <a href="./evaluation_testing.html" class="weui-btn weui-btn_primary" onclick="goTest(this)">进入测试</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
+
+<script type="text/javascript" src="commons/js/third/jquery-2.1.4.js"></script>
+<script>
+    function goTest($this) {
+        localStorage.sex=$("#sex").val();
+        localStorage.userName=$("#userName").val();
+        localStorage.userPhone=$("#userPhone").val();
+        localStorage.age=$("#age").val();
+        localStorage.company=$("#company").val();
+        location.href = "/eap/static/evaluation_testing.html";
+    }
+</script>
 </html>

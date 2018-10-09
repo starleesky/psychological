@@ -67,7 +67,7 @@
                             <input class="weui-input" type="text" size="100" placeholder="可不填(最多输入100字)">
                         </div>
                     </div>
-                    <a href="javascript:void(0);" class="weui-btn weui-btn_primary">立即预约</a>
+                    <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn">立即预约</a>
                 </div>
                 <div>
                     <p class="weui-cell__lxwm">联系我们 <a href="tel:0571-87389185" style="color: #999999;">0571-87389185</a></p>
@@ -83,8 +83,31 @@
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
 <script type="text/javascript" src="/eap/static/js/footer.js"></script>
 <script type="text/javascript">
-    $("a.weui-btn .weui-btn_primary").click(function () {
-        console.log(2222)
+    $("#submitBtn").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/common/subscribe',
+            data: JSON.stringify({
+                "userName": $("#userName").val(),
+                "userPhone": $("#userPhone").val(),
+                "company": $("#company").val(),
+                "sex": $("#sex").val(),
+                "age": $("#age").val(),
+                "remark": $("#remark").val(),
+                "code": $("#code").val()
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                if (data.result){
+                    result = new Array();
+                    location.href = "reservation_success.html";
+                }else{
+                    $.toast("提交失败");
+                }
+            }
+        });
     })
 </script>
 </html>

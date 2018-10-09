@@ -14,7 +14,7 @@
                     <div class="weui-cell-xlcp">
                         <img src="images/logo.png" width="449px" height="176px">
                     </div>
-                    <a class="weui-cell weui-cell_access js_item" data-id="actionsheet" href="./evaluation_detail.html">
+                    <a class="weui-cell weui-cell_access js_item" data-code="MBTI" data-evaType="1" href="javascript:void(0)" onclick="set(this)">
                         <div class="weui-cell__bd">
                             <p>MBTI职业性格测试</p>
                         </div>
@@ -25,7 +25,7 @@
                     <div class="weui-cell-xlcp">
                         <img src="images/logo.png" width="449px" height="176px">
                     </div>
-                    <a class="weui-cell weui-cell_access js_item" data-id="actionsheet" href="./evaluation_detail.html">
+                    <a class="weui-cell weui-cell_access js_item" data-code="OQ45" data-evaType="2" href="javascript:void(0)" onclick="set(this)">
                         <div class="weui-cell__bd">
                             <p>OQ45效果评估量表</p>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="weui-cell-xlcp">
                         <img src="images/logo.png" width="449px" height="176px">
                     </div>
-                    <a class="weui-cell weui-cell_access js_item" data-id="actionsheet" href="./evaluation_detail.html">
+                    <a class="weui-cell weui-cell_access js_item" data-code="SCL90" data-evaType="3" href="javascript:void(0)" onclick="set(this)">
                         <div class="weui-cell__bd">
                             <p>SCL_90症状自评量表</p>
                         </div>
@@ -55,5 +55,14 @@
 <script type="text/javascript" src="commons/js/third/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="commons/js/third/jquery-weui.js"></script>
 <script type="text/javascript" src="./js/footer.js"></script>
+<script>
+    function set(a) {
+        if (window.localStorage){
+            localStorage.code = $(a).attr("data-code");
+            localStorage.evaType = $(a).attr("data-evaType");
+            location.href = "/eap/static/evaluation_detail.html";
+        }
+    }
+</script>
 
 </html>

@@ -49,10 +49,10 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="tel" placeholder="手机号">
+                            <input class="weui-input" type="tel" id="userPhone" placeholder="手机号">
                         </div>
                         <div class="weui-cell__ft">
-                            <button class="weui-vcode-btn">获取验证码</button>
+                            <button class="weui-vcode-btn" id="getSmsCode">获取验证码</button>
                         </div>
                     </div>
                     <div class="weui-cell">
@@ -109,5 +109,27 @@
             }
         });
     })
+
+    $("#getSmsCode").click(function () {
+        console.log($("#userPhone").val())
+        $.ajax({
+            type: 'POST',
+            url: '/common/getSmsCode',
+            data: JSON.stringify({
+                "mobile": $("#userPhone").val()
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                if (data.result){
+                    console.log(data);
+                }else{
+                    $.toast("提交失败");
+                }
+            }
+        });
+    })
+
 </script>
 </html>

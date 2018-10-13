@@ -158,15 +158,7 @@
         })
 
         $("#saveBtn").click(function () {
-            console.log(JSON.stringify({
-                "answer": result.toString(),
-                "userName": localStorage.userName,
-                "company":localStorage.company,
-                "userPhone": localStorage.userPhone,
-                "sex":localStorage.sex,
-                "age":localStorage.age,
-                "evaType": localStorage.evaType
-            }))
+            $.toast("提交失败");
             $.ajax({
                 type: 'POST',
                 url: '/common/submitAnswer',

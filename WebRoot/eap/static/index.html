@@ -52,7 +52,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="tel" id="userPhone" required="required" placeholder="手机号">
+                            <input class="weui-input" type="tel" id="userPhone" maxlength="11" required="required" placeholder="手机号">
                         </div>
                         <div class="weui-cell__ft">
                             <button class="weui-vcode-btn" id="getSmsCode">获取验证码</button>
@@ -87,19 +87,45 @@
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
 <script type="text/javascript" src="/eap/static/js/footer.js"></script>
-<script src="./js/weui.min.js"></script>
+<script src="/eap/static/js/weui.min.js"></script>
 <script type="text/javascript">
     function myFunc() {
         $("#submitBtn").removeAttr("disabled");
     }
 
     $("#submitBtn").click(function () {
+        var userName = $("#userName").val();
+        if(userName==null||userName==undefined||userName==''){
+            $.toast("姓名不能为空");
+            return false;
+        }
+        var sex = $("#sexValue").val();
+        if(sex==null||sex==undefined||sex==''){
+            $.toast("性别不能为空");
+            return false;
+        }
+        var age = $("#age").val();
+        if(age==null||age==undefined||age==''){
+            $.toast("年龄不能为空");
+            return false;
+        }
+        var userPhone = $("#userPhone").val();
+        if(userPhone==null||userPhone==undefined||userPhone==''){
+            $.toast("手机号不能为空");
+            return false;
+        }
+        var code = $("#code").val();
+        if(code==null||code==undefined||code==''){
+            $.toast("验证码不能为空");
+            return false;
+        }
+        $(this).removeAttr("style")
         $(this).attr("disabled", "disabled");
         $.ajax({
             type: 'POST',
             url: '/common/subscribe',
             data: JSON.stringify({
-                "userName": $("#userName").val(),
+                "userName": userName,
                 "userPhone": $("#userPhone").val(),
                 "company": $("#company").val(),
                 "sex": $("#sexValue").val(),

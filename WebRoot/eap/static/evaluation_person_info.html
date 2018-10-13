@@ -15,13 +15,13 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">测试人</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" id="userName" placeholder="姓名">
+                            <input class="weui-input" type="text" id="userName" maxlength="10" placeholder="姓名">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">所在单位</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" id="company" placeholder="单位名称">
+                            <input class="weui-input" type="text" id="company" maxlength="30" placeholder="单位名称">
                         </div>
                     </div>
                     <div class="weui-cell">
@@ -34,17 +34,17 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">年龄</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" id="age"  placeholder="年龄">
+                            <input class="weui-input" type="number" id="age" maxlength="3" placeholder="年龄">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">联系方式</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="tel" id="userPhone" placeholder="手机号">
+                            <input class="weui-input" type="tel" id="userPhone" maxlength="11" placeholder="手机号">
                         </div>
                     </div>
                     <div style="height:100px;"></div>
-                    <a href="./evaluation_testing.html" class="weui-btn weui-btn_primary" onclick="goTest(this)">进入测试</a>
+                    <a href="javascript:void(0)" class="weui-btn weui-btn_primary" id="goTest">进入测试</a>
                 </div>
             </div>
         </div>
@@ -56,32 +56,53 @@
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
 <script src="./js/weui.min.js"></script>
 <script>
-    function goTest($this) {
+    $("#goTest").click(function () {
+        var userName = $("#userName").val();
+        if(userName==null||userName==undefined||userName==''){
+            $.toast("姓名不能为空");
+            return false;
+        }
+        var sex = $("#sexValue").val();
+        if(sex==null||sex==undefined||sex==''){
+            $.toast("性别不能为空");
+            return false;
+        }
+        var age = $("#age").val();
+        if(age==null||age==undefined||age==''){
+            $.toast("年龄不能为空");
+            return false;
+        }
+        var userPhone = $("#userPhone").val();
+        if(userPhone==null||userPhone==undefined||userPhone==''){
+            $.toast("手机号不能为空");
+            return false;
+        }
+
         localStorage.sex=$("#sexValue").val();
         localStorage.userName=$("#userName").val();
         localStorage.userPhone=$("#userPhone").val();
         localStorage.age=$("#age").val();
         localStorage.company=$("#company").val();
         location.href = "/eap/static/evaluation_testing.html";
-    }
+    })
 
     $('#sex').click(function(e){
         weui.picker([{
             label: '男',
-            value: 0
+            value: 1
         }, {
             label: '女',
-            value: 1
+            value: 2
         }], {
             onChange: function (result) {
             },
             onConfirm: function (result) {
-                if (result[0] == 0){
+                if (result[0] == 1){
                     $("#sex").val('男');
-                    $("#sexValue").val(0);
+                    $("#sexValue").val(1);
                 } else{
                     $("#sex").val("女");
-                    $("#sexValue").val(1);
+                    $("#sexValue").val(2);
                 }
             }
         });

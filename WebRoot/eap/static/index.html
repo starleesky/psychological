@@ -5,7 +5,7 @@
     <title>预约咨询</title>
     <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
 </head>
-<body ontouchstart="">
+<body ontouchstart="" style="overflow: auto;">
 <div class="container" id="container">
     <div class="page tabbar js_show">
         <div class="page__bd" style="height: 100%;">
@@ -61,7 +61,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" id="code" pattern="[0-6]*" placeholder="输入短信验证码">
+                            <input class="weui-input" type="number" id="code" pattern="[0-6]*" maxlength="6" placeholder="输入短信验证码">
                         </div>
                     </div>
                     <div class="weui-cell">
@@ -78,6 +78,7 @@
                                                        style="color: #999999;">0571-87389185</a></p>
                     <p class="weui-cell__lxwm">预约咨询服务时间 9:00-20:00</p>
                 </div>
+                <div style="height:50px;"></div>
                 <div class="footer"></div>
             </div>
         </div>

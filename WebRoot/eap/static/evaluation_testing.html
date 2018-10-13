@@ -158,7 +158,15 @@
         })
 
         $("#saveBtn").click(function () {
-            console.log(result.toString())
+            console.log(JSON.stringify({
+                "answer": result.toString(),
+                "userName": localStorage.userName,
+                "company":localStorage.company,
+                "userPhone": localStorage.userPhone,
+                "sex":localStorage.sex,
+                "age":localStorage.age,
+                "evaType": localStorage.evaType
+            }))
             $.ajax({
                 type: 'POST',
                 url: '/common/submitAnswer',
@@ -171,6 +179,9 @@
                     "age":localStorage.age,
                     "evaType": localStorage.evaType
                 }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 success: function (data) {
 
                     if (data.result){

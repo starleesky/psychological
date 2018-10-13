@@ -15,25 +15,26 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">测试人</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" id="userName" pattern="[0-9]*" placeholder="姓名">
+                            <input class="weui-input" type="text" id="userName" placeholder="姓名">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">所在单位</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" id="company" pattern="[0-9]*" placeholder="单位名称">
+                            <input class="weui-input" type="text" id="company" placeholder="单位名称">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" id="sex" pattern="[0-9]*" placeholder="请选择">
+                            <input class="weui-input" id="sex" readonly="readonly" placeholder="请选择">
+                            <input class="weui-input" type="hidden" id="sexValue">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">年龄</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" id="age" pattern="[0-9]*" placeholder="年龄">
+                            <input class="weui-input" type="number" id="age"  placeholder="年龄">
                         </div>
                     </div>
                     <div class="weui-cell">
@@ -51,15 +52,39 @@
 </div>
 </body>
 
-<script type="text/javascript" src="commons/js/third/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/eap/static/commons/js/third/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
+<script src="./js/weui.min.js"></script>
 <script>
     function goTest($this) {
-        localStorage.sex=$("#sex").val();
+        localStorage.sex=$("#sexValue").val();
         localStorage.userName=$("#userName").val();
         localStorage.userPhone=$("#userPhone").val();
         localStorage.age=$("#age").val();
         localStorage.company=$("#company").val();
         location.href = "/eap/static/evaluation_testing.html";
     }
+
+    $('#sex').click(function(e){
+        weui.picker([{
+            label: '男',
+            value: 0
+        }, {
+            label: '女',
+            value: 1
+        }], {
+            onChange: function (result) {
+            },
+            onConfirm: function (result) {
+                if (result[0] == 0){
+                    $("#sex").val('男');
+                    $("#sexValue").val(0);
+                } else{
+                    $("#sex").val("女");
+                    $("#sexValue").val(1);
+                }
+            }
+        });
+    });
 </script>
 </html>

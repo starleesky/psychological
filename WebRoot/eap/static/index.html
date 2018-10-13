@@ -25,31 +25,34 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">预约人</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" maxlength="10" required="required" minlength="2" placeholder="姓名">
+                            <input class="weui-input" type="text" maxlength="10" id="userName" minlength="2"
+                                   placeholder="姓名">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">所在单位</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" maxlength="30" placeholder="单位名称">
+                            <input class="weui-input" type="text" maxlength="30" id="company" placeholder="单位名称">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" placeholder="请选择">
+                            <input class="weui-input" id="sex" readonly="readonly" placeholder="请选择">
+                            <input class="weui-input" id="sexValue" type="hidden" readonly="readonly">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">年龄</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-9]*" maxlength="3" placeholder="年龄">
+                            <input class="weui-input" type="number" pattern="[0-9]*" id="age" maxlength="3"
+                                   placeholder="年龄">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="tel" id="userPhone" placeholder="手机号">
+                            <input class="weui-input" type="tel" id="userPhone" required="required" placeholder="手机号">
                         </div>
                         <div class="weui-cell__ft">
                             <button class="weui-vcode-btn" id="getSmsCode">获取验证码</button>
@@ -58,19 +61,21 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" pattern="[0-6]*" placeholder="输入短信验证码">
+                            <input class="weui-input" type="number" id="code" pattern="[0-6]*" placeholder="输入短信验证码">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">需求描述</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="text" size="100" placeholder="可不填(最多输入100字)">
+                            <input class="weui-input" type="text" id="remark" size="100" placeholder="可不填(最多输入100字)">
                         </div>
                     </div>
-                    <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn">立即预约</a>
+                    <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn"
+                       type="submit">立即预约</a>
                 </div>
                 <div>
-                    <p class="weui-cell__lxwm">联系我们 <a href="tel:0571-87389185" style="color: #999999;">0571-87389185</a></p>
+                    <p class="weui-cell__lxwm">联系我们 <a href="tel:0571-87389185"
+                                                       style="color: #999999;">0571-87389185</a></p>
                     <p class="weui-cell__lxwm">预约咨询服务时间 9:00-20:00</p>
                 </div>
                 <div class="footer"></div>
@@ -82,8 +87,14 @@
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-2.1.4.js"></script>
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
 <script type="text/javascript" src="/eap/static/js/footer.js"></script>
+<script src="./js/weui.min.js"></script>
 <script type="text/javascript">
+    function myFunc() {
+        $("#submitBtn").removeAttr("disabled");
+    }
+
     $("#submitBtn").click(function () {
+        $(this).attr("disabled", "disabled");
         $.ajax({
             type: 'POST',
             url: '/common/subscribe',
@@ -91,7 +102,7 @@
                 "userName": $("#userName").val(),
                 "userPhone": $("#userPhone").val(),
                 "company": $("#company").val(),
-                "sex": $("#sex").val(),
+                "sex": $("#sexValue").val(),
                 "age": $("#age").val(),
                 "remark": $("#remark").val(),
                 "code": $("#code").val()
@@ -100,36 +111,77 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {
-                if (data.result){
+                if (data.result) {
                     result = new Array();
                     location.href = "reservation_success.html";
-                }else{
+                } else {
+                    $.toast(data.message, "text");
+                }
+            }
+        });
+        myFunc();
+    })
+
+    $("#getSmsCode").click(function () {
+        var mobile = $("#userPhone").val();
+        if (!mobile) {
+            $.toast("请输入手机号");
+            return false;
+        }
+        var sec = 60;
+        var iv = window.setInterval(function () {
+            if (sec == 0) {
+                window.clearInterval(iv);
+                document.getElementById("getSmsCode").disabled = false;
+                $('#getSmsCode').text('重新发送');
+                return false;
+            } else {
+                sec = sec - 1;
+                $('#getSmsCode').text('重新发送(' + sec + ')');
+            }
+        }, 1000);
+        if (document.getElementById("getSmsCode").disabled) {
+            document.getElementById("getSmsCode").disabled = true;
+        } else {//兼容谷歌浏览器
+            $('#getSmsCode').attr("disabled", true);
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/common/getSmsCode',
+            data: {
+                "mobile": mobile
+            },
+            success: function (data) {
+                if (data.result) {
+                    console.log(data);
+                } else {
                     $.toast("提交失败");
                 }
             }
         });
     })
 
-    $("#getSmsCode").click(function () {
-        console.log($("#userPhone").val())
-        $.ajax({
-            type: 'POST',
-            url: '/common/getSmsCode',
-            data: JSON.stringify({
-                "mobile": $("#userPhone").val()
-            }),
-            headers: {
-                'Content-Type': 'application/json'
+    $('#sex').click(function (e) {
+        weui.picker([{
+            label: '男',
+            value: 0
+        }, {
+            label: '女',
+            value: 1
+        }], {
+            onChange: function (result) {
             },
-            success: function (data) {
-                if (data.result){
-                    console.log(data);
-                }else{
-                    $.toast("提交失败");
+            onConfirm: function (result) {
+                if (result[0] == 0) {
+                    $("#sex").val('男');
+                    $("#sexValue").val(0);
+                } else {
+                    $("#sex").val("女");
+                    $("#sexValue").val(1);
                 }
             }
         });
-    })
+    });
 
 </script>
 </html>

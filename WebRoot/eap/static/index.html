@@ -71,7 +71,14 @@
                         </div>
                     </div>
                     <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn"
-                       type="submit">立即预约</a>
+                       type="submit" >立即预约</a>
+                </div>
+                <div id="loadingToast" style="display:none;">
+                    <div class="weui-mask_transparent"></div>
+                    <div class="weui-toast">
+                        <i class="weui-loading weui-icon_toast"></i>
+                        <p class="weui-toast__content">数据加载中</p>
+                    </div>
                 </div>
                 <div>
                     <p class="weui-cell__lxwm">联系我们 <a href="tel:0571-87389185"
@@ -106,6 +113,7 @@
 <script type="text/javascript">
     function myFunc() {
         $("#submitBtn").removeAttr("disabled");
+        $("#loadingToast").css("display","none");
     }
 
     $("#submitBtn").click(function () {
@@ -136,6 +144,7 @@
         }
         $(this).removeAttr("style")
         $(this).attr("disabled", "disabled");
+        $("#loadingToast").css("display","block");
         $.ajax({
             type: 'POST',
             url: '/common/subscribe',
@@ -154,6 +163,7 @@
             success: function (data) {
                 if (data.result) {
                     result = new Array();
+                    $("#loadingToast").attr("display","none");
                     location.href = "reservation_success.html";
                 } else {
                     $.toast(data.message, "text");

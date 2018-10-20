@@ -50,12 +50,6 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
                     return false;
                 }
             }
-		    Notice  notice = new Notice();
-		    notice.setUserId(user.getId());
-		    List<Notice> list = noticeService.find(notice);
-		    if (!list.isEmpty()) {
-                session.setAttribute("isNewMessage", true);
-            }
         }
 		
 	    log.info("拦截结束--"+ request.getRequestURI());

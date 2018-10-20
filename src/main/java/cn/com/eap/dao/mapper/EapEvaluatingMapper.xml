@@ -218,9 +218,9 @@
 				<if test="entity.userId != null">
 					AND USER_ID = #{entity.userId,jdbcType=INTEGER}
 				</if>
-				<if test="entity.userName != null and entity.userName != ''">
-					AND USER_NAME = #{entity.userName,jdbcType=VARCHAR}
-				</if>
+			<if test="entity.userName != null and entity.userName != ''">
+				AND (USER_NAME = #{entity.userName,jdbcType=VARCHAR} or USER_PHONE = #{entity.userName,jdbcType=VARCHAR})
+			</if>
 				<if test="entity.userPhone != null and entity.userPhone != ''">
 					AND USER_PHONE = #{entity.userPhone,jdbcType=VARCHAR}
 				</if>

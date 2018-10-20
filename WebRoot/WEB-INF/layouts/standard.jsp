@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="${ctx}/wap/images/favicon.ico" type="image/x-icon" />
-    <title>汤森机械管理后台系统</title>
+    <title>易安陂EAP服务后台管理理系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${ctx}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +71,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${ctx}/admin/main">汤森机械管理后台系统</a>
+            <a class="navbar-brand" href="${ctx}/admin/main">管理后台系统</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
@@ -179,73 +179,40 @@
             </li>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <c:if test="${sessionScope.adminUser.userType==0}">
+        <%--<c:if test="${sessionScope.adminUser.userType==0}">--%>
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li ng-class="{'true': 'active', false: 'noac'}['${main}']">
                         <a href="${ctx}/admin/main"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
                     </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${infomation}']">
-                        <a href="${ctx}/admin/infomation/list"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息审核</a>
-                    </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${company}']">
-                        <a href="${ctx}/admin/company/list"><i class="fa fa-fw fa-table"></i> 公司认证审核</a>
-                    </li>
                     <li ng-class="{true: 'active', false: 'noac'}['${adminUser}']">
                         <a href="${ctx}/admin/user/list"><i class="fa fa-fw fa-edit"></i> 用户管理</a>
                     </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${notice}']">
-                        <a href="${ctx}/admin/notice/list"><i class="fa fa-fw fa-desktop"></i> 系统公告管理</a>
+                    <li ng-class="{true: 'active', false: 'noac'}['${subscribe}']">
+                        <a href="${ctx}/admin//subscribe/list"><i class="fa fa-fw fa-bar-chart-o"></i> 预约管理</a>
                     </li>
-                        <%--<li>--%>
-                        <%--<a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>--%>
-                        <%--</li>--%>
-                    <li ng-class="{true: 'active', false: 'noac'}['${catagory}']">
-                        <a href="${ctx}/admin/catagory/list"><i class="fa fa-fw fa-caret-down"></i> 产品数据管理</a>
+                    <li ng-class="{true: 'active', false: 'noac'}['${evaluating}']">
+                        <a href="${ctx}/admin/evaluating/list"><i class="fa fa-fw fa-table"></i> 测评管理</a>
                     </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${brand}']">
-                        <a href="${ctx}/admin/brand/list"><i class="fa fa-fw fa-caret-left"></i> 品牌数据管理</a>
-                    </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${models}']">
-                        <a href="${ctx}/admin/models/list"><i class="fa fa-fw fa-caret-up"></i> 型号数据管理</a>
-                    </li>
-                        <%--<li>--%>
-                        <%--<a href="javascript:;" data-toggle="collapse" data-target="#demo" aria-expanded="true"><i--%>
-                        <%--class="fa fa-fw fa-arrows-v"></i> 基础数据管理 <i class="fa fa-fw fa-caret-down"></i></a>--%>
-                        <%--<ul id="demo" class="collapse">--%>
-                        <%--<li ng-class="{true: 'active', false: 'noac'}['${catagory}']">--%>
-                        <%--<a href="#">产品大类</a>--%>
-                        <%--</li>--%>
-                        <%--<li>--%>
-                        <%--<a href="#">产品组</a>--%>
-                        <%--</li>--%>
-                        <%--</ul>--%>
-                        <%--</li>--%>
+                </ul>
+            </div>
+        <%--</c:if>--%>
+        <%--<c:if test="${sessionScope.adminUser.userType==1}">--%>
+            <%--<div class="collapse navbar-collapse navbar-ex1-collapse">--%>
+                <%--<ul class="nav navbar-nav side-nav">--%>
+                    <%--<li ng-class="{'true': 'active', false: 'noac'}['${main}']">--%>
+                        <%--<a href="${ctx}/admin/main"><i class="fa fa-fw fa-dashboard"></i> 首页</a>--%>
+                    <%--</li>--%>
                     <%--<li ng-class="{true: 'active', false: 'noac'}['${infomation}']">--%>
-                        <%--<a href="${ctx}/admin/infomation/list"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息管理</a>--%>
+                        <%--<a href="${ctx}/admin/infomation/list"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息审核</a>--%>
                     <%--</li>--%>
                     <%--<li ng-class="{true: 'active', false: 'noac'}['${company}']">--%>
-                        <%--<a href="${ctx}/admin/company/list"><i class="fa fa-fw fa-table"></i> 公司信息管理</a>--%>
+                        <%--<a href="${ctx}/admin/company/list"><i class="fa fa-fw fa-table"></i> 公司认证审核</a>--%>
                     <%--</li>--%>
-                </ul>
-            </div>
-        </c:if>
-        <c:if test="${sessionScope.adminUser.userType==1}">
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li ng-class="{'true': 'active', false: 'noac'}['${main}']">
-                        <a href="${ctx}/admin/main"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
-                    </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${infomation}']">
-                        <a href="${ctx}/admin/infomation/list"><i class="fa fa-fw fa-bar-chart-o"></i> 发布信息审核</a>
-                    </li>
-                    <li ng-class="{true: 'active', false: 'noac'}['${company}']">
-                        <a href="${ctx}/admin/company/list"><i class="fa fa-fw fa-table"></i> 公司认证审核</a>
-                    </li>
-                </ul>
-            </div>
-        </c:if>
+                <%--</ul>--%>
+            <%--</div>--%>
+        <%--</c:if>--%>
         <!-- /.navbar-collapse -->
     </nav>
 

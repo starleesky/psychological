@@ -19,7 +19,7 @@ define(function (require) {
                 // }, true);
                 var list = $scope.list = commonList;
                 list.filter.key = '';
-                list.url = "/admin/user/list/getData";
+                list.url = "/admin/evaluating/list/getData";
 
                 list.fetch();
 

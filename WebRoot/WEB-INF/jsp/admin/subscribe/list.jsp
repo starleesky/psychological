@@ -10,6 +10,27 @@
 
 <div class="line">
     <div class="container-fluid clearfix">
+        <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup	 is-open="list.startopened" ng-model="list.filter.startDate" ng-change="list.fetch()"/>
+            <span class="input-group-btn">
+		          <button type="button" class="btn btn-default" ng-click="list.openCal($event, 'start')">
+		          	<i class="glyphicon glyphicon-calendar"></i>
+		         	</button>
+		        </span>
+        </div>
+        <span>至</span>
+
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" datepicker-popup is-open="list.endopened" ng-model="list.filter.endDate" ng-change="list.fetch()"/>
+                <span class="input-group-btn">
+		          <button type="button" class="btn btn-default" ng-click="list.openCal($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
+		        </span>
+            </div>
+        </div>
+    </div>
+
+
         <!-- <div class="search-box pull-left"> -->
         <form class="form-inline" ng-submit="list.fetch()">
             <div class="form-group">
@@ -23,32 +44,6 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">搜索</button>
-
-            <%--<div class="form-group pull-left">--%>
-                <%--<select class="form-control" name="auditStatus" ng-change="list.fetch()"--%>
-                        <%--ng-model="list.filter.isActivate">--%>
-                    <%--<option value="">是否激活</option>--%>
-                    <%--<option value="T">是</option>--%>
-                    <%--<option value="F">否</option>--%>
-                <%--</select>--%>
-            <%--</div>--%>
-            <%--<div class="form-group pull-left">--%>
-                <%--<select class="form-control" name="auditStatus" ng-change="list.fetch()"--%>
-                        <%--ng-model="list.filter.userType">--%>
-                    <%--<option value="">用户类型</option>--%>
-                    <%--<option value="0">系统管理员</option>--%>
-                    <%--<option value="1">普通管理员</option>--%>
-                    <%--<option value="2">普通用户</option>--%>
-                    <%--<option value="3">企业管理员</option>--%>
-                <%--</select>--%>
-            <%--</div>--%>
-            <%--<select name="provnice" required ng-model="list.filter.provinceId" class="form-control" ng-options="id as name for (id, name) in provinceList" ng-change="list.fetch()">--%>
-            <%--</select>--%>
-            <%--<city-list name="city" required ng-model="list.filter.cityId" provice="list.filter.provinceId" class="form-control" ng-change="list.fetch()"></city-list>--%>
-            <%--<div class="form-group pull-right">--%>
-                <%--<button class="btn btn-primary" ng-click="addNew()">新增</button>--%>
-            <%--</div>--%>
-
         </form>
         <!-- </div> -->
     </div>
@@ -58,26 +53,19 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>用户编号</th>
-            <th>来源</th>
+            <th>预约编号</th>
             <th>所属单位</th>
             <th>姓名</th>
             <th>性别</th>
             <th>年龄</th>
-            <th>预约咨询次数</th>
-            <th>心理评测次数</th>
+            <th>预约需求描述</th>
+            <th>预约申请时间</th>
             <th>手机号码</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="c in list.data.items">
             <td ng-bind="c.id"></td>
-            <td>
-                <div ng-switch on="c.src">
-                    <span ng-switch-when="0"> 预约</span>
-                    <span ng-switch-when="1"> 评测</span>
-                </div>
-            </td>
             <td ng-bind="c.company"></td>
 
             <td ng-bind="c.userName"></td>
@@ -89,8 +77,8 @@
                 </div>
             </td>
             <td ng-bind="c.age"></td>
-            <td ng-bind="c.subscribeCount"></td>
-            <td ng-bind="c.evaluatingCount"></td>
+            <td ng-bind="c.remark"></td>
+            <td ng-bind="c.subscribeTime | date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td ng-bind="c.userPhone"></td>
         </tr>
         </tbody>
@@ -103,15 +91,11 @@
     <p>共{{list.data.totalCount}}条 | {{list.data.pageCount}}页 | 每页{{list.filter.pageSize}}条</p>
 </div>
 
-<!-- <div class="line">
-<pagination total-items="list.data.totalSize" ng-model="list.filter.page" ng-change="list.fetch()" class="pull-right" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page="list.filter.pageSize"></pagination>
-</div> -->
-
 <script>
 
     angular.just = true;
     angular.listType = 1;
-    seajs.use(['js/controller/common/app', 'js/controller/user/list'], function () {
+    seajs.use(['js/controller/common/app', 'js/controller/user/subscribe'], function () {
         angular.bootstrap(document, ['App']);
     });
 

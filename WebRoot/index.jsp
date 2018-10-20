@@ -3,7 +3,7 @@
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <html>
 <head>
-    <title>汤森机械</title>
+    <title>易安陂</title>
     <meta http-equiv="Refresh" content="0;url=${ctx}/eap/static/index.html">
 </head>
 <body>

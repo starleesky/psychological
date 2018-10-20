@@ -58,14 +58,11 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>用户编号</th>
-            <th>来源</th>
-            <th>所属单位</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>预约咨询次数</th>
-            <th>心理评测次数</th>
+            <th>评测编号</th>
+            <th>测试量量表名称</th>
+            <th>测试时间</th>
+            <th>测试者</th>
+            <th>测试结果</th>
             <th>手机号码</th>
         </tr>
         </thead>
@@ -73,24 +70,15 @@
         <tr ng-repeat="c in list.data.items">
             <td ng-bind="c.id"></td>
             <td>
-                <div ng-switch on="c.src">
-                    <span ng-switch-when="0"> 预约</span>
-                    <span ng-switch-when="1"> 评测</span>
+                <div ng-switch on="c.evaType">
+                    <span ng-switch-when="1"> MBTI</span>
+                    <span ng-switch-when="2"> OQ45</span>
+                    <span ng-switch-when="3"> SCL90</span>
                 </div>
             </td>
-            <td ng-bind="c.company"></td>
-
+            <td ng-bind="c.createTime| date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td ng-bind="c.userName"></td>
-            <td>
-                <div ng-switch on="c.sex">
-                    <span ng-switch-when="1"> 男</span>
-                    <span ng-switch-when="2"> 女</span>
-                    <span ng-switch-when="0"> 未知</span>
-                </div>
-            </td>
-            <td ng-bind="c.age"></td>
-            <td ng-bind="c.subscribeCount"></td>
-            <td ng-bind="c.evaluatingCount"></td>
+            <td ng-bind="c.score"></td>
             <td ng-bind="c.userPhone"></td>
         </tr>
         </tbody>
@@ -111,7 +99,7 @@
 
     angular.just = true;
     angular.listType = 1;
-    seajs.use(['js/controller/common/app', 'js/controller/user/list'], function () {
+    seajs.use(['js/controller/common/app', 'js/controller/user/evaluating'], function () {
         angular.bootstrap(document, ['App']);
     });
 

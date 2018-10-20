@@ -60,6 +60,7 @@ public class EapSubscribeServiceImpl extends BaseServiceImpl<EapSubscribe, Long>
         BeanUtils.copyProperties(eapSubscribe, eapUser);
 
         eapUser.setSubscribeCount(1);
+        eapUser.setEvaluatingCount(0);
         eapUser.setSrc("0");
 
         Long userId = eapUserService.relevanceUser(eapUser);

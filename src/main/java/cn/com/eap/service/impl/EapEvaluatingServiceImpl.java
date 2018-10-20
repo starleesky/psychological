@@ -45,6 +45,8 @@ public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Lon
         EapUser eapUser = new EapUser();
         BeanUtils.copyProperties(eapEvaluatingParam, eapUser);
         eapUser.setEvaluatingCount(1);
+        eapUser.setSubscribeCount(0);
+
         eapUser.setSrc("1"); //评测
 
         Long userId = eapUserService.relevanceUser(eapUser);

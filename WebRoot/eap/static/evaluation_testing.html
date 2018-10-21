@@ -5,6 +5,12 @@
     <title>MBTI职业性格测试</title>
     <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
 </head>
+<style type="text/css">
+    div {
+        /*关键代码*/
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+</style>
 <body ontouchstart="">
 <div class="container" id="container">
     <div class="page tabbar js_show">
@@ -58,7 +64,7 @@
                     strJson.questions.forEach(function (obj) {
                         //初始第一个
                         if (obj.num == 1) {
-                            $("#count").html(0)
+                            $("#count").html(1)
                             $("#topic").html(obj.topic)
                             var present = 0;
                             $(".weui-slider__track").css("width", present + "%");

@@ -5,13 +5,15 @@
     <title>MBTI职业性格测试</title>
     <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
 </head>
+<body ontouchstart="">
 <style type="text/css">
+
+
     div {
         /*关键代码*/
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 </style>
-<body ontouchstart="">
 <div class="container" id="container">
     <div class="page tabbar js_show">
         <div class="page__bd" style="height: 100%;margin-top: 10px">
@@ -53,7 +55,7 @@
         var type = localStorage["code"];
         var strJson = null;
         var result = new Array();
-        var count = 0;
+        var count = 1;
         var total = 0;
         $.post("/common/getQuestion?type=" + type, function (data) {
             if (data != null) {
@@ -71,7 +73,7 @@
                             $(".weui-slider__handler").css("left", present + "%");
                             var $options = "";
                             obj.answer.forEach(function (opt) {
-                                $options = $options + "<a data-val=" + opt.options + " class=\"weui-cell weui-cell_access\">\n" +
+                                $options = $options + "<a data-val=" + opt.options + " class=\"cell_access_click weui-cell weui-cell_access\">\n" +
                                     "                        <div class=\"weui-cell__bd\">\n" +
                                     "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
                                     "                        </div>\n" +
@@ -86,7 +88,7 @@
         }, "json")
 
 
-        $("div").on('click', '#options a.weui-cell', function () {
+        $("div").on('click', '.cell_access_click', function () {
             $(this).siblings().children("i").remove();
             $(this).children("i").remove();
             $(this).append("<i class=\"weui-icon-success-no-circle\"></i>");
@@ -111,7 +113,7 @@
                 $(".weui-slider__track").css("width", present + "%");
                 $(".weui-slider__handler").css("left", present + "%");
                 obj.answer.forEach(function (opt) {
-                    $options = $options + "<a data-val=" + opt.options + " class=\"weui-cell weui-cell_access\">\n" +
+                    $options = $options + "<a data-val=" + opt.options + " class=\"cell_access_click weui-cell weui-cell_access\">\n" +
                         "                        <div class=\"weui-cell__bd\">\n" +
                         "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
                         "                        </div>\n" +
@@ -128,7 +130,7 @@
         });
 
         $("#forwardOne").click(function () {
-            $("#formSubmit").css("display", "none");
+            $("#saveBtn").css("display", "none");
             --count;
             if (count > 0) {
                 var pre = count;
@@ -145,7 +147,7 @@
                 var preOne = result.slice(result.length - 1);
                 obj.answer.forEach(function (opt) {
                     console.log(opt.options == preOne[0])
-                    $options = $options + "<a data-val=" + opt.options + " class=\"weui-cell weui-cell_access\">\n" +
+                    $options = $options + "<a data-val=" + opt.options + " class=\"cell_access_click weui-cell weui-cell_access\">\n" +
                         "                        <div class=\"weui-cell__bd\">\n" +
                         "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
                         "                        </div>\n";
@@ -164,7 +166,7 @@
         })
 
         $("#saveBtn").click(function () {
-            $.toast("提交失败");
+            // $.toast("正在提交");
             $.ajax({
                 type: 'POST',
                 url: '/common/submitAnswer',

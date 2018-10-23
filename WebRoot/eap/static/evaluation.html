@@ -12,7 +12,7 @@
             <div class="weui-tab-hs">
                 <div class="weui-cells weui-cells_form " style="margin-top:0em">
                     <div class="weui-cell-xlcp">
-                        <img src="images/logo.png" width="449px" height="176px">
+                        <img src="images/MBTI.png" width="449px" height="176px">
                     </div>
                     <a class="weui-cell weui-cell_access js_item" data-code="MBTI" data-evaType="1" href="javascript:void(0)" onclick="set(this)">
                         <div class="weui-cell__bd">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="weui-cells weui-cells_form " style="margin-top:1em">
                     <div class="weui-cell-xlcp">
-                        <img src="images/logo.png" width="449px" height="176px">
+                        <img src="images/OQ45.png" width="449px" height="176px">
                     </div>
                     <a class="weui-cell weui-cell_access js_item" data-code="OQ45" data-evaType="2" href="javascript:void(0)" onclick="set(this)">
                         <div class="weui-cell__bd">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="weui-cells weui-cells_form " style="margin-top:1em">
                     <div class="weui-cell-xlcp">
-                        <img src="images/logo.png" width="449px" height="176px">
+                        <img src="images/SCL90.png" width="449px" height="176px">
                     </div>
                     <a class="weui-cell weui-cell_access js_item" data-code="SCL90" data-evaType="3" href="javascript:void(0)" onclick="set(this)">
                         <div class="weui-cell__bd">
@@ -47,15 +47,15 @@
                 <div class="footer">
                     <div class="weui-tabbar weui-footer_fixed-bottom">
                         <a href="javascript:window.location.replace('/eap/static/index.html')" class="weui-tabbar__item ">
-                            <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                            <img src="./images/yyzx.png" alt="" class="weui-tabbar__icon">
                             <p class="weui-tabbar__label">咨询预约</p>
                         </a>
                         <a href="javascript:window.location.replace('/eap/static/evaluation.html')" class="weui-tabbar__item weui-bar__item_on">
-                            <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                            <img src="./images/xlcp-on.png" alt="" class="weui-tabbar__icon">
                             <p class="weui-tabbar__label">心理测评</p>
                         </a>
                         <a href="javascript:window.location.replace('/eap/static/plan.html')" class="weui-tabbar__item">
-                            <img src="./images/icon_tabbar.png" alt="" class="weui-tabbar__icon">
+                            <img src="./images/xhphjh.png" alt="" class="weui-tabbar__icon">
                             <p class="weui-tabbar__label">星火陪护计划</p>
                         </a>
                     </div>
@@ -72,6 +72,7 @@
         if (window.localStorage){
             localStorage.code = $(a).attr("data-code");
             localStorage.evaType = $(a).attr("data-evaType");
+            console.log(localStorage.code)
             location.href = "/eap/static/evaluation_detail.html";
         }
     }

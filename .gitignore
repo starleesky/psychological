@@ -11,3 +11,8 @@ src/main/resources/jdbc.properties
 src/main/resources/sms.properties
 *.DS_Store
 out
+src/main/config.properties
+src/main/jdbc.properties
+src/main/mybatis/
+src/main/sms.properties
+web/

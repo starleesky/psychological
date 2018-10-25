@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>预约咨询</title>
     <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
 </head>
 <body ontouchstart="" style="overflow: auto;">
 <div class="container" id="container">
@@ -107,8 +109,9 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
+
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
 <script src="/eap/static/js/weui.min.js"></script>
 <script type="text/javascript">
     function myFunc() {
@@ -119,27 +122,27 @@
     $("#submitBtn").click(function () {
         var userName = $("#userName").val();
         if(userName==null||userName==undefined||userName==''){
-            $.toast("姓名不能为空");
+            $.toast("姓名不能为空","text");
             return false;
         }
         var sex = $("#sexValue").val();
         if(sex==null||sex==undefined||sex==''){
-            $.toast("性别不能为空");
+            $.toast("性别不能为空","text");
             return false;
         }
         var age = $("#age").val();
         if(age==null||age==undefined||age==''){
-            $.toast("年龄不能为空");
+            $.toast("年龄不能为空","text");
             return false;
         }
         var userPhone = $("#userPhone").val();
         if(userPhone==null||userPhone==undefined||userPhone==''){
-            $.toast("手机号不能为空");
+            $.toast("手机号不能为空","text");
             return false;
         }
         var code = $("#code").val();
         if(code==null||code==undefined||code==''){
-            $.toast("验证码不能为空");
+            $.toast("验证码不能为空","text");
             return false;
         }
         $(this).removeAttr("style")
@@ -176,7 +179,7 @@
     $("#getSmsCode").click(function () {
         var mobile = $("#userPhone").val();
         if (!mobile) {
-            $.toast("请输入手机号");
+            $.toast("请输入手机号","text");
             return false;
         }
         var sec = 60;

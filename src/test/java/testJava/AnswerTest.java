@@ -2,6 +2,7 @@ package testJava;
 
 import cn.com.eap.entity.EapAnswer;
 import cn.com.eap.service.EapAnswerService;
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
@@ -82,5 +83,90 @@ public class AnswerTest {
 
         }
 
+    }
+
+    private static String oq45 = "1\t人际关系\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "2\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "3\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "4\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "5\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "6\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "7\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "8\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "9\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "10\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "11\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "12\t社会功能\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "13\t情  绪\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "14\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "15\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "16\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "17\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "18\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "19\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "20\t人际关系\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "21\t社会功能\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "22\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "23\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "24\t情  绪\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "25\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "26\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "27\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "28\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "29\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "30\t人际关系\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "31\t情  绪\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "32\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "33\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "34\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "35\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "36\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "37\t人际关系\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "38\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "39\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "40\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "41\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "42\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "43\t人际关系\tA\t4\n" + "\t\tB\t3\n" + "\t\tC\t2\n" + "\t\tD\t1\n" + "\t\tE\t0\n" + "44\t社会功能\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n" + "45\t情  绪\tA\t0\n" + "\t\tB\t1\n" + "\t\tC\t2\n" + "\t\tD\t3\n" + "\t\tE\t4\n";
+
+    @Test
+    public void testOq45() {
+
+        List<EapAnswer> eapAnswers = new ArrayList<>();
+        String[] split = oq45.split("\n");
+        String num = "1";
+        String dimension = "";
+
+
+        for (String s : split) {
+
+            EapAnswer eapAnswer = new EapAnswer();
+            String[] split1 = s.split("\t");
+            if ((split1.length == 4)  && !"".equals(split1[0])) {
+                num = split1[0];
+                dimension = split1[1];
+                eapAnswer.setNum(num);
+                eapAnswer.setEvaType("2");
+                eapAnswer.setOptions(split1[2]);
+                eapAnswer.setDimension(split1[1]);
+                eapAnswer.setScore(split1[3]);
+                eapAnswer.setSex("0");
+                eapAnswers.add(eapAnswer);
+            }else{
+                eapAnswer.setNum(num);
+                eapAnswer.setEvaType("2");
+                eapAnswer.setOptions(split1[2]);
+                eapAnswer.setDimension(dimension);
+                eapAnswer.setScore(split1[3]);
+                eapAnswer.setSex("0");
+                eapAnswers.add(eapAnswer);
+            }
+
+        }
+        for (EapAnswer eapAnswer : eapAnswers) {
+            eapAnswerService.insert(eapAnswer);
+
+        }
+    }
+
+    private static String scl90 = "1\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "2\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "3\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "4\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "5\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "6\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "7\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "8\t偏   执\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "9\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "10\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "11\t敌   对\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "12\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "13\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "14\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "15\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "16\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "17\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "18\t偏   执\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "19\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "20\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "21\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "22\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "23\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "24\t敌   对\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "25\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "26\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "27\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "28\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "29\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "30\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "31\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "32\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "33\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "34\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "35\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "36\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "37\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "38\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "39\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "40\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "41\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "42\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "43\t偏   执\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "44\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "45\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "46\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "47\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "48\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "49\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "50\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "51\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "52\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "53\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "54\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "55\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "56\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "57\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "58\t躯体化\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "59\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "60\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "61\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "62\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "63\t敌   对\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "64\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "65\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "66\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "67\t敌   对\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "68\t偏   执\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "69\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "70\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "71\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "72\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "73\t人际敏感\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "74\t敌   对\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "75\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "76\t偏   执\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "77\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "78\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "79\t抑   郁\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "80\t焦   虑\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "81\t敌   对\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "82\t恐   怖\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "83\t偏   执\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "84\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "85\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "86\t强   迫\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "87\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "88\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "89\t其   他\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n" + "90\t精神病\tA\t1\n" + "\t\tB\t2\n" + "\t\tC\t3\n" + "\t\tD\t4\n" + "\t\tE\t5\n";
+
+    @Test
+    public void testScl90() {
+
+        List<EapAnswer> eapAnswers = new ArrayList<>();
+        String[] split = scl90.split("\n");
+        String num = "1";
+        String dimension = "";
+
+
+        for (String s : split) {
+
+            EapAnswer eapAnswer = new EapAnswer();
+            String[] split1 = s.split("\t");
+            if ((split1.length == 4)  && !"".equals(split1[0])) {
+                num = split1[0];
+                dimension = split1[1];
+                eapAnswer.setNum(num);
+                eapAnswer.setEvaType("3");
+                eapAnswer.setOptions(split1[2]);
+                eapAnswer.setDimension(split1[1]);
+                eapAnswer.setScore(split1[3]);
+                eapAnswer.setSex("0");
+                eapAnswers.add(eapAnswer);
+            }else{
+                eapAnswer.setNum(num);
+                eapAnswer.setEvaType("3");
+                eapAnswer.setOptions(split1[2]);
+                eapAnswer.setDimension(dimension);
+                eapAnswer.setScore(split1[3]);
+                eapAnswer.setSex("0");
+                eapAnswers.add(eapAnswer);
+            }
+
+        }
+        eapAnswers.stream().forEach(x-> System.out.println(JSON.toJSONString(x)));
+        for (EapAnswer eapAnswer : eapAnswers) {
+            eapAnswerService.insert(eapAnswer);
+
+        }
     }
 }

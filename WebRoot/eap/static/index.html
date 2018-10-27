@@ -4,8 +4,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>预约咨询</title>
     <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="/eap/static/commons/css/jquery-weui.css">
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">-->
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">-->
 </head>
 <body ontouchstart="" style="overflow: auto;">
 <div class="container" id="container">
@@ -72,6 +73,9 @@
                             <input class="weui-input" type="text" id="remark" size="100" placeholder="可不填(最多输入100字)">
                         </div>
                     </div>
+                    <div class="weui-cell-no-position"></div>
+                    <div class="weui-cell-no-position"></div>
+                    <div class="weui-cell-no-position"></div>
                     <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn"
                        type="submit" >立即预约</a>
                 </div>
@@ -82,10 +86,11 @@
                         <p class="weui-toast__content">数据加载中</p>
                     </div>
                 </div>
+                <div class="weui-cell"></div>
                 <div>
-                    <p class="weui-cell__lxwm">联系我们 <a href="tel:0571-87389185"
+                    <p class="weui-cell__lxwm" style="height: 30px;">联系我们 <a href="tel:0571-87389185"
                                                        style="color: #4A90E2;">0571-87389185</a></p>
-                    <p class="weui-cell__lxwm">预约咨询服务时间 9:00-20:00</p>
+                    <p class="weui-cell__lxwm" style="height: 30px;">预约咨询服务时间 9:00-20:00</p>
                 </div>
                 <div style="height:50px;"></div>
                 <div class="footer">

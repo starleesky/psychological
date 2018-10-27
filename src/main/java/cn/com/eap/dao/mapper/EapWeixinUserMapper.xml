@@ -5,7 +5,7 @@
 	<!-- 插入实体 -->
 	<insert id="insert" parameterType="cn.com.eap.entity.EapWeixinUser">
 		<![CDATA[
-		INSERT INTO TSJX_EAP_WEIXIN_USER (
+		INSERT INTO EAP_WEIXIN_USER (
 		   	ID,
 		   	NICK_NAME,
 		   	SEX,
@@ -38,14 +38,14 @@
 		</selectKey>
 		<selectKey databaseId="oracle" keyProperty="id" order="BEFORE" resultType="long">
 			<![CDATA[
-				SELECT SEQ_TSJX_EAP_WEIXIN_USER.nextval as id FROM dual
+				SELECT SEQ_EAP_WEIXIN_USER.nextval as id FROM dual
 			]]>
 		</selectKey>
 	</insert>
 
 	<!-- 更新实体 -->
 	<update id="update" parameterType="cn.com.eap.entity.EapWeixinUser">
-		UPDATE TSJX_EAP_WEIXIN_USER
+		UPDATE EAP_WEIXIN_USER
 		<set>
 			<if test="nickName != null">
 				NICK_NAME = #{nickName,jdbcType=VARCHAR},
@@ -87,7 +87,7 @@
 	<!-- 删除实体 -->
 	<update id="delete" parameterType="cn.com.eap.entity.EapWeixinUser">
 		<![CDATA[
-		UPDATE TSJX_EAP_WEIXIN_USER
+		UPDATE EAP_WEIXIN_USER
 		   SET DELETED     = #{deleted,jdbcType=VARCHAR},
 		       MODIFY_BY   = #{modifyBy,jdbcType=VARCHAR},
 		       MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP}
@@ -118,7 +118,7 @@
 	<select id="get" parameterType="map" resultType="cn.com.eap.entity.EapWeixinUser">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_WEIXIN_USER
+		  FROM EAP_WEIXIN_USER
 		 WHERE ID = #{id,jdbcType=INTEGER}
 		   AND DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
@@ -128,7 +128,7 @@
 	<select id="find" parameterType="cn.com.eap.entity.EapWeixinUser" resultType="cn.com.eap.entity.EapWeixinUser">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_WEIXIN_USER
+		  FROM EAP_WEIXIN_USER
 		]]>
 		<where>
 			<if test="id != null">
@@ -162,7 +162,7 @@
 	<select id="findAll" parameterType="map" resultType="cn.com.eap.entity.EapWeixinUser">
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_WEIXIN_USER
+		  FROM EAP_WEIXIN_USER
 		 WHERE DELETED = #{deleted,jdbcType=VARCHAR}
 		]]>
 	</select>
@@ -198,7 +198,7 @@
 	<select id="page_count" parameterType="map" resultType="int">
 		<![CDATA[
 		SELECT count(*)
-		  FROM TSJX_EAP_WEIXIN_USER
+		  FROM EAP_WEIXIN_USER
 		]]>
 		<include refid="page_condition" />
 	</select>
@@ -208,7 +208,7 @@
 		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectFieldSQL" />
 		<![CDATA[
-		  FROM TSJX_EAP_WEIXIN_USER
+		  FROM EAP_WEIXIN_USER
 		]]>
 		<include refid="page_condition" />
 		<include refid="mybatis.pageEndSQL" />

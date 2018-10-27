@@ -1,0 +1,1175 @@
+{
+  "questions": [
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 1,
+      "topic": "我和其他人相处得好。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 2,
+      "topic": "我容易疲劳。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 3,
+      "topic": "我对什么事都不感兴趣。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 4,
+      "topic": "我感到来自工作/学习的压力。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 5,
+      "topic": "我为不少事情责备自己。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 6,
+      "topic": "我感到烦躁。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 7,
+      "topic": "我对我的婚姻/重要关系的人感到不满。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 8,
+      "topic": "我有轻生的念头。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 9,
+      "topic": "我感到无能为力。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 10,
+      "topic": "我感到恐惧。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 11,
+      "topic": "每当狂饮后翌日早上，我需要再喝酒才能继续办事。（不喝酒请填『从未』）"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 12,
+      "topic": "我对自己的工作/学习感到满意。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 13,
+      "topic": "我是个快乐的人。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 14,
+      "topic": "我承担了过量的工作/学习任务。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 15,
+      "topic": "我觉得自己不值一文。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 16,
+      "topic": "我关注家中出现的问题。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 17,
+      "topic": "我不满意我的性生活。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 18,
+      "topic": "我感到孤单。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 19,
+      "topic": "我经常与人发生争执。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 20,
+      "topic": "我感到有人爱我和需要我。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 21,
+      "topic": "我享受闲暇。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 22,
+      "topic": "我难于集中精神。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 23,
+      "topic": "我对未来感到绝望。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 24,
+      "topic": "我喜欢自己。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 25,
+      "topic": "我无法除去脑海中一些困扰自己的思想。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 26,
+      "topic": "我对批评我喝酒（或使用药物）的人感到厌烦。（如不适用请填『从未』）"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 27,
+      "topic": "我胃部不舒服。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 28,
+      "topic": "我的工作/学习没有像往常那样好。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 29,
+      "topic": "我的心跳得太快或太沉重。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 30,
+      "topic": "我无法和朋友/同伴很好相处。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 31,
+      "topic": "我对自己的生活感到满意。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 32,
+      "topic": "因喝酒或使用药物，我在工作/学校中遇到困难（如不适用请填『从未』）"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 33,
+      "topic": "我有一种不祥的预感。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 34,
+      "topic": "我的肌肉酸痛。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 35,
+      "topic": "我对户外空间、驾车或在公交车、地铁等感到恐惧。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 36,
+      "topic": "我感到紧张焦虑。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 37,
+      "topic": "我觉得我与爱侣的关系美满。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 38,
+      "topic": "我觉得自己在工作/学校中的表现不佳。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 39,
+      "topic": "我在工作/学校中与人有太多的分歧。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 40,
+      "topic": "我觉得自己的思想有点问题。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 41,
+      "topic": "我难以入睡，或睡不沉。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 42,
+      "topic": "我感到沮丧。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 43,
+      "topic": "我满意自己与他人的关系。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 44,
+      "topic": "对工作/学校的怨愤，足以使我做出一些可能感到后悔的事情。"
+    },
+    {
+      "answer": [
+        {
+          "description": "从未",
+          "options": "A"
+        },
+        {
+          "description": "很少有",
+          "options": "B"
+        },
+        {
+          "description": "有时有",
+          "options": "C"
+        },
+        {
+          "description": "较多时候",
+          "options": "D"
+        },
+        {
+          "description": "总是这样",
+          "options": "E"
+        }
+      ],
+      "num": 45,
+      "topic": "我有头痛的现象。"
+    }
+  ],
+  "total": 45
+}

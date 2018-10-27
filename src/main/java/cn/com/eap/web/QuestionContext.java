@@ -33,6 +33,17 @@ public class QuestionContext implements InitializingBean {
         QuestionDto questionDto = JSON.parseObject(jsonString, QuestionDto.class);
         QUESTION_DTO_MAP.put(EvaTypeEnum.MBTI.code(), questionDto);
 
+        resource = getClass().getClassLoader().getResourceAsStream("oq45.json");
+        jsonString = FileUtil.ReadFile(resource);
+        questionDto = JSON.parseObject(jsonString, QuestionDto.class);
+        QUESTION_DTO_MAP.put(EvaTypeEnum.OQ45.code(), questionDto);
+
+        resource = getClass().getClassLoader().getResourceAsStream("scl90.json");
+        jsonString = FileUtil.ReadFile(resource);
+        questionDto = JSON.parseObject(jsonString, QuestionDto.class);
+        QUESTION_DTO_MAP.put(EvaTypeEnum.SCL90.code(), questionDto);
+
+
         log.info("评测题目初始化成功");
 
 

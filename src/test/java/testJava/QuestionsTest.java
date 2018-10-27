@@ -17,6 +17,12 @@ public class QuestionsTest {
 
     public static void main(String[] args) {
 
+        //        mbti();
+//        oq45();
+        scl90();
+    }
+
+    private static void mbti() {
         QuestionDto questionDto = new QuestionDto();
 
         List<QuestionDto.QuestionsBean> questions = new ArrayList<>();
@@ -44,7 +50,7 @@ public class QuestionsTest {
             answerBean.setDescription(split4[1]);
             answer.add(answerBean);
 
-            if(split1.length>3){
+            if (split1.length > 3) {
                 String[] split5 = split1[3].split(". ");
                 answerBean = new QuestionDto.QuestionsBean.AnswerBean();
 
@@ -56,6 +62,115 @@ public class QuestionsTest {
             count++;
 
         }
+        questionDto.setQuestions(questions);
+        questionDto.setTotal(count);
+        System.out.println(JSON.toJSON(questionDto));
+    }
+
+    private final static String question1 = "1\t我和其他人相处得好。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "2\t我容易疲劳。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "3\t我对什么事都不感兴趣。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "4\t我感到来自工作/学习的压力。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "5\t我为不少事情责备自己。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "6\t我感到烦躁。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "7\t我对我的婚姻/重要关系的人感到不满。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "8\t我有轻生的念头。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "9\t我感到无能为力。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "10\t我感到恐惧。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "11\t每当狂饮后翌日早上，我需要再喝酒才能继续办事。（不喝酒请填『从未』）\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "12\t我对自己的工作/学习感到满意。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "13\t我是个快乐的人。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "14\t我承担了过量的工作/学习任务。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "15\t我觉得自己不值一文。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "16\t我关注家中出现的问题。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "17\t我不满意我的性生活。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "18\t我感到孤单。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "19\t我经常与人发生争执。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "20\t我感到有人爱我和需要我。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "21\t我享受闲暇。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "22\t我难于集中精神。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "23\t我对未来感到绝望。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "24\t我喜欢自己。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "25\t我无法除去脑海中一些困扰自己的思想。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "26\t我对批评我喝酒（或使用药物）的人感到厌烦。（如不适用请填『从未』）\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "27\t我胃部不舒服。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "28\t我的工作/学习没有像往常那样好。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "29\t我的心跳得太快或太沉重。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "30\t我无法和朋友/同伴很好相处。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "31\t我对自己的生活感到满意。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "32\t因喝酒或使用药物，我在工作/学校中遇到困难（如不适用请填『从未』）\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "33\t我有一种不祥的预感。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "34\t我的肌肉酸痛。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "35\t我对户外空间、驾车或在公交车、地铁等感到恐惧。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "36\t我感到紧张焦虑。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "37\t我觉得我与爱侣的关系美满。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "38\t我觉得自己在工作/学校中的表现不佳。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "39\t我在工作/学校中与人有太多的分歧。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "40\t我觉得自己的思想有点问题。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "41\t我难以入睡，或睡不沉。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "42\t我感到沮丧。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "43\t我满意自己与他人的关系。\t从未4   很少有3   有时有2  较多时候1  总是这样0\t\t\t\n" + "44\t对工作/学校的怨愤，足以使我做出一些可能感到后悔的事情。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n" + "45\t我有头痛的现象。\t从未0   很少有1   有时有2  较多时候3  总是这样4\t\t\t\n";
+
+    private static void oq45() {
+        QuestionDto questionDto = new QuestionDto();
+
+        List<QuestionDto.QuestionsBean> questions = new ArrayList<>();
+
+        String[] split = question1.split("\n");
+        int count = 0;
+
+        for (String str : split) {
+            String[] split1 = str.split("\t");
+            QuestionDto.QuestionsBean questionsBean = new QuestionDto.QuestionsBean();
+            List<QuestionDto.QuestionsBean.AnswerBean> answer = new ArrayList<>();
+            questionsBean.setNum(Integer.parseInt(split1[0]));
+            questionsBean.setTopic(split1[1]);
+            questionsBean.setAnswer(answer);
+            String[] split2 = split1[2].split(" ");
+            for (int i = 0; i < split2.length; i++) {
+                if (!"".equals(split2[i])) {
+                    QuestionDto.QuestionsBean.AnswerBean answerBean = new QuestionDto.QuestionsBean.AnswerBean();
+                    answerBean.setOptions(String.valueOf(i));
+                    switch (i) {
+                        case 0:
+                            answerBean.setOptions("A");
+                            break;
+                        case 3:
+                            answerBean.setOptions("B");
+                            break;
+                        case 6:
+                            answerBean.setOptions("C");
+                            break;
+                        case 8:
+                            answerBean.setOptions("D");
+                            break;
+                        case 10:
+                            answerBean.setOptions("E");
+                            break;
+                    }
+
+                    answerBean.setDescription(split2[i].substring(0, split2[i].length() - 1));
+                    answer.add(answerBean);
+                }
+            }
+            questions.add(questionsBean);
+            count++;
+
+        }
+        questionDto.setQuestions(questions);
+        questionDto.setTotal(count);
+        System.out.println(JSON.toJSON(questionDto));
+
+    }
+
+    private final static String question2 = "1、头痛\n" + "2、神经过敏，心中不踏实\n" + "3、头脑中有不必要的想法或字句盘旋\n" + "4、头昏或昏倒\n" + "5、对异性的兴趣减退\n" + "6、对旁人责备求全\n" + "7、感到别人能控制您的思想\n" + "8、责怪别人制造麻烦\n" + "9、忘记性大\n" + "10、担心自己的衣饰整齐及仪态的端正\n" + "11、容易烦恼和激动\n" + "12、胸痛\n" + "13、害怕空旷的场所或街道\n" + "14、感到自己的精力下降，活动减慢\n" + "15、想结束自己的生命\n" + "16、听到旁人听不到的声音\n" + "17、发抖\n" + "18、感到大多数人都不可信任\n" + "19、胃口不好\n" + "20、容易哭泣\n" + "21、同异性相处时感到害羞不自在\n" + "22、感到受骗、中了圈套或有人想抓住您\n" + "23、无缘无故地突然感到害怕\n" + "24、自己不能控制地大发脾气\n" + "25、怕单独出门\n" + "26、经常责怪自己\n" + "27、腰痛\n" + "28、感到难以完成任务\n" + "29、感到孤独\n" + "30、感到苦闷\n" + "31、过分担忧\n" + "32、对事物不感兴趣、\n" + "33、感到害怕\n" + "34、您的感情容易受到伤害\n" + "35、旁人能知道您的私下想法\n" + "36、感到别人不理解您、不同情您\n" + "37、感到人们对您不友好、不喜欢您\n" + "38、做事必须做得很慢以保证做得正确\n" + "39、心跳得很厉害\n" + "40、恶心或胃部不舒服\n" + "41、感到比不上他人\n" + "42、肌肉酸痛\n" + "43、感到有人在监视您、谈论您\n" + "44、难以入睡\n" + "45、做事必须反复检查\n" + "46、难以作出决定\n" + "47、怕乘电车、公共汽车、地铁或火车\n" + "48、呼吸有困难\n" + "49、一阵阵发冷或发热\n" + "50、因为感到害怕而避开某些东西、场合或活动\n" + "51、脑子变空了\n" + "52、身体发麻或刺痛\n" + "53、喉咙有梗塞感\n" + "54、感到没有前途没有希望\n" + "55、不能集中注意\n" + "56、感到身体的某一部分软弱无力\n" + "57、感到紧张或容易紧张\n" + "58、感到手或脚发重\n" + "59、想到死亡的事\n" + "60、吃得太多\n" + "61、当别人看着您或谈论您时感到不自在\n" + "62、有一些不属于您自己的想法\n" + "63、有想打人或伤害他人的冲动\n" + "64、醒得太早\n" + "65、必须反复洗手、点数目或触摸某些东西\n" + "66、睡得不稳不深\n" + "67、有想摔坏或破坏东西的冲动\n" + "68、有一些别人没有的想法或念头\n" + "69、感到对别人神经过敏\n" + "70、在商店或电影院等人多的地方感到不自在\n" + "71、感到任何事情都很困难\n" + "72、一阵阵恐惧或惊恐\n" + "73、感到在公共场合吃东西很不舒服\n" + "74、常与人争论\n" + "75、独自一人时神经很紧张\n" + "76、别人对您的成绩没有作出恰当的评价\n" + "77、即使和别人在一起也感到孤单\n" + "78、感到坐立不安、心神不定\n" + "79、感到自己没有什么价值\n" + "80、感到熟悉的东西变成陌生或不像是真的\n" + "81、大叫或摔东西\n" + "82、害怕会在公共场合昏倒\n" + "83、感到别人想占您的便宜\n" + "84、为一些有关“性”的想法而很苦恼\n" + "85、您认为应该因为自己的过错而受到惩罚\n" + "86、感到要赶快把事情做完\n" + "87、感到自己的身体有严重问题\n" + "88、从未感到和其他人很亲近\n" + "89、感到自己有罪\n" + "90、感到自己的脑子有毛病。";
+
+    private static void scl90() {
+        QuestionDto questionDto = new QuestionDto();
+
+        List<QuestionDto.QuestionsBean> questions = new ArrayList<>();
+
+        String[] split = question2.split("\n");
+        int count = 0;
+
+        for (String str : split) {
+            String[] split1 = str.split("、");
+            QuestionDto.QuestionsBean questionsBean = new QuestionDto.QuestionsBean();
+            List<QuestionDto.QuestionsBean.AnswerBean> answer = new ArrayList<>();
+            questionsBean.setNum(Integer.parseInt(split1[0]));
+            questionsBean.setTopic(split1[1]);
+            questionsBean.setAnswer(answer);
+            for (int i = 0; i < 5; i++) {
+                QuestionDto.QuestionsBean.AnswerBean answerBean = new QuestionDto.QuestionsBean.AnswerBean();
+                switch (i) {
+                    case 0:
+                        answerBean.setOptions("A");
+                        answerBean.setDescription("没有");
+                        break;
+                    case 1:
+                        answerBean.setOptions("B");
+                        answerBean.setDescription("较轻");
+                        break;
+                    case 2:
+                        answerBean.setOptions("C");
+                        answerBean.setDescription("中度");
+
+                        break;
+                    case 3:
+                        answerBean.setOptions("D");
+                        answerBean.setDescription("相当重");
+
+                        break;
+                    case 4:
+                        answerBean.setOptions("E");
+                        answerBean.setDescription("严重");
+
+                        break;
+                }
+                answer.add(answerBean);
+            }
+            questions.add(questionsBean);
+            count++;
+        }
+
         questionDto.setQuestions(questions);
         questionDto.setTotal(count);
         System.out.println(JSON.toJSON(questionDto));

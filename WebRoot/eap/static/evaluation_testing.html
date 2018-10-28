@@ -6,14 +6,6 @@
     <link rel="stylesheet" href="/eap/static/commons/css/weui.css">
 </head>
 <body ontouchstart="">
-<style type="text/css">
-
-
-    div {
-        /*关键代码*/
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-</style>
 <div class="container" id="container">
     <div class="page tabbar js_show">
         <div class="page__bd" style="height: 100%;margin-top: 10px">
@@ -52,6 +44,7 @@
 <script type="text/javascript" src="/eap/static/commons/js/third/jquery-weui.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var flag = false;
         var type = localStorage["code"];
         var strJson = null;
         var result = new Array();
@@ -92,7 +85,7 @@
             $(this).siblings().children("i").remove();
             $(this).children("i").remove();
             $(this).append("<i class=\"weui-icon-success-no-circle\"></i>");
-
+            console.log(count)
             if (count == total) {
                 $("#saveBtn").css("display", "block");
                 $("#saveBtn").attr("disabled", "disabled");
@@ -121,6 +114,7 @@
                 })
                 result.push($(this).attr("data-val"));
                 count++;
+                flag=true;
                 $("#options").html($options);
             }
             if (count > 1) {
@@ -131,7 +125,13 @@
 
         $("#forwardOne").click(function () {
             $("#saveBtn").css("display", "none");
+            console.log(count)
             --count;
+            if(flag){
+                --count;
+                flag=false;
+            }
+
             if (count > 0) {
                 var pre = count;
                 $("#count").html(count)

@@ -7,14 +7,12 @@
 
 </head>
 <body ontouchstart="">
-<style type="text/css">
-
-
-    a div p {
-        /*关键代码*/
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-</style>
+<script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
 <div class="container" id="container">
     <div class="page tabbar js_show">
         <div class="page__bd" style="height: 100%;">
@@ -39,28 +37,7 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
-
-    // 接口调用代码（JavaScript） --- from 微信公众平台-企业微信开发文档
-    function onBridgeReady(){
-        WeixinJSBridge.call('hideToolbar');
-    }
-
-    if (typeof WeixinJSBridge == "undefined"){
-        if( document.addEventListener ){
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        }else if (document.attachEvent){
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-        }
-    }else{
-        onBridgeReady();
-    }
-    // 返回说明
-    // 隐藏底部导航栏没有返回值。（需要显示顶部导航栏，请把hideToolbar换成showToolbar）
-
-
     $(document).ready(function(){
-
         $("img").attr('src','images/'+localStorage.code+".png")
     })
 </script>

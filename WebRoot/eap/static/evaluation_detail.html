@@ -4,8 +4,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>MBTI职业性格测试</title>
     <link rel="stylesheet" href="./commons/css/weui.css">
+
 </head>
 <body ontouchstart="">
+<style type="text/css">
+
+
+    a div p {
+        /*关键代码*/
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+</style>
 <div class="container" id="container">
     <div class="page tabbar js_show">
         <div class="page__bd" style="height: 100%;">
@@ -13,7 +22,7 @@
                 <div class="weui-cell-xlcp">
                     <img src="images/logo.png" width="98%" height="176px">
                 </div>
-                <a class="weui-cell weui-cell_access js_item" data-id="actionsheet" href="javascript:;">
+                <a class="weui-cell weui-cell_access js_item" data-id="actionsheet">
                     <div class="weui-cell__bd">
                         <p>迈尔斯-布里格斯性格分类指标（英语：Myers-Briggs Type Indicator，简称MBTI）是性格分类理论模型的一种，其基本理论是根据瑞士心理分析家卡尔·荣格于1921年所出版的书籍《心理类型》。最先的研究者是美国心理学家凯瑟琳·布里格斯及其女儿伊莎贝尔·迈尔斯。
                             虽然在商界流行，但心理学界认为MBTI理论有缺陷，测量结果不可靠，而且同一个人不同时候测量的结果也不同。[1][2][3]，并指出这是巴纳姆效应的例子[4]。相比之下，五大性格特质是更好的性格测度工具。</p>
@@ -30,8 +39,28 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
+
+    // 接口调用代码（JavaScript） --- from 微信公众平台-企业微信开发文档
+    function onBridgeReady(){
+        WeixinJSBridge.call('hideToolbar');
+    }
+
+    if (typeof WeixinJSBridge == "undefined"){
+        if( document.addEventListener ){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }else if (document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    }else{
+        onBridgeReady();
+    }
+    // 返回说明
+    // 隐藏底部导航栏没有返回值。（需要显示顶部导航栏，请把hideToolbar换成showToolbar）
+
+
     $(document).ready(function(){
-        console.log(localStorage.code)
+
         $("img").attr('src','images/'+localStorage.code+".png")
     })
 </script>

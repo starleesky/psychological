@@ -89,7 +89,7 @@
                 <div class="weui-cell"></div>
                 <div>
                     <p class="weui-cell__lxwm" style="height: 30px;">联系我们 <a href="tel:0571-87389185"
-                                                       style="color: #4A90E2;">0571-87389185</a></p>
+                                                                             style="color: #4A90E2;">0571-87389185</a></p>
                     <p class="weui-cell__lxwm" style="height: 30px;">预约咨询服务时间 9:00-20:00</p>
                 </div>
                 <div style="height:50px;"></div>
@@ -119,6 +119,10 @@
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
 <script src="/eap/static/js/weui.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function() {
+        console.log( "ready!" );
+        window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf0e81c3bee622d60&redirect_uri=http://eap120.com&response_type=code&scope=snsapi_userinfo&state=STATE#http://eap120.com";
+    });
     function myFunc() {
         $("#submitBtn").removeAttr("disabled");
         $("#loadingToast").css("display","none");

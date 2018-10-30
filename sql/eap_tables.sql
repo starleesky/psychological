@@ -105,6 +105,26 @@ create table EAP_ANSWER
 
 alter table EAP_ANSWER comment '答案表';
 
+drop table if exists EAP_WEIXIN_USER;
+create table EAP_WEIXIN_USER
+(
+   id                   bigint AUTO_INCREMENT comment '主键ID|',
+   nick_name             varchar(32) comment '昵称',
+   sex                  varchar(16) comment '性别',
+   city                  varchar(32) comment '城市',
+   icon                 varchar(64) comment '头像',
+   openid              varchar(64) comment 'openid',
+   unionid                varchar(64) comment 'unionid',
+   create_time          datetime comment '创建时间|',
+   create_by            varchar(40) comment '创建者|',
+   modify_time          datetime comment '更新时间|',
+   modify_by            varchar(40) comment '修改者|',
+   deleted              varchar(8) comment '是否删除(T删除，F未删除)|',
+   primary key (id)
+);
+
+alter table EAP_WEIXIN_USER comment '微信授权用户信息';
+
 CREATE TABLE `EAP_SYS_OPTION` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` VARCHAR(45) NULL COMMENT '描述',

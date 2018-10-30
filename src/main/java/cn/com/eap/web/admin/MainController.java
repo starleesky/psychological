@@ -60,7 +60,6 @@ public class MainController {
 
     @RequestMapping(value = "/subscribe/list")
     public String companyInit(Model model) {
-        model.addAttribute("adminUser", true);
         model.addAttribute("subscribe", true);
         return "admin/subscribe/list";
     }
@@ -78,7 +77,6 @@ public class MainController {
 
     @RequestMapping(value = "/evaluating/list")
     public String adminNoticeInit(Model model) {
-        model.addAttribute("adminUser", true);
         model.addAttribute("evaluating ", true);
         return "admin/evaluating/list";
     }

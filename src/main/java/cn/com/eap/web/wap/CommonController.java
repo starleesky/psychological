@@ -1,7 +1,9 @@
 package cn.com.eap.web.wap;
 
+import cn.com.eap.entity.EapWeixinUser;
 import cn.com.eap.service.EapEvaluatingService;
 import cn.com.eap.service.EapSubscribeService;
+import cn.com.eap.service.EapWeixinUserService;
 import cn.com.eap.web.AliSmsService;
 import cn.com.eap.web.QuestionContext;
 import cn.com.eap.web.SmsTemplateEnum;
@@ -43,6 +45,9 @@ public class CommonController {
 
     @Resource
     EapEvaluatingService eapEvaluatingService;
+
+    @Resource
+    EapWeixinUserService eapWeixinUserService;
 
     /**
      * 获取短信验证码
@@ -144,4 +149,19 @@ public class CommonController {
         return result;
     }
 
+
+    /**
+     * 微信授权获取用户信息
+     *
+     * @param eapWeixinUser
+     */
+    @ResponseBody
+    @RequestMapping(value = "/saveAuth")
+    public Result<String> submitAnswer(@RequestBody EapWeixinUser eapWeixinUser) {
+        Result<String> result = new Result<String>();
+         eapWeixinUserService.insert(eapWeixinUser);
+        result.setResult(true);
+        result.setMessage("成功");
+        return result;
+    }
 }

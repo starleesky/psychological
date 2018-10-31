@@ -28,6 +28,16 @@ public class EapSubscribe extends BaseEntity<Long> {
 	// 预约描述
 	private String remark;
 
+	private String openid;
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
 	@Override
 	public Long getId() {
 		return super.getId();

@@ -30,6 +30,8 @@ public class EapUser extends BaseEntity<Long> {
 	// 用户来源 0 预约, 1 评测|
 	private String src;
 
+	private String openid;
+
 	@Override
 	public Long getId() {
 		return super.getId();
@@ -92,5 +94,13 @@ public class EapUser extends BaseEntity<Long> {
 	}
 	public void setSrc(String src) {
 		this.src = src;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 }

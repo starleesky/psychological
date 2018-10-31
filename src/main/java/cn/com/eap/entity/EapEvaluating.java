@@ -34,6 +34,16 @@ public class EapEvaluating extends BaseEntity<Long> {
 	// 结果描述
 	private String result;
 
+	private String openid;
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
 	@Override
 	public Long getId() {
 		return super.getId();

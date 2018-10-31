@@ -134,3 +134,7 @@ CREATE TABLE `EAP_SYS_OPTION` (
   `deleted` VARCHAR(45) NULL COMMENT '是否删除',
   PRIMARY KEY (`id`));
 alter table EAP_SYS_OPTION comment '系统配置表';
+
+alter table `EAP_USER` Add column openid varchar(64) comment 'openid'AFTER `src`;
+alter table `EAP_SUBSCRIBE` Add column openid varchar(64) comment 'openid'AFTER `remark`;
+alter table `EAP_EVALUATING` Add column openid varchar(64) comment 'openid'AFTER `result`;

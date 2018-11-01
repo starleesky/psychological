@@ -2,6 +2,7 @@ package cn.com.eap.web.wap;
 
 import cn.com.eap.service.EapEvaluatingService;
 import cn.com.eap.service.EapSubscribeService;
+import cn.com.eap.service.EapWeixinUserService;
 import cn.com.eap.web.AliSmsService;
 import cn.com.eap.web.QuestionContext;
 import cn.com.eap.web.SmsTemplateEnum;
@@ -33,16 +34,15 @@ import java.util.Map;
 @RequestMapping("/common")
 public class CommonController {
 
-    private Logger log = LoggerFactory.getLogger(CommonController.class);
-
     @Resource(name = "aliSmsService")
     AliSmsService aliSmsService;
-
     @Resource
     EapSubscribeService eapSubscribeService;
-
     @Resource
     EapEvaluatingService eapEvaluatingService;
+    @Resource
+    EapWeixinUserService eapWeixinUserService;
+    private Logger log = LoggerFactory.getLogger(CommonController.class);
 
     /**
      * 获取短信验证码
@@ -110,8 +110,9 @@ public class CommonController {
 
     /**
      * 获取评测题目
+     * <p>
+     * type:mbti,oq45,scl90
      *
-     *  type:mbti,oq45,scl90
      * @param type
      */
     @ResponseBody
@@ -144,4 +145,10 @@ public class CommonController {
         return result;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/code")
+    public Result<String> weixinLogin(String param) {
+        Result<String> result = eapWeixinUserService.weiXinLogin(param);
+        return result;
+    }
 }

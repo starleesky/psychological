@@ -118,7 +118,35 @@
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
 <script src="/eap/static/js/weui.min.js"></script>
-<script type="text/javascript">
+<script language="javascript">
+
+    $(document).ready(function(){
+        var code = GetRequest().code;
+        var result; // 定义变量接收返回值
+        $.ajax({
+            url: "common/code?param="+code,
+            async: false,//改为同步方式
+            type: "GET",
+            cache: false,
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                result = data; // 接收返回值
+            }
+        });
+    })
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
     function myFunc() {
         $("#submitBtn").removeAttr("disabled");
         $("#loadingToast").css("display","none");

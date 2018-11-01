@@ -1,5 +1,6 @@
 package cn.com.eap.web.wap;
 
+import cn.com.eap.entity.EapWeixinUser;
 import cn.com.eap.service.EapEvaluatingService;
 import cn.com.eap.service.EapSubscribeService;
 import cn.com.eap.service.EapWeixinUserService;
@@ -146,9 +147,23 @@ public class CommonController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/code")
+    @RequestMapping(value = "/weixinLogin")
     public Result<String> weixinLogin(String param) {
         Result<String> result = eapWeixinUserService.weiXinLogin(param);
+        return result;
+    }
+    /**
+     * 微信授权获取用户信息
+     *
+     * @param eapWeixinUser
+     */
+    @ResponseBody
+    @RequestMapping(value = "/saveAuth")
+    public Result<String> submitAnswer(@RequestBody EapWeixinUser eapWeixinUser) {
+        Result<String> result = new Result<String>();
+         eapWeixinUserService.insert(eapWeixinUser);
+        result.setResult(true);
+        result.setMessage("成功");
         return result;
     }
 }

@@ -71,7 +71,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${ctx}/admin/main">管理后台系统</a>
+            <a class="navbar-brand" href="${ctx}/admin/main">易安陂EAP服务后台管理理系统</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">

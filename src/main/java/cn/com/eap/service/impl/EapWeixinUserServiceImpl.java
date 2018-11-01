@@ -30,8 +30,9 @@ public class EapWeixinUserServiceImpl extends BaseServiceImpl<EapWeixinUser, Lon
         if (codeResult != null){
             JSONObject jsonObject = JSONObject.parseObject(codeResult);
             String accessToken = jsonObject.getString("access_token");
+            String openid = jsonObject.getString("openid");
             if (accessToken != null){
-                String user = WeiXinUtil.get("https://api.weixin.qq.com/sns/userinfo?access_token="+accessToken+"&openid=oeDSv51lu6Fch1rWTFm7MMgWBd00");
+                String user = WeiXinUtil.get("https://api.weixin.qq.com/sns/userinfo?access_token="+accessToken+"&openid="+openid);
                 JSONObject userObject = JSONObject.parseObject(user);
                 EapWeixinUser eapWeixinUser = JSONObject.toJavaObject(userObject,EapWeixinUser.class);
                 eapWeixinUserDao.insert(eapWeixinUser);

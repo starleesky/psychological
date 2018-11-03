@@ -30,7 +30,7 @@ define(function (require, exports, module) {
         this.$http.post(angular.path + "/manage/login", this.formData).success(function (resp) {
             if (resp.result) {
                 //Cookie.setCookie("UPS_user_name", self.formData.name, 720, "/");
-                window.location.href = angular.path + '/admin/main';
+                window.location.href = angular.path + '/admin/user/list';
             } else {
                 if (resp.code == 2) {//用户密码是默认的初始密码，进入密码修改页
                     //window.location.href = '/ups/password?entryKey=' + resp.data + '&target=' + encodeURIComponent(self.formData.target);

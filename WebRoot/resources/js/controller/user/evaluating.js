@@ -131,7 +131,7 @@ define(function (require) {
                     var title = "";
                     if(type==2){
                         id = "";
-                        title = "导出";
+                        title = "全部导出";
                     }else{
                         title = "导出";
                     }

@@ -80,14 +80,14 @@
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th>预约编号</th>
-            <th>所属单位</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
+            <th WIDTH="80px">预约编号</th>
+            <th WIDTH="200px">所属单位</th>
+            <th WIDTH="150px">姓名</th>
+            <th WIDTH="60px">性别</th>
+            <th WIDTH="60px">年龄</th>
             <th>预约需求描述</th>
-            <th>预约申请时间</th>
-            <th>手机号码</th>
+            <th WIDTH="200px">预约申请时间</th>
+            <th WIDTH="100px">手机号码</th>
         </tr>
         </thead>
         <tbody>

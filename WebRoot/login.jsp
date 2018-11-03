@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>易易安陂EAP服务后台管理理系统</title>
+    <title>易安陂EAP服务后台管理系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${ctx}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
     <div data-ng-controller="userLoginCtrl" class="middle-box text-center loginscreen  animated fadeInDown">
         <div>
             <div>
-                <h2 class="logo-name">易安陂EAP服务后台管理理系统</h2>
+                <h2 class="logo-name" >易安陂EAP服务后台</h2>
             </div>
             <form class="m-t" data-ng-submit="ctrl.loginSubmit()">
                 <div class="form-group">

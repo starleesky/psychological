@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="${ctx}/wap/images/favicon.ico" type="image/x-icon" />
-    <title>易安陂EAP服务后台管理理系统</title>
+    <title>易安陂EAP服务后台管理系统</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${ctx}/resources/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +71,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${ctx}/admin/main">易安陂EAP服务后台管理理系统</a>
+            <a class="navbar-brand" href="${ctx}/admin/main">易安陂EAP服务后台管理系统</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
@@ -183,9 +183,9 @@
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li ng-class="{'true': 'active', false: 'noac'}['${main}']">
-                        <a href="${ctx}/admin/main"><i class="fa fa-fw fa-dashboard"></i> 首页</a>
-                    </li>
+                    <%--<li ng-class="{'true': 'active', false: 'noac'}['${main}']">--%>
+                        <%--<a href="${ctx}/admin/main"><i class="fa fa-fw fa-dashboard"></i> 首页</a>--%>
+                    <%--</li>--%>
                     <li ng-class="{true: 'active', false: 'noac'}['${adminUser}']">
                         <a href="${ctx}/admin/user/list"><i class="fa fa-fw fa-edit"></i> 用户管理</a>
                     </li>

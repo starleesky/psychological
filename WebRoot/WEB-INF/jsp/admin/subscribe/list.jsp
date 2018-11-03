@@ -10,45 +10,72 @@
 
 <div class="line">
     <div class="container-fluid clearfix">
-        <div class="input-group">
-            <input type="text" class="form-control" datepicker-popup	 is-open="list.startopened" ng-model="list.filter.startDate" ng-change="list.fetch()"/>
-            <span class="input-group-btn">
-		          <button type="button" class="btn btn-default" ng-click="list.openCal($event, 'start')">
-		          	<i class="glyphicon glyphicon-calendar"></i>
-		         	</button>
-		        </span>
-        </div>
-        <span>至</span>
-
-        <div class="form-group">
-            <div class="input-group">
-                <input type="text" class="form-control" datepicker-popup is-open="list.endopened" ng-model="list.filter.endDate" ng-change="list.fetch()"/>
-                <span class="input-group-btn">
-		          <button type="button" class="btn btn-default" ng-click="list.openCal($event, 'end')"><i class="glyphicon glyphicon-calendar"></i></button>
-		        </span>
-            </div>
-        </div>
-    </div>
-
-
         <!-- <div class="search-box pull-left"> -->
         <form class="form-inline" ng-submit="list.fetch()">
             <div class="form-group">
                 <div class="input-group">
-                    用户：<input type="text" class="form-control" placeholder="姓名或⼿机号" ng-model="list.filter.userName">
+                    <input type="text" class="form-control" placeholder="用户姓名或⼿机号" ng-model="list.filter.userName">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    单位：<input type="text" class="form-control" placeholder="服务单位" ng-model="list.filter.company">
+                    <input type="text" class="form-control" placeholder="服务单位" ng-model="list.filter.company">
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" datepicker-popup is-open="list.startopened"  placeholder="开始时间"
+                           ng-model="list.filter.startDate" ng-change="list.fetch()"/>
+                    <span class="input-group-btn">
+		          <button type="button" class="btn btn-default" ng-click="list.openCal($event, 'start')">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+		        </span>
+                </div>
+            </div>
+
+            <span>至</span>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" datepicker-popup is-open="list.endopened" placeholder="结束时间"
+                           ng-model="list.filter.endDate" ng-change="list.fetch()"/>
+                    <span class="input-group-btn">
+		          <button type="button" class="btn btn-default" ng-click="list.openCal($event, 'end')"><i
+                          class="glyphicon glyphicon-calendar"></i></button>
+		        </span>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">搜索</button>
+
+
+        <%--<div class="form-group pull-left">--%>
+                <%--<select class="form-control" name="auditStatus" ng-change="list.fetch()"--%>
+                        <%--ng-model="list.filter.sellType">--%>
+                    <%--<option value="">销售方式</option>--%>
+                    <%--<option value="0">出售</option>--%>
+                    <%--<option value="1">租赁</option>--%>
+                    <%--<option value="2">求购</option>--%>
+                    <%--<option value="3">求租</option>--%>
+                <%--</select>--%>
+            <%--</div>--%>
+            <%--<div class="form-group pull-left">--%>
+                <%--<select class="form-control" name="auditStatus" ng-change="list.fetch()" ng-model="list.filter.status">--%>
+                    <%--<option value="">认证状态</option>--%>
+                    <%--<option value="1">待审核</option>--%>
+                    <%--<option value="2">发布</option>--%>
+                    <%--<option value="3">下架</option>--%>
+                    <%--<option value="4">已售</option>--%>
+                    <%--<option value="0">草稿箱</option>--%>
+                <%--</select>--%>
+            <%--</div>--%>
+
         </form>
         <!-- </div> -->
     </div>
 </div>
-
 <div class="line">
     <table class="table table-bordered">
         <thead>

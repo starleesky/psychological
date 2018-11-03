@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
-<style type="text/css">
-    .container-fluid {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-</style>
+<%--<style type="text/css">--%>
+    <%--.container-fluid {--%>
+        <%--padding-left: 0px;--%>
+        <%--padding-right: 0px;--%>
+    <%--}--%>
+<%--</style>--%>
 
 <div class="line">
     <div class="container-fluid clearfix">
@@ -14,12 +14,12 @@
         <form class="form-inline" ng-submit="list.fetch()">
             <div class="form-group">
                 <div class="input-group">
-                    用户：<input type="text" class="form-control" placeholder="姓名或⼿机号" ng-model="list.filter.userName">
+                    <input type="text" class="form-control" placeholder="用户姓名或⼿机号" ng-model="list.filter.userName">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                    单位：<input type="text" class="form-control" placeholder="服务单位" ng-model="list.filter.company">
+                    <input type="text" class="form-control" placeholder="服务单位" ng-model="list.filter.company">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">搜索</button>

@@ -202,6 +202,14 @@
 			<if test="deleted != null and deleted != ''">
 				AND DELETED = #{deleted,jdbcType=VARCHAR}
 			</if>
+			<if test="idArray!=null and idArray.length!=0">
+				AND ID in
+				<foreach collection="idArray" item="id"
+						 index="index" open="(" close=")" separator=",">
+					#{id}
+				</foreach>
+			</if>
+
 		</where>
 	</select>
 
@@ -252,6 +260,12 @@
 				</if>
 				<if test="entity.deleted != null and entity.deleted != ''">
 					AND DELETED = #{entity.deleted,jdbcType=VARCHAR}
+				</if>
+				<if test="entity.startDate != null">
+					AND <![CDATA[ CREATE_TIME >= CONCAT(#{entity.startDate},' 00:00:00')]]>
+				</if>
+				<if test="entity.endDate != null">
+					AND <![CDATA[ CREATE_TIME <= CONCAT(#{entity.endDate},' 00:00:00')]]>
 				</if>
 		</where>
 	</sql>

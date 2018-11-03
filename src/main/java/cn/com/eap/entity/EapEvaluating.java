@@ -1,6 +1,9 @@
 package cn.com.eap.entity;
 
 import cn.com.tsjx.common.bean.entity.BaseEntity;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 
 /**
@@ -35,6 +38,25 @@ public class EapEvaluating extends BaseEntity<Long> {
 	private String result;
 
 	private String openid;
+
+	private String startDate;
+	private String endDate;
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
 
 	public String getOpenid() {
 		return openid;

@@ -7,7 +7,7 @@ package cn.com.eap.web;
  */
 public enum EvaTypeEnum {
 
-    MBTI("MBTI", "", "1"), OQ45("OQ45", "", "2"), SCL90("SCL90", "", "3");
+    MBTI("MBTI", "MBTI测评记录导出_20181023_18.38", "1"), OQ45("OQ45", "OQ45测评记录导出_20181023_18.38", "2"), SCL90("SCL90", "SCL-90测评记录导出_20181023_12.32", "3");
 
     private final String code;
     private final String description;

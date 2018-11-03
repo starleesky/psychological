@@ -111,6 +111,49 @@ define(function (require) {
                 $scope.initList = function () {
                     list.fetch();
                 }
+
+                $scope.chk = false;
+                var id ="";
+                $scope.check= function(val,chk){
+                    if(chk == true){
+                        id += val+",";
+                    }
+                };
+
+
+                //批量操作
+                $scope.batchOperate2 = function (type) {
+
+                    if(type==1 && id==""){
+                        alert("请选择要导出的数据！");
+                        return;
+                    }
+                    var title = "";
+                    if(type==2){
+                        id = null;
+                        title = "导出";
+                    }else{
+                        title = "导出";
+                    }
+
+                    if (confirm("确认"+title+"？")) {
+                        window.location.href = angular.path + "/admin/evaluating/export?ids=" + id;
+                        id = null;
+                        // $http.get()
+                        //     .success(function (resp) {
+                        //         alert(1);
+                        //         // if (resp.result) {
+                        //         //     alert(title+"成功！");
+                        //         //     window.location.href = angular.path + '/admin/infomation/list';
+                        //         // } else {
+                        //         //     alert("批量操作失败，请重试！");
+                        //         // }
+                        //     })
+                        //     .error(function () {
+                        //         alert("批量操作失败，请重试！");
+                        //     });
+                    }
+                }
             }
         ]).controller('addNewCtrl', ['$scope', '$http', '$modalInstance', 'address', 'scope',
         function ($scope, $http, $modalInstance, address, scope) {

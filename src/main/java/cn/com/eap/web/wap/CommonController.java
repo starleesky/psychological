@@ -1,5 +1,6 @@
 package cn.com.eap.web.wap;
 
+import cn.com.eap.entity.EapEvaluating;
 import cn.com.eap.entity.EapWeixinUser;
 import cn.com.eap.service.EapEvaluatingService;
 import cn.com.eap.service.EapSubscribeService;
@@ -12,6 +13,7 @@ import cn.com.eap.web.dto.EapSubscribeParam;
 import cn.com.eap.web.dto.QuestionDto;
 import cn.com.tsjx.common.model.Result;
 import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.util.lang.ExcelExtUtils;
 import cn.com.tsjx.util.SimpleCaptcha;
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
@@ -27,7 +29,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -152,6 +156,7 @@ public class CommonController {
         Result<String> result = eapWeixinUserService.weiXinLogin(param);
         return result;
     }
+
     /**
      * 微信授权获取用户信息
      *
@@ -161,9 +166,23 @@ public class CommonController {
     @RequestMapping(value = "/saveAuth")
     public Result<String> submitAnswer(@RequestBody EapWeixinUser eapWeixinUser) {
         Result<String> result = new Result<String>();
-         eapWeixinUserService.insert(eapWeixinUser);
+        eapWeixinUserService.insert(eapWeixinUser);
         result.setResult(true);
         result.setMessage("成功");
         return result;
+    }
+
+
+    @RequestMapping(value = "/export")
+    public void export(HttpServletRequest request, HttpServletResponse response,
+                       EapEvaluatingParam eapEvaluatingParam) {
+        Result<String> result = new Result<String>();
+        InputStream resource = getClass().getClassLoader().getResourceAsStream("export.xlsx");
+
+        if (!StringUtil.isBlank(eapEvaluatingParam.getIds())) {
+            eapEvaluatingParam.setIdArray(eapEvaluatingParam.getIds().split(","));
+        }
+        List<EapEvaluating> eapEvaluatings = eapEvaluatingService.find(eapEvaluatingParam);
+        ExcelExtUtils.exportXlsx(response, resource, eapEvaluatings);
     }
 }

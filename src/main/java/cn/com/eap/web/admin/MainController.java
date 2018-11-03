@@ -6,14 +6,27 @@ import cn.com.eap.entity.EapUser;
 import cn.com.eap.service.EapEvaluatingService;
 import cn.com.eap.service.EapSubscribeService;
 import cn.com.eap.service.EapUserService;
+import cn.com.eap.web.dto.EapEvaluatingParam;
+import cn.com.tsjx.common.model.Result;
+import cn.com.tsjx.common.util.StringUtil;
+import cn.com.tsjx.common.util.lang.ExcelExtUtils;
 import cn.com.tsjx.common.web.model.Pager;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -90,6 +103,26 @@ public class MainController {
         pager.setPageOrder("desc");
         pager = eapEvaluatingService.page(params, pager);
         return pager;
+    }
+
+    @InitBinder
+     public void initBinder(WebDataBinder binder) {
+         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+         dateFormat.setLenient(false);
+         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+        @RequestMapping(value = "/evaluating/export")
+    public void export(HttpServletRequest request, HttpServletResponse response,
+                       EapEvaluatingParam eapEvaluatingParam) {
+        Result<String> result = new Result<String>();
+        InputStream resource = getClass().getClassLoader().getResourceAsStream("export.xlsx");
+
+        if (!StringUtil.isBlank(eapEvaluatingParam.getIds())) {
+            eapEvaluatingParam.setIdArray(eapEvaluatingParam.getIds().split(","));
+        }
+        List<EapEvaluating> eapEvaluatings = eapEvaluatingService.find(eapEvaluatingParam);
+        ExcelExtUtils.exportXlsx(response, resource, eapEvaluatings);
     }
 
 }

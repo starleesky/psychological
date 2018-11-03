@@ -49,7 +49,7 @@
     <div data-ng-controller="userLoginCtrl" class="middle-box text-center loginscreen  animated fadeInDown">
         <div>
             <div>
-                <h2 class="logo-name">易易安陂EAP服务后台管理理系统</h2>
+                <h2 class="logo-name">易安陂EAP服务后台管理理系统</h2>
             </div>
             <form class="m-t" data-ng-submit="ctrl.loginSubmit()">
                 <div class="form-group">

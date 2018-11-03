@@ -121,7 +121,7 @@
         var code = GetRequest().code;
         var result; // 定义变量接收返回值
         $.ajax({
-            url: "common/weixinLogin?param="+code,
+            url: "/common/weixinLogin?param="+code,
             async: false,//改为同步方式
             type: "GET",
             cache: false,

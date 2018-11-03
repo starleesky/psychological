@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("eapWeixinUserService")
 public class EapWeixinUserServiceImpl extends BaseServiceImpl<EapWeixinUser, Long> implements EapWeixinUserService {
@@ -37,13 +38,14 @@ public class EapWeixinUserServiceImpl extends BaseServiceImpl<EapWeixinUser, Lon
                 userObject.getString("");
                 EapWeixinUser eapWeixinUser = new EapWeixinUser();
                 eapWeixinUser.setOpenid(openid);
-                EapWeixinUser temp = eapWeixinUserDao.findByOpenid(openid);
-                if (temp != null){
-                    temp.setSex(userObject.getString("sex"));
-                    temp.setNickName(userObject.getString("nickname"));
-                    temp.setIcon(userObject.getString("headimgurl"));
-                    temp.setCity(userObject.getString("city"));
-                    eapWeixinUserDao.update(temp);
+                List<EapWeixinUser> temp = eapWeixinUserDao.find(eapWeixinUser);
+                if (temp != null && temp.size() == 1){
+                    EapWeixinUser weixinUser = temp.get(0);
+                    weixinUser.setSex(userObject.getString("sex"));
+                    weixinUser.setNickName(userObject.getString("nickname"));
+                    weixinUser.setIcon(userObject.getString("headimgurl"));
+                    weixinUser.setCity(userObject.getString("city"));
+                    eapWeixinUserDao.update(weixinUser);
                 }else{
                     eapWeixinUser.setSex(userObject.getString("sex"));
                     eapWeixinUser.setNickName(userObject.getString("nickname"));

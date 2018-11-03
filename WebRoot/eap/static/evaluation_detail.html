@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title>MBTI职业性格测试</title>
+    <title></title>
     <link rel="stylesheet" href="./commons/css/weui.css">
 
 </head>
@@ -39,6 +39,14 @@
 <script>
     $(document).ready(function(){
         $("img").attr('src','images/'+localStorage.code+".png")
+            console.log(localStorage.code)
+        if (localStorage.code == "MBTI"){
+            $("title").html("MBTI职业性格测试");
+        }else if(localStorage.code == "OQ45"){
+            $("title").html("OQ45效果评估量表");
+        }else if(localStorage.code == "SCL90"){
+            $("title").html("SCL_90症状自评量表");
+        }
     })
 </script>
 </html>

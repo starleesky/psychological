@@ -130,7 +130,7 @@ define(function (require) {
                     }
                     var title = "";
                     if(type==2){
-                        id = null;
+                        id = "";
                         title = "导出";
                     }else{
                         title = "导出";
@@ -138,7 +138,7 @@ define(function (require) {
 
                     if (confirm("确认"+title+"？")) {
                         window.location.href = angular.path + "/admin/evaluating/export?ids=" + id;
-                        id = null;
+                        id = "";
                         // $http.get()
                         //     .success(function (resp) {
                         //         alert(1);

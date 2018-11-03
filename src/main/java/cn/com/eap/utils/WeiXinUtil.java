@@ -14,6 +14,7 @@ import java.io.IOException;
 public class WeiXinUtil {
 
     public static String get(String code) {
+        String result = "";
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
             // 创建httpget.
@@ -28,14 +29,16 @@ public class WeiXinUtil {
                 System.out.println("--------------------------------------");
                 // 打印响应状态
                 System.out.println(response.getStatusLine());
+
                 if (entity != null) {
                     // 打印响应内容长度
                     System.out.println("Response content length: " + entity.getContentLength());
                     // 打印响应内容
-                    System.out.println("Response content: " + EntityUtils.toString(entity, "UTF-8"));
+                    result = EntityUtils.toString(entity, "UTF-8");
+                    System.out.println("Response content: " + result);
                 }
                 System.out.println("------------------------------------");
-                return EntityUtils.toString(entity, "UTF-8");
+                return result;
             } finally {
                 response.close();
             }

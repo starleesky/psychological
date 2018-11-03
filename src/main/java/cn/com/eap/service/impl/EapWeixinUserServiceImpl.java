@@ -34,11 +34,26 @@ public class EapWeixinUserServiceImpl extends BaseServiceImpl<EapWeixinUser, Lon
             if (accessToken != null){
                 String user = WeiXinUtil.get("https://api.weixin.qq.com/sns/userinfo?access_token="+accessToken+"&openid="+openid);
                 JSONObject userObject = JSONObject.parseObject(user);
-                EapWeixinUser eapWeixinUser = JSONObject.toJavaObject(userObject,EapWeixinUser.class);
-                eapWeixinUserDao.insert(eapWeixinUser);
-                    result.setResult(true);
-                    result.setMessage("成功");
-                    return result;
+                userObject.getString("");
+                EapWeixinUser eapWeixinUser = new EapWeixinUser();
+                eapWeixinUser.setOpenid(openid);
+                EapWeixinUser temp = eapWeixinUserDao.findByOpenid(openid);
+                if (temp != null){
+                    temp.setSex(userObject.getString("sex"));
+                    temp.setNickName(userObject.getString("nickname"));
+                    temp.setIcon(userObject.getString("headimgurl"));
+                    temp.setCity(userObject.getString("city"));
+                    eapWeixinUserDao.update(temp);
+                }else{
+                    eapWeixinUser.setSex(userObject.getString("sex"));
+                    eapWeixinUser.setNickName(userObject.getString("nickname"));
+                    eapWeixinUser.setIcon(userObject.getString("headimgurl"));
+                    eapWeixinUser.setCity(userObject.getString("city"));
+                    eapWeixinUserDao.insert(eapWeixinUser);
+                }
+                result.setResult(true);
+                result.setMessage("成功");
+                return result;
             }
         }
         result.setResult(false);

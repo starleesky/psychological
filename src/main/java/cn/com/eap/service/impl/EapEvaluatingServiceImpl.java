@@ -11,6 +11,9 @@ import cn.com.eap.web.EvaTypeEnum;
 import cn.com.eap.web.dto.EapEvaluatingParam;
 import cn.com.tsjx.common.dao.BaseDao;
 import cn.com.tsjx.common.service.BaseServiceImpl;
+import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -20,7 +23,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service("eapEvaluatingService")
 public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Long> implements EapEvaluatingService {
@@ -34,6 +36,9 @@ public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Lon
     @Resource
     EapAnswerService eapAnswerService;
 
+    private Logger log = LoggerFactory.getLogger(EapEvaluatingServiceImpl.class);
+
+
     @Override
     protected BaseDao<EapEvaluating, Long> getBaseDao() {
         return this.eapEvaluatingDao;
@@ -41,6 +46,8 @@ public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Lon
 
     @Override
     public boolean submit(EapEvaluatingParam eapEvaluatingParam) {
+
+        log.info("eap evaluating param:{}", JSON.toJSONString(eapEvaluatingParam));
 
         EapUser eapUser = new EapUser();
         BeanUtils.copyProperties(eapEvaluatingParam, eapUser);
@@ -66,7 +73,7 @@ public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Lon
 
         Map<String, EapAnswer> collect = new HashMap<>();
         for (EapAnswer answer : eapAnswers) {
-            collect.put(answer.getNum()+"_"+answer.getOptions(), answer);
+            collect.put(answer.getNum() + "_" + answer.getOptions(), answer);
         }
 
         Map<String, Integer> dimension = new HashMap<>();

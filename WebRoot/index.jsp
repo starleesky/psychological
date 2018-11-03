@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>易安陂</title>
-    <meta http-equiv="Refresh" content="0;url=${ctx}/eap/static/reservation.html">
+    <meta http-equiv="Refresh" content="0;url=${ctx}/eap/static/home.html">
 </head>
 <body>
 </body>

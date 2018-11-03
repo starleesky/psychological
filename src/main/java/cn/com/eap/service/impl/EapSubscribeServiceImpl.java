@@ -56,6 +56,8 @@ public class EapSubscribeServiceImpl extends BaseServiceImpl<EapSubscribe, Long>
     @Override
     public boolean sumbit(final EapSubscribe eapSubscribe) {
 
+        log.info("eap eapSubscribe param:{}", JSON.toJSONString(eapSubscribe));
+
         EapUser eapUser = new EapUser();
         BeanUtils.copyProperties(eapSubscribe, eapUser);
 

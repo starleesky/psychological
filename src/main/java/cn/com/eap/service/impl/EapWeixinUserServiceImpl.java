@@ -32,30 +32,35 @@ public class EapWeixinUserServiceImpl extends BaseServiceImpl<EapWeixinUser, Lon
             JSONObject jsonObject = JSONObject.parseObject(codeResult);
             String accessToken = jsonObject.getString("access_token");
             String openid = jsonObject.getString("openid");
-            if (accessToken != null){
-                String user = WeiXinUtil.get("https://api.weixin.qq.com/sns/userinfo?access_token="+accessToken+"&openid="+openid);
-                JSONObject userObject = JSONObject.parseObject(user);
-                userObject.getString("");
-                EapWeixinUser eapWeixinUser = new EapWeixinUser();
-                eapWeixinUser.setOpenid(openid);
-                List<EapWeixinUser> temp = eapWeixinUserDao.find(eapWeixinUser);
-                if (temp != null && temp.size() == 1){
-                    EapWeixinUser weixinUser = temp.get(0);
-                    weixinUser.setSex(userObject.getString("sex"));
-                    weixinUser.setNickName(userObject.getString("nickname"));
-                    weixinUser.setIcon(userObject.getString("headimgurl"));
-                    weixinUser.setCity(userObject.getString("city"));
-                    eapWeixinUserDao.update(weixinUser);
-                }else{
-                    eapWeixinUser.setSex(userObject.getString("sex"));
-                    eapWeixinUser.setNickName(userObject.getString("nickname"));
-                    eapWeixinUser.setIcon(userObject.getString("headimgurl"));
-                    eapWeixinUser.setCity(userObject.getString("city"));
-                    eapWeixinUserDao.insert(eapWeixinUser);
+            try {
+                if (accessToken != null){
+                    String user = WeiXinUtil.get("https://api.weixin.qq.com/sns/userinfo?access_token="+accessToken+"&openid="+openid);
+                    JSONObject userObject = JSONObject.parseObject(user);
+                    userObject.getString("");
+                    EapWeixinUser eapWeixinUser = new EapWeixinUser();
+                    eapWeixinUser.setOpenid(openid);
+                    List<EapWeixinUser> temp = eapWeixinUserDao.find(eapWeixinUser);
+                    if (temp != null && temp.size() == 1){
+                        EapWeixinUser weixinUser = temp.get(0);
+                        weixinUser.setSex(userObject.getString("sex"));
+                        weixinUser.setNickName(userObject.getString("nickname"));
+                        weixinUser.setIcon(userObject.getString("headimgurl"));
+                        weixinUser.setCity(userObject.getString("city"));
+                        eapWeixinUserDao.update(weixinUser);
+                    }else{
+                        eapWeixinUser.setSex(userObject.getString("sex"));
+                        eapWeixinUser.setNickName(userObject.getString("nickname"));
+                        eapWeixinUser.setIcon(userObject.getString("headimgurl"));
+                        eapWeixinUser.setCity(userObject.getString("city"));
+                        eapWeixinUserDao.insert(eapWeixinUser);
+                    }
+                    result.setObject(openid);
+                    result.setResult(true);
+                    result.setMessage("成功");
+                    return result;
                 }
-                result.setResult(true);
-                result.setMessage("成功");
-                return result;
+            }catch (Exception e){
+                e.printStackTrace();
             }
         }
         result.setResult(false);

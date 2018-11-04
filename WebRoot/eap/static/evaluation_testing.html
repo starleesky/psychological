@@ -57,7 +57,7 @@
         }else if(localStorage.code == "SCL90"){
             $("title").html("SCL_90症状自评量表");
         }
-        var flag = false;
+        var flag = 0;
         var type = localStorage["code"];
         var strJson = null;
         var result = new Array();
@@ -95,10 +95,16 @@
 
 
         $("div").on('click', '.cell_access_click', function () {
+            console.log(!flag)
+            if(flag == 1){
+                flag=2;
+                count++
+            }
+
             $(this).siblings().children("i").remove();
             $(this).children("i").remove();
             $(this).append("<i class=\"weui-icon-success-no-circle\"></i>");
-            console.log(count)
+            console.log("当前count:"+count)
             if (count == total) {
                 $("#saveBtn").css("display", "block");
                 $("#saveBtn").attr("disabled", "disabled");
@@ -127,24 +133,25 @@
                 })
                 result.push($(this).attr("data-val"));
                 count++;
-                flag=true;
                 $("#options").html($options);
             }
             if (count > 1) {
                 $("#forwardOne").css("display", "block");
             }
-
+            console.log("当前结果"+result);
         });
 
         $("#forwardOne").click(function () {
             $("#saveBtn").css("display", "none");
-            console.log(count)
-            --count;
-            if(flag){
-                --count;
-                flag=false;
-            }
 
+            console.log(flag)
+            if(flag == 2 || flag == 0){
+
+                --count;
+                flag=1;
+            }
+            --count;
+            console.log(count)
             if (count > 0) {
                 var pre = count;
                 $("#count").html(count)
@@ -154,12 +161,10 @@
                 var obj = strJson.questions[count - 1];
                 $("#topic").html(obj.topic);
                 var $options = "";
-                //删除最后一个
-                result.pop();
                 //获取上一个题的选择答案
                 var preOne = result.slice(result.length - 1);
                 obj.answer.forEach(function (opt) {
-                    console.log(opt.options == preOne[0])
+                    // console.log(opt.options == preOne[0])
                     $options = $options + "<a data-val=" + opt.options + " class=\"cell_access_click weui-cell weui-cell_access\">\n" +
                         "                        <div class=\"weui-cell__bd\">\n" +
                         "                            <p>" + opt.options + "." + opt.description + "</p>\n" +
@@ -171,15 +176,22 @@
                     $options = $options + "                    </a>";
 
                 })
+
                 $("#options").html($options);
             }
             if (count == 1) {
                 $("#forwardOne").css("display", "none");
             }
+            //删除最后一个
+            result.pop();
+            console.log("上一题结果"+result);
+            console.log(result);
+
         })
 
         $("#saveBtn").click(function () {
             // $.toast("正在提交");
+            console.log(result.toString());
             $.ajax({
                 type: 'POST',
                 url: '/common/submitAnswer',

@@ -86,7 +86,6 @@
                                     "                    </a>"
                             })
                             $("#options").html($options);
-                            count++;
                         }
                     })
                 }
@@ -95,10 +94,9 @@
 
 
         $("div").on('click', '.cell_access_click', function () {
-            console.log(!flag)
+
             if(flag == 1){
                 flag=2;
-                count++
             }
 
             $(this).siblings().children("i").remove();
@@ -120,7 +118,7 @@
                 var obj = strJson.questions[count - 1];
                 var $options = "";
                 $("#topic").html(obj.topic);
-                $("#count").html(count)
+
                 var present = (count) / total * 100;
                 $(".weui-slider__track").css("width", present + "%");
                 $(".weui-slider__handler").css("left", present + "%");
@@ -138,7 +136,8 @@
             if (count > 1) {
                 $("#forwardOne").css("display", "block");
             }
-            console.log("当前结果"+result);
+            $("#count").html(count)
+            console.log("count="+count+",total="+total+",result="+result)
         });
 
         $("#forwardOne").click(function () {
@@ -146,15 +145,14 @@
 
             console.log(flag)
             if(flag == 2 || flag == 0){
-
-                --count;
                 flag=1;
             }
+
             --count;
             console.log(count)
             if (count > 0) {
                 var pre = count;
-                $("#count").html(count)
+
                 var present = (count) / total * 100;
                 $(".weui-slider__track").css("width", present + "%");
                 $(".weui-slider__handler").css("left", present + "%");
@@ -184,8 +182,8 @@
             }
             //删除最后一个
             result.pop();
-            console.log("上一题结果"+result);
-            console.log(result);
+            $("#count").html(count)
+            console.log("count="+count+",total="+total+",result="+result)
 
         })
 

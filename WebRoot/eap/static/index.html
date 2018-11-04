@@ -249,20 +249,20 @@
     $('#sex').click(function (e) {
         weui.picker([{
             label: '男',
-            value: 0
+            value: 1
         }, {
             label: '女',
-            value: 1
+            value: 2
         }], {
-            onChange: function (result) {
+            onChange: function (resul) {
             },
             onConfirm: function (result) {
                 if (result[0] == 0) {
                     $("#sex").val('男');
-                    $("#sexValue").val(0);
+                    $("#sexValue").val(1);
                 } else {
                     $("#sex").val("女");
-                    $("#sexValue").val(1);
+                    $("#sexValue").val(2);
                 }
             }
         });

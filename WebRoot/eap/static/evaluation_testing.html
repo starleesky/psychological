@@ -72,7 +72,7 @@
                     strJson.questions.forEach(function (obj) {
                         //初始第一个
                         if (obj.num == 1) {
-                            $("#count").html(1)
+                            $("#count").html(obj.num)
                             $("#topic").html(obj.topic)
                             var present = 0;
                             $(".weui-slider__track").css("width", present + "%");
@@ -96,6 +96,7 @@
         $("div").on('click', '.cell_access_click', function () {
 
             if(flag == 1){
+                // count++
                 flag=2;
             }
 
@@ -115,10 +116,10 @@
                 }
                 result.push($(this).attr("data-val"));
             } else {
-                var obj = strJson.questions[count - 1];
+                var obj = strJson.questions[count];
                 var $options = "";
                 $("#topic").html(obj.topic);
-
+                $("#count").html(obj.num)
                 var present = (count) / total * 100;
                 $(".weui-slider__track").css("width", present + "%");
                 $(".weui-slider__handler").css("left", present + "%");
@@ -136,7 +137,7 @@
             if (count > 1) {
                 $("#forwardOne").css("display", "block");
             }
-            $("#count").html(count)
+
             console.log("count="+count+",total="+total+",result="+result)
         });
 
@@ -156,7 +157,8 @@
                 var present = (count) / total * 100;
                 $(".weui-slider__track").css("width", present + "%");
                 $(".weui-slider__handler").css("left", present + "%");
-                var obj = strJson.questions[count - 1];
+                var obj = strJson.questions[count-1];
+                $("#count").html(obj.num);
                 $("#topic").html(obj.topic);
                 var $options = "";
                 //获取上一个题的选择答案
@@ -182,7 +184,7 @@
             }
             //删除最后一个
             result.pop();
-            $("#count").html(count)
+
             console.log("count="+count+",total="+total+",result="+result)
 
         })
@@ -220,15 +222,5 @@
 
         })
     });
-
-    function sleep(numberMillis) {
-        var now = new Date();
-        var exitTime = now.getTime() + numberMillis;
-        while (true) {
-            now = new Date();
-            if (now.getTime() > exitTime) return;
-        }
-    }
-
 </script>
 </html>

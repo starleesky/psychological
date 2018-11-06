@@ -121,13 +121,16 @@
         var code = GetRequest().code;
         var result; // 定义变量接收返回值
         $.ajax({
-            url: "/common/weixinLogin?param="+code,
+            url: "common/weixinLogin?param="+code,
             async: false,//改为同步方式
             type: "GET",
             cache: false,
             dataType: "json",
             success: function (data) {
-                console.log(data)
+                if (data.result){
+                    localStorage.openid=data.object;
+                }
+                console.log(data.object)
                 result = data; // 接收返回值
             }
         });
@@ -170,6 +173,11 @@
             $.toast("手机号不能为空","text");
             return false;
         }
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+        if (!myreg.test(userPhone)) {
+            $.toast("手机号格式不正确","text");
+            return false;
+        }
         var code = $("#code").val();
         if(code==null||code==undefined||code==''){
             $.toast("验证码不能为空","text");
@@ -188,8 +196,7 @@
                 "sex": $("#sexValue").val(),
                 "age": $("#age").val(),
                 "remark": $("#remark").val(),
-                "code": $("#code").val(),
-                "openid":localStorage.openid
+                "code": $("#code").val()
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -254,10 +261,10 @@
             label: '女',
             value: 2
         }], {
-            onChange: function (resul) {
+            onChange: function (result) {
             },
             onConfirm: function (result) {
-                if (result[0] == 0) {
+                if (result[0] == 1) {
                     $("#sex").val('男');
                     $("#sexValue").val(1);
                 } else {

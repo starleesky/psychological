@@ -80,6 +80,11 @@
             return false;
         }
 
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+        if (!myreg.test(userPhone)) {
+            $.toast("手机号格式不正确","text");
+            return false;
+        }
         localStorage.sex=$("#sexValue").val();
         localStorage.userName=$("#userName").val();
         localStorage.userPhone=$("#userPhone").val();
@@ -114,7 +119,7 @@
         if (localStorage.code == "MBTI"){
             $("title").html("MBTI职业性格测试");
         }else if(localStorage.code == "OQ45"){
-            $("title").html("OQ45效果评估量表");
+            $("title").html("OQ45心理评估量表");
         }else if(localStorage.code == "SCL90"){
             $("title").html("SCL_90症状自评量表");
         }

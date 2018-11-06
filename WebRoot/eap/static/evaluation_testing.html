@@ -53,7 +53,7 @@
         if (localStorage.code == "MBTI"){
             $("title").html("MBTI职业性格测试");
         }else if(localStorage.code == "OQ45"){
-            $("title").html("OQ45效果评估量表");
+            $("title").html("OQ45心理评估量表");
         }else if(localStorage.code == "SCL90"){
             $("title").html("SCL_90症状自评量表");
         }
@@ -212,7 +212,7 @@
 
                     if (data.result){
                         result = new Array();
-                        location.href = "/eap/static/evaluation_success.html";
+                        window.location.replace("/eap/static/evaluation_success.html");
                     }else{
                         $.toast("提交失败");
                     }

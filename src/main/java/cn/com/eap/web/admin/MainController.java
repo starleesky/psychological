@@ -116,7 +116,7 @@ public class MainController {
     public void export(HttpServletRequest request, HttpServletResponse response,
                        EapEvaluatingParam eapEvaluatingParam) {
         Result<String> result = new Result<String>();
-        InputStream resource = getClass().getClassLoader().getResourceAsStream("export.xlsx");
+        InputStream resource = getClass().getClassLoader().getResourceAsStream("export2.xlsx");
 
         if (!StringUtil.isBlank(eapEvaluatingParam.getIds())) {
             eapEvaluatingParam.setIdArray(eapEvaluatingParam.getIds().split(","));

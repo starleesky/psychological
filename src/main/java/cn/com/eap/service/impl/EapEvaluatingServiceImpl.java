@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -101,7 +102,7 @@ public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Lon
             Map.Entry<String, Integer> next = iterator.next();
             stringBuffer.append(next.getKey()).append(":").append(next.getValue()).append(",");
         }
-        eapEvaluatingParam.setResult(stringBuffer.toString());
+        eapEvaluatingParam.setResult(getResult(dimension,eapEvaluatingParam.getEvaType()));
         eapEvaluatingParam.setScore(stringBuffer.toString());
         eapEvaluatingParam.setEvaName(EvaTypeEnum.getDiscribeByType(eapEvaluatingParam.getEvaType()));
 
@@ -109,4 +110,66 @@ public class EapEvaluatingServiceImpl extends BaseServiceImpl<EapEvaluating, Lon
 
         return true;
     }
+
+    private String getResult(Map<String, Integer> dimension,String evaType){
+
+        String result = "";
+        if(EvaTypeEnum.MBTI.getType().equals(evaType)){
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("E").append(dimension.get("E")).append(",");
+;           stringBuffer.append("I").append(dimension.get("I")).append(",");
+            stringBuffer.append("S").append(dimension.get("S")).append(",");
+            stringBuffer.append("N").append(dimension.get("N")).append(",");
+            stringBuffer.append("T").append(dimension.get("T")).append(",");
+            stringBuffer.append("F").append(dimension.get("F")).append(",");
+            stringBuffer.append("J").append(dimension.get("J")).append(",");
+            stringBuffer.append("P").append(dimension.get("P")).append("\n");
+            stringBuffer.append("结果倾向：");
+
+            stringBuffer.append(dimension.getOrDefault("E",0)>dimension.getOrDefault("I",0)?"E":"I");
+            stringBuffer.append(dimension.getOrDefault("S",0)>dimension.getOrDefault("N",0)?"S":"N");
+            stringBuffer.append(dimension.getOrDefault("T",0)>dimension.getOrDefault("F",0)?"T":"F");
+            stringBuffer.append(dimension.getOrDefault("J",0)>dimension.getOrDefault("P",0)?"J":"P");
+
+            result = stringBuffer.toString();
+        } else if(EvaTypeEnum.OQ45.getType().equals(evaType)){
+            StringBuffer stringBuffer = new StringBuffer();
+            stringBuffer.append("情  绪").append(dimension.get("情  绪")).append(",");
+            stringBuffer.append("人际关系").append(dimension.get("人际关系")).append(",");
+            stringBuffer.append("社会功能").append(dimension.get("社会功能")).append("\n");
+            stringBuffer.append("总分").append(dimension.get("社会功能") + dimension.get("人际关系") + dimension.get("情  绪"));
+            result = stringBuffer.toString();
+        }
+        else if(EvaTypeEnum.SCL90.getType().equals(evaType)){
+            StringBuffer stringBuffer = new StringBuffer();
+
+            stringBuffer.append("躯体化").append(new BigDecimal(dimension.getOrDefault("躯体化",0)).divide(new BigDecimal("12"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("强   迫").append(new BigDecimal(dimension.getOrDefault("强   迫",0)).divide(new BigDecimal("10"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("人际敏感").append(new BigDecimal(dimension.getOrDefault("人际敏感",0)).divide(new BigDecimal("9"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("抑   郁").append(new BigDecimal(dimension.getOrDefault("抑   郁",0)).divide(new BigDecimal("13"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("焦   虑").append(new BigDecimal(dimension.getOrDefault("焦   虑",0)).divide(new BigDecimal("10"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("敌   对").append(new BigDecimal(dimension.getOrDefault("焦   虑",0)).divide(new BigDecimal("10"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("恐   怖").append(new BigDecimal(dimension.getOrDefault("恐   怖",0)).divide(new BigDecimal("7"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("偏   执").append(new BigDecimal(dimension.getOrDefault("偏   执",0)).divide(new BigDecimal("6"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("精神病" ).append(new BigDecimal(dimension.getOrDefault("精神病",0)).divide(new BigDecimal("10"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append(",");
+            stringBuffer.append("其   他").append(new BigDecimal(dimension.getOrDefault("其   他",0)).divide(new BigDecimal("7"),2,   BigDecimal.ROUND_HALF_UP).doubleValue()).append("\n");
+            Integer num =
+                    dimension.getOrDefault("躯体化", 0) +
+                    dimension.getOrDefault("强   迫", 0) +
+                    dimension.getOrDefault("人际敏感", 0) +
+                    dimension.getOrDefault("抑   郁", 0) +
+                    dimension.getOrDefault("焦   虑", 0) +
+                    dimension.getOrDefault("敌   对", 0) +
+                    dimension.getOrDefault("恐   怖", 0) +
+                    dimension.getOrDefault("偏   执", 0) +
+                    dimension.getOrDefault("精神病", 0) +
+                    dimension.getOrDefault("其   他", 0);
+            stringBuffer.append("总均分：").append(new BigDecimal(num).divide(new BigDecimal("90"), 2, BigDecimal.ROUND_HALF_UP).doubleValue());
+            result = stringBuffer.toString();
+        }
+        return result;
+
+    }
+
+
 }

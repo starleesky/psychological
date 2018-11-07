@@ -173,16 +173,16 @@ public class CommonController {
     }
 
 
-    @RequestMapping(value = "/export")
-    public void export(HttpServletRequest request, HttpServletResponse response,
-                       EapEvaluatingParam eapEvaluatingParam) {
-        Result<String> result = new Result<String>();
-        InputStream resource = getClass().getClassLoader().getResourceAsStream("export.xlsx");
-
-        if (!StringUtil.isBlank(eapEvaluatingParam.getIds())) {
-            eapEvaluatingParam.setIdArray(eapEvaluatingParam.getIds().split(","));
-        }
-        List<EapEvaluating> eapEvaluatings = eapEvaluatingService.find(eapEvaluatingParam);
-        ExcelExtUtils.exportXlsx(response, resource, eapEvaluatings);
-    }
+//    @RequestMapping(value = "/export")
+//    public void export(HttpServletRequest request, HttpServletResponse response,
+//                       EapEvaluatingParam eapEvaluatingParam) {
+//        Result<String> result = new Result<String>();
+//        InputStream resource = getClass().getClassLoader().getResourceAsStream("export.xlsx");
+//
+//        if (!StringUtil.isBlank(eapEvaluatingParam.getIds())) {
+//            eapEvaluatingParam.setIdArray(eapEvaluatingParam.getIds().split(","));
+//        }
+//        List<EapEvaluating> eapEvaluatings = eapEvaluatingService.find(eapEvaluatingParam);
+//        ExcelExtUtils.exportXlsx(response, resource, eapEvaluatings);
+//    }
 }

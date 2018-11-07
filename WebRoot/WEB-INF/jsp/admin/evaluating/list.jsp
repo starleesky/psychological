@@ -92,9 +92,10 @@
             <th>-</th>
             <th>评测编号</th>
             <th>测试量量表名称</th>
-            <th>测试时间</th>
+            <th WIDTH="200px">测试时间</th>
             <th>测试者</th>
-            <th>测试结果</th>
+            <th WIDTH="300px">测试结果</th>
+            <th WIDTH="300px">评分标准</th>
             <th>手机号码</th>
         </tr>
         </thead>
@@ -112,7 +113,20 @@
             </td>
             <td ng-bind="c.createTime| date : 'yyyy-MM-dd HH:mm:ss'"></td>
             <td ng-bind="c.userName"></td>
-            <td ng-bind="c.score"></td>
+            <td ng-bind="c.result"></td>
+            <td>
+                <div ng-switch on="c.evaType">
+                    <span ng-switch-when="1"> </span>
+                    <span ng-switch-when="2"> 总分》123123
+                    12312313123
+                    123123123123123</span>
+                    <span ng-switch-when="3"> 123123123
+                    123123123
+                    123123
+                    123
+                    1232131231213213123213发送到发送的方法</span>
+                </div>
+            </td>
             <td ng-bind="c.userPhone"></td>
         </tr>
         </tbody>

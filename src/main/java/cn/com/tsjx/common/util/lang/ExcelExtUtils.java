@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.security.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -70,7 +71,7 @@ public class ExcelExtUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int n1=3, n2=3, n3=3;
+        int n1=4, n2=4, n3=4;
         for (EapEvaluating eapEvaluating : list) {
             Row row = null;
             Sheet sheet = null;
@@ -90,9 +91,14 @@ public class ExcelExtUtils {
                 n3++;
             }
 
-
-
             Cell cell = row.createCell(columnIndex);
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(eapEvaluating.getCreateTime());
+            cell.setCellValue(dateString);
+            columnIndex++;
+
+            cell = row.createCell(columnIndex);
             cell.setCellValue(eapEvaluating.getUserName());
             columnIndex++;
             cell = row.createCell(columnIndex);
@@ -155,19 +161,19 @@ public class ExcelExtUtils {
                 columnIndex++;
 
                 cell = row.createCell(columnIndex);
-                cell.setCellValue(Integer.parseInt(result.getOrDefault("E","0"))>Integer.parseInt(result.getOrDefault("I","0"))?Integer.parseInt(result.getOrDefault("E","0")):Integer.parseInt(result.getOrDefault("I","0")));
+                cell.setCellValue(Integer.parseInt(result.getOrDefault("E","0"))>Integer.parseInt(result.getOrDefault("I","0"))?"E":"I");
                 columnIndex++;
 
                 cell = row.createCell(columnIndex);
-                cell.setCellValue(Integer.parseInt(result.getOrDefault("S","0"))>Integer.parseInt(result.getOrDefault("N","0"))?Integer.parseInt(result.getOrDefault("S","0")):Integer.parseInt(result.getOrDefault("N","0")));
+                cell.setCellValue(Integer.parseInt(result.getOrDefault("S","0"))>Integer.parseInt(result.getOrDefault("N","0"))?"S":"N");
                 columnIndex++;
 
                 cell = row.createCell(columnIndex);
-                cell.setCellValue(Integer.parseInt(result.getOrDefault("T","0"))>Integer.parseInt(result.getOrDefault("F","0"))?Integer.parseInt(result.getOrDefault("T","0")):Integer.parseInt(result.getOrDefault("F","0")));
+                cell.setCellValue(Integer.parseInt(result.getOrDefault("T","0"))>Integer.parseInt(result.getOrDefault("F","0"))?"T":"F");
                 columnIndex++;
 
                 cell = row.createCell(columnIndex);
-                cell.setCellValue(Integer.parseInt(result.getOrDefault("J","0"))>Integer.parseInt(result.getOrDefault("P","0"))?Integer.parseInt(result.getOrDefault("J","0")):Integer.parseInt(result.getOrDefault("P","0")));
+                cell.setCellValue(Integer.parseInt(result.getOrDefault("J","0"))>Integer.parseInt(result.getOrDefault("P","0"))?"J":"P");
                 columnIndex++;
 
             }

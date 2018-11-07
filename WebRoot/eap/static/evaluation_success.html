@@ -24,13 +24,25 @@
                     <p class="weui-cell__lxwm" style="height: 33px;">联系我们 <a href="tel:0571-87389185" style="color: #4A90E2;">0571-87389185</a></p>
                     <p class="weui-cell__lxwm">服务时间 9:00-20:00</p>
                 </div>
-
-            </div>
-            <div class="weui-cells weui-cells_form " style="margin-top:0em">
-                <a href="javascript:window.location.replace('/eap/static/index.html');" class="weui-btn weui-btn_primary" style="width: 90%">去做咨询预约</a>
             </div>
         </div>
     </div>
 </div>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.replace("/eap/static/evaluation_detail.html");
+        }, false);
+    });
+</script>
 </html>

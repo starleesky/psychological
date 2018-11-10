@@ -42,7 +42,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" id="sex" readonly="readonly" placeholder="请选择">
+                            <input class="weui-input" id="showIOSActionSheet" readonly="readonly" placeholder="请选择">
                             <input class="weui-input" id="sexValue" type="hidden" readonly="readonly">
                         </div>
                     </div>
@@ -117,6 +117,18 @@
         </div>
     </div>
 </div>
+<div>
+    <div class="weui-mask" id="iosMask" style="display: none"></div>
+    <div class="weui-actionsheet" id="iosActionsheet">
+        <div class="weui-actionsheet__menu">
+            <div class="weui-actionsheet__cell" onclick="setSex('男','1')">男</div>
+            <div class="weui-actionsheet__cell" onclick="setSex('女','2')">女</div>
+        </div>
+        <div class="weui-actionsheet__action">
+            <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
@@ -143,6 +155,30 @@
             }
         });
     })
+
+    function setSex(_key,_value){
+        console.log(_key)
+        $("#showIOSActionSheet").val(_key)
+        $("#sexValue").val(_value)
+        $('#iosActionsheetCancel').trigger('click');
+    }
+    $(function(){
+        var $iosActionsheet = $('#iosActionsheet');
+        var $iosMask = $('#iosMask');
+
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+        }
+
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel').on('click', hideActionSheet);
+        $("#showIOSActionSheet").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+        });
+    });
+
 
     function GetRequest() {
         var url = location.search; //获取url中"?"符后的字串

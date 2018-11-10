@@ -34,7 +34,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" id="sex" readonly="readonly" placeholder="请选择">
+                            <input class="weui-input" id="showIOSActionSheet" readonly="readonly" placeholder="请选择">
                             <input class="weui-input" type="hidden" id="sexValue">
                         </div>
                     </div>
@@ -58,6 +58,18 @@
                     <a href="javascript:void(0)" class="weui-btn weui-btn_primary" id="goTest">进入测试</a>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="weui-mask" id="iosMask" style="display: none"></div>
+    <div class="weui-actionsheet" id="iosActionsheet">
+        <div class="weui-actionsheet__menu">
+            <div class="weui-actionsheet__cell" onclick="setSex('男','1')">男</div>
+            <div class="weui-actionsheet__cell" onclick="setSex('女','2')">女</div>
+        </div>
+        <div class="weui-actionsheet__action">
+            <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
         </div>
     </div>
 </div>
@@ -104,27 +116,27 @@
         location.href = "/eap/static/evaluation_testing.html";
     })
 
-    $('#sex').click(function(e){
-        weui.picker([{
-            label: '男',
-            value: 1
-        }, {
-            label: '女',
-            value: 2
-        }], {
-            onChange: function (result) {
-            },
-            onConfirm: function (result) {
-                if (result[0] == 1){
-                    $("#sex").val('男');
-                    $("#sexValue").val(1);
-                } else{
-                    $("#sex").val("女");
-                    $("#sexValue").val(2);
-                }
-            }
-        });
-    });
+    // $('#sex').click(function(e){
+    //     weui.picker([{
+    //         label: '男',
+    //         value: 1
+    //     }, {
+    //         label: '女',
+    //         value: 2
+    //     }], {
+    //         onChange: function (result) {
+    //         },
+    //         onConfirm: function (result) {
+    //             if (result[0] == 1){
+    //                 $("#sex").val('男');
+    //                 $("#sexValue").val(1);
+    //             } else{
+    //                 $("#sex").val("女");
+    //                 $("#sexValue").val(2);
+    //             }
+    //         }
+    //     });
+    // });
     $(document).ready(function(){
         console.log(localStorage.code)
         if (localStorage.code == "MBTI"){
@@ -135,5 +147,41 @@
             $("title").html("SCL_90症状自评量表");
         }
     })
+
+    function setSex(_key,_value){
+        console.log(_key)
+        $("#showIOSActionSheet").val(_key)
+        $("#sexValue").val(_value)
+        $('#iosActionsheetCancel').trigger('click');
+    }
+    $(function(){
+        var $iosActionsheet = $('#iosActionsheet');
+        var $iosMask = $('#iosMask');
+
+        function hideActionSheet() {
+            $iosActionsheet.removeClass('weui-actionsheet_toggle');
+            $iosMask.fadeOut(200);
+        }
+
+        $iosMask.on('click', hideActionSheet);
+        $('#iosActionsheetCancel').on('click', hideActionSheet);
+        $("#showIOSActionSheet").on("click", function(){
+            $iosActionsheet.addClass('weui-actionsheet_toggle');
+            $iosMask.fadeIn(200);
+        });
+    });
+
+    // android
+    $(function(){
+        var $androidActionSheet = $('#androidActionsheet');
+        var $androidMask = $androidActionSheet.find('.weui-mask');
+
+        $("#showAndroidActionSheet").on('click', function(){
+            $androidActionSheet.fadeIn(200);
+            $androidMask.on('click',function () {
+                $androidActionSheet.fadeOut(200);
+            });
+        });
+    });
 </script>
 </html>

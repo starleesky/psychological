@@ -26,7 +26,7 @@ public class WxShareController {
     // 微信分享入口
     @RequestMapping("/getWxShareData")
     @ResponseBody
-    public Result<JSONObject> getWxShareData() {
+    public Result<JSONObject> getWxShareData(String url) {
         JsonObject jsonObject = new JsonObject();
         Result<JSONObject> result = new Result<>();
         JSONObject json = new JSONObject();
@@ -53,7 +53,7 @@ public class WxShareController {
 
             String noncestr = this.createNonceStr();
             int timestamp = this.createTimestamp();
-            String requestRefererURL = "https://www.eap120.com/eap/static/index.html";
+            String requestRefererURL = url;
             String signature = this.createSignature(noncestr, ticket, timestamp, requestRefererURL);
 
             json.put("errcode", 0);

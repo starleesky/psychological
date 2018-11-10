@@ -408,6 +408,7 @@ input.weui-btn_plain-default{
   -webkit-box-align:center;
   -webkit-align-items:center;
   align-items:center;
+    font-weight: 400;
 }
 .weui-cell-no-position{
   padding:10px 15px;

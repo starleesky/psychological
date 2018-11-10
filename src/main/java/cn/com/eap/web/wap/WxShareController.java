@@ -64,7 +64,7 @@ public class WxShareController {
             json.put("signature", signature);
             json.put("title","易安陂EAP服务平台");
             json.put("description","欢迎预约咨询、心理评测、体验量身定制的EAP服务计划");
-            json.put("shareimg", "https://www.eap120.com/eap/static/images/company-logo.png");
+            json.put("shareimg", "https://www.eap120.com/eap/static/images/logo-share.png");
             json.put("shareurl", "https://www.eap120.com/eap/static/index.html");
         }catch (Exception e){
             e.printStackTrace();

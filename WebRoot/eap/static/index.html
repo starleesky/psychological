@@ -56,7 +56,8 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="tel" id="userPhone" maxlength="11" required="required" placeholder="手机号">
+                            <input class="weui-input" type="tel" id="userPhone" maxlength="11" required="required"
+                                   placeholder="手机号">
                         </div>
                         <div class="weui-cell__ft">
                             <button class="weui-vcode-btn" id="getSmsCode">获取验证码</button>
@@ -65,17 +66,19 @@
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input" type="number" id="code" pattern="[0-6]*" maxlength="6" placeholder="输入短信验证码">
+                            <input class="weui-input" type="number" id="code" pattern="[0-6]*" maxlength="6"
+                                   placeholder="输入短信验证码">
                         </div>
                     </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">需求描述</label></div>
                         <div class="weui-cell__bd">
-                            <textarea class="weui-input" id="remark" size="100" placeholder="可不填(最多输入100字)" cols="30" rows="3" style="height: 63px;"></textarea>
+                            <textarea class="weui-input" id="remark" size="100" placeholder="可不填(最多输入100字)" cols="30"
+                                      rows="3" style="height: 63px;"></textarea>
                         </div>
                     </div>
                     <a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="submitBtn"
-                       type="submit" >立即预约</a>
+                       type="submit">立即预约</a>
                 </div>
                 <div id="loadingToast" style="display:none;">
                     <div class="weui-mask_transparent"></div>
@@ -87,17 +90,20 @@
                 <div class="weui-cell"></div>
                 <div>
                     <p class="weui-cell__lxwm" style="height: 30px;">联系我们 <a href="tel:0571-87389185"
-                                                                             style="color: #4A90E2;">0571-87389185</a></p>
+                                                                             style="color: #4A90E2;">0571-87389185</a>
+                    </p>
                     <p class="weui-cell__lxwm" style="height: 30px;">预约咨询服务时间 9:00-20:00</p>
                 </div>
                 <div style="height:50px;"></div>
                 <div class="footer">
                     <div class="weui-tabbar weui-footer_fixed-bottom">
-                        <a href="javascript:window.location.replace('/eap/static/index.html')" class="weui-tabbar__item weui-bar__item_on">
+                        <a href="javascript:window.location.replace('/eap/static/index.html')"
+                           class="weui-tabbar__item weui-bar__item_on">
                             <img src="./images/yyzx-on.png" alt="" class="weui-tabbar__icon">
                             <p class="weui-tabbar__label">咨询预约</p>
                         </a>
-                        <a href="javascript:window.location.replace('/eap/static/evaluation.html')" class="weui-tabbar__item">
+                        <a href="javascript:window.location.replace('/eap/static/evaluation.html')"
+                           class="weui-tabbar__item">
                             <img src="./images/xlcp.png" alt="" class="weui-tabbar__icon">
                             <p class="weui-tabbar__label">心理测评</p>
                         </a>
@@ -116,77 +122,155 @@
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
 <script src="/eap/static/js/weui.min.js"></script>
-<script language="javascript">
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    $(document).ready(function() {
+        // 提供微信分享接口所需的参数
+        var wxdata = {
+            wx_account: new Array(4),
+            wx_share: new Array(4),
 
-    $(document).ready(function(){
+            get_wxshare_data: function (ctx) {
+                var url = ctx + "/wxShare/getWxShareData";
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: "json",
+                    cache: false,
+                    async: false,
+                    success: function (msg) {
+                        msg=msg.object
+                        if (msg.errcode == 0) {
+                            wxdata.wx_account[0] = msg.wxuser;  // appid
+                            wxdata.wx_account[1] = msg.timestamp;   // timestamp
+                            wxdata.wx_account[2] = msg.noncestr; // noncestr
+                            wxdata.wx_account[3] = msg.signature;  // signature
+
+                            wxdata.wx_share[0] = msg.shareimg;  // share_img 分享缩略图图片
+                            wxdata.wx_share[1] = msg.shareurl;// share_link  分享页面的url地址，如果地址无效，则分享失败
+                            wxdata.wx_share[2] = msg.description
+                            wxdata.wx_share[3] = msg.title;// share_title
+                        }
+                    },
+                    error: function (msg) {
+
+                    }
+                });
+            }
+
+        }
+
+        var host = "https://" + window.location.host;
+        wxdata.get_wxshare_data(host);
+
+
+        // 微信分享默认调用接口
+
+        var $wx_account = wxdata.wx_account,
+            $wx_share = wxdata.wx_share;
+
+        //配置微信信息
+        wx.config({
+            debug: false,
+            appId: $wx_account[0],
+            timestamp: $wx_account[1],
+            nonceStr: $wx_account[2],
+            signature: $wx_account[3],
+            jsApiList: [
+                // 所有要调用的 API 都要加到这个列表中
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+            ]
+        });
+        wx.ready(function () {
+            // 微信分享的数据
+            var shareData = {
+                "imgUrl": $wx_share[0],
+                "link": $wx_share[1],
+                "desc": $wx_share[2],
+                "title": $wx_share[3],
+                success: function () {
+                    // 分享成功可以做相应的数据处理
+                }
+            };
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+
         var code = GetRequest().code;
         var result; // 定义变量接收返回值
         $.ajax({
-            url: "common/weixinLogin?param="+code,
+            url: "common/weixinLogin?param=" + code,
             async: false,//改为同步方式
             type: "GET",
             cache: false,
             dataType: "json",
             success: function (data) {
-                if (data.result){
-                    localStorage.openid=data.object;
+                if (data.result) {
+                    localStorage.openid = data.object;
                 }
                 console.log(data.object)
                 result = data; // 接收返回值
             }
         });
     })
+
     function GetRequest() {
         var url = location.search; //获取url中"?"符后的字串
         var theRequest = new Object();
         if (url.indexOf("?") != -1) {
             var str = url.substr(1);
             strs = str.split("&");
-            for(var i = 0; i < strs.length; i ++) {
-                theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
             }
         }
         return theRequest;
     }
+
     function myFunc() {
         $("#submitBtn").removeAttr("disabled");
-        $("#loadingToast").css("display","none");
+        $("#loadingToast").css("display", "none");
     }
 
     $("#submitBtn").click(function () {
         var userName = $("#userName").val();
-        if(userName==null||userName==undefined||userName==''){
-            $.toast("姓名不能为空","text");
+        if (userName == null || userName == undefined || userName == '') {
+            $.toast("姓名不能为空", "text");
             return false;
         }
         var sex = $("#sexValue").val();
-        if(sex==null||sex==undefined||sex==''){
-            $.toast("性别不能为空","text");
+        if (sex == null || sex == undefined || sex == '') {
+            $.toast("性别不能为空", "text");
             return false;
         }
         var age = $("#age").val();
-        if(age==null||age==undefined||age==''){
-            $.toast("年龄不能为空","text");
+        if (age == null || age == undefined || age == '') {
+            $.toast("年龄不能为空", "text");
             return false;
         }
         var userPhone = $("#userPhone").val();
-        if(userPhone==null||userPhone==undefined||userPhone==''){
-            $.toast("手机号不能为空","text");
+        if (userPhone == null || userPhone == undefined || userPhone == '') {
+            $.toast("手机号不能为空", "text");
             return false;
         }
         var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
         if (!myreg.test(userPhone)) {
-            $.toast("手机号格式不正确","text");
+            $.toast("手机号格式不正确", "text");
             return false;
         }
         var code = $("#code").val();
-        if(code==null||code==undefined||code==''){
-            $.toast("验证码不能为空","text");
+        if (code == null || code == undefined || code == '') {
+            $.toast("验证码不能为空", "text");
             return false;
         }
         $(this).removeAttr("style")
         $(this).attr("disabled", "disabled");
-        $("#loadingToast").css("display","block");
+        $("#loadingToast").css("display", "block");
         $.ajax({
             type: 'POST',
             url: '/common/subscribe',
@@ -205,7 +289,7 @@
             success: function (data) {
                 if (data.result) {
                     result = new Array();
-                    $("#loadingToast").attr("display","none");
+                    $("#loadingToast").attr("display", "none");
                     location.href = "reservation_success.html";
                 } else {
                     $.toast(data.message, "text");
@@ -218,7 +302,7 @@
     $("#getSmsCode").click(function () {
         var mobile = $("#userPhone").val();
         if (!mobile) {
-            $.toast("请输入手机号","text");
+            $.toast("请输入手机号", "text");
             return false;
         }
         var sec = 60;

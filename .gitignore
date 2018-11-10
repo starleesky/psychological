@@ -15,4 +15,3 @@ src/main/config.properties
 src/main/jdbc.properties
 src/main/mybatis/
 src/main/sms.properties
-web/

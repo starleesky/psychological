@@ -7,10 +7,13 @@ $(document).ready(function () {
         get_wxshare_data: function (ctx) {
             var url = ctx + "/wxShare/getWxShareData";
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: url,
                 dataType: "json",
                 cache: false,
+                data:{
+                    url:access_url
+                },
                 async: false,
                 success: function (msg) {
                     msg=msg.object
@@ -35,6 +38,8 @@ $(document).ready(function () {
     }
 
     var host = "http://" + window.location.host;
+    var access_url = window.location.href;
+
     wxdata.get_wxshare_data(host);
 
 

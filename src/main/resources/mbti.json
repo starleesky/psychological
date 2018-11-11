@@ -87,11 +87,11 @@
     {
       "answer": [
         {
-          "description": "性情中",
+          "description": "性情中人",
           "options": "A"
         },
         {
-          "description": "合理的",
+          "description": "合理的人",
           "options": "B"
         }
       ],
@@ -105,7 +105,7 @@
           "options": "A"
         },
         {
-          "description": "根据情况自由进",
+          "description": "根据情况自由进行",
           "options": "B"
         }
       ],
@@ -119,7 +119,7 @@
           "options": "A"
         },
         {
-          "description": "由别人来介绍",
+          "description": "由别人来介绍我",
           "options": "B"
         }
       ],
@@ -129,11 +129,11 @@
     {
       "answer": [
         {
-          "description": "务实、有现实",
+          "description": "务实、有现实感",
           "options": "A"
         },
         {
-          "description": "有创意，有独创精",
+          "description": "有创意，有独创精神",
           "options": "B"
         }
       ],
@@ -143,11 +143,11 @@
     {
       "answer": [
         {
-          "description": "注重感性甚于理",
+          "description": "注重感性甚于理性",
           "options": "A"
         },
         {
-          "description": "注重理性甚于感",
+          "description": "注重理性甚于感性",
           "options": "B"
         }
       ],
@@ -171,11 +171,11 @@
     {
       "answer": [
         {
-          "description": "与少数人有较深的交",
+          "description": "与少数人有较深的交往",
           "options": "A"
         },
         {
-          "description": "与各种各样的人进行交",
+          "description": "与各种各样的人进行交流",
           "options": "B"
         }
       ],
@@ -199,11 +199,11 @@
     {
       "answer": [
         {
-          "description": "缺乏同情",
+          "description": "缺乏同情心",
           "options": "A"
         },
         {
-          "description": "不合",
+          "description": "不合理",
           "options": "B"
         }
       ],
@@ -213,11 +213,11 @@
     {
       "answer": [
         {
-          "description": "让我感到很舒",
+          "description": "让我感到很舒服",
           "options": "A"
         },
         {
-          "description": "让我感到很不自",
+          "description": "让我感到很不自在",
           "options": "B"
         }
       ],
@@ -241,11 +241,11 @@
     {
       "answer": [
         {
-          "description": "不断有新创意的",
+          "description": "不断有新创意的人",
           "options": "A"
         },
         {
-          "description": "有现实感的",
+          "description": "有现实感的人",
           "options": "B"
         }
       ],
@@ -255,11 +255,11 @@
     {
       "answer": [
         {
-          "description": "一向亲切的",
+          "description": "一向亲切的人",
           "options": "A"
         },
         {
-          "description": "一向公正的",
+          "description": "一向公正的人",
           "options": "B"
         }
       ],
@@ -273,7 +273,7 @@
           "options": "A"
         },
         {
-          "description": "不太愿意做这种事",
+          "description": "不太愿意做这种事情",
           "options": "B"
         },
         {
@@ -287,11 +287,11 @@
     {
       "answer": [
         {
-          "description": "能够与任何人进行交",
+          "description": "能够与任何人进行交流",
           "options": "A"
         },
         {
-          "description": "与特定的人或在特定的情况下才能进行交",
+          "description": "与特定的人或在特定的情况下才能进行交流",
           "options": "B"
         }
       ],
@@ -315,11 +315,11 @@
     {
       "answer": [
         {
-          "description": "过分亲",
+          "description": "过分亲切",
           "options": "A"
         },
         {
-          "description": "不亲",
+          "description": "不亲切",
           "options": "B"
         }
       ],
@@ -342,17 +342,16 @@
         }
       ],
       "num": 24,
-      "type":1,
       "topic": "在日常生活中（这个问题可以选两个）"
     },
     {
       "answer": [
         {
-          "description": "很快就了解我的兴趣所",
+          "description": "很快就了解我的兴趣所在",
           "options": "A"
         },
         {
-          "description": "有了较深的交往以后才知道我的兴趣所",
+          "description": "有了较深的交往以后才知道我的兴趣所在",
           "options": "B"
         }
       ],
@@ -366,7 +365,7 @@
           "options": "A"
         },
         {
-          "description": "喜欢想出独特的方法去处",
+          "description": "喜欢想出独特的方法去处理",
           "options": "B"
         }
       ],
@@ -376,11 +375,11 @@
     {
       "answer": [
         {
-          "description": "尊重别人的感",
+          "description": "尊重别人的感情",
           "options": "A"
         },
         {
-          "description": "保护别人的权",
+          "description": "保护别人的权利",
           "options": "B"
         }
       ],
@@ -390,11 +389,11 @@
     {
       "answer": [
         {
-          "description": "事先小心制定计",
+          "description": "事先小心制定计划",
           "options": "A"
         },
         {
-          "description": "在处理事情的过程中根据情况找出相应的对",
+          "description": "在处理事情的过程中根据情况找出相应的对策",
           "options": "B"
         }
       ],
@@ -418,7 +417,7 @@
     {
       "answer": [
         {
-          "description": "独具一格的生活方",
+          "description": "独具一格的生活方式",
           "options": "A"
         },
         {
@@ -460,11 +459,11 @@
     {
       "answer": [
         {
-          "description": "比别人更积",
+          "description": "比别人更积极",
           "options": "A"
         },
         {
-          "description": "不如别人积",
+          "description": "不如别人积极",
           "options": "B"
         }
       ],
@@ -474,7 +473,7 @@
     {
       "answer": [
         {
-          "description": "愿景",
+          "description": "愿景（Vision）",
           "options": "A"
         },
         {
@@ -502,11 +501,11 @@
     {
       "answer": [
         {
-          "description": "喜欢接近截止日期处理事",
+          "description": "喜欢接近截止日期处理事情",
           "options": "A"
         },
         {
-          "description": "接近截止日期处理事情感到焦",
+          "description": "接近截止日期处理事情感到焦虑",
           "options": "B"
         }
       ],
@@ -516,11 +515,11 @@
     {
       "answer": [
         {
-          "description": "我有时感到很无",
+          "description": "我有时感到很无聊",
           "options": "A"
         },
         {
-          "description": "一般来说都是很愉快",
+          "description": "一般来说都是很愉快的",
           "options": "B"
         }
       ],
@@ -530,11 +529,11 @@
     {
       "answer": [
         {
-          "description": "在现有环境中找出可能",
+          "description": "在现有环境中找出可能性",
           "options": "A"
         },
         {
-          "description": "适应现有的环",
+          "description": "适应现有的环境",
           "options": "B"
         }
       ],
@@ -576,7 +575,7 @@
           "options": "A"
         },
         {
-          "description": "对流行不感兴",
+          "description": "对流行不感兴趣",
           "options": "B"
         }
       ],
@@ -586,7 +585,7 @@
     {
       "answer": [
         {
-          "description": "支持现有体",
+          "description": "支持现有体制",
           "options": "A"
         },
         {
@@ -614,11 +613,11 @@
     {
       "answer": [
         {
-          "description": "我经常忘记，事后才想起",
+          "description": "我经常忘记，事后才想起来",
           "options": "A"
         },
         {
-          "description": "为了不忘记，我将这些写在记事本",
+          "description": "为了不忘记，我将这些写在记事本上",
           "options": "B"
         },
         {
@@ -636,7 +635,7 @@
           "options": "A"
         },
         {
-          "description": "不太容易与我交上朋",
+          "description": "不太容易与我交上朋友",
           "options": "B"
         }
       ],
@@ -688,11 +687,11 @@
     {
       "answer": [
         {
-          "description": "改换话",
+          "description": "改换话题",
           "options": "A"
         },
         {
-          "description": "开玩笑来摆脱窘迫局",
+          "description": "开玩笑来摆脱窘迫局面",
           "options": "B"
         },
         {
@@ -748,7 +747,7 @@
     {
       "answer": [
         {
-          "description": "一般了解我的感",
+          "description": "一般了解我的感受",
           "options": "A"
         },
         {
@@ -790,11 +789,11 @@
     {
       "answer": [
         {
-          "description": "提前开始提早完",
+          "description": "提前开始提早完成",
           "options": "A"
         },
         {
-          "description": "快到截止日期急忙完",
+          "description": "快到截止日期急忙完成",
           "options": "B"
         }
       ],
@@ -804,11 +803,11 @@
     {
       "answer": [
         {
-          "description": "推动聚会顺利进",
+          "description": "推动聚会顺利进行",
           "options": "A"
         },
         {
-          "description": "让人们自得其",
+          "description": "让人们自得其乐",
           "options": "B"
         }
       ],
@@ -846,11 +845,11 @@
     {
       "answer": [
         {
-          "description": "马上说出做什",
+          "description": "马上说出做什么",
           "options": "A"
         },
         {
-          "description": "罗列出很多要做的事",
+          "description": "罗列出很多要做的事情",
           "options": "B"
         },
         {
@@ -910,7 +909,7 @@
           "options": "A"
         },
         {
-          "description": "无",
+          "description": "无聊",
           "options": "B"
         }
       ],

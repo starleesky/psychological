@@ -45,7 +45,7 @@ public class EapSubscribeServiceImpl extends BaseServiceImpl<EapSubscribe, Long>
         return this.eapSubscribeDao;
     }
 
-    public static String MANAGER_PHONE = "15067196487";
+    public static String MANAGER_PHONE = "18989468855";
 
     /**
      * 保存预约信息，关联用户信息,短信通知

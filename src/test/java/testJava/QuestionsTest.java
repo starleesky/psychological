@@ -17,9 +17,9 @@ public class QuestionsTest {
 
     public static void main(String[] args) {
 
-        //        mbti();
+                mbti();
 //        oq45();
-        scl90();
+//        scl90();
     }
 
     private static void mbti() {
@@ -37,13 +37,13 @@ public class QuestionsTest {
             questionsBean.setNum(Integer.parseInt(split2[0]));
             questionsBean.setTopic(split2[1]);
             questionsBean.setAnswer(answer);
-            String[] split3 = split1[1].split(". ");
+            String[] split3 = split1[1].trim().split(". ");
             QuestionDto.QuestionsBean.AnswerBean answerBean = new QuestionDto.QuestionsBean.AnswerBean();
 
             answerBean.setOptions(split3[0]);
             answerBean.setDescription(split3[1]);
             answer.add(answerBean);
-            String[] split4 = split1[2].split(". ");
+            String[] split4 = split1[2].trim().split(". ");
             answerBean = new QuestionDto.QuestionsBean.AnswerBean();
 
             answerBean.setOptions(split4[0]);

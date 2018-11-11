@@ -95,7 +95,7 @@
             <th WIDTH="200px">测试时间</th>
             <th>测试者</th>
             <th WIDTH="300px">测试结果</th>
-            <th WIDTH="300px">评分标准</th>
+            <th WIDTH="320px">评分标准</th>
             <th>手机号码</th>
         </tr>
         </thead>

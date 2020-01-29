@@ -157,13 +157,11 @@
 
 	<!-- 分页查询（数据） -->
 	<select id="page_datas" parameterType="map" resultType="cn.com.eap.entity.EapMsg">
-		<include refid="mybatis.pageStartSQL" />
 		<include refid="selectFieldSQL" />
 		<![CDATA[
 		  FROM EAP_MSG
 		]]>
 		<include refid="page_condition" />
-		<include refid="mybatis.pageEndSQL" />
 	</select>
 
 </mapper>   
